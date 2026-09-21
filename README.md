@@ -35,4 +35,7 @@
 .\tools\publish.ps1 -Message "describe your change"
 ```
 
+仓库中的 `PythonCode\TeamAlg\No1RuleRed` 是一个可运行的 `No.1` 红方规则算法示例。使用
+`PythonCode\TaskConfig\cssim\no1_rule_red.jsonc` 可让红方加载它、蓝方加载官方默认规则。
+
 不要直接在 `E:\CSSIM\Client\Data\AlgData\PythonCode` 或 `Server\Data\AlgData\PythonCode` 中长期修改；平台新建算法后，先用 `sync_from_cssim.ps1` 把真实队伍目录导入仓库。

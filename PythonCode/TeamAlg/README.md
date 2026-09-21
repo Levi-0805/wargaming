@@ -6,6 +6,7 @@
 |---|---|---|
 | `RedModel` | 红方 | 为本方实体返回`Idle`，作为未选择红方算法时的默认入口。 |
 | `BlueModel` | 蓝方 | 为本方实体返回`Idle`，作为未选择蓝方算法时的默认入口。 |
+| `No1RuleRed` | 红方 | `No.1` 规则算法：接敌攻击、无敌时分组推进并警戒战略目标。 |
 
 UE创建算法时，会把`AlgTemplate/red`或`AlgTemplate/blue`复制到
 `TeamAlg/<teamID>`，运行时通过以下路径加载：
@@ -13,6 +14,10 @@ UE创建算法时，会把`AlgTemplate/red`或`AlgTemplate/blue`复制到
 ```text
 TeamAlg.<teamID>.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm
 ```
+
+仓库附带的 `No.1` 示例配置是
+`TaskConfig/cssim/no1_rule_red.jsonc`。它将红方切换到
+`TeamAlg.No1RuleRed`，蓝方继续使用官方默认规则。
 
 `RedModel` 和 `BlueModel` 是 UE 配置所需的兜底入口，必须保留。其他随机 ID 目录由 UE 创建并属于对应选手。
 
