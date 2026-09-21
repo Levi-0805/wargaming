@@ -1,0 +1,21 @@
+{
+  "BaseInfo": {"AlgName": "example", "UserName": "local", "UserRole": "red"},
+  "config.py->GlobalConfig": {
+    "num_worker_threads": 1,
+    "device": "cpu",
+    "max_episode": 1,
+    "seed": 10098
+  },
+  "Common.cssim_env_wrapper.py->ScenarioConfig": {
+    "MaxStepsPerEpisode": 200,
+    "TimeDilation": 1,
+    "StepGameTime": 0.5,
+    "Algorithm_Names": [
+      "AlgTemplate.red.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm",
+      "AlgTemplate.blue.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm"
+    ],
+    // 字段名为兼容 UE 保持不变，但此地址只用于 gRPC。
+    "TcpAddr": "127.0.0.1",
+    "CSSIMPort": 21051
+  }
+}

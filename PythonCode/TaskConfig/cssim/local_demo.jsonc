@@ -1,0 +1,23 @@
+﻿{
+  "BaseInfo": {"AlgName": "local-demo", "UserName": "local", "UserRole": "red"},
+  "config.py->GlobalConfig": {
+    "num_worker_threads": 1,
+    "device": "cpu",
+    "max_episode": 1,
+    "seed": 10098,
+    "log_level": "DEBUG",
+    "AlgorithmConfig_Red": "TeamAlg.DemoRed.Algorithm.RLAgentAlgorithm.py->AlgorithmConfig",
+    "AlgorithmConfig_Blue": "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm.py->AlgorithmConfig"
+  },
+  "Common.cssim_env_wrapper.py->ScenarioConfig": {
+    "MaxStepsPerEpisode": 200,
+    "TimeDilation": 1,
+    "StepGameTime": 0.5,
+    "Algorithm_Names": [
+      "TeamAlg.DemoRed.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm",
+      "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm"
+    ],
+    "GrpcAddr": "127.0.0.1",
+    "CSSIMPort": 21051
+  }
+}

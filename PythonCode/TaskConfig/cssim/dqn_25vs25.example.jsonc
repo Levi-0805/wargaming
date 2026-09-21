@@ -1,0 +1,28 @@
+{
+  "BaseInfo": {"AlgName": "dqn-example", "UserName": "local", "UserRole": "red"},
+  "config.py->GlobalConfig": {
+    "num_worker_threads": 1,
+    "device": "cpu",
+    "max_episode": 3,
+    "AlgorithmConfig_Red": "AlgTemplate.red.Algorithm.RLAgentAlgorithm.py->AlgorithmConfig",
+    "AlgorithmConfig_Blue": "AlgTemplate.blue.Algorithm.RLAgentAlgorithm.py->AlgorithmConfig",
+    "seed": 10098
+  },
+  "Common.cssim_env_wrapper.py->ScenarioConfig": {
+    "MaxStepsPerEpisode": 200,
+    "TimeDilation": 1,
+    "StepGameTime": 0.5,
+    "Algorithm_Names": [
+      "AlgTemplate.red.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm",
+      "AlgTemplate.blue.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm"
+    ],
+    "TcpAddr": "127.0.0.1",
+    "CSSIMPort": 21051
+  },
+  "AlgTemplate.red.Algorithm.RLAgentAlgorithm.py->AlgorithmConfig": {
+    "mode": "reinforcement_learning"
+  },
+  "AlgTemplate.blue.Algorithm.RLAgentAlgorithm.py->AlgorithmConfig": {
+    "mode": "reinforcement_learning"
+  }
+}

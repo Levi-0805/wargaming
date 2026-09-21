@@ -1,0 +1,25 @@
+# PyCharm and local IDE state
+**/.idea/
+
+# Python caches and test output
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime output
+**/logs/
+*.log
+
+# Local Python environments and generated binaries
+**/PythonEnv/
+*.exe
+*.dll
+*.pyd
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Temporary editor files
+*.swp
+*.tmp
