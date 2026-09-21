@@ -21,3 +21,7 @@ foreach ($target in @(
     }
     Write-Host "Synced repository PythonCode to: $target"
 }
+
+# robocopy uses 0-7 for successful copy operations. Clear its native exit code
+# so callers can rely on PowerShell success (`$?`) after this script returns.
+$global:LASTEXITCODE = 0
