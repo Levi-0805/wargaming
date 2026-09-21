@@ -27,4 +27,10 @@
 
 7. 再启动 CSSIM 进行推演。
 
+也可以用一个命令完成验证、提交、推送和同步：
+
+```powershell
+.\tools\publish.ps1 -Message "describe your change"
+```
+
 不要直接在 `E:\CSSIM\Client\Data\AlgData\PythonCode` 或 `Server\Data\AlgData\PythonCode` 中长期修改；平台新建算法后，先用 `sync_from_cssim.ps1` 把真实队伍目录导入仓库。
