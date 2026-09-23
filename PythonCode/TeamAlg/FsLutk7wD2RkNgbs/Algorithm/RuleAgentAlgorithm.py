@@ -8,12 +8,14 @@ from cssim.protocol import Action
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
-    """红方集中进攻：只在武器射程内开火，全队打同一个弱点和同一高价值目标。
+    """地面部队沿右侧一路推进，无人机分三路侦察。
 
-    第一局回放红方击毁得分为 220（士兵 100 分、机器狗 20 分）。当时全队按
-    占领点数量拆开，并且一进入感知范围就攻击，人还停在约 1000cm 的火力射程外。
+    占领点按“先右后左、由近及远”排成一条路线。步兵和机器狗以纵队中位为
+    基准，拉得太开就等后面的单位，已经占领的点附近还有敌人时不继续往前。
+    无人机按存活顺序分到三个据点上空，只给地面部队提供感知，不跟着地面追击。
     """
 
+    _UAV = "BP_Base_UAV_C"
     _PRIORITY = {
         "BP_BaseSoldier_C": 0,
         "BP_RoboDog_C": 1,
@@ -22,10 +24,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         "BP_MNWS_Vehicle_6x6UGV_C": 4,
         "BP_Helicopter_C": 5,
     }
+    _LEASH = 10000.0
+    _HOLD_RADIUS = 35000.0
 
     def __init__(self, context, enable_parent_assignment: bool = False):
         super().__init__(context)
         self.enable_parent_assignment = bool(enable_parent_assignment)
+        self._march_uids: tuple[int, ...] | None = None
 
     @classmethod
     def _priority(cls, enemy) -> int:
@@ -69,93 +74,152 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             and cls._count(obj, "percent") >= 0.99
         )
 
-    @staticmethod
-    def _centroid(state: TeamState) -> tuple[float, float, float]:
-        alive = [agent for agent in state.agents if agent.alive]
-        group = alive or list(state.agents)
-        count = float(len(group))
-        return (
-            sum(float(agent.position[0]) for agent in group) / count,
-            sum(float(agent.position[1]) for agent in group) / count,
-            sum(float(agent.position[2]) for agent in group) / count,
-        )
+    @classmethod
+    def _is_uav(cls, agent) -> bool:
+        return agent.entity_type == cls._UAV
 
-    def _objective(self, state: TeamState):
+    @classmethod
+    def _ground_units(cls, state: TeamState) -> list:
+        return [agent for agent in state.agents if agent.alive and not cls._is_uav(agent)]
+
+    @classmethod
+    def _uavs(cls, state: TeamState) -> list:
+        return [agent for agent in state.agents if agent.alive and cls._is_uav(agent)]
+
+    @staticmethod
+    def _median(units: list) -> tuple[float, float, float]:
+        xs = sorted(float(unit.position[0]) for unit in units)
+        ys = sorted(float(unit.position[1]) for unit in units)
+        zs = [float(unit.position[2]) for unit in units]
+        middle = len(xs) // 2
+        return xs[middle], ys[middle], sum(zs) / float(len(zs))
+
+    def _remember_march(self, state: TeamState) -> None:
+        if self._march_uids:
+            return
         objectives = [item for item in state.key_objects if item.valid]
-        if not objectives:
-            return None
-        center = self._centroid(state)
-        return min(
+        ground = self._ground_units(state)
+        if not objectives or not ground:
+            return
+        ground_y = sum(float(unit.position[1]) for unit in ground) / float(len(ground))
+        uavs = self._uavs(state)
+        if uavs:
+            uav_y = sum(float(unit.position[1]) for unit in uavs) / float(len(uavs))
+            left_vector = uav_y - ground_y
+        else:
+            left_vector = 1.0
+        if abs(left_vector) < 1.0:
+            left_vector = 1.0
+        origin = self._median(ground)
+
+        def on_left(obj) -> bool:
+            return (float(obj.position[1]) - ground_y) * left_vector > 0
+
+        ordered = sorted(
             objectives,
             key=lambda item: (
-                1 if self._held_by_red(item) else 0,
-                self._count(item, "blueteamNum"),
-                self._horizontal(center, item.position),
+                1 if on_left(item) else 0,
+                self._horizontal(origin, item.position),
                 int(item.uid),
             ),
         )
+        self._march_uids = tuple(int(item.uid) for item in ordered)
 
-    def _team_target(self, state: TeamState):
-        enemies = [enemy for enemy in state.visible_opponents if enemy.alive]
-        if not enemies:
-            return None
-        center = self._centroid(state)
-        return min(
-            enemies,
-            key=lambda enemy: (
-                self._priority(enemy),
-                self._horizontal(center, enemy.position),
-                max(float(enemy.hp), 0.0),
-                int(enemy.uid),
-            ),
+    def _ordered_objectives(self, state: TeamState) -> list:
+        self._remember_march(state)
+        by_uid = {int(item.uid): item for item in state.key_objects if item.valid}
+        if not self._march_uids:
+            return list(by_uid.values())
+        return [by_uid[uid] for uid in self._march_uids if uid in by_uid]
+
+    def _threatened(self, state: TeamState, obj) -> bool:
+        return any(
+            enemy.alive and self._horizontal(enemy.position, obj.position) <= self._HOLD_RADIUS
+            for enemy in state.visible_opponents
         )
+
+    def _secured(self, state: TeamState, obj) -> bool:
+        return self._held_by_red(obj) and not self._threatened(state, obj)
+
+    def _current_objective(self, state: TeamState):
+        ordered = self._ordered_objectives(state)
+        if not ordered:
+            return None
+        for obj in ordered:
+            if not self._secured(state, obj):
+                return obj
+        return ordered[-1]
 
     def _in_range(self, agent, enemy) -> bool:
         return self._horizontal(agent.position, enemy.position) <= self._fire_range(agent) * 0.95
 
-    def _destination(self, agent, point, radius: float) -> tuple[float, float, float]:
+    def _attack_target(self, agent, in_range: list):
+        return min(
+            in_range,
+            key=lambda enemy: (
+                self._priority(enemy),
+                max(float(enemy.hp), 0.0),
+                self._horizontal(agent.position, enemy.position),
+                int(enemy.uid),
+            ),
+        )
+
+    def _destination(self, agent, point, radius: float, height: float) -> tuple[float, float, float]:
         x, y, z = self._xyz(point)
         if radius > 0:
             angle = (int(agent.team_index) + 1) * 2.399963229728653
             x += radius * math.cos(angle)
             y += radius * math.sin(angle)
-        if agent.entity_type == "BP_Base_UAV_C":
-            z += 300.0
-        return (x, y, z)
+        return (x, y, z + height)
 
-    def _attack_target(self, state: TeamState, agent, in_range: list):
-        team_target = self._team_target(state)
-        if team_target is not None and any(enemy.uid == team_target.uid for enemy in in_range):
-            return team_target
-        return min(
-            in_range,
-            key=lambda enemy: (
-                self._priority(enemy),
-                self._horizontal(agent.position, enemy.position),
-                max(float(enemy.hp), 0.0),
-                int(enemy.uid),
-            ),
-        )
+    def _column_point(self, agent, median, objective):
+        median_distance = self._horizontal(median, objective.position)
+        agent_distance = self._horizontal(agent.position, objective.position)
+        if agent_distance > median_distance + self._LEASH:
+            return median
+        if median_distance > agent_distance + self._LEASH:
+            return median
+        return objective.position
+
+    def _scout_action(self, state: TeamState, agent) -> Action:
+        perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
+        in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
+        if in_range:
+            return Action.attack(self._attack_target(agent, in_range))
+        ordered = self._ordered_objectives(state)
+        if not ordered:
+            return Action.move("+X")
+        uavs = self._uavs(state)
+        slot = next((index for index, unit in enumerate(uavs) if unit.uid == agent.uid), 0)
+        target = ordered[slot % len(ordered)]
+        return Action.move_at(self._destination(agent, target.position, 1800.0, 800.0))
 
     def choose_action(self, state: TeamState, agent) -> Action:
         if not agent.alive:
             return Action.idle()
+        if self._is_uav(agent):
+            return self._scout_action(state, agent)
 
         perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
         in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
         if in_range:
-            return Action.attack(self._attack_target(state, agent, in_range))
+            return Action.attack(self._attack_target(agent, in_range))
 
-        team_target = self._team_target(state)
-        if team_target is not None:
-            return Action.move_at(self._destination(agent, team_target.position, 0.0))
-
-        objective = self._objective(state)
+        objective = self._current_objective(state)
         if objective is None:
+            if perceived:
+                nearest = min(
+                    perceived,
+                    key=lambda enemy: (self._horizontal(agent.position, enemy.position), int(enemy.uid)),
+                )
+                return Action.move_at(self._destination(agent, nearest.position, 0.0, 0.0))
             return Action.move("+X")
-        if self._horizontal(agent.position, objective.position) <= 1200.0:
-            return Action.guard_position(self._destination(agent, objective.position, 800.0))
-        return Action.move_at(self._destination(agent, objective.position, 800.0))
+
+        ground = self._ground_units(state) or [agent]
+        point = self._column_point(agent, self._median(ground), objective)
+        if self._horizontal(agent.position, point) <= 1200.0:
+            return Action.guard_position(self._destination(agent, point, 500.0, 0.0))
+        return Action.move_at(self._destination(agent, point, 500.0, 0.0))
 
     def decide(self, state: TeamState):
         return [self.choose_action(state, agent) for agent in state.agents]
