@@ -8,10 +8,11 @@ from cssim.protocol import Action
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
-    """一人一狗编组、五组一队，三队从不同车道攻向蓝方所在的据点。
+    """全体攻向蓝方人数最多的据点，先头等到本队跟上再一起进点。
 
-    上一局三条路分别指向空的军事基地，蓝方主力一直停在指挥所，红方整局只打出
-    8 次射击。现在所有队伍都朝蓝方人数最多的据点前进，车道分开，避免再挤成一团。
+    100 分和 420 分是先头十几人先冲进指挥所，被三十多名蓝方打掉，后面的人停在
+    点外。4190 分那局 37 个步兵和机器狗几乎同时进点，打下据点并清掉守军。
+    离据点还远时，比队伍中位超前大约 50 米的人原地停一下，人不往回带。
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
@@ -175,6 +176,29 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         stagger = int(pair_index) * 500.0
         return (x + stagger, y + lane + lateral, z)
 
+    def _should_wait(self, state: TeamState, agent) -> bool:
+        """先头比队伍中位超前约 50 米、且队伍离据点还远时，原地等一等。"""
+
+        if agent.entity_type not in {self._SOLDIER, self._DOG}:
+            return False
+        objective = self._battle_objective(state)
+        if objective is None:
+            return False
+        troops = self._alive(state, self._SOLDIER) + self._alive(state, self._DOG)
+        if len(troops) < 6:
+            return False
+        distances = sorted(
+            self._horizontal(unit.position, objective.position) for unit in troops
+        )
+        median = distances[len(distances) // 2]
+        if median <= 10000.0:
+            return False
+        tail = distances[min(len(distances) - 1, int(len(distances) * 0.85))]
+        if tail - median > 20000.0:
+            return False
+        mine = self._horizontal(agent.position, objective.position)
+        return mine + 5000.0 < median
+
     def _move_or_hold(self, agent, point) -> Action:
         if self._horizontal(agent.position, point) <= 1500.0:
             return Action.guard_position(point)
@@ -203,6 +227,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
         if in_range:
             return Action.attack(self._attack_target(agent, in_range))
+        if self._should_wait(state, agent):
+            return Action.guard_position(self._xyz(agent.position))
         if perceived:
             return Action.move_at(self._xyz(self._attack_target(agent, perceived).position))
         visible = [enemy for enemy in state.visible_opponents if enemy.alive]

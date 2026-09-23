@@ -97,6 +97,16 @@ def test_forward_unit_keeps_advancing():
     assert action.points[0] > 10000
 
 
+def test_vanguard_waits_until_the_column_closes_up():
+    lead = entity(1, 0, 0, 15000, 0)
+    rear = [entity(10 + index, 0, index + 1, 0, 0) for index in range(8)]
+    held = objective(2, 20000, 0, blue=30)
+    agents = [lead, *rear]
+    actions = algorithm(agents).act(state(agents, objectives=[held]))
+    assert actions[0].command == "Guard"
+    assert actions[1].command == "Moving"
+
+
 def test_dead_agent_stays_idle():
     dead = entity(10, 0, 0, 0)
     dead.alive = False
