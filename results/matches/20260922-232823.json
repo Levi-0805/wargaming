@@ -1,0 +1,272 @@
+{
+  "output_file": "C:\\CSSIM\\Server\\CSSIM\\Saved\\Output\\Output_20260922_232823.txt",
+  "complete": true,
+  "red_score": 220,
+  "blue_score": 2560,
+  "red_breakdown": {
+    "士兵": 200,
+    "机器狗": 20
+  },
+  "blue_breakdown": {
+    "士兵": 2300,
+    "机器狗": 260
+  },
+  "red_kills": [
+    {
+      "time": "23:31:20/100",
+      "killer": "机器狗_3",
+      "victim": "士兵_48",
+      "points": 100
+    },
+    {
+      "time": "23:31:22/20",
+      "killer": "士兵_14",
+      "victim": "机器狗_20",
+      "points": 20
+    },
+    {
+      "time": "23:31:34/100",
+      "killer": "机器狗_11",
+      "victim": "士兵_36",
+      "points": 100
+    }
+  ],
+  "blue_kills": [
+    {
+      "time": "23:31:20/100",
+      "killer": "士兵_27",
+      "victim": "士兵_9",
+      "points": 100
+    },
+    {
+      "time": "23:31:21/100",
+      "killer": "机器狗_20",
+      "victim": "士兵_11",
+      "points": 100
+    },
+    {
+      "time": "23:31:21/20",
+      "killer": "士兵_27",
+      "victim": "机器狗_6",
+      "points": 20
+    },
+    {
+      "time": "23:31:22/20",
+      "killer": "士兵_42",
+      "victim": "机器狗_3",
+      "points": 20
+    },
+    {
+      "time": "23:31:23/100",
+      "killer": "士兵_27",
+      "victim": "士兵_14",
+      "points": 100
+    },
+    {
+      "time": "23:31:33/100",
+      "killer": "士兵_36",
+      "victim": "士兵_18",
+      "points": 100
+    },
+    {
+      "time": "23:31:34/20",
+      "killer": "士兵_36",
+      "victim": "机器狗_9",
+      "points": 20
+    },
+    {
+      "time": "23:31:35/100",
+      "killer": "士兵_32",
+      "victim": "士兵_20",
+      "points": 100
+    },
+    {
+      "time": "23:31:35/20",
+      "killer": "机器狗_16",
+      "victim": "机器狗_11",
+      "points": 20
+    },
+    {
+      "time": "23:31:36/100",
+      "killer": "士兵_32",
+      "victim": "士兵_23",
+      "points": 100
+    },
+    {
+      "time": "23:31:38/100",
+      "killer": "士兵_30",
+      "victim": "士兵_3",
+      "points": 100
+    },
+    {
+      "time": "23:31:39/100",
+      "killer": "士兵_30",
+      "victim": "士兵_6",
+      "points": 100
+    },
+    {
+      "time": "23:31:49/20",
+      "killer": "士兵_45",
+      "victim": "机器狗_0",
+      "points": 20
+    },
+    {
+      "time": "23:31:53/100",
+      "killer": "士兵_46",
+      "victim": "士兵_25",
+      "points": 100
+    },
+    {
+      "time": "23:31:53/20",
+      "killer": "士兵_46",
+      "victim": "机器狗_10",
+      "points": 20
+    },
+    {
+      "time": "23:31:54/100",
+      "killer": "士兵_44",
+      "victim": "士兵_22",
+      "points": 100
+    },
+    {
+      "time": "23:31:54/20",
+      "killer": "士兵_46",
+      "victim": "机器狗_8",
+      "points": 20
+    },
+    {
+      "time": "23:31:55/20",
+      "killer": "士兵_44",
+      "victim": "机器狗_5",
+      "points": 20
+    },
+    {
+      "time": "23:32:03/100",
+      "killer": "机器狗_14",
+      "victim": "士兵_24",
+      "points": 100
+    },
+    {
+      "time": "23:32:17/100",
+      "killer": "机器狗_16",
+      "victim": "士兵_12",
+      "points": 100
+    },
+    {
+      "time": "23:32:18/100",
+      "killer": "机器狗_16",
+      "victim": "士兵_1",
+      "points": 100
+    },
+    {
+      "time": "23:32:19/100",
+      "killer": "士兵_38",
+      "victim": "士兵_19",
+      "points": 100
+    },
+    {
+      "time": "23:32:19/100",
+      "killer": "机器狗_16",
+      "victim": "士兵_15",
+      "points": 100
+    },
+    {
+      "time": "23:32:20/100",
+      "killer": "机器狗_16",
+      "victim": "士兵_21",
+      "points": 100
+    },
+    {
+      "time": "23:32:20/20",
+      "killer": "士兵_38",
+      "victim": "机器狗_7",
+      "points": 20
+    },
+    {
+      "time": "23:32:21/20",
+      "killer": "机器狗_16",
+      "victim": "机器狗_4",
+      "points": 20
+    },
+    {
+      "time": "23:32:22/100",
+      "killer": "士兵_38",
+      "victim": "士兵_4",
+      "points": 100
+    },
+    {
+      "time": "23:32:22/100",
+      "killer": "机器狗_18",
+      "victim": "士兵_7",
+      "points": 100
+    },
+    {
+      "time": "23:32:23/20",
+      "killer": "机器狗_18",
+      "victim": "机器狗_12",
+      "points": 20
+    },
+    {
+      "time": "23:32:23/20",
+      "killer": "机器狗_16",
+      "victim": "机器狗_1",
+      "points": 20
+    },
+    {
+      "time": "23:32:43/20",
+      "killer": "机器狗_16",
+      "victim": "机器狗_2",
+      "points": 20
+    },
+    {
+      "time": "23:32:58/100",
+      "killer": "士兵_38",
+      "victim": "士兵_10",
+      "points": 100
+    },
+    {
+      "time": "23:32:58/100",
+      "killer": "机器狗_16",
+      "victim": "士兵_8",
+      "points": 100
+    },
+    {
+      "time": "23:32:58/100",
+      "killer": "士兵_34",
+      "victim": "士兵_2",
+      "points": 100
+    },
+    {
+      "time": "23:32:59/100",
+      "killer": "士兵_38",
+      "victim": "士兵_13",
+      "points": 100
+    },
+    {
+      "time": "23:32:59/100",
+      "killer": "士兵_38",
+      "victim": "士兵_16",
+      "points": 100
+    }
+  ],
+  "capture": [
+    {
+      "name": "军事基地B",
+      "red": 1,
+      "blue": 4,
+      "percent": 0.75
+    },
+    {
+      "name": "指挥所",
+      "red": 0,
+      "blue": 16,
+      "percent": 0
+    },
+    {
+      "name": "军事基地A",
+      "red": 0,
+      "blue": 3,
+      "percent": 0
+    }
+  ]
+}

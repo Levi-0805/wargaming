@@ -27,7 +27,19 @@
 
    部署脚本要求当前在干净的 `main` 分支，且 `origin/main` 已与本地提交一致；部署前会把客户端和服务端的算法库备份到 `E:\CSSIM\Backups\<时间戳>`，部署后逐文件校验 SHA-256。目标目录中与仓库无关的额外文件会保留。
 
-7. 再启动 CSSIM 进行推演。
+7. 再启动 CSSIM 进行推演。一条命令完成部署、等待本局结束、记录红方得分并推送：
+
+   ```powershell
+   .\tools\match_cycle.ps1
+   ```
+
+   有未提交的算法改动时，加上说明再跑，脚本会先验证、推送、部署，再开局：
+
+   ```powershell
+   .\tools\match_cycle.ps1 -Message "why the red tactic changed"
+   ```
+
+   客户端弹出后，在界面里开始与上一局相同的想定（红方 `FsLutk7wD2RkNgbs`）。得分写入 `results\latest.json`。脚本负责跑局和记分；下一版打法仍要改 `PythonCode\TeamAlg\<队伍ID>` 里的规则，再跑一次本命令。
 
 也可以用一个命令完成验证、提交、推送和同步：
 

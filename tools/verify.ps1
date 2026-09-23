@@ -1,6 +1,13 @@
 param(
-    [string]$PythonExe = 'E:\CSSIM\Client\Data\AlgData\PythonEnv\python.exe'
+    [string]$PythonExe = ''
 )
+
+if ([string]::IsNullOrWhiteSpace($PythonExe)) {
+    $PythonExe = @(
+        'E:\CSSIM\Client\Data\AlgData\PythonEnv\python.exe',
+        'C:\CSSIM\Client\Data\AlgData\PythonEnv\python.exe'
+    ) | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
+}
 
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot

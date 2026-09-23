@@ -6,6 +6,14 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
+if (-not (Test-Path -LiteralPath (Join-Path $CssimRoot 'Client\Data\AlgData\PythonCode'))) {
+    foreach ($candidate in @('C:\CSSIM', 'E:\CSSIM')) {
+        if (Test-Path -LiteralPath (Join-Path $candidate 'Client\Data\AlgData\PythonCode')) {
+            $CssimRoot = $candidate
+            break
+        }
+    }
+}
 
 function Invoke-GitChecked {
     param(
