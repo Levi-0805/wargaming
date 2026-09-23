@@ -72,23 +72,21 @@ def test_closes_distance_before_firing_outside_weapon_range():
     assert action.points[0] > 1000
 
 
-def test_five_pairs_share_a_road_and_the_sixth_pair_takes_another():
+def test_teams_advance_on_the_blue_strongpoint_in_separate_lanes():
     soldiers = [entity(index, 0, index, 0, 0) for index in range(6)]
     dogs = [
         entity(100 + index, 0, 20 + index, 40, 0, kind="BP_RoboDog_C")
         for index in range(6)
     ]
-    right = objective(1, 6000, -4000)
-    left = objective(2, 6000, 8000)
+    empty = objective(1, 5000, -4000, blue=0)
+    held_by_blue = objective(2, 20000, 0, blue=30)
     agents = soldiers + dogs
-    actions = algorithm(agents).act(state(agents, objectives=[left, right]))
+    actions = algorithm(agents).act(state(agents, objectives=[empty, held_by_blue]))
     by_uid = {agent.uid: action for agent, action in zip(agents, actions)}
     assert by_uid[0].command == "Moving"
-    assert by_uid[100].command == "Moving"
-    assert by_uid[0].points[1] < 0
-    assert by_uid[100].points[1] < 0
-    assert by_uid[5].points[1] > 0
-    assert by_uid[105].points[1] > 0
+    assert by_uid[0].points[0] > 10000
+    assert by_uid[100].points[0] > 10000
+    assert abs(by_uid[0].points[1] - by_uid[5].points[1]) > 4000
 
 
 def test_forward_unit_keeps_advancing():

@@ -8,10 +8,10 @@ from cssim.protocol import Action
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
-    """一人一狗为一个编组，五个编组为一队，各队沿三条路各自前进。
+    """一人一狗编组、五组一队，三队从不同车道攻向蓝方所在的据点。
 
-    队与队之间不设距离限制，也不把先头单位叫回营地。编组只共享本队那条路
-    的终点，并在终点横向展开。看到敌人时先靠上去打，打完继续沿自己的路走。
+    上一局三条路分别指向空的军事基地，蓝方主力一直停在指挥所，红方整局只打出
+    8 次射击。现在所有队伍都朝蓝方人数最多的据点前进，车道分开，避免再挤成一团。
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
@@ -127,11 +127,32 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return list(by_uid.values())
         return [by_uid[uid] for uid in self._road_uids if uid in by_uid]
 
-    def _road_for(self, state: TeamState, team_id: int):
+    @staticmethod
+    def _count(obj, name: str) -> float:
+        try:
+            return float((obj.raw or {}).get(name, 0) or 0)
+        except (TypeError, ValueError):
+            return 0.0
+
+    def _battle_objective(self, state: TeamState):
+        """蓝方人堆在哪个据点，队伍就攻哪个据点。"""
+
         roads = self._roads(state)
         if not roads:
             return None
-        return roads[int(team_id) % len(roads)]
+        ground = self._alive(state, self._SOLDIER) or self._alive(state)
+        if ground:
+            origin = self._xyz(ground[0].position)
+        else:
+            origin = (0.0, 0.0, 0.0)
+        return max(
+            roads,
+            key=lambda item: (
+                self._count(item, "blueteamNum"),
+                -self._horizontal(origin, item.position),
+                -int(item.uid),
+            ),
+        )
 
     def _in_range(self, agent, enemy) -> bool:
         return self._horizontal(agent.position, enemy.position) <= self._fire_range(agent) * 0.95
@@ -147,11 +168,12 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             ),
         )
 
-    def _spread_point(self, objective, slot: int, pair_index: int) -> tuple[float, float, float]:
+    def _spread_point(self, objective, team_id: int, slot: int, pair_index: int) -> tuple[float, float, float]:
         x, y, z = self._xyz(objective.position)
-        lateral = (int(slot) - 2) * 2200.0
+        lane = (int(team_id) % 3 - 1) * 8000.0
+        lateral = (int(slot) - 2) * 1600.0
         stagger = int(pair_index) * 500.0
-        return (x + stagger, y + lateral, z)
+        return (x + stagger, y + lane + lateral, z)
 
     def _move_or_hold(self, agent, point) -> Action:
         if self._horizontal(agent.position, point) <= 1500.0:
@@ -163,13 +185,12 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
         if in_range:
             return Action.attack(self._attack_target(agent, in_range))
-        roads = self._roads(state)
-        if not roads:
+        road = self._battle_objective(state)
+        if road is None:
             return Action.move("+X")
         uavs = self._alive(state, self._UAV)
         slot = next((index for index, unit in enumerate(uavs) if unit.uid == agent.uid), 0)
-        road = roads[slot % len(roads)]
-        x, y, z = self._spread_point(road, slot, 0)
+        x, y, z = self._spread_point(road, slot, slot % self._GROUPS_PER_TEAM, 0)
         return Action.move_at((x, y, z + 800.0))
 
     def choose_action(self, state: TeamState, agent) -> Action:
@@ -184,18 +205,21 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return Action.attack(self._attack_target(agent, in_range))
         if perceived:
             return Action.move_at(self._xyz(self._attack_target(agent, perceived).position))
+        visible = [enemy for enemy in state.visible_opponents if enemy.alive]
+        if visible:
+            return Action.move_at(self._xyz(self._attack_target(agent, visible).position))
 
         membership = self._membership(state, agent)
         if membership is None:
-            road = self._road_for(state, int(agent.team_index) % 3)
+            team_id = int(agent.team_index) % 3
             slot = int(agent.team_index) % self._GROUPS_PER_TEAM
             pair_index = 0
         else:
             team_id, slot, pair_index = membership
-            road = self._road_for(state, team_id)
+        road = self._battle_objective(state)
         if road is None:
             return Action.move("+X")
-        return self._move_or_hold(agent, self._spread_point(road, slot, pair_index))
+        return self._move_or_hold(agent, self._spread_point(road, team_id, slot, pair_index))
 
     def decide(self, state: TeamState):
         return [self.choose_action(state, agent) for agent in state.agents]
