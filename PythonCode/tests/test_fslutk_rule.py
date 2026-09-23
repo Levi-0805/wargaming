@@ -32,7 +32,7 @@ def objective(uid, x, y=0, *, blue=0, red=0, percent=0):
     })
 
 
-def state(agents, enemies=(), objectives=()):
+def state(agents, enemies=(), objectives=(), step=0):
     return TeamState(
         team=0,
         action_mask=np.ones((len(agents), 1), dtype=bool),
@@ -40,7 +40,7 @@ def state(agents, enemies=(), objectives=()):
         visible_opponents=tuple(enemies),
         raw={},
         episode=1,
-        step=0,
+        step=step,
         training=False,
         key_objects=tuple(objectives),
     )
@@ -84,9 +84,8 @@ def test_teams_advance_on_the_blue_strongpoint_in_separate_lanes():
     actions = algorithm(agents).act(state(agents, objectives=[empty, held_by_blue]))
     by_uid = {agent.uid: action for agent, action in zip(agents, actions)}
     assert by_uid[0].command == "Moving"
-    assert by_uid[0].points[0] > 10000
-    assert by_uid[100].points[0] > 10000
-    assert abs(by_uid[0].points[1] - by_uid[5].points[1]) > 4000
+    assert by_uid[0].points[0] < 8000
+    assert by_uid[5].points[0] > 15000
 
 
 def test_forward_unit_keeps_advancing():
@@ -101,7 +100,7 @@ def test_soldiers_march_to_the_area_a_uav_has_seen():
     soldier = entity(10, 0, 0, 0, 0)
     soldier.raw["agentPerception"] = []
     enemy = entity(20, 1, 0, 8000, 1000)
-    held = objective(2, 30000, 0, blue=30)
+    held = objective(2, 30000, 0, blue=0)
     rule = algorithm([soldier])
     first = rule.act(state([soldier], [enemy], [held]))[0]
     assert first.command == "Moving"
@@ -140,6 +139,40 @@ def test_armored_vehicle_keeps_its_own_altitude():
     action = algorithm([car]).act(state([car], objectives=[held]))[0]
     assert action.command == "Moving"
     assert action.points[2] == 80
+
+
+def test_each_strongpoint_gets_a_team_including_an_empty_one():
+    soldiers = [entity(index, 0, index, 60000, 0) for index in range(15)]
+    base_a = objective(1, -3000, -27529, blue=7)
+    base_b = objective(2, -45450, -30944, blue=0)
+    command = objective(3, -41810, 32275, blue=20)
+    actions = algorithm(soldiers).act(state(
+        soldiers, objectives=[base_a, base_b, command]
+    ))
+    by_uid = {agent.uid: action for agent, action in zip(soldiers, actions)}
+    assert by_uid[0].points[0] < -40000
+    assert -8000 < by_uid[5].points[0] < 2000
+    assert by_uid[10].points[0] < -35000
+
+
+def test_blocked_soldier_sidesteps_instead_of_holding():
+    soldier = entity(10, 0, 0, 0, 0)
+    road = objective(1, 30000, 0, blue=5)
+    rule = algorithm([soldier])
+    first = rule.act(state([soldier], objectives=[road], step=0))[0]
+    last = first
+    for step in range(1, 16):
+        last = rule.act(state([soldier], objectives=[road], step=step))[0]
+    assert last.command == "Moving"
+    assert abs(last.points[1] - first.points[1]) > 2000
+
+
+def test_uav_dives_onto_a_soldier_it_has_seen():
+    uav = entity(1, 0, 0, 0, 0, kind="BP_Base_UAV_C")
+    enemy = entity(20, 1, 1, 3000, 0)
+    action = algorithm([uav]).act(state([uav], [enemy]))[0]
+    assert action.command == "SelfDestruct"
+    assert abs(action.points[0] - 3000) < 50
 
 
 def test_dead_agent_stays_idle():

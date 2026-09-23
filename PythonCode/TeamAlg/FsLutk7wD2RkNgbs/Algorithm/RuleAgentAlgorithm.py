@@ -8,12 +8,10 @@ from cssim.protocol import Action
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
-    """步兵和机器狗走向无人机最近看见的蓝方，无人机在目标附近停下。
+    """三队分别盯住指挥所和军事基地 A、B；被建筑挡住就侧向绕开。
 
-    上一局蓝方留在指挥所时，红方集中冲进去拿到了 2390。下一局蓝方离开据点分兵，
-    无人机冲过目标飞出地图，步兵仍只挤指挥所，分数掉到 220。现在记下全队看见的
-    敌人，按聚集点分给三队；无人机每次只朝侦察点走近一段，靠近后警戒，避免继续冲出去。
-    山猫和运输机的坐标移动平台不执行，这两类改发方向移动。
+    上一版所有人挤向蓝方最多的一个点。蓝方分兵时 A、B 上一直有人，红方却没去；
+    撞上建筑后还在原地点警戒，能停一两分钟。无人机探到敌人后对那个坐标自爆坠落。
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
@@ -43,6 +41,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._road_uids: tuple[int, ...] | None = None
         self._seen: dict[int, tuple[tuple[float, float, float], int]] = {}
         self._motion: dict[int, list[tuple[int, float, float]]] = {}
+        self._dives: dict[int, tuple[float, float, float]] = {}
+        self._visited: set[tuple[int, int]] = set()
         self._last_step: int | None = None
 
     @classmethod
@@ -172,6 +172,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if self._last_step is not None and step < self._last_step:
             self._seen.clear()
             self._motion.clear()
+            self._dives.clear()
+            self._visited.clear()
         self._last_step = step
         for enemy in state.visible_opponents:
             if not enemy.alive:
@@ -265,14 +267,79 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         old = history[-16]
         return self._horizontal((old[1], old[2], 0.0), agent.position) < 400.0
 
-    def _anchor_for(self, state: TeamState, team_id: int) -> tuple[float, float, float] | None:
+    def _objective_points(self, state: TeamState) -> list[tuple[float, float, float]]:
+        """每个据点一条目的地。有蓝方或附近有敌人时打那里，空据点也先走一趟。"""
+
+        roads = self._roads(state)
         clusters = self._clusters(state)
-        if clusters:
-            return clusters[int(team_id) % len(clusters)]
-        objective = self._battle_objective(state)
-        if objective is None:
+        if not roads:
+            return list(clusters)
+        points: list[tuple[float, float, float]] = []
+        used: set[int] = set()
+        for road in roads:
+            nearby = [
+                (index, cluster)
+                for index, cluster in enumerate(clusters)
+                if self._horizontal(road.position, cluster) <= 15000.0
+            ]
+            if nearby:
+                index, cluster = min(
+                    nearby,
+                    key=lambda item: self._horizontal(road.position, item[1]),
+                )
+                used.add(index)
+                points.append(cluster)
+            else:
+                points.append(self._xyz(road.position))
+        for index, cluster in enumerate(clusters):
+            if index in used:
+                continue
+            nearest = min(
+                range(len(roads)),
+                key=lambda item: self._horizontal(roads[item].position, cluster),
+            )
+            if self._count(roads[nearest], "blueteamNum") <= 0:
+                points[nearest] = cluster
+        return points
+
+    def _anchor_for(self, state: TeamState, agent, team_id: int) -> tuple[float, float, float] | None:
+        roads = self._roads(state)
+        points = self._objective_points(state)
+        if not points:
             return None
-        return self._xyz(objective.position)
+        home_index = int(team_id) % len(points)
+        home = points[home_index]
+        if not roads:
+            return home
+        road = roads[home_index]
+        blue = self._count(road, "blueteamNum")
+        if blue > 0:
+            self._visited.discard((int(team_id), int(road.uid)))
+            return home
+        arrived = self._horizontal(agent.position, road.position) <= 4000.0
+        if arrived:
+            self._visited.add((int(team_id), int(road.uid)))
+        if (int(team_id), int(road.uid)) in self._visited:
+            busy = max(roads, key=lambda item: (self._count(item, "blueteamNum"), int(item.uid)))
+            if self._count(busy, "blueteamNum") > 0 and int(busy.uid) != int(road.uid):
+                return self._xyz(busy.position)
+        return home
+
+    def _bypass(self, agent, point: tuple[float, float, float]) -> tuple[float, float, float]:
+        """人停在建筑边上时，把下一个点挪到侧前方，不要继续顶同一个墙。"""
+
+        x, y, _z = self._xyz(agent.position)
+        dx = point[0] - x
+        dy = point[1] - y
+        length = math.hypot(dx, dy) or 1.0
+        step = int(self._last_step or 0)
+        side = 1.0 if (int(agent.uid) + step // 8) % 2 == 0 else -1.0
+        shift = 3500.0 + 2000.0 * ((step // 8) % 3)
+        return (
+            x + dx / length * 2500.0 + (-dy / length) * shift * side,
+            y + dy / length * 2500.0 + (dx / length) * shift * side,
+            point[2],
+        )
 
     def _step_toward(
         self,
@@ -310,13 +377,31 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         lane = (int(slot) % 3 - 1) * 4000.0
         return (base[0], base[1] + lane, base[2] + 1200.0)
 
+    def _dive_claimed(self, point: tuple[float, float, float], uid: int) -> bool:
+        near = [
+            other for other, taken in self._dives.items()
+            if other != uid and self._horizontal(point, taken) <= 4000.0
+        ]
+        return len(near) >= 2
+
     def _scout_action(self, state: TeamState, agent) -> Action:
+        uid = int(agent.uid)
+        if uid in self._dives:
+            return Action.self_destruct(self._dives[uid])
         perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
-        in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
-        if in_range:
-            return Action.attack(self._attack_target(agent, in_range))
+        if perceived:
+            target = self._xyz(self._attack_target(agent, perceived).position)
+            if not self._dive_claimed(target, uid):
+                self._dives[uid] = target
+                return Action.self_destruct(target)
         uavs = self._alive(state, self._UAV)
         slot = next((index for index, unit in enumerate(uavs) if unit.uid == agent.uid), 0)
+        clusters = self._clusters(state)
+        if clusters:
+            contact = clusters[slot % len(clusters)]
+            if self._horizontal(agent.position, contact) <= 8000.0 and not self._dive_claimed(contact, uid):
+                self._dives[uid] = contact
+                return Action.self_destruct(contact)
         loiter = self._loiter_point(state, slot)
         if loiter is None:
             return Action.move("-X")
@@ -344,14 +429,21 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             pair_index = 0
         else:
             team_id, slot, pair_index = membership
-        anchor = self._anchor_for(state, team_id)
+        anchor = self._anchor_for(state, agent, team_id)
         if anchor is None:
             return Action.move("-X")
         point, close = self._formation_point(agent, anchor, team_id, slot, pair_index)
+        stuck = self._stuck(agent)
+        if stuck and agent.entity_type not in {self._LYNX, self._HELI}:
+            point = self._bypass(agent, point)
         if agent.entity_type in {self._LYNX, self._HELI} or (
-            agent.entity_type == self._ARMORED and self._stuck(agent)
+            agent.entity_type == self._ARMORED and stuck
         ):
             return self._direction_toward(agent, point)
+        if stuck:
+            return Action.move_at(point)
+        if self._horizontal(agent.position, anchor) <= (900.0 if close else 2000.0):
+            return Action.guard_position(point)
         return self._move_or_hold(agent, point, 600.0 if close else 1500.0)
 
     def choose_action(self, state: TeamState, agent) -> Action:
