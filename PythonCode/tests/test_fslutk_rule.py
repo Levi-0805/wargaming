@@ -84,7 +84,7 @@ def test_teams_advance_on_the_blue_strongpoint_in_separate_lanes():
     actions = algorithm(agents).act(state(agents, objectives=[empty, held_by_blue]))
     by_uid = {agent.uid: action for agent, action in zip(agents, actions)}
     assert by_uid[0].command == "Moving"
-    assert by_uid[0].points[0] < 8000
+    assert by_uid[0].points[0] > 15000
     assert by_uid[5].points[0] > 15000
 
 
@@ -116,10 +116,11 @@ def test_uav_steps_toward_the_scout_point_and_holds_on_arrival():
     far_action = algorithm([far]).act(state([far], objectives=[held]))[0]
     assert far_action.command == "Moving"
     assert 5000 < far_action.points[0] < 12000
-    near = entity(1, 0, 0, 20000, -4000, kind="BP_Base_UAV_C")
-    near.position[:] = (20000, -4000, 1200)
+    near = entity(1, 0, 0, 20000, 0, kind="BP_Base_UAV_C")
+    near.position[:] = (20000, 0, 1200)
     near_action = algorithm([near]).act(state([near], objectives=[held]))[0]
-    assert near_action.command == "Guard"
+    assert near_action.command == "SelfDestruct"
+    assert abs(near_action.points[0] - 20000) < 50
 
 
 def test_lynx_uses_a_direction_because_point_moves_do_not_run():
@@ -141,7 +142,7 @@ def test_armored_vehicle_keeps_its_own_altitude():
     assert action.points[2] == 80
 
 
-def test_each_strongpoint_gets_a_team_including_an_empty_one():
+def test_main_force_attacks_the_largest_blue_group():
     soldiers = [entity(index, 0, index, 60000, 0) for index in range(15)]
     base_a = objective(1, -3000, -27529, blue=7)
     base_b = objective(2, -45450, -30944, blue=0)
@@ -150,9 +151,9 @@ def test_each_strongpoint_gets_a_team_including_an_empty_one():
         soldiers, objectives=[base_a, base_b, command]
     ))
     by_uid = {agent.uid: action for agent, action in zip(soldiers, actions)}
-    assert by_uid[0].points[0] < -40000
-    assert -8000 < by_uid[5].points[0] < 2000
-    assert by_uid[10].points[0] < -35000
+    assert by_uid[0].points[0] < -35000
+    assert by_uid[5].points[0] < -35000
+    assert -8000 < by_uid[10].points[0] < 2000
 
 
 def test_blocked_soldier_sidesteps_instead_of_holding():
@@ -169,10 +170,10 @@ def test_blocked_soldier_sidesteps_instead_of_holding():
 
 def test_uav_dives_onto_a_soldier_it_has_seen():
     uav = entity(1, 0, 0, 0, 0, kind="BP_Base_UAV_C")
-    enemy = entity(20, 1, 1, 3000, 0)
+    enemy = entity(20, 1, 1, 1200, 0)
     action = algorithm([uav]).act(state([uav], [enemy]))[0]
     assert action.command == "SelfDestruct"
-    assert abs(action.points[0] - 3000) < 50
+    assert abs(action.points[0] - 1200) < 50
 
 
 def test_dead_agent_stays_idle():
