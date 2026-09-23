@@ -97,6 +97,51 @@ def test_forward_unit_keeps_advancing():
     assert action.points[0] > 10000
 
 
+def test_soldiers_march_to_the_area_a_uav_has_seen():
+    soldier = entity(10, 0, 0, 0, 0)
+    soldier.raw["agentPerception"] = []
+    enemy = entity(20, 1, 0, 8000, 1000)
+    held = objective(2, 30000, 0, blue=30)
+    rule = algorithm([soldier])
+    first = rule.act(state([soldier], [enemy], [held]))[0]
+    assert first.command == "Moving"
+    assert 6000 < first.points[0] < 12000
+    second = rule.act(state([soldier], [], [held]))[0]
+    assert second.command == "Moving"
+    assert 6000 < second.points[0] < 12000
+
+
+def test_uav_steps_toward_the_scout_point_and_holds_on_arrival():
+    far = entity(1, 0, 0, 0, 0, kind="BP_Base_UAV_C")
+    held = objective(2, 20000, 0, blue=10)
+    far_action = algorithm([far]).act(state([far], objectives=[held]))[0]
+    assert far_action.command == "Moving"
+    assert 5000 < far_action.points[0] < 12000
+    near = entity(1, 0, 0, 20000, -4000, kind="BP_Base_UAV_C")
+    near.position[:] = (20000, -4000, 1200)
+    near_action = algorithm([near]).act(state([near], objectives=[held]))[0]
+    assert near_action.command == "Guard"
+
+
+def test_lynx_uses_a_direction_because_point_moves_do_not_run():
+    lynx = entity(7, 0, 0, 0, 0, kind="BP_MNWS_Vehicle_6x6UGV_C")
+    held = objective(2, -30000, 0, blue=10)
+    action = algorithm([lynx]).act(state([lynx], objectives=[held]))[0]
+    assert action.command == "Moving"
+    assert action.direction == "-X-Y"
+    assert action.points is None
+
+
+def test_armored_vehicle_keeps_its_own_altitude():
+    car = entity(50, 0, 0, 0, 0, kind="BP_MNWS_Vehicle_Armored_C")
+    car.position[2] = 80
+    held = objective(2, 20000, 0, blue=10)
+    held.position[2] = 5000
+    action = algorithm([car]).act(state([car], objectives=[held]))[0]
+    assert action.command == "Moving"
+    assert action.points[2] == 80
+
+
 def test_dead_agent_stays_idle():
     dead = entity(10, 0, 0, 0)
     dead.alive = False
