@@ -8,11 +8,12 @@ from cssim.protocol import Action
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
-    """全体攻向蓝方人数最多的据点，先头等到本队跟上再一起进点。
+    """全体从南侧一条路压向蓝方所在据点，先头等队伍收拢后再进点。
 
-    100 分和 420 分是先头十几人先冲进指挥所，被三十多名蓝方打掉，后面的人停在
-    点外。4190 分那局 37 个步兵和机器狗几乎同时进点，打下据点并清掉守军。
-    离据点还远时，比队伍中位超前大约 50 米的人原地停一下，人不往回带。
+    刚打的三局里，前后差距不到 50 米时等候没有生效，整队贴进指挥所被打掉，
+    得分 500 和 200。差距大约 70 米的那局从南侧一起进点，击毁 2340 再加占领
+    1600，合计 3940，结束时点里还剩 2 个蓝方。现在超前 25 米就停，进到 80 米
+    内改冲据点中心，把剩下的人清掉。
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
@@ -169,11 +170,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             ),
         )
 
-    def _spread_point(self, objective, team_id: int, slot: int, pair_index: int) -> tuple[float, float, float]:
+    def _spread_point(self, objective, team_id: int, slot: int, pair_index: int, agent=None) -> tuple[float, float, float]:
+        del team_id
         x, y, z = self._xyz(objective.position)
-        lane = (int(team_id) % 3 - 1) * 8000.0
-        lateral = (int(slot) - 2) * 1600.0
-        stagger = int(pair_index) * 500.0
+        close = agent is not None and self._horizontal(agent.position, objective.position) <= 8000.0
+        lateral = (int(slot) - 2) * (400.0 if close else 700.0)
+        lane = 0.0 if close else -8000.0
+        stagger = int(pair_index) * (150.0 if close else 400.0)
         return (x + stagger, y + lane + lateral, z)
 
     def _should_wait(self, state: TeamState, agent) -> bool:
@@ -191,15 +194,18 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             self._horizontal(unit.position, objective.position) for unit in troops
         )
         median = distances[len(distances) // 2]
-        if median <= 10000.0:
+        if median <= 8000.0:
             return False
         tail = distances[min(len(distances) - 1, int(len(distances) * 0.85))]
         if tail - median > 20000.0:
             return False
         mine = self._horizontal(agent.position, objective.position)
-        return mine + 5000.0 < median
+        return mine + 2500.0 < median
 
-    def _move_or_hold(self, agent, point) -> Action:
+    def _move_or_hold(self, agent, point, objective) -> Action:
+        if objective is not None and self._count(objective, "blueteamNum") > 0:
+            if self._horizontal(agent.position, objective.position) > 600.0:
+                return Action.move_at(point)
         if self._horizontal(agent.position, point) <= 1500.0:
             return Action.guard_position(point)
         return Action.move_at(point)
@@ -245,7 +251,11 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         road = self._battle_objective(state)
         if road is None:
             return Action.move("+X")
-        return self._move_or_hold(agent, self._spread_point(road, team_id, slot, pair_index))
+        return self._move_or_hold(
+            agent,
+            self._spread_point(road, team_id, slot, pair_index, agent),
+            road,
+        )
 
     def decide(self, state: TeamState):
         return [self.choose_action(state, agent) for agent in state.agents]

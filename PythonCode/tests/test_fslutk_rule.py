@@ -85,8 +85,9 @@ def test_teams_advance_on_the_blue_strongpoint_in_separate_lanes():
     by_uid = {agent.uid: action for agent, action in zip(agents, actions)}
     assert by_uid[0].command == "Moving"
     assert by_uid[0].points[0] > 10000
-    assert by_uid[100].points[0] > 10000
-    assert abs(by_uid[0].points[1] - by_uid[5].points[1]) > 4000
+    assert by_uid[5].points[0] > 10000
+    assert by_uid[0].points[1] < -5000
+    assert by_uid[5].points[1] < -5000
 
 
 def test_forward_unit_keeps_advancing():
@@ -95,6 +96,15 @@ def test_forward_unit_keeps_advancing():
     action = algorithm([soldier]).act(state([soldier], objectives=[road]))[0]
     assert action.command == "Moving"
     assert action.points[0] > 10000
+
+
+def test_column_pushes_into_the_strongpoint_while_blue_remains():
+    soldier = entity(10, 0, 0, 19000, 0)
+    held = objective(2, 20000, 0, blue=5)
+    action = algorithm([soldier]).act(state([soldier], objectives=[held]))[0]
+    assert action.command == "Moving"
+    assert action.points[0] > 18000
+    assert action.points[1] > -2000
 
 
 def test_vanguard_waits_until_the_column_closes_up():
