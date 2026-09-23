@@ -16,6 +16,12 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     """
 
     _UAV = "BP_Base_UAV_C"
+    # 山猫和运输直升机在本想定里不会位移，不能拿来当纵队队尾。
+    _PACE_TYPES = frozenset({
+        "BP_BaseSoldier_C",
+        "BP_RoboDog_C",
+        "BP_MNWS_Vehicle_Armored_C",
+    })
     _PRIORITY = {
         "BP_BaseSoldier_C": 0,
         "BP_RoboDog_C": 1,
@@ -172,14 +178,36 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             y += radius * math.sin(angle)
         return (x, y, z + height)
 
-    def _column_point(self, agent, median, objective):
-        median_distance = self._horizontal(median, objective.position)
+    def _pace_units(self, state: TeamState) -> list:
+        mobile = [
+            agent for agent in self._ground_units(state)
+            if agent.entity_type in self._PACE_TYPES
+        ]
+        return mobile or self._ground_units(state)
+
+    def _pace_point(self, units: list, objective) -> tuple[float, float, float]:
+        """队尾前方一个缰绳长度处。全队只向这个点前进，不再退回营地。"""
+
+        tail = max(units, key=lambda unit: self._horizontal(unit.position, objective.position))
+        tail_point = self._xyz(tail.position)
+        target = self._xyz(objective.position)
+        distance = math.hypot(tail_point[0] - target[0], tail_point[1] - target[1])
+        if distance <= self._LEASH:
+            return target
+        scale = self._LEASH / distance
+        return (
+            tail_point[0] + (target[0] - tail_point[0]) * scale,
+            tail_point[1] + (target[1] - tail_point[1]) * scale,
+            tail_point[2],
+        )
+
+    def _column_point(self, agent, units: list, objective):
+        pace = self._pace_point(units, objective)
+        pace_distance = self._horizontal(pace, objective.position)
         agent_distance = self._horizontal(agent.position, objective.position)
-        if agent_distance > median_distance + self._LEASH:
-            return median
-        if median_distance > agent_distance + self._LEASH:
-            return median
-        return objective.position
+        if agent_distance + 500.0 < pace_distance:
+            return self._xyz(agent.position)
+        return pace
 
     def _scout_action(self, state: TeamState, agent) -> Action:
         perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
@@ -215,8 +243,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
                 return Action.move_at(self._destination(agent, nearest.position, 0.0, 0.0))
             return Action.move("+X")
 
-        ground = self._ground_units(state) or [agent]
-        point = self._column_point(agent, self._median(ground), objective)
+        ground = self._pace_units(state) or [agent]
+        point = self._column_point(agent, ground, objective)
         if self._horizontal(agent.position, point) <= 1200.0:
             return Action.guard_position(self._destination(agent, point, 500.0, 0.0))
         return Action.move_at(self._destination(agent, point, 500.0, 0.0))

@@ -110,8 +110,9 @@ def test_straggler_catches_the_column_before_the_objective():
         [rear, middle, lead], objectives=[target]
     ))
     assert actions[0].command == "Moving"
-    assert actions[0].points[0] < 20000
-    assert actions[2].points[0] < 20000
+    assert 5000 < actions[0].points[0] < 20000
+    assert actions[2].command == "Guard"
+    assert actions[2].points[0] > 30000
 
 
 def test_uavs_scout_separate_objectives():
