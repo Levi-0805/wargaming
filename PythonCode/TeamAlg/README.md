@@ -7,6 +7,7 @@
 | `RedModel` | 红方 | 为本方实体返回`Idle`，作为未选择红方算法时的默认入口。 |
 | `BlueModel` | 蓝方 | 为本方实体返回`Idle`，作为未选择蓝方算法时的默认入口。 |
 | `No1RuleRed` | 红方 | `No.1` 规则算法：接敌攻击、无敌时分组推进并警戒战略目标。 |
+| `FsLutk7wD2RkNgbs` | 红方 | 当前比赛红方：全队打蓝方较少的占领点，只在武器射程内集火士兵。 |
 
 UE创建算法时，会把`AlgTemplate/red`或`AlgTemplate/blue`复制到
 `TeamAlg/<teamID>`，运行时通过以下路径加载：
