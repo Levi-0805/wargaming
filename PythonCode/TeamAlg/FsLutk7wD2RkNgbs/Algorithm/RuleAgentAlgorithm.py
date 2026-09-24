@@ -8,11 +8,11 @@ from cssim.protocol import Action
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
-    """全体攻向蓝方人数最多的据点，先头等到本队跟上再一起进点。
+    """全体压向蓝方人数最多的据点，进到 80 米内再散开打。
 
-    100 分和 420 分是先头十几人先冲进指挥所，被三十多名蓝方打掉，后面的人停在
-    点外。4190 分那局 37 个步兵和机器狗几乎同时进点，打下据点并清掉守军。
-    离据点还远时，比队伍中位超前大约 50 米的人原地停一下，人不往回带。
+    4000 分以上的局都是三十多人还活着就站上指挥所。低分局是半路有蓝方迎出来，
+    先头脱离队伍去追，人在点外被打掉。离据点还远时不追单个敌人；当前点清完后，
+    人数最多的下一个据点会自动成为目标。
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
@@ -176,28 +176,39 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         stagger = int(pair_index) * 500.0
         return (x + stagger, y + lane + lateral, z)
 
+    def _median_distance(self, state: TeamState, objective) -> float | None:
+        if objective is None:
+            return None
+        troops = self._alive(state, self._SOLDIER) + self._alive(state, self._DOG)
+        if len(troops) < 6:
+            return None
+        distances = sorted(
+            self._horizontal(unit.position, objective.position) for unit in troops
+        )
+        return distances[len(distances) // 2]
+
+    def _column_far(self, state: TeamState, objective) -> bool:
+        median = self._median_distance(state, objective)
+        return median is not None and median > 8000.0
+
     def _should_wait(self, state: TeamState, agent) -> bool:
-        """先头比队伍中位超前约 50 米、且队伍离据点还远时，原地等一等。"""
+        """离据点还远时，比队伍中位超前约 30 米的人原地等，不去追迎出来的敌人。"""
 
         if agent.entity_type not in {self._SOLDIER, self._DOG}:
             return False
         objective = self._battle_objective(state)
-        if objective is None:
+        median = self._median_distance(state, objective)
+        if median is None or median <= 8000.0:
             return False
         troops = self._alive(state, self._SOLDIER) + self._alive(state, self._DOG)
-        if len(troops) < 6:
-            return False
         distances = sorted(
             self._horizontal(unit.position, objective.position) for unit in troops
         )
-        median = distances[len(distances) // 2]
-        if median <= 10000.0:
-            return False
         tail = distances[min(len(distances) - 1, int(len(distances) * 0.85))]
         if tail - median > 20000.0:
             return False
         mine = self._horizontal(agent.position, objective.position)
-        return mine + 5000.0 < median
+        return mine + 3000.0 < median
 
     def _move_or_hold(self, agent, point) -> Action:
         if self._horizontal(agent.position, point) <= 1500.0:
@@ -227,13 +238,16 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
         if in_range:
             return Action.attack(self._attack_target(agent, in_range))
-        if self._should_wait(state, agent):
-            return Action.guard_position(self._xyz(agent.position))
-        if perceived:
-            return Action.move_at(self._xyz(self._attack_target(agent, perceived).position))
-        visible = [enemy for enemy in state.visible_opponents if enemy.alive]
-        if visible:
-            return Action.move_at(self._xyz(self._attack_target(agent, visible).position))
+        road = self._battle_objective(state)
+        if self._column_far(state, road):
+            if self._should_wait(state, agent):
+                return Action.guard_position(self._xyz(agent.position))
+        else:
+            visible = [enemy for enemy in state.visible_opponents if enemy.alive]
+            if perceived:
+                return Action.move_at(self._xyz(self._attack_target(agent, perceived).position))
+            if visible:
+                return Action.move_at(self._xyz(self._attack_target(agent, visible).position))
 
         membership = self._membership(state, agent)
         if membership is None:
@@ -242,9 +256,14 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             pair_index = 0
         else:
             team_id, slot, pair_index = membership
-        road = self._battle_objective(state)
         if road is None:
             return Action.move("+X")
+        if not self._column_far(state, road):
+            x, y, z = self._xyz(road.position)
+            point = (x, y + (int(slot) - 2) * 400.0, z)
+            if self._count(road, "blueteamNum") > 0 and self._horizontal(agent.position, road.position) > 600.0:
+                return Action.move_at(point)
+            return self._move_or_hold(agent, point)
         return self._move_or_hold(agent, self._spread_point(road, team_id, slot, pair_index))
 
     def decide(self, state: TeamState):
