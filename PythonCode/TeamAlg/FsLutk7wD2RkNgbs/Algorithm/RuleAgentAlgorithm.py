@@ -11,14 +11,23 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     """全体压向蓝方人数最多的据点，进到 80 米内再散开打。
 
     4000 分以上的局都是三十多人还活着就站上指挥所。低分局是半路有蓝方迎出来，
-    先头脱离队伍去追，人在点外被打掉。离据点还远时不追单个敌人；当前点清完后，
-    人数最多的下一个据点会自动成为目标。
+    先头脱离队伍去追，人在点外被打掉。离据点还远时不追单个敌人。车辆只朝据点
+    走近一段，高度保持自身高度。无人机每次只飞一小段，靠近蓝方后再自爆轰炸。
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
     _DOG = "BP_RoboDog_C"
     _UAV = "BP_Base_UAV_C"
+    _ARMORED = "BP_MNWS_Vehicle_Armored_C"
+    _LYNX = "BP_MNWS_Vehicle_6x6UGV_C"
+    _HELI = "BP_Helicopter_C"
+    _VEHICLES = frozenset({
+        "BP_MNWS_Vehicle_Armored_C",
+        "BP_MNWS_Vehicle_6x6UGV_C",
+        "BP_Helicopter_C",
+    })
     _GROUPS_PER_TEAM = 5
+    _STEP = 6000.0
     _PRIORITY = {
         "BP_BaseSoldier_C": 0,
         "BP_RoboDog_C": 1,
@@ -210,29 +219,90 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         mine = self._horizontal(agent.position, objective.position)
         return mine + 3000.0 < median
 
-    def _move_or_hold(self, agent, point) -> Action:
-        if self._horizontal(agent.position, point) <= 1500.0:
-            return Action.guard_position(point)
-        return Action.move_at(point)
+    def _step_toward(
+        self,
+        origin: tuple[float, float, float],
+        dest: tuple[float, float, float],
+        limit: float,
+    ) -> tuple[float, float, float]:
+        dx = dest[0] - origin[0]
+        dy = dest[1] - origin[1]
+        dz = dest[2] - origin[2]
+        distance = math.sqrt(dx * dx + dy * dy + dz * dz)
+        if distance <= limit or distance <= 1.0:
+            return dest
+        scale = limit / distance
+        return (origin[0] + dx * scale, origin[1] + dy * scale, origin[2] + dz * scale)
 
-    def _scout_action(self, state: TeamState, agent) -> Action:
+    def _vehicle_action(self, state: TeamState, agent) -> Action:
+        """朝据点每次只走大约 60 米，高度用自己的高度，避免远点寻路失败。"""
+
         perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
         in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
         if in_range:
             return Action.attack(self._attack_target(agent, in_range))
         road = self._battle_objective(state)
         if road is None:
-            return Action.move("+X")
+            return Action.move("-X")
+        x, y, _z = self._xyz(road.position)
+        origin = self._xyz(agent.position)
+        if agent.entity_type in {self._LYNX, self._HELI}:
+            return self._direction_toward(agent, (x, y, origin[2]))
+        return Action.move_at(self._step_toward(origin, (x, y, origin[2]), self._STEP))
+
+    def _direction_toward(self, agent, point: tuple[float, float, float]) -> Action:
+        dx = point[0] - float(agent.position[0])
+        dy = point[1] - float(agent.position[1])
+        if math.hypot(dx, dy) <= 600.0:
+            return Action.guard_position(point)
+        horizontal = "+X" if dx > 400.0 else "-X" if dx < -400.0 else ""
+        vertical = "+Y" if dy > 400.0 else "-Y" if dy < -400.0 else ""
+        direction = f"{horizontal}{vertical}" or ("-X" if dx < 0 else "+X")
+        return Action.move(direction)
+
+    def _move_or_hold(self, agent, point) -> Action:
+        if self._horizontal(agent.position, point) <= 1500.0:
+            return Action.guard_position(point)
+        return Action.move_at(point)
+
+    def _bomb_point(self, state: TeamState, agent) -> tuple[float, float, float] | None:
+        perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
+        soldiers = [enemy for enemy in perceived if enemy.entity_type == self._SOLDIER]
+        if soldiers or perceived:
+            target = self._attack_target(agent, soldiers or perceived)
+            point = self._xyz(target.position)
+            if self._horizontal(agent.position, point) <= 2500.0:
+                return point
+        road = self._battle_objective(state)
+        if road is not None and self._count(road, "blueteamNum") > 0:
+            point = self._xyz(road.position)
+            if self._horizontal(agent.position, point) <= 2500.0:
+                return point
+        return None
+
+    def _scout_action(self, state: TeamState, agent) -> Action:
+        bomb = self._bomb_point(state, agent)
+        if bomb is not None:
+            return Action.self_destruct(bomb)
+        road = self._battle_objective(state)
+        if road is None:
+            return Action.move("-X")
         uavs = self._alive(state, self._UAV)
         slot = next((index for index, unit in enumerate(uavs) if unit.uid == agent.uid), 0)
-        x, y, z = self._spread_point(road, slot, slot % self._GROUPS_PER_TEAM, 0)
-        return Action.move_at((x, y, z + 800.0))
+        x, y, z = self._xyz(road.position)
+        lane = (int(slot) % 3 - 1) * 2000.0
+        loiter = (x, y + lane, z + 1200.0)
+        if self._horizontal(agent.position, loiter) <= 2000.0:
+            return Action.guard_position(loiter)
+        return Action.move_at(self._step_toward(self._xyz(agent.position), loiter, self._STEP))
 
     def choose_action(self, state: TeamState, agent) -> Action:
         if not agent.alive:
             return Action.idle()
         if agent.entity_type == self._UAV:
             return self._scout_action(state, agent)
+        if agent.entity_type in self._VEHICLES:
+            return self._vehicle_action(state, agent)
 
         perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
         in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]

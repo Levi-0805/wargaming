@@ -116,6 +116,35 @@ def test_vanguard_waits_until_the_column_closes_up():
     assert actions[1].command == "Moving"
 
 
+def test_uav_steps_toward_the_garrison_and_bombs_when_close():
+    far = entity(1, 0, 0, 0, 0, kind="BP_Base_UAV_C")
+    held = objective(2, 20000, 0, blue=10)
+    far_action = algorithm([far]).act(state([far], objectives=[held]))[0]
+    assert far_action.command == "Moving"
+    assert 4000 < far_action.points[0] < 9000
+    near = entity(1, 0, 0, 20000, 0, kind="BP_Base_UAV_C")
+    near.position[:] = (20000, 0, 1200)
+    near_action = algorithm([near]).act(state([near], objectives=[held]))[0]
+    assert near_action.command == "SelfDestruct"
+    assert abs(near_action.points[0] - 20000) < 50
+
+
+def test_vehicles_step_forward_at_their_own_altitude():
+    car = entity(50, 0, 0, 0, 0, kind="BP_MNWS_Vehicle_Armored_C")
+    car.position[2] = 80
+    held = objective(2, 20000, 0, blue=10)
+    held.position[2] = 5000
+    action = algorithm([car]).act(state([car], objectives=[held]))[0]
+    assert action.command == "Moving"
+    assert 4000 < action.points[0] < 9000
+    assert action.points[2] == 80
+    lynx = entity(7, 0, 0, 0, 0, kind="BP_MNWS_Vehicle_6x6UGV_C")
+    lynx_action = algorithm([lynx]).act(state([lynx], objectives=[held]))[0]
+    assert lynx_action.command == "Moving"
+    assert lynx_action.direction == "+X"
+    assert lynx_action.points is None
+
+
 def test_dead_agent_stays_idle():
     dead = entity(10, 0, 0, 0)
     dead.alive = False
