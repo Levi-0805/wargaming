@@ -6,42 +6,41 @@ import re
 
 from cssim.protocol import Action
 
-
 logger = logging.getLogger(__name__)
 
 
 class MotionRecovery:
-    """Detect failed movement from actual positions, then try direction control.
+    """Measure progress toward a stable waypoint, not just distance walked.
 
-    Deliberate waiting, attacking and parent changes are not path failures.
-    This is a bounded fallback, not a substitute for the platform's navigation.
+    Preserve UE navigation goals and their map elevation. A short bounded
+    direction escape is only a fallback; return to the waypoint after two
+    frames so an aircraft cannot fly indefinitely beyond the map.
     """
 
     STALL_STEPS = 8
-    GROUND_STEP = 2000.0
-    ANGLES = (0, 60, -60, 120, -120, 180)
+    ANGLES = (60, -60, 90, -90)
 
     def __init__(self):
         self._episode = None
         self._step = None
         self._previous = {}
-        self._still = {}
+        self._progress = {}
         self._escape = {}
         self._attempts = {}
 
     def _begin(self, state):
         if state.episode != self._episode or (self._step is not None and state.step < self._step):
             self._previous.clear()
-            self._still.clear()
+            self._progress.clear()
             self._escape.clear()
             self._attempts.clear()
         self._episode, self._step = state.episode, state.step
 
     def pause(self, state, agent):
         self._begin(state)
-        # A special action deliberately consumes this frame. Preserve a past
-        # motion failure, but do not count this pause as another failed move.
         self._previous[agent.uid] = (state.step, tuple(agent.position), False)
+        self._progress.pop(agent.uid, None)
+        self._escape.pop(agent.uid, None)
 
     @staticmethod
     def _vector(agent, action):
@@ -69,40 +68,39 @@ class MotionRecovery:
 
     def apply(self, state, agent, action):
         self._begin(state)
+        position = tuple(float(v) for v in agent.position)
         previous = self._previous.get(agent.uid)
-        position = tuple(float(value) for value in agent.position)
-        vector = self._vector(agent, action) if action.command == "Moving" else (0, 0, 0)
-        intended = action.command == "Moving" and (action.points is None or math.dist(position, action.points) > 300)
-        if previous and previous[0] < state.step:
-            if previous[2] and intended and math.dist(position, previous[1]) < 50:
-                self._still[agent.uid] = self._still.get(agent.uid, 0) + 1
-            elif math.dist(position, previous[1]) >= 50 or not intended:
-                self._still[agent.uid] = 0
-        if not intended or not agent.alive or agent.communication_ok() is False:
-            self._previous[agent.uid] = (state.step, position, intended)
-            return action
-
+        goal = tuple(action.points[:3]) if action.points is not None else None
         airborne = agent.entity_type in {"BP_Base_UAV_C", "BP_Helicopter_C"}
+        distance = math.dist(position, goal) if goal is not None else None
+        intended = action.command == "Moving" and (distance is None or distance > 300)
+        self._previous[agent.uid] = (state.step, position, intended)
+        if not intended or not agent.alive or agent.communication_ok() is False:
+            self._progress.pop(agent.uid, None)
+            self._escape.pop(agent.uid, None)
+            return action
+        if previous and previous[0] == state.step:
+            return action
+        tracked = self._progress.get(agent.uid)
+        if goal is not None:
+            if tracked is None or tracked[0] is None or math.dist(goal, tracked[0]) > 600:
+                tracked = (goal, state.step, distance)
+            elif distance < tracked[2] - 200:
+                tracked = (goal, state.step, distance)
+            # Going away and returning to the same distance is not progress.
+        elif tracked is None or (previous and math.dist(position, previous[1]) >= 50):
+            tracked = (None, state.step, 0)
+        self._progress[agent.uid] = tracked
         escape = self._escape.get(agent.uid)
         if escape and state.step < escape[0]:
-            action = Action.move(escape[1])
-        elif self._still.get(agent.uid, 0) >= self.STALL_STEPS:
+            return Action.move(escape[1])
+        if state.step - tracked[1] >= self.STALL_STEPS:
             attempt = self._attempts.get(agent.uid, 0)
-            angle = self.ANGLES[attempt % len(self.ANGLES)]
-            direction = self._direction(vector, angle, airborne)
+            direction = self._direction(self._vector(agent, action), self.ANGLES[attempt % len(self.ANGLES)], airborne)
             self._attempts[agent.uid] = attempt + 1
-            self._escape[agent.uid] = (state.step + (2 if airborne else 6), direction)
-            self._still[agent.uid] = 0
-            action = Action.move(direction)
-            logger.info("移动无进展，切换方向: uid=%d step=%d attempt=%d direction=%s",
-                        agent.uid, state.step, attempt + 1, direction)
-        elif not airborne and action.points is not None:
-            # Keep ground waypoints close and at the actor's own elevation.
-            # The navigation mesh still determines the path between waypoints.
-            dx, dy, _ = vector
-            distance = math.hypot(dx, dy)
-            if distance > self.GROUND_STEP:
-                scale = self.GROUND_STEP / distance
-                action = Action.move_at((position[0] + dx * scale, position[1] + dy * scale, position[2]))
-        self._previous[agent.uid] = (state.step, position, intended)
+            self._escape[agent.uid] = (state.step + 2, direction)
+            self._progress[agent.uid] = (goal, state.step + 2, distance or 0)
+            logger.warning("航点无净进展: uid=%d step=%d distance_m=%.1f attempt=%d escape=%s",
+                           agent.uid, state.step, (distance or 0) / 100, attempt + 1, direction)
+            return Action.move(direction)
         return action

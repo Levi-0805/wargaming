@@ -57,10 +57,12 @@ def test_obstruction_outage_inside_one_km_triggers_handoff(kind):
     assert command.parent_uid == 2
 
 
-def test_handoff_happens_before_one_km_and_uses_3d_distance():
+def test_healthy_link_is_kept_until_one_km_and_distance_is_3d():
     commander = unit(1, kind="BaseCommander_C", parent=1)
     nearby = unit(2, 65_000)
     dog = unit(3, 70_000, kind="BP_RoboDog_C", parent=1)
+    assert CommandLinks().reassign(view(nearby, dog, commanders=[commander]), dog) is None
+    dog.position[0] = 101_000
     command = CommandLinks().reassign(view(nearby, dog, commanders=[commander]), dog)
     assert command.parent_uid == 2
     high = unit(4, 70_000, z=110_000)
@@ -130,10 +132,13 @@ def test_healthy_radio_link_keeps_the_original_route():
     assert CommandLinks().constrain(state, parent, move) is move
 
 
-def test_radio_boundary_recovers_toward_the_confirmed_parent():
+def test_radio_boundary_does_not_turn_a_connected_unit_back():
     parent = unit(1)
     dog = unit(2, 95_000, kind="BP_RoboDog_C", parent=1)
-    action = CommandLinks().constrain(view(parent, dog), dog, Action.move_at((120_000, 0, 0)))
+    move = Action.move_at((120_000, 0, 0))
+    assert CommandLinks().constrain(view(parent, dog), dog, move) is move
+    dog.raw["rSVD1"] = "dog;0"
+    action = CommandLinks().constrain(view(parent, dog), dog, move)
     assert action.direction == "-X"
 
 
@@ -152,12 +157,11 @@ def test_factory_enables_link_management_by_default():
     assert EntryPoint(context).enable_parent_assignment
 
 
-def test_disconnected_dogs_cannot_set_the_columns_pace():
-    soldiers = [unit(index, 10_000) for index in range(1, 7)]
-    dogs = [unit(index, -50_000, kind="BP_RoboDog_C", comm=0) for index in range(10, 23)]
-    state = view(*soldiers, *dogs)
-    context = AlgorithmContext(0, state.agents, (), ActionSetFactory.standard(), "cpu", {})
-    assert ReinforceAgentAlgorithm(context)._pace_troops(state) == soldiers
+def test_nearby_soldier_does_not_cause_early_healthy_reparenting():
+    commander = unit(1, kind="BaseCommander_C", parent=1)
+    soldier = unit(2, 30000)
+    dog = unit(3, 31000, kind="BP_RoboDog_C", parent=1)
+    assert CommandLinks().reassign(view(soldier, dog, commanders=[commander]), dog) is None
 
 
 def test_repair_is_sent_through_the_real_special_command_executor():

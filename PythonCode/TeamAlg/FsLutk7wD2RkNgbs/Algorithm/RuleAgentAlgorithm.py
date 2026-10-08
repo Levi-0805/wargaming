@@ -1,318 +1,117 @@
 from __future__ import annotations
 
-import math
-
 from cssim.algorithms import RuleAlgorithm
-from cssim.environment import TeamState
-from cssim.protocol import Action, ChangeParentAction
+from cssim.protocol import Action
 
+from .AssaultRoute import AssaultRoute
 from .CommandLinks import CommandLinks
 from .MotionRecovery import MotionRecovery
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
-    """全体压向蓝方人数最多的据点，进到 80 米内再散开打。
+    """All units use the lower approach, fight contacts, then capture HQ, B, A.
 
-    4000 分以上的局都是三十多人还活着就站上指挥所。低分局是半路有蓝方迎出来，
-    先头脱离队伍去追，人在点外被打掉。离据点还远时不追单个敌人。车辆只朝据点
-    走近一段，高度保持自身高度。无人单元优先修复指挥链，再移动或攻击；
-    通信中断的机器狗不参与计算步兵行军中位，避免把能行动的部队拖停。
+    No median-distance waiting, casualty-based regrouping or three-lane
+    offsets. Local perception authorizes the documented attack API; the
+    generic fireRange=1000 metadata is not an extra 9.5m firing gate.
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
     _DOG = "BP_RoboDog_C"
     _UAV = "BP_Base_UAV_C"
-    _ARMORED = "BP_MNWS_Vehicle_Armored_C"
-    _LYNX = "BP_MNWS_Vehicle_6x6UGV_C"
     _HELI = "BP_Helicopter_C"
-    _VEHICLES = frozenset({
-        "BP_MNWS_Vehicle_Armored_C",
-        "BP_MNWS_Vehicle_6x6UGV_C",
-        "BP_Helicopter_C",
-    })
-    _GROUPS_PER_TEAM = 5
-    _STEP = 6000.0
-    _PRIORITY = {
-        "BP_BaseSoldier_C": 0,
-        "BP_RoboDog_C": 1,
-        "BP_Base_UAV_C": 2,
-        "BP_MNWS_Vehicle_Armored_C": 3,
-        "BP_MNWS_Vehicle_6x6UGV_C": 4,
-        "BP_Helicopter_C": 5,
-    }
+    _PRIORITY = {_SOLDIER: 0, _DOG: 1, "BP_MNWS_Vehicle_Armored_C": 2, _UAV: 3}
 
     def __init__(self, context, enable_parent_assignment: bool = True):
         super().__init__(context)
         self.enable_parent_assignment = bool(enable_parent_assignment)
-        self._road_uids: tuple[int, ...] | None = None
         self._command_links = CommandLinks()
         self._motion_recovery = MotionRecovery()
-
-    @classmethod
-    def _priority(cls, enemy) -> int:
-        return cls._PRIORITY.get(enemy.entity_type, 6)
-
-    @staticmethod
-    def _xyz(point) -> tuple[float, float, float]:
-        return (float(point[0]), float(point[1]), float(point[2]))
-
-    @classmethod
-    def _horizontal(cls, origin, point) -> float:
-        left = cls._xyz(origin)
-        right = cls._xyz(point)
-        return math.hypot(left[0] - right[0], left[1] - right[1])
+        self._route = AssaultRoute()
+        self._frame = None
+        self._support = {}
+        self._fire_watch = {}
 
     @staticmethod
-    def _fire_range(agent) -> float:
-        merged = getattr(agent, "properties", {}) or {}
-        raw = getattr(agent, "raw", {}) or {}
-        value = merged.get("fireRange", raw.get("fireRange", 1000.0))
-        try:
-            distance = float(value)
-        except (TypeError, ValueError):
-            distance = 1000.0
-        if not math.isfinite(distance) or distance <= 0:
-            return 1000.0
-        return distance
+    def _xyz(point):
+        return tuple(float(v) for v in point)
 
-    def _alive(self, state: TeamState, entity_type: str | None = None) -> list:
-        units = [agent for agent in state.agents if agent.alive]
-        if entity_type is not None:
-            units = [agent for agent in units if agent.entity_type == entity_type]
-        return sorted(units, key=lambda agent: (int(agent.team_index), int(agent.uid)))
+    _horizontal = staticmethod(AssaultRoute.distance)
 
-    def _groups(self, state: TeamState) -> list[list]:
-        """每条机器狗配一名步兵；多出来的步兵单独成组。"""
-
-        soldiers = self._alive(state, self._SOLDIER)
-        dogs = self._alive(state, self._DOG)
-        groups: list[list] = []
-        for index, dog in enumerate(dogs):
-            members = [dog]
-            if index < len(soldiers):
-                members.append(soldiers[index])
-            groups.append(members)
-        groups.extend([soldier] for soldier in soldiers[len(dogs):])
-        return groups
-
-    def _membership(self, state: TeamState, agent) -> tuple[int, int, int] | None:
-        """返回 (队伍号, 队内编组号, 编组内序号)。不属于步兵/机器狗时返回 None。"""
-
-        for group_index, members in enumerate(self._groups(state)):
-            for pair_index, member in enumerate(members):
-                if member.uid == agent.uid:
-                    team_id = group_index // self._GROUPS_PER_TEAM
-                    slot = group_index % self._GROUPS_PER_TEAM
-                    return team_id, slot, pair_index
-        return None
-
-    def _remember_roads(self, state: TeamState) -> None:
-        if self._road_uids:
+    def _prepare(self, state):
+        frame = (state.episode, state.step)
+        if self._frame == frame:
             return
-        objectives = [item for item in state.key_objects if item.valid]
-        if not objectives:
-            return
-        ground = self._alive(state, self._SOLDIER) or [
-            agent for agent in state.agents if agent.alive and agent.entity_type != self._UAV
-        ]
-        if not ground:
-            self._road_uids = tuple(int(item.uid) for item in objectives)
-            return
-        ground_y = sum(float(unit.position[1]) for unit in ground) / float(len(ground))
-        uavs = self._alive(state, self._UAV)
-        if uavs:
-            uav_y = sum(float(unit.position[1]) for unit in uavs) / float(len(uavs))
-            left_vector = uav_y - ground_y
-        else:
-            left_vector = 1.0
-        if abs(left_vector) < 1.0:
-            left_vector = 1.0
-        ordered = sorted(
-            objectives,
-            key=lambda item: (
-                (float(item.position[1]) - ground_y) * left_vector,
-                int(item.uid),
-            ),
-        )
-        self._road_uids = tuple(int(item.uid) for item in ordered)
+        if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
+            self._fire_watch.clear()
+        self._frame = frame
+        self._route.update(state)
+        self._support = {}
+        for unit in state.agents:
+            if unit.alive:
+                for enemy in state.perceived_opponents(unit):
+                    if enemy.alive:
+                        self._support[enemy.uid] = self._support.get(enemy.uid, 0) + 1
 
-    def _roads(self, state: TeamState) -> list:
-        self._remember_roads(state)
-        by_uid = {int(item.uid): item for item in state.key_objects if item.valid}
-        if not self._road_uids:
-            return list(by_uid.values())
-        return [by_uid[uid] for uid in self._road_uids if uid in by_uid]
+    def _attack_target(self, agent, enemies):
+        return min(enemies, key=lambda enemy: (
+            self._PRIORITY.get(enemy.entity_type, 4),
+            -self._support.get(enemy.uid, 0),
+            max(float(enemy.hp), 0),
+            self._horizontal(agent.position, enemy.position), enemy.uid,
+        ))
 
-    @staticmethod
-    def _count(obj, name: str) -> float:
-        try:
-            return float((obj.raw or {}).get(name, 0) or 0)
-        except (TypeError, ValueError):
-            return 0.0
+    def _fire_or_close(self, state, agent, target):
+        # A visible contact is actionable, as in the official rule example.
+        # If repeated attacks do no damage and consume no ammo, move closer
+        # briefly instead of standing forever behind cover/out of range.
+        ammo = tuple(agent.raw.get("interaction", ()) or ())
+        signature = (target.uid, float(target.hp), ammo)
+        old = self._fire_watch.get(agent.uid)
+        start = old[1] if old and old[0] == signature else state.step
+        self._fire_watch[agent.uid] = (signature, start)
+        if 8 <= state.step - start < 11:
+            return Action.move_at(target.position)
+        if state.step - start >= 11:
+            self._fire_watch[agent.uid] = (signature, state.step)
+        return Action.attack(target)
 
-    def _battle_objective(self, state: TeamState):
-        """蓝方人堆在哪个据点，队伍就攻哪个据点。"""
-
-        roads = self._roads(state)
-        if not roads:
-            return None
-        ground = self._alive(state, self._SOLDIER) or self._alive(state)
-        if ground:
-            origin = self._xyz(ground[0].position)
-        else:
-            origin = (0.0, 0.0, 0.0)
-        return max(
-            roads,
-            key=lambda item: (
-                self._count(item, "blueteamNum"),
-                -self._horizontal(origin, item.position),
-                -int(item.uid),
-            ),
-        )
-
-    def _in_range(self, agent, enemy) -> bool:
-        return self._horizontal(agent.position, enemy.position) <= self._fire_range(agent) * 0.95
-
-    def _attack_target(self, agent, enemies: list):
-        return min(
-            enemies,
-            key=lambda enemy: (
-                self._priority(enemy),
-                max(float(enemy.hp), 0.0),
-                self._horizontal(agent.position, enemy.position),
-                int(enemy.uid),
-            ),
-        )
-
-    def _spread_point(self, objective, team_id: int, slot: int, pair_index: int) -> tuple[float, float, float]:
-        x, y, z = self._xyz(objective.position)
-        lane = (int(team_id) % 3 - 1) * 8000.0
-        lateral = (int(slot) - 2) * 1600.0
-        stagger = int(pair_index) * 500.0
-        return (x + stagger, y + lane + lateral, z)
-
-    def _pace_troops(self, state: TeamState) -> list:
-        return self._alive(state, self._SOLDIER) + [
-            dog for dog in self._alive(state, self._DOG)
-            if dog.communication_ok() is not False
-        ]
-
-    def _median_distance(self, state: TeamState, objective) -> float | None:
-        if objective is None:
-            return None
-        troops = self._pace_troops(state)
-        if len(troops) < 6:
-            return None
-        distances = sorted(
-            self._horizontal(unit.position, objective.position) for unit in troops
-        )
-        return distances[len(distances) // 2]
-
-    def _column_far(self, state: TeamState, objective) -> bool:
-        median = self._median_distance(state, objective)
-        return median is not None and median > 8000.0
-
-    def _should_wait(self, state: TeamState, agent) -> bool:
-        """离据点还远时，比队伍中位超前约 30 米的人原地等，不去追迎出来的敌人。"""
-
-        if agent.entity_type not in {self._SOLDIER, self._DOG}:
-            return False
-        objective = self._battle_objective(state)
-        median = self._median_distance(state, objective)
-        if median is None or median <= 8000.0:
-            return False
-        troops = self._pace_troops(state)
-        distances = sorted(
-            self._horizontal(unit.position, objective.position) for unit in troops
-        )
-        tail = distances[min(len(distances) - 1, int(len(distances) * 0.85))]
-        if tail - median > 20000.0:
-            return False
-        mine = self._horizontal(agent.position, objective.position)
-        return mine + 3000.0 < median
-
-    def _step_toward(
-        self,
-        origin: tuple[float, float, float],
-        dest: tuple[float, float, float],
-        limit: float,
-    ) -> tuple[float, float, float]:
-        dx = dest[0] - origin[0]
-        dy = dest[1] - origin[1]
-        dz = dest[2] - origin[2]
-        distance = math.sqrt(dx * dx + dy * dy + dz * dz)
-        if distance <= limit or distance <= 1.0:
-            return dest
-        scale = limit / distance
-        return (origin[0] + dx * scale, origin[1] + dy * scale, origin[2] + dz * scale)
-
-    def _vehicle_action(self, state: TeamState, agent) -> Action:
-        """朝据点每次只走大约 60 米，高度用自己的高度，避免远点寻路失败。"""
-
-        perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
-        in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
-        if in_range:
-            return Action.attack(self._attack_target(agent, in_range))
-        road = self._battle_objective(state)
-        if road is None:
-            return Action.move("-X")
-        x, y, _z = self._xyz(road.position)
-        origin = self._xyz(agent.position)
-        if agent.entity_type in {self._LYNX, self._HELI}:
-            return self._direction_toward(agent, (x, y, origin[2]))
-        return Action.move_at(self._step_toward(origin, (x, y, origin[2]), self._STEP))
-
-    def _direction_toward(self, agent, point: tuple[float, float, float]) -> Action:
-        dx = point[0] - float(agent.position[0])
-        dy = point[1] - float(agent.position[1])
-        if math.hypot(dx, dy) <= 600.0:
-            return Action.guard_position(point)
-        horizontal = "+X" if dx > 400.0 else "-X" if dx < -400.0 else ""
-        vertical = "+Y" if dy > 400.0 else "-Y" if dy < -400.0 else ""
-        direction = f"{horizontal}{vertical}" or ("-X" if dx < 0 else "+X")
-        return Action.move(direction)
-
-    def _move_or_hold(self, agent, point) -> Action:
-        if self._horizontal(agent.position, point) <= 1500.0:
+    def _combat_action(self, state, agent):
+        if not agent.alive:
+            return Action.idle()
+        contacts = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
+        if contacts:
+            target = self._attack_target(agent, contacts)
+            if agent.entity_type == self._UAV:
+                # A confirmed local contact, never a guessed objective centre.
+                if self._horizontal(agent.position, target.position) <= 2500:
+                    return Action.self_destruct(target.position)
+                return Action.move_at((float(target.position[0]), float(target.position[1]),
+                                       float(target.position[2]) + 1800))
+            return self._fire_or_close(state, agent, target)
+        self._fire_watch.pop(agent.uid, None)
+        point = self._route.point(state, agent)
+        objective = self._route.objective(state)
+        visible = [enemy for enemy in state.visible_opponents if enemy.alive]
+        # Shared contacts guide movement without fabricating local visibility.
+        if visible and (objective is None or (
+            self._horizontal(agent.position, objective.position) <= 18000
+            and self._horizontal(agent.position, point) <= 2000
+        )):
+            nearby = [enemy for enemy in visible if objective is None or
+                      self._horizontal(enemy.position, objective.position) <= 18000]
+            if nearby:
+                point = self._xyz(self._attack_target(agent, nearby).position)
+        if point is None:
+            return Action.guard_position(agent.position)
+        if agent.entity_type in {self._UAV, self._HELI}:
+            point = (point[0], point[1], point[2] + 1800)
+        if self._horizontal(agent.position, point) <= 450:
             return Action.guard_position(point)
         return Action.move_at(point)
 
-    def _bomb_point(self, state: TeamState, agent) -> tuple[float, float, float] | None:
-        perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
-        soldiers = [enemy for enemy in perceived if enemy.entity_type == self._SOLDIER]
-        if soldiers or perceived:
-            target = self._attack_target(agent, soldiers or perceived)
-            point = self._xyz(target.position)
-            if self._horizontal(agent.position, point) <= 2500.0:
-                return point
-        road = self._battle_objective(state)
-        if road is not None and self._count(road, "blueteamNum") > 0:
-            point = self._xyz(road.position)
-            if self._horizontal(agent.position, point) <= 2500.0:
-                return point
-        return None
-
-    def _scout_action(self, state: TeamState, agent) -> Action:
-        bomb = self._bomb_point(state, agent)
-        if bomb is not None:
-            return Action.self_destruct(bomb)
-        road = self._battle_objective(state)
-        if road is None:
-            return Action.move("-X")
-        uavs = self._alive(state, self._UAV)
-        slot = next((index for index, unit in enumerate(uavs) if unit.uid == agent.uid), 0)
-        x, y, z = self._xyz(road.position)
-        lane = (int(slot) % 3 - 1) * 2000.0
-        loiter = (x, y + lane, z + 1200.0)
-        if self._horizontal(agent.position, loiter) <= 2000.0:
-            return Action.guard_position(loiter)
-        # All five aircraft stayed at spawn while point moves were sent in the
-        # 20261008 replay. Use the documented 3D direction action, updating the
-        # heading and altitude every frame instead of relying on a ground path.
-        vector = tuple(loiter[i] - float(agent.position[i]) for i in range(3))
-        return Action.move(MotionRecovery._direction(vector, 0, airborne=True))
-
-    def choose_action(self, state: TeamState, agent) -> Action | ChangeParentAction:
+    def choose_action(self, state, agent):
+        self._prepare(state)
         if self.enable_parent_assignment:
             repair = self._command_links.reassign(state, agent)
             if repair is not None:
@@ -323,47 +122,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             action = self._command_links.constrain(state, agent, action)
         return self._motion_recovery.apply(state, agent, action)
 
-    def _combat_action(self, state: TeamState, agent) -> Action:
-        if not agent.alive:
-            return Action.idle()
-        if agent.entity_type == self._UAV:
-            return self._scout_action(state, agent)
-        if agent.entity_type in self._VEHICLES:
-            return self._vehicle_action(state, agent)
-
-        perceived = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
-        in_range = [enemy for enemy in perceived if self._in_range(agent, enemy)]
-        if in_range:
-            return Action.attack(self._attack_target(agent, in_range))
-        road = self._battle_objective(state)
-        if self._column_far(state, road):
-            if self._should_wait(state, agent):
-                return Action.guard_position(self._xyz(agent.position))
-        else:
-            visible = [enemy for enemy in state.visible_opponents if enemy.alive]
-            if perceived:
-                return Action.move_at(self._xyz(self._attack_target(agent, perceived).position))
-            if visible:
-                return Action.move_at(self._xyz(self._attack_target(agent, visible).position))
-
-        membership = self._membership(state, agent)
-        if membership is None:
-            team_id = int(agent.team_index) % 3
-            slot = int(agent.team_index) % self._GROUPS_PER_TEAM
-            pair_index = 0
-        else:
-            team_id, slot, pair_index = membership
-        if road is None:
-            return Action.move("+X")
-        if not self._column_far(state, road):
-            x, y, z = self._xyz(road.position)
-            point = (x, y + (int(slot) - 2) * 400.0, z)
-            if self._count(road, "blueteamNum") > 0 and self._horizontal(agent.position, road.position) > 600.0:
-                return Action.move_at(point)
-            return self._move_or_hold(agent, point)
-        return self._move_or_hold(agent, self._spread_point(road, team_id, slot, pair_index))
-
-    def decide(self, state: TeamState):
+    def decide(self, state):
+        self._prepare(state)
         return [self.choose_action(state, agent) for agent in state.agents]
 
 

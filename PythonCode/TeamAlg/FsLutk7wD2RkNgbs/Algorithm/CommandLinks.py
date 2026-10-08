@@ -19,8 +19,6 @@ class CommandLinks:
 
     SOLDIER = "BP_BaseSoldier_C"
     MAX_RANGE = 100_000.0
-    HANDOFF_RANGE = 60_000.0
-    RETURN_RANGE = 90_000.0
     RETRY_STEPS = 4
     REJECT_STEPS = 12
 
@@ -115,13 +113,9 @@ class CommandLinks:
             return None
 
         distance = self.distance(child, parent)
-        proactive = current_valid and parent.uid != current.uid and (
-            (current_distance >= self.HANDOFF_RANGE and distance < current_distance * 0.8)
-            or (current.uid in {item.uid for item in state.commanders}
-                and parent.entity_type == self.SOLDIER
-                and distance <= 20_000.0 and distance + 10_000.0 < current_distance)
-        )
-        if not emergency and not proactive:
+        # Healthy early reparenting correlates with complete motion loss in
+        # the 230451 replay. Do not disturb a working chain just to shorten it.
+        if not emergency:
             return None
         self._pending[child.uid] = (parent.uid, state.step)
         logger.info("动态改挂上级: child=%d old=%s parent=%d distance_m=%.1f offline=%s step=%d",
@@ -129,7 +123,7 @@ class CommandLinks:
         return ChangeParentAction(parent, child)
 
     def constrain(self, state: TeamState, child, action: Action) -> Action:
-        """Recover only at the radio boundary; do not clip a healthy route.
+        """Recover only on reported link loss; do not turn healthy units back.
 
         Never clamp a bomb's coordinates onto another location. A disconnected
         aircraft first repairs its link before trying to bomb.
@@ -143,16 +137,17 @@ class CommandLinks:
         parent = state.current_commander(child)
         if not self.eligible(state, child, parent):
             return action
-        if self.distance(child, parent) < self.RETURN_RANGE:
+        if child.communication_ok() is not False:
             return action
-        if action.points is not None and math.dist(tuple(parent.position), action.points) <= self.distance(child, parent):
+        if action.points is not None and math.dist(tuple(parent.position), action.points[:3]) <= self.distance(child, parent):
             return action
-        # Only when a handoff has not succeeded near the 1 km boundary, move
+        # Only when a handoff has not succeeded and the link is down, move
         # back toward the confirmed parent. Direction control avoids creating
         # arbitrary altitude points by clipping a sphere around that parent.
         delta = parent.position - child.position
+        axes = ("X", "Y", "Z") if child.entity_type in {"BP_Base_UAV_C", "BP_Helicopter_C"} else ("X", "Y")
         direction = "".join(
             ("+" if delta[i] > 0 else "-") + axis
-            for i, axis in enumerate(("X", "Y", "Z")) if abs(delta[i]) > 400
+            for i, axis in enumerate(axes) if abs(delta[i]) > 400
         )
         return Action.move(direction) if direction else Action.guard_position(tuple(child.position))
