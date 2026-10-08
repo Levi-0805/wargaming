@@ -1,0 +1,385 @@
+{
+  "source": "C:\\CSSIM\\Server\\CSSIM\\Saved\\Output\\Output_20260925_235746.txt",
+  "episodes": [
+    {
+      "episode": 1,
+      "scores": {
+        "red": {
+          "kills": 200,
+          "reward": 0,
+          "total": 200
+        },
+        "blue": {
+          "kills": 2460,
+          "reward": 3200,
+          "total": 5660
+        }
+      },
+      "units": [
+        {
+          "uid": 456,
+          "type": "BP_MNWS_Vehicle_6x6UGV_C",
+          "samples": 201,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 0.0
+        },
+        {
+          "uid": 461,
+          "type": "BP_MNWS_Vehicle_6x6UGV_C",
+          "samples": 201,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 0.0
+        },
+        {
+          "uid": 31,
+          "type": "BP_Base_UAV_C",
+          "samples": 201,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 437.3
+        },
+        {
+          "uid": 26,
+          "type": "BP_Base_UAV_C",
+          "samples": 201,
+          "offline_frames": 153,
+          "first_offline_step": 47,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 153,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 2879.0
+        },
+        {
+          "uid": 21,
+          "type": "BP_Base_UAV_C",
+          "samples": 201,
+          "offline_frames": 151,
+          "first_offline_step": 49,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 151,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 2519.1
+        },
+        {
+          "uid": 16,
+          "type": "BP_Base_UAV_C",
+          "samples": 201,
+          "offline_frames": 157,
+          "first_offline_step": 43,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 157,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 2516.4
+        },
+        {
+          "uid": 11,
+          "type": "BP_Base_UAV_C",
+          "samples": 201,
+          "offline_frames": 129,
+          "first_offline_step": 71,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 129,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 2219.2
+        },
+        {
+          "uid": 341,
+          "type": "BP_RoboDog_C",
+          "samples": 111,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 1001.5
+        },
+        {
+          "uid": 391,
+          "type": "BP_RoboDog_C",
+          "samples": 99,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 1183.0
+        },
+        {
+          "uid": 396,
+          "type": "BP_RoboDog_C",
+          "samples": 101,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 1182.2
+        },
+        {
+          "uid": 401,
+          "type": "BP_RoboDog_C",
+          "samples": 98,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 1185.7
+        },
+        {
+          "uid": 346,
+          "type": "BP_RoboDog_C",
+          "samples": 110,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 1005.2
+        },
+        {
+          "uid": 351,
+          "type": "BP_RoboDog_C",
+          "samples": 101,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 1005.0
+        },
+        {
+          "uid": 356,
+          "type": "BP_RoboDog_C",
+          "samples": 100,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 966.0
+        },
+        {
+          "uid": 361,
+          "type": "BP_RoboDog_C",
+          "samples": 97,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 966.2
+        },
+        {
+          "uid": 366,
+          "type": "BP_RoboDog_C",
+          "samples": 94,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 968.8
+        },
+        {
+          "uid": 371,
+          "type": "BP_RoboDog_C",
+          "samples": 93,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 955.2
+        },
+        {
+          "uid": 376,
+          "type": "BP_RoboDog_C",
+          "samples": 99,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 966.9
+        },
+        {
+          "uid": 381,
+          "type": "BP_RoboDog_C",
+          "samples": 99,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 1180.5
+        },
+        {
+          "uid": 386,
+          "type": "BP_RoboDog_C",
+          "samples": 95,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 1181.7
+        },
+        {
+          "uid": 476,
+          "type": "BP_MNWS_Vehicle_Armored_C",
+          "samples": 201,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 721.7
+        },
+        {
+          "uid": 481,
+          "type": "BP_MNWS_Vehicle_Armored_C",
+          "samples": 201,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 174.5
+        },
+        {
+          "uid": 486,
+          "type": "BP_MNWS_Vehicle_Armored_C",
+          "samples": 201,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 391.5
+        },
+        {
+          "uid": 491,
+          "type": "BP_MNWS_Vehicle_Armored_C",
+          "samples": 201,
+          "offline_frames": 0,
+          "first_offline_step": null,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 530.5
+        },
+        {
+          "uid": 321,
+          "type": "BP_Helicopter_C",
+          "samples": 201,
+          "offline_frames": 201,
+          "first_offline_step": -1,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 0.0
+        },
+        {
+          "uid": 325,
+          "type": "BP_Helicopter_C",
+          "samples": 201,
+          "offline_frames": 201,
+          "first_offline_step": -1,
+          "dead_parent_frames": 0,
+          "over_1km_frames": 0,
+          "parent_uids": [
+            333
+          ],
+          "displacement_m": 0.0
+        }
+      ],
+      "frames": 201,
+      "capture": [
+        {
+          "rSVD1": "军事基地B",
+          "redTeamNum": 0,
+          "blueteamNum": 0,
+          "percent": 0
+        },
+        {
+          "rSVD1": "指挥所",
+          "redTeamNum": 0,
+          "blueteamNum": 30,
+          "percent": 0
+        },
+        {
+          "rSVD1": "军事基地A",
+          "redTeamNum": 0,
+          "blueteamNum": 0,
+          "percent": 0
+        }
+      ],
+      "offline_units_by_type": {
+        "BP_Base_UAV_C": 4,
+        "BP_Helicopter_C": 2
+      }
+    }
+  ]
+}

@@ -20,7 +20,7 @@ class AlgorithmConfig:
     epsilon_decay: int = 20_000
     target_update: int = 500
     load_model: bool = False
-    enable_parent_assignment: bool = False
+    enable_parent_assignment: bool = True
 
     @classmethod
     def from_context(cls, context: AlgorithmContext) -> "AlgorithmConfig":

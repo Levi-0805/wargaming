@@ -50,7 +50,8 @@ def algorithm(agents):
     context = AlgorithmContext(
         0, tuple(agents), (), ActionSetFactory.standard(), "cpu", {}
     )
-    return RedRule(context)
+    # These tests isolate the existing combat policy from radio management.
+    return RedRule(context, enable_parent_assignment=False)
 
 
 def test_prefers_soldier_inside_weapon_range():

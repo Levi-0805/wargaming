@@ -4,7 +4,9 @@ import math
 
 from cssim.algorithms import RuleAlgorithm
 from cssim.environment import TeamState
-from cssim.protocol import Action
+from cssim.protocol import Action, ChangeParentAction
+
+from .CommandLinks import CommandLinks
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
@@ -12,7 +14,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
 
     4000 分以上的局都是三十多人还活着就站上指挥所。低分局是半路有蓝方迎出来，
     先头脱离队伍去追，人在点外被打掉。离据点还远时不追单个敌人。车辆只朝据点
-    走近一段，高度保持自身高度。无人机每次只飞一小段，靠近蓝方后再自爆轰炸。
+    走近一段，高度保持自身高度。无人单元优先修复指挥链，再移动或攻击；
+    通信中断的机器狗不参与计算步兵行军中位，避免把能行动的部队拖停。
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
@@ -37,10 +40,11 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         "BP_Helicopter_C": 5,
     }
 
-    def __init__(self, context, enable_parent_assignment: bool = False):
+    def __init__(self, context, enable_parent_assignment: bool = True):
         super().__init__(context)
         self.enable_parent_assignment = bool(enable_parent_assignment)
         self._road_uids: tuple[int, ...] | None = None
+        self._command_links = CommandLinks()
 
     @classmethod
     def _priority(cls, enemy) -> int:
@@ -185,10 +189,16 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         stagger = int(pair_index) * 500.0
         return (x + stagger, y + lane + lateral, z)
 
+    def _pace_troops(self, state: TeamState) -> list:
+        return self._alive(state, self._SOLDIER) + [
+            dog for dog in self._alive(state, self._DOG)
+            if dog.communication_ok() is not False
+        ]
+
     def _median_distance(self, state: TeamState, objective) -> float | None:
         if objective is None:
             return None
-        troops = self._alive(state, self._SOLDIER) + self._alive(state, self._DOG)
+        troops = self._pace_troops(state)
         if len(troops) < 6:
             return None
         distances = sorted(
@@ -209,7 +219,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         median = self._median_distance(state, objective)
         if median is None or median <= 8000.0:
             return False
-        troops = self._alive(state, self._SOLDIER) + self._alive(state, self._DOG)
+        troops = self._pace_troops(state)
         distances = sorted(
             self._horizontal(unit.position, objective.position) for unit in troops
         )
@@ -296,7 +306,17 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return Action.guard_position(loiter)
         return Action.move_at(self._step_toward(self._xyz(agent.position), loiter, self._STEP))
 
-    def choose_action(self, state: TeamState, agent) -> Action:
+    def choose_action(self, state: TeamState, agent) -> Action | ChangeParentAction:
+        if self.enable_parent_assignment:
+            repair = self._command_links.reassign(state, agent)
+            if repair is not None:
+                return repair
+        action = self._combat_action(state, agent)
+        if self.enable_parent_assignment:
+            return self._command_links.constrain(state, agent, action)
+        return action
+
+    def _combat_action(self, state: TeamState, agent) -> Action:
         if not agent.alive:
             return Action.idle()
         if agent.entity_type == self._UAV:
