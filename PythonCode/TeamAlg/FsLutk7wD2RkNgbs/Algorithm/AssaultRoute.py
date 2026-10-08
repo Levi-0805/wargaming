@@ -40,6 +40,7 @@ class AssaultRoute:
         self._cursor = {}
         self._routes = ()
         self.known_map = False
+        self._garrison = {}
 
     @staticmethod
     def distance(left, right):
@@ -55,6 +56,7 @@ class AssaultRoute:
     def _initialize(self, state):
         self.order, self.stage, self._confirmed = (), 0, 0
         self._cursor.clear()
+        self._garrison.clear()
         self._routes = ()
         self.known_map = False
         objects = [obj for obj in state.key_objects if obj.valid]
@@ -98,13 +100,44 @@ class AssaultRoute:
         if obj is None:
             return
         ours = obj.team == state.team if obj.team is not None else self.count(obj, "percent") >= 1.0
-        enemy_field = "blueteamNum" if state.team == 0 else "redTeamNum"
-        clear = ours and self.count(obj, enemy_field) == 0
-        self._confirmed = self._confirmed + 1 if clear else 0
+        # Occupation is the prerequisite, not eliminating every remaining
+        # actor. Requiring blue==0 delayed the latest HQ departure by 25 steps.
+        self._confirmed = self._confirmed + 1 if ours else 0
         if self._confirmed >= 2 and self.stage + 1 < len(self.order):
             self.stage += 1
             self._confirmed = 0
-            logger.info("据点已占领且清敌，转向下一目标: step=%d uid=%d", state.step, self.order[self.stage])
+            logger.info("据点占领已确认，主力转向下一目标: step=%d uid=%d", state.step, self.order[self.stage])
+        self._assign_garrison(state)
+
+    def _assign_garrison(self, state):
+        previous, self._garrison = self._garrison, {}
+        for uid in self.order[:self.stage]:
+            obj = state.key_object_by_uid(uid)
+            if obj is None or not obj.valid:
+                continue
+            nearby = [unit for unit in state.agents if unit.alive
+                      and unit.entity_type in {"BP_BaseSoldier_C", "BP_RoboDog_C"}
+                      and unit.communication_ok() is not False
+                      and unit.uid not in self._garrison
+                      and self.distance(unit.position, obj.position) <= 22000]
+            enemy_field = "blueteamNum" if state.team == 0 else "redTeamNum"
+            # Leave a local occupation margin; always release at least two
+            # of the nearby troops. When defenders disappear, release extras.
+            needed = min(max(0, len(nearby) - 2), int(self.count(obj, enemy_field)) + 1)
+            nearby.sort(key=lambda unit: (
+                previous.get(unit.uid) != uid,
+                self.distance(unit.position, obj.position), unit.uid))
+            self._garrison.update({unit.uid: uid for unit in nearby[:needed]})
+
+    def garrison_for(self, state, agent):
+        uid = self._garrison.get(agent.uid)
+        return state.key_object_by_uid(uid) if uid is not None else None
+
+    def departing(self, state, agent):
+        return self.stage > 0 and agent.uid not in self._garrison and any(
+            obj is not None and self.distance(agent.position, obj.position) <= 25000
+            for obj in (state.key_object_by_uid(uid) for uid in self.order[:self.stage])
+        )
 
     def objective(self, state):
         return state.key_object_by_uid(self.order[self.stage]) if self.order else None
@@ -113,6 +146,9 @@ class AssaultRoute:
         """Rear units finish the approach even after the front captures HQ."""
         if not self.order:
             return None
+        garrison = self.garrison_for(state, agent)
+        if garrison is not None:
+            return tuple(float(v) for v in garrison.position)
         position = agent.position
         if agent.uid not in self._cursor:
             route = self._routes[0]

@@ -1,0 +1,2571 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261009_003121\\protocol.jsonl",
+  "protocol": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261009_003121\\protocol.jsonl",
+  "limitation": "Offline decisions on historical states, not a simulation of new outcomes. Special commands are not executed.",
+  "episodes": [
+    {
+      "episode": 1,
+      "frames": 201,
+      "scores_in_file_order": [
+        {
+          "side": "red",
+          "kills": 2670,
+          "reward": 1600,
+          "total": 4270
+        },
+        {
+          "side": "Blue",
+          "kills": 1700,
+          "reward": 1600,
+          "total": 3300
+        }
+      ],
+      "new_commands": {
+        "Moving": 6234,
+        "Idle": 2838,
+        "SelfDestruct": 399,
+        "NormalAttacking": 484,
+        "Guard": 95
+      },
+      "new_specials": 106,
+      "local_contact_rows": 1097,
+      "contact_attacks": 883,
+      "contact_moves": 186,
+      "units": [
+        {
+          "uid": 456,
+          "name": "“山猫”无人车_0",
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 0.0,
+          "path_m": 0.0
+        },
+        {
+          "uid": 461,
+          "name": "“山猫”无人车_1",
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 0.0,
+          "path_m": 0.0
+        },
+        {
+          "uid": 91,
+          "name": "士兵_1",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 158,
+            "NormalAttacking": 42
+          },
+          "net_m": 1098.1,
+          "path_m": 1924.9
+        },
+        {
+          "uid": 136,
+          "name": "士兵_10",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 82,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 79,
+            "NormalAttacking": 3,
+            "Idle": 118
+          },
+          "net_m": 977.9,
+          "path_m": 1010.7
+        },
+        {
+          "uid": 141,
+          "name": "士兵_11",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 92,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 79,
+            "NormalAttacking": 13,
+            "Idle": 108
+          },
+          "net_m": 957.6,
+          "path_m": 1001.2
+        },
+        {
+          "uid": 146,
+          "name": "士兵_12",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 82,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 79,
+            "NormalAttacking": 3,
+            "Idle": 118
+          },
+          "net_m": 981.8,
+          "path_m": 1013.6
+        },
+        {
+          "uid": 151,
+          "name": "士兵_13",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 84,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 79,
+            "NormalAttacking": 5,
+            "Idle": 116
+          },
+          "net_m": 970.7,
+          "path_m": 1005.6
+        },
+        {
+          "uid": 156,
+          "name": "士兵_14",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 92,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 82,
+            "NormalAttacking": 10,
+            "Idle": 108
+          },
+          "net_m": 969.8,
+          "path_m": 1038.2
+        },
+        {
+          "uid": 161,
+          "name": "士兵_15",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 90,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 83,
+            "NormalAttacking": 7,
+            "Idle": 110
+          },
+          "net_m": 971.1,
+          "path_m": 1049.5
+        },
+        {
+          "uid": 166,
+          "name": "士兵_16",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 87,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 82,
+            "NormalAttacking": 5,
+            "Idle": 113
+          },
+          "net_m": 973.8,
+          "path_m": 1041.4
+        },
+        {
+          "uid": 171,
+          "name": "士兵_18",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 98,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 95,
+            "NormalAttacking": 3,
+            "Idle": 102
+          },
+          "net_m": 1181.8,
+          "path_m": 1227.7
+        },
+        {
+          "uid": 176,
+          "name": "士兵_19",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 104,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 96,
+            "NormalAttacking": 8,
+            "Idle": 96
+          },
+          "net_m": 1188.5,
+          "path_m": 1226.1
+        },
+        {
+          "uid": 96,
+          "name": "士兵_2",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 166,
+            "NormalAttacking": 34
+          },
+          "net_m": 1099.7,
+          "path_m": 1950.7
+        },
+        {
+          "uid": 181,
+          "name": "士兵_20",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 96,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 94,
+            "NormalAttacking": 2,
+            "Idle": 104
+          },
+          "net_m": 1183.7,
+          "path_m": 1219.6
+        },
+        {
+          "uid": 186,
+          "name": "士兵_21",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 99,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 96,
+            "NormalAttacking": 3,
+            "Idle": 101
+          },
+          "net_m": 1186.1,
+          "path_m": 1218.8
+        },
+        {
+          "uid": 191,
+          "name": "士兵_22",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 99,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 96,
+            "NormalAttacking": 3,
+            "Idle": 101
+          },
+          "net_m": 1191.4,
+          "path_m": 1224.8
+        },
+        {
+          "uid": 196,
+          "name": "士兵_23",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 99,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 96,
+            "NormalAttacking": 3,
+            "Idle": 101
+          },
+          "net_m": 1191.9,
+          "path_m": 1224.7
+        },
+        {
+          "uid": 201,
+          "name": "士兵_24",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 96,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 95,
+            "NormalAttacking": 1,
+            "Idle": 104
+          },
+          "net_m": 1187.6,
+          "path_m": 1221.3
+        },
+        {
+          "uid": 206,
+          "name": "士兵_25",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 160,
+            "NormalAttacking": 40
+          },
+          "net_m": 1380.6,
+          "path_m": 1824.5
+        },
+        {
+          "uid": 101,
+          "name": "士兵_3",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 165,
+            "NormalAttacking": 35
+          },
+          "net_m": 1103.0,
+          "path_m": 1917.7
+        },
+        {
+          "uid": 106,
+          "name": "士兵_4",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 165,
+            "NormalAttacking": 35
+          },
+          "net_m": 1103.2,
+          "path_m": 1904.9
+        },
+        {
+          "uid": 111,
+          "name": "士兵_5",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 165,
+            "NormalAttacking": 35
+          },
+          "net_m": 1110.1,
+          "path_m": 1945.5
+        },
+        {
+          "uid": 116,
+          "name": "士兵_6",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 166,
+            "NormalAttacking": 34
+          },
+          "net_m": 1113.0,
+          "path_m": 1976.9
+        },
+        {
+          "uid": 121,
+          "name": "士兵_7",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 166,
+            "NormalAttacking": 34
+          },
+          "net_m": 1118.2,
+          "path_m": 1941.8
+        },
+        {
+          "uid": 126,
+          "name": "士兵_8",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 166,
+            "NormalAttacking": 34
+          },
+          "net_m": 1115.3,
+          "path_m": 1934.1
+        },
+        {
+          "uid": 131,
+          "name": "士兵_9",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 85,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 79,
+            "NormalAttacking": 6,
+            "Idle": 115
+          },
+          "net_m": 961.7,
+          "path_m": 997.7
+        },
+        {
+          "uid": 31,
+          "name": "无人机_0",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 7,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 193,
+            "Idle": 7
+          },
+          "net_m": 918.3,
+          "path_m": 3035.9
+        },
+        {
+          "uid": 26,
+          "name": "无人机_1",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 7,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 193,
+            "Idle": 7
+          },
+          "net_m": 970.8,
+          "path_m": 2803.6
+        },
+        {
+          "uid": 21,
+          "name": "无人机_2",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 8,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 192,
+            "Idle": 8
+          },
+          "net_m": 1004.6,
+          "path_m": 2631.7
+        },
+        {
+          "uid": 16,
+          "name": "无人机_3",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 7,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 193,
+            "Idle": 7
+          },
+          "net_m": 1002.2,
+          "path_m": 2845.4
+        },
+        {
+          "uid": 11,
+          "name": "无人机_4",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 7,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 193,
+            "Idle": 7
+          },
+          "net_m": 941.7,
+          "path_m": 2750.4
+        },
+        {
+          "uid": 341,
+          "name": "机器狗_0",
+          "kind": "BP_RoboDog_C",
+          "frames": 201,
+          "offline_frames": 1,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 182,
+            "Idle": 1,
+            "NormalAttacking": 16,
+            "Guard": 1
+          },
+          "net_m": 1059.5,
+          "path_m": 1531.9
+        },
+        {
+          "uid": 346,
+          "name": "机器狗_1",
+          "kind": "BP_RoboDog_C",
+          "frames": 201,
+          "offline_frames": 1,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 179,
+            "Idle": 1,
+            "NormalAttacking": 20
+          },
+          "net_m": 1064.0,
+          "path_m": 1524.3
+        },
+        {
+          "uid": 391,
+          "name": "机器狗_10",
+          "kind": "BP_RoboDog_C",
+          "frames": 95,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 94,
+            "NormalAttacking": 1,
+            "Idle": 105
+          },
+          "net_m": 1182.8,
+          "path_m": 1213.7
+        },
+        {
+          "uid": 396,
+          "name": "机器狗_11",
+          "kind": "BP_RoboDog_C",
+          "frames": 96,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 95,
+            "NormalAttacking": 1,
+            "Idle": 104
+          },
+          "net_m": 1181.7,
+          "path_m": 1212.9
+        },
+        {
+          "uid": 401,
+          "name": "机器狗_12",
+          "kind": "BP_RoboDog_C",
+          "frames": 99,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "Idle": 101
+          },
+          "net_m": 1195.4,
+          "path_m": 1239.8
+        },
+        {
+          "uid": 351,
+          "name": "机器狗_2",
+          "kind": "BP_RoboDog_C",
+          "frames": 201,
+          "offline_frames": 1,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 178,
+            "NormalAttacking": 20,
+            "Idle": 1,
+            "Guard": 1
+          },
+          "net_m": 1067.3,
+          "path_m": 1518.0
+        },
+        {
+          "uid": 356,
+          "name": "机器狗_3",
+          "kind": "BP_RoboDog_C",
+          "frames": 83,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 83,
+            "Idle": 117
+          },
+          "net_m": 989.3,
+          "path_m": 1040.5
+        },
+        {
+          "uid": 361,
+          "name": "机器狗_4",
+          "kind": "BP_RoboDog_C",
+          "frames": 84,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 83,
+            "NormalAttacking": 1,
+            "Idle": 116
+          },
+          "net_m": 988.6,
+          "path_m": 1039.7
+        },
+        {
+          "uid": 366,
+          "name": "机器狗_5",
+          "kind": "BP_RoboDog_C",
+          "frames": 86,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 84,
+            "NormalAttacking": 2,
+            "Idle": 114
+          },
+          "net_m": 979.0,
+          "path_m": 1048.1
+        },
+        {
+          "uid": 371,
+          "name": "机器狗_6",
+          "kind": "BP_RoboDog_C",
+          "frames": 85,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 84,
+            "NormalAttacking": 1,
+            "Idle": 115
+          },
+          "net_m": 987.8,
+          "path_m": 1057.1
+        },
+        {
+          "uid": 376,
+          "name": "机器狗_7",
+          "kind": "BP_RoboDog_C",
+          "frames": 86,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 83,
+            "NormalAttacking": 3,
+            "Idle": 114
+          },
+          "net_m": 976.6,
+          "path_m": 1044.8
+        },
+        {
+          "uid": 381,
+          "name": "机器狗_8",
+          "kind": "BP_RoboDog_C",
+          "frames": 94,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 94,
+            "Idle": 106
+          },
+          "net_m": 1170.4,
+          "path_m": 1204.4
+        },
+        {
+          "uid": 386,
+          "name": "机器狗_9",
+          "kind": "BP_RoboDog_C",
+          "frames": 100,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 1,
+            "Idle": 100
+          },
+          "net_m": 1203.1,
+          "path_m": 1255.4
+        },
+        {
+          "uid": 476,
+          "name": "轮式无人车_0",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 211.4,
+          "path_m": 237.0
+        },
+        {
+          "uid": 481,
+          "name": "轮式无人车_1",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 129.0,
+          "path_m": 163.7
+        },
+        {
+          "uid": 486,
+          "name": "轮式无人车_2",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 759.1,
+          "path_m": 804.3
+        },
+        {
+          "uid": 491,
+          "name": "轮式无人车_3",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 333,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 746.9,
+          "path_m": 793.6
+        },
+        {
+          "uid": 321,
+          "name": "运输直升机_1",
+          "kind": "BP_Helicopter_C",
+          "frames": 201,
+          "offline_frames": 201,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Idle": 34,
+            "Moving": 166
+          },
+          "net_m": 0.0,
+          "path_m": 0.0
+        },
+        {
+          "uid": 325,
+          "name": "运输直升机_2",
+          "kind": "BP_Helicopter_C",
+          "frames": 201,
+          "offline_frames": 201,
+          "initial_parent": 333,
+          "parent_changed": true,
+          "old_commands": {
+            "Idle": 32,
+            "Moving": 168
+          },
+          "net_m": 0.0,
+          "path_m": 0.0
+        }
+      ],
+      "phase_changes": [
+        {
+          "step": 136,
+          "stage": 1,
+          "objective": 32768,
+          "garrison": 8
+        }
+      ],
+      "first_strike_step": {
+        "21": 38,
+        "26": 39,
+        "11": 44,
+        "16": 57
+      },
+      "last_phase": 1,
+      "initial_commands": {
+        "Moving": 48,
+        "Idle": 2
+      },
+      "initial_repairs": [
+        {
+          "parent_uid": 126,
+          "child_uid": 321
+        },
+        {
+          "parent_uid": 121,
+          "child_uid": 325
+        }
+      ],
+      "last_objectives": [
+        {
+          "uId": 32768,
+          "rSVD1": "军事基地B",
+          "redTeamNum": 0,
+          "blueteamNum": 0,
+          "percent": 0
+        },
+        {
+          "uId": 32769,
+          "rSVD1": "指挥所",
+          "redTeamNum": 3,
+          "blueteamNum": 0,
+          "percent": 1
+        },
+        {
+          "uId": 32770,
+          "rSVD1": "军事基地A",
+          "redTeamNum": 0,
+          "blueteamNum": 0,
+          "percent": 0
+        }
+      ]
+    },
+    {
+      "episode": 2,
+      "frames": 201,
+      "scores_in_file_order": [
+        {
+          "side": "red",
+          "kills": 1530,
+          "reward": 0,
+          "total": 1530
+        },
+        {
+          "side": "Blue",
+          "kills": 2660,
+          "reward": 3200,
+          "total": 5860
+        }
+      ],
+      "new_commands": {
+        "Moving": 5680,
+        "Idle": 3995,
+        "SelfDestruct": 195,
+        "NormalAttacking": 171,
+        "Guard": 9
+      },
+      "new_specials": 124,
+      "local_contact_rows": 559,
+      "contact_attacks": 366,
+      "contact_moves": 130,
+      "units": [
+        {
+          "uid": 511,
+          "name": "“山猫”无人车_0",
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 0.0,
+          "path_m": 0.0
+        },
+        {
+          "uid": 1001,
+          "name": "“山猫”无人车_1",
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 0.0,
+          "path_m": 0.0
+        },
+        {
+          "uid": 876,
+          "name": "士兵_1",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 106,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 8,
+            "Idle": 94
+          },
+          "net_m": 933.4,
+          "path_m": 1273.9
+        },
+        {
+          "uid": 831,
+          "name": "士兵_10",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 80,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 79,
+            "NormalAttacking": 1,
+            "Idle": 120
+          },
+          "net_m": 965.4,
+          "path_m": 999.2
+        },
+        {
+          "uid": 826,
+          "name": "士兵_11",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 83,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 77,
+            "NormalAttacking": 6,
+            "Idle": 117
+          },
+          "net_m": 957.2,
+          "path_m": 985.9
+        },
+        {
+          "uid": 821,
+          "name": "士兵_12",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 82,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 2,
+            "Idle": 118
+          },
+          "net_m": 981.4,
+          "path_m": 1012.9
+        },
+        {
+          "uid": 816,
+          "name": "士兵_13",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 84,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 79,
+            "NormalAttacking": 5,
+            "Idle": 116
+          },
+          "net_m": 962.8,
+          "path_m": 990.2
+        },
+        {
+          "uid": 811,
+          "name": "士兵_14",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 86,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 6,
+            "Idle": 114
+          },
+          "net_m": 952.8,
+          "path_m": 1018.1
+        },
+        {
+          "uid": 806,
+          "name": "士兵_15",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 85,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 5,
+            "Idle": 115
+          },
+          "net_m": 959.3,
+          "path_m": 1022.4
+        },
+        {
+          "uid": 801,
+          "name": "士兵_16",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 84,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 4,
+            "Idle": 116
+          },
+          "net_m": 952.1,
+          "path_m": 1019.1
+        },
+        {
+          "uid": 796,
+          "name": "士兵_18",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 93,
+            "NormalAttacking": 8,
+            "Idle": 99
+          },
+          "net_m": 1165.5,
+          "path_m": 1204.6
+        },
+        {
+          "uid": 791,
+          "name": "士兵_19",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 102,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 93,
+            "NormalAttacking": 9,
+            "Idle": 98
+          },
+          "net_m": 1163.2,
+          "path_m": 1202.2
+        },
+        {
+          "uid": 871,
+          "name": "士兵_2",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 105,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 102,
+            "NormalAttacking": 3,
+            "Idle": 95
+          },
+          "net_m": 941.8,
+          "path_m": 1278.3
+        },
+        {
+          "uid": 786,
+          "name": "士兵_20",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 97,
+            "NormalAttacking": 4,
+            "Idle": 99
+          },
+          "net_m": 1200.2,
+          "path_m": 1242.4
+        },
+        {
+          "uid": 781,
+          "name": "士兵_21",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 95,
+            "NormalAttacking": 6,
+            "Idle": 99
+          },
+          "net_m": 1177.5,
+          "path_m": 1214.9
+        },
+        {
+          "uid": 776,
+          "name": "士兵_22",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 106,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 93,
+            "NormalAttacking": 13,
+            "Idle": 94
+          },
+          "net_m": 1170.5,
+          "path_m": 1203.1
+        },
+        {
+          "uid": 771,
+          "name": "士兵_23",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 110,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 93,
+            "NormalAttacking": 17,
+            "Idle": 90
+          },
+          "net_m": 1170.2,
+          "path_m": 1202.5
+        },
+        {
+          "uid": 766,
+          "name": "士兵_24",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 100,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 97,
+            "NormalAttacking": 3,
+            "Idle": 100
+          },
+          "net_m": 1201.8,
+          "path_m": 1239.7
+        },
+        {
+          "uid": 761,
+          "name": "士兵_25",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 107,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 93,
+            "NormalAttacking": 14,
+            "Idle": 93
+          },
+          "net_m": 1177.0,
+          "path_m": 1208.3
+        },
+        {
+          "uid": 866,
+          "name": "士兵_3",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 103,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 100,
+            "NormalAttacking": 3,
+            "Idle": 97
+          },
+          "net_m": 944.8,
+          "path_m": 1278.0
+        },
+        {
+          "uid": 861,
+          "name": "士兵_4",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 105,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 100,
+            "NormalAttacking": 5,
+            "Idle": 95
+          },
+          "net_m": 952.9,
+          "path_m": 1279.6
+        },
+        {
+          "uid": 856,
+          "name": "士兵_5",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 104,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 102,
+            "NormalAttacking": 2,
+            "Idle": 96
+          },
+          "net_m": 973.3,
+          "path_m": 1303.1
+        },
+        {
+          "uid": 851,
+          "name": "士兵_6",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 3,
+            "Idle": 99
+          },
+          "net_m": 969.2,
+          "path_m": 1279.9
+        },
+        {
+          "uid": 846,
+          "name": "士兵_7",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 104,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 100,
+            "NormalAttacking": 4,
+            "Idle": 96
+          },
+          "net_m": 968.5,
+          "path_m": 1291.0
+        },
+        {
+          "uid": 841,
+          "name": "士兵_8",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 105,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 102,
+            "NormalAttacking": 3,
+            "Idle": 95
+          },
+          "net_m": 968.3,
+          "path_m": 1296.2
+        },
+        {
+          "uid": 836,
+          "name": "士兵_9",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 81,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 1,
+            "Idle": 119
+          },
+          "net_m": 965.5,
+          "path_m": 1012.0
+        },
+        {
+          "uid": 506,
+          "name": "无人机_0",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 102,
+          "initial_parent": 635,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 189,
+            "Idle": 11
+          },
+          "net_m": 1522.4,
+          "path_m": 4253.1
+        },
+        {
+          "uid": 1006,
+          "name": "无人机_1",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 101,
+          "initial_parent": 635,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 190,
+            "Idle": 10
+          },
+          "net_m": 2104.5,
+          "path_m": 4148.5
+        },
+        {
+          "uid": 991,
+          "name": "无人机_2",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 102,
+          "initial_parent": 635,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 189,
+            "Idle": 11
+          },
+          "net_m": 1743.5,
+          "path_m": 4390.3
+        },
+        {
+          "uid": 981,
+          "name": "无人机_3",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 102,
+          "initial_parent": 635,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 188,
+            "Idle": 11,
+            "Guard": 1
+          },
+          "net_m": 1579.5,
+          "path_m": 4105.1
+        },
+        {
+          "uid": 971,
+          "name": "无人机_4",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 102,
+          "initial_parent": 635,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 189,
+            "Idle": 11
+          },
+          "net_m": 1781.9,
+          "path_m": 4217.5
+        },
+        {
+          "uid": 626,
+          "name": "机器狗_0",
+          "kind": "BP_RoboDog_C",
+          "frames": 105,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 105,
+            "Idle": 95
+          },
+          "net_m": 965.7,
+          "path_m": 1353.2
+        },
+        {
+          "uid": 621,
+          "name": "机器狗_1",
+          "kind": "BP_RoboDog_C",
+          "frames": 106,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 105,
+            "NormalAttacking": 1,
+            "Idle": 94
+          },
+          "net_m": 963.7,
+          "path_m": 1365.3
+        },
+        {
+          "uid": 576,
+          "name": "机器狗_10",
+          "kind": "BP_RoboDog_C",
+          "frames": 100,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 1,
+            "Idle": 100
+          },
+          "net_m": 1212.2,
+          "path_m": 1258.4
+        },
+        {
+          "uid": 571,
+          "name": "机器狗_11",
+          "kind": "BP_RoboDog_C",
+          "frames": 99,
+          "offline_frames": 1,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "Idle": 102
+          },
+          "net_m": 1213.7,
+          "path_m": 1271.4
+        },
+        {
+          "uid": 566,
+          "name": "机器狗_12",
+          "kind": "BP_RoboDog_C",
+          "frames": 100,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 1,
+            "Idle": 100
+          },
+          "net_m": 1214.5,
+          "path_m": 1262.8
+        },
+        {
+          "uid": 616,
+          "name": "机器狗_2",
+          "kind": "BP_RoboDog_C",
+          "frames": 109,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 108,
+            "NormalAttacking": 1,
+            "Idle": 91
+          },
+          "net_m": 998.7,
+          "path_m": 1401.0
+        },
+        {
+          "uid": 611,
+          "name": "机器狗_3",
+          "kind": "BP_RoboDog_C",
+          "frames": 84,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 4,
+            "Idle": 116
+          },
+          "net_m": 980.6,
+          "path_m": 1014.0
+        },
+        {
+          "uid": 606,
+          "name": "机器狗_4",
+          "kind": "BP_RoboDog_C",
+          "frames": 81,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 1,
+            "Idle": 119
+          },
+          "net_m": 971.0,
+          "path_m": 1017.7
+        },
+        {
+          "uid": 601,
+          "name": "机器狗_5",
+          "kind": "BP_RoboDog_C",
+          "frames": 86,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 81,
+            "NormalAttacking": 5,
+            "Idle": 114
+          },
+          "net_m": 965.7,
+          "path_m": 1030.7
+        },
+        {
+          "uid": 596,
+          "name": "机器狗_6",
+          "kind": "BP_RoboDog_C",
+          "frames": 85,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 81,
+            "NormalAttacking": 4,
+            "Idle": 115
+          },
+          "net_m": 966.7,
+          "path_m": 1032.2
+        },
+        {
+          "uid": 591,
+          "name": "机器狗_7",
+          "kind": "BP_RoboDog_C",
+          "frames": 85,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 82,
+            "NormalAttacking": 3,
+            "Idle": 115
+          },
+          "net_m": 964.2,
+          "path_m": 1030.4
+        },
+        {
+          "uid": 586,
+          "name": "机器狗_8",
+          "kind": "BP_RoboDog_C",
+          "frames": 100,
+          "offline_frames": 1,
+          "initial_parent": 635,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 98,
+            "Idle": 101,
+            "NormalAttacking": 1
+          },
+          "net_m": 1211.4,
+          "path_m": 1270.6
+        },
+        {
+          "uid": 581,
+          "name": "机器狗_9",
+          "kind": "BP_RoboDog_C",
+          "frames": 100,
+          "offline_frames": 1,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 1,
+            "Idle": 101
+          },
+          "net_m": 1211.3,
+          "path_m": 1273.7
+        },
+        {
+          "uid": 976,
+          "name": "轮式无人车_0",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 105.4,
+          "path_m": 135.2
+        },
+        {
+          "uid": 961,
+          "name": "轮式无人车_1",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 129.0,
+          "path_m": 165.8
+        },
+        {
+          "uid": 951,
+          "name": "轮式无人车_2",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 166.2,
+          "path_m": 166.5
+        },
+        {
+          "uid": 941,
+          "name": "轮式无人车_3",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 635,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 164.9,
+          "path_m": 165.6
+        },
+        {
+          "uid": 647,
+          "name": "运输直升机_1",
+          "kind": "BP_Helicopter_C",
+          "frames": 201,
+          "offline_frames": 201,
+          "initial_parent": 635,
+          "parent_changed": true,
+          "old_commands": {
+            "Idle": 33,
+            "Moving": 167
+          },
+          "net_m": 0.2,
+          "path_m": 0.2
+        },
+        {
+          "uid": 643,
+          "name": "运输直升机_2",
+          "kind": "BP_Helicopter_C",
+          "frames": 201,
+          "offline_frames": 201,
+          "initial_parent": 635,
+          "parent_changed": true,
+          "old_commands": {
+            "Idle": 33,
+            "Moving": 167
+          },
+          "net_m": 0.2,
+          "path_m": 0.2
+        }
+      ],
+      "phase_changes": [],
+      "first_strike_step": {
+        "1006": 39,
+        "981": 43,
+        "971": 44,
+        "506": 56,
+        "991": 57
+      },
+      "last_phase": 0,
+      "initial_commands": {
+        "Moving": 48,
+        "Idle": 2
+      },
+      "initial_repairs": [
+        {
+          "parent_uid": 841,
+          "child_uid": 647
+        },
+        {
+          "parent_uid": 846,
+          "child_uid": 643
+        }
+      ],
+      "last_objectives": [
+        {
+          "uId": 32768,
+          "rSVD1": "军事基地B",
+          "redTeamNum": 0,
+          "blueteamNum": 0,
+          "percent": 0
+        },
+        {
+          "uId": 32769,
+          "rSVD1": "指挥所",
+          "redTeamNum": 0,
+          "blueteamNum": 12,
+          "percent": 0
+        },
+        {
+          "uId": 32770,
+          "rSVD1": "军事基地A",
+          "redTeamNum": 0,
+          "blueteamNum": 0,
+          "percent": 0
+        }
+      ]
+    },
+    {
+      "episode": 3,
+      "frames": 201,
+      "scores_in_file_order": [
+        {
+          "side": "red",
+          "kills": 1190,
+          "reward": 0,
+          "total": 1190
+        },
+        {
+          "side": "Blue",
+          "kills": 2660,
+          "reward": 3200,
+          "total": 5860
+        }
+      ],
+      "new_commands": {
+        "Moving": 5875,
+        "Idle": 3913,
+        "SelfDestruct": 84,
+        "NormalAttacking": 163,
+        "Guard": 15
+      },
+      "new_specials": 107,
+      "local_contact_rows": 298,
+      "contact_attacks": 242,
+      "contact_moves": 29,
+      "units": [
+        {
+          "uid": 1166,
+          "name": "“山猫”无人车_0",
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 0.0,
+          "path_m": 0.0
+        },
+        {
+          "uid": 1161,
+          "name": "“山猫”无人车_1",
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 0.0,
+          "path_m": 0.0
+        },
+        {
+          "uid": 1071,
+          "name": "士兵_1",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 112,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 103,
+            "NormalAttacking": 9,
+            "Idle": 88
+          },
+          "net_m": 953.8,
+          "path_m": 1293.8
+        },
+        {
+          "uid": 1506,
+          "name": "士兵_10",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 82,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 76,
+            "NormalAttacking": 6,
+            "Idle": 118
+          },
+          "net_m": 944.6,
+          "path_m": 971.4
+        },
+        {
+          "uid": 1501,
+          "name": "士兵_11",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 84,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 81,
+            "NormalAttacking": 3,
+            "Idle": 116
+          },
+          "net_m": 975.0,
+          "path_m": 1011.7
+        },
+        {
+          "uid": 1491,
+          "name": "士兵_12",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 85,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 81,
+            "NormalAttacking": 4,
+            "Idle": 115
+          },
+          "net_m": 948.6,
+          "path_m": 975.8
+        },
+        {
+          "uid": 1486,
+          "name": "士兵_13",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 84,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 4,
+            "Idle": 116
+          },
+          "net_m": 963.7,
+          "path_m": 995.5
+        },
+        {
+          "uid": 1476,
+          "name": "士兵_14",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 88,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 81,
+            "NormalAttacking": 7,
+            "Idle": 112
+          },
+          "net_m": 954.4,
+          "path_m": 1015.7
+        },
+        {
+          "uid": 1471,
+          "name": "士兵_15",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 85,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 83,
+            "NormalAttacking": 2,
+            "Idle": 115
+          },
+          "net_m": 962.3,
+          "path_m": 1026.9
+        },
+        {
+          "uid": 1461,
+          "name": "士兵_16",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 86,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 83,
+            "NormalAttacking": 3,
+            "Idle": 114
+          },
+          "net_m": 967.1,
+          "path_m": 1033.9
+        },
+        {
+          "uid": 1456,
+          "name": "士兵_18",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 103,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 4,
+            "Idle": 97
+          },
+          "net_m": 1194.8,
+          "path_m": 1240.1
+        },
+        {
+          "uid": 1446,
+          "name": "士兵_19",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 100,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 2,
+            "Idle": 100
+          },
+          "net_m": 1207.7,
+          "path_m": 1252.4
+        },
+        {
+          "uid": 1066,
+          "name": "士兵_2",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 109,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 10,
+            "Idle": 91
+          },
+          "net_m": 940.9,
+          "path_m": 1269.6
+        },
+        {
+          "uid": 1441,
+          "name": "士兵_20",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 2,
+            "Idle": 99
+          },
+          "net_m": 1210.3,
+          "path_m": 1248.0
+        },
+        {
+          "uid": 1436,
+          "name": "士兵_21",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 102,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 4,
+            "Idle": 98
+          },
+          "net_m": 1211.6,
+          "path_m": 1252.5
+        },
+        {
+          "uid": 1431,
+          "name": "士兵_22",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 2,
+            "Idle": 99
+          },
+          "net_m": 1215.3,
+          "path_m": 1252.7
+        },
+        {
+          "uid": 1426,
+          "name": "士兵_23",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 102,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 3,
+            "Idle": 98
+          },
+          "net_m": 1214.9,
+          "path_m": 1253.0
+        },
+        {
+          "uid": 1421,
+          "name": "士兵_24",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 99,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 1,
+            "Idle": 101
+          },
+          "net_m": 1217.1,
+          "path_m": 1259.0
+        },
+        {
+          "uid": 1416,
+          "name": "士兵_25",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 103,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 4,
+            "Idle": 97
+          },
+          "net_m": 1204.6,
+          "path_m": 1243.3
+        },
+        {
+          "uid": 1056,
+          "name": "士兵_3",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 112,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 102,
+            "NormalAttacking": 10,
+            "Idle": 88
+          },
+          "net_m": 955.1,
+          "path_m": 1284.9
+        },
+        {
+          "uid": 1051,
+          "name": "士兵_4",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 104,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 5,
+            "Idle": 96
+          },
+          "net_m": 964.2,
+          "path_m": 1280.3
+        },
+        {
+          "uid": 1041,
+          "name": "士兵_5",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 112,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 13,
+            "Idle": 88
+          },
+          "net_m": 946.3,
+          "path_m": 1272.6
+        },
+        {
+          "uid": 1036,
+          "name": "士兵_6",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 110,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 11,
+            "Idle": 90
+          },
+          "net_m": 948.3,
+          "path_m": 1277.5
+        },
+        {
+          "uid": 1026,
+          "name": "士兵_7",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 112,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 13,
+            "Idle": 88
+          },
+          "net_m": 952.8,
+          "path_m": 1270.0
+        },
+        {
+          "uid": 1021,
+          "name": "士兵_8",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 111,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 12,
+            "Idle": 89
+          },
+          "net_m": 952.2,
+          "path_m": 1276.5
+        },
+        {
+          "uid": 1011,
+          "name": "士兵_9",
+          "kind": "BP_BaseSoldier_C",
+          "frames": 83,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 80,
+            "NormalAttacking": 3,
+            "Idle": 117
+          },
+          "net_m": 966.7,
+          "path_m": 1014.4
+        },
+        {
+          "uid": 1511,
+          "name": "无人机_0",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 92,
+          "initial_parent": 1290,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 195,
+            "Idle": 5
+          },
+          "net_m": 1856.4,
+          "path_m": 4357.1
+        },
+        {
+          "uid": 1496,
+          "name": "无人机_1",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 97,
+          "initial_parent": 1290,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 189,
+            "Idle": 10,
+            "SelfDestruct": 1
+          },
+          "net_m": 1554.7,
+          "path_m": 3988.1
+        },
+        {
+          "uid": 1481,
+          "name": "无人机_2",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 92,
+          "initial_parent": 1290,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 194,
+            "Idle": 6
+          },
+          "net_m": 1744.3,
+          "path_m": 4312.6
+        },
+        {
+          "uid": 1466,
+          "name": "无人机_3",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 96,
+          "initial_parent": 1290,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 191,
+            "Idle": 9
+          },
+          "net_m": 1696.4,
+          "path_m": 4220.8
+        },
+        {
+          "uid": 1451,
+          "name": "无人机_4",
+          "kind": "BP_Base_UAV_C",
+          "frames": 201,
+          "offline_frames": 94,
+          "initial_parent": 1290,
+          "parent_changed": true,
+          "old_commands": {
+            "Moving": 192,
+            "Idle": 8
+          },
+          "net_m": 2227.0,
+          "path_m": 4139.9
+        },
+        {
+          "uid": 1281,
+          "name": "机器狗_0",
+          "kind": "BP_RoboDog_C",
+          "frames": 112,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 112,
+            "Idle": 88
+          },
+          "net_m": 1001.7,
+          "path_m": 1419.3
+        },
+        {
+          "uid": 1276,
+          "name": "机器狗_1",
+          "kind": "BP_RoboDog_C",
+          "frames": 112,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 112,
+            "Idle": 88
+          },
+          "net_m": 1018.2,
+          "path_m": 1421.8
+        },
+        {
+          "uid": 1231,
+          "name": "机器狗_10",
+          "kind": "BP_RoboDog_C",
+          "frames": 100,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 2,
+            "Idle": 100
+          },
+          "net_m": 1213.3,
+          "path_m": 1267.9
+        },
+        {
+          "uid": 1226,
+          "name": "机器狗_11",
+          "kind": "BP_RoboDog_C",
+          "frames": 100,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 2,
+            "Idle": 100
+          },
+          "net_m": 1213.2,
+          "path_m": 1265.8
+        },
+        {
+          "uid": 1221,
+          "name": "机器狗_12",
+          "kind": "BP_RoboDog_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 3,
+            "Idle": 99
+          },
+          "net_m": 1214.8,
+          "path_m": 1264.6
+        },
+        {
+          "uid": 1271,
+          "name": "机器狗_2",
+          "kind": "BP_RoboDog_C",
+          "frames": 111,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 111,
+            "Idle": 89
+          },
+          "net_m": 1018.0,
+          "path_m": 1405.8
+        },
+        {
+          "uid": 1266,
+          "name": "机器狗_3",
+          "kind": "BP_RoboDog_C",
+          "frames": 83,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 81,
+            "NormalAttacking": 2,
+            "Idle": 117
+          },
+          "net_m": 986.8,
+          "path_m": 1021.1
+        },
+        {
+          "uid": 1261,
+          "name": "机器狗_4",
+          "kind": "BP_RoboDog_C",
+          "frames": 83,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 81,
+            "NormalAttacking": 2,
+            "Idle": 117
+          },
+          "net_m": 978.7,
+          "path_m": 1014.7
+        },
+        {
+          "uid": 1256,
+          "name": "机器狗_5",
+          "kind": "BP_RoboDog_C",
+          "frames": 86,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 84,
+            "NormalAttacking": 2,
+            "Idle": 114
+          },
+          "net_m": 968.2,
+          "path_m": 1034.4
+        },
+        {
+          "uid": 1251,
+          "name": "机器狗_6",
+          "kind": "BP_RoboDog_C",
+          "frames": 86,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 84,
+            "NormalAttacking": 2,
+            "Idle": 114
+          },
+          "net_m": 981.4,
+          "path_m": 1052.2
+        },
+        {
+          "uid": 1246,
+          "name": "机器狗_7",
+          "kind": "BP_RoboDog_C",
+          "frames": 85,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 84,
+            "NormalAttacking": 1,
+            "Idle": 115
+          },
+          "net_m": 965.8,
+          "path_m": 1030.5
+        },
+        {
+          "uid": 1241,
+          "name": "机器狗_8",
+          "kind": "BP_RoboDog_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 99,
+            "NormalAttacking": 2,
+            "Idle": 99
+          },
+          "net_m": 1210.7,
+          "path_m": 1260.8
+        },
+        {
+          "uid": 1236,
+          "name": "机器狗_9",
+          "kind": "BP_RoboDog_C",
+          "frames": 101,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 98,
+            "NormalAttacking": 3,
+            "Idle": 99
+          },
+          "net_m": 1210.3,
+          "path_m": 1261.6
+        },
+        {
+          "uid": 1146,
+          "name": "轮式无人车_0",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 562.8,
+          "path_m": 951.5
+        },
+        {
+          "uid": 1141,
+          "name": "轮式无人车_1",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 27.6,
+          "path_m": 33.8
+        },
+        {
+          "uid": 1136,
+          "name": "轮式无人车_2",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 213.3,
+          "path_m": 217.4
+        },
+        {
+          "uid": 1131,
+          "name": "轮式无人车_3",
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "frames": 201,
+          "offline_frames": 0,
+          "initial_parent": 1290,
+          "parent_changed": false,
+          "old_commands": {
+            "Moving": 200
+          },
+          "net_m": 752.7,
+          "path_m": 789.4
+        },
+        {
+          "uid": 1302,
+          "name": "运输直升机_1",
+          "kind": "BP_Helicopter_C",
+          "frames": 201,
+          "offline_frames": 201,
+          "initial_parent": 1290,
+          "parent_changed": true,
+          "old_commands": {
+            "Idle": 33,
+            "Moving": 167
+          },
+          "net_m": 0.2,
+          "path_m": 0.2
+        },
+        {
+          "uid": 1298,
+          "name": "运输直升机_2",
+          "kind": "BP_Helicopter_C",
+          "frames": 201,
+          "offline_frames": 201,
+          "initial_parent": 1290,
+          "parent_changed": true,
+          "old_commands": {
+            "Idle": 35,
+            "Moving": 165
+          },
+          "net_m": 0.2,
+          "path_m": 0.2
+        }
+      ],
+      "phase_changes": [],
+      "first_strike_step": {
+        "1496": 39,
+        "1451": 52
+      },
+      "last_phase": 0,
+      "initial_commands": {
+        "Moving": 48,
+        "Idle": 2
+      },
+      "initial_repairs": [
+        {
+          "parent_uid": 1021,
+          "child_uid": 1302
+        },
+        {
+          "parent_uid": 1026,
+          "child_uid": 1298
+        }
+      ],
+      "last_objectives": [
+        {
+          "uId": 32768,
+          "rSVD1": "军事基地B",
+          "redTeamNum": 0,
+          "blueteamNum": 0,
+          "percent": 0
+        },
+        {
+          "uId": 32769,
+          "rSVD1": "指挥所",
+          "redTeamNum": 0,
+          "blueteamNum": 16,
+          "percent": 0
+        },
+        {
+          "uId": 32770,
+          "rSVD1": "军事基地A",
+          "redTeamNum": 0,
+          "blueteamNum": 0,
+          "percent": 0
+        }
+      ]
+    }
+  ]
+}

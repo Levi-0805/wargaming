@@ -45,7 +45,13 @@ def audit(output, protocol=None):
     previous = None
     rule = None
     game = None
-    for packet in read_packets(output):
+    for record in read_packets(output):
+        if "direction" in record:
+            if record.get("direction") != "ue_to_python" or not isinstance(record.get("payload"), dict):
+                continue
+            packet = record["payload"]
+        else:
+            packet = record
         if packet.get("propertyArr"):
             env._build_roster(packet)
         if packet.get("dataArr"):
@@ -54,7 +60,8 @@ def audit(output, protocol=None):
                 env.episode += 1
                 game = {"episode": env.episode, "frames": 0, "scores_in_file_order": [],
                         "new_commands": Counter(), "new_specials": 0, "local_contact_rows": 0,
-                        "contact_attacks": 0, "contact_moves": 0, "units": {}}
+                        "contact_attacks": 0, "contact_moves": 0, "units": {},
+                        "phase_changes": [], "first_strike_step": {}}
                 games.append(game)
                 rule = None
             previous = step
@@ -64,6 +71,12 @@ def audit(output, protocol=None):
                 rule = ReinforceAgentAlgorithm(AlgorithmContext(
                     0, team.agents, team.visible_opponents, ActionSetFactory.standard(), "cpu", {}, team.commanders))
             actions = rule.act(team)
+            phase = rule._route.stage
+            if phase != game.get("last_phase", 0):
+                game["phase_changes"].append({"step": step, "stage": phase,
+                    "objective": rule._route.objective(team).uid,
+                    "garrison": len(rule._route._garrison)})
+            game["last_phase"] = phase
             specials = rule.take_selected_special_commands()
             game["new_specials"] += len(specials)
             if game["frames"] == 0:
@@ -74,6 +87,8 @@ def audit(output, protocol=None):
                 # Validate serialization with the same full roster as live UE.
                 action.to_ue_string(agent.uid, snapshot.entities)
                 game["new_commands"][action.command] += 1
+                if action.command == "SelfDestruct":
+                    game["first_strike_step"].setdefault(agent.uid, step)
                 if not agent.alive:
                     continue
                 if team.perceived_opponents(agent):

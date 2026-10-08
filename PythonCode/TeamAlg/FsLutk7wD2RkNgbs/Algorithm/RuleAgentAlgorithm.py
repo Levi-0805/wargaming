@@ -6,6 +6,7 @@ from cssim.protocol import Action
 from .AssaultRoute import AssaultRoute
 from .CommandLinks import CommandLinks
 from .MotionRecovery import MotionRecovery
+from .UAVControl import UAVControl
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
@@ -28,6 +29,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._command_links = CommandLinks()
         self._motion_recovery = MotionRecovery()
         self._route = AssaultRoute()
+        self._uav = UAVControl()
         self._frame = None
         self._support = {}
         self._fire_watch = {}
@@ -79,15 +81,19 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     def _combat_action(self, state, agent):
         if not agent.alive:
             return Action.idle()
+        if agent.entity_type == self._UAV:
+            return self._uav.choose(state, agent, self._route.objective(state))
         contacts = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
+        if self._route.departing(state, agent):
+            # Do not let distant survivors at the captured HQ pin the entire
+            # column. The garrison handles them; the main force fires only at
+            # close threats or contacts around its next objective.
+            objective = self._route.objective(state)
+            contacts = [enemy for enemy in contacts if
+                        self._horizontal(agent.position, enemy.position) <= 2500
+                        or (objective is not None and self._horizontal(enemy.position, objective.position) <= 18000)]
         if contacts:
             target = self._attack_target(agent, contacts)
-            if agent.entity_type == self._UAV:
-                # A confirmed local contact, never a guessed objective centre.
-                if self._horizontal(agent.position, target.position) <= 2500:
-                    return Action.self_destruct(target.position)
-                return Action.move_at((float(target.position[0]), float(target.position[1]),
-                                       float(target.position[2]) + 1800))
             return self._fire_or_close(state, agent, target)
         self._fire_watch.pop(agent.uid, None)
         point = self._route.point(state, agent)
@@ -120,6 +126,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         action = self._combat_action(state, agent)
         if self.enable_parent_assignment:
             action = self._command_links.constrain(state, agent, action)
+        if agent.entity_type == self._UAV:
+            return action  # UAVControl owns flight recovery and strike persistence.
         return self._motion_recovery.apply(state, agent, action)
 
     def decide(self, state):
