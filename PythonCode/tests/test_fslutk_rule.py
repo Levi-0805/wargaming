@@ -85,9 +85,9 @@ def test_teams_advance_on_the_blue_strongpoint_in_separate_lanes():
     actions = algorithm(agents).act(state(agents, objectives=[empty, held_by_blue]))
     by_uid = {agent.uid: action for agent, action in zip(agents, actions)}
     assert by_uid[0].command == "Moving"
-    assert by_uid[0].points[0] > 10000
-    assert by_uid[100].points[0] > 10000
-    assert abs(by_uid[0].points[1] - by_uid[5].points[1]) > 4000
+    assert 1000 < by_uid[0].points[0] <= 2000
+    assert 1000 < by_uid[100].points[0] <= 2040
+    assert abs(by_uid[0].points[1] - by_uid[5].points[1]) > 400
 
 
 def test_forward_unit_keeps_advancing():
@@ -95,7 +95,7 @@ def test_forward_unit_keeps_advancing():
     road = objective(1, 20000, 0)
     action = algorithm([soldier]).act(state([soldier], objectives=[road]))[0]
     assert action.command == "Moving"
-    assert action.points[0] > 10000
+    assert 1000 < action.points[0] <= 2000
 
 
 def test_far_column_keeps_the_objective_instead_of_chasing():
@@ -104,7 +104,7 @@ def test_far_column_keeps_the_objective_instead_of_chasing():
     held = objective(2, 20000, 0, blue=30)
     action = algorithm(troops).act(state(troops, [sally], [held]))[0]
     assert action.command == "Moving"
-    assert action.points[0] > 10000
+    assert 1000 < action.points[0] <= 2000
 
 
 def test_vanguard_waits_until_the_column_closes_up():
@@ -122,7 +122,8 @@ def test_uav_steps_toward_the_garrison_and_bombs_when_close():
     held = objective(2, 20000, 0, blue=10)
     far_action = algorithm([far]).act(state([far], objectives=[held]))[0]
     assert far_action.command == "Moving"
-    assert 4000 < far_action.points[0] < 9000
+    assert far_action.direction == "+X+Z"
+    assert far_action.points is None
     near = entity(1, 0, 0, 20000, 0, kind="BP_Base_UAV_C")
     near.position[:] = (20000, 0, 1200)
     near_action = algorithm([near]).act(state([near], objectives=[held]))[0]
@@ -137,7 +138,7 @@ def test_vehicles_step_forward_at_their_own_altitude():
     held.position[2] = 5000
     action = algorithm([car]).act(state([car], objectives=[held]))[0]
     assert action.command == "Moving"
-    assert 4000 < action.points[0] < 9000
+    assert action.points[0] == 2000
     assert action.points[2] == 80
     lynx = entity(7, 0, 0, 0, 0, kind="BP_MNWS_Vehicle_6x6UGV_C")
     lynx_action = algorithm([lynx]).act(state([lynx], objectives=[held]))[0]

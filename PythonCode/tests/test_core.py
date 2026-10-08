@@ -1215,6 +1215,10 @@ def test_dqn_does_not_filter_dead_agent_action():
     context = AlgorithmContext(0, agents, (opponent,), ActionSetFactory.standard(1), "cpu", {})
     algorithm = DQNAlgorithm(context, hidden_size=16, batch_size=128)
     mask = np.ones((2, 46), dtype=bool)
+    # Neither observer can perceive the target in this fixture. Leaving its
+    # attack slot enabled makes random exploration fail intermittently before
+    # this test can check the dead agent's action row.
+    mask[:, context.action_set.fixed_count:] = False
     state = TeamState(
         team=0,
         action_mask=mask, agents=agents, visible_opponents=(opponent,), raw={},

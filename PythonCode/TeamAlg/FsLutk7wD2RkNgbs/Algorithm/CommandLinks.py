@@ -20,7 +20,7 @@ class CommandLinks:
     SOLDIER = "BP_BaseSoldier_C"
     MAX_RANGE = 100_000.0
     HANDOFF_RANGE = 60_000.0
-    TRAVEL_RADIUS = 40_000.0
+    RETURN_RANGE = 90_000.0
     RETRY_STEPS = 4
     REJECT_STEPS = 12
 
@@ -129,7 +129,7 @@ class CommandLinks:
         return ChangeParentAction(parent, child)
 
     def constrain(self, state: TeamState, child, action: Action) -> Action:
-        """Keep moving targets inside the confirmed parent's radio footprint.
+        """Recover only at the radio boundary; do not clip a healthy route.
 
         Never clamp a bomb's coordinates onto another location. A disconnected
         aircraft first repairs its link before trying to bomb.
@@ -143,25 +143,16 @@ class CommandLinks:
         parent = state.current_commander(child)
         if not self.eligible(state, child, parent):
             return action
-        if action.points is not None:
-            dest = action.points
-        else:
-            # Direction moves have no endpoint; prevent them driving a vehicle
-            # indefinitely beyond its confirmed parent while an RPC is pending.
-            if self.distance(child, parent) < self.HANDOFF_RANGE:
-                return action
-            # Preserve direction control for vehicles that currently use it.
-            delta = parent.position - child.position
-            direction = "".join(
-                ("+" if delta[i] > 0 else "-") + axis
-                for i, axis in enumerate(("X", "Y", "Z")) if abs(delta[i]) > 400
-            )
-            return Action.move(direction) if direction else Action.guard_position(tuple(child.position))
-        origin = tuple(float(value) for value in parent.position)
-        offset = tuple(float(dest[i]) - origin[i] for i in range(3))
-        distance = math.sqrt(sum(value * value for value in offset))
-        if distance <= self.TRAVEL_RADIUS:
+        if self.distance(child, parent) < self.RETURN_RANGE:
             return action
-        scale = self.TRAVEL_RADIUS / distance
-        point = tuple(origin[i] + offset[i] * scale for i in range(3))
-        return Action.move_at(point)
+        if action.points is not None and math.dist(tuple(parent.position), action.points) <= self.distance(child, parent):
+            return action
+        # Only when a handoff has not succeeded near the 1 km boundary, move
+        # back toward the confirmed parent. Direction control avoids creating
+        # arbitrary altitude points by clipping a sphere around that parent.
+        delta = parent.position - child.position
+        direction = "".join(
+            ("+" if delta[i] > 0 else "-") + axis
+            for i, axis in enumerate(("X", "Y", "Z")) if abs(delta[i]) > 400
+        )
+        return Action.move(direction) if direction else Action.guard_position(tuple(child.position))

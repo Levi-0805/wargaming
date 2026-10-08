@@ -120,14 +120,21 @@ def test_new_episode_clears_pending_attempts():
     assert links.reassign(view(soldier, dog, episode=2), dog).parent_uid == 1
 
 
-def test_radio_travel_limit_only_applies_to_unmanned_units():
+def test_healthy_radio_link_keeps_the_original_route():
     parent = unit(1)
     uav = unit(2, 1000, kind="BP_Base_UAV_C", parent=1)
     state = view(parent, uav)
     move = Action.move_at((120_000, 0, 1200))
     constrained = CommandLinks().constrain(state, uav, move)
-    assert np.linalg.norm(np.array(constrained.points) - parent.position) <= 40_001
+    assert constrained is move
     assert CommandLinks().constrain(state, parent, move) is move
+
+
+def test_radio_boundary_recovers_toward_the_confirmed_parent():
+    parent = unit(1)
+    dog = unit(2, 95_000, kind="BP_RoboDog_C", parent=1)
+    action = CommandLinks().constrain(view(parent, dog), dog, Action.move_at((120_000, 0, 0)))
+    assert action.direction == "-X"
 
 
 def test_link_repair_precedes_bombing():

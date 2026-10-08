@@ -7,6 +7,7 @@ from cssim.environment import TeamState
 from cssim.protocol import Action, ChangeParentAction
 
 from .CommandLinks import CommandLinks
+from .MotionRecovery import MotionRecovery
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
@@ -45,6 +46,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self.enable_parent_assignment = bool(enable_parent_assignment)
         self._road_uids: tuple[int, ...] | None = None
         self._command_links = CommandLinks()
+        self._motion_recovery = MotionRecovery()
 
     @classmethod
     def _priority(cls, enemy) -> int:
@@ -304,17 +306,22 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         loiter = (x, y + lane, z + 1200.0)
         if self._horizontal(agent.position, loiter) <= 2000.0:
             return Action.guard_position(loiter)
-        return Action.move_at(self._step_toward(self._xyz(agent.position), loiter, self._STEP))
+        # All five aircraft stayed at spawn while point moves were sent in the
+        # 20261008 replay. Use the documented 3D direction action, updating the
+        # heading and altitude every frame instead of relying on a ground path.
+        vector = tuple(loiter[i] - float(agent.position[i]) for i in range(3))
+        return Action.move(MotionRecovery._direction(vector, 0, airborne=True))
 
     def choose_action(self, state: TeamState, agent) -> Action | ChangeParentAction:
         if self.enable_parent_assignment:
             repair = self._command_links.reassign(state, agent)
             if repair is not None:
+                self._motion_recovery.pause(state, agent)
                 return repair
         action = self._combat_action(state, agent)
         if self.enable_parent_assignment:
-            return self._command_links.constrain(state, agent, action)
-        return action
+            action = self._command_links.constrain(state, agent, action)
+        return self._motion_recovery.apply(state, agent, action)
 
     def _combat_action(self, state: TeamState, agent) -> Action:
         if not agent.alive:
