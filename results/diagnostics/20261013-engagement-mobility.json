@@ -1,0 +1,178 @@
+{
+  "source": "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261013_192519/protocol.jsonl",
+  "baseline_commit": "0f11b3d",
+  "episode": 1,
+  "red_score": 200,
+  "red_occupation": 0,
+  "soldier_commands": {
+    "Moving": 2266,
+    "Idle": 3722,
+    "NormalAttacking": 12
+  },
+  "soldiers": 24,
+  "last_soldier_death_step": 104,
+  "vehicle_intervals": [
+    {
+      "uid": 481,
+      "steps": [
+        0,
+        40
+      ],
+      "median_displacement_m_per_step": 4.05
+    },
+    {
+      "uid": 481,
+      "steps": [
+        40,
+        100
+      ],
+      "median_displacement_m_per_step": 2.84
+    },
+    {
+      "uid": 481,
+      "steps": [
+        100,
+        150
+      ],
+      "median_displacement_m_per_step": 2.89
+    },
+    {
+      "uid": 486,
+      "steps": [
+        0,
+        40
+      ],
+      "median_displacement_m_per_step": 4.81
+    },
+    {
+      "uid": 486,
+      "steps": [
+        40,
+        100
+      ],
+      "median_displacement_m_per_step": 3.19
+    },
+    {
+      "uid": 486,
+      "steps": [
+        100,
+        150
+      ],
+      "median_displacement_m_per_step": 3.03
+    },
+    {
+      "uid": 491,
+      "steps": [
+        0,
+        40
+      ],
+      "median_displacement_m_per_step": 16.87
+    },
+    {
+      "uid": 491,
+      "steps": [
+        40,
+        100
+      ],
+      "median_displacement_m_per_step": 3.29
+    },
+    {
+      "uid": 491,
+      "steps": [
+        100,
+        150
+      ],
+      "median_displacement_m_per_step": 2.93
+    },
+    {
+      "uid": 496,
+      "steps": [
+        0,
+        40
+      ],
+      "median_displacement_m_per_step": 14.44
+    },
+    {
+      "uid": 496,
+      "steps": [
+        40,
+        100
+      ],
+      "median_displacement_m_per_step": 2.93
+    },
+    {
+      "uid": 496,
+      "steps": [
+        100,
+        150
+      ],
+      "median_displacement_m_per_step": 2.82
+    }
+  ],
+  "offline_revised_decisions": [
+    {
+      "episode": 1,
+      "frames": 251,
+      "new_commands": {
+        "Moving": 5299,
+        "Idle": 6405,
+        "NormalAttacking": 846
+      },
+      "phase_changes": []
+    },
+    {
+      "episode": 2,
+      "frames": 251,
+      "new_commands": {
+        "Moving": 4671,
+        "Idle": 7318,
+        "NormalAttacking": 561
+      },
+      "phase_changes": []
+    },
+    {
+      "episode": 3,
+      "frames": 251,
+      "new_commands": {
+        "Moving": 5470,
+        "Idle": 6342,
+        "NormalAttacking": 738
+      },
+      "phase_changes": []
+    },
+    {
+      "episode": 4,
+      "frames": 251,
+      "new_commands": {
+        "Moving": 5375,
+        "Idle": 6280,
+        "NormalAttacking": 895
+      },
+      "phase_changes": [
+        {
+          "step": 105,
+          "stage": 1,
+          "objective": 32768,
+          "garrison": 6
+        },
+        {
+          "step": 112,
+          "stage": 0,
+          "objective": 32769,
+          "garrison": 0
+        }
+      ]
+    },
+    {
+      "episode": 5,
+      "frames": 251,
+      "new_commands": {
+        "Moving": 4862,
+        "Idle": 6989,
+        "NormalAttacking": 699
+      },
+      "phase_changes": []
+    }
+  ],
+  "limitation": "Offline decisions replay old positions and deaths; they do not measure new scores or vehicle/drone physics. No live match was started by this audit."
+}

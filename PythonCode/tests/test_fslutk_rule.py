@@ -48,12 +48,13 @@ def test_local_contact_at_95_m_is_attacked_despite_generic_10_m_metadata():
     assert action.command == "NormalAttacking" and action.target_uid == 20
 
 
-def test_shared_but_not_locally_seen_enemy_guides_movement_only():
+def test_nearby_shared_contact_gets_an_attack_request_without_fabricating_local_sight():
     soldier = entity(10, 0, 0, 0)
     soldier.raw["agentPerception"] = []
     enemy = entity(20, 1, 0, 4000)
     action = algorithm([soldier]).act(state([soldier], [enemy]))[0]
-    assert action.command == "Moving" and action.points == (4000, 0, 0)
+    assert action.command == "NormalAttacking" and action.target_uid == 20
+    assert soldier.raw["agentPerception"] == []
 
 
 def test_common_contact_receives_concentrated_fire():
@@ -80,8 +81,10 @@ def test_forward_soldier_does_not_wait_for_stuck_or_disconnected_rear():
     for dog in rear:
         dog.raw["rSVD1"] = "dog;0"
     agents = [lead, *rear]
-    actions = algorithm(agents).act(state(agents, objectives=[objective(100, 20000)]))
-    assert all(a.command == "Moving" for a in actions)
+    rule = algorithm(agents)
+    actions = [rule.act(state(agents, objectives=[objective(100, 20000)], step=s)) for s in range(6)]
+    assert sum(row[0].command == "Moving" for row in actions) == 4
+    assert all(a.command == "Moving" for row in actions for a in row[1:])
 
 
 def test_casualties_do_not_change_survivors_route():
@@ -102,15 +105,15 @@ def test_capture_sequence_does_not_skip_empty_bases_or_switch_to_larger_enemy_co
     route.update(state([agent], objectives=objects))
     assert route.objective(state([agent], objectives=objects)).uid == 901
     objects[0].raw.update(percent=1, redTeamNum=20, blueteamNum=1)
-    for step in range(1, 4):
+    for step in range(1, 5):
         route.update(state([agent], objectives=objects, step=step))
     assert route.stage == 1  # Confirmed occupation releases the column despite survivors.
     objects[0].raw["blueteamNum"] = 0
-    for step in [4, 5]:
+    for step in [5, 6]:
         route.update(state([agent], objectives=objects, step=step))
     assert route.stage == 1  # Empty B still needs its 800-point capture.
     objects[1].raw.update(percent=1, redTeamNum=3)
-    for step in [6, 7]:
+    for step in [7, 8, 9, 10]:
         route.update(state([agent], objectives=objects, step=step))
     assert route.stage == 2
     route.update(state([agent], objectives=map_objectives(), episode=2))
@@ -127,7 +130,7 @@ def test_rear_keeps_its_waypoint_when_front_captures_hq():
     rear_point = route.point(initial, rear)
     route.point(initial, front)
     objects[0].raw.update(percent=1, redTeamNum=5)
-    for step in [1, 2]:
+    for step in [1, 2, 3, 4]:
         current = replace(initial, step=step)
         route.update(current)
     assert route.point(current, rear) == rear_point
@@ -141,10 +144,13 @@ def test_uav_only_bombs_confirmed_local_contact_and_flies_to_bounded_points():
     objects = map_objectives()
     objects[0].raw["blueteamNum"] = 20
     move = rule.act(state([uav], objectives=objects))[0]
-    assert move.command == "Moving" and move.points == (-41810, 32275, 2500)
+    assert move.command == "Moving" and move.direction == "+Z"
+    uav.position[2] = 8000
+    move = rule.act(state([uav], objectives=objects, step=1))[0]
+    assert move.points == (-41810, 32275, 8000)
     enemy = entity(20, 1, 0, 61000, 12000)
     uav.raw["agentPerception"] = [20]
-    bomb = rule.act(state([uav], [enemy], objects, step=1))[0]
+    bomb = rule.act(state([uav], [enemy], objects, step=2))[0]
     assert bomb.command == "SelfDestruct" and bomb.points == (61000, 12000, 0)
 
 
@@ -154,9 +160,9 @@ def test_unsuccessful_attack_moves_closer_but_resumes_firing():
     soldier.raw["agentPerception"] = [20]
     rule = algorithm([soldier])
     commands = [rule.act(state([soldier], [enemy], step=s))[0].command for s in range(12)]
-    assert commands[:8] == ["NormalAttacking"] * 8
-    assert commands[8:11] == ["Moving"] * 3
-    assert commands[11] == "NormalAttacking"
+    assert commands[:3] == ["NormalAttacking"] * 3
+    assert commands[3:5] == ["Moving"] * 2
+    assert commands[5] == "NormalAttacking"
 
 
 def test_dead_agent_stays_idle():

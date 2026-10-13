@@ -30,6 +30,7 @@ class AssaultRoute:
     )
     ANCHORS = ((-41810, 32275), (-45450, -30945), (-3000, -27530))
     ARRIVAL = 1600.0
+    CAPTURE_CONFIRMATIONS = 4
 
     def __init__(self):
         self._episode = None
@@ -41,6 +42,7 @@ class AssaultRoute:
         self._routes = ()
         self.known_map = False
         self._garrison = {}
+        self._lost = 0
 
     @staticmethod
     def distance(left, right):
@@ -57,6 +59,7 @@ class AssaultRoute:
         self.order, self.stage, self._confirmed = (), 0, 0
         self._cursor.clear()
         self._garrison.clear()
+        self._lost = 0
         self._routes = ()
         self.known_map = False
         objects = [obj for obj in state.key_objects if obj.valid]
@@ -96,14 +99,32 @@ class AssaultRoute:
         if self._step == state.step:
             return
         self._step = state.step
+        # A full progress bar can be reversed immediately by surviving defenders.
+        # Revisit a lost earlier objective instead of leaving vehicles en route to B.
+        lost = next((i for i, uid in enumerate(self.order[:self.stage])
+                     if (previous := state.key_object_by_uid(uid)) is not None
+                     and (previous.team != state.team if previous.team is not None
+                          else self.count(previous, "percent") < 1)), None)
+        self._lost = self._lost + 1 if lost is not None else 0
+        if self._lost >= 2:
+            self.stage, self._confirmed, self._lost = lost, 0, 0
+            route = self._routes[self.stage]
+            for unit in state.agents:
+                cursor = self._cursor.get(unit.uid)
+                if cursor is not None and cursor[0] > self.stage:
+                    self._cursor[unit.uid] = (self.stage, min(
+                        range(len(route)), key=lambda i: self.distance(unit.position, route[i])))
+            logger.warning("已占目标失守，停止转场: step=%d uid=%d", state.step, self.order[self.stage])
         obj = self.objective(state)
         if obj is None:
             return
-        ours = obj.team == state.team if obj.team is not None else self.count(obj, "percent") >= 1.0
-        # Occupation is the prerequisite, not eliminating every remaining
-        # actor. Requiring blue==0 delayed the latest HQ departure by 25 steps.
+        friendly_field, enemy_field = (("redTeamNum", "blueteamNum") if state.team == 0
+                                       else ("blueteamNum", "redTeamNum"))
+        ours = obj.team == state.team if obj.team is not None else (
+            self.count(obj, "percent") >= 1.0
+            and self.count(obj, friendly_field) > self.count(obj, enemy_field))
         self._confirmed = self._confirmed + 1 if ours else 0
-        if self._confirmed >= 2 and self.stage + 1 < len(self.order):
+        if self._confirmed >= self.CAPTURE_CONFIRMATIONS and self.stage + 1 < len(self.order):
             self.stage += 1
             self._confirmed = 0
             logger.info("据点占领已确认，主力转向下一目标: step=%d uid=%d", state.step, self.order[self.stage])

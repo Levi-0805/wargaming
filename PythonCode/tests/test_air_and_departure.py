@@ -5,23 +5,24 @@ from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.MotionRecovery import MotionRecovery
 from test_fslutk_rule import entity, state, algorithm, map_objectives
 
 
-def aircraft(uid=1, x=0, y=0):
+def aircraft(uid=1, x=0, y=0, z=8000):
     result = entity(uid, 0, uid, x, y, kind="BP_Base_UAV_C")
     result.raw.update(rSVD1="uav;1", agentPerception=[])
+    result.position[2] = z
     return result
 
 
-def test_detected_ground_target_100m_away_starts_coordinate_strike():
+def test_detected_ground_target_100m_away_gets_high_approach_before_dive():
     uav = aircraft()
     enemy = entity(20, 1, 0, 10000)
     uav.raw["agentPerception"] = [20]
     result = UAVControl().choose(state([uav], [enemy]), uav, None)
-    assert result.command == "SelfDestruct" and result.points == (10000, 0, 0)
+    assert result.command == "Moving" and result.points == (10000, 0, 8000)
 
 
 def test_strike_is_not_cancelled_by_movement_next_frame_or_brief_loss_of_contact():
     uav = aircraft()
-    enemy = entity(20, 1, 0, 10000)
+    enemy = entity(20, 1, 0, 1000)
     uav.raw["agentPerception"] = [20]
     rule = algorithm([uav])
     first = rule.act(state([uav], [enemy]))[0]
@@ -33,7 +34,7 @@ def test_strike_is_not_cancelled_by_movement_next_frame_or_brief_loss_of_contact
 
 
 def test_second_aircraft_selects_another_cluster():
-    uavs = [aircraft(1), aircraft(2)]
+    uavs = [aircraft(1, x=8000), aircraft(2, x=8000, y=4000)]
     enemies = [entity(20, 1, 0, 8000), entity(21, 1, 1, 8000, 4000)]
     for uav in uavs:
         uav.raw["agentPerception"] = [20, 21]
@@ -45,22 +46,22 @@ def test_second_aircraft_selects_another_cluster():
 def test_ground_target_has_priority_over_air_target():
     uav = aircraft()
     enemy_uav = entity(20, 1, 0, 1000, kind="BP_Base_UAV_C")
-    soldier = entity(21, 1, 1, 9000)
+    soldier = entity(21, 1, 1, 1000)
     uav.raw["agentPerception"] = [20, 21]
     action = UAVControl().choose(state([uav], [enemy_uav, soldier]), uav, None)
-    assert action.points == (9000, 0, 0)
+    assert action.command == "SelfDestruct" and action.points == (1000, 0, 0)
 
 
 def test_shared_contact_guides_scout_but_does_not_authorize_strike():
     uav = aircraft()
     enemy = entity(20, 1, 0, 10000)
     action = UAVControl().choose(state([uav], [enemy]), uav, None)
-    assert action.command == "Moving" and action.points == (10000, 0, 2500)
+    assert action.command == "Moving" and action.points == (10000, 0, 8000)
 
 
 def test_surviving_aircraft_reports_unconfirmed_strike_and_tries_normal_attack():
     uav = aircraft()
-    enemy = entity(20, 1, 0, 10000)
+    enemy = entity(20, 1, 0, 1000)
     uav.raw["agentPerception"] = [20]
     control = UAVControl()
     for step in range(12):
@@ -75,14 +76,13 @@ def test_disconnected_uav_cannot_start_strike():
     assert UAVControl().choose(state([uav], [enemy]), uav, None).command != "SelfDestruct"
 
 
-def test_aircraft_stagnation_corrects_toward_goal_without_random_sideways_rotation():
+def test_aircraft_stagnation_climbs_above_building_instead_of_pushing_into_it():
     uav = aircraft(x=60000)
     objectives = map_objectives()
     control = UAVControl()
-    for step in range(7):
+    for step in range(5):
         action = control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0])
-    assert action.command == "Moving" and "-X" in action.direction
-    assert "+X" not in action.direction and "-Y" not in action.direction
+    assert action.command == "Moving" and action.direction == "+Z"
 
 
 def test_new_episode_clears_old_strike_coordinates():
@@ -106,14 +106,14 @@ def test_confirmed_capture_releases_main_force_despite_distant_hq_contacts():
         rule.act(state(agents, [enemy], objectives, step))
     assert rule._route.stage == 0  # No occupation, no early departure.
     objectives[0].raw.update(percent=1, redTeamNum=6, blueteamNum=2)
-    rule.act(state(agents, [enemy], objectives, 3))
-    actions = rule.act(state(agents, [enemy], objectives, 4))
+    for step in range(3, 7):
+        actions = rule.act(state(agents, [enemy], objectives, step))
     assert rule._route.stage == 1
     assert sum(action.command == "Moving" for action in actions) == 3
     assert sum(action.command == "NormalAttacking" for action in actions) == 3
     # Clearing defenders releases two of the three garrison units as well.
     objectives[0].raw["blueteamNum"] = 0
-    rule.act(state(agents, [], objectives, 5))
+    rule.act(state(agents, [], objectives, 7))
     assert len(rule._route._garrison) == 1
 
 

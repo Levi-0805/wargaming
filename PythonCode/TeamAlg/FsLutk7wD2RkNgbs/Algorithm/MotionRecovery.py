@@ -28,6 +28,8 @@ class MotionRecovery:
         self._escape = {}
         self._attempts = {}
         self._vehicle_escape = {}
+        self._turns = {}
+        self._turn_retry = {}
 
     def _begin(self, state):
         if state.episode != self._episode or (self._step is not None and state.step < self._step):
@@ -36,6 +38,8 @@ class MotionRecovery:
             self._escape.clear()
             self._attempts.clear()
             self._vehicle_escape.clear()
+            self._turns.clear()
+            self._turn_retry.clear()
         self._episode, self._step = state.episode, state.step
 
     def pause(self, state, agent):
@@ -44,6 +48,35 @@ class MotionRecovery:
         self._progress.pop(agent.uid, None)
         self._escape.pop(agent.uid, None)
         self._vehicle_escape.pop(agent.uid, None)
+        self._turns.pop(agent.uid, None)
+
+    def _align_vehicle(self, state, agent, goal):
+        """UE cars can follow a rearward goal in slow reverse indefinitely.
+
+        Ask for a short forward arc to turn the nose toward the route. Each
+        attempt lasts at most six frames; it never alters platform speed.
+        """
+        if agent.entity_type != "BP_MNWS_Vehicle_Armored_C" or goal is None:
+            return None
+        dx, dy = goal[0] - agent.position[0], goal[1] - agent.position[1]
+        error = (math.degrees(math.atan2(dy, dx)) - agent.yaw + 180) % 360 - 180
+        turn = self._turns.get(agent.uid)
+        if math.hypot(dx, dy) < 1000 or abs(error) < 70:
+            self._turns.pop(agent.uid, None)
+            return None
+        if turn and (state.step - turn[0] >= 6 or math.dist(goal, turn[3]) > 600):
+            self._turns.pop(agent.uid, None)
+            self._turn_retry[agent.uid] = state.step + 8
+            return None
+        if turn is None and (abs(error) < 105 or state.step < self._turn_retry.get(agent.uid, -1)):
+            return None
+        if turn is None or state.step >= turn[1] + 2:
+            heading = math.radians(agent.yaw + (60 if error > 0 else -60))
+            point = (agent.position[0] + 2500 * math.cos(heading),
+                     agent.position[1] + 2500 * math.sin(heading), agent.position[2])
+            turn = (turn[0] if turn else state.step, state.step, point, goal)
+            self._turns[agent.uid] = turn
+        return Action.move_at(turn[2])
 
     @staticmethod
     def _vector(agent, action):
@@ -82,9 +115,15 @@ class MotionRecovery:
             self._progress.pop(agent.uid, None)
             self._escape.pop(agent.uid, None)
             self._vehicle_escape.pop(agent.uid, None)
+            self._turns.pop(agent.uid, None)
             return action
         if previous and previous[0] == state.step:
             return action
+        aligned = self._align_vehicle(state, agent, goal)
+        if aligned is not None:
+            self._progress.pop(agent.uid, None)
+            self._vehicle_escape.pop(agent.uid, None)
+            return aligned
         tracked = self._progress.get(agent.uid)
         if goal is not None:
             if tracked is None or tracked[0] is None or math.dist(goal, tracked[0]) > 600:
@@ -114,10 +153,9 @@ class MotionRecovery:
         if state.step - tracked[1] >= self.STALL_STEPS:
             attempt = self._attempts.get(agent.uid, 0)
             if agent.entity_type == "BP_MNWS_Vehicle_Armored_C":
-                # Wheeled actors can be nose-first against an obstacle. A
-                # sideways heading alone did not move them in the latest run.
-                # Request retreat relative to measured yaw before a bounded
-                # 25m side waypoint, then resume the unchanged route.
+                # One short retreat is allowed for a true stationary obstacle,
+                # followed by forward-heading alignment on the route. Slow
+                # reverse travel is handled above even when progress is nonzero.
                 yaw = math.radians(float(agent.yaw))
                 forward = (math.cos(yaw), math.sin(yaw))
                 reverse = self._direction((-forward[0], -forward[1], 0), 0, False)
