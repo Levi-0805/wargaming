@@ -107,7 +107,10 @@ class AssaultRoute:
         self._episode = state.episode
         if self._step == state.step:
             return
+        consecutive = self._step is not None and state.step == self._step + 1
         self._step = state.step
+        if not consecutive:
+            self._confirmed = 0
         # A full progress bar can be reversed immediately by surviving defenders.
         # Revisit a lost earlier objective instead of leaving vehicles en route to B.
         lost = next((i for i, uid in enumerate(self.order[:self.stage])
@@ -132,13 +135,25 @@ class AssaultRoute:
         ours = obj.team == state.team if obj.team is not None else (
             self.count(obj, "percent") >= 1.0
             and self.count(obj, friendly_field) > self.count(obj, enemy_field))
-        self._confirmed = self._confirmed + 1 if ours else 0
+        # Full capture while blue units remain in the HQ courtyard is only a
+        # contested foothold. Do not release the column on that bar alone.
+        try:
+            empty = float(obj.raw[enemy_field]) == 0
+        except (KeyError, TypeError, ValueError):
+            empty = False
+        secure = ours and (self.stage != 0 or (empty and self.count(obj, "percent") >= 1.0))
         # Reserve defenders before departure, not after everybody has started
         # moving to B. A label is not evidence that a unit is inside the point.
         self._assign_garrison(state, include_current=ours)
         guards = [unit for unit in state.agents if self._garrison.get(unit.uid) == obj.uid]
         ready = len(guards) >= self.garrison_needed(state, obj) and all(
             self.inside_garrison(obj, unit.position) for unit in guards)
+        if self.stage == 0:
+            ready = ready and self.count(obj, friendly_field) >= self.garrison_needed(state, obj)
+        self._confirmed = self._confirmed + 1 if secure and ready else 0
+        if self.stage == 0 and ours and not secure and state.step % 20 == 0:
+            logger.info("指挥所仍需清场，暂不转场: step=%d enemy_inside=%d guards=%d",
+                        state.step, self.enemy_count(state, obj), len(guards))
         if (self._confirmed >= self.CAPTURE_CONFIRMATIONS and ready
                 and self.stage + 1 < len(self.order)):
             self.stage += 1
@@ -146,8 +161,10 @@ class AssaultRoute:
             logger.info("据点占领已确认，主力转向下一目标: step=%d uid=%d", state.step, self.order[self.stage])
 
     def garrison_needed(self, state, obj):
-        enemy_field = "blueteamNum" if state.team == 0 else "redTeamNum"
-        return max(self.GARRISON_MIN, int(self.count(obj, enemy_field)) + self.GARRISON_MARGIN)
+        return max(self.GARRISON_MIN, self.enemy_count(state, obj) + self.GARRISON_MARGIN)
+
+    def enemy_count(self, state, obj):
+        return int(self.count(obj, "blueteamNum" if state.team == 0 else "redTeamNum"))
 
     def _assign_garrison(self, state, include_current=False):
         previous, self._garrison = self._garrison, {}

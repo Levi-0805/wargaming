@@ -117,13 +117,15 @@ def test_confirmed_capture_releases_main_force_despite_distant_hq_contacts():
     objectives[0].raw.update(percent=1, redTeamNum=6, blueteamNum=2)
     for step in range(3, 7):
         actions = rule.act(state(agents, [enemy], objectives, step))
-    assert rule._route.stage == 1
-    assert sum(action.command == "Moving" for action in actions) == 1
-    assert sum(action.command == "NormalAttacking" for action in actions) == 5
+    assert rule._route.stage == 0
     # Clearing defenders preserves a reserve instead of leaving one guard.
     objectives[0].raw["blueteamNum"] = 0
-    rule.act(state(agents, [], objectives, 7))
+    for step in range(7, 11):
+        actions = rule.act(state(agents, [enemy], objectives, step))
+    assert rule._route.stage == 1
     assert len(rule._route._garrison) == 4
+    assert all(action.command == "Moving" for unit, action in zip(agents, actions)
+               if unit.uid not in rule._route._garrison)
 
 
 def test_single_capture_sample_does_not_release_main_force():

@@ -112,13 +112,13 @@ def test_capture_sequence_does_not_skip_empty_bases_or_switch_to_larger_enemy_co
     objects[0].raw.update(percent=1, redTeamNum=20, blueteamNum=1)
     for step in range(1, 5):
         route.update(state(agents, objectives=objects, step=step))
-    assert route.stage == 1  # Confirmed occupation releases the column despite survivors.
+    assert route.stage == 0  # A full bar with surviving occupants is still contested.
     objects[0].raw["blueteamNum"] = 0
-    for step in [5, 6]:
+    for step in range(5, 9):
         route.update(state(agents, objectives=objects, step=step))
     assert route.stage == 1  # Empty B still needs its 800-point capture.
     objects[1].raw.update(percent=1, redTeamNum=3)
-    for step in [7, 8, 9, 10]:
+    for step in range(9, 13):
         route.update(state(agents, objectives=objects, step=step))
     assert route.stage == 2
     route.update(state([agent], objectives=map_objectives(), episode=2))

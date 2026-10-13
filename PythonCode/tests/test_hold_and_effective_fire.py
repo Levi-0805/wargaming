@@ -25,15 +25,19 @@ def test_guards_outside_capture_core_return_before_main_force_departs():
     for guard in guards:
         guard.position[1] -= 7000
     rule.act(state(guards, objectives=objects, step=6))
+    assert rule._route.stage == 0  # Physically present, but occupants are not cleared.
+    objects[0].raw["blueteamNum"] = 0
+    for step in range(7, 11):
+        rule.act(state(guards, objectives=objects, step=step))
     assert rule._route.stage == 1
-    assert len(rule._route._garrison) == 7  # Remaining unit can advance immediately.
+    assert len(rule._route._garrison) == 4
 
 
 def test_real_hq_footprint_holds_reached_positions_without_a_centre_arrival_gate():
     objects = map_objectives()
     obj = objects[0]
     obj.raw.update(scale={"x": 7700, "y": 6500, "z": 2500},
-                   percent=1, redTeamNum=11, blueteamNum=4)
+                   percent=1, redTeamNum=11, blueteamNum=0)
     guards = guards_at(obj, count=8)
     for i, guard in enumerate(guards):
         guard.position[0] += (i - 4) * 200
@@ -42,7 +46,7 @@ def test_real_hq_footprint_holds_reached_positions_without_a_centre_arrival_gate
     for step in range(4):
         actions = rule.act(state(guards, objectives=objects, step=step))
     assert rule._route.stage == 1
-    assert len(rule._route._garrison) == 7
+    assert len(rule._route._garrison) == 4
     for guard, action in zip(guards, actions):
         if guard.uid in rule._route._garrison:
             assert action.command == "Guard"
@@ -69,7 +73,7 @@ def test_guard_reserve_is_not_cut_to_leave_two_attackers_and_dead_guards_are_rep
     route = AssaultRoute()
     for step in range(4):
         route.update(state(guards, objectives=objects, step=step))
-    assert route.stage == 1 and len(route._garrison) == 5
+    assert route.stage == 0 and len(route._garrison) == 5
     dead = next(unit for unit in guards if unit.uid in route._garrison)
     dead.alive = False
     objects[0].raw["redTeamNum"] = 5

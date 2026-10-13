@@ -10,6 +10,7 @@ from .AssaultRoute import AssaultRoute
 from .CommandLinks import CommandLinks
 from .MotionRecovery import MotionRecovery
 from .UAVControl import UAVControl
+from .UrbanContact import UrbanContact
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +39,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._motion_recovery = MotionRecovery()
         self._route = AssaultRoute()
         self._uav = UAVControl()
+        self._urban = UrbanContact()
         self._frame = None
         self._support = {}
         self._fire_watch = {}
@@ -57,6 +59,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             self._fire_watch.clear()
             self._hit_watch.clear()
         self._frame = frame
+        self._urban.begin(state)
         self._route.update(state)
         self._support = {}
         for unit in state.agents:
@@ -83,14 +86,20 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return True  # Missing/unknown metadata is not proof of an empty weapon.
 
     def _engage(self, state, agent, contacts, local):
-        available = [enemy for enemy in contacts if
+        local_contacts = [enemy for enemy in contacts if enemy.uid in local]
+        candidates = local_contacts or contacts
+        available = [enemy for enemy in candidates if
                      self._hit_watch.get((agent.uid, enemy.uid), {}).get("retry", -1) <= state.step]
-        return self._fire_or_close(state, agent, self._attack_target(agent, available or contacts, local))
+        target = self._attack_target(agent, available or candidates, local)
+        if target.uid not in local and agent.entity_type in self._urban.GROUND:
+            target = self._urban.planned_target(state, agent, contacts) or target
+            if not self._urban.shared_fire_allowed(state, agent, target):
+                return self._urban.reposition(state, agent, target)
+        return self._fire_or_close(state, agent, target)
 
     def _fire_or_close(self, state, agent, target):
-        # A visible contact is actionable, as in the official rule example.
-        # If repeated attacks do no damage and consume no ammo, move closer
-        # briefly instead of standing forever behind cover/out of range.
+        # Local detection is not proof of an effective weapon line of sight.
+        # Bound repeated shots without ammunition use or target damage.
         ammo = tuple(agent.raw.get("interaction", ()) or ())
         key = (agent.uid, target.uid)
         hit = self._hit_watch.get(key)
@@ -105,20 +114,16 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             hit["retry"] = state.step + 8
             logger.info("持续攻击无伤害，换位或换目标: uid=%d target=%d step=%d", agent.uid, target.uid, state.step)
         ineffective = hit["retry"] > state.step
+        if self._urban.effective(state, agent, target):
+            hit.update(start=state.step, retry=-1)
+            ineffective = False
         signature = (target.uid, ammo)
         old = self._fire_watch.get(agent.uid)
         start = old[1] if old and old[0] == signature else state.step
         self._fire_watch[agent.uid] = (signature, start)
         if ineffective or self.FIRE_REPOSITION_STEPS <= state.step - start < self.FIRE_REPOSITION_STEPS + 2:
-            # No ammunition used: briefly seek a firing angle, never run all
-            # the way into the enemy's position. Stable per-unit side spacing.
-            dx, dy = target.position[:2] - agent.position[:2]
-            distance = max(math.hypot(dx, dy), 1)
-            side = 1 if agent.team_index % 2 else -1
-            advance = 1000 if distance > 8000 else 0
-            return Action.move_at((agent.position[0] + (dx * advance - dy * side * 800) / distance,
-                                   agent.position[1] + (dy * advance + dx * side * 800) / distance,
-                                   agent.position[2]))
+            # Seek a firing angle using a fixed, bounded movement attempt.
+            return self._urban.reposition(state, agent, target, duration=6 if ineffective else 2)
         if state.step - start >= self.FIRE_REPOSITION_STEPS + 2:
             self._fire_watch[agent.uid] = (signature, state.step)
         return Action.attack(target)
@@ -130,9 +135,10 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         threats = [enemy for enemy in contacts if self._horizontal(enemy.position, obj.position) <= 12000]
         if threats and self._has_ammo(agent):
             action = self._engage(state, agent, threats, local)
-            if action.command == "Moving" and action.points is not None:
-                return Action.move_at(self._route.clamp_guard_point(obj, action.points))
-            return action
+            return self._urban.constrain(agent, action, obj, self._route)
+        if self._route.enemy_count(state, obj) > 0:
+            action = self._urban.search_point(state, agent, obj, self._route)
+            return self._urban.constrain(agent, action, obj, self._route)
         return Action.move_at(point) if self._horizontal(agent.position, point) > 450 else Action.guard_position(point)
 
     def _combat_action(self, state, agent):
@@ -160,6 +166,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         point = self._route.point(state, agent)
         objective = self._route.objective(state)
         visible = [enemy for enemy in state.visible_opponents if enemy.alive]
+        if (objective is not None and self._route.stage == 0
+                and agent.entity_type in self._urban.GROUND
+                and self._route.inside_garrison(objective, agent.position)
+                and self._route.enemy_count(state, objective) > 0):
+            # Clear the courtyard/building approaches using reached friendly
+            # positions rather than pursuing an unseen occupant's coordinates.
+            return self._urban.search_point(state, agent, objective, self._route)
         # Shared contacts guide movement without fabricating local visibility.
         if self._has_ammo(agent) and point is not None and visible and (objective is None or (
             self._horizontal(agent.position, objective.position) <= 18000
@@ -211,7 +224,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if (garrison is not None and result.command == "Moving"
                 and self._route.inside_garrison(garrison, agent.position)):
             point = result.points if result.points is not None else self._route.guard_slot(agent, garrison)
-            return Action.move_at(self._route.clamp_guard_point(garrison, point))
+            result = Action.move_at(self._route.clamp_guard_point(garrison, point))
+        self._urban.record(state, agent, result)
         return result
 
     def decide(self, state):

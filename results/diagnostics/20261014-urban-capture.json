@@ -1,0 +1,150 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261014_010705\\protocol.jsonl",
+  "source_version": "f436520",
+  "extracted_frames_sha256": "7897643918f24311e81c5fd87e83311f63fdde310edc0e3b5aaee01d7adfe796",
+  "limitation": "New decisions on historical public team views; no UE counterfactual movement, kills or score.",
+  "episodes": [
+    {
+      "episode": 1,
+      "frames": 401,
+      "serialized_actions": 20050,
+      "old_near_hq_attacks": 3009,
+      "old_near_hq_nonlocal_attacks": 2888,
+      "new_near_hq_attacks": 672,
+      "new_near_hq_nonlocal_attacks": 524,
+      "near_hq_directional_scans": 99,
+      "checked_guard_movement_destinations": 1255,
+      "actual_capture_changes": [
+        {
+          "step": 119,
+          "full": true,
+          "red": 14,
+          "blue": 12
+        },
+        {
+          "step": 192,
+          "full": false,
+          "red": 11,
+          "blue": 12
+        },
+        {
+          "step": 206,
+          "full": true,
+          "red": 13,
+          "blue": 11
+        }
+      ],
+      "offline_stage_changes": [],
+      "baseline_offline_stage_changes": [
+        {
+          "step": 229,
+          "from": 0,
+          "to": 1,
+          "hq_blue_inside": 8
+        }
+      ],
+      "actual_scores": [
+        {
+          "side": "red",
+          "kills": 1340,
+          "occupation": 1600
+        },
+        {
+          "side": "blue",
+          "kills": 2650,
+          "occupation": 1600
+        }
+      ],
+      "most_requested_old_targets": [
+        {
+          "uid": 226,
+          "old_requests": 668,
+          "new_requests": 170,
+          "actual_min_hp": 0.0
+        },
+        {
+          "uid": 236,
+          "old_requests": 465,
+          "new_requests": 122,
+          "actual_min_hp": 23.51502
+        },
+        {
+          "uid": 296,
+          "old_requests": 389,
+          "new_requests": 69,
+          "actual_min_hp": 0.0
+        },
+        {
+          "uid": 306,
+          "old_requests": 335,
+          "new_requests": 72,
+          "actual_min_hp": 0.0
+        },
+        {
+          "uid": 276,
+          "old_requests": 253,
+          "new_requests": 52,
+          "actual_min_hp": 0.0
+        }
+      ]
+    },
+    {
+      "episode": 2,
+      "frames": 401,
+      "serialized_actions": 20050,
+      "old_near_hq_attacks": 3164,
+      "old_near_hq_nonlocal_attacks": 3022,
+      "new_near_hq_attacks": 652,
+      "new_near_hq_nonlocal_attacks": 512,
+      "near_hq_directional_scans": 121,
+      "actual_capture_changes": [],
+      "offline_stage_changes": [],
+      "baseline_offline_stage_changes": [],
+      "actual_scores": [
+        {
+          "side": "red",
+          "kills": 2070,
+          "occupation": 0
+        },
+        {
+          "side": "blue",
+          "kills": 3000,
+          "occupation": 3200
+        }
+      ],
+      "most_requested_old_targets": [
+        {
+          "uid": 711,
+          "old_requests": 628,
+          "new_requests": 106,
+          "actual_min_hp": 100
+        },
+        {
+          "uid": 691,
+          "old_requests": 505,
+          "new_requests": 117,
+          "actual_min_hp": 34.15815
+        },
+        {
+          "uid": 751,
+          "old_requests": 296,
+          "new_requests": 68,
+          "actual_min_hp": 0.0
+        },
+        {
+          "uid": 746,
+          "old_requests": 260,
+          "new_requests": 36,
+          "actual_min_hp": 0.0
+        },
+        {
+          "uid": 736,
+          "old_requests": 237,
+          "new_requests": 53,
+          "actual_min_hp": 0.0
+        }
+      ]
+    }
+  ],
+  "baseline_deployment_files_checked": 18
+}
