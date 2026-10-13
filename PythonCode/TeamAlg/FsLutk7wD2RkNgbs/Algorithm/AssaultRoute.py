@@ -34,6 +34,8 @@ class AssaultRoute:
     GARRISON_CORE = 2500.0
     GARRISON_MIN = 4
     GARRISON_MARGIN = 3
+    WAYPOINT_STALL_CALLS = 20
+    BYPASS_RADIUS = 3500.0
 
     def __init__(self):
         self._episode = None
@@ -46,6 +48,7 @@ class AssaultRoute:
         self.known_map = False
         self._garrison = {}
         self._guard_slots = {}
+        self._waypoint_watch = {}
         self._lost = 0
 
     @staticmethod
@@ -64,6 +67,7 @@ class AssaultRoute:
         self._cursor.clear()
         self._garrison.clear()
         self._guard_slots.clear()
+        self._waypoint_watch.clear()
         self._lost = 0
         self._routes = ()
         self.known_map = False
@@ -262,5 +266,27 @@ class AssaultRoute:
                 route = self._routes[leg]
             else:
                 break
+        # Intermediate road samples are not objectives. A unit stuck 18-20m
+        # from a 16m arrival gate must not retry that sample all match. Only
+        # relax a nearby transit waypoint after repeated failed approaches;
+        # never skip the final capture target or change the objective stage.
+        if self.known_map and index < len(route) - 1 and agent.communication_ok() is not False:
+            distance = self.distance(position, route[index])
+            key = (leg, index)
+            watch = self._waypoint_watch.get(agent.uid)
+            if (watch is None or watch[0] != key or state.step - watch[3] > 2
+                    or distance < watch[1] - 200):
+                watch = (key, distance, 0, state.step)
+            elif watch[3] != state.step:
+                watch = (key, watch[1], watch[2] + 1, state.step)
+            self._waypoint_watch[agent.uid] = watch
+            if watch[2] >= self.WAYPOINT_STALL_CALLS:
+                nearby = [i for i in range(index, len(route) - 1)
+                          if self.distance(position, route[i]) <= self.BYPASS_RADIUS]
+                if nearby:
+                    old_index, index = index, max(nearby) + 1
+                    self._waypoint_watch.pop(agent.uid, None)
+                    logger.warning("近路点反复无进展，接续下段: uid=%d step=%d leg=%d old=%d next=%d",
+                                   agent.uid, state.step, leg, old_index, index)
         self._cursor[agent.uid] = (leg, index)
         return route[index]

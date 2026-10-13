@@ -30,6 +30,7 @@ class MotionRecovery:
         self._vehicle_escape = {}
         self._turns = {}
         self._turn_retry = {}
+        self._stationary = {}
 
     def _begin(self, state):
         if state.episode != self._episode or (self._step is not None and state.step < self._step):
@@ -40,6 +41,7 @@ class MotionRecovery:
             self._vehicle_escape.clear()
             self._turns.clear()
             self._turn_retry.clear()
+            self._stationary.clear()
         self._episode, self._step = state.episode, state.step
 
     def pause(self, state, agent):
@@ -49,6 +51,7 @@ class MotionRecovery:
         self._escape.pop(agent.uid, None)
         self._vehicle_escape.pop(agent.uid, None)
         self._turns.pop(agent.uid, None)
+        self._stationary.pop(agent.uid, None)
 
     def _align_vehicle(self, state, agent, goal):
         """UE cars can follow a rearward goal in slow reverse indefinitely.
@@ -111,6 +114,18 @@ class MotionRecovery:
         distance = math.dist(position, goal) if goal is not None else None
         intended = action.command == "Moving" and (distance is None or distance > 300)
         self._previous[agent.uid] = (state.step, position, intended)
+        # Turning and changing short combat destinations must not erase proof
+        # that a vehicle has failed to move. Count movement requests, not time
+        # spent deliberately firing or guarding.
+        stationary = self._stationary.get(agent.uid)
+        if not agent.alive or agent.communication_ok() is False:
+            self._stationary.pop(agent.uid, None)
+        elif agent.entity_type == "BP_MNWS_Vehicle_Armored_C":
+            if stationary is None or math.dist(position, stationary[0]) > 200:
+                stationary = (position, 0)
+            elif intended and (previous is None or previous[0] != state.step):
+                stationary = (stationary[0], stationary[1] + 1)
+            self._stationary[agent.uid] = stationary
         if not intended or not agent.alive or agent.communication_ok() is False:
             self._progress.pop(agent.uid, None)
             self._escape.pop(agent.uid, None)
@@ -119,11 +134,6 @@ class MotionRecovery:
             return action
         if previous and previous[0] == state.step:
             return action
-        aligned = self._align_vehicle(state, agent, goal)
-        if aligned is not None:
-            self._progress.pop(agent.uid, None)
-            self._vehicle_escape.pop(agent.uid, None)
-            return aligned
         tracked = self._progress.get(agent.uid)
         if goal is not None:
             if tracked is None or tracked[0] is None or math.dist(goal, tracked[0]) > 600:
@@ -137,7 +147,8 @@ class MotionRecovery:
         vehicle_escape = self._vehicle_escape.get(agent.uid)
         if vehicle_escape:
             start, reverse, side_point, original_goal = vehicle_escape
-            if goal != original_goal:
+            if ((goal is None) != (original_goal is None)
+                    or (goal is not None and math.dist(goal, original_goal) > 600)):
                 del self._vehicle_escape[agent.uid]
             elif state.step < start + 2:
                 return Action.move(reverse)
@@ -146,11 +157,13 @@ class MotionRecovery:
             else:
                 del self._vehicle_escape[agent.uid]
                 self._progress[agent.uid] = (goal, state.step, distance or 0)
+                self._stationary[agent.uid] = (position, 0)
                 return action
         escape = self._escape.get(agent.uid)
         if escape and state.step < escape[0]:
             return Action.move(escape[1])
-        if state.step - tracked[1] >= self.STALL_STEPS:
+        if (state.step - tracked[1] >= self.STALL_STEPS
+                or (stationary is not None and stationary[1] >= self.STALL_STEPS)):
             attempt = self._attempts.get(agent.uid, 0)
             if agent.entity_type == "BP_MNWS_Vehicle_Armored_C":
                 # One short retreat is allowed for a true stationary obstacle,
@@ -164,6 +177,9 @@ class MotionRecovery:
                          position[1] - forward[1] * 2000 + forward[0] * side * 2500, position[2])
                 self._vehicle_escape[agent.uid] = (state.step, reverse, point, goal)
                 self._attempts[agent.uid] = attempt + 1
+                self._turns.pop(agent.uid, None)
+                self._turn_retry[agent.uid] = state.step + 8
+                self._stationary[agent.uid] = (position, 0)
                 logger.warning("轮式车无进展，后退再绕障: uid=%d step=%d attempt=%d direction=%s",
                                agent.uid, state.step, attempt + 1, reverse)
                 return Action.move(reverse)
@@ -174,4 +190,14 @@ class MotionRecovery:
             logger.warning("航点无净进展: uid=%d step=%d distance_m=%.1f attempt=%d escape=%s",
                            agent.uid, state.step, (distance or 0) / 100, attempt + 1, direction)
             return Action.move(direction)
+        # Alignment is subordinate to recovery and never resets its clock.
+        # Once UE is moving the vehicle briskly, avoid interrupting its path
+        # just because the reported nose angle still lags behind the goal.
+        moving_well = previous is not None and math.dist(position, previous[1]) > 600
+        if moving_well:
+            self._turns.pop(agent.uid, None)
+        else:
+            aligned = self._align_vehicle(state, agent, goal)
+            if aligned is not None:
+                return aligned
         return action

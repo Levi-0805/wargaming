@@ -1,0 +1,835 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261013_202842\\protocol.jsonl",
+  "source_version": "c34a8a4",
+  "frames": 351,
+  "serialized_actions": 17550,
+  "limitation": "New decisions on old positions, not UE movement or a new score.",
+  "units": [
+    {
+      "uid": 481,
+      "old_commands": {
+        "Moving": 350
+      },
+      "new_commands": {
+        "Moving": 351
+      },
+      "new_route_changes": [
+        {
+          "step": -1,
+          "cursor": [
+            0,
+            1
+          ]
+        },
+        {
+          "step": 24,
+          "cursor": [
+            0,
+            2
+          ]
+        },
+        {
+          "step": 41,
+          "cursor": [
+            0,
+            3
+          ]
+        },
+        {
+          "step": 53,
+          "cursor": [
+            0,
+            4
+          ]
+        },
+        {
+          "step": 65,
+          "cursor": [
+            0,
+            5
+          ]
+        },
+        {
+          "step": 121,
+          "cursor": [
+            0,
+            6
+          ]
+        }
+      ],
+      "new_direction_recovery": [
+        {
+          "step": 81,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 82,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 108,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 109,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 121,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 122,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 134,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 135,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 147,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 148,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 160,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 161,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 173,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 174,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 186,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 187,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 199,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 200,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 212,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 213,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 225,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 226,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 238,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 239,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 251,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 252,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 264,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 265,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 277,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 278,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 290,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 291,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 303,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 304,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 316,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 317,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 329,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 330,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 342,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 343,
+          "direction": "-X+Y"
+        }
+      ],
+      "actual_stall_windows": [
+        [
+          102,
+          349
+        ]
+      ],
+      "offline_frames": 0,
+      "observed_min_hp": 100,
+      "name": "轮式无人车_0"
+    },
+    {
+      "uid": 486,
+      "old_commands": {
+        "Moving": 298,
+        "NormalAttacking": 51,
+        "Idle": 1
+      },
+      "new_commands": {
+        "Moving": 299,
+        "NormalAttacking": 51,
+        "Idle": 1
+      },
+      "new_route_changes": [
+        {
+          "step": -1,
+          "cursor": [
+            0,
+            1
+          ]
+        },
+        {
+          "step": 76,
+          "cursor": [
+            0,
+            3
+          ]
+        },
+        {
+          "step": 81,
+          "cursor": [
+            0,
+            4
+          ]
+        },
+        {
+          "step": 89,
+          "cursor": [
+            0,
+            5
+          ]
+        },
+        {
+          "step": 97,
+          "cursor": [
+            0,
+            6
+          ]
+        },
+        {
+          "step": 140,
+          "cursor": [
+            0,
+            7
+          ]
+        },
+        {
+          "step": 148,
+          "cursor": [
+            0,
+            8
+          ]
+        },
+        {
+          "step": 155,
+          "cursor": [
+            0,
+            9
+          ]
+        },
+        {
+          "step": 162,
+          "cursor": [
+            0,
+            10
+          ]
+        },
+        {
+          "step": 203,
+          "cursor": [
+            0,
+            11
+          ]
+        },
+        {
+          "step": 279,
+          "cursor": [
+            1,
+            0
+          ]
+        },
+        {
+          "step": 307,
+          "cursor": [
+            1,
+            1
+          ]
+        },
+        {
+          "step": 329,
+          "cursor": [
+            1,
+            2
+          ]
+        }
+      ],
+      "new_direction_recovery": [
+        {
+          "step": 43,
+          "direction": "+Y"
+        },
+        {
+          "step": 44,
+          "direction": "+Y"
+        },
+        {
+          "step": 56,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 57,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 133,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 134,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 254,
+          "direction": "+X-Y"
+        }
+      ],
+      "actual_stall_windows": [
+        [
+          225,
+          279
+        ]
+      ],
+      "offline_frames": 0,
+      "observed_min_hp": 100,
+      "name": "轮式无人车_1"
+    },
+    {
+      "uid": 186,
+      "old_commands": {
+        "Moving": 350
+      },
+      "new_commands": {
+        "Moving": 351
+      },
+      "new_route_changes": [
+        {
+          "step": -1,
+          "cursor": [
+            0,
+            0
+          ]
+        },
+        {
+          "step": 4,
+          "cursor": [
+            0,
+            1
+          ]
+        },
+        {
+          "step": 32,
+          "cursor": [
+            0,
+            2
+          ]
+        }
+      ],
+      "new_direction_recovery": [
+        {
+          "step": 20,
+          "direction": "-X"
+        },
+        {
+          "step": 21,
+          "direction": "-X"
+        },
+        {
+          "step": 30,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 31,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 50,
+          "direction": "-Y"
+        },
+        {
+          "step": 51,
+          "direction": "-Y"
+        },
+        {
+          "step": 70,
+          "direction": "+Y"
+        },
+        {
+          "step": 71,
+          "direction": "+Y"
+        },
+        {
+          "step": 82,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 83,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 92,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 93,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 102,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 103,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 112,
+          "direction": "+Y"
+        },
+        {
+          "step": 113,
+          "direction": "+Y"
+        },
+        {
+          "step": 122,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 123,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 132,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 133,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 149,
+          "direction": "-Y"
+        },
+        {
+          "step": 150,
+          "direction": "-Y"
+        },
+        {
+          "step": 169,
+          "direction": "+Y"
+        },
+        {
+          "step": 170,
+          "direction": "+Y"
+        },
+        {
+          "step": 189,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 190,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 209,
+          "direction": "+Y"
+        },
+        {
+          "step": 210,
+          "direction": "+Y"
+        },
+        {
+          "step": 230,
+          "direction": "-Y"
+        },
+        {
+          "step": 231,
+          "direction": "-Y"
+        },
+        {
+          "step": 242,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 243,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 252,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 253,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 270,
+          "direction": "+Y"
+        },
+        {
+          "step": 271,
+          "direction": "+Y"
+        },
+        {
+          "step": 282,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 283,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 292,
+          "direction": "+Y"
+        },
+        {
+          "step": 293,
+          "direction": "+Y"
+        },
+        {
+          "step": 310,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 311,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 322,
+          "direction": "+Y"
+        },
+        {
+          "step": 323,
+          "direction": "+Y"
+        },
+        {
+          "step": 332,
+          "direction": "-Y"
+        },
+        {
+          "step": 333,
+          "direction": "-Y"
+        }
+      ],
+      "actual_stall_windows": [
+        [
+          13,
+          20
+        ]
+      ],
+      "offline_frames": 0,
+      "observed_min_hp": 100,
+      "name": "士兵_20",
+      "step12_to_end_net_m": 5.69,
+      "step12_to_end_path_m": 756.53
+    },
+    {
+      "uid": 196,
+      "old_commands": {
+        "Moving": 350
+      },
+      "new_commands": {
+        "Moving": 351
+      },
+      "new_route_changes": [
+        {
+          "step": -1,
+          "cursor": [
+            0,
+            0
+          ]
+        },
+        {
+          "step": 4,
+          "cursor": [
+            0,
+            1
+          ]
+        },
+        {
+          "step": 32,
+          "cursor": [
+            0,
+            2
+          ]
+        }
+      ],
+      "new_direction_recovery": [
+        {
+          "step": 20,
+          "direction": "-X"
+        },
+        {
+          "step": 21,
+          "direction": "-X"
+        },
+        {
+          "step": 30,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 31,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 42,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 43,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 52,
+          "direction": "+Y"
+        },
+        {
+          "step": 53,
+          "direction": "+Y"
+        },
+        {
+          "step": 62,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 63,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 72,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 73,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 82,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 83,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 92,
+          "direction": "+Y"
+        },
+        {
+          "step": 93,
+          "direction": "+Y"
+        },
+        {
+          "step": 110,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 111,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 130,
+          "direction": "+Y"
+        },
+        {
+          "step": 131,
+          "direction": "+Y"
+        },
+        {
+          "step": 150,
+          "direction": "-Y"
+        },
+        {
+          "step": 151,
+          "direction": "-Y"
+        },
+        {
+          "step": 162,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 163,
+          "direction": "+X+Y"
+        },
+        {
+          "step": 172,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 173,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 190,
+          "direction": "+Y"
+        },
+        {
+          "step": 191,
+          "direction": "+Y"
+        },
+        {
+          "step": 202,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 203,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 212,
+          "direction": "+Y"
+        },
+        {
+          "step": 213,
+          "direction": "+Y"
+        },
+        {
+          "step": 222,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 223,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 232,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 233,
+          "direction": "-X+Y"
+        },
+        {
+          "step": 250,
+          "direction": "-Y"
+        },
+        {
+          "step": 251,
+          "direction": "-Y"
+        },
+        {
+          "step": 270,
+          "direction": "+Y"
+        },
+        {
+          "step": 271,
+          "direction": "+Y"
+        },
+        {
+          "step": 290,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 291,
+          "direction": "-X-Y"
+        },
+        {
+          "step": 310,
+          "direction": "+Y"
+        },
+        {
+          "step": 311,
+          "direction": "+Y"
+        },
+        {
+          "step": 330,
+          "direction": "-Y"
+        },
+        {
+          "step": 331,
+          "direction": "-Y"
+        },
+        {
+          "step": 349,
+          "direction": "+Y"
+        }
+      ],
+      "actual_stall_windows": [],
+      "offline_frames": 0,
+      "observed_min_hp": 100,
+      "name": "士兵_22",
+      "step12_to_end_net_m": 3.24,
+      "step12_to_end_path_m": 766.89
+    }
+  ]
+}
