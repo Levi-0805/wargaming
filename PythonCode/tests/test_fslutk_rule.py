@@ -40,6 +40,10 @@ def map_objectives():
             zip((901, 902, 903), AssaultRoute.ANCHORS, ("HQ", "B", "A"))]
 
 
+def guards_at(obj, first=100, count=4):
+    return [entity(first + i, 0, i, obj.position[0], obj.position[1]) for i in range(count)]
+
+
 def test_local_contact_at_95_m_is_attacked_despite_generic_10_m_metadata():
     soldier = entity(10, 0, 0, 0)
     enemy = entity(20, 1, 0, 9500)
@@ -101,20 +105,21 @@ def test_capture_sequence_does_not_skip_empty_bases_or_switch_to_larger_enemy_co
     agent = entity(1, 0, 0, 60000, 35000)
     objects = map_objectives()
     objects[2].raw["blueteamNum"] = 50
+    agents = [agent, *guards_at(objects[0]), *guards_at(objects[1], 200)]
     route = AssaultRoute()
     route.update(state([agent], objectives=objects))
     assert route.objective(state([agent], objectives=objects)).uid == 901
     objects[0].raw.update(percent=1, redTeamNum=20, blueteamNum=1)
     for step in range(1, 5):
-        route.update(state([agent], objectives=objects, step=step))
+        route.update(state(agents, objectives=objects, step=step))
     assert route.stage == 1  # Confirmed occupation releases the column despite survivors.
     objects[0].raw["blueteamNum"] = 0
     for step in [5, 6]:
-        route.update(state([agent], objectives=objects, step=step))
+        route.update(state(agents, objectives=objects, step=step))
     assert route.stage == 1  # Empty B still needs its 800-point capture.
     objects[1].raw.update(percent=1, redTeamNum=3)
     for step in [7, 8, 9, 10]:
-        route.update(state([agent], objectives=objects, step=step))
+        route.update(state(agents, objectives=objects, step=step))
     assert route.stage == 2
     route.update(state([agent], objectives=map_objectives(), episode=2))
     assert route.stage == 0
@@ -122,10 +127,10 @@ def test_capture_sequence_does_not_skip_empty_bases_or_switch_to_larger_enemy_co
 
 def test_rear_keeps_its_waypoint_when_front_captures_hq():
     rear = entity(1, 0, 0, 60000, 12000)
-    front = entity(2, 0, 1, -41810, 32275)
+    front = entity(2, 0, 1, -41810, 36275)
     objects = map_objectives()
     route = AssaultRoute()
-    initial = state([rear, front], objectives=objects)
+    initial = state([rear, front, *guards_at(objects[0])], objectives=objects)
     route.update(initial)
     rear_point = route.point(initial, rear)
     route.point(initial, front)
@@ -144,7 +149,7 @@ def test_uav_only_bombs_confirmed_local_contact_and_flies_to_bounded_points():
     objects = map_objectives()
     objects[0].raw["blueteamNum"] = 20
     move = rule.act(state([uav], objectives=objects))[0]
-    assert move.command == "Moving" and move.direction == "+Z"
+    assert move.command == "Moving" and move.points == (-41810, 32275, 8000)
     uav.position[2] = 8000
     move = rule.act(state([uav], objectives=objects, step=1))[0]
     assert move.points == (-41810, 32275, 8000)

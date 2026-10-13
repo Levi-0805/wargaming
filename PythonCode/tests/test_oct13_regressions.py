@@ -5,7 +5,7 @@ from cssim.protocol import Action
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.AssaultRoute import AssaultRoute
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.MotionRecovery import MotionRecovery
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.UAVControl import UAVControl
-from test_fslutk_rule import entity, state, algorithm, map_objectives
+from test_fslutk_rule import entity, state, algorithm, map_objectives, guards_at
 from test_air_and_departure import aircraft
 
 
@@ -24,8 +24,9 @@ def test_lost_hq_returns_to_hq_after_confirmed_capture():
     route = AssaultRoute()
     objects = map_objectives()
     objects[0].raw.update(redTeamNum=5, percent=1)
+    guards = guards_at(objects[0])
     for step in range(4):
-        route.update(state([], objectives=objects, step=step))
+        route.update(state(guards, objectives=objects, step=step))
     assert route.stage == 1
     objects[0].raw.update(redTeamNum=0, blueteamNum=5, percent=0)
     for step in (4, 5):
@@ -37,14 +38,15 @@ def test_retake_b_does_not_send_forward_units_back_to_hq_approach():
     route = AssaultRoute()
     objects = map_objectives()
     car = entity(1, 0, 0, -3000, -27530, kind="BP_MNWS_Vehicle_Armored_C")
+    agents = [car, *guards_at(objects[0]), *guards_at(objects[1], 200)]
     for obj in objects[:2]:
         obj.raw.update(redTeamNum=5, percent=1)
     for step in range(8):
-        route.update(state([car], objectives=objects, step=step))
+        route.update(state(agents, objectives=objects, step=step))
     route._cursor[car.uid] = (2, 0)
     objects[1].raw.update(redTeamNum=0, blueteamNum=5, percent=0)
     for step in (8, 9):
-        current = state([car], objectives=objects, step=step)
+        current = state(agents, objectives=objects, step=step)
         route.update(current)
     assert route.stage == 1
     point = route.point(current, car)
@@ -78,13 +80,12 @@ def test_vehicle_turn_attempt_is_bounded_and_restores_normal_waypoint():
     assert recovery.apply(state([car], step=7), car, move) is move
 
 
-def test_uav_climbs_vertically_before_flying_into_a_building():
+def test_uav_advances_horizontally_while_low_and_can_strike_without_height_gate():
     uav = aircraft(z=1000)
     enemy = entity(20, 1, 0, 10000)
     control = UAVControl()
     action = control.choose(state([uav], [enemy]), uav, None)
-    assert action.direction == "+Z" and action.points is None
-    uav.position[2] = 8000
+    assert action.points == (10000, 0, 8000)
     action = control.choose(state([uav], [enemy], step=1), uav, None)
     assert action.points == (10000, 0, 8000)
     uav.position[0] = 9000
@@ -126,6 +127,7 @@ def test_actual_shooting_does_not_get_cancelled_for_periodic_repositioning():
     rule = algorithm([soldier])
     for step in range(12):
         soldier.raw["interaction"] = [str(250 - step)]
+        enemy.hp = 100 - step * 2
         assert rule.act(state([soldier], [enemy], step=step))[0].command == "NormalAttacking"
 
 

@@ -1,0 +1,358 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261013_195259\\protocol.jsonl",
+  "running_version": "2308036",
+  "limitation": "Historical states only; new commands are not executed by UE and do not predict scores.",
+  "episodes": [
+    {
+      "episode": 1,
+      "frames": 251,
+      "commands": {
+        "Moving": 7965,
+        "Idle": 1688,
+        "NormalAttacking": 2880,
+        "Guard": 17
+      },
+      "phases": [
+        {
+          "step": 189,
+          "stage": 1,
+          "guards": 7
+        },
+        {
+          "step": 224,
+          "stage": 0,
+          "guards": 0
+        }
+      ],
+      "old_aircraft_commands": {
+        "Moving": 1250
+      },
+      "new_aircraft_commands": {
+        "Moving": 1255
+      },
+      "new_aircraft_initial": [
+        {
+          "uid": 31,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 36,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 26,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 21,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 16,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        }
+      ],
+      "dry_attack_requests_old": 235,
+      "dry_attack_requests_new": 0,
+      "hq_transitions_actual": [
+        {
+          "step": -1,
+          "full": false,
+          "red": 0,
+          "blue": 18
+        },
+        {
+          "step": 186,
+          "full": true,
+          "red": 5,
+          "blue": 4
+        },
+        {
+          "step": 223,
+          "full": false,
+          "red": 3,
+          "blue": 4
+        }
+      ],
+      "scores_file_order": [
+        {
+          "kills": 700,
+          "occupation": 0,
+          "total": 700
+        },
+        {
+          "kills": 890,
+          "occupation": 3200,
+          "total": 4090
+        }
+      ],
+      "guard_move_requests": 106,
+      "guard_destinations_outside_hold_area": 0,
+      "last_actual_alive": {
+        "0": 37,
+        "1": 32
+      }
+    },
+    {
+      "episode": 2,
+      "frames": 251,
+      "commands": {
+        "Moving": 10324,
+        "Idle": 969,
+        "NormalAttacking": 1107,
+        "Guard": 150
+      },
+      "phases": [
+        {
+          "step": 104,
+          "stage": 1,
+          "guards": 9
+        },
+        {
+          "step": 147,
+          "stage": 0,
+          "guards": 0
+        }
+      ],
+      "old_aircraft_commands": {
+        "Moving": 1250
+      },
+      "new_aircraft_commands": {
+        "Moving": 1255
+      },
+      "new_aircraft_initial": [
+        {
+          "uid": 601,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 576,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 566,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 551,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 586,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        }
+      ],
+      "dry_attack_requests_old": 92,
+      "dry_attack_requests_new": 0,
+      "hq_transitions_actual": [
+        {
+          "step": -1,
+          "full": false,
+          "red": 0,
+          "blue": 16
+        },
+        {
+          "step": 101,
+          "full": true,
+          "red": 12,
+          "blue": 6
+        },
+        {
+          "step": 146,
+          "full": false,
+          "red": 2,
+          "blue": 3
+        },
+        {
+          "step": 203,
+          "full": true,
+          "red": 2,
+          "blue": 0
+        }
+      ],
+      "scores_file_order": [
+        {
+          "kills": 920,
+          "occupation": 1600,
+          "total": 2520
+        },
+        {
+          "kills": 690,
+          "occupation": 1600,
+          "total": 2290
+        }
+      ],
+      "guard_move_requests": 241,
+      "guard_destinations_outside_hold_area": 0,
+      "last_actual_alive": {
+        "0": 42,
+        "1": 33
+      }
+    },
+    {
+      "episode": 3,
+      "frames": 251,
+      "commands": {
+        "Moving": 7512,
+        "Idle": 1711,
+        "Guard": 7,
+        "NormalAttacking": 3320
+      },
+      "phases": [
+        {
+          "step": 187,
+          "stage": 1,
+          "guards": 7
+        },
+        {
+          "step": 208,
+          "stage": 0,
+          "guards": 0
+        }
+      ],
+      "old_aircraft_commands": {
+        "Moving": 1250
+      },
+      "new_aircraft_commands": {
+        "Moving": 1255
+      },
+      "new_aircraft_initial": [
+        {
+          "uid": 1411,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 1486,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 1426,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 1401,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        },
+        {
+          "uid": 1391,
+          "action": "Moving",
+          "point": [
+            264.0260170452966,
+            24590.085264305773,
+            14326.02197265625
+          ]
+        }
+      ],
+      "dry_attack_requests_old": 170,
+      "dry_attack_requests_new": 0,
+      "hq_transitions_actual": [
+        {
+          "step": -1,
+          "full": false,
+          "red": 0,
+          "blue": 16
+        },
+        {
+          "step": 184,
+          "full": true,
+          "red": 11,
+          "blue": 4
+        },
+        {
+          "step": 207,
+          "full": false,
+          "red": 2,
+          "blue": 4
+        }
+      ],
+      "scores_file_order": [
+        {
+          "kills": 2200,
+          "occupation": 0,
+          "total": 2200
+        },
+        {
+          "kills": 1480,
+          "occupation": 3200,
+          "total": 4680
+        }
+      ],
+      "guard_move_requests": 72,
+      "guard_destinations_outside_hold_area": 0,
+      "last_actual_alive": {
+        "0": 28,
+        "1": 10
+      }
+    }
+  ]
+}

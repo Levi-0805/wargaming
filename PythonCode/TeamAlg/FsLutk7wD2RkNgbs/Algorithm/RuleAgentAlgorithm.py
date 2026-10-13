@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import math
 
 from cssim.algorithms import RuleAlgorithm
@@ -9,6 +10,8 @@ from .AssaultRoute import AssaultRoute
 from .CommandLinks import CommandLinks
 from .MotionRecovery import MotionRecovery
 from .UAVControl import UAVControl
+
+logger = logging.getLogger(__name__)
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
@@ -26,6 +29,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     _PRIORITY = {_SOLDIER: 0, _DOG: 1, "BP_MNWS_Vehicle_Armored_C": 2, _UAV: 3}
     SHARED_ENGAGEMENT_CM = 15000.0
     FIRE_REPOSITION_STEPS = 3
+    NO_DAMAGE_STEPS = 8
 
     def __init__(self, context, enable_parent_assignment: bool = True):
         super().__init__(context)
@@ -37,6 +41,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._frame = None
         self._support = {}
         self._fire_watch = {}
+        self._hit_watch = {}
 
     @staticmethod
     def _xyz(point):
@@ -50,6 +55,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return
         if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
             self._fire_watch.clear()
+            self._hit_watch.clear()
         self._frame = frame
         self._route.update(state)
         self._support = {}
@@ -59,24 +65,51 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
                     if enemy.alive:
                         self._support[enemy.uid] = self._support.get(enemy.uid, 0) + 1
 
-    def _attack_target(self, agent, enemies):
+    def _attack_target(self, agent, enemies, local=None):
         return min(enemies, key=lambda enemy: (
+            local is not None and enemy.uid not in local,
             self._PRIORITY.get(enemy.entity_type, 4),
             -self._support.get(enemy.uid, 0),
             max(float(enemy.hp), 0),
             self._horizontal(agent.position, enemy.position), enemy.uid,
         ))
 
+    @staticmethod
+    def _has_ammo(agent):
+        values = agent.raw.get("interaction", ()) or ()
+        try:
+            return not values or any(float(value) > 0 for value in values)
+        except (TypeError, ValueError):
+            return True  # Missing/unknown metadata is not proof of an empty weapon.
+
+    def _engage(self, state, agent, contacts, local):
+        available = [enemy for enemy in contacts if
+                     self._hit_watch.get((agent.uid, enemy.uid), {}).get("retry", -1) <= state.step]
+        return self._fire_or_close(state, agent, self._attack_target(agent, available or contacts, local))
+
     def _fire_or_close(self, state, agent, target):
         # A visible contact is actionable, as in the official rule example.
         # If repeated attacks do no damage and consume no ammo, move closer
         # briefly instead of standing forever behind cover/out of range.
         ammo = tuple(agent.raw.get("interaction", ()) or ())
+        key = (agent.uid, target.uid)
+        hit = self._hit_watch.get(key)
+        if hit is None or (hit.get("retry", -1) <= state.step and (
+                state.step - hit["seen"] > 2 or hit.get("retry", -1) >= 0)):
+            hit = {"hp": float(target.hp), "start": state.step, "seen": state.step, "retry": -1}
+        if float(target.hp) < hit["hp"] - .01:
+            hit.update(hp=float(target.hp), start=state.step, retry=-1)
+        hit["seen"] = state.step
+        self._hit_watch[key] = hit
+        if state.step - hit["start"] >= self.NO_DAMAGE_STEPS and hit["retry"] < 0:
+            hit["retry"] = state.step + 8
+            logger.info("持续攻击无伤害，换位或换目标: uid=%d target=%d step=%d", agent.uid, target.uid, state.step)
+        ineffective = hit["retry"] > state.step
         signature = (target.uid, ammo)
         old = self._fire_watch.get(agent.uid)
         start = old[1] if old and old[0] == signature else state.step
         self._fire_watch[agent.uid] = (signature, start)
-        if self.FIRE_REPOSITION_STEPS <= state.step - start < self.FIRE_REPOSITION_STEPS + 2:
+        if ineffective or self.FIRE_REPOSITION_STEPS <= state.step - start < self.FIRE_REPOSITION_STEPS + 2:
             # No ammunition used: briefly seek a firing angle, never run all
             # the way into the enemy's position. Stable per-unit side spacing.
             dx, dy = target.position[:2] - agent.position[:2]
@@ -90,6 +123,18 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             self._fire_watch[agent.uid] = (signature, state.step)
         return Action.attack(target)
 
+    def _defend(self, state, agent, obj, contacts, local):
+        point = self._route.guard_slot(agent, obj)
+        if not self._route.inside_garrison(obj, agent.position):
+            return Action.move_at(point)
+        threats = [enemy for enemy in contacts if self._horizontal(enemy.position, obj.position) <= 12000]
+        if threats and self._has_ammo(agent):
+            action = self._engage(state, agent, threats, local)
+            if action.command == "Moving" and action.points is not None:
+                return Action.move_at(self._route.clamp_guard_point(obj, action.points))
+            return action
+        return Action.move_at(point) if self._horizontal(agent.position, point) > 450 else Action.guard_position(point)
+
     def _combat_action(self, state, agent):
         if not agent.alive:
             return Action.idle()
@@ -98,6 +143,9 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         local = {enemy.uid for enemy in state.perceived_opponents(agent)}
         contacts = [enemy for enemy in state.visible_opponents if enemy.alive and (
             enemy.uid in local or self._horizontal(agent.position, enemy.position) <= self.SHARED_ENGAGEMENT_CM)]
+        garrison = self._route.garrison_for(state, agent)
+        if garrison is not None:
+            return self._defend(state, agent, garrison, contacts, local)
         if self._route.departing(state, agent):
             # Do not let distant survivors at the captured HQ pin the entire
             # column. The garrison handles them; the main force fires only at
@@ -106,15 +154,14 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             contacts = [enemy for enemy in contacts if
                         self._horizontal(agent.position, enemy.position) <= 2500
                         or (objective is not None and self._horizontal(enemy.position, objective.position) <= 18000)]
-        if contacts:
-            target = self._attack_target(agent, contacts)
-            return self._fire_or_close(state, agent, target)
+        if contacts and self._has_ammo(agent):
+            return self._engage(state, agent, contacts, local)
         self._fire_watch.pop(agent.uid, None)
         point = self._route.point(state, agent)
         objective = self._route.objective(state)
         visible = [enemy for enemy in state.visible_opponents if enemy.alive]
         # Shared contacts guide movement without fabricating local visibility.
-        if point is not None and visible and (objective is None or (
+        if self._has_ammo(agent) and point is not None and visible and (objective is None or (
             self._horizontal(agent.position, objective.position) <= 18000
             and self._horizontal(agent.position, point) <= 2000
         )):
@@ -159,7 +206,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             action = self._command_links.constrain(state, agent, action)
         if agent.entity_type == self._UAV:
             return action  # UAVControl owns flight recovery and strike persistence.
-        return self._motion_recovery.apply(state, agent, action)
+        result = self._motion_recovery.apply(state, agent, action)
+        garrison = self._route.garrison_for(state, agent)
+        if (garrison is not None and result.command == "Moving"
+                and self._route.inside_garrison(garrison, agent.position)):
+            point = result.points if result.points is not None else self._route.guard_slot(agent, garrison)
+            return Action.move_at(self._route.clamp_guard_point(garrison, point))
+        return result
 
     def decide(self, state):
         self._prepare(state)

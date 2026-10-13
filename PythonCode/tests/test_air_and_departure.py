@@ -76,13 +76,22 @@ def test_disconnected_uav_cannot_start_strike():
     assert UAVControl().choose(state([uav], [enemy]), uav, None).command != "SelfDestruct"
 
 
-def test_aircraft_stagnation_climbs_above_building_instead_of_pushing_into_it():
+def test_aircraft_stagnation_uses_bounded_side_bypass_then_resumes_forward_goal():
     uav = aircraft(x=60000)
     objectives = map_objectives()
     control = UAVControl()
     for step in range(5):
         action = control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0])
-    assert action.command == "Moving" and action.direction == "+Z"
+    assert action.command == "Moving" and action.points is not None
+    assert 2900 < control_distance(uav.position, action.points) < 3100
+    for step in (5, 6):
+        assert control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0]) == action
+    resumed = control.choose(state([uav], objectives=objectives, step=7), uav, objectives[0])
+    assert resumed.points[:2] == tuple(objectives[0].position[:2])
+
+
+def control_distance(a, b):
+    return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** .5
 
 
 def test_new_episode_clears_old_strike_coordinates():
@@ -109,12 +118,12 @@ def test_confirmed_capture_releases_main_force_despite_distant_hq_contacts():
     for step in range(3, 7):
         actions = rule.act(state(agents, [enemy], objectives, step))
     assert rule._route.stage == 1
-    assert sum(action.command == "Moving" for action in actions) == 3
-    assert sum(action.command == "NormalAttacking" for action in actions) == 3
-    # Clearing defenders releases two of the three garrison units as well.
+    assert sum(action.command == "Moving" for action in actions) == 1
+    assert sum(action.command == "NormalAttacking" for action in actions) == 5
+    # Clearing defenders preserves a reserve instead of leaving one guard.
     objectives[0].raw["blueteamNum"] = 0
     rule.act(state(agents, [], objectives, 7))
-    assert len(rule._route._garrison) == 1
+    assert len(rule._route._garrison) == 4
 
 
 def test_single_capture_sample_does_not_release_main_force():

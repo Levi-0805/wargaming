@@ -31,6 +31,9 @@ class AssaultRoute:
     ANCHORS = ((-41810, 32275), (-45450, -30945), (-3000, -27530))
     ARRIVAL = 1600.0
     CAPTURE_CONFIRMATIONS = 4
+    GARRISON_CORE = 2500.0
+    GARRISON_MIN = 4
+    GARRISON_MARGIN = 3
 
     def __init__(self):
         self._episode = None
@@ -42,6 +45,7 @@ class AssaultRoute:
         self._routes = ()
         self.known_map = False
         self._garrison = {}
+        self._guard_slots = {}
         self._lost = 0
 
     @staticmethod
@@ -59,6 +63,7 @@ class AssaultRoute:
         self.order, self.stage, self._confirmed = (), 0, 0
         self._cursor.clear()
         self._garrison.clear()
+        self._guard_slots.clear()
         self._lost = 0
         self._routes = ()
         self.known_map = False
@@ -124,15 +129,25 @@ class AssaultRoute:
             self.count(obj, "percent") >= 1.0
             and self.count(obj, friendly_field) > self.count(obj, enemy_field))
         self._confirmed = self._confirmed + 1 if ours else 0
-        if self._confirmed >= self.CAPTURE_CONFIRMATIONS and self.stage + 1 < len(self.order):
+        # Reserve defenders before departure, not after everybody has started
+        # moving to B. A label is not evidence that a unit is inside the point.
+        self._assign_garrison(state, include_current=ours)
+        guards = [unit for unit in state.agents if self._garrison.get(unit.uid) == obj.uid]
+        ready = len(guards) >= self.garrison_needed(state, obj) and all(
+            self.inside_garrison(obj, unit.position) for unit in guards)
+        if (self._confirmed >= self.CAPTURE_CONFIRMATIONS and ready
+                and self.stage + 1 < len(self.order)):
             self.stage += 1
             self._confirmed = 0
             logger.info("据点占领已确认，主力转向下一目标: step=%d uid=%d", state.step, self.order[self.stage])
-        self._assign_garrison(state)
 
-    def _assign_garrison(self, state):
+    def garrison_needed(self, state, obj):
+        enemy_field = "blueteamNum" if state.team == 0 else "redTeamNum"
+        return max(self.GARRISON_MIN, int(self.count(obj, enemy_field)) + self.GARRISON_MARGIN)
+
+    def _assign_garrison(self, state, include_current=False):
         previous, self._garrison = self._garrison, {}
-        for uid in self.order[:self.stage]:
+        for uid in self.order[:self.stage + int(include_current)]:
             obj = state.key_object_by_uid(uid)
             if obj is None or not obj.valid:
                 continue
@@ -141,14 +156,60 @@ class AssaultRoute:
                       and unit.communication_ok() is not False
                       and unit.uid not in self._garrison
                       and self.distance(unit.position, obj.position) <= 22000]
-            enemy_field = "blueteamNum" if state.team == 0 else "redTeamNum"
-            # Leave a local occupation margin; always release at least two
-            # of the nearby troops. When defenders disappear, release extras.
-            needed = min(max(0, len(nearby) - 2), int(self.count(obj, enemy_field)) + 1)
+            needed = self.garrison_needed(state, obj)
             nearby.sort(key=lambda unit: (
+                not self.inside_garrison(obj, unit.position),
                 previous.get(unit.uid) != uid,
                 self.distance(unit.position, obj.position), unit.uid))
             self._garrison.update({unit.uid: uid for unit in nearby[:needed]})
+        self._guard_slots = {key: point for key, point in self._guard_slots.items()
+                             if self._garrison.get(key[0]) == key[1]}
+
+    @staticmethod
+    def _footprint(obj):
+        # UE supplies box extents in this scenario (HQ: 77m x 65m).
+        # Keep a 4m inset. Never assume the building centre is walkable.
+        scale = obj.raw.get("scale", {})
+        if isinstance(scale, dict) and float(scale.get("x", 0)) > 400 and float(scale.get("y", 0)) > 400:
+            return (float(scale["x"]) - 400, float(scale["y"]) - 400)
+        return None
+
+    @staticmethod
+    def _local_point(obj, point):
+        yaw = math.radians(float(obj.raw.get("rotation", {}).get("yaw", 0)))
+        dx, dy = float(point[0]) - obj.position[0], float(point[1]) - obj.position[1]
+        return dx * math.cos(yaw) + dy * math.sin(yaw), -dx * math.sin(yaw) + dy * math.cos(yaw), yaw
+
+    def inside_garrison(self, obj, point):
+        extent = self._footprint(obj)
+        if extent:
+            x, y, _ = self._local_point(obj, point)
+            return abs(x) <= extent[0] and abs(y) <= extent[1]
+        return self.distance(obj.position, point) <= self.GARRISON_CORE
+
+    def guard_slot(self, agent, obj):
+        key = (agent.uid, obj.uid)
+        if self._footprint(obj):
+            # An actual reached position is a better hold point than an
+            # unverified central waypoint inside a building.
+            return self._guard_slots.setdefault(key, self.clamp_guard_point(obj, agent.position))
+        # Small fixed interior slots, independent of casualties and target
+        # movement. Do not send defenders chasing a contact outside the point.
+        slot = agent.team_index % 9
+        return (float(obj.position[0]) + (slot % 3 - 1) * 700,
+                float(obj.position[1]) + (slot // 3 - 1) * 700, float(obj.position[2]))
+
+    def clamp_guard_point(self, obj, point):
+        extent = self._footprint(obj)
+        if extent:
+            x, y, yaw = self._local_point(obj, point)
+            x, y = max(-extent[0], min(extent[0], x)), max(-extent[1], min(extent[1], y))
+            return (float(obj.position[0]) + x * math.cos(yaw) - y * math.sin(yaw),
+                    float(obj.position[1]) + x * math.sin(yaw) + y * math.cos(yaw), float(point[2]))
+        distance = self.distance(obj.position, point)
+        ratio = min(1.0, (self.GARRISON_CORE - 400) / max(distance, 1.0))
+        return (float(obj.position[0]) + (float(point[0]) - obj.position[0]) * ratio,
+                float(obj.position[1]) + (float(point[1]) - obj.position[1]) * ratio, float(obj.position[2]))
 
     def garrison_for(self, state, agent):
         uid = self._garrison.get(agent.uid)
