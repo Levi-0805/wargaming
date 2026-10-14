@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import math
 
 from cssim.protocol import Action
 from .AssaultRoute import AssaultRoute
@@ -9,17 +10,18 @@ logger = logging.getLogger(__name__)
 
 
 class FlightNavigation:
-    """Own a fixed flight leg and explicitly transition before replacing it.
+    """Send the actual destination first, without artificial hover waypoints.
 
-    The 20261014_164549 aircraft hovered near their first requested waypoint
-    while later Moving coordinates/directions had no observed effect. Idle is
-    a supported action transition, not a verified UE task-cancellation API.
-    Physical effectiveness must be checked in a fresh simulation.
+    The 20261014_211207 aircraft reached the first 250m waypoint but mostly
+    failed to adopt later goals, despite 34-41 Idle resets per round. Avoid
+    those intermediate goals; a short directional Guard is a different,
+    supported action transition when the objective changes or progress stops.
+    Its physical effect still requires verification in a fresh simulation.
     """
 
-    LEG_LENGTH = 25000.0
     ARRIVAL = 3000.0
     STALL_STEPS = 8
+    RESET_STEPS = 2
 
     def __init__(self):
         self._frame = None
@@ -32,10 +34,13 @@ class FlightNavigation:
         self._pending.pop(agent.uid, None)
 
     def _point(self, agent, goal):
-        distance = AssaultRoute.distance(agent.position, goal)
-        ratio = min(1.0, self.LEG_LENGTH / max(distance, 1))
-        return (float(agent.position[0]) + (goal[0] - agent.position[0]) * ratio,
-                float(agent.position[1]) + (goal[1] - agent.position[1]) * ratio, float(goal[2]))
+        return tuple(float(value) for value in goal)
+
+    @staticmethod
+    def _face(agent, point):
+        angle = math.atan2(point[1] - agent.position[1], point[0] - agent.position[0])
+        directions = ('+X', '+X+Y', '+Y', '-X+Y', '-X', '-X-Y', '-Y', '+X-Y')
+        return Action.guard(directions[round(angle / (math.pi / 4)) % 8])
 
     def _start(self, state, agent, point, objective):
         distance = AssaultRoute.distance(agent.position, point)
@@ -48,7 +53,7 @@ class FlightNavigation:
         self.resets[agent.uid] = self.resets.get(agent.uid, 0) + 1
         logger.info('无人机航段切换: uid=%d step=%d reason=%s reset=%d',
                     agent.uid, state.step, reason, self.resets[agent.uid])
-        return Action.idle()  # Exactly this frame; never wait for another unit.
+        return self._face(agent, goal)
 
     def apply(self, state, agent, goal, objective):
         frame = (state.episode, state.step)
@@ -62,8 +67,8 @@ class FlightNavigation:
             return Action.idle()
         pending = self._pending.get(agent.uid)
         if pending is not None:
-            if state.step == pending[0]:
-                return Action.idle()
+            if state.step - pending[0] < self.RESET_STEPS:
+                return self._face(agent, pending[1])
             self._pending.pop(agent.uid)
             point = pending[1] if pending[2] == objective else self._point(agent, goal)
             return self._start(state, agent, point, objective)

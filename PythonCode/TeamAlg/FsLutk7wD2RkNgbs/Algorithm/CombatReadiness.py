@@ -11,22 +11,25 @@ logger = logging.getLogger(__name__)
 
 
 class CombatReadiness:
-    """Protect depleted forces using public occupants and reached fallback points.
+    """Assess support and allow a bounded scan, never an indefinite retreat.
 
-    No opening assembly gate. A weak later assault, or a rapid first-objective
-    collapse, stops at the last actually reached approach position. Scouts and
-    effective firing units continue working; strength is reassessed each frame.
+    In the 20261014_211207 recording, healthy armed soldiers stayed at the
+    240m fallback for over 200 steps. A strength deficit cannot improve while
+    all capture units are held there. Pause locally, then resume navigation.
     """
 
     CAPTURERS = {'BP_BaseSoldier_C', 'BP_RoboDog_C'}
     INFANTRY_SUPPORT = 30000.0
     VEHICLE_SUPPORT = 18000.0
+    PAUSE_STEPS = 6
+    ADVANCE_STEPS = 24
 
     def __init__(self):
         self._frame = None
         self._objective = None
         self._history = deque(maxlen=21)
-        self._fallback = {}
+        self._pauses = {}
+        self._resume_until = {}
         self._probes = {}
         self.weak = False
         self.front_power = 0.0
@@ -42,7 +45,8 @@ class CombatReadiness:
         key = (state.episode, obj.uid if obj else None)
         if self._objective != key or self._frame is not None and state.step < self._frame[1]:
             self._history.clear()
-            self._fallback.clear()
+            self._pauses.clear()
+            self._resume_until.clear()
             self._probes.clear()
             self.weak = False
             self._recovery_samples = 0
@@ -51,7 +55,8 @@ class CombatReadiness:
             self.weak = False
             return
         fighters = [unit for unit in state.agents if unit.alive and unit.entity_type in UrbanContact.GROUND
-                    and unit.communication_ok() is not False and unit.uid not in route._garrison]
+                    and unit.communication_ok() is not False
+                    and route._garrison.get(unit.uid, obj.uid) == obj.uid]
         power = rear_power = 0.0
         front_capturers = 0
         for unit in fighters:
@@ -67,8 +72,6 @@ class CombatReadiness:
                     power += value
                 else:
                     rear_power += value
-            if distance >= 24000:
-                self._fallback[unit.uid] = tuple(float(v) for v in unit.position)
         # Use actual infantry/dog casualties, not shifts in guard assignment or
         # arriving vehicles, to detect a collapse during the first assault.
         alive = sum(unit.alive and unit.entity_type in self.CAPTURERS for unit in state.agents)
@@ -101,12 +104,14 @@ class CombatReadiness:
         obj = route.objective(state)
         if (not self.weak or obj is None or agent.entity_type not in UrbanContact.GROUND
                 or agent.uid in route._garrison or agent.communication_ok() is False
+                or route.inside_garrison(obj, agent.position)
                 or AssaultRoute.distance(agent.position, obj.position) > 26000):
             return None
-        # Armed vehicles must be able to join the fight while capture units
-        # preserve strength; holding both at 240m prevents reinforcement forever.
-        ammo = urban.ammo(agent)
-        if agent.entity_type not in self.CAPTURERS and (ammo is None or ammo > 0):
+        # Vehicles continue their task, including after ammunition is spent.
+        # Do not strand them at an arbitrary ring outside the objective.
+        if agent.entity_type not in self.CAPTURERS:
+            return None
+        if state.step < self._resume_until.get(agent.uid, -1):
             return None
         if any(enemy.entity_type in UrbanContact.GROUND and urban.effective(state, agent, enemy)
                for enemy in contacts):
@@ -125,9 +130,12 @@ class CombatReadiness:
                 self._probes[agent.uid] = started
             if state.step - started < 2:
                 return None
-        point = self._fallback.get(agent.uid)
-        if point is None:
-            return None  # No fabricated safe waypoint across unknown geometry.
-        if AssaultRoute.distance(agent.position, point) > 500:
-            return Action.move_at(point)
-        return Action.guard_position(point)
+        started, point = self._pauses.setdefault(
+            agent.uid, (state.step, tuple(float(v) for v in agent.position)))
+        if state.step - started >= self.PAUSE_STEPS or AssaultRoute.distance(agent.position, point) > 600:
+            self._pauses.pop(agent.uid, None)
+            self._resume_until[agent.uid] = state.step + self.ADVANCE_STEPS
+            logger.info('短暂停顿结束，恢复换位推进: uid=%d step=%d', agent.uid, state.step)
+            return None
+        # Guard the current reached position; never retrace a distant old point.
+        return Action.guard_position(agent.position)

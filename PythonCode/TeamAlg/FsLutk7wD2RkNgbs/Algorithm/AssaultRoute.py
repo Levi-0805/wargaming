@@ -28,12 +28,19 @@ class AssaultRoute:
         (-50063, 5399, 6425), (-49816, -6016, 5943),
         (-53046, -18007, 5880), (-47310, -27482, 5617),
     )
+    # Friendly soldier 821, 20261014_211207 round 2, steps 190/195/220/
+    # 225/230/235. This exit passed the wall where 776/771/861 stalled.
+    B_A = ((-51455, -25065, 5613), (-46251, -27855, 5617),
+           (-41155, -30706, 5620), (-38673, -35629, 5620),
+           (-34023, -34923, 5763), (-30334, -29802, 5684))
     ANCHORS = ((-41810, 32275), (-45450, -30945), (-3000, -27530))
     ARRIVAL = 1600.0
     CAPTURE_CONFIRMATIONS = 4
     GARRISON_CORE = 2500.0
     GARRISON_MIN = 4
     GARRISON_MARGIN = 3
+    SECONDARY_GARRISON = 2
+    CLEAR_STEPS = 8
     WAYPOINT_STALL_CALLS = 20
     BYPASS_RADIUS = 3500.0
 
@@ -50,6 +57,7 @@ class AssaultRoute:
         self._guard_slots = {}
         self._waypoint_watch = {}
         self._lost = 0
+        self._clear = {}
 
     @staticmethod
     def distance(left, right):
@@ -69,6 +77,7 @@ class AssaultRoute:
         self._guard_slots.clear()
         self._waypoint_watch.clear()
         self._lost = 0
+        self._clear.clear()
         self._routes = ()
         self.known_map = False
         objects = [obj for obj in state.key_objects if obj.valid]
@@ -94,7 +103,7 @@ class AssaultRoute:
         self.order = tuple(obj.uid for obj in ordered)
         self._routes = tuple(
             tuple(prefix) + (tuple(float(v) for v in obj.position),)
-            for obj, prefix in zip(ordered, (self.LOWER, self.HQ_B, ()) if self.known_map else [()] * len(ordered))
+            for obj, prefix in zip(ordered, (self.LOWER, self.HQ_B, self.B_A) if self.known_map else [()] * len(ordered))
         )
         logger.info("统一推进目标顺序: %s 下路坐标匹配=%s", self.order, self.known_map)
 
@@ -111,6 +120,18 @@ class AssaultRoute:
         self._step = state.step
         if not consecutive:
             self._confirmed = 0
+            self._clear.clear()
+        enemy_field = 'blueteamNum' if state.team == 0 else 'redTeamNum'
+        for uid in self.order:
+            point = state.key_object_by_uid(uid)
+            clear = (point is not None and self.count(point, 'percent') >= 1
+                     and point.raw.get(enemy_field) is not None and self.enemy_count(state, point) == 0
+                     and (point.team is None or point.team == state.team)
+                     and not any(enemy.alive and enemy.entity_type in {
+                         'BP_BaseSoldier_C', 'BP_RoboDog_C', 'BP_MNWS_Vehicle_Armored_C',
+                         'BP_MNWS_Vehicle_6x6UGV_C'} and self.distance(enemy.position, point.position) <= 12000
+                         for enemy in state.visible_opponents))
+            self._clear[uid] = self._clear.get(uid, 0) + 1 if clear else 0
         # A full progress bar can be reversed immediately by surviving defenders.
         # Revisit a lost earlier objective instead of leaving vehicles en route to B.
         lost = next((i for i, uid in enumerate(self.order[:self.stage])
@@ -161,6 +182,9 @@ class AssaultRoute:
             logger.info("据点占领已确认，主力转向下一目标: step=%d uid=%d", state.step, self.order[self.stage])
 
     def garrison_needed(self, state, obj):
+        if (self.order and obj.uid != self.order[0]
+                and self._clear.get(obj.uid, 0) >= self.CLEAR_STEPS):
+            return self.SECONDARY_GARRISON
         return max(self.GARRISON_MIN, self.enemy_count(state, obj) + self.GARRISON_MARGIN)
 
     def enemy_count(self, state, obj):
@@ -182,7 +206,29 @@ class AssaultRoute:
                 not self.inside_garrison(obj, unit.position),
                 previous.get(unit.uid) != uid,
                 self.distance(unit.position, obj.position), unit.uid))
-            self._garrison.update({unit.uid: uid for unit in nearby[:needed]})
+            chosen = nearby[:needed]
+            # Keep a living soldier with a small unmanned garrison when one is
+            # available locally, rather than retaining two dependent dogs alone.
+            if needed == self.SECONDARY_GARRISON and chosen:
+                soldier = next((unit for unit in nearby if unit.entity_type == 'BP_BaseSoldier_C'
+                                and self.inside_garrison(obj, unit.position)), None)
+                dog = next((unit for unit in nearby if unit.entity_type == 'BP_RoboDog_C'
+                            and self.inside_garrison(obj, unit.position)), None)
+                if soldier is not None and dog is not None:
+                    chosen = [soldier, dog]
+                elif soldier is not None and not any(unit.uid == soldier.uid for unit in chosen):
+                    chosen[-1] = soldier
+            self._garrison.update({unit.uid: uid for unit in chosen})
+        # Released defenders join the next leg from their actual position.
+        # Their old approach cursor must not send them back towards the HQ.
+        for unit in state.agents:
+            old = previous.get(unit.uid)
+            if old is not None and unit.uid not in self._garrison and old in self.order:
+                leg = min(self.stage, self.order.index(old) + 1)
+                route = self._routes[leg]
+                self._cursor[unit.uid] = (leg, min(range(len(route)),
+                                                 key=lambda i: self.distance(unit.position, route[i])))
+                self._waypoint_watch.pop(unit.uid, None)
         self._guard_slots = {key: point for key, point in self._guard_slots.items()
                              if self._garrison.get(key[0]) == key[1]}
 
@@ -205,7 +251,9 @@ class AssaultRoute:
         extent = self._footprint(obj)
         if extent:
             x, y, _ = self._local_point(obj, point)
-            return abs(x) <= extent[0] and abs(y) <= extent[1]
+            # Rotating a clamped boundary point back can exceed its extent by
+            # ~2e-12 cm. Do not reject our own guard position on round-off.
+            return abs(x) <= extent[0] + 1e-6 and abs(y) <= extent[1] + 1e-6
         return self.distance(obj.position, point) <= self.GARRISON_CORE
 
     def guard_slot(self, agent, obj):
@@ -254,16 +302,21 @@ class AssaultRoute:
             return tuple(float(v) for v in garrison.position)
         position = agent.position
         if agent.uid not in self._cursor:
-            route = self._routes[0]
+            # A unit already at a captured point can join its departure route;
+            # rear units still finish the original lower-road approach.
+            leg = max((i + 1 for i, uid in enumerate(self.order[:self.stage])
+                       if (obj := state.key_object_by_uid(uid)) is not None
+                       and self.distance(position, obj.position) <= 15000), default=0)
+            route = self._routes[leg]
             if self.known_map:
                 # Join at the observed road entrance, not west through the
                 # buildings adjacent to the x~60000,y~12000 spawn.
-                index = 1 if position[1] < 26000 and position[0] > 50000 else min(
+                index = 1 if leg == 0 and position[1] < 26000 and position[0] > 50000 else min(
                     range(len(route)), key=lambda i: self.distance(position, route[i])
                 )
             else:
                 index = 0
-            self._cursor[agent.uid] = (0, index)
+            self._cursor[agent.uid] = (leg, index)
         leg, index = self._cursor[agent.uid]
         route = self._routes[leg]
         # Combat may carry a unit past a waypoint. Rejoin at an actually
@@ -273,8 +326,9 @@ class AssaultRoute:
         if later:
             index = max(later)
         if leg < self.stage and self.distance(position, route[-1]) <= 15000:
-            leg, index = leg + 1, 0
+            leg += 1
             route = self._routes[leg]
+            index = min(range(len(route)), key=lambda i: self.distance(position, route[i]))
         while self.distance(position, route[index]) <= self.ARRIVAL:
             if index + 1 < len(route):
                 index += 1

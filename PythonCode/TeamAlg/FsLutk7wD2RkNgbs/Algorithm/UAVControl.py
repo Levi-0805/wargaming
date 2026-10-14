@@ -35,6 +35,7 @@ class UAVControl:
         self._slots = {}
         self._bearing = (1.0, 0.0)
         self._objective_uid = None
+        self._telemetry = {}
 
     def _begin(self, state):
         if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
@@ -48,6 +49,7 @@ class UAVControl:
             self._slots = {unit.uid: offsets[i % len(offsets)] for i, unit in enumerate(uavs)}
             self._bearing = None
             self._objective_uid = None
+            self._telemetry.clear()
         self._frame = (state.episode, state.step)
         alive = {agent.uid for agent in state.agents if agent.alive}
         self._missions = {uid: mission for uid, mission in self._missions.items() if uid in alive}
@@ -83,6 +85,13 @@ class UAVControl:
         if not agent.alive:
             return Action.idle()
         contacts = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
+        if state.step >= 0 and state.step % 40 == 0 and self._telemetry.get(agent.uid) != state.step:
+            self._telemetry[agent.uid] = state.step
+            logger.info('无人机任务观测: uid=%d step=%d objective=%s distance_m=%.1f contacts=%d ground_contacts=%d link=%s',
+                        agent.uid, state.step, objective_uid,
+                        AssaultRoute.distance(agent.position, objective.position) / 100 if objective else -1,
+                        len(contacts), sum(e.entity_type not in {'BP_Base_UAV_C', 'BP_Helicopter_C'} for e in contacts),
+                        agent.communication_ok())
         mission = self._missions.get(agent.uid)
         if mission is not None:
             self._navigation.cancel(agent)
@@ -141,13 +150,7 @@ class UAVControl:
         offset = self._slots.get(agent.uid, 0) * 3000
         point = (point[0] - self._bearing[1] * offset,
                  point[1] + self._bearing[0] * offset, altitude)
-        ground = [unit for unit in state.agents if unit.alive and unit.entity_type == "BP_BaseSoldier_C"]
-        if ground:
-            support = min(ground, key=lambda unit: AssaultRoute.distance(unit.position, point))
-            distance = AssaultRoute.distance(support.position, point)
-            if distance > 60000:
-                ratio = 60000 / distance
-                point = (float(support.position[0]) + (point[0] - support.position[0]) * ratio,
-                         float(support.position[1]) + (point[1] - support.position[1]) * ratio,
-                         altitude)
+        # The former 600m soldier clamp created another changing rear waypoint.
+        # Fly to the actual bounded objective/report. CommandLinks handles the
+        # observed communication state and reassigns a live parent when needed.
         return self._navigation.apply(state, agent, point, objective_uid)

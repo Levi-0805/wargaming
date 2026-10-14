@@ -1,0 +1,758 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261014_211207\\protocol.jsonl",
+  "baseline_commit": "f19301783f7cafdd1c955f868aaf375b1da58cb3",
+  "scope": "Recorded public team views only; no physics integration, new score or kill forecast.",
+  "rounds": [
+    {
+      "episode": 1,
+      "counts": {
+        "frames": 451,
+        "serialized_actions": 22550,
+        "local_pause_actions": 150,
+        "baseline_preservation_actions": 1817,
+        "released_baseline_preservation_actions": 1667
+      },
+      "max_consecutive_preservation_steps": 6,
+      "end_garrisons": {},
+      "selected_samples": []
+    },
+    {
+      "episode": 2,
+      "counts": {
+        "frames": 451,
+        "serialized_actions": 22550,
+        "local_pause_actions": 153,
+        "baseline_preservation_actions": 894,
+        "released_baseline_preservation_actions": 741
+      },
+      "max_consecutive_preservation_steps": 6,
+      "end_garrisons": {
+        "32769": 1,
+        "32768": 2
+      },
+      "selected_samples": [
+        {
+          "step": 200,
+          "uid": 886,
+          "name": "士兵_1",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            2
+          ],
+          "action": "Moving",
+          "points": [
+            -41155.0,
+            -30706.0,
+            5620.0
+          ]
+        },
+        {
+          "step": 200,
+          "uid": 796,
+          "name": "士兵_20",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "Moving",
+          "points": [
+            -51455.0,
+            -25065.0,
+            5613.0
+          ]
+        },
+        {
+          "step": 200,
+          "uid": 776,
+          "name": "士兵_24",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "Moving",
+          "points": [
+            -51455.0,
+            -25065.0,
+            5613.0
+          ]
+        },
+        {
+          "step": 200,
+          "uid": 771,
+          "name": "士兵_25",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "Moving",
+          "points": [
+            -51455.0,
+            -25065.0,
+            5613.0
+          ]
+        },
+        {
+          "step": 200,
+          "uid": 871,
+          "name": "士兵_4",
+          "guard": 32768,
+          "pause": false,
+          "cursor": [
+            1,
+            5
+          ],
+          "action": "NormalAttacking",
+          "points": null
+        },
+        {
+          "step": 200,
+          "uid": 861,
+          "name": "士兵_6",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "Moving",
+          "points": [
+            -51455.0,
+            -25065.0,
+            5613.0
+          ]
+        },
+        {
+          "step": 250,
+          "uid": 796,
+          "name": "士兵_20",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "Moving",
+          "points": [
+            -51455.0,
+            -25065.0,
+            5613.0
+          ]
+        },
+        {
+          "step": 250,
+          "uid": 776,
+          "name": "士兵_24",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        },
+        {
+          "step": 250,
+          "uid": 771,
+          "name": "士兵_25",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        },
+        {
+          "step": 250,
+          "uid": 871,
+          "name": "士兵_4",
+          "guard": 32768,
+          "pause": false,
+          "cursor": [
+            1,
+            5
+          ],
+          "action": "Guard",
+          "points": [
+            -53191.4609375,
+            -23074.5390625,
+            5610.259765625
+          ]
+        },
+        {
+          "step": 250,
+          "uid": 861,
+          "name": "士兵_6",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 796,
+          "name": "士兵_20",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "Moving",
+          "points": [
+            -51455.0,
+            -25065.0,
+            5613.0
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 776,
+          "name": "士兵_24",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 771,
+          "name": "士兵_25",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 871,
+          "name": "士兵_4",
+          "guard": 32768,
+          "pause": false,
+          "cursor": [
+            1,
+            5
+          ],
+          "action": "Guard",
+          "points": [
+            -53191.4609375,
+            -23074.5390625,
+            5610.259765625
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 861,
+          "name": "士兵_6",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 796,
+          "name": "士兵_20",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "Moving",
+          "points": [
+            -51455.0,
+            -25065.0,
+            5613.0
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 776,
+          "name": "士兵_24",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 771,
+          "name": "士兵_25",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 871,
+          "name": "士兵_4",
+          "guard": 32768,
+          "pause": false,
+          "cursor": [
+            1,
+            5
+          ],
+          "action": "Guard",
+          "points": [
+            -53191.4609375,
+            -23074.5390625,
+            5610.259765625
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 861,
+          "name": "士兵_6",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "Moving",
+          "points": [
+            -46251.0,
+            -27855.0,
+            5617.0
+          ]
+        }
+      ]
+    },
+    {
+      "episode": 3,
+      "counts": {
+        "frames": 451,
+        "serialized_actions": 22550,
+        "local_pause_actions": 227,
+        "baseline_preservation_actions": 1995,
+        "released_baseline_preservation_actions": 1768
+      },
+      "max_consecutive_preservation_steps": 6,
+      "end_garrisons": {},
+      "selected_samples": [
+        {
+          "step": 200,
+          "uid": 1066,
+          "name": "士兵_1",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Moving",
+          "points": [
+            -36403.08901526385,
+            26569.316766732733,
+            6425.494140625
+          ]
+        },
+        {
+          "step": 200,
+          "uid": 1441,
+          "name": "士兵_20",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Moving",
+          "points": [
+            -36759.585650286856,
+            30299.839482834814,
+            6425.494140625
+          ]
+        },
+        {
+          "step": 200,
+          "uid": 1431,
+          "name": "士兵_22",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Moving",
+          "points": [
+            -36423.57710274088,
+            28203.60524782042,
+            6425.494140625
+          ]
+        },
+        {
+          "step": 200,
+          "uid": 1421,
+          "name": "士兵_24",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Moving",
+          "points": [
+            -35473.70011174311,
+            28613.85797869672,
+            6425.494140625
+          ]
+        },
+        {
+          "step": 200,
+          "uid": 1416,
+          "name": "士兵_25",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": null
+        },
+        {
+          "step": 200,
+          "uid": 1046,
+          "name": "士兵_4",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": null
+        },
+        {
+          "step": 200,
+          "uid": 1031,
+          "name": "士兵_6",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": null
+        },
+        {
+          "step": 250,
+          "uid": 1066,
+          "name": "士兵_1",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Moving",
+          "points": [
+            -16673.998146364644,
+            26683.98584553494,
+            6425.47314453125
+          ]
+        },
+        {
+          "step": 250,
+          "uid": 1441,
+          "name": "士兵_20",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "NormalAttacking",
+          "points": null
+        },
+        {
+          "step": 250,
+          "uid": 1431,
+          "name": "士兵_22",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            12
+          ],
+          "action": "Moving",
+          "points": [
+            -40107.0,
+            36086.0,
+            6425.0
+          ]
+        },
+        {
+          "step": 250,
+          "uid": 1046,
+          "name": "士兵_4",
+          "guard": null,
+          "pause": false,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Moving",
+          "points": [
+            -23956.150390625,
+            27294.69921875,
+            6425.494140625
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 1066,
+          "name": "士兵_1",
+          "guard": null,
+          "pause": true,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": [
+            -18010.779296875,
+            27563.19921875,
+            6425.47314453125
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 1441,
+          "name": "士兵_20",
+          "guard": null,
+          "pause": true,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": [
+            -18193.33984375,
+            27571.990234375,
+            6425.4921875
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 1431,
+          "name": "士兵_22",
+          "guard": null,
+          "pause": true,
+          "cursor": [
+            0,
+            12
+          ],
+          "action": "Guard",
+          "points": [
+            -18088.75,
+            27658.490234375,
+            6425.494140625
+          ]
+        },
+        {
+          "step": 300,
+          "uid": 1046,
+          "name": "士兵_4",
+          "guard": null,
+          "pause": true,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": [
+            -18086.6796875,
+            27576.740234375,
+            6425.47314453125
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 1066,
+          "name": "士兵_1",
+          "guard": null,
+          "pause": true,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": [
+            -18010.779296875,
+            27563.19921875,
+            6425.47314453125
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 1441,
+          "name": "士兵_20",
+          "guard": null,
+          "pause": true,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": [
+            -18193.33984375,
+            27571.990234375,
+            6425.4921875
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 1431,
+          "name": "士兵_22",
+          "guard": null,
+          "pause": true,
+          "cursor": [
+            0,
+            12
+          ],
+          "action": "Guard",
+          "points": [
+            -18088.75,
+            27658.490234375,
+            6425.494140625
+          ]
+        },
+        {
+          "step": 449,
+          "uid": 1046,
+          "name": "士兵_4",
+          "guard": null,
+          "pause": true,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "Guard",
+          "points": [
+            -18086.6796875,
+            27576.740234375,
+            6425.47314453125
+          ]
+        }
+      ]
+    }
+  ],
+  "source_hashes": {
+    "AssaultRoute.py": "0eaa4340c0b8c1880ab41520087aaf2ebecaeefba57d1d0630ed7b590796c2de",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "FlightNavigation.py": "c9ab2a634020bf8be0bd29106af1773672b8b2f4f179a8f741c8fb88ab86b55d",
+    "HQEntry.py": "99fcfaa8043849fc80fa4947df48fa5da9927f8bfd91f0d3c9c19fbe971ed208",
+    "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "RLAgentAlgorithm.py": "9f52ec35d3547c534e24199ff9b19bed1b399388fcbcb18a5a28c8db7feff89d",
+    "RuleAgentAlgorithm.py": "e88eb7d1b816d5edd0a72bb4dbcf7f800b69c8505239797538c62e5d4d77ee3f",
+    "UAVControl.py": "3651448b6f3bc764e6518dc136c3b2aa8fd28aeef059fe1c40bdfa6853410f7c",
+    "UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  },
+  "validation_date": "2026-10-15",
+  "recorded_red_scores": [
+    {
+      "episode": 1,
+      "kill": 1650,
+      "capture": 1600,
+      "total": 3250
+    },
+    {
+      "episode": 2,
+      "kill": 1830,
+      "capture": 2400,
+      "total": 4230
+    },
+    {
+      "episode": 3,
+      "kill": 2040,
+      "capture": 0,
+      "total": 2040
+    },
+    {
+      "episode": 4,
+      "kill": 1640,
+      "capture": 0,
+      "total": 1640
+    },
+    {
+      "episode": 5,
+      "kill": 1270,
+      "capture": 2400,
+      "total": 3670
+    }
+  ]
+}

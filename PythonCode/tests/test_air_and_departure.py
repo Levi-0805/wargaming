@@ -82,11 +82,12 @@ def test_aircraft_stagnation_transitions_once_then_reissues_fixed_flight_leg():
     control = UAVControl()
     for step in range(9):
         action = control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0])
-    assert action.command == "Idle"
-    resumed = control.choose(state([uav], objectives=objectives, step=9), uav, objectives[0])
+    assert action.command == "Guard" and action.direction in ('-X', '-X+Y')
+    assert control.choose(state([uav], objectives=objectives, step=9), uav, objectives[0]) == action
+    resumed = control.choose(state([uav], objectives=objectives, step=10), uav, objectives[0])
     assert resumed.command == 'Moving'
-    assert control_distance(resumed.points, uav.position) == pytest.approx(25000)
-    for step in range(10, 16):
+    assert control_distance(resumed.points, objectives[0].position) == pytest.approx(0)
+    for step in range(11, 16):
         assert control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0]) == resumed
 
 

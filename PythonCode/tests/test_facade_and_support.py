@@ -116,7 +116,7 @@ def test_five_aircraft_have_stable_slots_without_waiting_for_lagging_wing():
     actions = [control.choose(state(uavs, objectives=[obj]), uav, obj) for uav in uavs]
     assert all(a.command == 'Moving' for a in actions)
     assert len({a.points for a in actions}) == 5
-    assert all(AssaultRoute.distance(a.points, u.position) <= 25001 for a, u in zip(actions, uavs))
+    assert all(AssaultRoute.distance(a.points, obj.position) <= 6001 for a in actions)
     uavs[1].alive = False
     for i in (0, 2, 3, 4):
         assert control.choose(state(uavs, objectives=[obj], step=1), uavs[i], obj) == actions[i]
@@ -128,10 +128,10 @@ def test_aircraft_coordinate_stall_transitions_without_altitude_escalation_or_si
     control = UAVControl()
     for step in range(9):
         action = control.choose(state([uav], [enemy], step=step), uav, None)
-    assert action.command == 'Idle'
+    assert action.command == 'Guard'
     assert control._altitude[uav.uid] == 8000
     uav.position[0] = -2000
-    resumed = control.choose(state([uav], [enemy], step=9), uav, None)
+    resumed = control.choose(state([uav], [enemy], step=10), uav, None)
     assert resumed.command == 'Moving' and resumed.points[0] < -24000
     assert resumed.points[2] == 8000
     assert control.choose(state([uav], [enemy], step=14), uav, None) == resumed
@@ -233,7 +233,7 @@ def test_preserved_unit_can_test_new_local_contact_and_continue_effective_fire()
     assert ready.choose(s, units[0], route, urban, [enemy]) is None
 
 
-def test_first_assault_collapse_retraces_a_reached_point_but_does_not_pull_guards_out():
+def test_first_assault_collapse_scans_locally_without_retreating_or_pulling_guards_out():
     units, objects, route, ready, urban = readiness_case(stage=0)
     units += [entity(10+i, 0, i+4, objects[0].position[0]-27000, objects[0].position[1]) for i in range(8)]
     ready.begin(state(units, objectives=objects), route)
@@ -244,6 +244,8 @@ def test_first_assault_collapse_retraces_a_reached_point_but_does_not_pull_guard
         unit.alive = False
     s = state(units, objectives=objects, step=1)
     ready.begin(s, route)
-    assert ready.weak and ready.choose(s, units[0], route, urban, []).points == fallback
+    action = ready.choose(s, units[0], route, urban, [])
+    assert ready.weak and action.command == 'Guard'
+    assert action.points == tuple(units[0].position) and action.points != fallback
     route._garrison[units[0].uid] = objects[0].uid
     assert ready.choose(s, units[0], route, urban, []) is None

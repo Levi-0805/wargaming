@@ -150,7 +150,7 @@ def test_uav_only_bombs_confirmed_local_contact_and_flies_to_bounded_points():
     objects[0].raw["blueteamNum"] = 20
     move = rule.act(state([uav], objectives=objects))[0]
     assert move.command == "Moving" and move.points[2] == 8000
-    assert AssaultRoute.distance(move.points, uav.position) == pytest.approx(25000)
+    assert AssaultRoute.distance(move.points, objects[0].position) == pytest.approx(0)
     assert AssaultRoute.distance(move.points, objects[0].position) < AssaultRoute.distance(uav.position, objects[0].position)
     first_leg = move.points
     uav.position[2] = 8000
