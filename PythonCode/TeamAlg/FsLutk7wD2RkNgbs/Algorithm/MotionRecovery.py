@@ -54,10 +54,11 @@ class MotionRecovery:
         self._stationary.pop(agent.uid, None)
 
     def _align_vehicle(self, state, agent, goal):
-        """UE cars can follow a rearward goal in slow reverse indefinitely.
+        """Request a bounded heading change without inventing lateral roads.
 
-        Ask for a short forward arc to turn the nose toward the route. Each
-        attempt lasts at most six frames; it never alters platform speed.
+        The old 25m arcs repeatedly replaced the road goal while cars reversed
+        at ~2m/frame. Try the supported Guard direction for two frames, then
+        leave the actual road waypoint alone for at least eighteen frames.
         """
         if agent.entity_type != "BP_MNWS_Vehicle_Armored_C" or goal is None:
             return None
@@ -67,19 +68,18 @@ class MotionRecovery:
         if math.hypot(dx, dy) < 1000 or abs(error) < 70:
             self._turns.pop(agent.uid, None)
             return None
-        if turn and (state.step - turn[0] >= 6 or math.dist(goal, turn[3]) > 600):
+        if turn and (state.step - turn[0] >= 2 or math.dist(goal, turn[1]) > 600):
             self._turns.pop(agent.uid, None)
-            self._turn_retry[agent.uid] = state.step + 8
             return None
         if turn is None and (abs(error) < 105 or state.step < self._turn_retry.get(agent.uid, -1)):
             return None
-        if turn is None or state.step >= turn[1] + 2:
-            heading = math.radians(agent.yaw + (60 if error > 0 else -60))
-            point = (agent.position[0] + 2500 * math.cos(heading),
-                     agent.position[1] + 2500 * math.sin(heading), agent.position[2])
-            turn = (turn[0] if turn else state.step, state.step, point, goal)
+        if turn is None:
+            direction = self._direction((dx, dy, 0), 0, airborne=False)
+            turn = (state.step, goal, direction)
             self._turns[agent.uid] = turn
-        return Action.move_at(turn[2])
+            self._turn_retry[agent.uid] = state.step + 20
+            logger.info('轮式车短时校正朝向: uid=%d step=%d direction=%s', agent.uid, state.step, direction)
+        return Action.guard(turn[2])
 
     @staticmethod
     def _vector(agent, action):

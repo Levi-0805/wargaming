@@ -116,24 +116,25 @@ def test_five_aircraft_have_stable_slots_without_waiting_for_lagging_wing():
     actions = [control.choose(state(uavs, objectives=[obj]), uav, obj) for uav in uavs]
     assert all(a.command == 'Moving' for a in actions)
     assert len({a.points for a in actions}) == 5
-    assert all(AssaultRoute.distance(a.points, obj.position) <= 6001 for a in actions)
+    assert all(AssaultRoute.distance(a.points, u.position) <= 25001 for a, u in zip(actions, uavs))
     uavs[1].alive = False
     for i in (0, 2, 3, 4):
         assert control.choose(state(uavs, objectives=[obj], step=1), uavs[i], obj) == actions[i]
 
 
-def test_aircraft_coordinate_stall_does_not_escalate_altitude_or_request_sideways_circle():
+def test_aircraft_coordinate_stall_transitions_without_altitude_escalation_or_sideways_circle():
     uav = aircraft(x=0, y=0)
     enemy = entity(20, 1, 0, -40000, 3000)
     control = UAVControl()
     for step in range(9):
         action = control.choose(state([uav], [enemy], step=step), uav, None)
-    assert action.direction == '-X'
+    assert action.command == 'Idle'
     assert control._altitude[uav.uid] == 8000
     uav.position[0] = -2000
-    assert control.choose(state([uav], [enemy], step=9), uav, None).direction == '-X'
-    resumed = control.choose(state([uav], [enemy], step=14), uav, None)
-    assert resumed.points == (-40000, 3000, 8000)
+    resumed = control.choose(state([uav], [enemy], step=9), uav, None)
+    assert resumed.command == 'Moving' and resumed.points[0] < -24000
+    assert resumed.points[2] == 8000
+    assert control.choose(state([uav], [enemy], step=14), uav, None) == resumed
 
 
 def test_aircraft_cannot_be_pulled_to_reports_at_an_unassigned_objective():
@@ -141,7 +142,8 @@ def test_aircraft_cannot_be_pulled_to_reports_at_an_unassigned_objective():
     uav = aircraft(x=60000, y=35000)
     other_base_enemy = entity(20, 1, 0, -3000, -27530)
     action = UAVControl().choose(state([uav], [other_base_enemy], [obj]), uav, obj)
-    assert action.points[:2] == tuple(obj.position[:2])
+    assert action.points[1] > 30000  # HQ approach, not the southern base report.
+    assert AssaultRoute.distance(action.points, obj.position) < AssaultRoute.distance(uav.position, obj.position)
 
 
 def test_aircraft_finishes_locked_strike_even_if_team_moves_to_next_objective():
@@ -180,8 +182,9 @@ def test_depleted_third_assault_stays_at_reached_approach_and_resumes_after_enem
     action = ready.choose(s, units[0], route, urban, [])
     assert action.command == 'Guard' and action.points == tuple(units[0].position)
     objects[2].raw['blueteamNum'] = 3
-    s = state(units, objectives=objects, step=2)
-    ready.begin(s, route)
+    for step in range(2, 5):
+        s = state(units, objectives=objects, step=step)
+        ready.begin(s, route)
     assert not ready.weak and ready.choose(s, units[0], route, urban, []) is None
 
 
@@ -194,7 +197,9 @@ def test_empty_vehicles_do_not_count_as_reinforcing_firepower():
     assert ready.weak
     for car in cars:
         car.raw['interaction'] = ['100']
-    ready.begin(state([*units, *cars], objectives=objects, step=1), route)
+        car.position[0] = objects[2].position[0] - 15000  # Reinforcement must actually arrive.
+    for step in range(1, 4):
+        ready.begin(state([*units, *cars], objectives=objects, step=step), route)
     assert not ready.weak
 
 

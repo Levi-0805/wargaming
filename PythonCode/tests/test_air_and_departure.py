@@ -76,17 +76,18 @@ def test_disconnected_uav_cannot_start_strike():
     assert UAVControl().choose(state([uav], [enemy]), uav, None).command != "SelfDestruct"
 
 
-def test_aircraft_stagnation_uses_forward_direction_then_resumes_coordinate_goal():
+def test_aircraft_stagnation_transitions_once_then_reissues_fixed_flight_leg():
     uav = aircraft(x=60000)
     objectives = map_objectives()
     control = UAVControl()
     for step in range(9):
         action = control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0])
-    assert action.command == "Moving" and action.direction == "-X"
-    for step in range(9, 14):
-        assert control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0]) == action
-    resumed = control.choose(state([uav], objectives=objectives, step=14), uav, objectives[0])
-    assert resumed.points[:2] == tuple(objectives[0].position[:2])
+    assert action.command == "Idle"
+    resumed = control.choose(state([uav], objectives=objectives, step=9), uav, objectives[0])
+    assert resumed.command == 'Moving'
+    assert control_distance(resumed.points, uav.position) == pytest.approx(25000)
+    for step in range(10, 16):
+        assert control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0]) == resumed
 
 
 def control_distance(a, b):

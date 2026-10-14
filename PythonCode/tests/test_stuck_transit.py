@@ -18,7 +18,8 @@ def test_turn_correction_cannot_starve_reverse_and_side_recovery():
     recovery = MotionRecovery()
     goal = Action.move_at(AssaultRoute.LOWER[5])
     actions = [recovery.apply(state([car], step=step), car, goal) for step in range(14)]
-    assert all(a.points is not None for a in actions[:8])
+    assert all(a.command == 'Guard' for a in actions[:2])
+    assert all(a.points == goal.points for a in actions[2:8])
     assert actions[8].points is None and actions[9].points is None
     assert actions[10].points == actions[11].points == actions[12].points
     assert actions[10].points != goal.points
@@ -36,7 +37,7 @@ def test_jittering_goal_and_interleaved_fire_preserve_failed_move_evidence():
         else:
             goal = Action.move_at((car.position[0] - 800, car.position[1] + (step % 3) * 800, car.position[2]))
             result = recovery.apply(state([car], step=step), car, goal)
-            if result.points is None:
+            if result.command == 'Moving' and result.points is None:
                 escapes.append(step)
     assert escapes and escapes[0] <= 16
 

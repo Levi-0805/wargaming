@@ -61,11 +61,10 @@ def test_slow_backward_car_turns_even_though_it_is_making_net_progress():
     for step in range(3):
         car.position[0] -= 280  # Same slow displacement seen in the replay.
         action = control.apply(state([car], step=step), car, move)
-        assert action.points != move.points
-        if step % 2 == 0:
-            vector = [action.points[i] - car.position[i] for i in range(2)]
-            yaw = math.radians(car.yaw)
-            assert vector[0] * math.cos(yaw) + vector[1] * math.sin(yaw) > 0
+        if step < 2:
+            assert action.command == 'Guard' and action.direction == '-X'
+        else:
+            assert action is move
     car.yaw = -175
     assert control.apply(state([car], step=3), car, move) is move
 
@@ -74,10 +73,10 @@ def test_vehicle_turn_attempt_is_bounded_and_restores_normal_waypoint():
     car = entity(1, 0, 0, 0, kind="BP_MNWS_Vehicle_Armored_C")
     move = Action.move_at((-20000, 0, 0))
     recovery = MotionRecovery()
-    for step in range(6):
-        assert recovery.apply(state([car], step=step), car, move) != move
-    assert recovery.apply(state([car], step=6), car, move) is move
-    assert recovery.apply(state([car], step=7), car, move) is move
+    for step in range(2):
+        assert recovery.apply(state([car], step=step), car, move).command == 'Guard'
+    for step in range(2, 8):
+        assert recovery.apply(state([car], step=step), car, move) is move
 
 
 def test_uav_advances_horizontally_while_low_and_can_strike_without_height_gate():

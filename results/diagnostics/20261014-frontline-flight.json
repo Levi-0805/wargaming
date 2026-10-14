@@ -1,0 +1,272 @@
+{
+  "recorded_version": "24597bdb1ee1797216fef074f2b91fe7a477ce2f",
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261014_164549\\protocol.jsonl",
+  "validation": "Recorded public team views, not a new simulation or score forecast.",
+  "rounds": [
+    {
+      "episode": 1,
+      "counts": {
+        "frames": 401,
+        "serialized_actions": 20050,
+        "uav_Moving": 1836,
+        "uav_Idle": 169,
+        "vehicle_heading_steps": 94,
+        "preservation_actions": 62
+      },
+      "weak_changes": [
+        {
+          "step": 145,
+          "preserve": true,
+          "front_power": 9.25,
+          "rear_power": 8.0,
+          "enemy_pressure": 12.0
+        }
+      ],
+      "first_preservation": {
+        "step": 145,
+        "uid": 96,
+        "action": "Moving"
+      },
+      "max_connected_uav_idle_streak": 1,
+      "power_samples": [
+        {
+          "step": 75,
+          "front_power": 22.0,
+          "rear_power": 20.5,
+          "enemy_pressure": 16,
+          "preserve": false
+        },
+        {
+          "step": 100,
+          "front_power": 24.32,
+          "rear_power": 10.0,
+          "enemy_pressure": 13.5,
+          "preserve": false
+        },
+        {
+          "step": 125,
+          "front_power": 17.69,
+          "rear_power": 10.0,
+          "enemy_pressure": 12.0,
+          "preserve": false
+        },
+        {
+          "step": 150,
+          "front_power": 7.5,
+          "rear_power": 8.0,
+          "enemy_pressure": 12.0,
+          "preserve": true
+        },
+        {
+          "step": 163,
+          "front_power": 3.92,
+          "rear_power": 6.0,
+          "enemy_pressure": 12.0,
+          "preserve": true
+        }
+      ],
+      "flight_transitions": 169
+    },
+    {
+      "episode": 2,
+      "counts": {
+        "frames": 401,
+        "serialized_actions": 20050,
+        "uav_Moving": 1834,
+        "uav_Idle": 171,
+        "vehicle_heading_steps": 68,
+        "preservation_actions": 71
+      },
+      "weak_changes": [
+        {
+          "step": 126,
+          "preserve": true,
+          "front_power": 6.3,
+          "rear_power": 9.34,
+          "enemy_pressure": 8
+        },
+        {
+          "step": 132,
+          "preserve": false,
+          "front_power": 8.3,
+          "rear_power": 7.34,
+          "enemy_pressure": 8
+        },
+        {
+          "step": 138,
+          "preserve": true,
+          "front_power": 6.3,
+          "rear_power": 7.34,
+          "enemy_pressure": 8
+        },
+        {
+          "step": 141,
+          "preserve": false,
+          "front_power": 6.3,
+          "rear_power": 7.34,
+          "enemy_pressure": 7
+        },
+        {
+          "step": 142,
+          "preserve": true,
+          "front_power": 5.69,
+          "rear_power": 7.34,
+          "enemy_pressure": 7
+        }
+      ],
+      "first_preservation": {
+        "step": 126,
+        "uid": 781,
+        "action": "Moving"
+      },
+      "max_connected_uav_idle_streak": 1,
+      "power_samples": [
+        {
+          "step": 75,
+          "front_power": 21.0,
+          "rear_power": 20.84,
+          "enemy_pressure": 16,
+          "preserve": false
+        },
+        {
+          "step": 100,
+          "front_power": 20.36,
+          "rear_power": 11.34,
+          "enemy_pressure": 15.5,
+          "preserve": false
+        },
+        {
+          "step": 125,
+          "front_power": 6.8,
+          "rear_power": 9.34,
+          "enemy_pressure": 8,
+          "preserve": false
+        },
+        {
+          "step": 150,
+          "front_power": 2.69,
+          "rear_power": 7.34,
+          "enemy_pressure": 6,
+          "preserve": true
+        },
+        {
+          "step": 163,
+          "front_power": 6.0,
+          "rear_power": 3.34,
+          "enemy_pressure": 5,
+          "preserve": true
+        }
+      ],
+      "flight_transitions": 171
+    },
+    {
+      "episode": 3,
+      "counts": {
+        "frames": 401,
+        "serialized_actions": 20050,
+        "uav_Moving": 1613,
+        "uav_Idle": 159,
+        "vehicle_heading_steps": 45,
+        "preservation_actions": 80,
+        "uav_SelfDestruct": 5
+      },
+      "weak_changes": [
+        {
+          "step": 155,
+          "preserve": true,
+          "front_power": 7.0,
+          "rear_power": 4.0,
+          "enemy_pressure": 4
+        }
+      ],
+      "first_preservation": {
+        "step": 155,
+        "uid": 1101,
+        "action": "Moving"
+      },
+      "max_connected_uav_idle_streak": 1,
+      "power_samples": [
+        {
+          "step": 75,
+          "front_power": 23.0,
+          "rear_power": 19.5,
+          "enemy_pressure": 14,
+          "preserve": false
+        },
+        {
+          "step": 100,
+          "front_power": 20.0,
+          "rear_power": 12.0,
+          "enemy_pressure": 11.0,
+          "preserve": false
+        },
+        {
+          "step": 125,
+          "front_power": 13.99,
+          "rear_power": 10.0,
+          "enemy_pressure": 7.5,
+          "preserve": false
+        },
+        {
+          "step": 150,
+          "front_power": 9.83,
+          "rear_power": 4.0,
+          "enemy_pressure": 4,
+          "preserve": false
+        },
+        {
+          "step": 163,
+          "front_power": 0.0,
+          "rear_power": 11.0,
+          "enemy_pressure": 16,
+          "preserve": true
+        }
+      ],
+      "flight_transitions": 157
+    },
+    {
+      "episode": 4,
+      "counts": {
+        "frames": 115,
+        "serialized_actions": 5750,
+        "uav_Moving": 528,
+        "uav_Idle": 47,
+        "vehicle_heading_steps": 24
+      },
+      "weak_changes": [],
+      "first_preservation": null,
+      "max_connected_uav_idle_streak": 1,
+      "power_samples": [
+        {
+          "step": 75,
+          "front_power": 19.31,
+          "rear_power": 21.5,
+          "enemy_pressure": 12,
+          "preserve": false
+        },
+        {
+          "step": 100,
+          "front_power": 24.0,
+          "rear_power": 8.0,
+          "enemy_pressure": 11.5,
+          "preserve": false
+        }
+      ],
+      "flight_transitions": 47
+    }
+  ],
+  "source_hashes": {
+    "AssaultRoute.py": "13c663176e08315e173c07d3a697f3644e1df00177171cd98c00869a32d0c130",
+    "CombatReadiness.py": "356e48d6c44f9b6d446d211ead04b2d86a07522d39bfc8b3cd47c2a6503a53cd",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "FlightNavigation.py": "4a452b5e0c78be4291e3074b9d2f5401c5013f260ef5f52bb4e769e6faed4532",
+    "HQEntry.py": "99fcfaa8043849fc80fa4947df48fa5da9927f8bfd91f0d3c9c19fbe971ed208",
+    "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "RLAgentAlgorithm.py": "9f52ec35d3547c534e24199ff9b19bed1b399388fcbcb18a5a28c8db7feff89d",
+    "RuleAgentAlgorithm.py": "e88eb7d1b816d5edd0a72bb4dbcf7f800b69c8505239797538c62e5d4d77ee3f",
+    "UAVControl.py": "108c18389032f1035d05508dcfef5ca358e6e433eedf8c156a63a2c098c76a70",
+    "UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  }
+}

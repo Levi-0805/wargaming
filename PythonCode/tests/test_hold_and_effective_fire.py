@@ -154,8 +154,10 @@ def test_empty_vehicle_moves_to_objective_instead_of_repeating_dry_fire():
     car = entity(1, 0, 0, -17959, 27728, kind="BP_MNWS_Vehicle_Armored_C")
     car.raw.update(interaction=["0.0"], agentPerception=[20])
     enemy = entity(20, 1, 0, -18000, 31000)
-    action = algorithm([car]).act(state([car], [enemy], map_objectives()))[0]
-    assert action.command == "Moving"
+    rule = algorithm([car])
+    actions = [rule.act(state([car], [enemy], map_objectives(), step))[0] for step in range(4)]
+    assert all(a.command != 'NormalAttacking' for a in actions)
+    assert actions[-1].command == 'Moving'
 
 
 def test_five_low_uavs_all_get_forward_destinations_at_actual_spawn_height():
@@ -165,7 +167,7 @@ def test_five_low_uavs_all_get_forward_destinations_at_actual_spawn_height():
     actions = algorithm(uavs).act(state(uavs, objectives=objectives))
     for uav, action in zip(uavs, actions):
         assert action.command == "Moving" and action.points is not None
-        assert action.points[0] < uav.position[0] - 50000
+        assert action.points[0] < uav.position[0] - 24000
         assert action.points[2] > uav.position[2]
 
 
