@@ -1,0 +1,148 @@
+{
+  "source_commit": "6bb66454687cee087878292e317d3aa9bd5c00c8",
+  "source_run": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261014_131402\\protocol.jsonl",
+  "validation": "Offline decisions on recorded public red views; not a new simulation or score forecast.",
+  "frames": 1572,
+  "serialized_candidate_actions": 78600,
+  "rounds": [
+    {
+      "episode": 1,
+      "frames": 401,
+      "vehicle_air_attack_requests": {
+        "baseline": 55,
+        "candidate": 0
+      },
+      "empty_ground_attack_requests": 0,
+      "guard_move_destinations_outside_hold_area": 0,
+      "first_strike_request_by_uid": {
+        "31": 36
+      },
+      "uav_direction_steps": 645,
+      "entrance_route_units": 35,
+      "weak_state_changes": [],
+      "first_preservation_actions": [],
+      "observed_first_no_infantry_dogs": null
+    },
+    {
+      "episode": 2,
+      "frames": 401,
+      "vehicle_air_attack_requests": {
+        "baseline": 27,
+        "candidate": 0
+      },
+      "empty_ground_attack_requests": 0,
+      "guard_move_destinations_outside_hold_area": 0,
+      "first_strike_request_by_uid": {
+        "1011": 29,
+        "981": 33,
+        "971": 38,
+        "1001": 42
+      },
+      "uav_direction_steps": 441,
+      "entrance_route_units": 30,
+      "weak_state_changes": [],
+      "first_preservation_actions": [],
+      "observed_first_no_infantry_dogs": null
+    },
+    {
+      "episode": 3,
+      "frames": 401,
+      "vehicle_air_attack_requests": {
+        "baseline": 69,
+        "candidate": 0
+      },
+      "empty_ground_attack_requests": 0,
+      "guard_move_destinations_outside_hold_area": 0,
+      "first_strike_request_by_uid": {
+        "1106": 29
+      },
+      "uav_direction_steps": 523,
+      "entrance_route_units": 10,
+      "weak_state_changes": [
+        [
+          175,
+          true,
+          2
+        ]
+      ],
+      "first_preservation_actions": [
+        [
+          203,
+          1186,
+          "Guard"
+        ],
+        [
+          204,
+          1226,
+          "Guard"
+        ],
+        [
+          204,
+          1216,
+          "Guard"
+        ],
+        [
+          204,
+          1191,
+          "Guard"
+        ],
+        [
+          204,
+          1186,
+          "Guard"
+        ]
+      ],
+      "observed_first_no_infantry_dogs": null
+    },
+    {
+      "episode": 4,
+      "frames": 369,
+      "vehicle_air_attack_requests": {
+        "baseline": 94,
+        "candidate": 0
+      },
+      "empty_ground_attack_requests": 0,
+      "guard_move_destinations_outside_hold_area": 0,
+      "first_strike_request_by_uid": {
+        "1646": 36
+      },
+      "uav_direction_steps": 457,
+      "entrance_route_units": 4,
+      "weak_state_changes": [
+        [
+          118,
+          true,
+          0
+        ]
+      ],
+      "first_preservation_actions": [
+        [
+          118,
+          1731,
+          "Moving"
+        ],
+        [
+          118,
+          1721,
+          "Moving"
+        ],
+        [
+          118,
+          1631,
+          "Moving"
+        ],
+        [
+          118,
+          1561,
+          "Moving"
+        ],
+        [
+          118,
+          1546,
+          "Moving"
+        ]
+      ],
+      "observed_first_no_infantry_dogs": 163
+    }
+  ]
+}

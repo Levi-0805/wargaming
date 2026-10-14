@@ -12,12 +12,12 @@ def aircraft(uid=1, x=0, y=0, z=8000):
     return result
 
 
-def test_detected_ground_target_100m_away_gets_high_approach_before_dive():
+def test_detected_ground_target_100m_away_can_start_strike_without_20m_gate():
     uav = aircraft()
     enemy = entity(20, 1, 0, 10000)
     uav.raw["agentPerception"] = [20]
     result = UAVControl().choose(state([uav], [enemy]), uav, None)
-    assert result.command == "Moving" and result.points == (10000, 0, 8000)
+    assert result.command == "SelfDestruct" and result.points == (10000, 0, 0)
 
 
 def test_strike_is_not_cancelled_by_movement_next_frame_or_brief_loss_of_contact():
@@ -76,17 +76,16 @@ def test_disconnected_uav_cannot_start_strike():
     assert UAVControl().choose(state([uav], [enemy]), uav, None).command != "SelfDestruct"
 
 
-def test_aircraft_stagnation_uses_bounded_side_bypass_then_resumes_forward_goal():
+def test_aircraft_stagnation_uses_forward_direction_then_resumes_coordinate_goal():
     uav = aircraft(x=60000)
     objectives = map_objectives()
     control = UAVControl()
-    for step in range(5):
+    for step in range(9):
         action = control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0])
-    assert action.command == "Moving" and action.points is not None
-    assert 2900 < control_distance(uav.position, action.points) < 3100
-    for step in (5, 6):
+    assert action.command == "Moving" and action.direction == "-X"
+    for step in range(9, 14):
         assert control.choose(state([uav], objectives=objectives, step=step), uav, objectives[0]) == action
-    resumed = control.choose(state([uav], objectives=objectives, step=7), uav, objectives[0])
+    resumed = control.choose(state([uav], objectives=objectives, step=14), uav, objectives[0])
     assert resumed.points[:2] == tuple(objectives[0].position[:2])
 
 

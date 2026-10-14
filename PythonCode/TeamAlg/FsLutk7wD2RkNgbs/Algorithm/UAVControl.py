@@ -18,7 +18,9 @@ class UAVControl:
 
     STRIKE_STEPS = 12
     CRUISE_HEIGHT = 8000.0
-    STRIKE_HORIZONTAL = 2000.0
+    STRIKE_HORIZONTAL = 12000.0  # Policy limit; local confirmation is still mandatory.
+    STALL_STEPS = 8
+    DIRECTION_STEPS = 6
     CLUSTER_RADIUS = 1200.0  # Scenario payload blast radius, cm; scoring heuristic.
     VALUES = {"BP_BaseSoldier_C": 100, "BP_RoboDog_C": 20,
               "BP_MNWS_Vehicle_Armored_C": 90, "BP_MNWS_Vehicle_6x6UGV_C": 50,
@@ -32,6 +34,9 @@ class UAVControl:
         self._altitude = {}
         self._approaches = {}
         self._bypass = {}
+        self._slots = {}
+        self._bearing = (1.0, 0.0)
+        self._objective_uid = None
 
     def _begin(self, state):
         if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
@@ -41,6 +46,11 @@ class UAVControl:
             self._altitude.clear()
             self._approaches.clear()
             self._bypass.clear()
+            uavs = [unit for unit in state.agents if unit.entity_type == "BP_Base_UAV_C"]
+            offsets = (0, -1, 1, -2, 2)
+            self._slots = {unit.uid: offsets[i % len(offsets)] for i, unit in enumerate(uavs)}
+            self._bearing = None
+            self._objective_uid = None
         self._frame = (state.episode, state.step)
         alive = {agent.uid for agent in state.agents if agent.alive}
         self._missions = {uid: mission for uid, mission in self._missions.items() if uid in alive}
@@ -68,6 +78,13 @@ class UAVControl:
 
     def choose(self, state, agent, objective):
         self._begin(state)
+        objective_uid = objective.uid if objective is not None else None
+        if objective_uid != self._objective_uid:
+            self._approaches.clear()
+            self._flight.clear()
+            self._bypass.clear()
+            self._bearing = None
+            self._objective_uid = objective_uid
         if not agent.alive:
             return Action.idle()
         contacts = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
@@ -108,13 +125,24 @@ class UAVControl:
             point = locked[1]  # Last reported position, never an unseen update.
         else:
             self._approaches.pop(agent.uid, None)
-            shared = target or self._target(state, agent, state.visible_opponents)
+            reports = [enemy for enemy in state.visible_opponents if objective is None
+                       or AssaultRoute.distance(enemy.position, objective.position) <= 20000]
+            shared = target or self._target(state, agent, reports)
             point = shared.position if shared is not None else objective.position if objective is not None else None
             if shared is not None:
                 self._approaches[agent.uid] = (shared.uid, tuple(float(v) for v in point), state.step)
         if point is None:
             return Action.guard_position(agent.position)
         point = (float(point[0]), float(point[1]), altitude)
+        # Fixed roster slots around a common approach axis. Losses never
+        # reshuffle survivors and a lagging wing never stops the other UAVs.
+        if self._bearing is None:
+            dx, dy = point[0] - agent.position[0], point[1] - agent.position[1]
+            length = max(math.hypot(dx, dy), 1)
+            self._bearing = (dx / length, dy / length)
+        offset = self._slots.get(agent.uid, 0) * 3000
+        point = (point[0] - self._bearing[1] * offset,
+                 point[1] + self._bearing[0] * offset, altitude)
         ground = [unit for unit in state.agents if unit.alive and unit.entity_type == "BP_BaseSoldier_C"]
         if ground:
             support = min(ground, key=lambda unit: AssaultRoute.distance(unit.position, point))
@@ -131,24 +159,24 @@ class UAVControl:
             return Action.guard_position(point)
         bypass = self._bypass.get(agent.uid)
         if bypass is not None:
-            if state.step < bypass[1] and AssaultRoute.distance(agent.position, bypass[0]) > 800:
-                return Action.move_at(bypass[0])
+            direction, until, goal = bypass
+            if state.step < until and AssaultRoute.distance(goal, point) < 10000:
+                return Action.move(direction)
             self._bypass.pop(agent.uid, None)
             self._flight.pop(agent.uid, None)
         previous = self._flight.get(agent.uid)
         if previous is None or math.dist(point, previous[0]) > 10000 or distance < previous[2] - 200:
             previous = (point, state.step, distance)
             self._flight[agent.uid] = previous
-        if state.step - previous[1] >= 4:
-            self._altitude[agent.uid] = min(altitude + 2000, base_height + 12000)
+        if state.step - previous[1] >= self.STALL_STEPS:
             self._flight.pop(agent.uid, None)
             dx, dy = point[0] - agent.position[0], point[1] - agent.position[1]
-            length = max(math.hypot(dx, dy), 1)
-            side = 1 if agent.team_index % 2 else -1
-            bypass_point = (float(agent.position[0]) - dy / length * side * 3000,
-                            float(agent.position[1]) + dx / length * side * 3000,
-                            self._altitude[agent.uid])
-            self._bypass[agent.uid] = (bypass_point, state.step + 3)
-            logger.info("无人机短绕障: uid=%d step=%d target=%s", agent.uid, state.step, point)
-            return Action.move_at(bypass_point)
+            maximum = max(abs(dx), abs(dy), 1)
+            direction = ''.join(('+' if delta >= 0 else '-') + axis
+                                for axis, delta in (('X', dx), ('Y', dy))
+                                if abs(delta) >= .35 * maximum) or '+X'
+            self._bypass[agent.uid] = (direction, state.step + self.DIRECTION_STEPS, point)
+            logger.info("无人机坐标飞行无进展，短时方向前进: uid=%d step=%d direction=%s",
+                        agent.uid, state.step, direction)
+            return Action.move(direction)
         return Action.move_at(point)

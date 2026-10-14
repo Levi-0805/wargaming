@@ -11,6 +11,8 @@ from .CommandLinks import CommandLinks
 from .MotionRecovery import MotionRecovery
 from .UAVControl import UAVControl
 from .UrbanContact import UrbanContact
+from .HQEntry import HQEntry
+from .CombatReadiness import CombatReadiness
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +20,7 @@ logger = logging.getLogger(__name__)
 class ReinforceAgentAlgorithm(RuleAlgorithm):
     """All units use the lower approach, fight contacts, then capture HQ, B, A.
 
-    No median-distance waiting or casualty-based regrouping. Public team
+    No opening assembly or median-distance waiting. Public team
     contacts within the engagement radius also authorize attack requests; the
     generic fireRange=1000 metadata is not an extra 9.5m firing gate.
     """
@@ -31,6 +33,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     SHARED_ENGAGEMENT_CM = 15000.0
     FIRE_REPOSITION_STEPS = 3
     NO_DAMAGE_STEPS = 8
+    VEHICLES = {"BP_MNWS_Vehicle_Armored_C", "BP_MNWS_Vehicle_6x6UGV_C"}
 
     def __init__(self, context, enable_parent_assignment: bool = True):
         super().__init__(context)
@@ -40,6 +43,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._route = AssaultRoute()
         self._uav = UAVControl()
         self._urban = UrbanContact()
+        self._hq_entry = HQEntry()
+        self._readiness = CombatReadiness()
         self._frame = None
         self._support = {}
         self._fire_watch = {}
@@ -61,6 +66,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._frame = frame
         self._urban.begin(state)
         self._route.update(state)
+        self._readiness.begin(state, self._route)
         self._support = {}
         for unit in state.agents:
             if unit.alive:
@@ -149,6 +155,16 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         local = {enemy.uid for enemy in state.perceived_opponents(agent)}
         contacts = [enemy for enemy in state.visible_opponents if enemy.alive and (
             enemy.uid in local or self._horizontal(agent.position, enemy.position) <= self.SHARED_ENGAGEMENT_CM)]
+        if agent.entity_type in self.VEHICLES:
+            # Recorded cannon bursts spent 15-19 rounds per step against air
+            # targets without further damage. Preserve vehicle fire for ground.
+            contacts = [enemy for enemy in contacts if enemy.entity_type not in {self._UAV, self._HELI}]
+        preserve = self._readiness.choose(state, agent, self._route, self._urban, contacts)
+        if preserve is not None:
+            return preserve
+        entry = self._hq_entry.choose(state, agent, self._route, self._urban, contacts)
+        if entry is not None:
+            return entry
         garrison = self._route.garrison_for(state, agent)
         if garrison is not None:
             return self._defend(state, agent, garrison, contacts, local)
@@ -178,8 +194,9 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             self._horizontal(agent.position, objective.position) <= 18000
             and self._horizontal(agent.position, point) <= 2000
         )):
-            nearby = [enemy for enemy in visible if objective is None or
-                      self._horizontal(enemy.position, objective.position) <= 18000]
+            nearby = [enemy for enemy in visible if
+                      (agent.entity_type not in self.VEHICLES or enemy.entity_type not in {self._UAV, self._HELI})
+                      and (objective is None or self._horizontal(enemy.position, objective.position) <= 18000)]
             if nearby:
                 point = self._xyz(self._attack_target(agent, nearby).position)
         if point is None:
