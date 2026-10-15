@@ -159,6 +159,9 @@ def test_uav_only_bombs_confirmed_local_contact_and_flies_to_bounded_points():
     enemy = entity(20, 1, 0, 61000, 12000)
     uav.raw["agentPerception"] = [20]
     bomb = rule.act(state([uav], [enemy], objects, step=2))[0]
+    assert bomb.command == "NormalAttacking"
+    rule.act(state([uav], [enemy], objects, step=3))
+    bomb = rule.act(state([uav], [enemy], objects, step=4))[0]
     assert bomb.command == "SelfDestruct" and bomb.points == (61000, 12000, 0)
 
 

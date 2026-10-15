@@ -181,7 +181,10 @@ def test_initial_uav_goal_is_not_clamped_to_a_moving_rear_soldier():
     uav = aircraft(x=60000, y=35000)
     soldier = entity(20, 0, 1, 60000, 35000)
     s = state([uav, soldier], objectives=objects)
-    move = UAVControl().choose(s, uav, objects[0])
+    control = UAVControl()
+    assert control.choose(s, uav, objects[0]).command == 'Guard'
+    move = control.choose(state([uav, soldier], objectives=objects, step=50), uav, objects[0])
+    assert move.command == 'Moving'
     assert move.points[:2] == tuple(objects[0].position[:2])
 
 

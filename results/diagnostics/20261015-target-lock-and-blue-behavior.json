@@ -1,0 +1,129 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261015_113304\\protocol.jsonl",
+  "baseline_commit": "09f9a1898e9cbab0a6fe224a64f42aab53c70d2d",
+  "scope": "Recorded public team states only. No UE physics, new score, arrival time or kill prediction.",
+  "recorded_scores": [
+    {
+      "episode": 1,
+      "kill_score": 970,
+      "capture_score": 1600,
+      "total": 2570
+    },
+    {
+      "episode": 2,
+      "kill_score": 1130,
+      "capture_score": 0,
+      "total": 1130
+    },
+    {
+      "episode": 3,
+      "kill_score": 2320,
+      "capture_score": 0,
+      "total": 2320
+    },
+    {
+      "episode": 4,
+      "kill_score": 1200,
+      "capture_score": 1600,
+      "total": 2800
+    }
+  ],
+  "rounds": [
+    {
+      "episode": 1,
+      "counts": {
+        "frames": 501,
+        "serialized_actions": 25050
+      },
+      "max_ground_pause": 0,
+      "uav_actions": {
+        "Guard": 159,
+        "Moving": 13,
+        "NormalAttacking": 39
+      },
+      "new_dive_requests": [],
+      "vehicle_attack_target_types": {
+        "BP_BaseSoldier_C": 99,
+        "BP_MNWS_Vehicle_Armored_C": 114,
+        "BP_RoboDog_C": 6,
+        "BP_MNWS_Vehicle_6x6UGV_C": 25
+      }
+    },
+    {
+      "episode": 2,
+      "counts": {
+        "frames": 501,
+        "serialized_actions": 25050
+      },
+      "max_ground_pause": 0,
+      "uav_actions": {
+        "Guard": 163,
+        "Moving": 37,
+        "NormalAttacking": 18,
+        "Idle": 1
+      },
+      "new_dive_requests": [],
+      "vehicle_attack_target_types": {
+        "BP_BaseSoldier_C": 14,
+        "BP_RoboDog_C": 13,
+        "BP_MNWS_Vehicle_Armored_C": 21,
+        "BP_MNWS_Vehicle_6x6UGV_C": 1
+      }
+    },
+    {
+      "episode": 3,
+      "counts": {
+        "frames": 501,
+        "serialized_actions": 25050
+      },
+      "max_ground_pause": 6,
+      "uav_actions": {
+        "Guard": 233,
+        "Moving": 389,
+        "NormalAttacking": 26,
+        "Idle": 8
+      },
+      "new_dive_requests": [],
+      "vehicle_attack_target_types": {
+        "BP_BaseSoldier_C": 32,
+        "BP_MNWS_Vehicle_6x6UGV_C": 13,
+        "BP_RoboDog_C": 12,
+        "BP_MNWS_Vehicle_Armored_C": 1
+      }
+    },
+    {
+      "episode": 4,
+      "counts": {
+        "frames": 501,
+        "serialized_actions": 25050
+      },
+      "max_ground_pause": 6,
+      "uav_actions": {
+        "Guard": 152,
+        "Moving": 20,
+        "NormalAttacking": 33
+      },
+      "new_dive_requests": [],
+      "vehicle_attack_target_types": {
+        "BP_BaseSoldier_C": 285,
+        "BP_MNWS_Vehicle_Armored_C": 9,
+        "BP_RoboDog_C": 402,
+        "BP_MNWS_Vehicle_6x6UGV_C": 1
+      }
+    }
+  ],
+  "source_hashes": {
+    "AssaultRoute.py": "0eaa4340c0b8c1880ab41520087aaf2ebecaeefba57d1d0630ed7b590796c2de",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "FlightNavigation.py": "c9ab2a634020bf8be0bd29106af1773672b8b2f4f179a8f741c8fb88ab86b55d",
+    "HQEntry.py": "99fcfaa8043849fc80fa4947df48fa5da9927f8bfd91f0d3c9c19fbe971ed208",
+    "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "RLAgentAlgorithm.py": "9f52ec35d3547c534e24199ff9b19bed1b399388fcbcb18a5a28c8db7feff89d",
+    "RuleAgentAlgorithm.py": "b2321942fca981d6514a2ddf3270e205869bf78a40181edcbbe5a0c49621b207",
+    "UAVControl.py": "99d2255c766862b0f161d06fdeb27238007dbd7090914c24ba655464955e8a5f",
+    "UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  }
+}

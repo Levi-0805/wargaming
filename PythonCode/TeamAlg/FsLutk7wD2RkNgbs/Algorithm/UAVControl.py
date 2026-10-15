@@ -11,16 +11,18 @@ logger = logging.getLogger(__name__)
 
 
 class UAVControl:
-    """Advance while gaining height, approach a visible ground target, dive.
+    """Use public contacts; a report or a single detection is not a dive lock."""
 
-    The approach radius is a policy choice, not an API precondition. Long
-    low-altitude strike approaches were shot down in the recorded match.
-    """
-
-    STRIKE_STEPS = 12
+    STRIKE_STEPS = 8
     CRUISE_HEIGHT = 8000.0
-    STRIKE_HORIZONTAL = 12000.0  # Policy limit; local confirmation is still mandatory.
-    CLUSTER_RADIUS = 1200.0  # Scenario payload blast radius, cm; scoring heuristic.
+    # Policy bounds, not platform guarantees of range, visibility or blast size.
+    STRIKE_HORIZONTAL = 3500.0
+    STRIKE_DISTANCE = 9000.0
+    LOCK_FRAMES = 3
+    LOCK_DRIFT = 300.0
+    CLUSTER_RADIUS = 1200.0
+    FRIENDLY_CLEARANCE = 2000.0
+    MAX_LAUNCH_WAIT = 50
     VALUES = {"BP_BaseSoldier_C": 100, "BP_RoboDog_C": 20,
               "BP_MNWS_Vehicle_Armored_C": 90, "BP_MNWS_Vehicle_6x6UGV_C": 50,
               "BP_Base_UAV_C": 10, "BP_Helicopter_C": 50}
@@ -36,6 +38,10 @@ class UAVControl:
         self._bearing = (1.0, 0.0)
         self._objective_uid = None
         self._telemetry = {}
+        self._observations = {}
+        self._launched = set()
+        self._launch_start = 0
+        self._fire_watch = {}
 
     def _begin(self, state):
         if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
@@ -50,17 +56,21 @@ class UAVControl:
             self._bearing = None
             self._objective_uid = None
             self._telemetry.clear()
+            self._observations.clear()
+            self._launched.clear()
+            self._launch_start = max(state.step, 0)
+            self._fire_watch.clear()
         self._frame = (state.episode, state.step)
         alive = {agent.uid for agent in state.agents if agent.alive}
         self._missions = {uid: mission for uid, mission in self._missions.items() if uid in alive}
         self._approaches = {uid: value for uid, value in self._approaches.items() if uid in alive}
 
     def _target(self, state, agent, enemies):
-        reserved = [mission[1] for uid, mission in self._missions.items() if uid != agent.uid]
+        reserved = [mission for uid, mission in self._missions.items() if uid != agent.uid]
         available = [enemy for enemy in enemies if enemy.alive
                      and enemy.entity_type not in {"BP_Base_UAV_C", "BP_Helicopter_C"}
-                     and self._retry_after.get((agent.uid, enemy.uid), -1) <= state.step
-                     and all(math.dist(tuple(enemy.position), point) > self.CLUSTER_RADIUS for point in reserved)]
+                     and all(enemy.uid != mission[0] and math.dist(tuple(enemy.position), mission[1]) > self.CLUSTER_RADIUS
+                             for mission in reserved)]
         if not available:
             return None
 
@@ -75,6 +85,73 @@ class UAVControl:
                     -AssaultRoute.distance(agent.position, enemy.position), -enemy.uid)
         return max(available, key=score)
 
+    def _observe(self, state, agent, contacts):
+        # Only this UAV's current local detections can advance a lock. Missing
+        # frames and movement outside the small anchor region reset it.
+        seen = {enemy.uid for enemy in contacts}
+        for key in list(self._observations):
+            if key[0] == agent.uid and key[1] not in seen:
+                del self._observations[key]
+        for enemy in contacts:
+            key = (agent.uid, enemy.uid)
+            point = tuple(float(v) for v in enemy.position)
+            old = self._observations.get(key)
+            if old and old[0] == state.step:
+                continue
+            continuous = old and old[0] == state.step - 1 and math.dist(old[1], point) <= self.LOCK_DRIFT
+            self._observations[key] = (state.step, old[1] if continuous else point, old[2] + 1 if continuous else 1)
+
+    def _clear(self, state, agent, target):
+        return not any(unit.alive and unit.uid != agent.uid
+                       and math.dist(tuple(unit.position), tuple(target.position)) <= self.FRIENDLY_CLEARANCE
+                       for unit in state.agents)
+
+    @staticmethod
+    def _payload(agent):
+        try:
+            ammo = agent.raw.get("interaction", ()) or ()
+            return not ammo or any(float(v) > 0 for v in ammo)
+        except (TypeError, ValueError):
+            return True
+
+    def _locked(self, state, agent, target):
+        observation = self._observations.get((agent.uid, target.uid))
+        return (observation is not None and observation[0] == state.step
+                and observation[2] >= self.LOCK_FRAMES
+                and self._clear(state, agent, target) and self._payload(agent))
+
+    def _launch(self, state, agent, objective, contacts):
+        if agent.uid in self._launched:
+            return True
+        ground = [unit for unit in state.agents if unit.alive and unit.entity_type == "BP_BaseSoldier_C"
+                  and unit.communication_ok() is not False]
+        distances = sorted(AssaultRoute.distance(unit.position, objective.position) for unit in ground) if objective else []
+        # One scout leaves first; the rest depart when a small ground group is
+        # approaching. This is an opening latch, never a moving rear waypoint
+        # or a requirement for ground troops to wait for aircraft.
+        limit = 75000 if self._slots.get(agent.uid, 0) == 0 else 60000
+        ready = (not distances or contacts or distances[min(4, len(distances) - 1)] <= limit
+                 or state.step - self._launch_start >= self.MAX_LAUNCH_WAIT)
+        if ready:
+            self._launched.add(agent.uid)
+            logger.info('无人机出发: uid=%d step=%d local_contacts=%d', agent.uid, state.step, len(contacts))
+        return bool(ready)
+
+    def _normal_attack(self, state, agent, target):
+        # Give UE its UID-based attack request for a moving ground contact.
+        # Bound requests with neither ammunition use nor damage, then resume
+        # navigation. Sending this command is not evidence of a successful hit.
+        old = self._fire_watch.get(agent.uid)
+        ammo = tuple(agent.raw.get("interaction", ()) or ())
+        if (old is None or old[0] != target.uid or old[1] != ammo or target.hp < old[2]
+                or state.step - old[3] >= 7):
+            old = (target.uid, ammo, float(target.hp), state.step)
+            self._fire_watch[agent.uid] = old
+        if state.step - old[3] < 3:
+            self._navigation.cancel(agent)
+            return Action.attack(target)
+        return None
+
     def choose(self, state, agent, objective):
         self._begin(state)
         objective_uid = objective.uid if objective is not None else None
@@ -85,6 +162,7 @@ class UAVControl:
         if not agent.alive:
             return Action.idle()
         contacts = [enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
+        self._observe(state, agent, contacts)
         if state.step >= 0 and state.step % 40 == 0 and self._telemetry.get(agent.uid) != state.step:
             self._telemetry[agent.uid] = state.step
             logger.info('无人机任务观测: uid=%d step=%d objective=%s distance_m=%.1f contacts=%d ground_contacts=%d link=%s',
@@ -96,32 +174,49 @@ class UAVControl:
         if mission is not None:
             self._navigation.cancel(agent)
             uid, point, started = mission
-            target = state.entity_by_uid(uid)
-            if target is not None and not target.alive:
-                del self._missions[agent.uid]
-            elif state.step - started < self.STRIKE_STEPS:
+            target = next((enemy for enemy in contacts if enemy.uid == uid), None)
+            if (target is not None and agent.communication_ok() is not False
+                    and self._locked(state, agent, target) and math.dist(point, tuple(target.position)) <= self.LOCK_DRIFT
+                    and state.step - started < self.STRIKE_STEPS):
+                point = tuple(float(v) for v in target.position)
+                self._missions[agent.uid] = (uid, point, started)
                 return Action.self_destruct(point)
-            else:
-                # Alive after the deadline is not proof of a successful hit.
-                del self._missions[agent.uid]
-                self._retry_after[(agent.uid, uid)] = state.step + 8
-                logger.warning("无人机自爆未确认: uid=%d target=%d step=%d", agent.uid, uid, state.step)
-                if target is not None and any(enemy.uid == uid for enemy in contacts):
-                    return Action.attack(target)
+            del self._missions[agent.uid]
+            self._retry_after[(agent.uid, uid)] = state.step + 16
+            logger.warning("无人机停止续发自爆（目标失效或超时，未确认命中）: uid=%d target=%d step=%d", agent.uid, uid, state.step)
+            # Request a command transition; whether UE can cancel an already
+            # started dive is unverified. The strict pre-launch check is primary.
+            return Action.guard_position(agent.position)
+        if agent.communication_ok() is False:
+            self._navigation.cancel(agent)
+            return Action.idle()
         target = self._target(state, agent, contacts)
         ground_height = float(objective.position[2]) if objective is not None else 0.0
         base_height = max(float(agent.properties.get("initLocation", {}).get("z", 0)), ground_height)
         altitude = self._altitude.setdefault(agent.uid, base_height + self.CRUISE_HEIGHT)
-        if (target is not None and agent.communication_ok() is not False
-                and AssaultRoute.distance(agent.position, target.position) <= self.STRIKE_HORIZONTAL):
+        if (target is not None and self._locked(state, agent, target)
+                and self._retry_after.get((agent.uid, target.uid), -1) <= state.step
+                and AssaultRoute.distance(agent.position, target.position) <= self.STRIKE_HORIZONTAL
+                and math.dist(tuple(agent.position), tuple(target.position)) <= self.STRIKE_DISTANCE):
             point = tuple(float(v) for v in target.position)
             self._missions[agent.uid] = (target.uid, point, state.step)
             self._navigation.cancel(agent)
             logger.info("无人机锁定自爆: uid=%d target=%d point=%s step=%d", agent.uid, target.uid, point, state.step)
             return Action.self_destruct(point)
 
+        if target is not None and self._clear(state, agent, target) and self._payload(agent):
+            attack = self._normal_attack(state, agent, target)
+            if attack is not None:
+                self._launched.add(agent.uid)
+                return attack
+        if not self._launch(state, agent, objective, contacts):
+            self._navigation.cancel(agent)
+            return Action.guard_position(agent.position)
+
         # Team reports can guide reconnaissance, but launching requires a
         # locally confirmed target. Never aim at an unseen objective occupant.
+        if target is not None:
+            self._approaches[agent.uid] = (target.uid, tuple(float(v) for v in target.position), state.step)
         locked = self._approaches.get(agent.uid)
         known = state.entity_by_uid(locked[0]) if locked else None
         if known is not None and known.alive:

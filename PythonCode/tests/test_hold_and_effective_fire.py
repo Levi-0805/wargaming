@@ -186,9 +186,12 @@ def test_uav_does_not_retarget_every_frame_when_contact_scores_change():
     assert control.choose(state([uav], step=8), uav, None).command == "Guard"
 
 
-def test_low_uav_local_target_can_start_strike_immediately():
+def test_low_uav_can_strike_after_confirmation_without_waiting_for_cruise_height():
     uav = aircraft(z=6000)
     enemy = entity(20, 1, 0, 1000)
     enemy.position[2] = 6000
     uav.raw["agentPerception"] = [20]
-    assert UAVControl().choose(state([uav], [enemy]), uav, None).command == "SelfDestruct"
+    control = UAVControl()
+    for step in range(2):
+        assert control.choose(state([uav], [enemy], step=step), uav, None).command != "SelfDestruct"
+    assert control.choose(state([uav], [enemy], step=2), uav, None).command == "SelfDestruct"

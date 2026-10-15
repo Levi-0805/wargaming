@@ -89,7 +89,9 @@ def test_uav_advances_horizontally_while_low_and_can_strike_without_height_gate(
     assert action.points == (10000, 0, 8000)
     uav.position[0] = 9000
     uav.raw["agentPerception"] = [20]
-    assert control.choose(state([uav], [enemy], step=2), uav, None).command == "SelfDestruct"
+    for step in (2, 3):
+        assert control.choose(state([uav], [enemy], step=step), uav, None).command != "SelfDestruct"
+    assert control.choose(state([uav], [enemy], step=4), uav, None).command == "SelfDestruct"
 
 
 def test_uav_does_not_spend_strike_on_enemy_aircraft():

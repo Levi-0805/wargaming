@@ -29,10 +29,12 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     _DOG = "BP_RoboDog_C"
     _UAV = "BP_Base_UAV_C"
     _HELI = "BP_Helicopter_C"
-    _PRIORITY = {_SOLDIER: 0, _DOG: 1, "BP_MNWS_Vehicle_Armored_C": 2, _UAV: 3}
+    _PRIORITY = {_SOLDIER: 0, _DOG: 1, "BP_MNWS_Vehicle_Armored_C": 2,
+                 "BP_MNWS_Vehicle_6x6UGV_C": 2, _UAV: 3}
     SHARED_ENGAGEMENT_CM = 15000.0
     FIRE_REPOSITION_STEPS = 3
     NO_DAMAGE_STEPS = 8
+    VEHICLE_NO_DAMAGE_STEPS = 2
     VEHICLES = {"BP_MNWS_Vehicle_Armored_C", "BP_MNWS_Vehicle_6x6UGV_C"}
 
     def __init__(self, context, enable_parent_assignment: bool = True):
@@ -77,6 +79,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     def _attack_target(self, agent, enemies, local=None):
         return min(enemies, key=lambda enemy: (
             local is not None and enemy.uid not in local,
+            agent.entity_type in self.VEHICLES and enemy.entity_type not in self.VEHICLES,
             self._PRIORITY.get(enemy.entity_type, 4),
             -self._support.get(enemy.uid, 0),
             max(float(enemy.hp), 0),
@@ -116,7 +119,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             hit.update(hp=float(target.hp), start=state.step, retry=-1)
         hit["seen"] = state.step
         self._hit_watch[key] = hit
-        if state.step - hit["start"] >= self.NO_DAMAGE_STEPS and hit["retry"] < 0:
+        budget = self.VEHICLE_NO_DAMAGE_STEPS if agent.entity_type in self.VEHICLES else self.NO_DAMAGE_STEPS
+        if state.step - hit["start"] >= budget and hit["retry"] < 0:
             hit["retry"] = state.step + 8
             logger.info("持续攻击无伤害，换位或换目标: uid=%d target=%d step=%d", agent.uid, target.uid, state.step)
         ineffective = hit["retry"] > state.step
@@ -170,11 +174,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return self._defend(state, agent, garrison, contacts, local)
         if self._route.departing(state, agent):
             # Do not let distant survivors at the captured HQ pin the entire
-            # column. The garrison handles them; the main force fires only at
-            # close threats or contacts around its next objective.
+            # column. Armed vehicles can still engage locally seen vehicles
+            # covering the exit, rather than ignoring them beyond 25 metres.
             objective = self._route.objective(state)
             contacts = [enemy for enemy in contacts if
                         self._horizontal(agent.position, enemy.position) <= 2500
+                        or (agent.entity_type in self.VEHICLES and enemy.entity_type in self.VEHICLES
+                            and enemy.uid in local and self._horizontal(agent.position, enemy.position) <= 12000)
                         or (objective is not None and self._horizontal(enemy.position, objective.position) <= 18000)]
         if contacts and self._has_ammo(agent):
             return self._engage(state, agent, contacts, local)

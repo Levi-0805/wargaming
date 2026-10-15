@@ -12,25 +12,27 @@ def aircraft(uid=1, x=0, y=0, z=8000):
     return result
 
 
-def test_detected_ground_target_100m_away_can_start_strike_without_20m_gate():
+def test_one_detection_100m_away_does_not_authorize_self_destruct():
     uav = aircraft()
     enemy = entity(20, 1, 0, 10000)
     uav.raw["agentPerception"] = [20]
     result = UAVControl().choose(state([uav], [enemy]), uav, None)
-    assert result.command == "SelfDestruct" and result.points == (10000, 0, 0)
+    assert result.command == "NormalAttacking" and result.target_uid == 20
 
 
-def test_strike_is_not_cancelled_by_movement_next_frame_or_brief_loss_of_contact():
+def test_lost_local_contact_stops_strike_even_if_team_still_reports_target():
     uav = aircraft()
     enemy = entity(20, 1, 0, 1000)
     uav.raw["agentPerception"] = [20]
     rule = algorithm([uav])
-    first = rule.act(state([uav], [enemy]))[0]
+    for step in range(3):
+        first = rule.act(state([uav], [enemy], step=step))[0]
+    assert first.command == 'SelfDestruct'
     uav.raw["agentPerception"] = []
-    for step in range(1, 12):
-        result = rule.act(state([uav], step=step))[0]
-        assert result == first
-    assert rule.act(state([uav], step=12))[0].command != "SelfDestruct"
+    for step in range(3, 12):
+        result = rule.act(state([uav], [enemy], step=step))[0]
+        assert result.command != 'SelfDestruct'
+    assert not rule._uav._missions
 
 
 def test_second_aircraft_selects_another_cluster():
@@ -38,7 +40,9 @@ def test_second_aircraft_selects_another_cluster():
     enemies = [entity(20, 1, 0, 8000), entity(21, 1, 1, 8000, 4000)]
     for uav in uavs:
         uav.raw["agentPerception"] = [20, 21]
-    actions = algorithm(uavs).act(state(uavs, enemies))
+    rule = algorithm(uavs)
+    for step in range(3):
+        actions = rule.act(state(uavs, enemies, step=step))
     assert all(action.command == "SelfDestruct" for action in actions)
     assert actions[0].points != actions[1].points
 
@@ -49,7 +53,7 @@ def test_ground_target_has_priority_over_air_target():
     soldier = entity(21, 1, 1, 1000)
     uav.raw["agentPerception"] = [20, 21]
     action = UAVControl().choose(state([uav], [enemy_uav, soldier]), uav, None)
-    assert action.command == "SelfDestruct" and action.points == (1000, 0, 0)
+    assert action.command == "NormalAttacking" and action.target_uid == soldier.uid
 
 
 def test_shared_contact_guides_scout_but_does_not_authorize_strike():
@@ -64,9 +68,12 @@ def test_surviving_aircraft_reports_unconfirmed_strike_and_tries_normal_attack()
     enemy = entity(20, 1, 0, 1000)
     uav.raw["agentPerception"] = [20]
     control = UAVControl()
-    for step in range(12):
+    for step in range(2):
+        assert control.choose(state([uav], [enemy], step=step), uav, None).command != 'SelfDestruct'
+    for step in range(2, 10):
         assert control.choose(state([uav], [enemy], step=step), uav, None).command == "SelfDestruct"
-    assert control.choose(state([uav], [enemy], step=12), uav, None).command == "NormalAttacking"
+    assert control.choose(state([uav], [enemy], step=10), uav, None).command == "Guard"
+    assert control.choose(state([uav], [enemy], step=11), uav, None).command == "NormalAttacking"
 
 
 def test_disconnected_uav_cannot_start_strike():

@@ -173,7 +173,9 @@ def test_local_strike_preempts_pending_flight_reset():
     enemy = entity(20, 1, 0, 59000)
     uav.raw['agentPerception'] = [20]
     action = rule.act(state([uav], [enemy], objects, 9))[0]
-    assert action.command == 'SelfDestruct' and not rule._uav._navigation._pending
+    assert action.command == 'NormalAttacking' and not rule._uav._navigation._pending
+    rule.act(state([uav], [enemy], objects, 10))
+    assert rule.act(state([uav], [enemy], objects, 11))[0].command == 'SelfDestruct'
 
 
 def test_reverse_heading_request_never_replaces_road_with_repeated_side_arcs():

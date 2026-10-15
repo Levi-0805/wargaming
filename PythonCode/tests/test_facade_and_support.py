@@ -152,9 +152,10 @@ def test_aircraft_finishes_locked_strike_even_if_team_moves_to_next_objective():
     enemy = entity(20, 1, 0, -41000, 30000)
     uav.raw['agentPerception'] = [20]
     control = UAVControl()
-    first = control.choose(state([uav], [enemy], objects), uav, objects[0])
+    for step in range(3):
+        first = control.choose(state([uav], [enemy], objects, step), uav, objects[0])
     assert first.command == 'SelfDestruct'
-    assert control.choose(state([uav], [enemy], objects, 1), uav, objects[1]) == first
+    assert control.choose(state([uav], [enemy], objects, 3), uav, objects[1]) == first
 
 
 def readiness_case(stage=2):
