@@ -7,11 +7,11 @@ from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.UrbanContact import UrbanContact
 from test_fslutk_rule import algorithm, entity, guards_at, map_objectives, state
 
 
-def test_shared_contact_rotation_cannot_produce_endless_attack_requests():
+def test_legacy_shared_contact_rotation_cannot_produce_endless_attack_requests():
     soldier = entity(1, 0, 0, 0)
     soldier.raw.update(agentPerception=[], interaction=["250"])
     enemies = [entity(20, 1, 0, 4000), entity(21, 1, 1, 5000)]
-    rule = algorithm([soldier])
+    rule = algorithm([soldier], enable_shared_contact_maneuver=True)
     actions = []
     for step in range(24):
         enemies[0].hp, enemies[1].hp = ((100, 90) if step % 2 else (90, 100))
@@ -23,21 +23,21 @@ def test_shared_contact_rotation_cannot_produce_endless_attack_requests():
 @pytest.mark.parametrize("spent,damage,expected", [(True, True, "NormalAttacking"),
                                                   (True, False, "Moving"),
                                                   (False, True, "Moving")])
-def test_shared_trial_requires_ammunition_and_damage_feedback(spent, damage, expected):
+def test_legacy_shared_trial_requires_ammunition_and_damage_feedback(spent, damage, expected):
     soldier, enemy = entity(1, 0, 0, 0), entity(20, 1, 0, 4000)
     soldier.raw.update(agentPerception=[], interaction=["250"])
-    rule = algorithm([soldier])
+    rule = algorithm([soldier], enable_shared_contact_maneuver=True)
     assert rule.act(state([soldier], [enemy]))[0].command == "NormalAttacking"
     soldier.raw["interaction"] = ["249" if spent else "250"]
     enemy.hp = 90 if damage else 100
     assert rule.act(state([soldier], [enemy], step=1))[0].command == expected
 
 
-def test_local_detection_interrupts_a_shared_contact_maneuver():
+def test_local_detection_interrupts_opted_in_shared_contact_maneuver():
     soldier = entity(1, 0, 0, 0)
     soldier.raw.update(agentPerception=[], interaction=["250"])
     shared, local = entity(20, 1, 0, 4000), entity(21, 1, 1, 3000)
-    rule = algorithm([soldier])
+    rule = algorithm([soldier], enable_shared_contact_maneuver=True)
     rule.act(state([soldier], [shared]))
     assert rule.act(state([soldier], [shared], step=1))[0].command == "Moving"
     soldier.raw["agentPerception"] = [local.uid]
@@ -175,10 +175,10 @@ def test_owner_label_does_not_override_partial_capture_or_missing_occupants(occu
     assert route.stage == 0
 
 
-def test_episode_reset_removes_shared_trial_cooldown_and_maneuver():
+def test_episode_reset_removes_opted_in_shared_trial_cooldown_and_maneuver():
     soldier, enemy = entity(1, 0, 0, 0), entity(20, 1, 0, 4000)
     soldier.raw["agentPerception"] = []
-    rule = algorithm([soldier])
+    rule = algorithm([soldier], enable_shared_contact_maneuver=True)
     rule.act(state([soldier], [enemy]))
     rule.act(state([soldier], [enemy], step=1))
     assert rule.act(state([soldier], [enemy], episode=2))[0].command == "NormalAttacking"

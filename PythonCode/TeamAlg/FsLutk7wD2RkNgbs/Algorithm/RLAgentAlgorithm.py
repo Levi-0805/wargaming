@@ -21,6 +21,16 @@ class AlgorithmConfig:
     target_update: int = 500
     load_model: bool = False
     enable_parent_assignment: bool = True
+    # Retired ground interventions. Enable one at a time only for comparisons.
+    enable_preservation_pause: bool = False
+    enable_shared_contact_maneuver: bool = False
+    enable_forced_entry_under_contact: bool = False
+
+    def __post_init__(self):
+        for name in ('enable_preservation_pause', 'enable_shared_contact_maneuver',
+                     'enable_forced_entry_under_contact'):
+            if type(getattr(self, name)) is not bool:
+                raise ValueError(f"{name} must be a JSON boolean")
 
     @classmethod
     def from_context(cls, context: AlgorithmContext) -> "AlgorithmConfig":
@@ -38,7 +48,10 @@ class ReinforceAgentAlgorithm:
         config = AlgorithmConfig.from_context(context)
         if config.mode == "rule":
             from .RuleAgentAlgorithm import ReinforceAgentAlgorithm as RuleAgent
-            return RuleAgent(context, config.enable_parent_assignment)
+            return RuleAgent(context, config.enable_parent_assignment,
+                             enable_preservation_pause=config.enable_preservation_pause,
+                             enable_shared_contact_maneuver=config.enable_shared_contact_maneuver,
+                             enable_forced_entry_under_contact=config.enable_forced_entry_under_contact)
         if config.mode == "reinforcement_learning":
             from .DQN import DQNAgentAlgorithm
 

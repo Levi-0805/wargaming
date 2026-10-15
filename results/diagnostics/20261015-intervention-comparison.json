@@ -1,0 +1,457 @@
+{
+  "scope": "Decision replay on fixed recorded public observations. No UE physics, new match, score or survival prediction.",
+  "variants": {
+    "legacy": {
+      "enable_preservation_pause": true,
+      "enable_shared_contact_maneuver": true,
+      "enable_forced_entry_under_contact": true
+    },
+    "without_preservation_pause": {
+      "enable_preservation_pause": false,
+      "enable_shared_contact_maneuver": true,
+      "enable_forced_entry_under_contact": true
+    },
+    "without_shared_contact_maneuver": {
+      "enable_preservation_pause": true,
+      "enable_shared_contact_maneuver": false,
+      "enable_forced_entry_under_contact": true
+    },
+    "without_forced_entry_under_contact": {
+      "enable_preservation_pause": true,
+      "enable_shared_contact_maneuver": true,
+      "enable_forced_entry_under_contact": false
+    },
+    "default": {
+      "enable_preservation_pause": false,
+      "enable_shared_contact_maneuver": false,
+      "enable_forced_entry_under_contact": false
+    }
+  },
+  "runs": [
+    {
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261015_200211\\protocol.jsonl",
+      "bytes_read": 251696946,
+      "snapshot_sha256": "a2fea5d9774ac52a23b8311430381db8440add33c3b7f575e217b52f0952eb37",
+      "baseline_validation": {
+        "legacy_matches_recorded": 87600
+      },
+      "mismatch_examples": [],
+      "rounds": [
+        {
+          "episode": 1,
+          "frames": 176,
+          "last_step": 174,
+          "variants": {
+            "legacy": {
+              "serialized_actions": 8800,
+              "ground_Moving": 5161,
+              "changed_commands_from_legacy": 0,
+              "ground_Guard": 685,
+              "shared_only_engagement_actions": 1855,
+              "ground_NormalAttacking": 311,
+              "shared_attack_requests": 261,
+              "local_attack_requests": 50,
+              "entrance_actions": 175,
+              "entrance_over_local_ground_contact": 28,
+              "ground_Idle": 5,
+              "preservation_actions": 79
+            },
+            "without_preservation_pause": {
+              "serialized_actions": 8800,
+              "ground_Moving": 5252,
+              "changed_commands_from_legacy": 188,
+              "ground_Guard": 587,
+              "shared_only_engagement_actions": 1910,
+              "ground_NormalAttacking": 318,
+              "shared_attack_requests": 268,
+              "local_attack_requests": 50,
+              "entrance_actions": 199,
+              "entrance_over_local_ground_contact": 28,
+              "ground_Idle": 5
+            },
+            "without_shared_contact_maneuver": {
+              "serialized_actions": 8800,
+              "ground_Moving": 5467,
+              "changed_commands_from_legacy": 1812,
+              "ground_Guard": 640,
+              "ground_NormalAttacking": 50,
+              "local_attack_requests": 50,
+              "entrance_actions": 176,
+              "entrance_over_local_ground_contact": 28,
+              "ground_Idle": 5,
+              "preservation_actions": 79
+            },
+            "without_forced_entry_under_contact": {
+              "serialized_actions": 8800,
+              "ground_Moving": 5145,
+              "changed_commands_from_legacy": 64,
+              "ground_Guard": 680,
+              "shared_only_engagement_actions": 1834,
+              "ground_NormalAttacking": 332,
+              "shared_attack_requests": 259,
+              "local_attack_requests": 73,
+              "entrance_actions": 167,
+              "ground_Idle": 5,
+              "preservation_actions": 79
+            },
+            "default": {
+              "serialized_actions": 8800,
+              "ground_Moving": 5501,
+              "changed_commands_from_legacy": 1922,
+              "ground_Guard": 583,
+              "ground_NormalAttacking": 73,
+              "local_attack_requests": 73,
+              "entrance_actions": 192,
+              "ground_Idle": 5
+            }
+          },
+          "recorded_score_packets_red_then_blue": [
+            {
+              "kill_score": 1640,
+              "capture_score": 0,
+              "total": 1640
+            },
+            {
+              "kill_score": 3170,
+              "capture_score": 3200,
+              "total": 6370
+            }
+          ]
+        },
+        {
+          "episode": 2,
+          "frames": 271,
+          "last_step": 269,
+          "variants": {
+            "legacy": {
+              "serialized_actions": 13550,
+              "ground_Moving": 5872,
+              "changed_commands_from_legacy": 0,
+              "ground_Guard": 667,
+              "shared_only_engagement_actions": 2027,
+              "ground_NormalAttacking": 348,
+              "shared_attack_requests": 277,
+              "local_attack_requests": 71,
+              "entrance_actions": 696,
+              "ground_Idle": 22,
+              "entrance_over_local_ground_contact": 32,
+              "preservation_actions": 6
+            },
+            "without_preservation_pause": {
+              "serialized_actions": 13550,
+              "ground_Moving": 5877,
+              "changed_commands_from_legacy": 6,
+              "ground_Guard": 661,
+              "shared_only_engagement_actions": 2033,
+              "ground_NormalAttacking": 349,
+              "shared_attack_requests": 278,
+              "local_attack_requests": 71,
+              "entrance_actions": 696,
+              "ground_Idle": 22,
+              "entrance_over_local_ground_contact": 32
+            },
+            "without_shared_contact_maneuver": {
+              "serialized_actions": 13550,
+              "ground_Moving": 6126,
+              "changed_commands_from_legacy": 2020,
+              "ground_Guard": 690,
+              "ground_NormalAttacking": 71,
+              "local_attack_requests": 71,
+              "entrance_actions": 696,
+              "ground_Idle": 22,
+              "entrance_over_local_ground_contact": 32,
+              "preservation_actions": 6
+            },
+            "without_forced_entry_under_contact": {
+              "serialized_actions": 13550,
+              "ground_Moving": 5851,
+              "changed_commands_from_legacy": 50,
+              "ground_Guard": 667,
+              "shared_only_engagement_actions": 2027,
+              "ground_NormalAttacking": 369,
+              "shared_attack_requests": 277,
+              "local_attack_requests": 92,
+              "entrance_actions": 664,
+              "ground_Idle": 22,
+              "preservation_actions": 6
+            },
+            "default": {
+              "serialized_actions": 13550,
+              "ground_Moving": 6109,
+              "changed_commands_from_legacy": 2075,
+              "ground_Guard": 686,
+              "ground_NormalAttacking": 92,
+              "local_attack_requests": 92,
+              "entrance_actions": 664,
+              "ground_Idle": 22
+            }
+          },
+          "recorded_score_packets_red_then_blue": [
+            {
+              "kill_score": 1210,
+              "capture_score": 0,
+              "total": 1210
+            },
+            {
+              "kill_score": 3170,
+              "capture_score": 3200,
+              "total": 6370
+            }
+          ]
+        },
+        {
+          "episode": 3,
+          "frames": 501,
+          "last_step": 499,
+          "variants": {
+            "legacy": {
+              "serialized_actions": 25050,
+              "ground_Moving": 5842,
+              "changed_commands_from_legacy": 0,
+              "ground_Guard": 624,
+              "shared_only_engagement_actions": 2105,
+              "ground_NormalAttacking": 361,
+              "shared_attack_requests": 292,
+              "local_attack_requests": 69,
+              "entrance_actions": 269,
+              "entrance_over_local_ground_contact": 14,
+              "ground_Idle": 8
+            },
+            "without_preservation_pause": {
+              "serialized_actions": 25050,
+              "ground_Moving": 5842,
+              "changed_commands_from_legacy": 0,
+              "ground_Guard": 624,
+              "shared_only_engagement_actions": 2105,
+              "ground_NormalAttacking": 361,
+              "shared_attack_requests": 292,
+              "local_attack_requests": 69,
+              "entrance_actions": 269,
+              "entrance_over_local_ground_contact": 14,
+              "ground_Idle": 8
+            },
+            "without_shared_contact_maneuver": {
+              "serialized_actions": 25050,
+              "ground_Moving": 6094,
+              "changed_commands_from_legacy": 2068,
+              "ground_Guard": 661,
+              "ground_NormalAttacking": 72,
+              "local_attack_requests": 72,
+              "entrance_actions": 269,
+              "entrance_over_local_ground_contact": 14,
+              "ground_Idle": 8
+            },
+            "without_forced_entry_under_contact": {
+              "serialized_actions": 25050,
+              "ground_Moving": 5830,
+              "changed_commands_from_legacy": 14,
+              "ground_Guard": 624,
+              "shared_only_engagement_actions": 2105,
+              "ground_NormalAttacking": 373,
+              "shared_attack_requests": 292,
+              "local_attack_requests": 81,
+              "entrance_actions": 255,
+              "ground_Idle": 8
+            },
+            "default": {
+              "serialized_actions": 25050,
+              "ground_Moving": 6081,
+              "changed_commands_from_legacy": 2082,
+              "ground_Guard": 662,
+              "ground_NormalAttacking": 84,
+              "local_attack_requests": 84,
+              "entrance_actions": 255,
+              "ground_Idle": 8
+            }
+          },
+          "recorded_score_packets_red_then_blue": [
+            {
+              "kill_score": 870,
+              "capture_score": 0,
+              "total": 870
+            },
+            {
+              "kill_score": 3120,
+              "capture_score": 3200,
+              "total": 6320
+            }
+          ]
+        },
+        {
+          "episode": 4,
+          "frames": 308,
+          "last_step": 306,
+          "variants": {
+            "legacy": {
+              "serialized_actions": 15400,
+              "ground_Moving": 5690,
+              "changed_commands_from_legacy": 0,
+              "ground_Guard": 600,
+              "shared_only_engagement_actions": 1842,
+              "ground_NormalAttacking": 329,
+              "local_attack_requests": 71,
+              "shared_attack_requests": 258,
+              "entrance_actions": 520,
+              "entrance_over_local_ground_contact": 24,
+              "ground_Idle": 13
+            },
+            "without_preservation_pause": {
+              "serialized_actions": 15400,
+              "ground_Moving": 5690,
+              "changed_commands_from_legacy": 0,
+              "ground_Guard": 600,
+              "shared_only_engagement_actions": 1842,
+              "ground_NormalAttacking": 329,
+              "local_attack_requests": 71,
+              "shared_attack_requests": 258,
+              "entrance_actions": 520,
+              "entrance_over_local_ground_contact": 24,
+              "ground_Idle": 13
+            },
+            "without_shared_contact_maneuver": {
+              "serialized_actions": 15400,
+              "ground_Moving": 5879,
+              "changed_commands_from_legacy": 1791,
+              "ground_Guard": 668,
+              "ground_NormalAttacking": 72,
+              "local_attack_requests": 72,
+              "entrance_actions": 520,
+              "entrance_over_local_ground_contact": 24,
+              "ground_Idle": 13
+            },
+            "without_forced_entry_under_contact": {
+              "serialized_actions": 15400,
+              "ground_Moving": 5676,
+              "changed_commands_from_legacy": 122,
+              "ground_Guard": 598,
+              "shared_only_engagement_actions": 1843,
+              "ground_NormalAttacking": 345,
+              "local_attack_requests": 86,
+              "shared_attack_requests": 259,
+              "entrance_actions": 503,
+              "ground_Idle": 13
+            },
+            "default": {
+              "serialized_actions": 15400,
+              "ground_Moving": 5865,
+              "changed_commands_from_legacy": 1894,
+              "ground_Guard": 667,
+              "ground_NormalAttacking": 87,
+              "local_attack_requests": 87,
+              "entrance_actions": 503,
+              "ground_Idle": 13
+            }
+          },
+          "recorded_score_packets_red_then_blue": [
+            {
+              "kill_score": 1190,
+              "capture_score": 0,
+              "total": 1190
+            },
+            {
+              "kill_score": 3170,
+              "capture_score": 3200,
+              "total": 6370
+            }
+          ]
+        },
+        {
+          "episode": 5,
+          "frames": 501,
+          "last_step": 499,
+          "variants": {
+            "legacy": {
+              "serialized_actions": 25050,
+              "ground_Moving": 6413,
+              "changed_commands_from_legacy": 0,
+              "ground_Guard": 726,
+              "ground_NormalAttacking": 590,
+              "local_attack_requests": 266,
+              "shared_only_engagement_actions": 2354,
+              "shared_attack_requests": 324,
+              "entrance_actions": 646,
+              "entrance_over_local_ground_contact": 22,
+              "ground_Idle": 18,
+              "preservation_actions": 24
+            },
+            "without_preservation_pause": {
+              "serialized_actions": 25050,
+              "ground_Moving": 6438,
+              "changed_commands_from_legacy": 72,
+              "ground_Guard": 699,
+              "ground_NormalAttacking": 592,
+              "local_attack_requests": 266,
+              "shared_only_engagement_actions": 2378,
+              "shared_attack_requests": 326,
+              "entrance_actions": 646,
+              "entrance_over_local_ground_contact": 22,
+              "ground_Idle": 18
+            },
+            "without_shared_contact_maneuver": {
+              "serialized_actions": 25050,
+              "ground_Moving": 6825,
+              "changed_commands_from_legacy": 2391,
+              "ground_Guard": 637,
+              "ground_NormalAttacking": 267,
+              "local_attack_requests": 267,
+              "entrance_actions": 646,
+              "entrance_over_local_ground_contact": 22,
+              "ground_Idle": 18,
+              "preservation_actions": 24
+            },
+            "without_forced_entry_under_contact": {
+              "serialized_actions": 25050,
+              "ground_Moving": 6391,
+              "changed_commands_from_legacy": 24,
+              "ground_Guard": 726,
+              "ground_NormalAttacking": 612,
+              "local_attack_requests": 287,
+              "shared_only_engagement_actions": 2356,
+              "shared_attack_requests": 325,
+              "entrance_actions": 622,
+              "ground_Idle": 18,
+              "preservation_actions": 24
+            },
+            "default": {
+              "serialized_actions": 25050,
+              "ground_Moving": 6824,
+              "changed_commands_from_legacy": 2439,
+              "ground_Guard": 617,
+              "ground_NormalAttacking": 288,
+              "local_attack_requests": 288,
+              "entrance_actions": 622,
+              "ground_Idle": 18
+            }
+          },
+          "recorded_score_packets_red_then_blue": [
+            {
+              "kill_score": 930,
+              "capture_score": 0,
+              "total": 930
+            },
+            {
+              "kill_score": 3120,
+              "capture_score": 3200,
+              "total": 6320
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "source_hashes": {
+    "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "AssaultRoute.py": "0eaa4340c0b8c1880ab41520087aaf2ebecaeefba57d1d0630ed7b590796c2de",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "FlightNavigation.py": "c9ab2a634020bf8be0bd29106af1773672b8b2f4f179a8f741c8fb88ab86b55d",
+    "HQEntry.py": "4d3965d80f9e437e5744c52274d972d9a3e26c65ab6ba1ade095af294cd954c7",
+    "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "RLAgentAlgorithm.py": "8c15800af3c5512eef5920407ce6bcaafaefae6d3471d0ef13460ec2d661c86f",
+    "RuleAgentAlgorithm.py": "9bc6141dcffa21328c75cb041adb4ce5f3b561275b382897b78b3391c238e2e3",
+    "UAVControl.py": "d385b5a9d2bbfcbc94cb60d649276d851d0e66f42946fc219fd068a413d8acc5",
+    "UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  }
+}

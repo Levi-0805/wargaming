@@ -30,9 +30,9 @@ def state(agents, enemies=(), objectives=(), step=0, episode=1):
                      tuple(enemies), {}, episode, step, False, key_objects=tuple(objectives))
 
 
-def algorithm(agents):
+def algorithm(agents, **options):
     return RedRule(AlgorithmContext(0, tuple(agents), (), ActionSetFactory.standard(), "cpu", {}),
-                   enable_parent_assignment=False)
+                   enable_parent_assignment=False, **options)
 
 
 def map_objectives():
@@ -52,11 +52,11 @@ def test_local_contact_at_95_m_is_attacked_despite_generic_10_m_metadata():
     assert action.command == "NormalAttacking" and action.target_uid == 20
 
 
-def test_nearby_shared_contact_gets_an_attack_request_without_fabricating_local_sight():
+def test_legacy_shared_contact_probe_requires_explicit_opt_in():
     soldier = entity(10, 0, 0, 0)
     soldier.raw["agentPerception"] = []
     enemy = entity(20, 1, 0, 4000)
-    action = algorithm([soldier]).act(state([soldier], [enemy]))[0]
+    action = algorithm([soldier], enable_shared_contact_maneuver=True).act(state([soldier], [enemy]))[0]
     assert action.command == "NormalAttacking" and action.target_uid == 20
     assert soldier.raw["agentPerception"] == []
 

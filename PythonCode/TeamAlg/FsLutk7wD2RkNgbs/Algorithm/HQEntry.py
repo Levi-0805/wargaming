@@ -85,7 +85,7 @@ class HQEntry:
         self._leg_watch[agent.uid] = watch
         return watch[2] >= self.WAYPOINT_TRIALS
 
-    def choose(self, state, agent, route, urban, contacts):
+    def choose(self, state, agent, route, urban, contacts, *, allow_contact_override=False):
         frame = (state.episode, state.step)
         if self._frame is None or frame[0] != self._frame[0] or frame[1] < self._frame[1]:
             self._watch.clear()
@@ -107,6 +107,15 @@ class HQEntry:
             self._watch.pop(agent.uid, None)
             self._routes.pop(agent.uid, None)
             self._leg_watch.pop(agent.uid, None)
+            return None
+        # Navigation recovery must not suppress an armed unit's local contact
+        # on nine out of twelve frames. Keep the cursor for when contact ends;
+        # ordinary ineffective-fire recovery still handles a blocked shot.
+        local = {enemy.uid for enemy in state.perceived_opponents(agent) if enemy.alive}
+        ammo = urban.ammo(agent)
+        if (not allow_contact_override and (ammo is None or ammo > 0)
+                and any(enemy.alive and enemy.uid in local and enemy.entity_type in UrbanContact.GROUND
+                        for enemy in contacts)):
             return None
         if agent.uid in self._exhausted:
             return None  # Both recorded approaches failed; allow public-contact navigation.
@@ -134,8 +143,6 @@ class HQEntry:
                         agent.uid, state.step, cursor)
         # A fresh local contact gets a bounded firing trial, rather than every
         # shared report cancelling the entrance route again.
-        local = {enemy.uid for enemy in state.perceived_opponents(agent)}
-        ammo = urban.ammo(agent)
         if ground and (ammo is None or ammo > 0) and any(e.uid in local for e in ground):
             trial = self._trials.get(agent.uid, -100)
             if state.step - trial >= 12:

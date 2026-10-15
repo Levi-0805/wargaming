@@ -21,9 +21,9 @@ logger = logging.getLogger(__name__)
 class ReinforceAgentAlgorithm(RuleAlgorithm):
     """All units use the lower approach, fight contacts, then capture HQ, B, A.
 
-    A bounded opening rendezvous reduces staggered arrivals. Public team
-    contacts within the engagement radius also authorize attack requests; the
-    generic fireRange=1000 metadata is not an extra 9.5m firing gate.
+    A bounded opening rendezvous reduces staggered arrivals. Ground engagement
+    uses local contacts; shared reports alone cannot interrupt objective travel.
+    Retired interventions can be enabled separately for controlled comparisons.
     """
 
     _SOLDIER = "BP_BaseSoldier_C"
@@ -38,9 +38,17 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     VEHICLE_NO_DAMAGE_STEPS = 2
     VEHICLES = {"BP_MNWS_Vehicle_Armored_C", "BP_MNWS_Vehicle_6x6UGV_C"}
 
-    def __init__(self, context, enable_parent_assignment: bool = True):
+    def __init__(self, context, enable_parent_assignment: bool = True, *,
+                 enable_preservation_pause: bool = False,
+                 enable_shared_contact_maneuver: bool = False,
+                 enable_forced_entry_under_contact: bool = False):
         super().__init__(context)
         self.enable_parent_assignment = bool(enable_parent_assignment)
+        self.enable_preservation_pause = enable_preservation_pause
+        self.enable_shared_contact_maneuver = enable_shared_contact_maneuver
+        self.enable_forced_entry_under_contact = enable_forced_entry_under_contact
+        logger.info("Ground rule comparison switches: preservation_pause=%s shared_contact_maneuver=%s forced_entry_under_contact=%s",
+                    enable_preservation_pause, enable_shared_contact_maneuver, enable_forced_entry_under_contact)
         self._command_links = CommandLinks()
         self._motion_recovery = MotionRecovery()
         self._route = AssaultRoute()
@@ -71,7 +79,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._urban.begin(state)
         self._route.update(state)
         self._cohesion.begin(state, self._route)
-        self._readiness.begin(state, self._route)
+        if self.enable_preservation_pause:
+            self._readiness.begin(state, self._route)
         self._support = {}
         for unit in state.agents:
             if unit.alive:
@@ -164,15 +173,18 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return assembly
         local = {enemy.uid for enemy in state.perceived_opponents(agent)}
         contacts = [enemy for enemy in state.visible_opponents if enemy.alive and (
-            enemy.uid in local or self._horizontal(agent.position, enemy.position) <= self.SHARED_ENGAGEMENT_CM)]
+            enemy.uid in local or (self.enable_shared_contact_maneuver
+                                  and self._horizontal(agent.position, enemy.position) <= self.SHARED_ENGAGEMENT_CM))]
         if agent.entity_type in self.VEHICLES:
             # Recorded cannon bursts spent 15-19 rounds per step against air
             # targets without further damage. Preserve vehicle fire for ground.
             contacts = [enemy for enemy in contacts if enemy.entity_type not in {self._UAV, self._HELI}]
-        preserve = self._readiness.choose(state, agent, self._route, self._urban, contacts)
-        if preserve is not None:
-            return preserve
-        entry = self._hq_entry.choose(state, agent, self._route, self._urban, contacts)
+        if self.enable_preservation_pause:
+            preserve = self._readiness.choose(state, agent, self._route, self._urban, contacts)
+            if preserve is not None:
+                return preserve
+        entry = self._hq_entry.choose(state, agent, self._route, self._urban, contacts,
+                                     allow_contact_override=self.enable_forced_entry_under_contact)
         if entry is not None:
             return entry
         garrison = self._route.garrison_for(state, agent)
@@ -201,8 +213,9 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             # Clear the courtyard/building approaches using reached friendly
             # positions rather than pursuing an unseen occupant's coordinates.
             return self._urban.search_point(state, agent, objective, self._route)
-        # Shared contacts guide movement without fabricating local visibility.
-        if self._has_ammo(agent) and point is not None and visible and (objective is None or (
+        # Retired shortcut: a reported enemy behind a wall used to replace the
+        # navigable objective route even when this unit could not see it.
+        if self.enable_shared_contact_maneuver and self._has_ammo(agent) and point is not None and visible and (objective is None or (
             self._horizontal(agent.position, objective.position) <= 18000
             and self._horizontal(agent.position, point) <= 2000
         )):
