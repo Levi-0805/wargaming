@@ -1,0 +1,544 @@
+{
+  "source": "20261015_135458 runtime.log snapshot: first round only",
+  "baseline_commit": "a8cc0a64423a5ebaadaec20e03ec4661f712c704",
+  "scope": "Recorded red public states, serialization and guard-bound checks. Not a physics simulation or new result.",
+  "counts": {
+    "frames": 501,
+    "serialized_actions": 25050
+  },
+  "vehicle_samples": {
+    "461": [
+      {
+        "step": 110,
+        "entry_cursor": 2,
+        "alternate": false,
+        "entry_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 130,
+        "entry_cursor": 2,
+        "alternate": false,
+        "entry_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 150,
+        "entry_cursor": 1,
+        "alternate": true,
+        "entry_goal": [
+          -34453.0,
+          28503.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -34453.0,
+          28503.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 180,
+        "entry_cursor": 2,
+        "alternate": true,
+        "entry_goal": [
+          -33414.0,
+          26265.0,
+          6318.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -33414.0,
+          26265.0,
+          6318.0
+        ]
+      },
+      {
+        "step": 250,
+        "entry_cursor": 7,
+        "alternate": true,
+        "entry_goal": [
+          -37380.0,
+          26335.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37380.0,
+          26335.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 499,
+        "entry_cursor": null,
+        "alternate": true,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -35556.83984375,
+          30939.529296875,
+          6335.34423828125
+        ]
+      }
+    ],
+    "466": [
+      {
+        "step": 110,
+        "entry_cursor": 0,
+        "alternate": false,
+        "entry_goal": [
+          -34863.0,
+          29503.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -34863.0,
+          29503.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 130,
+        "entry_cursor": 2,
+        "alternate": false,
+        "entry_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 150,
+        "entry_cursor": 2,
+        "alternate": true,
+        "entry_goal": [
+          -33414.0,
+          26265.0,
+          6318.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -33414.0,
+          26265.0,
+          6318.0
+        ]
+      },
+      {
+        "step": 180,
+        "entry_cursor": 3,
+        "alternate": true,
+        "entry_goal": [
+          -33189.0,
+          25821.0,
+          6318.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -33189.0,
+          25821.0,
+          6318.0
+        ]
+      },
+      {
+        "step": 250,
+        "entry_cursor": 7,
+        "alternate": true,
+        "entry_goal": [
+          -37380.0,
+          26335.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37380.0,
+          26335.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 499,
+        "entry_cursor": null,
+        "alternate": true,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -36940.078125,
+          30286.08984375,
+          6335.34423828125
+        ]
+      }
+    ],
+    "481": [
+      {
+        "step": 110,
+        "entry_cursor": null,
+        "alternate": false,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -29782.0,
+          25170.0,
+          6426.0
+        ]
+      },
+      {
+        "step": 130,
+        "entry_cursor": null,
+        "alternate": false,
+        "entry_goal": null,
+        "final_command": "NormalAttacking",
+        "final_goal": null
+      },
+      {
+        "step": 150,
+        "entry_cursor": 3,
+        "alternate": false,
+        "entry_goal": [
+          -36812.0,
+          33264.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -36812.0,
+          33264.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 180,
+        "entry_cursor": 1,
+        "alternate": true,
+        "entry_goal": [
+          -34453.0,
+          28503.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -34453.0,
+          28503.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 250,
+        "entry_cursor": 4,
+        "alternate": true,
+        "entry_goal": [
+          -34275.0,
+          25953.0,
+          6320.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37726.621455753324,
+          27297.427504050494,
+          6335.34423828125
+        ]
+      },
+      {
+        "step": 499,
+        "entry_cursor": null,
+        "alternate": true,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -34423.42476621397,
+          28225.919460045792,
+          6335.34423828125
+        ]
+      }
+    ],
+    "486": [
+      {
+        "step": 110,
+        "entry_cursor": null,
+        "alternate": false,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -10427.603833388075,
+          32332.470372599215,
+          6335.34423828125
+        ]
+      },
+      {
+        "step": 130,
+        "entry_cursor": null,
+        "alternate": false,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -17959.0,
+          27728.0,
+          6425.0
+        ]
+      },
+      {
+        "step": 150,
+        "entry_cursor": null,
+        "alternate": false,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -30847.744421915202,
+          25412.072026226295,
+          6335.34423828125
+        ]
+      },
+      {
+        "step": 180,
+        "entry_cursor": 2,
+        "alternate": false,
+        "entry_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 250,
+        "entry_cursor": 4,
+        "alternate": true,
+        "entry_goal": [
+          -34275.0,
+          25953.0,
+          6320.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -34275.0,
+          25953.0,
+          6320.0
+        ]
+      },
+      {
+        "step": 499,
+        "entry_cursor": null,
+        "alternate": true,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -34989.9939826633,
+          32033.819176727644,
+          6335.34423828125
+        ]
+      }
+    ],
+    "491": [
+      {
+        "step": 110,
+        "entry_cursor": 2,
+        "alternate": false,
+        "entry_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37043.0,
+          31469.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 130,
+        "entry_cursor": 1,
+        "alternate": true,
+        "entry_goal": [
+          -34453.0,
+          28503.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -32384.969000204932,
+          29817.712509017892,
+          6335.34423828125
+        ]
+      },
+      {
+        "step": 150,
+        "entry_cursor": 2,
+        "alternate": true,
+        "entry_goal": [
+          -33414.0,
+          26265.0,
+          6318.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -33414.0,
+          26265.0,
+          6318.0
+        ]
+      },
+      {
+        "step": 180,
+        "entry_cursor": 3,
+        "alternate": true,
+        "entry_goal": [
+          -33189.0,
+          25821.0,
+          6318.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -33189.0,
+          25821.0,
+          6318.0
+        ]
+      },
+      {
+        "step": 250,
+        "entry_cursor": 7,
+        "alternate": true,
+        "entry_goal": [
+          -37380.0,
+          26335.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -32484.545426727444,
+          29731.854638740457,
+          6335.34423828125
+        ]
+      },
+      {
+        "step": 499,
+        "entry_cursor": null,
+        "alternate": true,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -35261.7024367986,
+          32518.050571189673,
+          6335.34423828125
+        ]
+      }
+    ],
+    "496": [
+      {
+        "step": 110,
+        "entry_cursor": 2,
+        "alternate": false,
+        "entry_goal": null,
+        "final_command": "NormalAttacking",
+        "final_goal": null
+      },
+      {
+        "step": 130,
+        "entry_cursor": 1,
+        "alternate": true,
+        "entry_goal": [
+          -34453.0,
+          28503.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -34453.0,
+          28503.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 150,
+        "entry_cursor": 2,
+        "alternate": true,
+        "entry_goal": [
+          -33414.0,
+          26265.0,
+          6318.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -33641.340201087834,
+          27502.300425331192,
+          6335.34423828125
+        ]
+      },
+      {
+        "step": 180,
+        "entry_cursor": 4,
+        "alternate": true,
+        "entry_goal": [
+          -34275.0,
+          25953.0,
+          6320.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -34275.0,
+          25953.0,
+          6320.0
+        ]
+      },
+      {
+        "step": 250,
+        "entry_cursor": 8,
+        "alternate": true,
+        "entry_goal": [
+          -37575.0,
+          28171.0,
+          6335.0
+        ],
+        "final_command": "Moving",
+        "final_goal": [
+          -37575.0,
+          28171.0,
+          6335.0
+        ]
+      },
+      {
+        "step": 499,
+        "entry_cursor": null,
+        "alternate": true,
+        "entry_goal": null,
+        "final_command": "Moving",
+        "final_goal": [
+          -36290.5390625,
+          29355.44921875,
+          6335.34423828125
+        ]
+      }
+    ]
+  },
+  "source_sha256": "c3b0d86f31aa2f05bf853414d5cdf024d1ce6458173132a4bd207c225845e9cd"
+}

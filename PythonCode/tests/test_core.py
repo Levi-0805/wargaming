@@ -1249,9 +1249,13 @@ def test_dqn_epsilon_advances_once_per_environment_decision():
         hidden_size=16,
         batch_size=128,
     )
+    mask = np.ones((len(agents), algorithm.context.action_set.n), dtype=bool)
+    # Neither agent has a local target. Random exploration must not sample
+    # a nonexistent attack slot before we can check the decision counter.
+    mask[:, algorithm.context.action_set.fixed_count:] = False
     state = TeamState(
         team=0,
-        action_mask=np.ones((2, 46), dtype=bool),
+        action_mask=mask,
         agents=agents,
         visible_opponents=(opponent,),
         raw={}, episode=1, step=0, training=True,
