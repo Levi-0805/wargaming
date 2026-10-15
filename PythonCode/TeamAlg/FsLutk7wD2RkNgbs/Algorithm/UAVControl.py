@@ -23,6 +23,8 @@ class UAVControl:
     CLUSTER_RADIUS = 1200.0
     FRIENDLY_CLEARANCE = 2000.0
     MAX_LAUNCH_WAIT = 50
+    STATION_ADVANCE = 8000.0
+    TARGET_DWELL = 8
     VALUES = {"BP_BaseSoldier_C": 100, "BP_RoboDog_C": 20,
               "BP_MNWS_Vehicle_Armored_C": 90, "BP_MNWS_Vehicle_6x6UGV_C": 50,
               "BP_Base_UAV_C": 10, "BP_Helicopter_C": 50}
@@ -42,6 +44,10 @@ class UAVControl:
         self._launched = set()
         self._launch_start = 0
         self._fire_watch = {}
+        self._stations = {}
+        self._focus = {}
+        self._body_frame = None
+        self._body = []
 
     def _begin(self, state):
         if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
@@ -60,6 +66,10 @@ class UAVControl:
             self._launched.clear()
             self._launch_start = max(state.step, 0)
             self._fire_watch.clear()
+            self._stations.clear()
+            self._focus.clear()
+            self._body_frame = None
+            self._body = []
         self._frame = (state.episode, state.step)
         alive = {agent.uid for agent in state.agents if agent.alive}
         self._missions = {uid: mission for uid, mission in self._missions.items() if uid in alive}
@@ -72,7 +82,13 @@ class UAVControl:
                      and all(enemy.uid != mission[0] and math.dist(tuple(enemy.position), mission[1]) > self.CLUSTER_RADIUS
                              for mission in reserved)]
         if not available:
+            self._focus.pop(agent.uid, None)
             return None
+        focus = self._focus.get(agent.uid)
+        if focus and state.step - focus[1] < self.TARGET_DWELL:
+            retained = next((enemy for enemy in available if enemy.uid == focus[0]), None)
+            if retained is not None:
+                return retained
 
         def score(enemy):
             # Prefer ground clusters and reduce overlap with our own troops.
@@ -83,7 +99,70 @@ class UAVControl:
             ground = enemy.entity_type not in {"BP_Base_UAV_C", "BP_Helicopter_C"}
             return (ground, worth - 100 * friendly,
                     -AssaultRoute.distance(agent.position, enemy.position), -enemy.uid)
-        return max(available, key=score)
+        target = max(available, key=score)
+        self._focus[agent.uid] = (target.uid, state.step)
+        return target
+
+    def _support_body(self, state, objective, route):
+        key = (state.episode, state.step, objective.uid if objective else None)
+        if self._body_frame != key:
+            self._body_frame = key
+            self._body = [unit for unit in state.agents if unit.alive
+                          and unit.entity_type == 'BP_BaseSoldier_C'
+                          and unit.communication_ok() is not False
+                          and (route is None or unit.uid not in route._garrison)]
+            if objective is not None:
+                self._body.sort(key=lambda unit: (AssaultRoute.distance(unit.position, objective.position), unit.uid))
+        return self._body
+
+    @staticmethod
+    def _escort_enabled(state, objective):
+        return objective is not None and any(u.entity_type == 'BP_BaseSoldier_C' for u in state.agents)
+
+    def _strike_supported(self, state, target, objective, route):
+        if not self._escort_enabled(state, objective):
+            return True
+        body = self._support_body(state, objective, route)
+        initial = sum(u.entity_type == 'BP_BaseSoldier_C' for u in state.agents)
+        required = max(min(4, initial), math.ceil(.6 * len(body)))
+        return sum(AssaultRoute.distance(u.position, target.position) <= 22000 for u in body) >= required
+
+    def _escort_point(self, state, agent, objective, altitude, route):
+        """Advance fixed observation stations with the main body, not contacts.
+
+        Use the 60th-percentile infantry position rather than the fastest scout.
+        A station advances in >=80m increments and never moves backwards on a
+        casualty, delayed unit, transient report or local target switch.
+        """
+        body = self._support_body(state, objective, route)
+        old = self._stations.get(agent.uid)
+        if not body:
+            if old is None:
+                old = (float('inf'), (float(agent.position[0]), float(agent.position[1]), altitude), 0)
+                self._stations[agent.uid] = old
+            return old[1], (objective.uid, 'escort', old[2])
+        anchor = body[max(0, math.ceil(.6 * len(body)) - 1)]
+        distance = AssaultRoute.distance(anchor.position, objective.position)
+        if self._bearing is None:
+            dx, dy = objective.position[0] - anchor.position[0], objective.position[1] - anchor.position[1]
+            length = max(math.hypot(dx, dy), 1)
+            self._bearing = (dx / length, dy / length) if length > 1 else (1.0, 0.0)
+        scout = self._slots.get(agent.uid, 0) == 0
+        # Stay outside the objective until a real infantry body has arrived.
+        close = sum(AssaultRoute.distance(u.position, objective.position) <= 18000 for u in body) >= 4
+        floor = (6000 if scout else 9000) if close else (12000 if scout else 15000)
+        station_distance = max(floor, distance - (6000 if scout else 2000))
+        if old is None or station_distance <= old[0] - self.STATION_ADVANCE or (
+                close and old[0] > floor and station_distance == floor):
+            offset = self._slots.get(agent.uid, 0) * 1500
+            bx, by = self._bearing
+            point = (float(objective.position[0] - bx * station_distance - by * offset),
+                     float(objective.position[1] - by * station_distance + bx * offset), altitude)
+            old = (station_distance, point, 0 if old is None else old[2] + 1)
+            self._stations[agent.uid] = old
+            logger.info('无人机随队观察点: uid=%d step=%d station=%d objective=%d stand_off_m=%.1f soldiers=%d',
+                        agent.uid, state.step, old[2], objective.uid, station_distance / 100, len(body))
+        return old[1], (objective.uid, 'escort', old[2])
 
     def _observe(self, state, agent, contacts):
         # Only this UAV's current local detections can advance a lock. Missing
@@ -152,11 +231,13 @@ class UAVControl:
             return Action.attack(target)
         return None
 
-    def choose(self, state, agent, objective):
+    def choose(self, state, agent, objective, route=None):
         self._begin(state)
         objective_uid = objective.uid if objective is not None else None
         if objective_uid != self._objective_uid:
             self._approaches.clear()
+            self._stations.clear()
+            self._focus.clear()
             self._bearing = None
             self._objective_uid = objective_uid
         if not agent.alive:
@@ -177,6 +258,7 @@ class UAVControl:
             target = next((enemy for enemy in contacts if enemy.uid == uid), None)
             if (target is not None and agent.communication_ok() is not False
                     and self._locked(state, agent, target) and math.dist(point, tuple(target.position)) <= self.LOCK_DRIFT
+                    and self._strike_supported(state, target, objective, route)
                     and state.step - started < self.STRIKE_STEPS):
                 point = tuple(float(v) for v in target.position)
                 self._missions[agent.uid] = (uid, point, started)
@@ -195,6 +277,7 @@ class UAVControl:
         base_height = max(float(agent.properties.get("initLocation", {}).get("z", 0)), ground_height)
         altitude = self._altitude.setdefault(agent.uid, base_height + self.CRUISE_HEIGHT)
         if (target is not None and self._locked(state, agent, target)
+                and self._strike_supported(state, target, objective, route)
                 and self._retry_after.get((agent.uid, target.uid), -1) <= state.step
                 and AssaultRoute.distance(agent.position, target.position) <= self.STRIKE_HORIZONTAL
                 and math.dist(tuple(agent.position), tuple(target.position)) <= self.STRIKE_DISTANCE):
@@ -212,6 +295,10 @@ class UAVControl:
         if not self._launch(state, agent, objective, contacts):
             self._navigation.cancel(agent)
             return Action.guard_position(agent.position)
+
+        if self._escort_enabled(state, objective):
+            point, station = self._escort_point(state, agent, objective, altitude, route)
+            return self._navigation.apply(state, agent, point, station, max_stall_resets=2)
 
         # Team reports can guide reconnaissance, but launching requires a
         # locally confirmed target. Never aim at an unseen objective occupant.

@@ -110,11 +110,16 @@ def test_opening_launch_uses_small_group_then_latches_without_recalling_uavs():
     assert control.choose(state(units, objectives=[obj], step=2), uavs[1], obj).command == 'Guard'
     for g in ground[:5]:
         g.position[0] = obj.position[0] + 55000
-    for u in uavs:
-        assert control.choose(state(units, objectives=[obj], step=3), u, obj).command == 'Moving'
+    for step in (3, 4, 5):
+        for u in uavs:
+            action = control.choose(state(units, objectives=[obj], step=step), u, obj)
+            if step == 5:  # The scout transitions once to the next escort station.
+                assert action.command == 'Moving'
+    points = {u.uid: control._stations[u.uid][1] for u in uavs}
     for g in ground:
         g.position[0] = obj.position[0] + 100000
-    assert all(control.choose(state(units, objectives=[obj], step=4), u, obj).command == 'Moving' for u in uavs)
+    assert all(control.choose(state(units, objectives=[obj], step=6), u, obj).command == 'Moving' for u in uavs)
+    assert {u.uid: control._stations[u.uid][1] for u in uavs} == points
 
 
 def test_opening_wait_cannot_stall_aircraft_for_entire_game_or_delay_ground():

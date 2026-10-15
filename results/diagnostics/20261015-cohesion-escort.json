@@ -1,0 +1,149 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261015_150032\\protocol.jsonl",
+  "baseline_commit": "ef538dcd7cd700e4d3fff7d83b8d112aa44387a3",
+  "scope": "Recorded public team views only. No UE physics, counterfactual score or survival prediction.",
+  "recorded_scores": [
+    {
+      "episode": 1,
+      "kill_score": 800,
+      "capture_score": 0,
+      "total": 800
+    },
+    {
+      "episode": 2,
+      "kill_score": 2200,
+      "capture_score": 0,
+      "total": 2200
+    },
+    {
+      "episode": 3,
+      "kill_score": 780,
+      "capture_score": 0,
+      "total": 780
+    },
+    {
+      "episode": 4,
+      "kill_score": 1210,
+      "capture_score": 2400,
+      "total": 3610
+    },
+    {
+      "episode": 5,
+      "kill_score": 990,
+      "capture_score": 0,
+      "total": 990
+    }
+  ],
+  "rounds": [
+    {
+      "episode": 1,
+      "counts": {
+        "frames": 501,
+        "serialized_actions": 25050,
+        "assembly_unit_frames": 46
+      },
+      "max_assembly_wait": 6,
+      "assembly_started": 76,
+      "assembly_released": 82,
+      "release_reason": "main_body_ready",
+      "uav_actions": {
+        "Guard": 574,
+        "Moving": 216,
+        "NormalAttacking": 11,
+        "Idle": 1
+      },
+      "supported_dive_starts": []
+    },
+    {
+      "episode": 2,
+      "counts": {
+        "frames": 180,
+        "serialized_actions": 9000,
+        "assembly_unit_frames": 223
+      },
+      "max_assembly_wait": 18,
+      "assembly_started": 57,
+      "assembly_released": 76,
+      "release_reason": "main_body_ready",
+      "uav_actions": {
+        "Guard": 223,
+        "Moving": 131,
+        "NormalAttacking": 9,
+        "Idle": 1
+      },
+      "supported_dive_starts": []
+    },
+    {
+      "episode": 3,
+      "counts": {
+        "frames": 250,
+        "serialized_actions": 12500,
+        "assembly_unit_frames": 229
+      },
+      "max_assembly_wait": 18,
+      "assembly_started": 58,
+      "assembly_released": 76,
+      "release_reason": "main_body_ready",
+      "uav_actions": {
+        "Guard": 231,
+        "Moving": 161,
+        "NormalAttacking": 13,
+        "Idle": 2
+      },
+      "supported_dive_starts": []
+    },
+    {
+      "episode": 4,
+      "counts": {
+        "frames": 501,
+        "serialized_actions": 25050,
+        "assembly_unit_frames": 156
+      },
+      "max_assembly_wait": 12,
+      "assembly_started": 58,
+      "assembly_released": 70,
+      "release_reason": "under_fire",
+      "uav_actions": {
+        "Guard": 491,
+        "Moving": 391,
+        "NormalAttacking": 30,
+        "Idle": 2
+      },
+      "supported_dive_starts": []
+    },
+    {
+      "episode": 5,
+      "counts": {
+        "frames": 501,
+        "serialized_actions": 25050,
+        "assembly_unit_frames": 203
+      },
+      "max_assembly_wait": 15,
+      "assembly_started": 58,
+      "assembly_released": 76,
+      "release_reason": "main_body_ready",
+      "uav_actions": {
+        "Guard": 228,
+        "Moving": 136,
+        "NormalAttacking": 10,
+        "Idle": 4
+      },
+      "supported_dive_starts": []
+    }
+  ],
+  "source_hashes": {
+    "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "AssaultRoute.py": "0eaa4340c0b8c1880ab41520087aaf2ebecaeefba57d1d0630ed7b590796c2de",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "FlightNavigation.py": "347a4f27b6baa3f6050e47c686687649cc22d896ed157749017c3cd46daa0a6a",
+    "HQEntry.py": "c3b0d86f31aa2f05bf853414d5cdf024d1ce6458173132a4bd207c225845e9cd",
+    "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "RLAgentAlgorithm.py": "9f52ec35d3547c534e24199ff9b19bed1b399388fcbcb18a5a28c8db7feff89d",
+    "RuleAgentAlgorithm.py": "e4566514467f91e7b407aae41f86191f082313053b504cb00c615b7fd8e62b2d",
+    "UAVControl.py": "b4217489634ccf6ae6507dedfd411d329c0e978ef6233f4d2e962125e4463bfe",
+    "UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  }
+}

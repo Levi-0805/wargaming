@@ -28,6 +28,8 @@ class FlightNavigation:
         self._legs = {}
         self._pending = {}
         self.resets = {}
+        self._stall_attempts = {}
+        self._held = {}
 
     def cancel(self, agent):
         self._legs.pop(agent.uid, None)
@@ -55,16 +57,23 @@ class FlightNavigation:
                     agent.uid, state.step, reason, self.resets[agent.uid])
         return self._face(agent, goal)
 
-    def apply(self, state, agent, goal, objective):
+    def apply(self, state, agent, goal, objective, max_stall_resets=None):
         frame = (state.episode, state.step)
         if self._frame is None or frame[0] != self._frame[0] or frame[1] < self._frame[1]:
             self._legs.clear()
             self._pending.clear()
             self.resets.clear()
+            self._stall_attempts.clear()
+            self._held.clear()
         self._frame = frame
         if not agent.alive or agent.communication_ok() is False:
             self.cancel(agent)
             return Action.idle()
+        if agent.uid in self._held and self._held[agent.uid] == objective:
+            return Action.guard_position(agent.position)
+        self._held.pop(agent.uid, None)
+        if agent.uid not in self._stall_attempts or self._stall_attempts[agent.uid][0] != objective:
+            self._stall_attempts[agent.uid] = (objective, 0)
         pending = self._pending.get(agent.uid)
         if pending is not None:
             if state.step - pending[0] < self.RESET_STEPS:
@@ -89,5 +98,12 @@ class FlightNavigation:
         if distance < best - 200:
             leg[2:] = distance, state.step
         elif state.step - since >= self.STALL_STEPS:
+            _, attempts = self._stall_attempts[agent.uid]
+            if max_stall_resets is not None and attempts >= max_stall_resets:
+                self.cancel(agent)
+                self._held[agent.uid] = objective
+                logger.warning('无人机观察点暂不可达，原地观察等待下个前进点: uid=%d step=%d', agent.uid, state.step)
+                return Action.guard_position(agent.position)
+            self._stall_attempts[agent.uid] = (objective, attempts + 1)
             return self._replace(state, agent, goal, objective, 'stalled')
         return Action.move_at(point)

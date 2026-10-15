@@ -13,6 +13,7 @@ from .UAVControl import UAVControl
 from .UrbanContact import UrbanContact
 from .HQEntry import HQEntry
 from .CombatReadiness import CombatReadiness
+from .ApproachCohesion import ApproachCohesion
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +21,7 @@ logger = logging.getLogger(__name__)
 class ReinforceAgentAlgorithm(RuleAlgorithm):
     """All units use the lower approach, fight contacts, then capture HQ, B, A.
 
-    No opening assembly or median-distance waiting. Public team
+    A bounded opening rendezvous reduces staggered arrivals. Public team
     contacts within the engagement radius also authorize attack requests; the
     generic fireRange=1000 metadata is not an extra 9.5m firing gate.
     """
@@ -47,6 +48,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._urban = UrbanContact()
         self._hq_entry = HQEntry()
         self._readiness = CombatReadiness()
+        self._cohesion = ApproachCohesion()
         self._frame = None
         self._support = {}
         self._fire_watch = {}
@@ -68,6 +70,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._frame = frame
         self._urban.begin(state)
         self._route.update(state)
+        self._cohesion.begin(state, self._route)
         self._readiness.begin(state, self._route)
         self._support = {}
         for unit in state.agents:
@@ -155,7 +158,10 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if not agent.alive:
             return Action.idle()
         if agent.entity_type == self._UAV:
-            return self._uav.choose(state, agent, self._route.objective(state))
+            return self._uav.choose(state, agent, self._route.objective(state), self._route)
+        assembly = self._cohesion.choose(state, agent, self._route)
+        if assembly is not None:
+            return assembly
         local = {enemy.uid for enemy in state.perceived_opponents(agent)}
         contacts = [enemy for enemy in state.visible_opponents if enemy.alive and (
             enemy.uid in local or self._horizontal(agent.position, enemy.position) <= self.SHARED_ENGAGEMENT_CM)]

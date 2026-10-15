@@ -1,5 +1,6 @@
 """Regressions from 20261014_211207: endless retreat, B exit, rear UAVs."""
 from dataclasses import replace
+import pytest
 
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.AssaultRoute import AssaultRoute
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.FlightNavigation import FlightNavigation
@@ -176,7 +177,7 @@ def test_direct_first_flight_goal_even_when_idle_would_not_cancel_latched_goal()
     assert not nav.resets
 
 
-def test_initial_uav_goal_is_not_clamped_to_a_moving_rear_soldier():
+def test_opening_timeout_allows_reconnaissance_but_not_unsupported_hq_rush():
     objects = map_objectives()
     uav = aircraft(x=60000, y=35000)
     soldier = entity(20, 0, 1, 60000, 35000)
@@ -185,7 +186,8 @@ def test_initial_uav_goal_is_not_clamped_to_a_moving_rear_soldier():
     assert control.choose(s, uav, objects[0]).command == 'Guard'
     move = control.choose(state([uav, soldier], objectives=objects, step=50), uav, objects[0])
     assert move.command == 'Moving'
-    assert move.points[:2] == tuple(objects[0].position[:2])
+    assert AssaultRoute.distance(move.points, soldier.position) == pytest.approx(6000)
+    assert AssaultRoute.distance(move.points, objects[0].position) > 90000
 
 
 def test_disconnected_uav_cannot_continue_direct_flight_until_link_is_repaired():
