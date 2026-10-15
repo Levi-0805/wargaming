@@ -22,9 +22,9 @@ from cssim.protocol import ActionSetFactory
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RuleAgentAlgorithm import ReinforceAgentAlgorithm
 
 
-def validate(source):
+def validate(source, baseline='ef538dcd7cd700e4d3fff7d83b8d112aa44387a3'):
     data = json.loads(source.read_text(encoding='utf-8'))
-    out = {'source': data['source'], 'baseline_commit': 'ef538dcd7cd700e4d3fff7d83b8d112aa44387a3',
+    out = {'source': data['source'], 'baseline_commit': baseline,
            'scope': 'Recorded public team views only. No UE physics, counterfactual score or survival prediction.',
            'recorded_scores': [], 'rounds': []}
     for row in data['scores'][::2]:
@@ -41,6 +41,7 @@ def validate(source):
         rule = None
         counts, air, streaks = Counter(), Counter(), Counter()
         last_station = {}
+        first_flight = {}
         max_wait, release_step = 0, None
         starts = []
         for frame in data['frames']:
@@ -79,8 +80,13 @@ def validate(source):
                 station = rule._uav._stations.get(unit.uid)
                 key = (unit.uid, obj.uid if obj else None)
                 if station:
-                    assert station[0] <= last_station.get(key, float('inf'))
-                    last_station[key] = station[0]
+                    assert key not in last_station or station[1] == last_station[key]
+                    last_station[key] = station[1]
+                    if action.command == 'Moving' and action.points and key not in first_flight:
+                        distance = rule._horizontal(action.points, obj.position) / 100
+                        assert 99 <= distance <= 124
+                        first_flight[key] = {'step': state.step, 'uid': unit.uid, 'objective': obj.uid,
+                                             'stand_off_m': round(distance, 1)}
                 local = {e.uid: e for e in state.perceived_opponents(unit) if e.alive}
                 if action.command == 'NormalAttacking':
                     assert action.target_uid in local
@@ -96,7 +102,7 @@ def validate(source):
         out['rounds'].append({'episode': ep, 'counts': dict(counts), 'max_assembly_wait': max_wait,
                               'assembly_started': rule._cohesion.started, 'assembly_released': release_step,
                               'release_reason': rule._cohesion.reason, 'uav_actions': dict(air),
-                              'supported_dive_starts': starts})
+                              'supported_dive_starts': starts, 'first_front_flights': list(first_flight.values())})
         print('VALIDATED', ep, dict(counts), 'assembly', rule._cohesion.started, release_step,
               rule._cohesion.reason, 'air', dict(air), flush=True)
     out['source_hashes'] = {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
@@ -108,7 +114,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source', type=Path)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--baseline', default='ef538dcd7cd700e4d3fff7d83b8d112aa44387a3')
     args = parser.parse_args()
     logging.disable(logging.CRITICAL)
-    result = validate(args.source)
+    result = validate(args.source, args.baseline)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')

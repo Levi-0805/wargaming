@@ -23,7 +23,6 @@ class UAVControl:
     CLUSTER_RADIUS = 1200.0
     FRIENDLY_CLEARANCE = 2000.0
     MAX_LAUNCH_WAIT = 50
-    STATION_ADVANCE = 8000.0
     TARGET_DWELL = 8
     VALUES = {"BP_BaseSoldier_C": 100, "BP_RoboDog_C": 20,
               "BP_MNWS_Vehicle_Armored_C": 90, "BP_MNWS_Vehicle_6x6UGV_C": 50,
@@ -128,40 +127,31 @@ class UAVControl:
         return sum(AssaultRoute.distance(u.position, target.position) <= 22000 for u in body) >= required
 
     def _escort_point(self, state, agent, objective, altitude, route):
-        """Advance fixed observation stations with the main body, not contacts.
+        """One real observation destination per objective, set before takeoff.
 
-        Use the 60th-percentile infantry position rather than the fastest scout.
-        A station advances in >=80m increments and never moves backwards on a
-        casualty, delayed unit, transient report or local target switch.
+        In 20261015_173759, aircraft kept flying around their first rear goal
+        even after receiving new coordinates. Time the launch instead of
+        relying on unverified in-flight replacement of intermediate goals.
         """
-        body = self._support_body(state, objective, route)
         old = self._stations.get(agent.uid)
-        if not body:
-            if old is None:
-                old = (float('inf'), (float(agent.position[0]), float(agent.position[1]), altitude), 0)
-                self._stations[agent.uid] = old
+        if old is not None:
             return old[1], (objective.uid, 'escort', old[2])
-        anchor = body[max(0, math.ceil(.6 * len(body)) - 1)]
-        distance = AssaultRoute.distance(anchor.position, objective.position)
+        body = self._support_body(state, objective, route)
+        anchor = body[max(0, math.ceil(.6 * len(body)) - 1)] if body else agent
         if self._bearing is None:
             dx, dy = objective.position[0] - anchor.position[0], objective.position[1] - anchor.position[1]
             length = max(math.hypot(dx, dy), 1)
             self._bearing = (dx / length, dy / length) if length > 1 else (1.0, 0.0)
         scout = self._slots.get(agent.uid, 0) == 0
-        # Stay outside the objective until a real infantry body has arrived.
-        close = sum(AssaultRoute.distance(u.position, objective.position) <= 18000 for u in body) >= 4
-        floor = (6000 if scout else 9000) if close else (12000 if scout else 15000)
-        station_distance = max(floor, distance - (6000 if scout else 2000))
-        if old is None or station_distance <= old[0] - self.STATION_ADVANCE or (
-                close and old[0] > floor and station_distance == floor):
-            offset = self._slots.get(agent.uid, 0) * 1500
-            bx, by = self._bearing
-            point = (float(objective.position[0] - bx * station_distance - by * offset),
-                     float(objective.position[1] - by * station_distance + bx * offset), altitude)
-            old = (station_distance, point, 0 if old is None else old[2] + 1)
-            self._stations[agent.uid] = old
-            logger.info('无人机随队观察点: uid=%d step=%d station=%d objective=%d stand_off_m=%.1f soldiers=%d',
-                        agent.uid, state.step, old[2], objective.uid, station_distance / 100, len(body))
+        station_distance = 10000 if scout else 12000
+        offset = self._slots.get(agent.uid, 0) * 1500
+        bx, by = self._bearing
+        point = (float(objective.position[0] - bx * station_distance - by * offset),
+                 float(objective.position[1] - by * station_distance + bx * offset), altitude)
+        old = (station_distance, point, 0)
+        self._stations[agent.uid] = old
+        logger.info('无人机固定前沿观察点: uid=%d step=%d objective=%d stand_off_m=%.1f soldiers=%d',
+                    agent.uid, state.step, objective.uid, station_distance / 100, len(body))
         return old[1], (objective.uid, 'escort', old[2])
 
     def _observe(self, state, agent, contacts):
@@ -199,9 +189,20 @@ class UAVControl:
                 and observation[2] >= self.LOCK_FRAMES
                 and self._clear(state, agent, target) and self._payload(agent))
 
-    def _launch(self, state, agent, objective, contacts):
+    def _launch(self, state, agent, objective, contacts, route=None):
         if agent.uid in self._launched:
             return True
+        if self._escort_enabled(state, objective):
+            body = self._support_body(state, objective, route)
+            limit = 65000 if self._slots.get(agent.uid, 0) == 0 else 60000
+            # Match departure to the main body's advance. A timer alone must
+            # not launch a direct flight while infantry is still at spawn.
+            ready = bool(contacts) or bool(body) and AssaultRoute.distance(
+                body[max(0, math.ceil(.6 * len(body)) - 1)].position, objective.position) <= limit
+            if ready:
+                self._launched.add(agent.uid)
+                logger.info('主力接近，放飞至固定前沿: uid=%d step=%d', agent.uid, state.step)
+            return ready
         ground = [unit for unit in state.agents if unit.alive and unit.entity_type == "BP_BaseSoldier_C"
                   and unit.communication_ok() is not False]
         distances = sorted(AssaultRoute.distance(unit.position, objective.position) for unit in ground) if objective else []
@@ -292,13 +293,13 @@ class UAVControl:
             if attack is not None:
                 self._launched.add(agent.uid)
                 return attack
-        if not self._launch(state, agent, objective, contacts):
+        if not self._launch(state, agent, objective, contacts, route):
             self._navigation.cancel(agent)
             return Action.guard_position(agent.position)
 
         if self._escort_enabled(state, objective):
             point, station = self._escort_point(state, agent, objective, altitude, route)
-            return self._navigation.apply(state, agent, point, station, max_stall_resets=2)
+            return self._navigation.apply(state, agent, point, station)
 
         # Team reports can guide reconnaissance, but launching requires a
         # locally confirmed target. Never aim at an unseen objective occupant.

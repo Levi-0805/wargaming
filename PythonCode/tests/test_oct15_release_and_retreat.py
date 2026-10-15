@@ -184,10 +184,11 @@ def test_opening_timeout_allows_reconnaissance_but_not_unsupported_hq_rush():
     s = state([uav, soldier], objectives=objects)
     control = UAVControl()
     assert control.choose(s, uav, objects[0]).command == 'Guard'
-    move = control.choose(state([uav, soldier], objectives=objects, step=50), uav, objects[0])
+    assert control.choose(state([uav, soldier], objectives=objects, step=50), uav, objects[0]).command == 'Guard'
+    soldier.position[0] = objects[0].position[0] + 60000
+    move = control.choose(state([uav, soldier], objectives=objects, step=51), uav, objects[0])
     assert move.command == 'Moving'
-    assert AssaultRoute.distance(move.points, soldier.position) == pytest.approx(6000)
-    assert AssaultRoute.distance(move.points, objects[0].position) > 90000
+    assert AssaultRoute.distance(move.points, objects[0].position) == pytest.approx(10000)
 
 
 def test_disconnected_uav_cannot_continue_direct_flight_until_link_is_repaired():

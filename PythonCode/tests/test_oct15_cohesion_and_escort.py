@@ -4,7 +4,6 @@ import pytest
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.AssaultRoute import AssaultRoute
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.ApproachCohesion import ApproachCohesion
 from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.UAVControl import UAVControl
-from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.FlightNavigation import FlightNavigation
 from test_fslutk_rule import entity, state, algorithm, map_objectives
 from test_air_and_departure import aircraft
 
@@ -101,19 +100,18 @@ def test_50_step_timeout_never_sends_wing_directly_to_unsupported_hq():
     for step in (0, 50):
         for u in uavs:
             action = control.choose(state([*soldiers, *uavs], objectives=[obj], step=step), u, obj)
-            if action.command == 'Moving':
-                assert AssaultRoute.distance(action.points, obj.position) >= 94000
-            assert action.command != 'SelfDestruct'
+            assert action.command == 'Guard'
 
 
 def test_isolated_front_soldier_cannot_pull_uavs_into_hq():
     obj, soldiers, uavs, control = escort_case()
+    for soldier in soldiers:
+        soldier.position[0] = obj.position[0] + 100000
     soldiers[0].position[:] = obj.position
     s = state([*soldiers, *uavs], objectives=[obj], step=50)
     for u in uavs:
         action = control.choose(s, u, obj)
-        assert action.command == 'Moving'
-        assert AssaultRoute.distance(action.points, obj.position) >= 54000
+        assert action.command == 'Guard'
 
 
 def test_station_stays_fixed_through_reports_casualties_and_small_ground_motion():
@@ -132,7 +130,7 @@ def test_station_stays_fixed_through_reports_casualties_and_small_ground_motion(
         assert point == initial
 
 
-def test_main_body_advances_station_and_capture_changes_objective_without_old_patrol():
+def test_main_body_motion_keeps_first_destination_and_capture_changes_objective():
     obj, soldiers, uavs, control = escort_case()
     uav = uavs[0]
     control.choose(state([*soldiers, *uavs], objectives=[obj]), uav, obj)
@@ -141,7 +139,7 @@ def test_main_body_advances_station_and_capture_changes_objective_without_old_pa
         g.position[0] -= 10000
     control.choose(state([*soldiers, *uavs], objectives=[obj], step=1), uav, obj)
     new = control._stations[uav.uid]
-    assert new[0] < old[0] and new[2] == old[2] + 1
+    assert new == old
     second = map_objectives()[1]
     for step in (2, 3, 4):
         action = control.choose(state([*soldiers, *uavs], objectives=[second], step=step), uav, second)
@@ -189,12 +187,33 @@ def test_local_target_does_not_switch_on_each_frame_score_fluctuation():
         assert action.target_uid == a.uid
 
 
-def test_unreachable_station_has_finite_retries_and_next_station_releases_it():
-    uav, nav = aircraft(), FlightNavigation()
-    for step in range(100):
-        a = nav.apply(state([uav], step=step), uav, (20000, 0, 8000), (1, 'escort', 0), max_stall_resets=2)
-        if step >= 28:
-            assert a.command == 'Guard' and a.points == tuple(uav.position)
-    assert nav.resets[uav.uid] == 2
-    a = nav.apply(state([uav], step=100), uav, (30000, 0, 8000), (1, 'escort', 1), max_stall_resets=2)
-    assert a.command == 'Moving' and a.points == (30000, 0, 8000)
+def test_first_goal_latching_controller_is_not_stranded_at_rear_observation_point():
+    # Failure model observed at 17:37: the controller flies to its first
+    # destination and ignores subsequent goal replacements. This is not UE.
+    obj, soldiers, uavs, control = escort_case()
+    uav = uavs[0]
+    latched = None
+    goals = set()
+    for step in range(110):
+        for soldier in soldiers:
+            soldier.position[0] = obj.position[0] + max(0, 100000 - step * 1200)
+        a = control.choose(state([*soldiers, uav], objectives=[obj], step=step), uav, obj)
+        if step < 30:
+            assert a.command == 'Guard'
+        if a.command == 'Moving' and a.points:
+            goals.add(a.points)
+            latched = latched or a.points
+        if latched:
+            delta = latched[0] - uav.position[0]
+            uav.position[0] += max(-2000, min(2000, delta))
+    assert len(goals) == 1
+    assert AssaultRoute.distance(uav.position, obj.position) == pytest.approx(10000)
+
+
+def test_failed_front_flight_does_not_become_permanent_rear_guard():
+    obj, soldiers, uavs, control = escort_case()
+    uav = uavs[0]
+    actions = [control.choose(state([*soldiers, uav], objectives=[obj], step=s), uav, obj)
+               for s in range(100)]
+    assert all(any(a.command == 'Moving' for a in actions[s:s+10]) for s in range(0, 90, 10))
+    assert {a.points for a in actions if a.command == 'Moving'} == {control._stations[uav.uid][1]}

@@ -95,7 +95,7 @@ def test_unsafe_or_unconfirmed_dive_is_rejected(case):
             assert action.command != 'NormalAttacking'
 
 
-def test_opening_launch_uses_small_group_then_latches_without_recalling_uavs():
+def test_opening_launch_uses_main_body_then_latches_without_recalling_uavs():
     obj = map_objectives()[0]
     ground = [entity(30+i, 0, i, obj.position[0]+100000, obj.position[1]) for i in range(6)]
     uavs = [aircraft(i+1, x=60000, y=35000) for i in range(5)]
@@ -105,7 +105,7 @@ def test_opening_launch_uses_small_group_then_latches_without_recalling_uavs():
     ground[0].position[0] = obj.position[0] + 10000  # One isolated scout is insufficient.
     assert control.choose(state(units, objectives=[obj], step=1), uavs[0], obj).command == 'Guard'
     for g in ground[:5]:
-        g.position[0] = obj.position[0] + 70000
+        g.position[0] = obj.position[0] + 64000
     assert control.choose(state(units, objectives=[obj], step=2), uavs[0], obj).command == 'Moving'
     assert control.choose(state(units, objectives=[obj], step=2), uavs[1], obj).command == 'Guard'
     for g in ground[:5]:
@@ -113,7 +113,7 @@ def test_opening_launch_uses_small_group_then_latches_without_recalling_uavs():
     for step in (3, 4, 5):
         for u in uavs:
             action = control.choose(state(units, objectives=[obj], step=step), u, obj)
-            if step == 5:  # The scout transitions once to the next escort station.
+            if step == 5:
                 assert action.command == 'Moving'
     points = {u.uid: control._stations[u.uid][1] for u in uavs}
     for g in ground:
@@ -122,7 +122,7 @@ def test_opening_launch_uses_small_group_then_latches_without_recalling_uavs():
     assert {u.uid: control._stations[u.uid][1] for u in uavs} == points
 
 
-def test_opening_wait_cannot_stall_aircraft_for_entire_game_or_delay_ground():
+def test_departure_wait_does_not_delay_ground_or_release_aircraft_on_timer_alone():
     obj = map_objectives()[0]
     soldiers = [entity(30+i, 0, i, 60000, 35000) for i in range(6)]
     uav = aircraft(x=60000, y=35000)
@@ -132,6 +132,10 @@ def test_opening_wait_cannot_stall_aircraft_for_entire_game_or_delay_ground():
     assert actions[-1].command == 'Guard'
     for step in range(1, 51):
         action = rule._uav.choose(state([*soldiers, uav], objectives=[obj], step=step), uav, obj)
+    assert action.command == 'Guard'
+    for soldier in soldiers:
+        soldier.position[0] = obj.position[0] + 60000
+    action = rule._uav.choose(state([*soldiers, uav], objectives=[obj], step=51), uav, obj)
     assert action.command == 'Moving'
 
 
