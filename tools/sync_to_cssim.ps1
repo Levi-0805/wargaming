@@ -20,11 +20,14 @@ function Assert-Directory {
 function Get-ManagedFiles {
     param([Parameter(Mandatory = $true)] [string]$Root)
     $excludedDirectories = @('__pycache__', '.idea', 'logs', '.pytest_cache')
-    Get-ChildItem -LiteralPath $Root -Recurse -File | Where-Object {
-        $relative = $_.FullName.Substring($Root.Length).TrimStart('\', '/')
-        $parts = $relative -split '[\\/]'
-        ($parts | Where-Object { $excludedDirectories -contains $_ }).Count -eq 0 -and
-        $_.Extension -notin @('.pyc', '.log')
+    foreach ($entry in Get-ChildItem -LiteralPath $Root) {
+        if ($entry.PSIsContainer) {
+            if ($entry.Name -notin $excludedDirectories) {
+                Get-ManagedFiles -Root $entry.FullName
+            }
+        } elseif ($entry.Extension -notin @('.pyc', '.log')) {
+            $entry
+        }
     }
 }
 
@@ -97,10 +100,19 @@ $backupRun = Join-Path $BackupRoot $stamp
 New-Item -ItemType Directory -Path $backupRun -Force | Out-Null
 Invoke-RobocopyChecked -From $client -To (Join-Path $backupRun 'Client\Data\AlgData\PythonCode') -Description 'client backup'
 Invoke-RobocopyChecked -From $server -To (Join-Path $backupRun 'Server\Data\AlgData\PythonCode') -Description 'server backup'
+$guide = Join-Path $CssimRoot 'AGENTS.md'
+if (Test-Path -LiteralPath $guide) {
+    Copy-Item -LiteralPath $guide -Destination (Join-Path $backupRun 'AGENTS.md')
+}
 
 Invoke-RobocopyChecked -From $source -To $client -Description 'client deployment'
 Invoke-RobocopyChecked -From $source -To $server -Description 'server deployment'
 
 Assert-HashesMatch -SourceRoot $source -TargetRoot $client -Label 'CSSIM client PythonCode'
 Assert-HashesMatch -SourceRoot $source -TargetRoot $server -Label 'CSSIM server PythonCode'
+$guideSource = Join-Path $PSScriptRoot 'CSSIM-AGENTS.md'
+Copy-Item -LiteralPath $guideSource -Destination $guide -Force
+if ((Get-FileHash -LiteralPath $guideSource).Hash -ne (Get-FileHash -LiteralPath $guide).Hash) {
+    throw 'Deployed workspace guide hash mismatch.'
+}
 Write-Host "Synchronized repository PythonCode to CSSIM client and server. Backup: $backupRun"

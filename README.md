@@ -2,6 +2,8 @@
 
 本仓库以 `PythonCode` 为算法和 Python 框架的源代码。CSSIM 客户端和服务端目录是部署副本，不直接作为开发目录。
 
+当前电脑的仓库位于 `C:\Users\aaa\Desktop\wargaming`，安装目录为 `C:\CSSIM`。桌面 `CSSIM20260915\CSSIM` 保存安装包和培训资料。发布时使用 `tools\publish.ps1 -Message "改动说明" -CssimRoot C:\CSSIM`；下述 `E:\CSSIM` 是另一台电脑的旧安装路径，也仍受支持。
+
 ## 工作流程
 
 1. 在 CSSIM 平台创建或下载新算法后，先执行：
@@ -40,6 +42,8 @@
    ```
 
    客户端弹出后，在界面里开始与上一局相同的想定（红方 `FsLutk7wD2RkNgbs`）。得分写入 `results\latest.json`。脚本负责跑局和记分；下一版打法仍要改 `PythonCode\TeamAlg\<队伍ID>` 里的规则，再跑一次本命令。
+
+   每次开始新推演，让平台启动新的 Python 算法进程，以加载刚发布的代码。记录器会核对部署文件与 Git，读取新生成的服务端 Output 或客户端 `logs\<run>\protocol.jsonl`，绑定源提交号及文件 SHA-256。总分按终局击毁分加 `Reward` 统计，各局分别保存；无法确定阵营的包保留为未知，不凭包顺序猜测。旧版 `results\matches` 记录只统计击毁分，不能直接与新总分比较。
 
 也可以用一个命令完成验证、提交、推送和同步：
 

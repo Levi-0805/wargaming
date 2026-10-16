@@ -12,6 +12,7 @@ if ([string]::IsNullOrWhiteSpace($PythonExe)) {
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $pythonCode = Join-Path $repoRoot 'PythonCode'
+$testTemp = Join-Path $repoRoot ('logs\verify-' + [guid]::NewGuid().ToString('N'))
 
 if (-not (Test-Path -LiteralPath $PythonExe)) {
     throw "Python executable not found: $PythonExe"
@@ -19,9 +20,11 @@ if (-not (Test-Path -LiteralPath $PythonExe)) {
 
 Push-Location $pythonCode
 try {
-    & $PythonExe -m compileall -q .
+    # Compile source directories only; old pytest caches may belong to another
+    # Windows account. Every run gets a new, ignored temporary directory.
+    & $PythonExe -m compileall -q cssim TeamAlg AlgTemplate tests main.py
     if ($LASTEXITCODE -ne 0) { throw "compileall failed" }
-    & $PythonExe -m pytest tests -q
+    & $PythonExe -m pytest tests -q -p no:cacheprovider --basetemp $testTemp
     if ($LASTEXITCODE -ne 0) { throw "pytest failed" }
 } finally {
     Pop-Location

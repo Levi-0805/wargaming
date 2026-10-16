@@ -71,8 +71,10 @@ if (-not [string]::IsNullOrWhiteSpace(($dirty -join ''))) {
 if ($LASTEXITCODE -ne 0) { throw "Match did not produce a score (exit $LASTEXITCODE)." }
 
 $latest = Get-Content -LiteralPath (Join-Path $repoRoot 'results\latest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
-$score = [int]$latest.red_score
-$recordMessage = "record red match score $score"
+$score = if ($null -eq $latest.red_score) { 'unknown' } else { [string]$latest.red_score }
+$recordMessage = if ($score -eq 'unknown') {
+    'record completed match with unresolved red score attribution'
+} else { "record red match score $score" }
 
 Invoke-Git -Arguments @('add', '--', 'results')
 & git -C $repoRoot diff --cached --quiet

@@ -1,0 +1,1949 @@
+{
+  "score_definition": "Score SumWorth + Reward; no inference from cumulative event sum",
+  "runs": [
+    {
+      "run": "20261009_003121",
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261009_003121\\protocol.jsonl",
+      "source_sha256": "48db1367c04de5c2ada43e1ec1838703b9ea9a376db09dd027d4ead7657fbd19",
+      "source_bytes": 87846849,
+      "source_commit": null,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "red": {
+            "kill_score": 2670,
+            "capture_score": 1600,
+            "total": 4270
+          },
+          "blue_total": 3300,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 3,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "red": {
+            "kill_score": 1530,
+            "capture_score": 0,
+            "total": 1530
+          },
+          "blue_total": 5860,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 12,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "red": {
+            "kill_score": 1190,
+            "capture_score": 0,
+            "total": 1190
+          },
+          "blue_total": 5860,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 16,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        }
+      ],
+      "mean": 2330,
+      "median": 1530,
+      "min": 1190,
+      "max": 4270,
+      "below_1000": 0
+    },
+    {
+      "run": "20261014_211207",
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261014_211207\\protocol.jsonl",
+      "source_sha256": "393b159e0a66e8539e64352466661fe28ab8bd6fbcf78bfe312d4cb5bfdb5fcc",
+      "source_bytes": 321478446,
+      "source_commit": null,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "red": {
+            "kill_score": 1650,
+            "capture_score": 1600,
+            "total": 3250
+          },
+          "blue_total": 4210,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 13,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 2,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "red": {
+            "kill_score": 1830,
+            "capture_score": 2400,
+            "total": 4230
+          },
+          "blue_total": 3010,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 7,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "指挥所",
+              "red": 1,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "red": {
+            "kill_score": 2040,
+            "capture_score": 0,
+            "total": 2040
+          },
+          "blue_total": 5530,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 4,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 4,
+          "complete": true,
+          "red": {
+            "kill_score": 1640,
+            "capture_score": 0,
+            "total": 1640
+          },
+          "blue_total": 5540,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 11,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 5,
+          "complete": true,
+          "red": {
+            "kill_score": 1270,
+            "capture_score": 2400,
+            "total": 3670
+          },
+          "blue_total": 2660,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 4,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 16,
+              "percent": 0
+            }
+          ]
+        }
+      ],
+      "mean": 2966,
+      "median": 3250,
+      "min": 1640,
+      "max": 4230,
+      "below_1000": 0
+    },
+    {
+      "run": "20261015_200211",
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261015_200211\\protocol.jsonl",
+      "source_sha256": "a2fea5d9774ac52a23b8311430381db8440add33c3b7f575e217b52f0952eb37",
+      "source_bytes": 251696946,
+      "source_commit": null,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "red": {
+            "kill_score": 1640,
+            "capture_score": 0,
+            "total": 1640
+          },
+          "blue_total": 6370,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "red": {
+            "kill_score": 1210,
+            "capture_score": 0,
+            "total": 1210
+          },
+          "blue_total": 6370,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 7,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "red": {
+            "kill_score": 870,
+            "capture_score": 0,
+            "total": 870
+          },
+          "blue_total": 6320,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 11,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 4,
+          "complete": true,
+          "red": {
+            "kill_score": 1190,
+            "capture_score": 0,
+            "total": 1190
+          },
+          "blue_total": 6370,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 8,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 5,
+          "complete": true,
+          "red": {
+            "kill_score": 930,
+            "capture_score": 0,
+            "total": 930
+          },
+          "blue_total": 6320,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 7,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 4,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 8,
+              "percent": 0
+            }
+          ]
+        }
+      ],
+      "mean": 1168,
+      "median": 1190,
+      "min": 870,
+      "max": 1640,
+      "below_1000": 2
+    },
+    {
+      "run": "20261016_005553",
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261016_005553\\protocol.jsonl",
+      "source_sha256": "43254b46f66708e858802eb41e1d7039e9ba5237ec0a3482c01359139b743784",
+      "source_bytes": 330379862,
+      "source_commit": null,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "red": {
+            "kill_score": 1040,
+            "capture_score": 0,
+            "total": 1040
+          },
+          "blue_total": 6140,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 5,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 1,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "red": {
+            "kill_score": 1200,
+            "capture_score": 0,
+            "total": 1200
+          },
+          "blue_total": 6360,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 16,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "red": {
+            "kill_score": 1200,
+            "capture_score": 1600,
+            "total": 2800
+          },
+          "blue_total": 4560,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 16,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 4,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 4,
+          "complete": true,
+          "red": {
+            "kill_score": 1420,
+            "capture_score": 0,
+            "total": 1420
+          },
+          "blue_total": 6370,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 13,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 5,
+          "complete": true,
+          "red": {
+            "kill_score": 870,
+            "capture_score": 0,
+            "total": 870
+          },
+          "blue_total": 4590,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 1,
+              "blue": 1,
+              "percent": 0.8
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            }
+          ]
+        }
+      ],
+      "mean": 1466,
+      "median": 1200,
+      "min": 870,
+      "max": 2800,
+      "below_1000": 1
+    },
+    {
+      "run": "20261016_110326",
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261016_110326\\protocol.jsonl",
+      "source_sha256": "6dc30fe03c02e8d1962799685f0cdaf56695c534358e343ef063f6514a526f10",
+      "source_bytes": 1009884934,
+      "source_commit": null,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "red": {
+            "kill_score": 1470,
+            "capture_score": 1600,
+            "total": 3070
+          },
+          "blue_total": 4230,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 8,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 4,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 7,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "red": {
+            "kill_score": 860,
+            "capture_score": 0,
+            "total": 860
+          },
+          "blue_total": 6310,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 7,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 15,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "red": {
+            "kill_score": 2110,
+            "capture_score": 0,
+            "total": 2110
+          },
+          "blue_total": 6370,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 1,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 4,
+          "complete": true,
+          "red": {
+            "kill_score": 950,
+            "capture_score": 1600,
+            "total": 2550
+          },
+          "blue_total": 4750,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 1,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 5,
+          "complete": true,
+          "red": {
+            "kill_score": 1770,
+            "capture_score": 1600,
+            "total": 3370
+          },
+          "blue_total": 4450,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 7,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 4,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 2,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 6,
+          "complete": true,
+          "red": {
+            "kill_score": 760,
+            "capture_score": 0,
+            "total": 760
+          },
+          "blue_total": 6270,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 3,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 7,
+          "complete": true,
+          "red": {
+            "kill_score": 950,
+            "capture_score": 0,
+            "total": 950
+          },
+          "blue_total": 6260,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 1,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 8,
+          "complete": true,
+          "red": {
+            "kill_score": 1210,
+            "capture_score": 0,
+            "total": 1210
+          },
+          "blue_total": 6320,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 1,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 7,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 9,
+          "complete": true,
+          "red": {
+            "kill_score": 1240,
+            "capture_score": 1600,
+            "total": 2840
+          },
+          "blue_total": 4580,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 7,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 2,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 10,
+          "complete": true,
+          "red": {
+            "kill_score": 950,
+            "capture_score": 0,
+            "total": 950
+          },
+          "blue_total": 6310,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 6,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 6,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 11,
+          "complete": true,
+          "red": {
+            "kill_score": 2430,
+            "capture_score": 3200,
+            "total": 5630
+          },
+          "blue_total": 2880,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 2,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "指挥所",
+              "red": 1,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 0,
+              "percent": 1
+            }
+          ]
+        },
+        {
+          "episode": 12,
+          "complete": true,
+          "red": {
+            "kill_score": 1130,
+            "capture_score": 1600,
+            "total": 2730
+          },
+          "blue_total": 4350,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 6,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 1,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 13,
+          "complete": true,
+          "red": {
+            "kill_score": 1240,
+            "capture_score": 1600,
+            "total": 2840
+          },
+          "blue_total": 4630,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 0,
+              "percent": 1
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 8,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 14,
+          "complete": true,
+          "red": {
+            "kill_score": 770,
+            "capture_score": 0,
+            "total": 770
+          },
+          "blue_total": 6320,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 3,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "episode": 15,
+          "complete": true,
+          "red": {
+            "kill_score": 850,
+            "capture_score": 0,
+            "total": 850
+          },
+          "blue_total": 6320,
+          "capture": [
+            {
+              "name": "军事基地B",
+              "red": 0,
+              "blue": 10,
+              "percent": 0
+            },
+            {
+              "name": "指挥所",
+              "red": 0,
+              "blue": 3,
+              "percent": 0
+            },
+            {
+              "name": "军事基地A",
+              "red": 0,
+              "blue": 9,
+              "percent": 0
+            }
+          ]
+        }
+      ],
+      "mean": 2099.3333333333335,
+      "median": 2110,
+      "min": 760,
+      "max": 5630,
+      "below_1000": 6
+    }
+  ],
+  "latest_selected_rounds": {
+    "2": {
+      "snapshots": [
+        {
+          "step": 0,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 30,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 60,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 90,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 8,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 120,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 18,
+            "BP_Base_UAV_C": 2,
+            "BP_RoboDog_C": 11,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 25,
+              "blueteamNum": 12,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 15,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 150,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_BaseSoldier_C": 3,
+            "BP_Base_UAV_C": 2,
+            "BP_RoboDog_C": 1,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 4,
+              "blueteamNum": 7,
+              "percent": 0.45
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 15,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 200,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_Base_UAV_C": 1,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 15,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 300,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_Base_UAV_C": 1,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 15,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 499,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_Base_UAV_C": 1,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 15,
+              "percent": 0
+            }
+          ]
+        }
+      ],
+      "uav_commands": {
+        "Guard": 357,
+        "Moving": 248,
+        "NormalAttacking": 15,
+        "Idle": 1880
+      }
+    },
+    "6": {
+      "snapshots": [
+        {
+          "step": 0,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 30,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 12,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 60,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 8,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 12,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 90,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 4,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 12,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 8,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 120,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 21,
+            "BP_RoboDog_C": 11,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 33,
+              "blueteamNum": 9,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 150,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 1,
+            "BP_RoboDog_C": 2,
+            "BP_MNWS_Vehicle_Armored_C": 1,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 3,
+              "blueteamNum": 3,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 200,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_RoboDog_C": 1,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 1,
+              "blueteamNum": 3,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 300,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 3,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 499,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 3,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            }
+          ]
+        }
+      ],
+      "uav_commands": {
+        "Guard": 275,
+        "Moving": 184,
+        "NormalAttacking": 17,
+        "Idle": 2022,
+        "SelfDestruct": 2
+      }
+    },
+    "11": {
+      "snapshots": [
+        {
+          "step": 0,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 30,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 60,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 2,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 4,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 15,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 90,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_BaseSoldier_C": 24,
+            "BP_Base_UAV_C": 5,
+            "BP_RoboDog_C": 13,
+            "BP_MNWS_Vehicle_Armored_C": 3,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 5,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 13,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 120,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_BaseSoldier_C": 20,
+            "BP_RoboDog_C": 11,
+            "BP_MNWS_Vehicle_Armored_C": 3,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 13,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 150,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_BaseSoldier_C": 19,
+            "BP_RoboDog_C": 8,
+            "BP_MNWS_Vehicle_Armored_C": 3,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 13,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 200,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_BaseSoldier_C": 19,
+            "BP_RoboDog_C": 8,
+            "BP_MNWS_Vehicle_Armored_C": 3,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 13,
+              "percent": 0
+            }
+          ]
+        },
+        {
+          "step": 300,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_BaseSoldier_C": 2,
+            "BP_RoboDog_C": 2,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 1,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ]
+        },
+        {
+          "step": 499,
+          "red_alive": {
+            "BP_MNWS_Vehicle_6x6UGV_C": 1,
+            "BP_BaseSoldier_C": 2,
+            "BP_RoboDog_C": 2,
+            "BP_Helicopter_C": 2
+          },
+          "objectives": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 1,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ]
+        }
+      ],
+      "uav_commands": {
+        "Guard": 283,
+        "Moving": 180,
+        "NormalAttacking": 14,
+        "Idle": 2022,
+        "SelfDestruct": 1
+      }
+    }
+  },
+  "historical_behavior_baseline": {
+    "candidate_commit": "f19301783f7cafdd1c955f868aaf375b1da58cb3",
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261014_211207\\protocol.jsonl",
+    "rounds": [
+      {
+        "episode": 1,
+        "counts": {
+          "frames": 451,
+          "matches": 22500
+        }
+      },
+      {
+        "episode": 2,
+        "counts": {
+          "frames": 451,
+          "matches": 22500
+        }
+      },
+      {
+        "episode": 3,
+        "counts": {
+          "frames": 451,
+          "matches": 22500
+        }
+      },
+      {
+        "episode": 4,
+        "counts": {
+          "frames": 451,
+          "matches": 22500
+        }
+      },
+      {
+        "episode": 5,
+        "counts": {
+          "frames": 451,
+          "matches": 22500
+        }
+      }
+    ],
+    "limitation": "Exact action reproduction supports behavior equivalence, not cryptographic proof of the originally loaded source."
+  },
+  "limitation": "Historical outcomes, not new policy performance. No startup commit hash in these logs."
+}

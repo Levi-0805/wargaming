@@ -3,6 +3,8 @@ from __future__ import annotations
 import logging
 import math
 
+from .AdaptiveAssault import AdaptiveAssault
+
 logger = logging.getLogger(__name__)
 
 
@@ -44,7 +46,13 @@ class AssaultRoute:
     WAYPOINT_STALL_CALLS = 20
     BYPASS_RADIUS = 3500.0
 
-    def __init__(self):
+    def __init__(self, *, adaptive=False):
+        self.adaptive = bool(adaptive)
+        self._strategy = AdaptiveAssault() if adaptive else None
+        self.hq_uid = None
+        self._map_order = ()
+        self._adaptive_paths = {}
+        self._replanned = False
         self._episode = None
         self._step = None
         self.order = ()
@@ -66,7 +74,8 @@ class AssaultRoute:
     @staticmethod
     def count(obj, field):
         try:
-            return float(obj.raw.get(field, 0) or 0)
+            value = float(obj.raw.get(field, 0) or 0)
+            return value if math.isfinite(value) else 0.0
         except (TypeError, ValueError):
             return 0.0
 
@@ -78,6 +87,11 @@ class AssaultRoute:
         self._waypoint_watch.clear()
         self._lost = 0
         self._clear.clear()
+        self._adaptive_paths.clear()
+        self._replanned = False
+        self._strategy = AdaptiveAssault() if self.adaptive else None
+        self.hq_uid = None
+        self._map_order = ()
         self._routes = ()
         self.known_map = False
         objects = [obj for obj in state.key_objects if obj.valid]
@@ -101,11 +115,74 @@ class AssaultRoute:
                 ordered.append(target)
                 remaining = [obj for obj in remaining if obj.uid != target.uid]
         self.order = tuple(obj.uid for obj in ordered)
+        self.hq_uid = ordered[0].uid
+        self._map_order = self.order
         self._routes = tuple(
             tuple(prefix) + (tuple(float(v) for v in obj.position),)
             for obj, prefix in zip(ordered, (self.LOWER, self.HQ_B, self.B_A) if self.known_map else [()] * len(ordered))
         )
         logger.info("统一推进目标顺序: %s 下路坐标匹配=%s", self.order, self.known_map)
+
+    def is_hq(self, obj):
+        return obj is not None and obj.uid == self.hq_uid
+
+    def owned(self, state, obj):
+        friendly, enemy = (("redTeamNum", "blueteamNum") if state.team == 0
+                           else ("blueteamNum", "redTeamNum"))
+        return obj.team == state.team if obj.team is not None else (
+            self.count(obj, 'percent') >= 1.0 and self.count(obj, friendly) > self.count(obj, enemy))
+
+    def recon_objective(self, state, agent=None):
+        return self._strategy.recon_objective(state, self, agent) if self._strategy else self.objective(state)
+
+    def recon_pending(self, state):
+        return self._strategy.recon_pending(state, self) if self._strategy else False
+
+    def _reorder(self, state, order, stage=None):
+        """Keep confirmed holdings separate from the pending attack order."""
+        self.order = tuple(order)
+        self._replanned = True
+        if stage is not None:
+            self.stage = stage
+        self._confirmed = 0
+        self._cursor.clear()
+        self._adaptive_paths.clear()
+        self._waypoint_watch.clear()
+        self._routes = tuple((tuple(float(v) for v in state.key_object_by_uid(uid).position),)
+                             for uid in self.order)
+
+    def _select(self, state, *, next_objective=False):
+        if self._strategy is None:
+            return
+        chosen = self._strategy.select(state, self, next_objective=next_objective)
+        if chosen is not None:
+            suffix = list(self.order[self.stage:])
+            suffix.remove(chosen)
+            self._reorder(state, (*self.order[:self.stage], chosen, *suffix))
+
+    def _route_for(self, agent, leg):
+        if not self.adaptive or not self.known_map or not self._replanned:
+            return self._routes[leg]
+        key = (agent.uid, leg, self.order[leg])
+        if key in self._adaptive_paths:
+            return self._adaptive_paths[key]
+        # Reuse sampled lower-road and connecting corridors in either direction.
+        # The short LOWER -> HQ_B join bypasses the HQ centre; UE navigation
+        # still resolves each ground segment. Other maps use UE navigation.
+        corridor = self.LOWER + self.HQ_B + self.B_A
+        destination = self._map_order.index(self.order[leg])
+        end = (len(self.LOWER) - 1, len(self.LOWER) + len(self.HQ_B) - 1,
+               len(corridor) - 1)[destination]
+        target = self._routes[leg][-1]
+        if self.distance(agent.position, target) <= (15000 if destination == 0 else self.GARRISON_CORE):
+            path = (target,)
+        else:
+            start = 1 if agent.position[1] < 26000 and agent.position[0] > 50000 else min(
+                range(len(corridor)), key=lambda i: self.distance(agent.position, corridor[i]))
+            indices = range(start, end + 1) if start <= end else range(start, end - 1, -1)
+            path = tuple(corridor[i] for i in indices) + (target,)
+        self._adaptive_paths[key] = path
+        return path
 
     def update(self, state):
         if self._episode != state.episode or (self._step is not None and state.step < self._step):
@@ -121,11 +198,12 @@ class AssaultRoute:
         if not consecutive:
             self._confirmed = 0
             self._clear.clear()
+        self._select(state)
         enemy_field = 'blueteamNum' if state.team == 0 else 'redTeamNum'
         for uid in self.order:
             point = state.key_object_by_uid(uid)
             clear = (point is not None and self.count(point, 'percent') >= 1
-                     and point.raw.get(enemy_field) is not None and self.enemy_count(state, point) == 0
+                     and AdaptiveAssault.occupants(state, point) == 0
                      and (point.team is None or point.team == state.team)
                      and not any(enemy.alive and enemy.entity_type in {
                          'BP_BaseSoldier_C', 'BP_RoboDog_C', 'BP_MNWS_Vehicle_Armored_C',
@@ -140,51 +218,64 @@ class AssaultRoute:
                           else self.count(previous, "percent") < 1)), None)
         self._lost = self._lost + 1 if lost is not None else 0
         if self._lost >= 2:
-            self.stage, self._confirmed, self._lost = lost, 0, 0
-            route = self._routes[self.stage]
-            for unit in state.agents:
-                cursor = self._cursor.get(unit.uid)
-                if cursor is not None and cursor[0] > self.stage:
-                    self._cursor[unit.uid] = (self.stage, min(
-                        range(len(route)), key=lambda i: self.distance(unit.position, route[i])))
-            logger.warning("已占目标失守，停止转场: step=%d uid=%d", state.step, self.order[self.stage])
+            if self.adaptive:
+                # Reassess lost holdings without recalling the entire column
+                # into a newly fortified point. Its surviving guards may join.
+                lost_uid = self.order[lost]
+                order = list(self.order)
+                order.remove(lost_uid)
+                order.append(lost_uid)
+                self._reorder(state, order, self.stage - 1)
+                self._lost = 0
+                self._select(state)
+                logger.warning('已占目标失守，加入待评估目标: step=%d uid=%d', state.step, lost_uid)
+            else:
+                self.stage, self._confirmed, self._lost = lost, 0, 0
+                route = self._routes[self.stage]
+                for unit in state.agents:
+                    cursor = self._cursor.get(unit.uid)
+                    if cursor is not None and cursor[0] > self.stage:
+                        self._cursor[unit.uid] = (self.stage, min(
+                            range(len(route)), key=lambda i: self.distance(unit.position, route[i])))
+                logger.warning("已占目标失守，停止转场: step=%d uid=%d", state.step, self.order[self.stage])
         obj = self.objective(state)
         if obj is None:
             return
         friendly_field, enemy_field = (("redTeamNum", "blueteamNum") if state.team == 0
                                        else ("blueteamNum", "redTeamNum"))
-        ours = obj.team == state.team if obj.team is not None else (
-            self.count(obj, "percent") >= 1.0
-            and self.count(obj, friendly_field) > self.count(obj, enemy_field))
+        ours = self.owned(state, obj)
         # Full capture while blue units remain in the HQ courtyard is only a
         # contested foothold. Do not release the column on that bar alone.
         try:
             empty = float(obj.raw[enemy_field]) == 0
         except (KeyError, TypeError, ValueError):
             empty = False
-        secure = ours and (self.stage != 0 or (empty and self.count(obj, "percent") >= 1.0))
+        secure = ours and (not self.is_hq(obj) or (empty and self.count(obj, "percent") >= 1.0))
         # Reserve defenders before departure, not after everybody has started
         # moving to B. A label is not evidence that a unit is inside the point.
         self._assign_garrison(state, include_current=ours)
         guards = [unit for unit in state.agents if self._garrison.get(unit.uid) == obj.uid]
         ready = len(guards) >= self.garrison_needed(state, obj) and all(
             self.inside_garrison(obj, unit.position) for unit in guards)
-        if self.stage == 0:
+        if self.is_hq(obj):
             ready = ready and self.count(obj, friendly_field) >= self.garrison_needed(state, obj)
         self._confirmed = self._confirmed + 1 if secure and ready else 0
-        if self.stage == 0 and ours and not secure and state.step % 20 == 0:
+        if self.is_hq(obj) and ours and not secure and state.step % 20 == 0:
             logger.info("指挥所仍需清场，暂不转场: step=%d enemy_inside=%d guards=%d",
                         state.step, self.enemy_count(state, obj), len(guards))
         if (self._confirmed >= self.CAPTURE_CONFIRMATIONS and ready
                 and self.stage + 1 < len(self.order)):
             self.stage += 1
             self._confirmed = 0
+            self._select(state, next_objective=True)
             logger.info("据点占领已确认，主力转向下一目标: step=%d uid=%d", state.step, self.order[self.stage])
 
     def garrison_needed(self, state, obj):
-        if (self.order and obj.uid != self.order[0]
-                and self._clear.get(obj.uid, 0) >= self.CLEAR_STEPS):
-            return self.SECONDARY_GARRISON
+        if self._clear.get(obj.uid, 0) >= self.CLEAR_STEPS:
+            if not self.is_hq(obj):
+                return self.SECONDARY_GARRISON
+            if self.adaptive:
+                return 3
         return max(self.GARRISON_MIN, self.enemy_count(state, obj) + self.GARRISON_MARGIN)
 
     def enemy_count(self, state, obj):
@@ -194,7 +285,7 @@ class AssaultRoute:
         previous, self._garrison = self._garrison, {}
         for uid in self.order[:self.stage + int(include_current)]:
             obj = state.key_object_by_uid(uid)
-            if obj is None or not obj.valid:
+            if obj is None or not obj.valid or self.adaptive and not self.owned(state, obj):
                 continue
             nearby = [unit for unit in state.agents if unit.alive
                       and unit.entity_type in {"BP_BaseSoldier_C", "BP_RoboDog_C"}
@@ -225,7 +316,7 @@ class AssaultRoute:
             old = previous.get(unit.uid)
             if old is not None and unit.uid not in self._garrison and old in self.order:
                 leg = min(self.stage, self.order.index(old) + 1)
-                route = self._routes[leg]
+                route = self._route_for(unit, leg)
                 self._cursor[unit.uid] = (leg, min(range(len(route)),
                                                  key=lambda i: self.distance(unit.position, route[i])))
                 self._waypoint_watch.pop(unit.uid, None)
@@ -307,8 +398,10 @@ class AssaultRoute:
             leg = max((i + 1 for i, uid in enumerate(self.order[:self.stage])
                        if (obj := state.key_object_by_uid(uid)) is not None
                        and self.distance(position, obj.position) <= 15000), default=0)
-            route = self._routes[leg]
-            if self.known_map:
+            route = self._route_for(agent, leg)
+            if self.adaptive and self._replanned:
+                index = 0
+            elif self.known_map:
                 # Join at the observed road entrance, not west through the
                 # buildings adjacent to the x~60000,y~12000 spawn.
                 index = 1 if leg == 0 and position[1] < 26000 and position[0] > 50000 else min(
@@ -318,7 +411,7 @@ class AssaultRoute:
                 index = 0
             self._cursor[agent.uid] = (leg, index)
         leg, index = self._cursor[agent.uid]
-        route = self._routes[leg]
+        route = self._route_for(agent, leg)
         # Combat may carry a unit past a waypoint. Rejoin at an actually
         # reached later point instead of ordering it back down the road.
         later = [i for i in range(index + 1, len(route))
@@ -327,14 +420,14 @@ class AssaultRoute:
             index = max(later)
         if leg < self.stage and self.distance(position, route[-1]) <= 15000:
             leg += 1
-            route = self._routes[leg]
+            route = self._route_for(agent, leg)
             index = min(range(len(route)), key=lambda i: self.distance(position, route[i]))
         while self.distance(position, route[index]) <= self.ARRIVAL:
             if index + 1 < len(route):
                 index += 1
             elif leg < self.stage:
                 leg, index = leg + 1, 0
-                route = self._routes[leg]
+                route = self._route_for(agent, leg)
             else:
                 break
         # Intermediate road samples are not objectives. A unit stuck 18-20m

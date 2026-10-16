@@ -1,0 +1,103 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261016_110326\\protocol.jsonl",
+  "source_bytes": 1009884934,
+  "source_sha256": "6dc30fe03c02e8d1962799685f0cdaf56695c534358e343ef063f6514a526f10",
+  "candidate_file_sha256": {
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AdaptiveAssault.py": "79e014fed37c80981f1353b391deb546e0ff14ba525cc4c8f1aaa9c3dceca139",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultRoute.py": "5b719b8331677407c653d3326803b426957ba14118889629c43b6b755a573f6e",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\FlightNavigation.py": "c9ab2a634020bf8be0bd29106af1773672b8b2f4f179a8f741c8fb88ab86b55d",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RLAgentAlgorithm.py": "8c15800af3c5512eef5920407ce6bcaafaefae6d3471d0ef13460ec2d661c86f",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RuleAgentAlgorithm.py": "9b0afd00ea7dbdbdb953c479a87605917af972d72bd7a18777171da5209b4bd1",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UAVControl.py": "ba3ddf643297acd82d2c69cffed6899a84d8df709615890433c0b83d5b1d3094",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3"
+  },
+  "episodes": [
+    {
+      "episode": 2,
+      "frames": 501,
+      "commands": {
+        "Moving": 6754,
+        "Guard": 469,
+        "Idle": 17385,
+        "NormalAttacking": 442
+      },
+      "objectives": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 70,
+          "uid": 32768,
+          "name": "军事基地B"
+        }
+      ],
+      "uav_fire_without_local_contact": 0,
+      "recorded_scores": [
+        {
+          "side": "red",
+          "kill_score": 860,
+          "capture_score": 0,
+          "total": 860
+        },
+        {
+          "side": "blue",
+          "kill_score": 3110,
+          "capture_score": 3200,
+          "total": 6310
+        }
+      ]
+    },
+    {
+      "episode": 11,
+      "frames": 501,
+      "commands": {
+        "Moving": 9650,
+        "Guard": 1302,
+        "Idle": 13817,
+        "NormalAttacking": 281
+      },
+      "objectives": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 70,
+          "uid": 32768,
+          "name": "军事基地B"
+        },
+        {
+          "step": 163,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "uav_fire_without_local_contact": 0,
+      "recorded_scores": [
+        {
+          "side": "red",
+          "kill_score": 2430,
+          "capture_score": 3200,
+          "total": 5630
+        },
+        {
+          "side": "blue",
+          "kill_score": 2880,
+          "capture_score": 0,
+          "total": 2880
+        }
+      ]
+    }
+  ],
+  "limitation": "Commands on historical public observations; no simulation of new scores, movement, or survival."
+}

@@ -96,11 +96,11 @@ class HQEntry:
             self._alternate.clear()
             self._exhausted.clear()
         self._frame = frame
-        hq = state.key_object_by_uid(route.order[0]) if route.order else None
+        hq = state.key_object_by_uid(route.hq_uid) if route.hq_uid is not None else None
         guard = route.garrison_for(state, agent)
         eligible = (hq is not None and route.known_map and agent.entity_type in UrbanContact.GROUND
                     and agent.alive and agent.communication_ok() is not False
-                    and (route.stage == 0 or guard is not None and guard.uid == hq.uid)
+                    and (route.objective(state).uid == hq.uid or guard is not None and guard.uid == hq.uid)
                     and AssaultRoute.distance(agent.position, hq.position) < 18000
                     and (route.enemy_count(state, hq) > 0 or route.count(hq, "percent") < 1))
         if not eligible:

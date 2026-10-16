@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 class ReinforceAgentAlgorithm(RuleAlgorithm):
-    """All units use the lower approach, fight contacts, then capture HQ, B, A.
+    """Use the lower approach and choose objectives from public reconnaissance.
 
     A bounded opening rendezvous reduces staggered arrivals. Ground engagement
     uses local contacts; shared reports alone cannot interrupt objective travel.
@@ -51,7 +51,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
                     enable_preservation_pause, enable_shared_contact_maneuver, enable_forced_entry_under_contact)
         self._command_links = CommandLinks()
         self._motion_recovery = MotionRecovery()
-        self._route = AssaultRoute()
+        self._route = AssaultRoute(adaptive=True)
         self._uav = UAVControl()
         self._urban = UrbanContact()
         self._hq_entry = HQEntry()
@@ -206,7 +206,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         point = self._route.point(state, agent)
         objective = self._route.objective(state)
         visible = [enemy for enemy in state.visible_opponents if enemy.alive]
-        if (objective is not None and self._route.stage == 0
+        if (objective is not None and self._route.is_hq(objective)
                 and agent.entity_type in self._urban.GROUND
                 and self._route.inside_garrison(objective, agent.position)
                 and self._route.enemy_count(state, objective) > 0):
