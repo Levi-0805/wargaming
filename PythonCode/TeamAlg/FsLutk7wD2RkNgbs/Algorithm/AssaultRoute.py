@@ -66,6 +66,7 @@ class AssaultRoute:
         self._waypoint_watch = {}
         self._lost = 0
         self._clear = {}
+        self._incidental = {}
 
     @staticmethod
     def distance(left, right):
@@ -87,6 +88,7 @@ class AssaultRoute:
         self._waypoint_watch.clear()
         self._lost = 0
         self._clear.clear()
+        self._incidental.clear()
         self._adaptive_paths.clear()
         self._replanned = False
         self._strategy = AdaptiveAssault() if self.adaptive else None
@@ -184,6 +186,58 @@ class AssaultRoute:
         self._adaptive_paths[key] = path
         return path
 
+    def transit_objectives(self, state, origin, target):
+        """Public capture boxes crossed by the actual sampled corridor.
+
+        A is reached through the B corridor. An empty A does not make that
+        approach cheap when B is defended. No hidden opponent positions.
+        """
+        if not self.known_map or target.uid not in self._map_order:
+            return ()
+        corridor = self.LOWER + self.HQ_B + self.B_A
+        end = (len(self.LOWER)-1, len(self.LOWER)+len(self.HQ_B)-1,
+               len(corridor)-1)[self._map_order.index(target.uid)]
+        start = min(range(len(corridor)), key=lambda i: self.distance(origin, corridor[i]))
+        indices = range(start, end+1) if start <= end else range(start, end-1, -1)
+        path = [tuple(origin), *(corridor[i] for i in indices), tuple(target.position)]
+        crossed = []
+        for obj in state.key_objects:
+            if not obj.valid or obj.uid == target.uid or self.owned(state, obj):
+                continue
+            found = False
+            for left, right in zip(path, path[1:]):
+                samples = max(1, math.ceil(self.distance(left, right) / 2000))
+                if any(self.inside_garrison(obj, tuple(left[j] + (right[j]-left[j])*i/samples
+                                                        for j in range(3)))
+                       for i in range(samples+1)):
+                    found = True
+                    break
+            if found:
+                crossed.append(obj)
+        return tuple(crossed)
+
+    def _secure_incidental(self, state):
+        if not self.adaptive:
+            return
+        # A column can capture a base it crosses before reaching its intended
+        # destination. Promote that real holding, keep the intended objective,
+        # and reserve defenders rather than marching everyone out of it.
+        for uid in self.order[self.stage+1:]:
+            obj = state.key_object_by_uid(uid)
+            ready = obj is not None and self.owned(state, obj) and AdaptiveAssault.occupants(state, obj) == 0
+            if ready:
+                inside = sum(u.alive and u.entity_type in {'BP_BaseSoldier_C', 'BP_RoboDog_C'}
+                             and u.communication_ok() is not False and self.inside_garrison(obj, u.position)
+                             for u in state.agents)
+                ready = inside >= self.garrison_needed(state, obj)
+            self._incidental[uid] = self._incidental.get(uid, 0) + 1 if ready else 0
+            if self._incidental[uid] >= self.CAPTURE_CONFIRMATIONS:
+                pending = [other for other in self.order[self.stage:] if other != uid]
+                self._reorder(state, (*self.order[:self.stage], uid, *pending), self.stage+1)
+                self._incidental.pop(uid, None)
+                logger.info('沿途据点占领确认，留守并继续当前主攻: step=%d uid=%d', state.step, uid)
+                break
+
     def update(self, state):
         if self._episode != state.episode or (self._step is not None and state.step < self._step):
             self._initialize(state)
@@ -198,6 +252,7 @@ class AssaultRoute:
         if not consecutive:
             self._confirmed = 0
             self._clear.clear()
+            self._incidental.clear()
         self._select(state)
         enemy_field = 'blueteamNum' if state.team == 0 else 'redTeamNum'
         for uid in self.order:
@@ -210,6 +265,7 @@ class AssaultRoute:
                          'BP_MNWS_Vehicle_6x6UGV_C'} and self.distance(enemy.position, point.position) <= 12000
                          for enemy in state.visible_opponents))
             self._clear[uid] = self._clear.get(uid, 0) + 1 if clear else 0
+        self._secure_incidental(state)
         # A full progress bar can be reversed immediately by surviving defenders.
         # Revisit a lost earlier objective instead of leaving vehicles en route to B.
         lost = next((i for i, uid in enumerate(self.order[:self.stage])
@@ -272,6 +328,12 @@ class AssaultRoute:
 
     def garrison_needed(self, state, obj):
         if self._clear.get(obj.uid, 0) >= self.CLEAR_STEPS:
+            if self.adaptive:
+                capturers = sum(u.alive and u.entity_type in {'BP_BaseSoldier_C', 'BP_RoboDog_C'}
+                                and u.communication_ok() is not False for u in state.agents)
+                pending = any(o.valid and not self.owned(state, o) for o in state.key_objects)
+                if pending and capturers <= self.SECONDARY_GARRISON * len(self.order):
+                    return 1  # Known clear only; retain capacity to capture remaining points.
             if not self.is_hq(obj):
                 return self.SECONDARY_GARRISON
             if self.adaptive:
@@ -398,6 +460,8 @@ class AssaultRoute:
             leg = max((i + 1 for i, uid in enumerate(self.order[:self.stage])
                        if (obj := state.key_object_by_uid(uid)) is not None
                        and self.distance(position, obj.position) <= 15000), default=0)
+            if self.adaptive and self._replanned:
+                leg = self.stage
             route = self._route_for(agent, leg)
             if self.adaptive and self._replanned:
                 index = 0
@@ -411,6 +475,9 @@ class AssaultRoute:
                 index = 0
             self._cursor[agent.uid] = (leg, index)
         leg, index = self._cursor[agent.uid]
+        if self.adaptive and self._replanned and leg < self.stage:
+            leg, index = self.stage, 0
+            self._waypoint_watch.pop(agent.uid, None)
         route = self._route_for(agent, leg)
         # Combat may carry a unit past a waypoint. Rejoin at an actually
         # reached later point instead of ordering it back down the road.

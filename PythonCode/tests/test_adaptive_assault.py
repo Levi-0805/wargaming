@@ -147,13 +147,14 @@ def test_confirmed_hq_releases_surplus_after_clear_observations():
     assert len(route._garrison) == 4
 
 
-def test_after_hq_capture_selects_weaker_secondary_without_recalling_guards():
+def test_after_hq_capture_accounts_for_defended_b_on_route_to_a():
     units, objects, route = opening()
     units = guards_at(objects[0], count=8)
     objects[0].raw.update(percent=1, redTeamNum=8)
     objects[1].raw['blueteamNum'] = 12
     s = advance(route, units, objects, range(4))
-    assert route.stage == 1 and route.objective(s).uid == objects[2].uid
+    # A is empty, but getting there crosses B: do not score that route as free.
+    assert route.stage == 1 and route.objective(s).uid == objects[1].uid
     assert set(route._garrison.values()) == {objects[0].uid}
 
 

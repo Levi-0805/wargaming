@@ -1,0 +1,2480 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261017_011401\\protocol.jsonl",
+  "source_bytes": 1229543582,
+  "source_sha256": "4ad0f34ced26948539510a9b10fffaa6b5631084565aeeb5a685403c9b4c4bf3",
+  "limitation": "Historical observations, not simulated outcomes of different actions.",
+  "baseline_commit": "5e789df47cd86a401940f98ba23a5f3281ae3725",
+  "candidate_sha256": {
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/AssaultRoute.py": "477cf7018b655d4547bdbc53c969b6c8fb24a8b30669a0391465ca93c7af1ad2",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/FlightNavigation.py": "c9ab2a634020bf8be0bd29106af1773672b8b2f4f179a8f741c8fb88ab86b55d",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/RLAgentAlgorithm.py": "8c15800af3c5512eef5920407ce6bcaafaefae6d3471d0ef13460ec2d661c86f",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/RuleAgentAlgorithm.py": "9b0afd00ea7dbdbdb953c479a87605917af972d72bd7a18777171da5209b4bd1",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/UAVControl.py": "ba3ddf643297acd82d2c69cffed6899a84d8df709615890433c0b83d5b1d3094",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  },
+  "episodes": [
+    {
+      "episode": 4,
+      "historical_scores_not_candidate_results": [
+        {
+          "side": "red",
+          "kill_score": 2600,
+          "capture_score": 1600,
+          "total": 4200
+        },
+        {
+          "side": "blue",
+          "kill_score": 2920,
+          "capture_score": 1600,
+          "total": 4520
+        }
+      ],
+      "baseline_command_matches": 19150,
+      "baseline_command_mismatches": 0,
+      "candidate_command_matches": 18295,
+      "candidate_command_differences": 855,
+      "baseline_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 168,
+          "uid": 32768,
+          "name": "军事基地B"
+        },
+        {
+          "step": 171,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 204,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 318,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 421,
+          "uid": 32768,
+          "name": "军事基地B"
+        }
+      ],
+      "candidate_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 204,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 318,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 398,
+          "uid": 32768,
+          "name": "军事基地B"
+        },
+        {
+          "step": 476,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "baseline_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 3,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 27,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 2
+          }
+        },
+        {
+          "step": 200,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 4
+          }
+        },
+        {
+          "step": 225,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 6,
+              "blueteamNum": 5,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0.45
+            }
+          ],
+          "garrison": {
+            "32768": 8
+          }
+        },
+        {
+          "step": 499,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 1,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 1,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32770": 2,
+            "32768": 1
+          }
+        }
+      ],
+      "baseline_last_ground": [
+        {
+          "uid": 1531,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -13415,
+            -28595,
+            5623
+          ],
+          "link": true,
+          "guard": 32770,
+          "cursor": null,
+          "action": "ActionSet2::Guard;;Points=[-13419.16015625, -28553.400390625, 5622.5419921875];1531",
+          "contact_count": 0
+        },
+        {
+          "uid": 1861,
+          "kind": "BP_RoboDog_C",
+          "hp": 100.0,
+          "pos": [
+            -40650,
+            -31196,
+            5582
+          ],
+          "link": true,
+          "guard": 32768,
+          "cursor": [
+            1,
+            3
+          ],
+          "action": "ActionSet2::Guard;;Points=[-40636.94140625, -31235.509765625, 5581.97216796875];1861",
+          "contact_count": 0
+        },
+        {
+          "uid": 1836,
+          "kind": "BP_RoboDog_C",
+          "hp": 71.9,
+          "pos": [
+            -11755,
+            -29858,
+            5586
+          ],
+          "link": true,
+          "guard": 32770,
+          "cursor": null,
+          "action": "ActionSet2::Guard;;Points=[-11796.3798828125, -29865.240234375, 5585.5361328125];1836",
+          "contact_count": 0
+        },
+        {
+          "uid": 1676,
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "hp": 45.7,
+          "pos": [
+            66261,
+            33062,
+            5894
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            0,
+            1
+          ],
+          "action": "ActionSet2::Moving;;Points=[59734.0, 36261.0, 5646.0];1676",
+          "contact_count": 0
+        }
+      ],
+      "candidate_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 3,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 27,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 2
+          }
+        },
+        {
+          "step": 200,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 4
+          }
+        },
+        {
+          "step": 225,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 6,
+              "blueteamNum": 5,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0.45
+            }
+          ],
+          "garrison": {
+            "32768": 8
+          }
+        },
+        {
+          "step": 499,
+          "stage": 2,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 1,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 1,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32770": 1,
+            "32768": 1
+          }
+        }
+      ],
+      "candidate_last_ground": [
+        {
+          "uid": 1531,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -13415,
+            -28595,
+            5623
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-30334.0, -29802.0, 5684.0];1531",
+          "contact_count": 0
+        },
+        {
+          "uid": 1861,
+          "kind": "BP_RoboDog_C",
+          "hp": 100.0,
+          "pos": [
+            -40650,
+            -31196,
+            5582
+          ],
+          "link": true,
+          "guard": 32768,
+          "cursor": [
+            1,
+            3
+          ],
+          "action": "ActionSet2::Guard;;Points=[-40636.94140625, -31235.509765625, 5581.97216796875];1861",
+          "contact_count": 0
+        },
+        {
+          "uid": 1836,
+          "kind": "BP_RoboDog_C",
+          "hp": 71.9,
+          "pos": [
+            -11755,
+            -29858,
+            5586
+          ],
+          "link": true,
+          "guard": 32770,
+          "cursor": null,
+          "action": "ActionSet2::Guard;;Points=[-11796.3798828125, -29865.240234375, 5585.5361328125];1836",
+          "contact_count": 0
+        },
+        {
+          "uid": 1676,
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "hp": 45.7,
+          "pos": [
+            66261,
+            33062,
+            5894
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[65185.0, 36303.0, 6082.0];1676",
+          "contact_count": 0
+        }
+      ]
+    },
+    {
+      "episode": 10,
+      "historical_scores_not_candidate_results": [
+        {
+          "side": "red",
+          "kill_score": 2620,
+          "capture_score": 1600,
+          "total": 4220
+        },
+        {
+          "side": "blue",
+          "kill_score": 2630,
+          "capture_score": 0,
+          "total": 2630
+        }
+      ],
+      "baseline_command_matches": 16250,
+      "baseline_command_mismatches": 0,
+      "candidate_command_matches": 15518,
+      "candidate_command_differences": 732,
+      "baseline_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 171,
+          "uid": 32768,
+          "name": "军事基地B"
+        },
+        {
+          "step": 174,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 223,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "candidate_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 223,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "baseline_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 1,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 23,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 2
+          }
+        },
+        {
+          "step": 200,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 4
+          }
+        },
+        {
+          "step": 225,
+          "stage": 2,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32768": 4,
+            "32770": 4
+          }
+        },
+        {
+          "step": 499,
+          "stage": 2,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 3,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0.5
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32768": 2,
+            "32770": 2
+          }
+        }
+      ],
+      "baseline_last_ground": [
+        {
+          "uid": 4561,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -13147,
+            -28929,
+            5623
+          ],
+          "link": true,
+          "guard": 32770,
+          "cursor": [
+            1,
+            5
+          ],
+          "action": "ActionSet2::Guard;;Points=[-13141.169921875002, -28890.470703125, 5622.5439453125];4561",
+          "contact_count": 0
+        },
+        {
+          "uid": 4556,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -12435,
+            -29968,
+            5624
+          ],
+          "link": true,
+          "guard": 32770,
+          "cursor": [
+            1,
+            5
+          ],
+          "action": "ActionSet2::Guard;;Points=[-12473.3603515625, -29974.400390625, 5623.5380859375];4556",
+          "contact_count": 0
+        },
+        {
+          "uid": 5041,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -38797,
+            -35688,
+            5620
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            1,
+            4
+          ],
+          "action": "ActionSet2::Moving;;Points=[-34023.0, -34923.0, 5763.0];5041",
+          "contact_count": 0
+        },
+        {
+          "uid": 4606,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -39416,
+            -35181,
+            5620
+          ],
+          "link": true,
+          "guard": 32768,
+          "cursor": [
+            2,
+            3
+          ],
+          "action": "ActionSet2::Guard;;Points=[-39280.55078125, -35205.69921875, 5619.60791015625];4606",
+          "contact_count": 0
+        },
+        {
+          "uid": 4836,
+          "kind": "BP_RoboDog_C",
+          "hp": 38.9,
+          "pos": [
+            -39347,
+            -35187,
+            5582
+          ],
+          "link": true,
+          "guard": 32768,
+          "cursor": [
+            1,
+            4
+          ],
+          "action": "ActionSet2::Guard;;Points=[-39347.359375, -35187.078125, 5581.97119140625];4836",
+          "contact_count": 0
+        },
+        {
+          "uid": 4706,
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "hp": 100.0,
+          "pos": [
+            66640,
+            31065,
+            5983
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            0,
+            1
+          ],
+          "action": "ActionSet2::Moving;;Points=[59734.0, 36261.0, 5646.0];4706",
+          "contact_count": 0
+        }
+      ],
+      "candidate_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 1,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 23,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 2
+          }
+        },
+        {
+          "step": 200,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 4
+          }
+        },
+        {
+          "step": 225,
+          "stage": 2,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 4,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32768": 4,
+            "32770": 4
+          }
+        },
+        {
+          "step": 499,
+          "stage": 2,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 3,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0.5
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32768": 1,
+            "32770": 1
+          }
+        }
+      ],
+      "candidate_last_ground": [
+        {
+          "uid": 4561,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -13147,
+            -28929,
+            5623
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            2,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-30334.0, -29802.0, 5684.0];4561",
+          "contact_count": 0
+        },
+        {
+          "uid": 4556,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -12435,
+            -29968,
+            5624
+          ],
+          "link": true,
+          "guard": 32770,
+          "cursor": [
+            1,
+            6
+          ],
+          "action": "ActionSet2::Guard;;Points=[-12473.3603515625, -29974.400390625, 5623.5380859375];4556",
+          "contact_count": 0
+        },
+        {
+          "uid": 5041,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -38797,
+            -35688,
+            5620
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "ActionSet2::Moving;;Points=[-41155.0, -30706.0, 5620.0];5041",
+          "contact_count": 0
+        },
+        {
+          "uid": 4606,
+          "kind": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "pos": [
+            -39416,
+            -35181,
+            5620
+          ],
+          "link": true,
+          "guard": 32768,
+          "cursor": [
+            2,
+            3
+          ],
+          "action": "ActionSet2::Guard;;Points=[-39280.55078125, -35205.69921875, 5619.60791015625];4606",
+          "contact_count": 0
+        },
+        {
+          "uid": 4836,
+          "kind": "BP_RoboDog_C",
+          "hp": 38.9,
+          "pos": [
+            -39347,
+            -35187,
+            5582
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            2,
+            3
+          ],
+          "action": "ActionSet2::Moving;;Points=[-41155.0, -30706.0, 5620.0];4836",
+          "contact_count": 0
+        },
+        {
+          "uid": 4706,
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "hp": 100.0,
+          "pos": [
+            66640,
+            31065,
+            5983
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            2,
+            1
+          ],
+          "action": "ActionSet2::Moving;;Points=[59734.0, 36261.0, 5646.0];4706",
+          "contact_count": 0
+        }
+      ]
+    },
+    {
+      "episode": 11,
+      "historical_scores_not_candidate_results": [
+        {
+          "side": "red",
+          "kill_score": 770,
+          "capture_score": 800,
+          "total": 1570
+        },
+        {
+          "side": "blue",
+          "kill_score": 3170,
+          "capture_score": 2400,
+          "total": 5570
+        }
+      ],
+      "baseline_command_matches": 8450,
+      "baseline_command_mismatches": 0,
+      "candidate_command_matches": 8163,
+      "candidate_command_differences": 287,
+      "baseline_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 205,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "candidate_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 207,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "baseline_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 5,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 24,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 8,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 14,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 200,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 9,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 3,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32770": 4
+          }
+        },
+        {
+          "step": 225,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 9,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32770": 1
+          }
+        }
+      ],
+      "baseline_last_ground": [
+        {
+          "uid": 5146,
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "hp": 83.9,
+          "pos": [
+            -16495,
+            -26568,
+            5532
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            1,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-30334.0, -29802.0, 5684.0];5146",
+          "contact_count": 1
+        },
+        {
+          "uid": 5136,
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "hp": 40.2,
+          "pos": [
+            -17624,
+            -25253,
+            5532
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            1,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-30334.0, -29802.0, 5684.0];5136",
+          "contact_count": 2
+        },
+        {
+          "uid": 5236,
+          "kind": "BP_RoboDog_C",
+          "hp": 100.0,
+          "pos": [
+            -13329,
+            -27523,
+            5585
+          ],
+          "link": true,
+          "guard": 32770,
+          "cursor": [
+            0,
+            14
+          ],
+          "action": "ActionSet2::Guard;;Points=[-13352.937682774476, -27506.160830033565, 5584.5068359375];5236",
+          "contact_count": 0
+        },
+        {
+          "uid": 5101,
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "hp": 68.1,
+          "pos": [
+            -17356,
+            -27816,
+            5560
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            1,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-30334.0, -29802.0, 5684.0];5101",
+          "contact_count": 1
+        }
+      ],
+      "candidate_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 5,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 24,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 8,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 14,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 4
+          }
+        },
+        {
+          "step": 200,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 9,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 3,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32770": 4
+          }
+        },
+        {
+          "step": 225,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 9,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32770": 1
+          }
+        }
+      ],
+      "candidate_last_ground": [
+        {
+          "uid": 5146,
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "hp": 83.9,
+          "pos": [
+            -16495,
+            -26568,
+            5532
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            1,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-30334.0, -29802.0, 5684.0];5146",
+          "contact_count": 1
+        },
+        {
+          "uid": 5136,
+          "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+          "hp": 40.2,
+          "pos": [
+            -17624,
+            -25253,
+            5532
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            1,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-30334.0, -29802.0, 5684.0];5136",
+          "contact_count": 2
+        },
+        {
+          "uid": 5236,
+          "kind": "BP_RoboDog_C",
+          "hp": 100.0,
+          "pos": [
+            -13329,
+            -27523,
+            5585
+          ],
+          "link": true,
+          "guard": 32770,
+          "cursor": [
+            1,
+            0
+          ],
+          "action": "ActionSet2::Guard;;Points=[-13328.5595703125, -27522.779296875, 5585.4599609375];5236",
+          "contact_count": 0
+        },
+        {
+          "uid": 5101,
+          "kind": "BP_MNWS_Vehicle_Armored_C",
+          "hp": 68.1,
+          "pos": [
+            -17356,
+            -27816,
+            5560
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            1,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-30334.0, -29802.0, 5684.0];5101",
+          "contact_count": 1
+        }
+      ]
+    },
+    {
+      "episode": 16,
+      "historical_scores_not_candidate_results": [
+        {
+          "side": "red",
+          "kill_score": 970,
+          "capture_score": 0,
+          "total": 970
+        },
+        {
+          "side": "blue",
+          "kill_score": 3150,
+          "capture_score": 3200,
+          "total": 6350
+        }
+      ],
+      "baseline_command_matches": 20400,
+      "baseline_command_mismatches": 0,
+      "candidate_command_matches": 19594,
+      "candidate_command_differences": 806,
+      "baseline_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 115,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "candidate_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "baseline_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 23,
+              "blueteamNum": 2,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32769": 5
+          }
+        },
+        {
+          "step": 175,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 3,
+              "blueteamNum": 2,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32769": 1
+          }
+        },
+        {
+          "step": 200,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 3,
+              "blueteamNum": 2,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32769": 1
+          }
+        },
+        {
+          "step": 225,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 3,
+              "blueteamNum": 2,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32769": 1
+          }
+        },
+        {
+          "step": 499,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 1,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        }
+      ],
+      "baseline_last_ground": [
+        {
+          "uid": 7861,
+          "kind": "BP_RoboDog_C",
+          "hp": 100.0,
+          "pos": [
+            -35880,
+            28718,
+            5970
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            0,
+            0
+          ],
+          "action": "ActionSet2::Moving;;Points=[-36335.0, 30318.0, 6425.0];7861",
+          "contact_count": 0
+        }
+      ],
+      "candidate_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 23,
+              "blueteamNum": 2,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32769": 5
+          }
+        },
+        {
+          "step": 175,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 3,
+              "blueteamNum": 2,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32769": 1
+          }
+        },
+        {
+          "step": 200,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 3,
+              "blueteamNum": 2,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32769": 1
+          }
+        },
+        {
+          "step": 225,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 3,
+              "blueteamNum": 2,
+              "percent": 1
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32769": 1
+          }
+        },
+        {
+          "step": 499,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 10,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 1,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 6,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        }
+      ],
+      "candidate_last_ground": [
+        {
+          "uid": 7861,
+          "kind": "BP_RoboDog_C",
+          "hp": 100.0,
+          "pos": [
+            -35880,
+            28718,
+            5970
+          ],
+          "link": true,
+          "guard": null,
+          "cursor": [
+            0,
+            11
+          ],
+          "action": "ActionSet2::Moving;;Points=[-36335.0, 30318.0, 6425.0];7861",
+          "contact_count": 0
+        }
+      ]
+    },
+    {
+      "episode": 18,
+      "historical_scores_not_candidate_results": [
+        {
+          "side": "red",
+          "kill_score": 1150,
+          "capture_score": 0,
+          "total": 1150
+        },
+        {
+          "side": "blue",
+          "kill_score": 3160,
+          "capture_score": 3200,
+          "total": 6360
+        }
+      ],
+      "baseline_command_matches": 20450,
+      "baseline_command_mismatches": 0,
+      "candidate_command_matches": 20252,
+      "candidate_command_differences": 198,
+      "baseline_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 216,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 263,
+          "uid": 32768,
+          "name": "军事基地B"
+        }
+      ],
+      "candidate_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        },
+        {
+          "step": 216,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 263,
+          "uid": 32768,
+          "name": "军事基地B"
+        }
+      ],
+      "baseline_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 1,
+              "blueteamNum": 0,
+              "percent": 0.55
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 14,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 200,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 1,
+              "blueteamNum": 0,
+              "percent": 0.25
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 225,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 9,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32770": 2
+          }
+        },
+        {
+          "step": 499,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        }
+      ],
+      "baseline_last_ground": [],
+      "candidate_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 1,
+              "blueteamNum": 0,
+              "percent": 0.55
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 14,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {
+            "32768": 2
+          }
+        },
+        {
+          "step": 200,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 1,
+              "blueteamNum": 0,
+              "percent": 0.25
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 225,
+          "stage": 1,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 9,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 2,
+              "blueteamNum": 0,
+              "percent": 1
+            }
+          ],
+          "garrison": {
+            "32770": 2
+          }
+        },
+        {
+          "step": 499,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        }
+      ],
+      "candidate_last_ground": []
+    },
+    {
+      "episode": 19,
+      "historical_scores_not_candidate_results": [
+        {
+          "side": "red",
+          "kill_score": 1700,
+          "capture_score": 0,
+          "total": 1700
+        },
+        {
+          "side": "blue",
+          "kill_score": 3130,
+          "capture_score": 3200,
+          "total": 6330
+        }
+      ],
+      "baseline_command_matches": 20550,
+      "baseline_command_mismatches": 0,
+      "candidate_command_matches": 17039,
+      "candidate_command_differences": 3511,
+      "baseline_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 83,
+          "uid": 32770,
+          "name": "军事基地A"
+        }
+      ],
+      "candidate_goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "baseline_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 5,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 20,
+              "blueteamNum": 10,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 200,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 3,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 225,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 3,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 499,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        }
+      ],
+      "baseline_last_ground": [],
+      "candidate_holding_snapshots": [
+        {
+          "step": 150,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 5,
+              "blueteamNum": 16,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 175,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 20,
+              "blueteamNum": 10,
+              "percent": 1
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 200,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 3,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 225,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 3,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        },
+        {
+          "step": 499,
+          "stage": 0,
+          "objects": [
+            {
+              "rSVD1": "军事基地B",
+              "redTeamNum": 0,
+              "blueteamNum": 7,
+              "percent": 0
+            },
+            {
+              "rSVD1": "指挥所",
+              "redTeamNum": 0,
+              "blueteamNum": 2,
+              "percent": 0
+            },
+            {
+              "rSVD1": "军事基地A",
+              "redTeamNum": 0,
+              "blueteamNum": 0,
+              "percent": 0
+            }
+          ],
+          "garrison": {}
+        }
+      ],
+      "candidate_last_ground": []
+    }
+  ]
+}

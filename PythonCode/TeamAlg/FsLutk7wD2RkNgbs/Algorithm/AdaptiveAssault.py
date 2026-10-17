@@ -33,6 +33,7 @@ class AdaptiveAssault:
         self._recon_started = None
         self._visited = {}
         self._arrival = 0
+        self._utilities = {}
 
     @staticmethod
     def occupants(state, obj):
@@ -51,6 +52,7 @@ class AdaptiveAssault:
         if self._frame is not None and state.step != self._frame[1] + 1:
             self._candidate, self._samples = None, 0
         self._frame = frame
+        self._utilities.clear()
         for enemy in state.visible_opponents:
             if not enemy.alive:
                 self._contacts.pop(enemy.uid, None)
@@ -68,14 +70,22 @@ class AdaptiveAssault:
         return max(4.0 if count is None else count, reported)
 
     def utility(self, state, route, obj):
+        key = (obj.uid, tuple(sorted(route._garrison)))
+        if key in self._utilities:
+            return self._utilities[key]
         mobile = [unit for unit in state.agents if unit.alive and unit.entity_type in self.GROUND
                   and unit.communication_ok() is not False and unit.uid not in route._garrison]
         distances = sorted(route.distance(unit.position, obj.position) for unit in mobile)
         distance = distances[len(distances) // 2] if distances else 0
+        origin = min(mobile, key=lambda u: abs(route.distance(u.position, obj.position)-distance)).position if mobile else obj.position
+        transit = sum(self.pressure(state, route, other)
+                      for other in route.transit_objectives(state, origin, obj))
         value = 1600.0 if route.is_hq(obj) else 800.0
         # A twofold value advantage cannot outweigh a heavily defended box.
         # A distance penalty prevents marginal preferences causing long detours.
-        return value / ((2.0 + self.pressure(state, route, obj)) * (1.0 + distance / 100000.0))
+        result = value / ((2.0 + self.pressure(state, route, obj) + transit) * (1.0 + distance / 100000.0))
+        self._utilities[key] = result
+        return result
 
     def select(self, state, route, *, next_objective=False):
         self.observe(state)
