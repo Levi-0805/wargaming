@@ -1,4 +1,4 @@
-"""Public-state strategy tests; synthetic positions never model battle scores."""
+"""Unconstrained objective scoring (explicit opt-out of production HQ-first)."""
 from dataclasses import replace
 
 import pytest
@@ -10,7 +10,7 @@ from test_fslutk_rule import entity, guards_at, map_objectives, state
 def opening(*, approaching=False):
     x, y = (-6470, 30114) if approaching else (60000, 12000)
     units = [entity(i, 0, i, x, y) for i in range(12)]
-    return units, map_objectives(), AssaultRoute(adaptive=True)
+    return units, map_objectives(), AssaultRoute(adaptive=True, hq_first=False)
 
 
 def advance(route, units, objects, steps, enemies=()):

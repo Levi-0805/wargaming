@@ -33,7 +33,7 @@ def test_half_vehicles_lead_and_two_are_reserved_for_each_secondary():
 def test_reserves_stop_before_first_objective_and_release_for_their_target():
     foot, cars, objects, route, form = setup()
     reserve = next(u for u in cars if u.uid in form.reserve)
-    reserve.position[0] = objects[0].position[0] + 25000
+    reserve.position[0] = objects[0].position[0] + 11000
     s = state(foot+cars, objectives=objects, step=1)
     route.update(s)
     form.begin(s, route, recon_ready=True)
@@ -50,7 +50,7 @@ def test_recon_wait_then_vehicle_volley_releases_capture_wave():
     foot.append(entity(1000, 0, 99, 0, kind='BP_Base_UAV_C'))
     front = [u for u in cars if u.uid in form.front]
     for u in front:
-        u.position[0] = objects[0].position[0] + 25000
+        u.position[0] = objects[0].position[0] + 11000
     s = state(foot+cars, objectives=objects, step=1)
     form.begin(s, route)
     assert form.choose(s, front[0], route).command == 'Guard'
@@ -82,7 +82,7 @@ def test_attack_order_without_ammo_use_does_not_confirm_vehicle_volley():
 def test_distant_vehicle_contact_does_not_pull_reserve_into_first_wave():
     foot, cars, objects, route, form = setup()
     reserve = next(u for u in cars if u.uid in form.reserve)
-    reserve.position[0] = objects[0].position[0] + 25000
+    reserve.position[0] = objects[0].position[0] + 11000
     enemy = entity(999, 1, 0, reserve.position[0]-20000, reserve.position[1])
     reserve.raw['agentPerception'] = [999]
     s = state(foot+cars, [enemy], objects, step=1)
@@ -124,7 +124,7 @@ def test_episode_reset_restores_assignments_and_clears_volley_history():
     assert len(form.front) == len(form.reserve) == 4
 
 
-def test_six_vehicle_roster_reserves_both_chassis_and_replenishes_after_hq():
+def test_six_vehicle_roster_leads_with_both_lynx_and_replenishes_after_hq():
     objects = map_objectives()
     cars = [entity(100+i, 0, i, 0, kind='BP_MNWS_Vehicle_Armored_C' if i < 4 else 'BP_MNWS_Vehicle_6x6UGV_C')
             for i in range(6)]
@@ -134,8 +134,9 @@ def test_six_vehicle_roster_reserves_both_chassis_and_replenishes_after_hq():
     form.begin(s, route)
     assert len(form.front) == len(form.reserve) == 3
     assert len({u.entity_type for u in cars if u.uid in form.front}) == 2
-    assert len({u.entity_type for u in cars if u.uid in form.reserve}) == 2
+    assert all(u.uid in form.front for u in cars if u.entity_type == 'BP_MNWS_Vehicle_6x6UGV_C')
     objects[0].raw.update(percent=1, redTeamNum=4)
+    route.hq_secured = True
     s = state(cars, objectives=objects, step=1)
     form.begin(s, route)
     assert len(form.front) == 2

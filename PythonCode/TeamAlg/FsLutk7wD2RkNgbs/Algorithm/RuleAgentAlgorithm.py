@@ -16,6 +16,8 @@ from .CombatReadiness import CombatReadiness
 from .ApproachCohesion import ApproachCohesion
 from .AssaultFormation import AssaultFormation
 from .VehicleFireControl import VehicleFireControl
+from .ColumnAdvance import ColumnAdvance
+from .EntryWaves import EntryWaves
 
 logger = logging.getLogger(__name__)
 
@@ -61,6 +63,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._cohesion = ApproachCohesion()
         self._formation = AssaultFormation()
         self._vehicle_fire = VehicleFireControl()
+        self._column = ColumnAdvance()
+        self._entry_waves = EntryWaves()
         self._frame = None
         self._support = {}
         self._fire_watch = {}
@@ -86,6 +90,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         objective = self._route.objective(state)
         surveyed = self._uav.recon_status(state, objective)['ready'] if objective is not None else False
         self._formation.begin(state, self._route, recon_ready=surveyed)
+        self._column.begin(state, self._route)
+        self._entry_waves.begin(state, self._route, self._column)
         self._cohesion.begin(state, self._route)
         if self.enable_preservation_pause:
             self._readiness.begin(state, self._route)
@@ -279,6 +285,17 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if agent.entity_type == self._UAV:
             return action  # UAVControl owns flight recovery and strike persistence.
         result = self._motion_recovery.apply(state, agent, action)
+        result = self._entry_waves.apply(state, agent, result, self._route, self._column)
+        result = self._column.apply(state, agent, result, self._route, self._formation,
+                                    self._entry_waves.released if self._entry_waves.waves else ())
+        if agent.uid in self._column.held or agent.uid in self._entry_waves.held:
+            # A deliberate formation wait is not a failed movement attempt.
+            # Otherwise recovery would manufacture escape moves and skip road
+            # corners while the unit was explicitly ordered to stay here.
+            self._motion_recovery.pause(state, agent)
+            self._route._waypoint_watch.pop(agent.uid, None)
+            self._hq_entry._leg_watch.pop(agent.uid, None)
+            self._hq_entry._watch.pop(agent.uid, None)
         garrison = self._route.garrison_for(state, agent)
         if (garrison is not None and result.command == "Moving"
                 and self._route.inside_garrison(garrison, agent.position)):

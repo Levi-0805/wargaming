@@ -148,6 +148,7 @@ class VehicleFireControl:
             self._aimed.pop(agent.uid, None)
             return self.guard_toward(agent, stopped[0].position) if stopped else None
         target = min(available, key=lambda item: (
+            item.entity_type != 'BP_MNWS_Vehicle_6x6UGV_C',
             item.entity_type not in self.VEHICLES, float(item.hp), self.distance(agent, item), item.uid))
         aim = self.guard_toward(agent, target.position)
         signature = (target.uid, aim.direction)

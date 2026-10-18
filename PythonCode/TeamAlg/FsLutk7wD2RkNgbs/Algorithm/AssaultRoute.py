@@ -46,8 +46,10 @@ class AssaultRoute:
     WAYPOINT_STALL_CALLS = 20
     BYPASS_RADIUS = 3500.0
 
-    def __init__(self, *, adaptive=False):
+    def __init__(self, *, adaptive=False, hq_first=True):
         self.adaptive = bool(adaptive)
+        self.hq_first = bool(hq_first)
+        self.hq_secured = False
         self._strategy = AdaptiveAssault() if adaptive else None
         self.hq_uid = None
         self._map_order = ()
@@ -82,6 +84,7 @@ class AssaultRoute:
 
     def _initialize(self, state):
         self.order, self.stage, self._confirmed = (), 0, 0
+        self.hq_secured = False
         self._cursor.clear()
         self._garrison.clear()
         self._guard_slots.clear()
@@ -156,6 +159,11 @@ class AssaultRoute:
     def _select(self, state, *, next_objective=False):
         if self._strategy is None:
             return
+        if self.hq_first and not self.hq_secured:
+            # Reconnaissance can change approach/fire decisions, never the
+            # user's mandatory first objective. A full bar alone is not enough.
+            self._strategy.observe(state)
+            return
         chosen = self._strategy.select(state, self, next_objective=next_objective)
         if chosen is not None:
             suffix = list(self.order[self.stage:])
@@ -217,7 +225,7 @@ class AssaultRoute:
         return tuple(crossed)
 
     def _secure_incidental(self, state):
-        if not self.adaptive:
+        if not self.adaptive or self.hq_first and not self.hq_secured:
             return
         # A column can capture a base it crosses before reaching its intended
         # destination. Promote that real holding, keep the intended objective,
@@ -274,7 +282,15 @@ class AssaultRoute:
                           else self.count(previous, "percent") < 1)), None)
         self._lost = self._lost + 1 if lost is not None else 0
         if self._lost >= 2:
-            if self.adaptive:
+            if self.hq_first and self.order[lost] == self.hq_uid:
+                held = [uid for uid in self.order[:self.stage] if uid != self.hq_uid
+                        and (holding := state.key_object_by_uid(uid)) is not None and self.owned(state, holding)]
+                pending = [uid for uid in self.order if uid not in held and uid != self.hq_uid]
+                self.hq_secured = False
+                self._reorder(state, (*held, self.hq_uid, *pending), len(held))
+                self._lost = 0
+                logger.warning('指挥所失守，暂停次要目标并重新夺回: step=%d', state.step)
+            elif self.adaptive:
                 # Reassess lost holdings without recalling the entire column
                 # into a newly fortified point. Its surviving guards may join.
                 lost_uid = self.order[lost]
@@ -321,6 +337,8 @@ class AssaultRoute:
                         state.step, self.enemy_count(state, obj), len(guards))
         if (self._confirmed >= self.CAPTURE_CONFIRMATIONS and ready
                 and self.stage + 1 < len(self.order)):
+            if self.is_hq(obj):
+                self.hq_secured = True
             self.stage += 1
             self._confirmed = 0
             self._select(state, next_objective=True)

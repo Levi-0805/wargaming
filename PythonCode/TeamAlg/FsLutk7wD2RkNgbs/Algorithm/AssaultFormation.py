@@ -17,7 +17,7 @@ class AssaultFormation:
     VEHICLES = {'BP_MNWS_Vehicle_Armored_C', 'BP_MNWS_Vehicle_6x6UGV_C'}
     FOOT = {'BP_BaseSoldier_C', 'BP_RoboDog_C'}
     APPROACH = 35000.0
-    RESERVE_LINE = 28000.0
+    RESERVE_LINE = 12000.0
     SCREEN_GAP = 3000.0
     RECON_WAIT = 18
     HANDOFF_WAIT = 28
@@ -47,12 +47,13 @@ class AssaultFormation:
             return
         if self._frame is None or frame[0] != self._frame[0] or frame[1] < self._frame[1]:
             self.__init__()
-            # Interleave types so neither wave consists entirely of one chassis.
-            kinds = [sorted((u for u in state.agents if u.entity_type == kind), key=lambda u: u.uid)
-                     for kind in sorted(self.VEHICLES)]
-            vehicles = [group[i] for i in range(max(map(len, kinds), default=0))
-                        for group in kinds if i < len(group)]
-            self.front = {u.uid for group in kinds for u in group[:math.ceil(len(group) / 2)]}
+            # Both available Lynx support the first wave. Keeping one of only
+            # two in reserve had halved the initial Lynx support for infantry.
+            lynx = sorted((u for u in state.agents if u.entity_type == 'BP_MNWS_Vehicle_6x6UGV_C'), key=lambda u: u.uid)
+            wheeled = sorted((u for u in state.agents if u.entity_type == 'BP_MNWS_Vehicle_Armored_C'), key=lambda u: u.uid)
+            vehicles = lynx[:2] + wheeled + lynx[2:]
+            count = max(math.ceil(len(vehicles) / 2), len(vehicles) - 4)
+            self.front = {u.uid for u in vehicles[:count]}
             spare = [u for u in vehicles if u.uid not in self.front]
             if len(spare) > 4:
                 self.front.update(u.uid for u in spare[4:])
@@ -69,7 +70,7 @@ class AssaultFormation:
         alive = [u for u in state.agents if u.alive and u.entity_type in self.VEHICLES
                  and u.communication_ok() is not False]
         hq = state.key_object_by_uid(route.hq_uid) if route.hq_uid is not None else None
-        if hq is not None and route.owned(state, hq) and route._strategy.occupants(state, hq) == 0:
+        if hq is not None and route.hq_secured and route.owned(state, hq) and route._strategy.occupants(state, hq) == 0:
             for uid in (uid for uid in route.order if uid != route.hq_uid):
                 assigned = sum(self.reserve.get(u.uid) == uid for u in alive)
                 while assigned < 2:

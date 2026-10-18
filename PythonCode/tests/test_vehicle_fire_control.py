@@ -59,6 +59,16 @@ def test_placeholder_envelope_includes_recorded_vehicle_kill_distances_but_not_f
     assert control.choose(state([car], [enemy], step=2), car) is None
 
 
+def test_locally_seen_lynx_has_priority_over_wheeled_armor_and_infantry():
+    car, soldier, control = case()
+    wheeled = entity(30,1,1,500,kind='BP_MNWS_Vehicle_Armored_C',hp=20)
+    lynx = entity(31,1,2,5000,kind='BP_MNWS_Vehicle_6x6UGV_C')
+    car.raw['agentPerception']=[soldier.uid,wheeled.uid,lynx.uid]
+    enemies=[soldier,wheeled,lynx]
+    control.choose(state([car],enemies),car)
+    assert control.choose(state([car],enemies,step=1),car).target_uid==lynx.uid
+
+
 @pytest.mark.parametrize("invalid", ["shared", "missing_local", "dead", "zero_hp", "friendly", "air", "empty", "disconnected"])
 def test_invalid_contact_never_causes_explicit_vehicle_fire(invalid):
     car, enemy, control = case()

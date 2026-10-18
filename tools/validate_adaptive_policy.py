@@ -72,6 +72,9 @@ def validate(path, selected=()):
                                    'commands': Counter(), 'objectives': [],
                                    'uav_fire_without_local_contact': 0,
                                    'invalid_vehicle_fire': 0,
+                                   'pre_hq_diversion_frames': 0,
+                                   'column_hold_commands': 0, 'entry_hold_commands': 0,
+                                   'max_stalled_units_excluded': 0, 'entry_waves': [],
                                    'vehicle_frames_with_eligible_targets': 0,
                                    'vehicle_commands': Counter(),
                                    'initial_scout_groups': {}, 'initial_vehicle_front': [], 'initial_vehicle_reserve': {},
@@ -95,6 +98,15 @@ def validate(path, selected=()):
                     current['initial_vehicle_reserve'] = dict(rule._formation.reserve)
                 objective = rule._route.objective(state)
                 objective_uid = objective.uid if objective else None
+                if objective is not None and not rule._route.hq_secured and not rule._route.is_hq(objective):
+                    current['pre_hq_diversion_frames'] += 1
+                current['column_hold_commands'] += len(rule._column.held)
+                current['entry_hold_commands'] += len(rule._entry_waves.held)
+                current['max_stalled_units_excluded'] = max(current['max_stalled_units_excluded'], len(rule._column.excluded))
+                for release_step, ids in rule._entry_waves.waves:
+                    wave = {'step': release_step, 'uids': list(ids)}
+                    if wave not in current['entry_waves']:
+                        current['entry_waves'].append(wave)
                 if not current['objectives'] or current['objectives'][-1]['uid'] != objective_uid:
                     current['objectives'].append({'step': step, 'uid': objective_uid,
                                                  'name': objective.raw.get('rSVD1') if objective else None})
@@ -145,9 +157,10 @@ def main():
     args.out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     uav_failures = sum(r['uav_fire_without_local_contact'] for r in result['episodes'])
     vehicle_failures = sum(r['invalid_vehicle_fire'] for r in result['episodes'])
-    failures = uav_failures + vehicle_failures
+    priority_failures = sum(r['pre_hq_diversion_frames'] for r in result['episodes'])
+    failures = uav_failures + vehicle_failures + priority_failures
     print(f"episodes={len(result['episodes'])} frames={sum(r['frames'] for r in result['episodes'])} "
-          f"invalid_uav_fire={uav_failures} invalid_vehicle_fire={vehicle_failures}")
+          f"invalid_uav_fire={uav_failures} invalid_vehicle_fire={vehicle_failures} pre_hq_diversions={priority_failures}")
     return 1 if failures or not result['episodes'] else 0
 
 
