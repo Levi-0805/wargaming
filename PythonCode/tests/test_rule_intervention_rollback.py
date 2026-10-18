@@ -45,7 +45,9 @@ def test_shared_reports_do_not_replace_ground_navigation_with_probe_or_orbit(kin
         assert actual == expected
         assert actual.command != 'NormalAttacking'
         changes.append(actual)
-    assert any(action.command == 'Moving' for action in changes)
+    expected_command = 'Guard' if kind in {'BP_MNWS_Vehicle_Armored_C', 'BP_MNWS_Vehicle_6x6UGV_C'} else 'Moving'
+    assert any(action.command == expected_command and action.points is not None
+               and action.points != tuple(unit.position) for action in changes)
 
 
 @pytest.mark.parametrize('kind', ['BP_BaseSoldier_C', 'BP_RoboDog_C',
@@ -66,12 +68,16 @@ def test_active_entrance_route_yields_to_local_fire_and_resumes_its_cursor(kind)
         enemy.hp = 100 - (step - 25)
         unit.raw['interaction'] = [str(250 - (step - 25))]
         action = rule.act(state([unit], [enemy], objects, step))[0]
-        assert action.command == 'NormalAttacking' and action.target_uid == enemy.uid
+        if kind in rule.VEHICLES and step == 25:
+            assert action.command == 'Guard'  # Aim before the first explicit shot.
+        else:
+            assert action.command == 'NormalAttacking' and action.target_uid == enemy.uid
         assert rule._hq_entry._routes[unit.uid] == cursor
     unit.raw['agentPerception'] = []
     actions = [rule.act(state([unit], objectives=objects, step=step))[0] for step in range(40, 43)]
     # Wheeled cars may spend two frames aligning their heading first.
-    assert actions[-1].command == 'Moving'
+    assert actions[-1].command == ('Guard' if kind in rule.VEHICLES else 'Moving')
+    assert actions[-1].points is not None
     assert rule._hq_entry._routes[unit.uid] == cursor
 
 

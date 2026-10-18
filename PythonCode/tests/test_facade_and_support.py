@@ -106,7 +106,8 @@ def test_vehicle_does_not_spend_its_ground_ammunition_on_air_contacts(kind):
         assert action.command != 'NormalAttacking'
     ground = entity(21, 1, 1, -18000, 28000)
     car.raw['agentPerception'].append(21)
-    assert rule.act(state([car], [air, ground], map_objectives(), 12))[0].target_uid == 21
+    assert rule.act(state([car], [air, ground], map_objectives(), 12))[0].command == 'Guard'
+    assert rule.act(state([car], [air, ground], map_objectives(), 13))[0].target_uid == 21
 
 
 def test_five_aircraft_have_stable_slots_without_waiting_for_lagging_wing():

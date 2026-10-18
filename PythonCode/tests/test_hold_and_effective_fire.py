@@ -157,7 +157,8 @@ def test_empty_vehicle_moves_to_objective_instead_of_repeating_dry_fire():
     rule = algorithm([car])
     actions = [rule.act(state([car], [enemy], map_objectives(), step))[0] for step in range(4)]
     assert all(a.command != 'NormalAttacking' for a in actions)
-    assert actions[-1].command == 'Moving'
+    assert actions[-1].command == 'Guard' and actions[-1].points is not None
+    assert actions[-1].points != tuple(car.position)  # Patrol still advances.
 
 
 def test_five_low_uavs_all_get_forward_destinations_at_actual_spawn_height():
@@ -168,7 +169,7 @@ def test_five_low_uavs_all_get_forward_destinations_at_actual_spawn_height():
     for uav, action in zip(uavs, actions):
         assert action.command == "Moving" and action.points is not None
         assert action.points[0] < uav.position[0] - 24000
-        assert action.points[2] > uav.position[2]
+        assert action.points[2] >= uav.position[2]
 
 
 def test_uav_does_not_retarget_every_frame_when_contact_scores_change():

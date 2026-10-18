@@ -156,9 +156,12 @@ def test_vehicle_engages_visible_enemy_vehicle_before_infantry_but_never_hidden_
     soldier = entity(20, 1, 0, 500)
     lynx = entity(21, 1, 1, 4000, kind='BP_MNWS_Vehicle_6x6UGV_C')
     car.raw['agentPerception'] = [20, 21]
-    assert algorithm([car]).act(state([car], [soldier, lynx]))[0].target_uid == lynx.uid
+    rule = algorithm([car])
+    assert rule.act(state([car], [soldier, lynx]))[0].command == 'Guard'
+    assert rule.act(state([car], [soldier, lynx], step=1))[0].target_uid == lynx.uid
     car.raw['agentPerception'] = [20]
-    assert algorithm([car]).act(state([car], [soldier, lynx]))[0].target_uid == soldier.uid
+    assert rule.act(state([car], [soldier, lynx], step=2))[0].command == 'Guard'
+    assert rule.act(state([car], [soldier, lynx], step=3))[0].target_uid == soldier.uid
 
 
 def test_vehicle_burst_without_damage_repositions_early_and_switches_target():
@@ -168,12 +171,13 @@ def test_vehicle_burst_without_damage_repositions_early_and_switches_target():
     car.raw['agentPerception'] = [20, 21]
     rule = algorithm([car])
     actions = []
-    for step in range(4):
+    for step in range(5):
         car.raw['interaction'] = [str(200 - 15 * step)]
         actions.append(rule.act(state([car], [blocked, reachable], step=step))[0])
-    assert [a.target_uid for a in actions[:2]] == [20, 20]
-    assert actions[2].command == 'Moving'
-    assert actions[3].target_uid == reachable.uid
+    assert actions[0].command == 'Guard'
+    assert [a.target_uid for a in actions[1:3]] == [20, 20]
+    assert actions[3].command == 'Guard'
+    assert actions[4].target_uid == reachable.uid
 
 
 def test_damaging_vehicle_fire_is_not_interrupted_by_short_trial_budget():
@@ -184,7 +188,7 @@ def test_damaging_vehicle_fire_is_not_interrupted_by_short_trial_budget():
     for step in range(6):
         car.raw['interaction'] = [str(200 - 15 * step)]
         enemy.hp = 100 - step * 10
-        assert rule.act(state([car], [enemy], step=step))[0].command == 'NormalAttacking'
+        assert rule.act(state([car], [enemy], step=step))[0].command == ('Guard' if step == 0 else 'NormalAttacking')
 
 
 def test_departing_vehicle_still_engages_locally_seen_exit_threat():
@@ -200,6 +204,8 @@ def test_departing_vehicle_still_engages_locally_seen_exit_threat():
     assert rule._route.stage == 1
     car.raw.update(agentPerception=[enemy.uid], interaction=['200'])
     action = rule.act(state(units, [enemy], objects, 4))[0]
+    assert action.command == 'Guard'
+    action = rule.act(state(units, [enemy], objects, 5))[0]
     assert action.command == 'NormalAttacking' and action.target_uid == enemy.uid
     car.raw['agentPerception'] = []
-    assert rule.act(state(units, [enemy], objects, 5))[0].command != 'NormalAttacking'
+    assert rule.act(state(units, [enemy], objects, 6))[0].command != 'NormalAttacking'

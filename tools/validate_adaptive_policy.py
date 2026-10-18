@@ -71,6 +71,10 @@ def validate(path, selected=()):
                         current = {'episode': episode, 'frames': 0,
                                    'commands': Counter(), 'objectives': [],
                                    'uav_fire_without_local_contact': 0,
+                                   'invalid_vehicle_fire': 0,
+                                   'vehicle_frames_with_eligible_targets': 0,
+                                   'vehicle_commands': Counter(),
+                                   'initial_scout_groups': {}, 'initial_vehicle_front': [], 'initial_vehicle_reserve': {},
                                    'recorded_scores': []}
                         rounds.append(current)
                         print(f'validating episode {episode}', flush=True)
@@ -85,6 +89,10 @@ def validate(path, selected=()):
                         'cpu', {}, state.commanders))
                 actions = rule.act(state)
                 assert len(actions) == len(state.agents)
+                if current['frames'] == 0:
+                    current['initial_scout_groups'] = dict(rule._uav._split_objectives)
+                    current['initial_vehicle_front'] = sorted(rule._formation.front)
+                    current['initial_vehicle_reserve'] = dict(rule._formation.reserve)
                 objective = rule._route.objective(state)
                 objective_uid = objective.uid if objective else None
                 if not current['objectives'] or current['objectives'][-1]['uid'] != objective_uid:
@@ -95,6 +103,13 @@ def validate(path, selected=()):
                     current['commands'][action.command] += 1
                     if not unit.alive:
                         assert action.command == 'Idle'
+                    if unit.entity_type in rule.VEHICLES and unit.alive:
+                        current['vehicle_commands'][action.command] += 1
+                        eligible = {enemy.uid for enemy in rule._vehicle_fire.eligible(state, unit)}
+                        current['vehicle_frames_with_eligible_targets'] += bool(eligible)
+                        if action.command == 'NormalAttacking':
+                            if action.target_uid not in eligible:
+                                current['invalid_vehicle_fire'] += 1
                     if unit.entity_type == 'BP_Base_UAV_C':
                         target_uid = action.target_uid
                         if action.command == 'SelfDestruct':
@@ -128,8 +143,11 @@ def main():
     result = validate(args.source, args.episodes)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    failures = sum(r['uav_fire_without_local_contact'] for r in result['episodes'])
-    print(f"episodes={len(result['episodes'])} frames={sum(r['frames'] for r in result['episodes'])} invalid_uav_fire={failures}")
+    uav_failures = sum(r['uav_fire_without_local_contact'] for r in result['episodes'])
+    vehicle_failures = sum(r['invalid_vehicle_fire'] for r in result['episodes'])
+    failures = uav_failures + vehicle_failures
+    print(f"episodes={len(result['episodes'])} frames={sum(r['frames'] for r in result['episodes'])} "
+          f"invalid_uav_fire={uav_failures} invalid_vehicle_fire={vehicle_failures}")
     return 1 if failures or not result['episodes'] else 0
 
 

@@ -29,6 +29,8 @@ class UAVControl:
     FIRE_TRIALS = 2
     STRIKE_RESERVATION = 24
     RECON_LINK_RADIUS = 80000.0
+    SURVEY_FRAMES = 3
+    SURVEY_TTL = 12
     VALUES = {"BP_BaseSoldier_C": 100, "BP_RoboDog_C": 20,
               "BP_MNWS_Vehicle_Armored_C": 90, "BP_MNWS_Vehicle_6x6UGV_C": 50,
               "BP_Base_UAV_C": 10, "BP_Helicopter_C": 50}
@@ -56,6 +58,10 @@ class UAVControl:
         self._bearings = {}
         self._body_frame = None
         self._body = []
+        self._recon_frame = None
+        self._split_objectives = {}
+        self._split_slots = {}
+        self._surveys = {}
 
     def _begin(self, state):
         if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
@@ -82,6 +88,10 @@ class UAVControl:
             self._bearings.clear()
             self._body_frame = None
             self._body = []
+            self._recon_frame = None
+            self._split_objectives.clear()
+            self._split_slots.clear()
+            self._surveys.clear()
         self._frame = (state.episode, state.step)
         alive = {agent.uid for agent in state.agents if agent.alive}
         for uid, claim in self._strike_claims.items():
@@ -96,6 +106,112 @@ class UAVControl:
                                if state.step < claim[2]}
         self._fire_claims = {uid: claim for uid, claim in self._fire_claims.items()
                              if uid in alive and state.step < claim[2]}
+
+    @staticmethod
+    def _perception_radius(agent):
+        try:
+            radius = float(agent.raw.get('perceptionRange', agent.properties.get('perceptionRange', 0)))
+            return radius if math.isfinite(radius) and radius > 0 else 0.0
+        except (TypeError, ValueError):
+            return 0.0
+
+    def prepare_recon(self, state, route):
+        """Assign three stable scout groups and sample their public evidence.
+
+        Call before deciding ground movement so the result does not depend on
+        whether the action array happens to list a soldier before an aircraft.
+        Being near an objective is not proof that its whole perimeter is clear.
+        """
+        self._begin(state)
+        frame = (state.episode, state.step)
+        if self._recon_frame == frame:
+            return
+        self._recon_frame = frame
+        order = getattr(route, '_map_order', ())
+        objects = [state.key_object_by_uid(uid) for uid in order]
+        uavs = sorted((unit for unit in state.agents if unit.entity_type == 'BP_Base_UAV_C'),
+                      key=lambda unit: unit.uid)
+        if (not getattr(route, 'adaptive', False) or len(objects) != 3
+                or any(obj is None or not obj.valid for obj in objects) or len(uavs) < 3):
+            return
+        if not self._split_objectives:
+            # Map order is HQ/B/A; retain its identities even when the ground
+            # attack order changes. Every group receives a real first goal.
+            objectives = [objects[0], objects[2], objects[1]]
+            offsets = (0, -1, 1, -2, 2)
+            for index, unit in enumerate(uavs):
+                self._split_objectives[unit.uid] = objectives[index % 3].uid
+                self._split_slots[unit.uid] = offsets[(index // 3) % len(offsets)]
+            logger.info('无人机三路侦察分组: %s', self._split_objectives)
+        live = [unit for unit in uavs if unit.alive and unit.communication_ok() is not False]
+        groups = {obj.uid: [unit for unit in live if self._split_objectives.get(unit.uid) == obj.uid]
+                  for obj in objects}
+        # Replace a lost group's observer only with a genuine spare. The
+        # other surviving aircraft keep their original destinations.
+        for obj in objects:
+            if groups[obj.uid]:
+                continue
+            donor = max(groups.values(), key=len)
+            if len(donor) > 1:
+                replacement = max(donor, key=lambda unit: unit.uid)
+                donor.remove(replacement)
+                groups[obj.uid].append(replacement)
+                self._split_objectives[replacement.uid] = obj.uid
+                self._split_slots[replacement.uid] = 0
+        for obj in objects:
+            observers = [unit for unit in groups[obj.uid]
+                         if unit.communication_ok() is True and 'agentPerception' in unit.raw
+                         and self._perception_radius(unit) > 0
+                         and math.dist(tuple(unit.position), tuple(obj.position)) <= self._perception_radius(unit)]
+            try:
+                count = float(obj.raw['blueteamNum' if state.team == 0 else 'redTeamNum'])
+                if not math.isfinite(count) or count < 0:
+                    count = None
+            except (KeyError, TypeError, ValueError):
+                count = None
+            if not observers or count is None:
+                continue
+            old = self._surveys.get(obj.uid)
+            samples = old[1] + 1 if old is not None and old[0] == state.step - 1 else 1
+            contacts = tuple(sorted({enemy.uid for unit in observers
+                                     for enemy in state.perceived_opponents(unit)
+                                     if enemy.alive and AssaultRoute.distance(enemy.position, obj.position) <= 20000}))
+            self._surveys[obj.uid] = (state.step, samples, count, contacts)
+
+    def recon_status(self, state, objective):
+        """Return bounded scouting evidence, never a fabricated match result."""
+        row = self._surveys.get(objective.uid) if objective is not None else None
+        valid_episode = self._frame is not None and self._frame[0] == state.episode
+        fresh = row is not None and valid_episode and 0 <= state.step - row[0] <= self.SURVEY_TTL
+        return {'ready': bool(fresh and row[1] >= self.SURVEY_FRAMES),
+                'last_step': row[0] if fresh else None,
+                'observations': row[1] if fresh else 0,
+                'enemy_count': row[2] if fresh else None,
+                'contacts': row[3] if fresh else ()}
+
+    def _split_observer(self, state, agent, objective):
+        # Preserve one observer at each point after the first survey. The
+        # remainder may use the existing strictly local, bounded strike logic.
+        peers = [unit.uid for unit in state.agents if unit.alive
+                 and unit.communication_ok() is not False and unit.uid not in self._missions
+                 and self._split_objectives.get(unit.uid) == objective.uid]
+        return not self.recon_status(state, objective)['ready'] or bool(peers) and agent.uid == min(peers)
+
+    def _split_point(self, agent, objective, altitude):
+        old = self._stations.get(agent.uid)
+        if old is not None:
+            return old[1], (objective.uid, 'split-recon')
+        dx, dy = objective.position[0] - agent.position[0], objective.position[1] - agent.position[1]
+        length = max(math.hypot(dx, dy), 1)
+        bx, by = (dx / length, dy / length) if length > 1 else (1.0, 0.0)
+        radius = self._perception_radius(agent)
+        reach = math.sqrt(max(0, radius * radius - (altitude - float(objective.position[2])) ** 2))
+        distance = min(10000.0, reach * .7) if radius else 6000.0
+        offset = self._split_slots.get(agent.uid, 0) * min(1500.0, reach * .2) if radius else 0.0
+        point = (float(objective.position[0] - bx * distance - by * offset),
+                 float(objective.position[1] - by * distance + bx * offset), altitude)
+        self._stations[agent.uid] = (distance, point, 0)
+        return point, (objective.uid, 'split-recon')
 
     def _target(self, state, agent, enemies):
         # Keep the reservation briefly after the attacking aircraft disappears:
@@ -299,10 +415,16 @@ class UAVControl:
         return objective
 
     def choose(self, state, agent, objective, route=None):
-        self._begin(state)
+        self.prepare_recon(state, route)
         launch_objective = objective
-        recon = self._recon_role(state, agent, route)
-        if recon:
+        assigned = state.key_object_by_uid(self._split_objectives.get(agent.uid, -1))
+        split = assigned is not None and assigned.valid
+        if split:
+            objective = assigned
+            recon = self._split_observer(state, agent, objective)
+        else:
+            recon = self._recon_role(state, agent, route)
+        if recon and not split:
             objective = self._recon_objective(state, agent, objective, route)
         objective_uid = objective.uid if objective is not None else None
         # Reconnaissance and strike aircraft may serve different objectives.
@@ -356,7 +478,12 @@ class UAVControl:
         target = self._target(state, agent, contacts)
         ground_height = float(objective.position[2]) if objective is not None else 0.0
         base_height = max(float(agent.properties.get("initLocation", {}).get("z", 0)), ground_height)
-        altitude = self._altitude.setdefault(agent.uid, base_height + self.CRUISE_HEIGHT)
+        if split:
+            radius = self._perception_radius(agent)
+            height = min(self.CRUISE_HEIGHT, radius * .6) if radius else self.CRUISE_HEIGHT
+            altitude = self._altitude.setdefault(agent.uid, ground_height + height)
+        else:
+            altitude = self._altitude.setdefault(agent.uid, base_height + self.CRUISE_HEIGHT)
         if (not recon and target is not None and self._locked(state, agent, target)
                 and self._strike_evidence(target)
                 and self._strike_supported(state, target, objective, route)
@@ -375,6 +502,12 @@ class UAVControl:
             if attack is not None:
                 self._launched.add(agent.uid)
                 return attack
+        if split:
+            self._launched.add(agent.uid)
+            point, station = self._split_point(agent, objective, altitude)
+            radius = self._perception_radius(agent)
+            arrival = min(self._navigation.ARRIVAL, radius * .15) if radius else self._navigation.ARRIVAL
+            return self._navigation.apply(state, agent, point, station, arrival=arrival)
         if not self._launch(state, agent, launch_objective, contacts, route):
             self._navigation.cancel(agent)
             return Action.guard_position(agent.position)

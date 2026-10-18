@@ -21,7 +21,9 @@ def test_early_arrivals_wait_locally_but_rear_keeps_moving():
     rule = algorithm(units)
     actions = rule.act(state(units, objectives=objs))
     assert all(a.command == 'Guard' and a.points == tuple(u.position) for u, a in zip(units[:3], actions[:3]))
-    assert all(a.command == 'Moving' for a in actions[3:])
+    assert all(a.command == 'Moving' for a in actions[3:-2])
+    assert all(a.command == 'Guard' and a.points != tuple(u.position)
+               for u, a in zip(units[-2:], actions[-2:]))
 
 
 def test_main_body_and_two_vehicles_release_once_without_waiting_for_everyone():

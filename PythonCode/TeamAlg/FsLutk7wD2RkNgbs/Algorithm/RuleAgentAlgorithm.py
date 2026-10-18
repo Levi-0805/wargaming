@@ -14,6 +14,8 @@ from .UrbanContact import UrbanContact
 from .HQEntry import HQEntry
 from .CombatReadiness import CombatReadiness
 from .ApproachCohesion import ApproachCohesion
+from .AssaultFormation import AssaultFormation
+from .VehicleFireControl import VehicleFireControl
 
 logger = logging.getLogger(__name__)
 
@@ -57,6 +59,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._hq_entry = HQEntry()
         self._readiness = CombatReadiness()
         self._cohesion = ApproachCohesion()
+        self._formation = AssaultFormation()
+        self._vehicle_fire = VehicleFireControl()
         self._frame = None
         self._support = {}
         self._fire_watch = {}
@@ -78,6 +82,10 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._frame = frame
         self._urban.begin(state)
         self._route.update(state)
+        self._uav.prepare_recon(state, self._route)
+        objective = self._route.objective(state)
+        surveyed = self._uav.recon_status(state, objective)['ready'] if objective is not None else False
+        self._formation.begin(state, self._route, recon_ready=surveyed)
         self._cohesion.begin(state, self._route)
         if self.enable_preservation_pause:
             self._readiness.begin(state, self._route)
@@ -168,7 +176,16 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return Action.idle()
         if agent.entity_type == self._UAV:
             return self._uav.choose(state, agent, self._route.objective(state), self._route)
-        assembly = self._cohesion.choose(state, agent, self._route)
+        if agent.entity_type in self.VEHICLES:
+            fire = self._vehicle_fire.choose(state, agent)
+            if fire is not None:
+                return fire
+        formation = self._formation.choose(state, agent, self._route)
+        if formation is not None:
+            return formation
+        # Vehicles form the first wave; the opening rendezvous applies to the
+        # capture wave only. Rear units continue on their existing road.
+        assembly = self._cohesion.choose(state, agent, self._route) if agent.entity_type not in self.VEHICLES else None
         if assembly is not None:
             return assembly
         local = {enemy.uid for enemy in state.perceived_opponents(agent)}
@@ -176,9 +193,9 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             enemy.uid in local or (self.enable_shared_contact_maneuver
                                   and self._horizontal(agent.position, enemy.position) <= self.SHARED_ENGAGEMENT_CM))]
         if agent.entity_type in self.VEHICLES:
-            # Recorded cannon bursts spent 15-19 rounds per step against air
-            # targets without further damage. Preserve vehicle fire for ground.
-            contacts = [enemy for enemy in contacts if enemy.entity_type not in {self._UAV, self._HELI}]
+            # VehicleFireControl exclusively owns explicit vehicle fire. A
+            # visible out-of-range unit must not fall through to legacy attack.
+            contacts = []
         if self.enable_preservation_pause:
             preserve = self._readiness.choose(state, agent, self._route, self._urban, contacts)
             if preserve is not None:
@@ -215,7 +232,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return self._urban.search_point(state, agent, objective, self._route)
         # Retired shortcut: a reported enemy behind a wall used to replace the
         # navigable objective route even when this unit could not see it.
-        if self.enable_shared_contact_maneuver and self._has_ammo(agent) and point is not None and visible and (objective is None or (
+        if agent.entity_type not in self.VEHICLES and self.enable_shared_contact_maneuver and self._has_ammo(agent) and point is not None and visible and (objective is None or (
             self._horizontal(agent.position, objective.position) <= 18000
             and self._horizontal(agent.position, point) <= 2000
         )):
@@ -268,6 +285,11 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             point = result.points if result.points is not None else self._route.guard_slot(agent, garrison)
             result = Action.move_at(self._route.clamp_guard_point(garrison, point))
         self._urban.record(state, agent, result)
+        self._formation.record(state, agent, result, self._route)
+        # Apply existing navigation/recovery before serializing the supported
+        # Guard patrol command. A disconnected unit still gets link recovery.
+        if agent.entity_type in self.VEHICLES and agent.communication_ok() is not False and result.command == 'Moving':
+            result = VehicleFireControl.patrol(result)
         return result
 
     def decide(self, state):

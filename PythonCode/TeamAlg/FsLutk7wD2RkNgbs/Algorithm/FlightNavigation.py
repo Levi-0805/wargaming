@@ -55,7 +55,8 @@ class FlightNavigation:
                     agent.uid, state.step, reason, self.resets[agent.uid])
         return self._face(agent, goal)
 
-    def apply(self, state, agent, goal, objective):
+    def apply(self, state, agent, goal, objective, *, arrival=None):
+        arrival = self.ARRIVAL if arrival is None else max(1.0, float(arrival))
         frame = (state.episode, state.step)
         if self._frame is None or frame[0] != self._frame[0] or frame[1] < self._frame[1]:
             self._legs.clear()
@@ -74,15 +75,15 @@ class FlightNavigation:
             return self._start(state, agent, point, objective)
         leg = self._legs.get(agent.uid)
         if leg is None:
-            if AssaultRoute.distance(agent.position, goal) <= self.ARRIVAL:
+            if AssaultRoute.distance(agent.position, goal) <= arrival:
                 return Action.guard_position((float(agent.position[0]), float(agent.position[1]), goal[2]))
             return self._start(state, agent, self._point(agent, goal), objective)
         point, old_objective, best, since = leg
         if objective != old_objective:
             return self._replace(state, agent, goal, objective, 'objective')
         distance = AssaultRoute.distance(agent.position, point)
-        if distance <= self.ARRIVAL:
-            if AssaultRoute.distance(agent.position, goal) > self.ARRIVAL:
+        if distance <= arrival:
+            if AssaultRoute.distance(agent.position, goal) > arrival:
                 return self._replace(state, agent, goal, objective, 'arrival')
             self.cancel(agent)
             return Action.guard_position((float(agent.position[0]), float(agent.position[1]), goal[2]))

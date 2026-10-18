@@ -74,7 +74,8 @@ def test_all_ground_types_join_lower_road_without_waiting_or_three_lanes():
     agents = [entity(i, 0, i, 60000, 12000, kind=kind) for i, kind in enumerate([
         "BP_BaseSoldier_C", "BP_RoboDog_C", "BP_MNWS_Vehicle_Armored_C", "BP_MNWS_Vehicle_6x6UGV_C"])]
     actions = algorithm(agents).act(state(agents, objectives=map_objectives()))
-    assert all(a.command == "Moving" and a.points == AssaultRoute.LOWER[1] for a in actions)
+    assert all(a.command == ("Guard" if u.entity_type in RedRule.VEHICLES else "Moving")
+               and a.points == AssaultRoute.LOWER[1] for u, a in zip(agents, actions))
     # Full terrain-aware waypoint is retained, not a 20m segment inside a building.
     assert actions[0].points[2] == 6082
 
