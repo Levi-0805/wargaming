@@ -82,12 +82,20 @@ class AssaultFormation:
                     self.reserve[unit.uid] = uid
                     assigned += 1
         self._active = [u for u in alive if u.uid in self.front or self.reserve.get(u.uid) == self._current]
-        # Casualties must not leave infantry waiting for an extinct first wave.
-        if not self._active and alive and obj is not None:
-            promoted = min(alive, key=lambda u: (AssaultRoute.distance(u.position, obj.position), u.uid))
+        # Replace depleted support before the last lead vehicle is destroyed.
+        # Preserve secondary assignments for the remaining rear vehicles.
+        armed = [u for u in alive if self._ammo(u) != 0]
+        supporting = [u for u in self._active if self._ammo(u) != 0]
+        while obj is not None and len(supporting) < min(2, len(armed)):
+            active_ids = {u.uid for u in self._active}
+            spare = [u for u in armed if u.uid not in active_ids]
+            if not spare:
+                break
+            promoted = min(spare, key=lambda u: (AssaultRoute.distance(u.position, obj.position), u.uid))
             self.front.add(promoted.uid)
             self.reserve.pop(promoted.uid, None)
-            self._active = [promoted]
+            self._active.append(promoted)
+            supporting.append(promoted)
         if obj is None:
             return
         gate = self._gates.setdefault(obj.uid, {'start': None, 'recon': False, 'shots': set(),
@@ -145,7 +153,10 @@ class AssaultFormation:
             if (holding is not None and route.owned(state, holding)
                     and AssaultRoute.distance(agent.position, holding.position) <= 22000):
                 return self._guard(agent, holding)
-            if assigned is not None and assigned != obj.uid and distance <= self.RESERVE_LINE:
+            if (assigned is not None and assigned != obj.uid and distance <= self.RESERVE_LINE
+                    and not gate['released']):
+                # Once the assault starts, reserves follow behind the capture
+                # body (ColumnAdvance), not a permanent 120 m parking line.
                 return self._guard(agent, obj)
             if (not gate['recon'] and gate['start'] is not None
                     and any(u.alive and u.entity_type == 'BP_Base_UAV_C' and u.communication_ok() is not False

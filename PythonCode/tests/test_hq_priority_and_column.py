@@ -145,23 +145,25 @@ def test_entry_waits_for_main_body_then_releases_mixed_groups():
     s=state(units,objectives=objects)
     route.update(s); column.begin(s,route); waves.begin(s,route,column)
     assert not waves.released and len(waves._waiting)==3
-    for u in units[3:]:u.position[0]-=20000
+    action=Action.move_at(objects[0].position)
+    assert waves.apply(s,units[0],action,route,column).command=='Guard'
+    assert waves.apply(s,units[0],Action.attack(999),route,column).command=='NormalAttacking'
+    for u in units[3:14]:u.position[0]-=20000
     s=state(units,objectives=objects,step=1)
     route.update(s); column.begin(s,route); waves.begin(s,route,column)
-    assert len(waves.released)==8
+    assert len(waves.released)==14  # All assembled units go together, not just eight.
     assert {u.entity_type for u in units if u.uid in waves.released}==ColumnAdvance.FOOT
-    waiting=next(u for u in units if u.uid in waves._waiting)
-    action=Action.move_at(objects[0].position)
-    assert waves.apply(s,waiting,action,route,column).command=='Guard'
-    assert waves.apply(s,waiting,Action.attack(999),route,column).command=='NormalAttacking'
 
 
 def test_stalled_first_wave_releases_following_group_without_waiting_forever():
     objects,units,route,column,waves=entry_case()
+    for u in units[14:]:u.position[0]+=20000
     for step in (0,1,23,24):
+        if step==1:
+            for u in units[14:]:u.position[0]-=20000
         s=state(units,objectives=objects,step=step)
         route.update(s); column.begin(s,route); waves.begin(s,route,column)
-        assert len(waves.released)==(16 if step==24 else 8)
+        assert len(waves.released)==(20 if step==24 else 14)
 
 
 def test_waiting_second_wave_does_not_tether_released_wave_at_the_corner():
@@ -225,3 +227,75 @@ def test_hq_wave_membership_does_not_leak_into_secondary_objectives():
     s=state(units,objectives=objects,step=1)
     column.begin(s,route);waves.begin(s,route,column)
     assert not waves.waves and not waves.released and not waves._waiting
+
+
+def test_contested_current_garrison_remains_a_reference_for_following_support():
+    units=[entity(i,0,i,70000 if i<8 else 20000) for i in range(10)]
+    car=entity(100,0,10,60000,kind='BP_MNWS_Vehicle_6x6UGV_C')
+    objects,route,column,formation=straight_column(units+[car])
+    route._garrison={u.uid:objects[0].uid for u in units[:8]}
+    s=state(units+[car],objectives=objects)
+    column.begin(s,route)
+    assert column.anchor==70000
+    assert column.apply(s,car,Action.move_at((90000,0,0)),route,formation).command=='Moving'
+    # Garrisons at an earlier, different point do not tether departing troops.
+    route._garrison={u.uid:999 for u in units[:8]}
+    column.begin(state(units+[car],objectives=objects,step=1),route)
+    assert column.anchor==20000
+
+
+def test_local_contact_or_damage_does_not_block_forward_combat_repositioning():
+    units=[entity(i,0,i,20000) for i in range(8)]
+    car=entity(100,0,8,30000,kind='BP_MNWS_Vehicle_6x6UGV_C')
+    objects,route,column,formation=straight_column(units+[car])
+    enemy=entity(200,1,0,35000)
+    car.raw['agentPerception']=[enemy.uid]
+    s=state(units+[car],[enemy],objects)
+    column.begin(s,route)
+    move=Action.move_at((40000,0,0))
+    assert column.apply(s,car,move,route,formation).command=='Moving'
+    car.raw['agentPerception']=[]
+    car.hp-=5
+    s=state(units+[car],objectives=objects,step=1)
+    column.begin(s,route)
+    assert column.apply(s,car,move,route,formation).command=='Moving'
+
+
+def test_near_objective_lead_can_screen_released_body_without_global_rear_tether():
+    units=[entity(i,0,i,70000) for i in range(8)]
+    car=entity(100,0,8,85000,kind='BP_MNWS_Vehicle_6x6UGV_C')
+    objects,route,column,formation=straight_column(units+[car])
+    s=state(units+[car],objectives=objects)
+    column.begin(s,route)
+    move=Action.move_at(objects[0].position)
+    assert column.apply(s,car,move,route,formation).command=='Guard'
+    assert column.apply(s,car,move,route,formation,{u.uid for u in units}).command=='Moving'
+
+
+def test_reserve_follows_current_objective_garrison_after_handoff():
+    objects=map_objectives()
+    foot=guards_at(objects[0],count=8)
+    car=entity(1000,0,8,-32000,26000,kind='BP_MNWS_Vehicle_Armored_C')
+    rule=algorithm(foot+[car])
+    rule._prepare(state(foot+[car],objectives=objects))
+    rule._formation.front.clear()
+    rule._formation.reserve={car.uid:objects[1].uid}
+    rule._formation._gates[objects[0].uid]['released']=True
+    rule._route._garrison={u.uid:objects[0].uid for u in foot}
+    s=state(foot+[car],objectives=objects,step=1)
+    rule._column.begin(s,rule._route)
+    assert rule._formation.choose(s,car,rule._route) is None
+    move=Action.move_at((-36237,30315,6335))
+    assert rule._column.apply(s,car,move,rule._route,rule._formation).command=='Moving'
+
+
+def test_entrance_wait_does_not_cancel_local_combat_maneuver():
+    objects,units,route,column,waves=entry_case()
+    for u in units[3:]:u.position[0]+=20000
+    enemy=entity(999,1,0,*objects[0].position[:2])
+    units[0].raw['agentPerception']=[enemy.uid]
+    s=state(units,[enemy],objects)
+    route.update(s);column.begin(s,route);waves.begin(s,route,column)
+    assert units[0].uid in waves._waiting
+    action=Action.move_at(objects[0].position)
+    assert waves.apply(s,units[0],action,route,column).command=='Moving'

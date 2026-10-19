@@ -18,7 +18,7 @@ class EntryWaves:
     """
 
     RADIUS = 5500.0
-    WAVE_SIZE = 8
+    FOLLOW_MIN = 8
     FOLLOW_PROGRESS = 2500.0
     BLOCKED_WAVE_STEPS = 24
 
@@ -60,7 +60,7 @@ class EntryWaves:
             return
         first = not self.waves
         needed = (min(len(units), max(3, math.ceil(.65*len(units)))) if first
-                  else min(self.WAVE_SIZE, len(units)))
+                  else min(self.FOLLOW_MIN, len(units)))
         if len(ready) < needed:
             return  # The tail still has unrestricted movement toward assembly.
         if self._last is not None:
@@ -83,7 +83,9 @@ class EntryWaves:
             soldiers = soldiers[2:]
             mixed.extend(dogs[:1])
             dogs = dogs[1:]
-        wave = mixed[:self.WAVE_SIZE]
+        # The body has already assembled. Splitting those ready units into
+        # eight-unit packets recreated the fragmented assault we meant to fix.
+        wave = mixed
         ids = {u.uid for u in wave}
         self.released.update(ids)
         self._waiting.difference_update(ids)
@@ -92,7 +94,8 @@ class EntryWaves:
         logger.info('指挥所入口成组放行: step=%d units=%s waiting=%d', state.step, sorted(ids), len(self._waiting))
 
     def apply(self, state, agent, action, route, column):
-        if agent.uid in self._waiting and column.forward(agent, action):
+        if (agent.uid in self._waiting and column.forward(agent, action)
+                and not column.engaged(state, agent)):
             self.held.add(agent.uid)
             return Action.guard_position(agent.position)
         return action

@@ -32,6 +32,8 @@ class ColumnAdvance:
         self.foot = []
         self.anchor = None
         self.path = ()
+        self._hp = {}
+        self.under_fire = set()
 
     @staticmethod
     def project(point, path):
@@ -66,6 +68,8 @@ class ColumnAdvance:
         consecutive = self._frame is not None and state.step == self._frame[1] + 1
         self._frame, self._objective = frame, uid
         self.held.clear()
+        self.under_fire = {u.uid for u in state.agents if u.uid in self._hp and u.hp < self._hp[u.uid] - .01}
+        self._hp = {u.uid: float(u.hp) for u in state.agents if u.alive}
         if obj is None:
             self.path = ()
             self.progress.clear()
@@ -76,7 +80,8 @@ class ColumnAdvance:
             self._moved.clear()
             return
         units = [u for u in state.agents if u.alive and u.entity_type in self.FOOT | self.VEHICLES
-                 and u.communication_ok() is not False and u.uid not in route._garrison]
+                 and u.communication_ok() is not False
+                 and (u.uid not in route._garrison or route._garrison[u.uid] == uid)]
         if not self.path:
             self.path = self._path(route, obj, units)
         measured = {u.uid: self.locate(u.position, self.path) if len(self.path) >= 2 else
@@ -133,6 +138,11 @@ class ColumnAdvance:
             return self.project(action.points[:3], self.path) > current + 150
         return False
 
+    def engaged(self, state, agent):
+        return agent.uid in self.under_fire or any(
+            enemy.alive and enemy.entity_type in self.FOOT | self.VEHICLES
+            for enemy in state.perceived_opponents(agent))
+
     def apply(self, state, agent, action, route, formation, released=()):
         anchor = self.anchor
         # The following wave intentionally holds outside the corner. It must
@@ -141,9 +151,14 @@ class ColumnAdvance:
             cohort = sorted(self.progress[u.uid] for u in self.foot if u.uid in released)
             if cohort:
                 anchor = cohort[max(0, math.ceil(.35*len(cohort))-1)]
+        obj = route.objective(state)
+        supporting_entry = (obj is not None and agent.uid in formation.front
+                            and AssaultRoute.distance(agent.position, obj.position) <= 18000
+                            and (bool(released) or any(route.inside_garrison(obj, u.position) for u in self.foot)))
         if (self.anchor is not None and agent.uid in self.progress
                 and self.forward(agent, action)
-                and not route.inside_garrison(route.objective(state), agent.position)):
+                and not self.engaged(state, agent) and not supporting_entry
+                and not route.inside_garrison(obj, agent.position)):
             if agent.entity_type in self.FOOT:
                 limit = anchor + self.FOOT_LEAD
             elif agent.uid in formation.reserve and formation.reserve[agent.uid] != self._objective:

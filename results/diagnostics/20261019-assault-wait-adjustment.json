@@ -1,0 +1,5201 @@
+{
+  "purpose": "Diagnose excessive formation holds and verify revised decisions; not new battle scores.",
+  "baseline_commit": "b7cd4d93dd32ea6481222138105b7723ef232953",
+  "baseline_checkout_line_ending_only_differences_from_git_blob": [
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\MotionRecovery.py",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RuleAgentAlgorithm.py"
+  ],
+  "constraint_origins": {
+    "static_reserve_and_late_replacement": "eb9d7844",
+    "current_garrison_exclusion_and_eight_unit_packets": "b7cd4d93"
+  },
+  "source": {
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261019_012406\\protocol.jsonl",
+    "source_bytes": 1312613130,
+    "source_sha256": "1dfa04df923b26c842111f0ff66225b770f3a4909a95823a84a1e0e430577a7d"
+  },
+  "recorded_scores": {
+    "definition": "Score[*].SumWorth + Reward; missing or ambiguous sides remain null",
+    "source_commit": null,
+    "version_evidence": "Exact reproduction of 38,950 recorded orders in rounds 1, 18 and 19 using baseline commit. No full-run startup source hash.",
+    "summary": {
+      "completed": 20,
+      "mean": 2142.5,
+      "median": 1845.0,
+      "min": 840,
+      "max": 4120,
+      "at_least_4000": 1,
+      "below_2000": 10,
+      "zero_capture_rounds": 11,
+      "preceding_batch_mean": 3487.1428571428573,
+      "mean_change_percent": -38.56001638672676
+    },
+    "rounds": [
+      {
+        "episode": 1,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1720,
+          "capture_score": 2400,
+          "total": 4120
+        },
+        "blue_total": 3550
+      },
+      {
+        "episode": 2,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1340,
+          "capture_score": 1600,
+          "total": 2940
+        },
+        "blue_total": 3850
+      },
+      {
+        "episode": 3,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 970,
+          "capture_score": 0,
+          "total": 970
+        },
+        "blue_total": 6100
+      },
+      {
+        "episode": 4,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 900,
+          "capture_score": 0,
+          "total": 900
+        },
+        "blue_total": 6140
+      },
+      {
+        "episode": 5,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1290,
+          "capture_score": 1600,
+          "total": 2890
+        },
+        "blue_total": 4450
+      },
+      {
+        "episode": 6,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1050,
+          "capture_score": 0,
+          "total": 1050
+        },
+        "blue_total": 6050
+      },
+      {
+        "episode": 7,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1300,
+          "capture_score": 0,
+          "total": 1300
+        },
+        "blue_total": 6190
+      },
+      {
+        "episode": 8,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1340,
+          "capture_score": 1600,
+          "total": 2940
+        },
+        "blue_total": 4750
+      },
+      {
+        "episode": 9,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 970,
+          "capture_score": 1600,
+          "total": 2570
+        },
+        "blue_total": 4450
+      },
+      {
+        "episode": 10,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1490,
+          "capture_score": 1600,
+          "total": 3090
+        },
+        "blue_total": 4060
+      },
+      {
+        "episode": 11,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1680,
+          "capture_score": 0,
+          "total": 1680
+        },
+        "blue_total": 6350
+      },
+      {
+        "episode": 12,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1580,
+          "capture_score": 0,
+          "total": 1580
+        },
+        "blue_total": 6270
+      },
+      {
+        "episode": 13,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1780,
+          "capture_score": 1600,
+          "total": 3380
+        },
+        "blue_total": 4220
+      },
+      {
+        "episode": 14,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1460,
+          "capture_score": 1600,
+          "total": 3060
+        },
+        "blue_total": 4010
+      },
+      {
+        "episode": 15,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1460,
+          "capture_score": 0,
+          "total": 1460
+        },
+        "blue_total": 6190
+      },
+      {
+        "episode": 16,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1180,
+          "capture_score": 0,
+          "total": 1180
+        },
+        "blue_total": 6270
+      },
+      {
+        "episode": 17,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 2010,
+          "capture_score": 0,
+          "total": 2010
+        },
+        "blue_total": 6350
+      },
+      {
+        "episode": 18,
+        "complete": true,
+        "last_step": 235,
+        "red": {
+          "kill_score": 840,
+          "capture_score": 0,
+          "total": 840
+        },
+        "blue_total": 6370
+      },
+      {
+        "episode": 19,
+        "complete": true,
+        "last_step": 273,
+        "red": {
+          "kill_score": 1040,
+          "capture_score": 0,
+          "total": 1040
+        },
+        "blue_total": 6370
+      },
+      {
+        "episode": 20,
+        "complete": true,
+        "last_step": 499,
+        "red": {
+          "kill_score": 1450,
+          "capture_score": 2400,
+          "total": 3850
+        },
+        "blue_total": 3490
+      },
+      {
+        "episode": 21,
+        "complete": false,
+        "last_step": 33,
+        "red": null,
+        "blue_total": null
+      }
+    ],
+    "incomplete_round": {
+      "episode": 21,
+      "last_step": 33,
+      "score": null,
+      "runtime_error": "gRPC UNAVAILABLE: Cancelling all calls"
+    }
+  },
+  "candidate_file_sha256": {
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultFormation.py": "6a3db518670ea133c5d5b1010995f4d659b8f8be5d51f751ea8e18dab8c1556a",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultRoute.py": "b84d24c633f9c0cce963f3f6b5a024734354776dbf078d46e43954fd91d32889",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RLAgentAlgorithm.py": "8c15800af3c5512eef5920407ce6bcaafaefae6d3471d0ef13460ec2d661c86f",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RuleAgentAlgorithm.py": "e19c29430f5943adf703aa91180c7ff61c6c45befecdae1322c93ba2751403e5",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UAVControl.py": "c37b26091efa89331867355c0f78e919da47ff959f0e37636ea2f5f85618f51f",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\VehicleFireControl.py": "e642bb55de5e8f95c1421e9876cff57402404eceda3a969397cff17f4dd38a59"
+  },
+  "fixed_observation_comparisons": [
+    {
+      "episode": 1,
+      "original": {
+        "baseline": {
+          "recorded_matches": 19950,
+          "recorded_mismatches": 0,
+          "all_reasons": {
+            "column_wait": 678,
+            "navigation_or_combat": 8962,
+            "recovery": 256,
+            "formation": 888,
+            "opening": 2,
+            "fire": 126,
+            "entry_wait": 255,
+            "entrance_route": 47
+          },
+          "vehicle_reasons": {
+            "column_wait": 237,
+            "navigation_or_combat": 1169,
+            "recovery": 188,
+            "fire": 126,
+            "formation": 593,
+            "entrance_route": 11
+          },
+          "vehicle_holds_under_fire": {
+            "column_wait": 1
+          },
+          "max_vehicle_hold_streak": {
+            "461": 24,
+            "466": 23,
+            "481": 3,
+            "486": 277,
+            "491": 5,
+            "496": 277
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 115755.45783996038,
+              "foot_reference": 12,
+              "garrison_count": 4,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 170.0,
+                  "pos": [
+                    -36779,
+                    30097,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35169.5703125, 30176.119140625, 6387.494140625];461",
+                  "eligible": 0,
+                  "progress": 116951.53081746271,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 93.44456,
+                  "ammo": 147.0,
+                  "pos": [
+                    -35009,
+                    27827,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];466",
+                  "eligible": 0,
+                  "progress": 114288.285570724,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 173.0,
+                  "pos": [
+                    -32122,
+                    25058,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];486",
+                  "eligible": 0,
+                  "progress": 110306.79877545734,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    63736,
+                    32232,
+                    5607
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;;Points=[61935.70335521686, 34879.06835702247, 5606.955078125];491",
+                  "eligible": 0,
+                  "progress": 13682.205881377346,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 121.0,
+                  "pos": [
+                    -32010,
+                    25869,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32010.48046875, 25868.75, 6335.34423828125];496",
+                  "eligible": 0,
+                  "progress": 110720.24780230415,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 30.12257645623461,
+              "foot_reference": 8,
+              "garrison_count": 4,
+              "objective": 32768,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 163.0,
+                  "pos": [
+                    -37435,
+                    25962,
+                    6335
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;+Y;461",
+                  "eligible": 1,
+                  "progress": 0.0,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 89.83205,
+                  "ammo": 147.0,
+                  "pos": [
+                    -38171,
+                    36903,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];466",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 149.0,
+                  "pos": [
+                    -37818,
+                    24220,
+                    6318
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;+Y;486",
+                  "eligible": 1,
+                  "progress": 146.03276082213074,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    63067,
+                    31265,
+                    5608
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 121.0,
+                  "pos": [
+                    -37305,
+                    24316,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];496",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": 24212.84720724173,
+              "foot_reference": 6,
+              "garrison_count": 4,
+              "objective": 32768,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 113.0,
+                  "pos": [
+                    -47760,
+                    9755,
+                    6320
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];461",
+                  "eligible": 0,
+                  "progress": 18191.964810560927,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 67.88641,
+                  "ammo": 121.0,
+                  "pos": [
+                    -45759,
+                    17710,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];466",
+                  "eligible": 0,
+                  "progress": 10348.08795726716,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 123.0,
+                  "pos": [
+                    -50536,
+                    7177,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];486",
+                  "eligible": 0,
+                  "progress": 21594.0670442969,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    62479,
+                    31065,
+                    5673
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 70.0,
+                  "pos": [
+                    -50340,
+                    8373,
+                    6317
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];496",
+                  "eligible": 0,
+                  "progress": 20407.05207264392,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            }
+          ]
+        },
+        "no_column": {
+          "recorded_matches": 19391,
+          "recorded_mismatches": 559,
+          "all_reasons": {
+            "navigation_or_combat": 9571,
+            "recovery": 312,
+            "formation": 888,
+            "opening": 2,
+            "fire": 126,
+            "entry_wait": 255,
+            "entrance_route": 60
+          },
+          "vehicle_reasons": {
+            "navigation_or_combat": 1391,
+            "recovery": 202,
+            "fire": 126,
+            "formation": 593,
+            "entrance_route": 12
+          },
+          "vehicle_holds_under_fire": {},
+          "max_vehicle_hold_streak": {
+            "461": 0,
+            "466": 0,
+            "481": 0,
+            "486": 277,
+            "491": 0,
+            "496": 277
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 115755.45783996038,
+              "foot_reference": 12,
+              "garrison_count": 4,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 170.0,
+                  "pos": [
+                    -36779,
+                    30097,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35169.5703125, 30176.119140625, 6387.494140625];461",
+                  "eligible": 0,
+                  "progress": 116951.53081746271,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 93.44456,
+                  "ammo": 147.0,
+                  "pos": [
+                    -35009,
+                    27827,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];466",
+                  "eligible": 0,
+                  "progress": 114288.285570724,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 173.0,
+                  "pos": [
+                    -32122,
+                    25058,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];486",
+                  "eligible": 0,
+                  "progress": 110306.79877545734,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    63736,
+                    32232,
+                    5607
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;;Points=[61935.70335521686, 34879.06835702247, 5606.955078125];491",
+                  "eligible": 0,
+                  "progress": 13682.205881377346,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 121.0,
+                  "pos": [
+                    -32010,
+                    25869,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32010.48046875, 25868.75, 6335.34423828125];496",
+                  "eligible": 0,
+                  "progress": 110720.24780230415,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 30.12257645623461,
+              "foot_reference": 8,
+              "garrison_count": 4,
+              "objective": 32768,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 163.0,
+                  "pos": [
+                    -37435,
+                    25962,
+                    6335
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;+Y;461",
+                  "eligible": 1,
+                  "progress": 0.0,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 89.83205,
+                  "ammo": 147.0,
+                  "pos": [
+                    -38171,
+                    36903,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];466",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 149.0,
+                  "pos": [
+                    -37818,
+                    24220,
+                    6318
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;+Y;486",
+                  "eligible": 1,
+                  "progress": 146.03276082213074,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    63067,
+                    31265,
+                    5608
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 121.0,
+                  "pos": [
+                    -37305,
+                    24316,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];496",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": 24212.84720724173,
+              "foot_reference": 6,
+              "garrison_count": 4,
+              "objective": 32768,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 113.0,
+                  "pos": [
+                    -47760,
+                    9755,
+                    6320
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];461",
+                  "eligible": 0,
+                  "progress": 18191.964810560927,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 67.88641,
+                  "ammo": 121.0,
+                  "pos": [
+                    -45759,
+                    17710,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];466",
+                  "eligible": 0,
+                  "progress": 10348.08795726716,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 123.0,
+                  "pos": [
+                    -50536,
+                    7177,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];486",
+                  "eligible": 0,
+                  "progress": 21594.0670442969,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    62479,
+                    31065,
+                    5673
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 70.0,
+                  "pos": [
+                    -50340,
+                    8373,
+                    6317
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];496",
+                  "eligible": 0,
+                  "progress": 20407.05207264392,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            }
+          ]
+        },
+        "no_entry_waves": {
+          "recorded_matches": 19636,
+          "recorded_mismatches": 314,
+          "all_reasons": {
+            "column_wait": 773,
+            "navigation_or_combat": 9084,
+            "recovery": 294,
+            "formation": 888,
+            "opening": 2,
+            "fire": 126,
+            "entrance_route": 47
+          },
+          "vehicle_reasons": {
+            "column_wait": 243,
+            "navigation_or_combat": 1163,
+            "recovery": 188,
+            "fire": 126,
+            "formation": 593,
+            "entrance_route": 11
+          },
+          "vehicle_holds_under_fire": {
+            "column_wait": 2
+          },
+          "max_vehicle_hold_streak": {
+            "461": 24,
+            "466": 23,
+            "481": 3,
+            "486": 277,
+            "491": 5,
+            "496": 277
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 115755.45783996038,
+              "foot_reference": 12,
+              "garrison_count": 4,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 170.0,
+                  "pos": [
+                    -36779,
+                    30097,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35169.5703125, 30176.119140625, 6387.494140625];461",
+                  "eligible": 0,
+                  "progress": 116951.53081746271,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 93.44456,
+                  "ammo": 147.0,
+                  "pos": [
+                    -35009,
+                    27827,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];466",
+                  "eligible": 0,
+                  "progress": 114288.285570724,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 173.0,
+                  "pos": [
+                    -32122,
+                    25058,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];486",
+                  "eligible": 0,
+                  "progress": 110306.79877545734,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    63736,
+                    32232,
+                    5607
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;;Points=[61935.70335521686, 34879.06835702247, 5606.955078125];491",
+                  "eligible": 0,
+                  "progress": 13682.205881377346,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 121.0,
+                  "pos": [
+                    -32010,
+                    25869,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32010.48046875, 25868.75, 6335.34423828125];496",
+                  "eligible": 0,
+                  "progress": 110720.24780230415,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 30.12257645623461,
+              "foot_reference": 8,
+              "garrison_count": 4,
+              "objective": 32768,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 163.0,
+                  "pos": [
+                    -37435,
+                    25962,
+                    6335
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;+Y;461",
+                  "eligible": 1,
+                  "progress": 0.0,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 89.83205,
+                  "ammo": 147.0,
+                  "pos": [
+                    -38171,
+                    36903,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];466",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 149.0,
+                  "pos": [
+                    -37818,
+                    24220,
+                    6318
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;+Y;486",
+                  "eligible": 1,
+                  "progress": 146.03276082213074,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    63067,
+                    31265,
+                    5608
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 121.0,
+                  "pos": [
+                    -37305,
+                    24316,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];496",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": 24212.84720724173,
+              "foot_reference": 6,
+              "garrison_count": 4,
+              "objective": 32768,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 113.0,
+                  "pos": [
+                    -47760,
+                    9755,
+                    6320
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];461",
+                  "eligible": 0,
+                  "progress": 18191.964810560927,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 67.88641,
+                  "ammo": 121.0,
+                  "pos": [
+                    -45759,
+                    17710,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];466",
+                  "eligible": 0,
+                  "progress": 10348.08795726716,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 123.0,
+                  "pos": [
+                    -50536,
+                    7177,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];486",
+                  "eligible": 0,
+                  "progress": 21594.0670442969,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    62479,
+                    31065,
+                    5673
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 70.0,
+                  "pos": [
+                    -50340,
+                    8373,
+                    6317
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];496",
+                  "eligible": 0,
+                  "progress": 20407.05207264392,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            }
+          ]
+        },
+        "no_static_reserve": {
+          "recorded_matches": 19611,
+          "recorded_mismatches": 339,
+          "all_reasons": {
+            "column_wait": 864,
+            "navigation_or_combat": 9166,
+            "recovery": 459,
+            "formation": 295,
+            "opening": 2,
+            "fire": 126,
+            "entry_wait": 255,
+            "entrance_route": 47
+          },
+          "vehicle_reasons": {
+            "column_wait": 423,
+            "navigation_or_combat": 1373,
+            "recovery": 391,
+            "fire": 126,
+            "entrance_route": 11
+          },
+          "vehicle_holds_under_fire": {
+            "column_wait": 1
+          },
+          "max_vehicle_hold_streak": {
+            "461": 24,
+            "466": 23,
+            "481": 3,
+            "486": 4,
+            "491": 5,
+            "496": 181
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 115755.45783996038,
+              "foot_reference": 12,
+              "garrison_count": 4,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 170.0,
+                  "pos": [
+                    -36779,
+                    30097,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35169.5703125, 30176.119140625, 6387.494140625];461",
+                  "eligible": 0,
+                  "progress": 116951.53081746271,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 93.44456,
+                  "ammo": 147.0,
+                  "pos": [
+                    -35009,
+                    27827,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];466",
+                  "eligible": 0,
+                  "progress": 114288.285570724,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 173.0,
+                  "pos": [
+                    -32122,
+                    25058,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];486",
+                  "eligible": 0,
+                  "progress": 110306.79877545734,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    63736,
+                    32232,
+                    5607
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;;Points=[61935.70335521686, 34879.06835702247, 5606.955078125];491",
+                  "eligible": 0,
+                  "progress": 13682.205881377346,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 121.0,
+                  "pos": [
+                    -32010,
+                    25869,
+                    6335
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;+Y;496",
+                  "eligible": 0,
+                  "progress": 110720.24780230415,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 30.12257645623461,
+              "foot_reference": 8,
+              "garrison_count": 4,
+              "objective": 32768,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 163.0,
+                  "pos": [
+                    -37435,
+                    25962,
+                    6335
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;+Y;461",
+                  "eligible": 1,
+                  "progress": 0.0,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 89.83205,
+                  "ammo": 147.0,
+                  "pos": [
+                    -38171,
+                    36903,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];466",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 149.0,
+                  "pos": [
+                    -37818,
+                    24220,
+                    6318
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;+Y;486",
+                  "eligible": 1,
+                  "progress": 146.03276082213074,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    63067,
+                    31265,
+                    5608
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 121.0,
+                  "pos": [
+                    -37305,
+                    24316,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];496",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": 24212.84720724173,
+              "foot_reference": 6,
+              "garrison_count": 4,
+              "objective": 32768,
+              "vehicles": [
+                {
+                  "uid": 461,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 29.95843,
+                  "ammo": 113.0,
+                  "pos": [
+                    -47760,
+                    9755,
+                    6320
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];461",
+                  "eligible": 0,
+                  "progress": 18191.964810560927,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 466,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 67.88641,
+                  "ammo": 121.0,
+                  "pos": [
+                    -45759,
+                    17710,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];466",
+                  "eligible": 0,
+                  "progress": 10348.08795726716,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 486,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 123.0,
+                  "pos": [
+                    -50536,
+                    7177,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];486",
+                  "eligible": 0,
+                  "progress": 21594.0670442969,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 491,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    62479,
+                    31065,
+                    5673
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                  "eligible": 0,
+                  "progress": 0.0,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 496,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 70.0,
+                  "pos": [
+                    -50340,
+                    8373,
+                    6317
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];496",
+                  "eligible": 0,
+                  "progress": 20407.05207264392,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "adjusted": {
+        "recorded_matches": 19605,
+        "recorded_mismatches": 345,
+        "all_reasons": {
+          "column_wait": 829,
+          "navigation_or_combat": 9089,
+          "recovery": 314,
+          "formation": 684,
+          "opening": 2,
+          "fire": 126,
+          "entry_wait": 108,
+          "entrance_route": 62
+        },
+        "vehicle_reasons": {
+          "column_wait": 330,
+          "navigation_or_combat": 1234,
+          "recovery": 220,
+          "fire": 126,
+          "entrance_route": 25,
+          "formation": 389
+        },
+        "vehicle_holds_under_fire": {},
+        "max_vehicle_hold_streak": {
+          "461": 24,
+          "466": 17,
+          "481": 3,
+          "486": 277,
+          "491": 5,
+          "496": 140
+        },
+        "samples": [
+          {
+            "step": 150,
+            "anchor": 115755.45783996038,
+            "foot_reference": 16,
+            "garrison_count": 4,
+            "objective": 32769,
+            "vehicles": [
+              {
+                "uid": 461,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 29.95843,
+                "ammo": 170.0,
+                "pos": [
+                  -36779,
+                  30097,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-35169.5703125, 30176.119140625, 6387.494140625];461",
+                "eligible": 0,
+                "progress": 116951.53081746271,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 466,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 93.44456,
+                "ammo": 147.0,
+                "pos": [
+                  -35009,
+                  27827,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];466",
+                "eligible": 0,
+                "progress": 114288.285570724,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 486,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 173.0,
+                "pos": [
+                  -32122,
+                  25058,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];486",
+                "eligible": 0,
+                "progress": 110306.79877545734,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 491,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  63736,
+                  32232,
+                  5607
+                ],
+                "reason": "recovery",
+                "action": "ActionSet2::Guard;;Points=[61935.70335521686, 34879.06835702247, 5606.955078125];491",
+                "eligible": 0,
+                "progress": 13682.205881377346,
+                "front": false,
+                "reserve": 32770
+              },
+              {
+                "uid": 496,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 121.0,
+                "pos": [
+                  -32010,
+                  25869,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];496",
+                "eligible": 0,
+                "progress": 110720.24780230415,
+                "front": false,
+                "reserve": 32768
+              }
+            ]
+          },
+          {
+            "step": 170,
+            "anchor": 30.12257645623461,
+            "foot_reference": 8,
+            "garrison_count": 4,
+            "objective": 32768,
+            "vehicles": [
+              {
+                "uid": 461,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 29.95843,
+                "ammo": 163.0,
+                "pos": [
+                  -37435,
+                  25962,
+                  6335
+                ],
+                "reason": "fire",
+                "action": "ActionSet2::Guard;+Y;461",
+                "eligible": 1,
+                "progress": 0.0,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 466,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 89.83205,
+                "ammo": 147.0,
+                "pos": [
+                  -38171,
+                  36903,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];466",
+                "eligible": 0,
+                "progress": 0.0,
+                "front": false,
+                "reserve": 32770
+              },
+              {
+                "uid": 486,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 149.0,
+                "pos": [
+                  -37818,
+                  24220,
+                  6318
+                ],
+                "reason": "fire",
+                "action": "ActionSet2::Guard;+Y;486",
+                "eligible": 1,
+                "progress": 146.03276082213074,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 491,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  63067,
+                  31265,
+                  5608
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                "eligible": 0,
+                "progress": 0.0,
+                "front": false,
+                "reserve": 32770
+              },
+              {
+                "uid": 496,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 121.0,
+                "pos": [
+                  -37305,
+                  24316,
+                  6318
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];496",
+                "eligible": 0,
+                "progress": 0.0,
+                "front": false,
+                "reserve": 32768
+              }
+            ]
+          },
+          {
+            "step": 190,
+            "anchor": 24212.84720724173,
+            "foot_reference": 6,
+            "garrison_count": 4,
+            "objective": 32768,
+            "vehicles": [
+              {
+                "uid": 461,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 29.95843,
+                "ammo": 113.0,
+                "pos": [
+                  -47760,
+                  9755,
+                  6320
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];461",
+                "eligible": 0,
+                "progress": 18191.964810560927,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 466,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 67.88641,
+                "ammo": 121.0,
+                "pos": [
+                  -45759,
+                  17710,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-46037.0, 15885.0, 6425.0];466",
+                "eligible": 0,
+                "progress": 10348.08795726716,
+                "front": false,
+                "reserve": 32770
+              },
+              {
+                "uid": 486,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 123.0,
+                "pos": [
+                  -50536,
+                  7177,
+                  6318
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];486",
+                "eligible": 0,
+                "progress": 21594.0670442969,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 491,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  62479,
+                  31065,
+                  5673
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+                "eligible": 0,
+                "progress": 0.0,
+                "front": false,
+                "reserve": 32770
+              },
+              {
+                "uid": 496,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 70.0,
+                "pos": [
+                  -50340,
+                  8373,
+                  6317
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-50063.0, 5399.0, 6425.0];496",
+                "eligible": 0,
+                "progress": 20407.05207264392,
+                "front": false,
+                "reserve": 32768
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "episode": 18,
+      "original": {
+        "baseline": {
+          "recorded_matches": 8300,
+          "recorded_mismatches": 0,
+          "all_reasons": {
+            "column_wait": 487,
+            "navigation_or_combat": 6976,
+            "recovery": 39,
+            "fire": 40,
+            "formation": 281,
+            "entry_wait": 297,
+            "entrance_route": 394
+          },
+          "vehicle_reasons": {
+            "column_wait": 228,
+            "navigation_or_combat": 614,
+            "recovery": 7,
+            "fire": 40,
+            "entrance_route": 37,
+            "formation": 120
+          },
+          "vehicle_holds_under_fire": {},
+          "max_vehicle_hold_streak": {
+            "8691": 17,
+            "8681": 18,
+            "8651": 51,
+            "8641": 46,
+            "8636": 15,
+            "8621": 5
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 114217.75970305558,
+              "foot_reference": 19,
+              "garrison_count": 18,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8681,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 100.0,
+                  "ammo": 300.0,
+                  "pos": [
+                    -34654,
+                    30096,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-36237.0, 30315.0, 6335.0];8681",
+                  "eligible": 0,
+                  "progress": 115410.38468922484,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -30980,
+                    26665,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-29782.0, 25170.0, 6426.0];8651",
+                  "eligible": 0,
+                  "progress": 110401.75426607912,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32092,
+                    26083,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32091.759765625, 26082.94921875, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 110916.48733304837,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -31429,
+                    25361,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                  "eligible": 0,
+                  "progress": 109948.98394379072,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8621,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -35269,
+                    31113,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];8621",
+                  "eligible": 0,
+                  "progress": 116522.76950484741,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 115983.81900182352,
+              "foot_reference": 14,
+              "garrison_count": 14,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32059,
+                    26131,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32059.369140625, 26130.919921875, 6335.34423828125];8651",
+                  "eligible": 0,
+                  "progress": 110920.6510446637,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32336,
+                    26407,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32336.19921875, 26407.439453125, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 111309.16389659254,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32911,
+                    32148,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                  "eligible": 0,
+                  "progress": 115307.20939836107,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": 119350.57249180197,
+              "foot_reference": 5,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32059,
+                    26131,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32059.369140625, 26130.919921875, 6335.34423828125];8651",
+                  "eligible": 0,
+                  "progress": 110920.6510446637,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32336,
+                    26407,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32336.19921875, 26407.439453125, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 111309.16389659254,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -37092,
+                    35458,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35909.3515625, 35150.19140625, 6335.34423828125];8636",
+                  "eligible": 0,
+                  "progress": 122210.49795732024,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            }
+          ]
+        },
+        "no_column": {
+          "recorded_matches": 7694,
+          "recorded_mismatches": 606,
+          "all_reasons": {
+            "navigation_or_combat": 7393,
+            "recovery": 99,
+            "fire": 40,
+            "formation": 281,
+            "entry_wait": 297,
+            "entrance_route": 404
+          },
+          "vehicle_reasons": {
+            "navigation_or_combat": 833,
+            "recovery": 29,
+            "fire": 40,
+            "entrance_route": 24,
+            "formation": 120
+          },
+          "vehicle_holds_under_fire": {},
+          "max_vehicle_hold_streak": {
+            "8691": 0,
+            "8681": 0,
+            "8651": 51,
+            "8641": 46,
+            "8636": 12,
+            "8621": 0
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 114217.75970305558,
+              "foot_reference": 19,
+              "garrison_count": 18,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8681,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 100.0,
+                  "ammo": 300.0,
+                  "pos": [
+                    -34654,
+                    30096,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-36237.0, 30315.0, 6335.0];8681",
+                  "eligible": 0,
+                  "progress": 115410.38468922484,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -30980,
+                    26665,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-29782.0, 25170.0, 6426.0];8651",
+                  "eligible": 0,
+                  "progress": 110401.75426607912,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32092,
+                    26083,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32091.759765625, 26082.94921875, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 110916.48733304837,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -31429,
+                    25361,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                  "eligible": 0,
+                  "progress": 109948.98394379072,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8621,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -35269,
+                    31113,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];8621",
+                  "eligible": 0,
+                  "progress": 116522.76950484741,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 115983.81900182352,
+              "foot_reference": 14,
+              "garrison_count": 14,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32059,
+                    26131,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32059.369140625, 26130.919921875, 6335.34423828125];8651",
+                  "eligible": 0,
+                  "progress": 110920.6510446637,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32336,
+                    26407,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32336.19921875, 26407.439453125, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 111309.16389659254,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32911,
+                    32148,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                  "eligible": 0,
+                  "progress": 115307.20939836107,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": 119350.57249180197,
+              "foot_reference": 5,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32059,
+                    26131,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32059.369140625, 26130.919921875, 6335.34423828125];8651",
+                  "eligible": 0,
+                  "progress": 110920.6510446637,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32336,
+                    26407,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32336.19921875, 26407.439453125, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 111309.16389659254,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -37092,
+                    35458,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35909.3515625, 35150.19140625, 6335.34423828125];8636",
+                  "eligible": 0,
+                  "progress": 122210.49795732024,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            }
+          ]
+        },
+        "no_entry_waves": {
+          "recorded_matches": 7767,
+          "recorded_mismatches": 533,
+          "all_reasons": {
+            "column_wait": 629,
+            "navigation_or_combat": 7060,
+            "recovery": 89,
+            "fire": 40,
+            "formation": 281,
+            "entrance_route": 415
+          },
+          "vehicle_reasons": {
+            "column_wait": 239,
+            "navigation_or_combat": 603,
+            "recovery": 7,
+            "fire": 40,
+            "entrance_route": 37,
+            "formation": 120
+          },
+          "vehicle_holds_under_fire": {},
+          "max_vehicle_hold_streak": {
+            "8691": 17,
+            "8681": 18,
+            "8651": 51,
+            "8641": 46,
+            "8636": 14,
+            "8621": 8
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 114217.75970305558,
+              "foot_reference": 19,
+              "garrison_count": 18,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8681,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 100.0,
+                  "ammo": 300.0,
+                  "pos": [
+                    -34654,
+                    30096,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-36237.0, 30315.0, 6335.0];8681",
+                  "eligible": 0,
+                  "progress": 115410.38468922484,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -30980,
+                    26665,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-29782.0, 25170.0, 6426.0];8651",
+                  "eligible": 0,
+                  "progress": 110401.75426607912,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32092,
+                    26083,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32091.759765625, 26082.94921875, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 110916.48733304837,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -31429,
+                    25361,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                  "eligible": 0,
+                  "progress": 109948.98394379072,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8621,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -35269,
+                    31113,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];8621",
+                  "eligible": 0,
+                  "progress": 116522.76950484741,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 115983.81900182352,
+              "foot_reference": 14,
+              "garrison_count": 14,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32059,
+                    26131,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32059.369140625, 26130.919921875, 6335.34423828125];8651",
+                  "eligible": 0,
+                  "progress": 110920.6510446637,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32336,
+                    26407,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32336.19921875, 26407.439453125, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 111309.16389659254,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32911,
+                    32148,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                  "eligible": 0,
+                  "progress": 115307.20939836107,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": 119350.57249180197,
+              "foot_reference": 5,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32059,
+                    26131,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32059.369140625, 26130.919921875, 6335.34423828125];8651",
+                  "eligible": 0,
+                  "progress": 110920.6510446637,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32336,
+                    26407,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32336.19921875, 26407.439453125, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 111309.16389659254,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -37092,
+                    35458,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35909.3515625, 35150.19140625, 6335.34423828125];8636",
+                  "eligible": 0,
+                  "progress": 122210.49795732024,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            }
+          ]
+        },
+        "no_static_reserve": {
+          "recorded_matches": 8223,
+          "recorded_mismatches": 77,
+          "all_reasons": {
+            "column_wait": 494,
+            "navigation_or_combat": 6994,
+            "recovery": 84,
+            "fire": 40,
+            "formation": 161,
+            "entry_wait": 297,
+            "entrance_route": 444
+          },
+          "vehicle_reasons": {
+            "column_wait": 235,
+            "navigation_or_combat": 632,
+            "recovery": 52,
+            "fire": 40,
+            "entrance_route": 87
+          },
+          "vehicle_holds_under_fire": {},
+          "max_vehicle_hold_streak": {
+            "8691": 17,
+            "8681": 18,
+            "8651": 18,
+            "8641": 13,
+            "8636": 15,
+            "8621": 5
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 114217.75970305558,
+              "foot_reference": 19,
+              "garrison_count": 18,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8681,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 100.0,
+                  "ammo": 300.0,
+                  "pos": [
+                    -34654,
+                    30096,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-36237.0, 30315.0, 6335.0];8681",
+                  "eligible": 0,
+                  "progress": 115410.38468922484,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -30980,
+                    26665,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-29782.0, 25170.0, 6426.0];8651",
+                  "eligible": 0,
+                  "progress": 110401.75426607912,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32092,
+                    26083,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8641",
+                  "eligible": 0,
+                  "progress": 110916.48733304837,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -31429,
+                    25361,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                  "eligible": 0,
+                  "progress": 109948.98394379072,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8621,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -35269,
+                    31113,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];8621",
+                  "eligible": 0,
+                  "progress": 116522.76950484741,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 115983.81900182352,
+              "foot_reference": 14,
+              "garrison_count": 14,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32059,
+                    26131,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8651",
+                  "eligible": 0,
+                  "progress": 110920.6510446637,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32336,
+                    26407,
+                    6335
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;;Points=[-29144.589885039386, 26659.68905366246, 6335.34423828125];8641",
+                  "eligible": 0,
+                  "progress": 111309.16389659254,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32911,
+                    32148,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                  "eligible": 0,
+                  "progress": 115307.20939836107,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": 119350.57249180197,
+              "foot_reference": 5,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 8651,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32059,
+                    26131,
+                    6335
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;;Points=[-32218.080371455137, 22933.294123691543, 6335.34423828125];8651",
+                  "eligible": 0,
+                  "progress": 110920.6510446637,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 8641,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32336,
+                    26407,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34453.0, 28503.0, 6335.0];8641",
+                  "eligible": 0,
+                  "progress": 111309.16389659254,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 8636,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -37092,
+                    35458,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35909.3515625, 35150.19140625, 6335.34423828125];8636",
+                  "eligible": 0,
+                  "progress": 122210.49795732024,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "adjusted": {
+        "recorded_matches": 7734,
+        "recorded_mismatches": 566,
+        "all_reasons": {
+          "column_wait": 568,
+          "navigation_or_combat": 7006,
+          "recovery": 125,
+          "fire": 40,
+          "formation": 161,
+          "entry_wait": 151,
+          "entrance_route": 463
+        },
+        "vehicle_reasons": {
+          "column_wait": 213,
+          "navigation_or_combat": 651,
+          "recovery": 57,
+          "fire": 40,
+          "entrance_route": 85
+        },
+        "vehicle_holds_under_fire": {},
+        "max_vehicle_hold_streak": {
+          "8691": 17,
+          "8681": 18,
+          "8651": 18,
+          "8641": 12,
+          "8636": 15,
+          "8621": 5
+        },
+        "samples": [
+          {
+            "step": 150,
+            "anchor": 114854.70462856491,
+            "foot_reference": 37,
+            "garrison_count": 18,
+            "objective": 32769,
+            "vehicles": [
+              {
+                "uid": 8681,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 100.0,
+                "ammo": 300.0,
+                "pos": [
+                  -34654,
+                  30096,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-36237.0, 30315.0, 6335.0];8681",
+                "eligible": 0,
+                "progress": 115410.38468922484,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 8651,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -30980,
+                  26665,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-29782.0, 25170.0, 6426.0];8651",
+                "eligible": 0,
+                "progress": 110401.75426607912,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 8641,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32092,
+                  26083,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8641",
+                "eligible": 0,
+                "progress": 110916.48733304837,
+                "front": false,
+                "reserve": 32770
+              },
+              {
+                "uid": 8636,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -31429,
+                  25361,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                "eligible": 0,
+                "progress": 109948.98394379072,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 8621,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -35269,
+                  31113,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];8621",
+                "eligible": 0,
+                "progress": 116522.76950484741,
+                "front": true,
+                "reserve": null
+              }
+            ]
+          },
+          {
+            "step": 170,
+            "anchor": 116614.76821013192,
+            "foot_reference": 28,
+            "garrison_count": 14,
+            "objective": 32769,
+            "vehicles": [
+              {
+                "uid": 8651,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32059,
+                  26131,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8651",
+                "eligible": 0,
+                "progress": 110920.6510446637,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 8641,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32336,
+                  26407,
+                  6335
+                ],
+                "reason": "recovery",
+                "action": "ActionSet2::Guard;;Points=[-29144.589885039386, 26659.68905366246, 6335.34423828125];8641",
+                "eligible": 0,
+                "progress": 111309.16389659254,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 8636,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32911,
+                  32148,
+                  6318
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];8636",
+                "eligible": 0,
+                "progress": 115307.20939836107,
+                "front": true,
+                "reserve": null
+              }
+            ]
+          },
+          {
+            "step": 190,
+            "anchor": 119350.57249180197,
+            "foot_reference": 5,
+            "garrison_count": 0,
+            "objective": 32769,
+            "vehicles": [
+              {
+                "uid": 8651,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32059,
+                  26131,
+                  6335
+                ],
+                "reason": "recovery",
+                "action": "ActionSet2::Guard;;Points=[-32218.080371455137, 22933.294123691543, 6335.34423828125];8651",
+                "eligible": 0,
+                "progress": 110920.6510446637,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 8641,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32336,
+                  26407,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-34453.0, 28503.0, 6335.0];8641",
+                "eligible": 0,
+                "progress": 111309.16389659254,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 8636,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -37092,
+                  35458,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-35909.3515625, 35150.19140625, 6335.34423828125];8636",
+                "eligible": 0,
+                "progress": 122210.49795732024,
+                "front": true,
+                "reserve": null
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "episode": 19,
+      "original": {
+        "baseline": {
+          "recorded_matches": 10700,
+          "recorded_mismatches": 0,
+          "all_reasons": {
+            "column_wait": 468,
+            "navigation_or_combat": 6479,
+            "fire": 67,
+            "formation": 350,
+            "recovery": 22,
+            "entry_wait": 232,
+            "entrance_route": 113
+          },
+          "vehicle_reasons": {
+            "column_wait": 212,
+            "navigation_or_combat": 611,
+            "fire": 67,
+            "recovery": 6,
+            "formation": 215,
+            "entrance_route": 56
+          },
+          "vehicle_holds_under_fire": {
+            "column_wait": 1
+          },
+          "max_vehicle_hold_streak": {
+            "9321": 17,
+            "9311": 17,
+            "9271": 44,
+            "9266": 13,
+            "9251": 95,
+            "9246": 10
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 115027.1270898942,
+              "foot_reference": 5,
+              "garrison_count": 14,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9321,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 95.05071,
+                  "ammo": 254.0,
+                  "pos": [
+                    -34910,
+                    30206,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-34655.87109375, 31887.240234375, 6387.494140625];9321",
+                  "eligible": 0,
+                  "progress": 115679.56840107642,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32777,
+                    26554,
+                    6318
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32777.23828125, 26553.919921875, 6317.56201171875];9266",
+                  "eligible": 0,
+                  "progress": 111746.4714511976,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9246,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 83.3242,
+                  "ammo": 200.0,
+                  "pos": [
+                    -34924,
+                    29311,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35582.0, 27891.0703125, 6387.494140625];9246",
+                  "eligible": 0,
+                  "progress": 115137.47695369851,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 117561.21913629537,
+              "foot_reference": 6,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9321,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 22.51692,
+                  "ammo": 187.0,
+                  "pos": [
+                    -40660,
+                    35707,
+                    6335
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;-X-Y;9321",
+                  "eligible": 6,
+                  "progress": 125950.39385121934,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32938,
+                    26714,
+                    6318
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32937.5390625, 26713.900390625, 6317.56201171875];9266",
+                  "eligible": 0,
+                  "progress": 111971.35629225301,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9246,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 83.3242,
+                  "ammo": 200.0,
+                  "pos": [
+                    -39402,
+                    36542,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-40928.0, 34988.0, 6335.0];9246",
+                  "eligible": 0,
+                  "progress": 124631.32391754966,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": null,
+              "foot_reference": 0,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -35405,
+                    29594,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;-X+Y;9266",
+                  "eligible": 0,
+                  "progress": 115691.22493480831,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            }
+          ]
+        },
+        "no_column": {
+          "recorded_matches": 10327,
+          "recorded_mismatches": 373,
+          "all_reasons": {
+            "navigation_or_combat": 6897,
+            "recovery": 72,
+            "fire": 67,
+            "formation": 350,
+            "entry_wait": 232,
+            "entrance_route": 113
+          },
+          "vehicle_reasons": {
+            "navigation_or_combat": 805,
+            "recovery": 24,
+            "fire": 67,
+            "formation": 215,
+            "entrance_route": 56
+          },
+          "vehicle_holds_under_fire": {},
+          "max_vehicle_hold_streak": {
+            "9321": 0,
+            "9311": 0,
+            "9271": 44,
+            "9266": 13,
+            "9251": 95,
+            "9246": 0
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 115027.1270898942,
+              "foot_reference": 5,
+              "garrison_count": 14,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9321,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 95.05071,
+                  "ammo": 254.0,
+                  "pos": [
+                    -34910,
+                    30206,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-34655.87109375, 31887.240234375, 6387.494140625];9321",
+                  "eligible": 0,
+                  "progress": 115679.56840107642,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32777,
+                    26554,
+                    6318
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32777.23828125, 26553.919921875, 6317.56201171875];9266",
+                  "eligible": 0,
+                  "progress": 111746.4714511976,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9246,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 83.3242,
+                  "ammo": 200.0,
+                  "pos": [
+                    -34924,
+                    29311,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35582.0, 27891.0703125, 6387.494140625];9246",
+                  "eligible": 0,
+                  "progress": 115137.47695369851,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 117561.21913629537,
+              "foot_reference": 6,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9321,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 22.51692,
+                  "ammo": 187.0,
+                  "pos": [
+                    -40660,
+                    35707,
+                    6335
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;-X-Y;9321",
+                  "eligible": 6,
+                  "progress": 125950.39385121934,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32938,
+                    26714,
+                    6318
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32937.5390625, 26713.900390625, 6317.56201171875];9266",
+                  "eligible": 0,
+                  "progress": 111971.35629225301,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9246,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 83.3242,
+                  "ammo": 200.0,
+                  "pos": [
+                    -39402,
+                    36542,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-40928.0, 34988.0, 6335.0];9246",
+                  "eligible": 0,
+                  "progress": 124631.32391754966,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": null,
+              "foot_reference": 0,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -35405,
+                    29594,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;-X+Y;9266",
+                  "eligible": 0,
+                  "progress": 115691.22493480831,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            }
+          ]
+        },
+        "no_entry_waves": {
+          "recorded_matches": 10467,
+          "recorded_mismatches": 233,
+          "all_reasons": {
+            "column_wait": 531,
+            "navigation_or_combat": 6618,
+            "fire": 67,
+            "formation": 350,
+            "recovery": 52,
+            "entrance_route": 113
+          },
+          "vehicle_reasons": {
+            "column_wait": 221,
+            "navigation_or_combat": 602,
+            "fire": 67,
+            "recovery": 6,
+            "formation": 215,
+            "entrance_route": 56
+          },
+          "vehicle_holds_under_fire": {
+            "column_wait": 1
+          },
+          "max_vehicle_hold_streak": {
+            "9321": 17,
+            "9311": 17,
+            "9271": 44,
+            "9266": 13,
+            "9251": 95,
+            "9246": 14
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 115027.1270898942,
+              "foot_reference": 5,
+              "garrison_count": 14,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9321,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 95.05071,
+                  "ammo": 254.0,
+                  "pos": [
+                    -34910,
+                    30206,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-34655.87109375, 31887.240234375, 6387.494140625];9321",
+                  "eligible": 0,
+                  "progress": 115679.56840107642,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32777,
+                    26554,
+                    6318
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32777.23828125, 26553.919921875, 6317.56201171875];9266",
+                  "eligible": 0,
+                  "progress": 111746.4714511976,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9246,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 83.3242,
+                  "ammo": 200.0,
+                  "pos": [
+                    -34924,
+                    29311,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35582.0, 27891.0703125, 6387.494140625];9246",
+                  "eligible": 0,
+                  "progress": 115137.47695369851,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 117561.21913629537,
+              "foot_reference": 6,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9321,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 22.51692,
+                  "ammo": 187.0,
+                  "pos": [
+                    -40660,
+                    35707,
+                    6335
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;-X-Y;9321",
+                  "eligible": 6,
+                  "progress": 125950.39385121934,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32938,
+                    26714,
+                    6318
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32937.5390625, 26713.900390625, 6317.56201171875];9266",
+                  "eligible": 0,
+                  "progress": 111971.35629225301,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9246,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 83.3242,
+                  "ammo": 200.0,
+                  "pos": [
+                    -39402,
+                    36542,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-40928.0, 34988.0, 6335.0];9246",
+                  "eligible": 0,
+                  "progress": 124631.32391754966,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": null,
+              "foot_reference": 0,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32460.349609375, 26690.359375, 6335.34423828125];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -35405,
+                    29594,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;-X+Y;9266",
+                  "eligible": 0,
+                  "progress": 115691.22493480831,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "formation",
+                  "action": "ActionSet2::Guard;;Points=[-32106.970703125, 25577.099609375, 6335.34423828125];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            }
+          ]
+        },
+        "no_static_reserve": {
+          "recorded_matches": 10490,
+          "recorded_mismatches": 210,
+          "all_reasons": {
+            "column_wait": 468,
+            "navigation_or_combat": 6477,
+            "fire": 67,
+            "formation": 135,
+            "recovery": 97,
+            "entry_wait": 232,
+            "entrance_route": 255
+          },
+          "vehicle_reasons": {
+            "column_wait": 212,
+            "navigation_or_combat": 609,
+            "fire": 67,
+            "recovery": 81,
+            "entrance_route": 198
+          },
+          "vehicle_holds_under_fire": {
+            "column_wait": 1
+          },
+          "max_vehicle_hold_streak": {
+            "9321": 17,
+            "9311": 17,
+            "9271": 8,
+            "9266": 7,
+            "9251": 5,
+            "9246": 10
+          },
+          "samples": [
+            {
+              "step": 150,
+              "anchor": 115027.1270898942,
+              "foot_reference": 5,
+              "garrison_count": 14,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9321,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 95.05071,
+                  "ammo": 254.0,
+                  "pos": [
+                    -34910,
+                    30206,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-34655.87109375, 31887.240234375, 6387.494140625];9321",
+                  "eligible": 0,
+                  "progress": 115679.56840107642,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32777,
+                    26554,
+                    6318
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];9266",
+                  "eligible": 0,
+                  "progress": 111746.4714511976,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9246,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 83.3242,
+                  "ammo": 200.0,
+                  "pos": [
+                    -34924,
+                    29311,
+                    6335
+                  ],
+                  "reason": "navigation_or_combat",
+                  "action": "ActionSet2::Guard;;Points=[-35582.0, 27891.0703125, 6387.494140625];9246",
+                  "eligible": 0,
+                  "progress": 115137.47695369851,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 170,
+              "anchor": 117561.21913629537,
+              "foot_reference": 6,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9321,
+                  "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                  "hp": 22.51692,
+                  "ammo": 187.0,
+                  "pos": [
+                    -40660,
+                    35707,
+                    6335
+                  ],
+                  "reason": "fire",
+                  "action": "ActionSet2::Guard;-X-Y;9321",
+                  "eligible": 6,
+                  "progress": 125950.39385121934,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;+X-Y;9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32938,
+                    26714,
+                    6318
+                  ],
+                  "reason": "recovery",
+                  "action": "ActionSet2::Guard;;Points=[-29767.782267047445, 27164.057982677346, 6317.56201171875];9266",
+                  "eligible": 0,
+                  "progress": 111971.35629225301,
+                  "front": false,
+                  "reserve": 32770
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9246,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 83.3242,
+                  "ammo": 200.0,
+                  "pos": [
+                    -39402,
+                    36542,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-40928.0, 34988.0, 6335.0];9246",
+                  "eligible": 0,
+                  "progress": 124631.32391754966,
+                  "front": true,
+                  "reserve": null
+                }
+              ]
+            },
+            {
+              "step": 190,
+              "anchor": null,
+              "foot_reference": 0,
+              "garrison_count": 0,
+              "objective": 32769,
+              "vehicles": [
+                {
+                  "uid": 9271,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 96.0339,
+                  "ammo": 177.0,
+                  "pos": [
+                    -32460,
+                    26690,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-34453.0, 28503.0, 6335.0];9271",
+                  "eligible": 0,
+                  "progress": 111581.5688432991,
+                  "front": false,
+                  "reserve": 32768
+                },
+                {
+                  "uid": 9266,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -35405,
+                    29594,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-37043.0, 31469.0, 6335.0];9266",
+                  "eligible": 0,
+                  "progress": 115691.22493480831,
+                  "front": true,
+                  "reserve": null
+                },
+                {
+                  "uid": 9251,
+                  "type": "BP_MNWS_Vehicle_Armored_C",
+                  "hp": 100.0,
+                  "ammo": 200.0,
+                  "pos": [
+                    -32107,
+                    25577,
+                    6335
+                  ],
+                  "reason": "entrance_route",
+                  "action": "ActionSet2::Guard;;Points=[-33414.0, 26265.0, 6318.0];9251",
+                  "eligible": 0,
+                  "progress": 110615.95336843713,
+                  "front": false,
+                  "reserve": 32768
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "adjusted": {
+        "recorded_matches": 10309,
+        "recorded_mismatches": 391,
+        "all_reasons": {
+          "column_wait": 490,
+          "navigation_or_combat": 6561,
+          "fire": 67,
+          "formation": 135,
+          "recovery": 117,
+          "entry_wait": 107,
+          "entrance_route": 254
+        },
+        "vehicle_reasons": {
+          "column_wait": 185,
+          "navigation_or_combat": 637,
+          "fire": 67,
+          "recovery": 81,
+          "entrance_route": 197
+        },
+        "vehicle_holds_under_fire": {},
+        "max_vehicle_hold_streak": {
+          "9321": 17,
+          "9311": 17,
+          "9271": 4,
+          "9266": 7,
+          "9251": 5,
+          "9246": 10
+        },
+        "samples": [
+          {
+            "step": 150,
+            "anchor": 115705.87433352061,
+            "foot_reference": 19,
+            "garrison_count": 14,
+            "objective": 32769,
+            "vehicles": [
+              {
+                "uid": 9321,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 95.05071,
+                "ammo": 254.0,
+                "pos": [
+                  -34910,
+                  30206,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-34655.87109375, 31887.240234375, 6387.494140625];9321",
+                "eligible": 0,
+                "progress": 115679.56840107642,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 9271,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 96.0339,
+                "ammo": 177.0,
+                "pos": [
+                  -32460,
+                  26690,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];9271",
+                "eligible": 0,
+                "progress": 111581.5688432991,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 9266,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32777,
+                  26554,
+                  6318
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];9266",
+                "eligible": 0,
+                "progress": 111746.4714511976,
+                "front": false,
+                "reserve": 32770
+              },
+              {
+                "uid": 9251,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32107,
+                  25577,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-41810.421875, 32275.1796875, 6326.02197265625];9251",
+                "eligible": 0,
+                "progress": 110615.95336843713,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 9246,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 83.3242,
+                "ammo": 200.0,
+                "pos": [
+                  -34924,
+                  29311,
+                  6335
+                ],
+                "reason": "navigation_or_combat",
+                "action": "ActionSet2::Guard;;Points=[-35582.0, 27891.0703125, 6387.494140625];9246",
+                "eligible": 0,
+                "progress": 115137.47695369851,
+                "front": true,
+                "reserve": null
+              }
+            ]
+          },
+          {
+            "step": 170,
+            "anchor": 117561.21913629537,
+            "foot_reference": 6,
+            "garrison_count": 0,
+            "objective": 32769,
+            "vehicles": [
+              {
+                "uid": 9321,
+                "type": "BP_MNWS_Vehicle_6x6UGV_C",
+                "hp": 22.51692,
+                "ammo": 187.0,
+                "pos": [
+                  -40660,
+                  35707,
+                  6335
+                ],
+                "reason": "fire",
+                "action": "ActionSet2::Guard;-X-Y;9321",
+                "eligible": 6,
+                "progress": 125950.39385121934,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 9271,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 96.0339,
+                "ammo": 177.0,
+                "pos": [
+                  -32460,
+                  26690,
+                  6335
+                ],
+                "reason": "recovery",
+                "action": "ActionSet2::Guard;+X-Y;9271",
+                "eligible": 0,
+                "progress": 111581.5688432991,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 9266,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32938,
+                  26714,
+                  6318
+                ],
+                "reason": "recovery",
+                "action": "ActionSet2::Guard;;Points=[-29767.782267047445, 27164.057982677346, 6317.56201171875];9266",
+                "eligible": 0,
+                "progress": 111971.35629225301,
+                "front": false,
+                "reserve": 32770
+              },
+              {
+                "uid": 9251,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32107,
+                  25577,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-34863.0, 29503.0, 6335.0];9251",
+                "eligible": 0,
+                "progress": 110615.95336843713,
+                "front": false,
+                "reserve": 32768
+              },
+              {
+                "uid": 9246,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 83.3242,
+                "ammo": 200.0,
+                "pos": [
+                  -39402,
+                  36542,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-40928.0, 34988.0, 6335.0];9246",
+                "eligible": 0,
+                "progress": 124631.32391754966,
+                "front": true,
+                "reserve": null
+              }
+            ]
+          },
+          {
+            "step": 190,
+            "anchor": null,
+            "foot_reference": 0,
+            "garrison_count": 0,
+            "objective": 32769,
+            "vehicles": [
+              {
+                "uid": 9271,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 96.0339,
+                "ammo": 177.0,
+                "pos": [
+                  -32460,
+                  26690,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-34453.0, 28503.0, 6335.0];9271",
+                "eligible": 0,
+                "progress": 111581.5688432991,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 9266,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -35405,
+                  29594,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-37043.0, 31469.0, 6335.0];9266",
+                "eligible": 0,
+                "progress": 115691.22493480831,
+                "front": true,
+                "reserve": null
+              },
+              {
+                "uid": 9251,
+                "type": "BP_MNWS_Vehicle_Armored_C",
+                "hp": 100.0,
+                "ammo": 200.0,
+                "pos": [
+                  -32107,
+                  25577,
+                  6335
+                ],
+                "reason": "entrance_route",
+                "action": "ActionSet2::Guard;;Points=[-33414.0, 26265.0, 6318.0];9251",
+                "eligible": 0,
+                "progress": 110615.95336843713,
+                "front": false,
+                "reserve": 32768
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "pytest_passed": 388,
+    "frames": 2015,
+    "reports": [
+      {
+        "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261019_012406\\protocol.jsonl",
+        "source_bytes": 1312613130,
+        "source_sha256": "1dfa04df923b26c842111f0ff66225b770f3a4909a95823a84a1e0e430577a7d",
+        "candidate_file_sha256": {
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultFormation.py": "6a3db518670ea133c5d5b1010995f4d659b8f8be5d51f751ea8e18dab8c1556a",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultRoute.py": "b84d24c633f9c0cce963f3f6b5a024734354776dbf078d46e43954fd91d32889",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RLAgentAlgorithm.py": "8c15800af3c5512eef5920407ce6bcaafaefae6d3471d0ef13460ec2d661c86f",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RuleAgentAlgorithm.py": "e19c29430f5943adf703aa91180c7ff61c6c45befecdae1322c93ba2751403e5",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UAVControl.py": "c37b26091efa89331867355c0f78e919da47ff959f0e37636ea2f5f85618f51f",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\VehicleFireControl.py": "e642bb55de5e8f95c1421e9876cff57402404eceda3a969397cff17f4dd38a59"
+        },
+        "episodes": [
+          {
+            "episode": 1,
+            "frames": 501,
+            "commands": {
+              "Guard": 4318,
+              "Moving": 6583,
+              "Idle": 13984,
+              "NormalAttacking": 165
+            },
+            "objectives": [
+              {
+                "step": -1,
+                "uid": 32769,
+                "name": "指挥所"
+              },
+              {
+                "step": 163,
+                "uid": 32768,
+                "name": "军事基地B"
+              },
+              {
+                "step": 223,
+                "uid": 32770,
+                "name": "军事基地A"
+              }
+            ],
+            "uav_fire_without_local_contact": 0,
+            "invalid_vehicle_fire": 0,
+            "pre_hq_diversion_frames": 0,
+            "column_hold_commands": 829,
+            "entry_hold_commands": 108,
+            "max_stalled_units_excluded": 1,
+            "entry_waves": [
+              {
+                "step": 111,
+                "uids": [
+                  106,
+                  111,
+                  121,
+                  126,
+                  131,
+                  141,
+                  146,
+                  151,
+                  166,
+                  171,
+                  176,
+                  181,
+                  186,
+                  191,
+                  201,
+                  211,
+                  356,
+                  361,
+                  371,
+                  376,
+                  381,
+                  386,
+                  391,
+                  396,
+                  401
+                ]
+              },
+              {
+                "step": 120,
+                "uids": [
+                  96,
+                  101,
+                  116,
+                  136,
+                  156,
+                  161,
+                  196,
+                  206,
+                  346,
+                  351,
+                  366,
+                  406
+                ]
+              }
+            ],
+            "vehicle_frames_with_eligible_targets": 132,
+            "vehicle_commands": {
+              "Guard": 2282,
+              "NormalAttacking": 33,
+              "Idle": 9
+            },
+            "initial_scout_groups": {
+              "16": 32769,
+              "21": 32770,
+              "26": 32768,
+              "31": 32769,
+              "36": 32770
+            },
+            "initial_vehicle_front": [
+              461,
+              466,
+              481
+            ],
+            "initial_vehicle_reserve": {
+              "486": 32768,
+              "491": 32770,
+              "496": 32768
+            },
+            "recorded_scores": [
+              {
+                "side": "red",
+                "kill_score": 1720,
+                "capture_score": 2400,
+                "total": 4120
+              },
+              {
+                "side": "blue",
+                "kill_score": 2750,
+                "capture_score": 800,
+                "total": 3550
+              }
+            ]
+          },
+          {
+            "episode": 18,
+            "frames": 237,
+            "commands": {
+              "Guard": 1979,
+              "Moving": 6275,
+              "Idle": 3456,
+              "NormalAttacking": 140
+            },
+            "objectives": [
+              {
+                "step": -1,
+                "uid": 32769,
+                "name": "指挥所"
+              }
+            ],
+            "uav_fire_without_local_contact": 0,
+            "invalid_vehicle_fire": 0,
+            "pre_hq_diversion_frames": 0,
+            "column_hold_commands": 568,
+            "entry_hold_commands": 151,
+            "max_stalled_units_excluded": 2,
+            "entry_waves": [
+              {
+                "step": 117,
+                "uids": [
+                  8751,
+                  8756,
+                  8766,
+                  8771,
+                  8776,
+                  8781,
+                  8786,
+                  8791,
+                  8806,
+                  8946,
+                  8961,
+                  8966,
+                  8976,
+                  8991,
+                  8996,
+                  9001,
+                  9006,
+                  9011,
+                  9016,
+                  9026,
+                  9036,
+                  9041,
+                  9046,
+                  9051,
+                  9061,
+                  9071
+                ]
+              },
+              {
+                "step": 136,
+                "uids": [
+                  8801,
+                  8951,
+                  8956,
+                  8981,
+                  8986,
+                  9021,
+                  9031
+                ]
+              }
+            ],
+            "vehicle_frames_with_eligible_targets": 43,
+            "vehicle_commands": {
+              "Guard": 1035,
+              "NormalAttacking": 7,
+              "Idle": 4
+            },
+            "initial_scout_groups": {
+              "8631": 32769,
+              "8666": 32770,
+              "8671": 32768,
+              "8815": 32769,
+              "9056": 32770
+            },
+            "initial_vehicle_front": [
+              8621,
+              8681,
+              8691
+            ],
+            "initial_vehicle_reserve": {
+              "8636": 32768,
+              "8641": 32770,
+              "8651": 32768
+            },
+            "recorded_scores": [
+              {
+                "side": "red",
+                "kill_score": 840,
+                "capture_score": 0,
+                "total": 840
+              },
+              {
+                "side": "blue",
+                "kill_score": 3170,
+                "capture_score": 3200,
+                "total": 6370
+              }
+            ]
+          },
+          {
+            "episode": 19,
+            "frames": 275,
+            "commands": {
+              "Guard": 1936,
+              "Moving": 5580,
+              "Idle": 6119,
+              "NormalAttacking": 115
+            },
+            "objectives": [
+              {
+                "step": -1,
+                "uid": 32769,
+                "name": "指挥所"
+              }
+            ],
+            "uav_fire_without_local_contact": 0,
+            "invalid_vehicle_fire": 0,
+            "pre_hq_diversion_frames": 0,
+            "column_hold_commands": 490,
+            "entry_hold_commands": 107,
+            "max_stalled_units_excluded": 2,
+            "entry_waves": [
+              {
+                "step": 118,
+                "uids": [
+                  9096,
+                  9101,
+                  9106,
+                  9111,
+                  9121,
+                  9126,
+                  9131,
+                  9136,
+                  9141,
+                  9146,
+                  9151,
+                  9156,
+                  9161,
+                  9166,
+                  9176,
+                  9181,
+                  9186,
+                  9376,
+                  9381,
+                  9386,
+                  9391,
+                  9401,
+                  9406,
+                  9411,
+                  9416,
+                  9581,
+                  9586,
+                  9591,
+                  9596
+                ]
+              },
+              {
+                "step": 128,
+                "uids": [
+                  9116,
+                  9171,
+                  9396,
+                  9421,
+                  9426,
+                  9431,
+                  9436,
+                  9576
+                ]
+              }
+            ],
+            "vehicle_frames_with_eligible_targets": 70,
+            "vehicle_commands": {
+              "Guard": 1144,
+              "NormalAttacking": 20,
+              "Idle": 3
+            },
+            "initial_scout_groups": {
+              "9196": 32769,
+              "9206": 32770,
+              "9221": 32768,
+              "9301": 32769,
+              "9316": 32770
+            },
+            "initial_vehicle_front": [
+              9246,
+              9311,
+              9321
+            ],
+            "initial_vehicle_reserve": {
+              "9251": 32768,
+              "9266": 32770,
+              "9271": 32768
+            },
+            "recorded_scores": [
+              {
+                "side": "red",
+                "kill_score": 1040,
+                "capture_score": 0,
+                "total": 1040
+              },
+              {
+                "side": "blue",
+                "kill_score": 3170,
+                "capture_score": 3200,
+                "total": 6370
+              }
+            ]
+          },
+          {
+            "episode": 20,
+            "frames": 501,
+            "commands": {
+              "Guard": 3913,
+              "Moving": 7477,
+              "Idle": 13403,
+              "NormalAttacking": 257
+            },
+            "objectives": [
+              {
+                "step": -1,
+                "uid": 32769,
+                "name": "指挥所"
+              },
+              {
+                "step": 326,
+                "uid": 32768,
+                "name": "军事基地B"
+              },
+              {
+                "step": 413,
+                "uid": 32770,
+                "name": "军事基地A"
+              }
+            ],
+            "uav_fire_without_local_contact": 0,
+            "invalid_vehicle_fire": 0,
+            "pre_hq_diversion_frames": 0,
+            "column_hold_commands": 579,
+            "entry_hold_commands": 72,
+            "max_stalled_units_excluded": 8,
+            "entry_waves": [
+              {
+                "step": 117,
+                "uids": [
+                  9761,
+                  9766,
+                  9771,
+                  9776,
+                  9781,
+                  9796,
+                  9801,
+                  9956,
+                  9961,
+                  9966,
+                  9971,
+                  9976,
+                  9981,
+                  9996,
+                  10001,
+                  10011,
+                  10016,
+                  10021,
+                  10026,
+                  10031,
+                  10036,
+                  10041,
+                  10046,
+                  10051,
+                  10056,
+                  10066,
+                  10071
+                ]
+              },
+              {
+                "step": 127,
+                "uids": [
+                  9786,
+                  9791,
+                  9806,
+                  9811,
+                  9816,
+                  9821,
+                  9991,
+                  10006,
+                  10061,
+                  10076
+                ]
+              }
+            ],
+            "vehicle_frames_with_eligible_targets": 108,
+            "vehicle_commands": {
+              "Guard": 2128,
+              "NormalAttacking": 23,
+              "Idle": 13
+            },
+            "initial_scout_groups": {
+              "9626": 32769,
+              "9661": 32770,
+              "10086": 32768,
+              "10091": 32769,
+              "10096": 32770
+            },
+            "initial_vehicle_front": [
+              9631,
+              9691,
+              9696
+            ],
+            "initial_vehicle_reserve": {
+              "9641": 32768,
+              "9646": 32770,
+              "9656": 32768
+            },
+            "recorded_scores": [
+              {
+                "side": "red",
+                "kill_score": 1450,
+                "capture_score": 2400,
+                "total": 3850
+              },
+              {
+                "side": "blue",
+                "kill_score": 2690,
+                "capture_score": 800,
+                "total": 3490
+              }
+            ]
+          }
+        ],
+        "limitation": "Commands on historical public observations; no simulation of new scores, movement, or survival."
+      },
+      {
+        "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261016_110326\\protocol.jsonl",
+        "source_bytes": 1009884934,
+        "source_sha256": "6dc30fe03c02e8d1962799685f0cdaf56695c534358e343ef063f6514a526f10",
+        "candidate_file_sha256": {
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultFormation.py": "6a3db518670ea133c5d5b1010995f4d659b8f8be5d51f751ea8e18dab8c1556a",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultRoute.py": "b84d24c633f9c0cce963f3f6b5a024734354776dbf078d46e43954fd91d32889",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RLAgentAlgorithm.py": "8c15800af3c5512eef5920407ce6bcaafaefae6d3471d0ef13460ec2d661c86f",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RuleAgentAlgorithm.py": "e19c29430f5943adf703aa91180c7ff61c6c45befecdae1322c93ba2751403e5",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UAVControl.py": "c37b26091efa89331867355c0f78e919da47ff959f0e37636ea2f5f85618f51f",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+          "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\VehicleFireControl.py": "e642bb55de5e8f95c1421e9876cff57402404eceda3a969397cff17f4dd38a59"
+        },
+        "episodes": [
+          {
+            "episode": 11,
+            "frames": 501,
+            "commands": {
+              "Guard": 4597,
+              "Moving": 6430,
+              "Idle": 13817,
+              "NormalAttacking": 206
+            },
+            "objectives": [
+              {
+                "step": -1,
+                "uid": 32769,
+                "name": "指挥所"
+              },
+              {
+                "step": 111,
+                "uid": 32768,
+                "name": "军事基地B"
+              },
+              {
+                "step": 163,
+                "uid": 32770,
+                "name": "军事基地A"
+              }
+            ],
+            "uav_fire_without_local_contact": 0,
+            "invalid_vehicle_fire": 0,
+            "pre_hq_diversion_frames": 0,
+            "column_hold_commands": 1880,
+            "entry_hold_commands": 80,
+            "max_stalled_units_excluded": 2,
+            "entry_waves": [
+              {
+                "step": 89,
+                "uids": [
+                  5206,
+                  5211,
+                  5216,
+                  5221,
+                  5226,
+                  5231,
+                  5236,
+                  5241,
+                  5246,
+                  5401,
+                  5406,
+                  5411,
+                  5416,
+                  5421,
+                  5426,
+                  5431,
+                  5436,
+                  5441,
+                  5446,
+                  5451,
+                  5456,
+                  5461,
+                  5466,
+                  5471,
+                  5476
+                ]
+              },
+              {
+                "step": 94,
+                "uids": [
+                  5201,
+                  5481,
+                  5486,
+                  5491,
+                  5496,
+                  5501,
+                  5506,
+                  5511,
+                  5516
+                ]
+              },
+              {
+                "step": 100,
+                "uids": [
+                  5251,
+                  5256,
+                  5261
+                ]
+              }
+            ],
+            "vehicle_frames_with_eligible_targets": 78,
+            "vehicle_commands": {
+              "Guard": 1365,
+              "NormalAttacking": 20,
+              "Idle": 5
+            },
+            "initial_scout_groups": {
+              "5266": 32769,
+              "5521": 32770,
+              "5531": 32768,
+              "5541": 32769,
+              "5551": 32770
+            },
+            "initial_vehicle_front": [
+              5076,
+              5136,
+              5146
+            ],
+            "initial_vehicle_reserve": {
+              "5086": 32768,
+              "5096": 32770,
+              "5106": 32768
+            },
+            "recorded_scores": [
+              {
+                "side": "red",
+                "kill_score": 2430,
+                "capture_score": 3200,
+                "total": 5630
+              },
+              {
+                "side": "blue",
+                "kill_score": 2880,
+                "capture_score": 0,
+                "total": 2880
+              }
+            ]
+          }
+        ],
+        "limitation": "Commands on historical public observations; no simulation of new scores, movement, or survival."
+      }
+    ]
+  },
+  "unresolved_position_jumps": [
+    {
+      "episode": 18,
+      "step": 48,
+      "uid": 8691,
+      "from": [
+        31689.01953125,
+        30704.669921875,
+        6317.56201171875
+      ],
+      "to": [
+        -224.67599487304688,
+        -13.746009826660156,
+        6317.56201171875
+      ],
+      "distance_m": 442.9565486012266,
+      "action": "ActionSet2::Guard;;Points=[20366.0, 30043.0, 6408.0];8691"
+    },
+    {
+      "episode": 19,
+      "step": 48,
+      "uid": 9311,
+      "from": [
+        31973.05078125,
+        30179.05078125,
+        6317.56298828125
+      ],
+      "to": [
+        -94.91642761230469,
+        28.596900939941406,
+        6317.56298828125
+      ],
+      "distance_m": 440.15956085235405,
+      "action": "ActionSet2::Guard;;Points=[20366.0, 30043.0, 6408.0];9311"
+    }
+  ],
+  "imported_runtime_config": {
+    "max_episode": {
+      "before": 5,
+      "after": 25
+    },
+    "TimeDilation": {
+      "before": 4,
+      "after": 1
+    },
+    "reason": "Preserve the existing client runtime settings during deployment."
+  },
+  "limitations": [
+    "Recorded observations fix movement, enemy behavior, damage and ownership. Changed decisions do not predict a new score or survival.",
+    "The preceding seven-round mean and latest twenty-round mean are not a controlled comparison.",
+    "Formation Guard counts include valid captured-objective defense; the round-one 277-step B defense is not classified as erroneous.",
+    "Two Lynx position jumps near the map origin have valid preceding road Guard coordinates. Their cause is not established.",
+    "Original audit sample entry_waves lists were mutable references and are omitted; original commands, reason counts and hold streaks are unaffected."
+  ]
+}

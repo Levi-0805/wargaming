@@ -110,7 +110,7 @@ def test_dead_lead_promotes_reserve_and_local_contacts_bypass_assembly():
     foot[0].raw['agentPerception'] = [999]
     s = state(foot+cars, [enemy], objects, step=1)
     form.begin(s, route)
-    assert len(form._active) == 1 and len(form.reserve) == 3
+    assert len(form._active) == 2 and len(form.reserve) == 2
     assert form.choose(s, foot[0], route) is None
 
 
@@ -141,3 +141,28 @@ def test_six_vehicle_roster_leads_with_both_lynx_and_replenishes_after_hq():
     form.begin(s, route)
     assert len(form.front) == 2
     assert all(list(form.reserve.values()).count(o.uid) == 2 for o in objects[1:])
+
+
+def test_reserve_parking_line_expires_when_assault_has_started():
+    foot,cars,objects,route,form=setup()
+    reserve=next(u for u in cars if u.uid in form.reserve)
+    reserve.position[:2]=objects[0].position[:2]+[11000,0]
+    s=state(foot+cars,objectives=objects,step=1)
+    form.begin(s,route,recon_ready=True)
+    assert form.choose(s,reserve,route).command=='Guard'
+    s=state(foot+cars,objectives=objects,step=28)
+    form.begin(s,route,recon_ready=True)
+    assert form.choose(s,reserve,route) is None
+    assert reserve.uid in form.reserve  # Strategic A/B assignment survives.
+
+
+def test_loss_or_empty_ammo_reinforces_before_last_support_vehicle_dies():
+    foot,cars,objects,route,form=setup()
+    leads=[u for u in cars if u.uid in form.front]
+    for u in cars:u.raw['interaction']=['200']
+    for u in leads[:-1]:u.raw['interaction']=['0']
+    previous_reserves=set(form.reserve)
+    form.begin(state(foot+cars,objectives=objects,step=1),route)
+    assert sum(form._ammo(u)>0 for u in form._active)==2
+    assert len(previous_reserves-set(form.reserve))==1
+    assert leads[-1].alive
