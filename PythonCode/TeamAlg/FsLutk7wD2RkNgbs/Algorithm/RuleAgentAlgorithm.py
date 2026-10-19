@@ -45,14 +45,20 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     def __init__(self, context, enable_parent_assignment: bool = True, *,
                  enable_preservation_pause: bool = False,
                  enable_shared_contact_maneuver: bool = False,
-                 enable_forced_entry_under_contact: bool = False):
+                 enable_forced_entry_under_contact: bool = False,
+                 enable_continuous_column: bool = False,
+                 enable_entry_waves: bool = False):
         super().__init__(context)
         self.enable_parent_assignment = bool(enable_parent_assignment)
         self.enable_preservation_pause = enable_preservation_pause
         self.enable_shared_contact_maneuver = enable_shared_contact_maneuver
         self.enable_forced_entry_under_contact = enable_forced_entry_under_contact
+        self.enable_continuous_column = enable_continuous_column
+        self.enable_entry_waves = enable_entry_waves
         logger.info("Ground rule comparison switches: preservation_pause=%s shared_contact_maneuver=%s forced_entry_under_contact=%s",
                     enable_preservation_pause, enable_shared_contact_maneuver, enable_forced_entry_under_contact)
+        logger.info("Formation comparison switches: continuous_column=%s entry_waves=%s",
+                    enable_continuous_column, enable_entry_waves)
         self._command_links = CommandLinks()
         self._motion_recovery = MotionRecovery()
         self._route = AssaultRoute(adaptive=True)
@@ -65,6 +71,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._vehicle_fire = VehicleFireControl()
         self._column = ColumnAdvance()
         self._entry_waves = EntryWaves()
+        self._opening_column_start = None
         self._frame = None
         self._support = {}
         self._fire_watch = {}
@@ -83,6 +90,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
             self._fire_watch.clear()
             self._hit_watch.clear()
+            self._opening_column_start = None
         self._frame = frame
         self._urban.begin(state)
         self._route.update(state)
@@ -91,7 +99,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         surveyed = self._uav.recon_status(state, objective)['ready'] if objective is not None else False
         self._formation.begin(state, self._route, recon_ready=surveyed)
         self._column.begin(state, self._route)
-        self._entry_waves.begin(state, self._route, self._column)
+        if self.enable_entry_waves:
+            self._entry_waves.begin(state, self._route, self._column)
         self._cohesion.begin(state, self._route)
         if self.enable_preservation_pause:
             self._readiness.begin(state, self._route)
@@ -285,9 +294,21 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if agent.entity_type == self._UAV:
             return action  # UAVControl owns flight recovery and strike persistence.
         result = self._motion_recovery.apply(state, agent, action)
-        result = self._entry_waves.apply(state, agent, result, self._route, self._column)
-        result = self._column.apply(state, agent, result, self._route, self._formation,
-                                    self._entry_waves.released if self._entry_waves.waves else ())
+        if self.enable_entry_waves:
+            result = self._entry_waves.apply(state, agent, result, self._route, self._column)
+        # Keep the opening car/foot rendezvous, then let the assembled body
+        # advance. Repeated whole-route holds and a second entrance assembly
+        # are retired by default after the two failed twenty-round batches.
+        # Bound even an early spacing stop outside the rendezvous radius:
+        # ApproachCohesion's deadline has not started at that point yet.
+        opening_column = (not self._cohesion.released and (
+            self._opening_column_start is None
+            or state.step - self._opening_column_start < self._cohesion.MAX_WAIT))
+        if self.enable_continuous_column or opening_column:
+            result = self._column.apply(state, agent, result, self._route, self._formation,
+                                        self._entry_waves.released if self._entry_waves.waves else ())
+            if self._column.held and self._opening_column_start is None:
+                self._opening_column_start = state.step
         if agent.uid in self._column.held or agent.uid in self._entry_waves.held:
             # A deliberate formation wait is not a failed movement attempt.
             # Otherwise recovery would manufacture escape moves and skip road

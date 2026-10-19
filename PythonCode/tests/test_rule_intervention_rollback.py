@@ -10,7 +10,8 @@ from test_fslutk_rule import algorithm, entity, state, map_objectives
 
 
 SWITCHES = ('enable_preservation_pause', 'enable_shared_contact_maneuver',
-            'enable_forced_entry_under_contact')
+            'enable_forced_entry_under_contact', 'enable_continuous_column',
+            'enable_entry_waves')
 
 
 @pytest.mark.parametrize('enabled', [None, *SWITCHES])

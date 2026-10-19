@@ -25,10 +25,13 @@ class AlgorithmConfig:
     enable_preservation_pause: bool = False
     enable_shared_contact_maneuver: bool = False
     enable_forced_entry_under_contact: bool = False
+    enable_continuous_column: bool = False
+    enable_entry_waves: bool = False
 
     def __post_init__(self):
         for name in ('enable_preservation_pause', 'enable_shared_contact_maneuver',
-                     'enable_forced_entry_under_contact'):
+                     'enable_forced_entry_under_contact', 'enable_continuous_column',
+                     'enable_entry_waves'):
             if type(getattr(self, name)) is not bool:
                 raise ValueError(f"{name} must be a JSON boolean")
 
@@ -51,7 +54,9 @@ class ReinforceAgentAlgorithm:
             return RuleAgent(context, config.enable_parent_assignment,
                              enable_preservation_pause=config.enable_preservation_pause,
                              enable_shared_contact_maneuver=config.enable_shared_contact_maneuver,
-                             enable_forced_entry_under_contact=config.enable_forced_entry_under_contact)
+                             enable_forced_entry_under_contact=config.enable_forced_entry_under_contact,
+                             enable_continuous_column=config.enable_continuous_column,
+                             enable_entry_waves=config.enable_entry_waves)
         if config.mode == "reinforcement_learning":
             from .DQN import DQNAgentAlgorithm
 

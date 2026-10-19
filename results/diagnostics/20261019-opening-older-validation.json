@@ -1,0 +1,229 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261018_201703\\protocol.jsonl",
+  "source_bytes": 490710273,
+  "source_sha256": "7bd6bc0958847a107322bfa84497b84cdae1f70d9ced8faa77e6acff25d3619d",
+  "candidate_file_sha256": {
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultFormation.py": "6a3db518670ea133c5d5b1010995f4d659b8f8be5d51f751ea8e18dab8c1556a",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultRoute.py": "b84d24c633f9c0cce963f3f6b5a024734354776dbf078d46e43954fd91d32889",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RLAgentAlgorithm.py": "d9f4aff74eddeb3764445c823ca421ad52454fbbeed293ff4f6244dd2a4a681f",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RuleAgentAlgorithm.py": "0dd012165482dbeed4130a1d4e91cc96a4096e2985a24d521d812b9cdbb0011b",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UAVControl.py": "c37b26091efa89331867355c0f78e919da47ff959f0e37636ea2f5f85618f51f",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\VehicleFireControl.py": "fb34e960dff5e1ad10716f56d481dd3f17f2fcf9615a3fda837e34282e063c1a"
+  },
+  "episodes": [
+    {
+      "episode": 1,
+      "frames": 501,
+      "commands": {
+        "Guard": 2373,
+        "Moving": 7414,
+        "Idle": 15204,
+        "NormalAttacking": 59
+      },
+      "objectives": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "uav_fire_without_local_contact": 0,
+      "invalid_vehicle_fire": 0,
+      "pre_hq_diversion_frames": 0,
+      "column_hold_commands": 446,
+      "entry_hold_commands": 0,
+      "max_stalled_units_excluded": 0,
+      "entry_waves": [],
+      "vehicle_frames_with_eligible_targets": 87,
+      "vehicle_commands": {
+        "Guard": 1354,
+        "Moving": 116,
+        "NormalAttacking": 35,
+        "Idle": 7
+      },
+      "initial_scout_groups": {
+        "16": 32769,
+        "21": 32770,
+        "26": 32768,
+        "31": 32769,
+        "36": 32770
+      },
+      "initial_vehicle_front": [
+        461,
+        466,
+        481
+      ],
+      "initial_vehicle_reserve": {
+        "486": 32768,
+        "491": 32770,
+        "496": 32768
+      },
+      "recorded_scores": [
+        {
+          "side": "red",
+          "kill_score": 1320,
+          "capture_score": 800,
+          "total": 2120
+        },
+        {
+          "side": "blue",
+          "kill_score": 3050,
+          "capture_score": 2400,
+          "total": 5450
+        }
+      ]
+    },
+    {
+      "episode": 4,
+      "frames": 501,
+      "commands": {
+        "Guard": 4566,
+        "Moving": 9045,
+        "Idle": 11176,
+        "NormalAttacking": 263
+      },
+      "objectives": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 348,
+          "uid": 32768,
+          "name": "军事基地B"
+        }
+      ],
+      "uav_fire_without_local_contact": 0,
+      "invalid_vehicle_fire": 0,
+      "pre_hq_diversion_frames": 0,
+      "column_hold_commands": 454,
+      "entry_hold_commands": 0,
+      "max_stalled_units_excluded": 0,
+      "entry_waves": [],
+      "vehicle_frames_with_eligible_targets": 159,
+      "vehicle_commands": {
+        "Guard": 1789,
+        "NormalAttacking": 50,
+        "Moving": 176,
+        "Idle": 4
+      },
+      "initial_scout_groups": {
+        "1571": 32769,
+        "1581": 32770,
+        "1591": 32768,
+        "1826": 32769,
+        "1996": 32770
+      },
+      "initial_vehicle_front": [
+        1531,
+        1576,
+        1586
+      ],
+      "initial_vehicle_reserve": {
+        "1536": 32768,
+        "1541": 32770,
+        "1546": 32768
+      },
+      "recorded_scores": [
+        {
+          "side": "red",
+          "kill_score": 2720,
+          "capture_score": 3200,
+          "total": 5920
+        },
+        {
+          "side": "blue",
+          "kill_score": 2080,
+          "capture_score": 0,
+          "total": 2080
+        }
+      ]
+    },
+    {
+      "episode": 6,
+      "frames": 501,
+      "commands": {
+        "Guard": 4284,
+        "Moving": 7693,
+        "Idle": 12942,
+        "NormalAttacking": 131
+      },
+      "objectives": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 228,
+          "uid": 32768,
+          "name": "军事基地B"
+        },
+        {
+          "step": 232,
+          "uid": 32770,
+          "name": "军事基地A"
+        }
+      ],
+      "uav_fire_without_local_contact": 0,
+      "invalid_vehicle_fire": 0,
+      "pre_hq_diversion_frames": 0,
+      "column_hold_commands": 452,
+      "entry_hold_commands": 0,
+      "max_stalled_units_excluded": 0,
+      "entry_waves": [],
+      "vehicle_frames_with_eligible_targets": 86,
+      "vehicle_commands": {
+        "Guard": 1854,
+        "NormalAttacking": 34,
+        "Moving": 185,
+        "Idle": 14
+      },
+      "initial_scout_groups": {
+        "2531": 32769,
+        "2641": 32770,
+        "2806": 32768,
+        "3011": 32769,
+        "3026": 32770
+      },
+      "initial_vehicle_front": [
+        2556,
+        2616,
+        2621
+      ],
+      "initial_vehicle_reserve": {
+        "2561": 32768,
+        "2576": 32770,
+        "2581": 32768
+      },
+      "recorded_scores": [
+        {
+          "side": "red",
+          "kill_score": 2020,
+          "capture_score": 2400,
+          "total": 4420
+        },
+        {
+          "side": "blue",
+          "kill_score": 2810,
+          "capture_score": 800,
+          "total": 3610
+        }
+      ]
+    }
+  ],
+  "limitation": "Commands on historical public observations; no simulation of new scores, movement, or survival."
+}
