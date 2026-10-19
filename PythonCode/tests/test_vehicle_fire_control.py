@@ -150,9 +150,29 @@ def test_loss_of_local_contact_or_range_cancels_fire_and_new_episode_clears_burs
     assert control.choose(state([car], [enemy], step=2, episode=2), car) is None
 
 
-def test_patrol_preserves_waypoints_directions_and_nonmovement_actions():
+def test_patrol_converts_waypoints_but_preserves_escape_and_nonmovement_actions():
     path = Action.move_to(((10, 20, 30), (40, 50, 60)))
     assert VehicleFireControl.patrol(path) == Action.guard_at(path.points)
-    assert VehicleFireControl.patrol(Action.move("-X+Y")) == Action.guard("-X+Y")
-    for action in (Action.attack(20), Action.guard("+X"), Action.idle(), Action.move("+Z")):
+    for action in (Action.move("-X+Y"), Action.attack(20), Action.guard("+X"), Action.idle(), Action.move("+Z")):
         assert VehicleFireControl.patrol(action) is action
+
+
+@pytest.mark.parametrize("kind", sorted(VehicleFireControl.VEHICLES))
+def test_blocked_vehicle_escape_reaches_wire_then_resumes_guard_patrol(kind):
+    from test_fslutk_rule import algorithm, objective
+
+    car = entity(1, 0, 0, 0, kind=kind)
+    objects = [objective(901, 100000, name='HQ')]
+    rule = algorithm([car])
+    road = Action.move_at((10000, 0, 0))
+    rule._combat_action = lambda s, unit: road
+    actions = [rule.choose_action(state([car], objectives=objects, step=step), car)
+               for step in range(14)]
+    assert actions[0] == Action.guard_at(road.points)
+    # Keep position fixed to reproduce an obstacle. Both Lynx and armored
+    # vehicles must serialize a real movement escape, not Guard aiming.
+    for action in actions[8:10]:
+        assert action.command == 'Moving' and action.points is None
+        assert action.to_ue_string(car.uid, [car]) == f'ActionSet2::Moving;{action.direction};1'
+    resumed = 13 if kind == 'BP_MNWS_Vehicle_Armored_C' else 10
+    assert actions[resumed] == Action.guard_at(road.points)

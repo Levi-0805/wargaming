@@ -1,0 +1,1178 @@
+{
+  "source": {
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261019_093308\\protocol.jsonl",
+    "source_bytes": 1312955591,
+    "source_sha256": "60fb8ed204440a0ad1619279bb6a40c71886cce14d8407166a8ba0ad32c90d1e"
+  },
+  "source_commit": null,
+  "version_evidence": {
+    "compared_commit": "f094344bd67892b3b78774034df171c3ab177312",
+    "scope": "Exact public-observation command reproduction for rounds 1, 10 and 13; no full-run startup source hash.",
+    "matches": 48450,
+    "mismatches": 0
+  },
+  "score_definition": "Score[*].SumWorth + Reward; missing or ambiguous sides remain null",
+  "summary": {
+    "complete_rounds": 20,
+    "mean": 2096.5,
+    "median": 2130.0,
+    "minimum": 630,
+    "maximum": 3370,
+    "at_least_4000": 0,
+    "below_2000": 9,
+    "zero_capture": 13,
+    "mean_destruction": 1536.5,
+    "mean_capture": 560
+  },
+  "rounds": [
+    {
+      "episode": 1,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 3120,
+          "kill_score": 1520,
+          "capture_score": 1600
+        },
+        "blue": {
+          "total": 4620,
+          "kill_score": 3020,
+          "capture_score": 1600
+        }
+      }
+    },
+    {
+      "episode": 2,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 2030,
+          "kill_score": 2030,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6350,
+          "kill_score": 3150,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 3,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 3240,
+          "kill_score": 1640,
+          "capture_score": 1600
+        },
+        "blue": {
+          "total": 4590,
+          "kill_score": 2990,
+          "capture_score": 1600
+        }
+      }
+    },
+    {
+      "episode": 4,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 1440,
+          "kill_score": 1440,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6350,
+          "kill_score": 3150,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 5,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 1390,
+          "kill_score": 1390,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6350,
+          "kill_score": 3150,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 6,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 2900,
+          "kill_score": 1300,
+          "capture_score": 1600
+        },
+        "blue": {
+          "total": 4580,
+          "kill_score": 2980,
+          "capture_score": 1600
+        }
+      }
+    },
+    {
+      "episode": 7,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 2300,
+          "kill_score": 2300,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6350,
+          "kill_score": 3150,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 8,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 2230,
+          "kill_score": 2230,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6350,
+          "kill_score": 3150,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 9,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 890,
+          "kill_score": 890,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6280,
+          "kill_score": 3080,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 10,
+      "complete": true,
+      "last_step": 217,
+      "scores": {
+        "red": {
+          "total": 630,
+          "kill_score": 630,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6370,
+          "kill_score": 3170,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 11,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 1450,
+          "kill_score": 1450,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6350,
+          "kill_score": 3150,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 12,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 2700,
+          "kill_score": 1100,
+          "capture_score": 1600
+        },
+        "blue": {
+          "total": 4440,
+          "kill_score": 2840,
+          "capture_score": 1600
+        }
+      }
+    },
+    {
+      "episode": 13,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 3370,
+          "kill_score": 1770,
+          "capture_score": 1600
+        },
+        "blue": {
+          "total": 4520,
+          "kill_score": 2920,
+          "capture_score": 1600
+        }
+      }
+    },
+    {
+      "episode": 14,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 1340,
+          "kill_score": 1340,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6350,
+          "kill_score": 3150,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 15,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 3170,
+          "kill_score": 1570,
+          "capture_score": 1600
+        },
+        "blue": {
+          "total": 4480,
+          "kill_score": 2880,
+          "capture_score": 1600
+        }
+      }
+    },
+    {
+      "episode": 16,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 2530,
+          "kill_score": 2530,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6260,
+          "kill_score": 3060,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 17,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 2750,
+          "kill_score": 1150,
+          "capture_score": 1600
+        },
+        "blue": {
+          "total": 3030,
+          "kill_score": 1430,
+          "capture_score": 1600
+        }
+      }
+    },
+    {
+      "episode": 18,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 1830,
+          "kill_score": 1830,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6300,
+          "kill_score": 3100,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 19,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 1090,
+          "kill_score": 1090,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6190,
+          "kill_score": 2990,
+          "capture_score": 3200
+        }
+      }
+    },
+    {
+      "episode": 20,
+      "complete": true,
+      "last_step": 499,
+      "scores": {
+        "red": {
+          "total": 1530,
+          "kill_score": 1530,
+          "capture_score": 0
+        },
+        "blue": {
+          "total": 6350,
+          "kill_score": 3150,
+          "capture_score": 3200
+        }
+      }
+    }
+  ],
+  "preceding_batch": {
+    "run": "20261019_012406",
+    "mean": 2142.5,
+    "mean_destruction": 1342.5,
+    "mean_capture": 800,
+    "median": 1845,
+    "min": 840,
+    "max": 4120,
+    "below_2000": 10,
+    "at_least_4000": 1
+  },
+  "fault_introduced_in": "eb9d7844",
+  "fault": "VehicleFireControl.patrol rewrote direction-only Moving escapes to Guard after MotionRecovery.",
+  "candidate_validation": {
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261019_093308\\protocol.jsonl",
+    "source_bytes": 1312955591,
+    "source_sha256": "60fb8ed204440a0ad1619279bb6a40c71886cce14d8407166a8ba0ad32c90d1e",
+    "candidate_file_sha256": {
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultFormation.py": "6a3db518670ea133c5d5b1010995f4d659b8f8be5d51f751ea8e18dab8c1556a",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\AssaultRoute.py": "b84d24c633f9c0cce963f3f6b5a024734354776dbf078d46e43954fd91d32889",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RLAgentAlgorithm.py": "8c15800af3c5512eef5920407ce6bcaafaefae6d3471d0ef13460ec2d661c86f",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\RuleAgentAlgorithm.py": "e19c29430f5943adf703aa91180c7ff61c6c45befecdae1322c93ba2751403e5",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UAVControl.py": "c37b26091efa89331867355c0f78e919da47ff959f0e37636ea2f5f85618f51f",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\VehicleFireControl.py": "fb34e960dff5e1ad10716f56d481dd3f17f2fcf9615a3fda837e34282e063c1a"
+    },
+    "episodes": [
+      {
+        "episode": 1,
+        "frames": 501,
+        "legacy_recorded_matches": 20500,
+        "legacy_recorded_mismatches": 0,
+        "changed_commands": 82,
+        "unexpected_changes": 0,
+        "invalid_vehicle_fire": 0,
+        "changed_by_unit": {
+          "466": 82
+        },
+        "examples": [
+          {
+            "step": 88,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4737.02685546875,
+              29552.33984375,
+              6335.2490234375
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;-X-Y;466",
+            "new": "ActionSet2::Moving;-X-Y;466"
+          },
+          {
+            "step": 89,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4811.56396484375,
+              29431.33984375,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;-X-Y;466",
+            "new": "ActionSet2::Moving;-X-Y;466"
+          },
+          {
+            "step": 98,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4811.56396484375,
+              29431.33984375,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;+Y;466",
+            "new": "ActionSet2::Moving;+Y;466"
+          },
+          {
+            "step": 99,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4822.1650390625,
+              29301.0703125,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;+Y;466",
+            "new": "ActionSet2::Moving;+Y;466"
+          },
+          {
+            "step": 108,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4666.783203125,
+              29248.470703125,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;-X-Y;466",
+            "new": "ActionSet2::Moving;-X-Y;466"
+          },
+          {
+            "step": 109,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4666.783203125,
+              29248.470703125,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;-X-Y;466",
+            "new": "ActionSet2::Moving;-X-Y;466"
+          },
+          {
+            "step": 117,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4666.783203125,
+              29248.470703125,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;+Y;466",
+            "new": "ActionSet2::Moving;+Y;466"
+          },
+          {
+            "step": 118,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4597.62109375,
+              29447.5,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;+Y;466",
+            "new": "ActionSet2::Moving;+Y;466"
+          }
+        ],
+        "lynx_466": [
+          {
+            "step": 88,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4737.02685546875,
+              29552.33984375,
+              6335.2490234375
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;-X-Y;466",
+            "new": "ActionSet2::Moving;-X-Y;466"
+          },
+          {
+            "step": 89,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4811.56396484375,
+              29431.33984375,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;-X-Y;466",
+            "new": "ActionSet2::Moving;-X-Y;466"
+          },
+          {
+            "step": 98,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4811.56396484375,
+              29431.33984375,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;+Y;466",
+            "new": "ActionSet2::Moving;+Y;466"
+          },
+          {
+            "step": 99,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4822.1650390625,
+              29301.0703125,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;+Y;466",
+            "new": "ActionSet2::Moving;+Y;466"
+          },
+          {
+            "step": 108,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4666.783203125,
+              29248.470703125,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;-X-Y;466",
+            "new": "ActionSet2::Moving;-X-Y;466"
+          },
+          {
+            "step": 109,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4666.783203125,
+              29248.470703125,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;-X-Y;466",
+            "new": "ActionSet2::Moving;-X-Y;466"
+          },
+          {
+            "step": 117,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4666.783203125,
+              29248.470703125,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;+Y;466",
+            "new": "ActionSet2::Moving;+Y;466"
+          },
+          {
+            "step": 118,
+            "uid": 466,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -4597.62109375,
+              29447.5,
+              6335.248046875
+            ],
+            "hp": 100.0,
+            "ammo": 300.0,
+            "old": "ActionSet2::Guard;+Y;466",
+            "new": "ActionSet2::Moving;+Y;466"
+          }
+        ]
+      },
+      {
+        "episode": 10,
+        "frames": 219,
+        "legacy_recorded_matches": 7900,
+        "legacy_recorded_mismatches": 0,
+        "changed_commands": 0,
+        "unexpected_changes": 0,
+        "invalid_vehicle_fire": 0,
+        "changed_by_unit": {},
+        "examples": [],
+        "lynx_466": []
+      },
+      {
+        "episode": 13,
+        "frames": 501,
+        "legacy_recorded_matches": 20050,
+        "legacy_recorded_mismatches": 0,
+        "changed_commands": 68,
+        "unexpected_changes": 0,
+        "invalid_vehicle_fire": 0,
+        "changed_by_unit": {
+          "6116": 30,
+          "6141": 38
+        },
+        "examples": [
+          {
+            "step": 272,
+            "uid": 6116,
+            "type": "BP_MNWS_Vehicle_Armored_C",
+            "position": [
+              -47352.03125,
+              -21629.140625,
+              5510.0322265625
+            ],
+            "hp": 91.99683,
+            "ammo": 0.0,
+            "old": "ActionSet2::Guard;-X;6116",
+            "new": "ActionSet2::Moving;-X;6116"
+          },
+          {
+            "step": 273,
+            "uid": 6116,
+            "type": "BP_MNWS_Vehicle_Armored_C",
+            "position": [
+              -47225.94921875,
+              -21594.76953125,
+              5505.85693359375
+            ],
+            "hp": 91.99683,
+            "ammo": 0.0,
+            "old": "ActionSet2::Guard;-X;6116",
+            "new": "ActionSet2::Moving;-X;6116"
+          },
+          {
+            "step": 290,
+            "uid": 6116,
+            "type": "BP_MNWS_Vehicle_Armored_C",
+            "position": [
+              -47639.5703125,
+              -21449.5,
+              5498.97705078125
+            ],
+            "hp": 91.99683,
+            "ammo": 0.0,
+            "old": "ActionSet2::Guard;-X+Y;6116",
+            "new": "ActionSet2::Moving;-X+Y;6116"
+          },
+          {
+            "step": 291,
+            "uid": 6116,
+            "type": "BP_MNWS_Vehicle_Armored_C",
+            "position": [
+              -47551.140625,
+              -21461.109375,
+              5497.23486328125
+            ],
+            "hp": 91.99683,
+            "ammo": 0.0,
+            "old": "ActionSet2::Guard;-X+Y;6116",
+            "new": "ActionSet2::Moving;-X+Y;6116"
+          },
+          {
+            "step": 292,
+            "uid": 6141,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -47250.0390625,
+              -21446.849609375,
+              5489.18310546875
+            ],
+            "hp": 85.7551,
+            "ammo": 160.0,
+            "old": "ActionSet2::Guard;+X-Y;6141",
+            "new": "ActionSet2::Moving;+X-Y;6141"
+          },
+          {
+            "step": 293,
+            "uid": 6141,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -47001.44140625,
+              -21066.619140625,
+              5443.494140625
+            ],
+            "hp": 85.7551,
+            "ammo": 160.0,
+            "old": "ActionSet2::Guard;+X-Y;6141",
+            "new": "ActionSet2::Moving;+X-Y;6141"
+          },
+          {
+            "step": 305,
+            "uid": 6141,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -47348.23046875,
+              -21393.0703125,
+              5484.26513671875
+            ],
+            "hp": 85.7551,
+            "ammo": 160.0,
+            "old": "ActionSet2::Guard;-X-Y;6141",
+            "new": "ActionSet2::Moving;-X-Y;6141"
+          },
+          {
+            "step": 306,
+            "uid": 6141,
+            "type": "BP_MNWS_Vehicle_6x6UGV_C",
+            "position": [
+              -47378.69140625,
+              -21475.859375,
+              5494.7451171875
+            ],
+            "hp": 85.7551,
+            "ammo": 160.0,
+            "old": "ActionSet2::Guard;-X-Y;6141",
+            "new": "ActionSet2::Moving;-X-Y;6141"
+          }
+        ],
+        "lynx_466": []
+      }
+    ],
+    "limitation": "Fixed observations cannot establish successful escape or score improvement."
+  },
+  "test_count": 390,
+  "recorded_lynx_466_samples": [
+    {
+      "step": 50,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          26478.76,
+          31325.7,
+          6335.344
+        ],
+        "action": "ActionSet2::Guard;;Points=[20366.0, 30043.0, 6408.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 75,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -1023.754,
+          29069.15,
+          6333.344
+        ],
+        "action": "ActionSet2::Guard;;Points=[-6470.0, 30114.0, 6425.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 100,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4677.008,
+          29243.39,
+          6335.248
+        ],
+        "action": "ActionSet2::Guard;+Y;466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 125,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4923.043,
+          29432.23,
+          6335.248
+        ],
+        "action": "ActionSet2::Guard;;Points=[-17959.0, 27728.0, 6425.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 150,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4923.043,
+          29432.23,
+          6335.248
+        ],
+        "action": "ActionSet2::Guard;;Points=[-17959.0, 27728.0, 6425.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 175,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4884.543,
+          29457.32,
+          6335.248
+        ],
+        "action": "ActionSet2::Guard;;Points=[-17959.0, 27728.0, 6425.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 200,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4891.586,
+          29350.42,
+          6335.248
+        ],
+        "action": "ActionSet2::Guard;;Points=[-17959.0, 27728.0, 6425.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 250,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4848.931,
+          29453.2,
+          6335.248
+        ],
+        "action": "ActionSet2::Guard;;Points=[-17959.0, 27728.0, 6425.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 300,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4847.092,
+          29440.76,
+          6335.248
+        ],
+        "action": "ActionSet2::Guard;;Points=[-17959.0, 27728.0, 6425.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 400,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4851.934,
+          29306.72,
+          6335.249
+        ],
+        "action": "ActionSet2::Guard;;Points=[-17959.0, 27728.0, 6425.0];466",
+        "perceived": []
+      }
+    },
+    {
+      "step": 499,
+      "unit": {
+        "uid": 466,
+        "kind": "BP_MNWS_Vehicle_6x6UGV_C",
+        "hp": 100,
+        "ammo": [
+          "300.0"
+        ],
+        "pos": [
+          -4730.201,
+          29370.27,
+          6335.248
+        ],
+        "action": "ActionSet2::Guard;;Points=[-17959.0, 27728.0, 6425.0];466",
+        "perceived": []
+      }
+    }
+  ],
+  "objective_audit": [
+    {
+      "episode": 1,
+      "frames": 501,
+      "matches": 20500,
+      "mismatches": 0,
+      "goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 165,
+          "uid": 32768,
+          "name": "军事基地B"
+        }
+      ],
+      "scores": [
+        {
+          "side": "red",
+          "kill_score": 1520,
+          "capture_score": 1600,
+          "total": 3120
+        },
+        {
+          "side": "blue",
+          "kill_score": 3020,
+          "capture_score": 1600,
+          "total": 4620
+        }
+      ]
+    },
+    {
+      "episode": 10,
+      "frames": 219,
+      "matches": 7900,
+      "mismatches": 0,
+      "goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        }
+      ],
+      "scores": [
+        {
+          "side": "red",
+          "kill_score": 630,
+          "capture_score": 0,
+          "total": 630
+        },
+        {
+          "side": "blue",
+          "kill_score": 3170,
+          "capture_score": 3200,
+          "total": 6370
+        }
+      ]
+    },
+    {
+      "episode": 13,
+      "frames": 501,
+      "matches": 20050,
+      "mismatches": 0,
+      "goals": [
+        {
+          "step": -1,
+          "uid": 32769,
+          "name": "指挥所"
+        },
+        {
+          "step": 164,
+          "uid": 32768,
+          "name": "军事基地B"
+        }
+      ],
+      "scores": [
+        {
+          "side": "red",
+          "kill_score": 1770,
+          "capture_score": 1600,
+          "total": 3370
+        },
+        {
+          "side": "blue",
+          "kill_score": 2920,
+          "capture_score": 1600,
+          "total": 4520
+        }
+      ]
+    }
+  ],
+  "first_round_gate_ablations": {
+    "baseline": {
+      "recorded_matches": 20500,
+      "recorded_mismatches": 0,
+      "all_reasons": {
+        "column_wait": 408,
+        "navigation_or_combat": 8466,
+        "formation": 285,
+        "recovery": 101,
+        "fire": 61,
+        "entry_wait": 54,
+        "entrance_route": 19
+      },
+      "vehicle_reasons": {
+        "column_wait": 191,
+        "navigation_or_combat": 1037,
+        "recovery": 89,
+        "fire": 61,
+        "entrance_route": 13
+      },
+      "vehicle_holds_under_fire": {},
+      "max_vehicle_hold_streak": {
+        "461": 17,
+        "466": 17,
+        "481": 10,
+        "486": 10,
+        "491": 5,
+        "496": 5
+      }
+    },
+    "no_column": {
+      "recorded_matches": 20113,
+      "recorded_mismatches": 387,
+      "all_reasons": {
+        "navigation_or_combat": 8826,
+        "recovery": 149,
+        "formation": 285,
+        "fire": 61,
+        "entry_wait": 54,
+        "entrance_route": 19
+      },
+      "vehicle_reasons": {
+        "navigation_or_combat": 1210,
+        "recovery": 107,
+        "fire": 61,
+        "entrance_route": 13
+      },
+      "vehicle_holds_under_fire": {},
+      "max_vehicle_hold_streak": {
+        "461": 0,
+        "466": 0,
+        "481": 0,
+        "486": 0,
+        "491": 0,
+        "496": 0
+      }
+    },
+    "no_entry_waves": {
+      "recorded_matches": 20442,
+      "recorded_mismatches": 58,
+      "all_reasons": {
+        "column_wait": 413,
+        "navigation_or_combat": 8515,
+        "formation": 285,
+        "recovery": 101,
+        "fire": 61,
+        "entrance_route": 19
+      },
+      "vehicle_reasons": {
+        "column_wait": 196,
+        "navigation_or_combat": 1032,
+        "recovery": 89,
+        "fire": 61,
+        "entrance_route": 13
+      },
+      "vehicle_holds_under_fire": {},
+      "max_vehicle_hold_streak": {
+        "461": 17,
+        "466": 17,
+        "481": 10,
+        "486": 10,
+        "491": 5,
+        "496": 5
+      }
+    }
+  },
+  "config_import": "Retain client-generated max_episode=20 instead of overwriting it with repository value 25.",
+  "limitations": [
+    "This is one isolated protocol-boundary repair, not a full explanation of the score regression.",
+    "Recorded movement, damage and scores are fixed. Command validation does not prove a vehicle escapes in UE.",
+    "HQ/AB ordering, formation thresholds, UAV scouting, fire eligibility and burst timing were not retuned.",
+    "The 630-point round lost 25 of 37 foot/dog units between steps 125 and 150; assault losses remain a live-match concern.",
+    "The historical seven-round mean 3487.14 is not a controlled same-opponent comparison."
+  ]
+}

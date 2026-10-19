@@ -3,7 +3,6 @@ from __future__ import annotations
 import math
 
 from cssim.protocol import Action
-from cssim.protocol.actions import GUARD_DIRECTIONS
 
 
 class VehicleFireControl:
@@ -68,18 +67,17 @@ class VehicleFireControl:
 
     @staticmethod
     def patrol(action):
-        """Preserve the planner's route, converting a movement to Guard patrol.
+        """Convert waypoint travel to Guard patrol, preserving recovery moves.
 
         Apply after MotionRecovery, which tracks ordinary movement requests.
-        UE accepts these Guard parameters; auto-fire and physical travel still
-        require a live match check, and are not simulated by this wrapper.
+        A direction-only Moving is a short physical escape, not an aiming
+        request. Rewriting it as directional Guard cancels that movement.
+        Waypoint Guard travel still requires confirmation in the live engine.
         """
         if action.command != "Moving":
             return action
         if action.points is not None:
             return Action.guard_at(action.points)
-        if action.direction in GUARD_DIRECTIONS:
-            return Action.guard(action.direction)
         return action
 
     def eligible(self, state, agent):
