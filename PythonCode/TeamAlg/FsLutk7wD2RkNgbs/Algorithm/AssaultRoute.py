@@ -316,13 +316,14 @@ class AssaultRoute:
         friendly_field, enemy_field = (("redTeamNum", "blueteamNum") if state.team == 0
                                        else ("blueteamNum", "redTeamNum"))
         ours = self.owned(state, obj)
-        # Full capture while blue units remain in the HQ courtyard is only a
-        # contested foothold. Do not release the column on that bar alone.
+        # A full bar with surviving defenders is only a contested foothold
+        # at ANY point. Oct20 rounds 7/10/20 left B for A with 9-10 defenders
+        # still inside, and never received B's capture reward.
         try:
             empty = float(obj.raw[enemy_field]) == 0
         except (KeyError, TypeError, ValueError):
             empty = False
-        secure = ours and (not self.is_hq(obj) or (empty and self.count(obj, "percent") >= 1.0))
+        secure = ours and empty and self.count(obj, "percent") >= 1.0
         # Reserve defenders before departure, not after everybody has started
         # moving to B. A label is not evidence that a unit is inside the point.
         self._assign_garrison(state, include_current=ours)

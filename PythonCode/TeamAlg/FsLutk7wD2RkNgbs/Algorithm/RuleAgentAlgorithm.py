@@ -258,13 +258,9 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
                 point = self._xyz(self._attack_target(agent, nearby).position)
         if point is None:
             return Action.guard_position(agent.position)
-        if (agent.entity_type in {self._SOLDIER, self._DOG} and objective is not None
-                and self._horizontal(agent.position, objective.position) <= 15000
-                and (state.step + agent.team_index) % 6 < 2):
-            # A bounded two-frame scan breaks continuous blind MoveAt orders
-            # around buildings. Never wait for a distant vehicle or whole squad.
-            vector = tuple(objective.position[i] - agent.position[i] for i in range(3))
-            return Action.guard(MotionRecovery._direction(vector, 0, airborne=False))
+        # Local contacts already interrupt navigation above. A periodic blind
+        # Guard scan here reset MotionRecovery every four movement frames,
+        # preventing its eight-frame obstruction check from ever firing.
         # Spread the final approach by at most eight metres, keeping the same
         # lower-road route and capture objective. Slots do not change on deaths.
         if (self._route.known_map and agent.entity_type in {self._SOLDIER, self._DOG}
@@ -294,6 +290,10 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if agent.entity_type == self._UAV:
             return action  # UAVControl owns flight recovery and strike persistence.
         result = self._motion_recovery.apply(state, agent, action)
+        if result is action:
+            # A recovery intervention may be a coordinate side-step as well
+            # as a direction move. Never replace either with a reserve wait.
+            result = self._formation.follow_reserve(state, agent, result, self._route, self._column)
         if self.enable_entry_waves:
             result = self._entry_waves.apply(state, agent, result, self._route, self._column)
         # Keep the opening car/foot rendezvous, then let the assembled body
@@ -309,7 +309,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
                                         self._entry_waves.released if self._entry_waves.waves else ())
             if self._column.held and self._opening_column_start is None:
                 self._opening_column_start = state.step
-        if agent.uid in self._column.held or agent.uid in self._entry_waves.held:
+        if (agent.uid in self._column.held or agent.uid in self._entry_waves.held
+                or agent.uid in self._formation.reserve_held):
             # A deliberate formation wait is not a failed movement attempt.
             # Otherwise recovery would manufacture escape moves and skip road
             # corners while the unit was explicitly ordered to stay here.

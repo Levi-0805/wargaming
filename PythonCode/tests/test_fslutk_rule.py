@@ -88,7 +88,7 @@ def test_forward_soldier_does_not_wait_for_stuck_or_disconnected_rear():
     agents = [lead, *rear]
     rule = algorithm(agents)
     actions = [rule.act(state(agents, objectives=[objective(100, 20000)], step=s)) for s in range(6)]
-    assert sum(row[0].command == "Moving" for row in actions) == 4
+    assert all(row[0].command == "Moving" for row in actions)
     assert all(a.command == "Moving" for row in actions for a in row[1:])
 
 

@@ -1,0 +1,21 @@
+﻿episode,kill_score,capture_score,total,blue_shape_at_step100,blue_HQ_100,blue_A_100,blue_B_100,last_observed_step,HQ_entry_step,HQ_entry_red_foot,HQ_entry_red_vehicles,HQ_secure_step,HQ_secure_red_foot,HQ_secure_red_vehicles,B_entry_step,B_entry_red_foot,B_entry_red_vehicles,B_secure_step,A_secure_step,red_vehicle_cross_team_kill_events,red_lynx_cross_team_kill_events,blue_vehicle_cross_team_kill_events,blue_lynx_cross_team_kill_events,baseline_goals,finding
+1,1080,0,1080,HQ_plus_B,7,0,16,499,114,37,3,,,,,,,,,9,6,28,18,-1:HQ,No terminal capture reward; HQ not cleared; all capture troops gone by step 200
+2,1140,0,1140,concentrated_HQ,26,0,0,499,119,35,0,,,,,,,,,6,3,3,1,-1:HQ,No terminal capture reward; no vehicles left at first HQ entry
+3,1660,1600,3260,three_points,5,7,7,499,115,36,2,209,14,0,273,14,0,,,12,2,25,21,-1:HQ;212:B,HQ cleared at 209; B reached with 14 capture troops and no vehicles
+4,1340,1600,2940,three_points,7,3,9,170,116,37,4,,,,,,,,,15,3,29,19,-1:HQ,HQ reward only; enemies remained at HQ; episode ended at step 170
+5,1230,1600,2830,three_points,13,4,8,172,123,24,0,,,,,,,,,7,3,24,6,-1:HQ,HQ reward only; no vehicles at first HQ entry; episode ended at step 172
+6,1300,0,1300,concentrated_HQ,23,0,0,499,121,34,2,,,,,,,,,8,5,5,3,-1:HQ,No terminal capture reward; HQ not cleared; all capture troops gone by step 200
+7,1640,1600,3240,three_points,4,2,9,499,120,37,3,125,37,3,190,20,2,,,17,8,24,18,-1:HQ;128:B;201:A,Left contested B for A at 201; full bar did not mean cleared
+8,1450,1600,3050,three_points,8,5,9,499,115,37,3,262,3,0,334,3,0,,,14,1,34,26,-1:HQ;272:B,HQ cleared at 262; B reached with 3 capture troops and no vehicles
+9,1800,1600,3400,HQ_plus_B,6,0,16,499,119,37,3,154,24,0,212,22,0,,,15,10,18,15,-1:HQ;157:B,B reached without vehicles; repeated blind scan blocked motion recovery
+10,1110,1600,2710,three_points,4,8,10,499,119,37,6,120,37,6,179,22,1,,,11,6,17,13,-1:HQ;123:B;190:A,Left contested B for A at 190; full bar did not mean cleared
+11,1330,1600,2930,three_points,7,8,10,499,113,37,5,164,8,1,227,8,0,,,8,3,22,16,-1:HQ;167:B,HQ cleared with 8 capture troops; no vehicles left at B entry
+12,2510,3200,5710,concentrated_HQ,20,0,0,499,122,29,1,152,25,1,208,25,1,212,268,17,6,0,0,-1:HQ;155:B;215:A,HQ cleared then empty B/A captured; 3200 capture reward
+13,2450,0,2450,concentrated_HQ,26,0,0,499,120,33,0,,,,,,,,,12,9,18,1,-1:HQ,No terminal capture reward; no vehicles at first HQ entry
+14,1780,1600,3380,three_points,6,7,7,499,116,37,3,163,24,0,222,13,0,,,14,7,29,16,-1:HQ;166:B,HQ cleared; B reached with 13 capture troops and no vehicles
+15,1980,0,1980,concentrated_HQ,16,0,0,499,116,37,3,,,,,,,,,21,12,7,3,-1:HQ,No terminal capture reward; HQ not cleared; all capture troops gone by step 200
+16,2390,0,2390,concentrated_HQ,17,0,0,499,120,36,2,,,,,,,,,17,2,15,6,-1:HQ,No terminal capture reward; HQ not cleared; 2 capture troops at step 200
+17,2530,3200,5730,concentrated_HQ,18,0,0,499,114,27,3,154,8,0,216,8,0,220,286,18,9,4,3,-1:HQ;157:B;223:A,HQ cleared then empty B/A captured despite only 8 capture troops and no vehicles
+18,1080,0,1080,HQ_plus_B,8,0,16,499,120,32,0,,,,,,,,,8,0,24,13,-1:HQ,No terminal capture reward; no vehicles at first HQ entry
+19,1890,1600,3490,HQ_plus_A,7,5,0,499,115,37,2,161,14,0,,,,,,17,9,36,23,-1:HQ;164:B,HQ cleared with 14 capture troops; no B entry; all capture troops gone by step 200
+20,1160,1600,2760,three_points,7,9,9,499,116,36,3,119,36,3,182,36,0,,,10,4,4,3,-1:HQ;122:B;192:A,Left contested B for A at 192; no vehicles at B entry
