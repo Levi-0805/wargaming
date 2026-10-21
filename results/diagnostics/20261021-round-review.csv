@@ -1,0 +1,18 @@
+﻿episode,complete,kill_score,capture_score,total,blue_HQ_step100,blue_A_step100,blue_B_step100,HQ_entry_step,HQ_secure_step,HQ_secure_red_foot,HQ_secure_red_vehicles,B_entry_step,B_entry_red_foot,B_entry_red_vehicles,B_secure_step,A_entry_step,A_entry_red_foot,A_entry_red_vehicles,A_secure_step,final_step,final_red_foot,final_red_vehicles,finding
+1,True,1550,1600,3150,10,8,10,118,220,7,2,293,7,0,,,,,,499,1,0,HQ clearance delayed to 220; B entry without vehicles
+2,True,1350,0,1350,12,6,9,124,,,,,,,,,,,,300,0,0,HQ never cleared; no final capture reward
+3,True,1350,1600,2950,2,10,10,111,142,35,5,201,35,3,,,,,,499,1,0,35 capture units and 3 vehicles entered defended B; B remained contested
+4,True,1430,1600,3030,9,4,10,117,167,9,2,241,5,1,,,,,,499,1,1,HQ cleared with 9 capture units; only 1 vehicle at B entry
+5,True,1190,0,1190,8,0,16,112,,,,,,,,,,,,499,0,0,HQ never cleared; only 1 defender left at end
+6,True,1300,1600,2900,4,9,10,117,240,13,2,305,13,0,,,,,,499,1,0,HQ clearance delayed to 240; no vehicles at B entry
+7,True,1670,2400,4070,16,14,0,116,167,6,2,235,6,2,240,304,6,1,,499,2,0,4070 from HQ and empty B; 6 capture units and 1 vehicle entered A against 13 defenders
+8,True,1560,0,1560,19,0,0,120,,,,,,,,,,,,499,0,0,Concentrated HQ; reserve preservation condition not applicable; no capture reward
+9,True,930,1600,2530,7,5,9,117,,,,,,,,,,,,499,18,2,HQ held 18 red vs 3 blue at end; 18 capture units plus 2 vehicles alive; blind search loop
+10,True,2030,0,2030,13,0,0,112,,,,,,,,,,,,499,0,0,Concentrated HQ; reserve preservation condition not applicable; no capture reward
+11,True,1190,0,1190,11,0,16,118,,,,,,,,,,,,499,0,0,HQ never cleared; 2 defenders left at end
+12,True,1390,1600,2990,4,7,10,115,167,9,1,232,9,0,,,,,,499,1,0,HQ cleared with 9 capture units; no vehicles at B entry
+13,True,1470,1600,3070,7,6,9,111,171,15,2,241,15,0,,,,,,499,3,0,HQ reward only; B full bar did not clear defenders
+14,True,920,0,920,13,0,16,117,,,,,,,,,,,,499,0,0,920; reserve waits observed near step 65-98; HQ never cleared
+15,True,930,0,930,19,0,0,122,,,,,,,,,,,,499,0,1,930; concentrated HQ; no extra reserve waits; capture force destroyed
+16,True,1420,1600,3020,7,0,16,113,486,6,1,,,,,,,,,499,6,1,HQ clearance at 486; only 13 steps left for onward travel
+17,False,,,,,,,,,,,,,,,,,,,49,37,6,Incomplete: connection unavailable at step 49; excluded from score aggregates

@@ -21,8 +21,6 @@ class AssaultFormation:
     SCREEN_GAP = 3000.0
     RECON_WAIT = 18
     HANDOFF_WAIT = 28
-    RESERVE_FOLLOW_WAIT = 28
-    RESERVE_FOLLOW_GAP = 3000.0
 
     def __init__(self):
         self._frame = None
@@ -34,9 +32,6 @@ class AssaultFormation:
         self._active = []
         self._current = None
         self._pending_fire = {}
-        self._preserve_reserves = False
-        self._reserve_wait = {}
-        self.reserve_held = set()
 
     @staticmethod
     def _ammo(unit):
@@ -68,7 +63,6 @@ class AssaultFormation:
                 self.reserve = {u.uid: secondaries[i % len(secondaries)]
                                 for i, u in enumerate(spare)}
         self._frame = frame
-        self.reserve_held.clear()
         self._under_fire = {u.uid for u in state.agents if u.uid in self._hp and u.hp < self._hp[u.uid] - .01}
         self._hp = {u.uid: float(u.hp) for u in state.agents if u.alive}
         obj = route.objective(state)
@@ -88,19 +82,11 @@ class AssaultFormation:
                     self.reserve[unit.uid] = uid
                     assigned += 1
         self._active = [u for u in alive if u.uid in self.front or self.reserve.get(u.uid) == self._current]
-        # Public counts distinguish a defended secondary from an empty one.
-        # Unknown is conservative; an empty A/B does not restrict HQ support.
-        remaining = [state.key_object_by_uid(uid) for uid in self.reserve.values()
-                     if uid != self._current]
-        self._preserve_reserves = any(
-            point is not None and not route.owned(state, point)
-            and route._strategy.occupants(state, point) != 0 for point in remaining)
         # Replace depleted support before the last lead vehicle is destroyed.
         # Preserve secondary assignments for the remaining rear vehicles.
         armed = [u for u in alive if self._ammo(u) != 0]
         supporting = [u for u in self._active if self._ammo(u) != 0]
-        support_count = 1 if self._preserve_reserves and route.is_hq(obj) else 2
-        while obj is not None and len(supporting) < min(support_count, len(armed)):
+        while obj is not None and len(supporting) < min(2, len(armed)):
             active_ids = {u.uid for u in self._active}
             spare = [u for u in armed if u.uid not in active_ids]
             if not spare:
@@ -147,31 +133,6 @@ class AssaultFormation:
         # VehicleFireControl owns aiming toward an actual firing target.
         return Action.guard_position(agent.position)
 
-    def follow_reserve(self, state, agent, action, route, column):
-        """Give only future-objective vehicles one bounded wait behind the body.
-
-        No rear troop anchors the whole force. Fire, obstruction escapes and
-        trailing vehicles proceed; a wait never restarts for the same vehicle
-        and objective. A stalled capture body cannot park reserves forever.
-        """
-        obj = route.objective(state)
-        if (obj is None or not self._preserve_reserves
-                or agent.uid not in self.reserve or self.reserve[agent.uid] == obj.uid
-                or not agent.alive or agent.communication_ok() is False
-                or agent.uid in self._under_fire or column.anchor is None
-                or not column.forward(agent, action)
-                or route.inside_garrison(obj, agent.position)
-                or AssaultRoute.distance(agent.position, obj.position) > self.APPROACH):
-            return action
-        if column.progress.get(agent.uid, -math.inf) <= column.anchor - self.RESERVE_FOLLOW_GAP:
-            return action
-        key = (agent.uid, obj.uid)
-        start = self._reserve_wait.setdefault(key, state.step)
-        if state.step - start >= self.RESERVE_FOLLOW_WAIT:
-            return action
-        self.reserve_held.add(agent.uid)
-        return Action.guard_position(agent.position)
-
     def choose(self, state, agent, route):
         obj = route.objective(state)
         if (obj is None or not agent.alive or agent.communication_ok() is False
@@ -194,8 +155,8 @@ class AssaultFormation:
                 return self._guard(agent, holding)
             if (assigned is not None and assigned != obj.uid and distance <= self.RESERVE_LINE
                     and not gate['released']):
-                # After this short gate, follow_reserve provides its own
-                # bounded rear-position check without whole-column holds.
+                # Release this initial reserve gate with the assault. The
+                # additional 28-step follow wait was retired after Oct20.
                 return self._guard(agent, obj)
             if (not gate['recon'] and gate['start'] is not None
                     and any(u.alive and u.entity_type == 'BP_Base_UAV_C' and u.communication_ok() is not False

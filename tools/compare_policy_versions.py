@@ -59,7 +59,8 @@ def load_baseline(directory, revision):
 def new_stats():
     return dict(objectives=[], unsafe_departures=[], pre_hq_diversions=0,
                 invalid_vehicle_fire=0, invalid_uav_fire=0, reserve_waits={},
-                column_holds=0, entry_holds=0)
+                column_holds=0, entry_holds=0, clearance_sectors=Counter(),
+                invalid_clearance_goals=0)
 
 
 def record_policy(stats, rule, state, actions):
@@ -86,6 +87,15 @@ def record_policy(stats, rule, state, actions):
     for unit, action in zip(state.agents, actions):
         if not unit.alive:
             assert action.command == 'Idle'
+        plan = rule._urban._plans.get(unit.uid)
+        if (plan and plan[0][0] == 'clear' and action.command in ('Moving', 'Guard')
+                and action.points == plan[1]):
+            point = state.key_object_by_uid(plan[0][1])
+            if point is not None:
+                stats['invalid_clearance_goals'] += not route.inside_garrison(point, action.points)
+                x, y, _ = route._local_point(point, action.points)
+                sector = ('W' if x < 0 else 'E') + ('S' if y < 0 else 'N')
+                stats['clearance_sectors'][f'{point.uid}:{sector}'] += 1
         if unit.entity_type in rule.VEHICLES and action.command == 'NormalAttacking':
             eligible = {e.uid for e in rule._vehicle_fire.eligible(state, unit)}
             stats['invalid_vehicle_fire'] += action.target_uid not in eligible
@@ -195,7 +205,8 @@ def main():
         failures += row['baseline_recorded_mismatches']
         candidate = row['modes']['candidate']
         failures += sum(candidate[k] for k in
-                        ('invalid_vehicle_fire', 'invalid_uav_fire', 'pre_hq_diversions'))
+                        ('invalid_vehicle_fire', 'invalid_uav_fire', 'pre_hq_diversions',
+                         'invalid_clearance_goals'))
         failures += any(v['last'] - v['first'] >= 28 for v in candidate['reserve_waits'].values())
     print(f"episodes={len(result['episodes'])} frames={sum(r['frames'] for r in result['episodes'])} failures={failures}")
     return 1 if failures or not result['episodes'] else 0

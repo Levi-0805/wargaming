@@ -15,6 +15,9 @@ class UrbanContact:
     """
 
     GROUND = {"BP_BaseSoldier_C", "BP_RoboDog_C", "BP_MNWS_Vehicle_Armored_C", "BP_MNWS_Vehicle_6x6UGV_C"}
+    # A six-step clear plan repeatedly reset the eight-step motion watchdog.
+    # Allow two short recovery trials before exploring a different sector.
+    CLEAR_PLAN_STEPS = 24
 
     def __init__(self):
         self._frame = None
@@ -26,6 +29,7 @@ class UrbanContact:
         self._attempts = {}
         self._positions = {}
         self._used = {}
+        self._sweeps = {}
 
     @staticmethod
     def ammo(agent):
@@ -41,7 +45,7 @@ class UrbanContact:
             return
         if self._frame is None or frame[0] != self._frame[0] or frame[1] < self._frame[1]:
             for mapping in (self._shots, self._effective, self._probes, self._plans,
-                            self._arrived, self._attempts, self._positions, self._used):
+                            self._arrived, self._attempts, self._positions, self._used, self._sweeps):
                 mapping.clear()
         self._frame = frame
         for uid, (step, target_uid, ammo, hp) in list(self._shots.items()):
@@ -59,6 +63,15 @@ class UrbanContact:
                 self._positions[key] = (p, state.step)
         self._positions = {key: value for key, value in self._positions.items() if state.step - value[1] <= 40}
         self._used = {key: step for key, step in self._used.items() if state.step - step <= 40}
+        for uid, (objective_uid, _) in list(self._sweeps.items()):
+            point = state.key_object_by_uid(objective_uid)
+            field = "blueteamNum" if state.team == 0 else "redTeamNum"
+            if point is None or AssaultRoute.count(point, field) <= 0:
+                del self._sweeps[uid]
+                plan = self._plans.get(uid)
+                if plan and plan[0] == ("clear", objective_uid):
+                    self._plans.pop(uid, None)
+                    self._arrived.pop(uid, None)
 
     def record(self, state, agent, action):
         if action.command == "NormalAttacking":
@@ -115,9 +128,23 @@ class UrbanContact:
                    for uid, plan in self._plans.items()) < 2
 
     def constrain(self, agent, action, objective, route):
-        if action.command != "Moving" or action.points is None:
+        if action.command != "Moving":
             return action
-        point = route.clamp_guard_point(objective, action.points)
+        requested = action.points
+        if requested is None:
+            # Keep a direction escape as a short, actual displacement inside
+            # the box. Returning the guard slot here cancelled every escape.
+            vector = MotionRecovery._vector(agent, action)
+            requested = tuple(float(agent.position[i]) + vector[i] for i in range(3))
+        point = route.clamp_guard_point(objective, requested)
+        if action.points is None and route.distance(agent.position, point) < 200:
+            # At an outer edge an outward escape clamps to almost zero.
+            # Take a short inward step rather than returning the old slot.
+            dx, dy = objective.position[:2] - agent.position[:2]
+            length = max(math.hypot(dx, dy), 1)
+            point = route.clamp_guard_point(objective, (
+                agent.position[0] + dx * 800 / length,
+                agent.position[1] + dy * 800 / length, agent.position[2]))
         plan = self._plans.get(agent.uid)
         if plan and plan[1] == action.points:
             self._plans[agent.uid] = (plan[0], point, plan[2])
@@ -163,21 +190,48 @@ class UrbanContact:
         existing = self._existing(state, agent, key, objective.position)
         if existing is not None:
             return existing
+        sweep = self._sweeps.get(agent.uid)
+        first_probe = sweep is None or sweep[0] != objective.uid
         candidates = [(k, p) for k, (p, _) in self._positions.items()
-                      if route.inside_garrison(objective, p)
+                      if first_probe
+                      and route.inside_garrison(objective, p)
                       and abs(p[2] - agent.position[2]) < 600
                       and 1200 < AssaultRoute.distance(agent.position, p) < 8000
                       and self._space_available(state, agent, p)
                       and state.step - self._used.get((agent.uid, k), -100) > 20]
         candidates.sort(key=lambda row: (AssaultRoute.distance(agent.position, row[1]), row[0]))
+        if first_probe:
+            self._sweeps[agent.uid] = (objective.uid, None)
         if candidates:
             k, point = candidates[agent.team_index % min(3, len(candidates))]
             self._used[(agent.uid, k)] = state.step
-            return self._set(state, agent, key, point, 6)
-        # The point's public occupant count authorizes searching, but gives no
-        # hidden enemy coordinates. A local sideways look is the fallback.
-        action = self.reposition(state, agent, objective, duration=6)
-        plan = self._plans.get(agent.uid)
-        if plan:
-            self._plans[agent.uid] = (key, plan[1], plan[2])
-        return action
+            return self._set(state, agent, key, point, self.CLEAR_PLAN_STEPS)
+        # A reached friendly point is useful once, but repeatedly exchanging
+        # the nearest such positions never explores the rest of the box.
+        # Use only the public objective geometry, never offline enemy locations.
+        points = self._clearance_points(agent, objective, route)
+        cursor = self._sweeps[agent.uid][1]
+        if cursor is None:
+            cursor = min(range(len(points)), key=lambda i: (
+                route.distance(agent.position, points[i]), (i - agent.team_index) % len(points)))
+        else:
+            cursor = (cursor + (1 if agent.team_index % 2 else -1)) % len(points)
+        self._sweeps[agent.uid] = (objective.uid, cursor)
+        return self._set(state, agent, key, points[cursor], self.CLEAR_PLAN_STEPS)
+
+    @staticmethod
+    def _clearance_points(agent, objective, route):
+        # UE still resolves navigation and terrain height. These are bounded
+        # exploration requests, not assertions that every segment is walkable.
+        extent = route._footprint(objective) or (route.GARRISON_CORE, route.GARRISON_CORE)
+        yaw = math.radians(float(objective.raw.get("rotation", {}).get("yaw", 0)))
+        offsets = ((1, 0), (1, 1), (0, 1), (-1, 1),
+                   (-1, 0), (-1, -1), (0, -1), (1, -1))
+        points = []
+        for x, y in offsets:
+            x, y = x * extent[0] * .8, y * extent[1] * .8
+            point = (objective.position[0] + x * math.cos(yaw) - y * math.sin(yaw),
+                     objective.position[1] + x * math.sin(yaw) + y * math.cos(yaw),
+                     float(agent.position[2]))
+            points.append(route.clamp_guard_point(objective, point))
+        return points

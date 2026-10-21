@@ -238,12 +238,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         point = self._route.point(state, agent)
         objective = self._route.objective(state)
         visible = [enemy for enemy in state.visible_opponents if enemy.alive]
-        if (objective is not None and self._route.is_hq(objective)
+        if (objective is not None
                 and agent.entity_type in self._urban.GROUND
                 and self._route.inside_garrison(objective, agent.position)
                 and self._route.enemy_count(state, objective) > 0):
-            # Clear the courtyard/building approaches using reached friendly
-            # positions rather than pursuing an unseen occupant's coordinates.
+            # Every contested objective needs active clearance, including
+            # non-garrison units at B/A. Public counts never authorize fire
+            # at an unseen enemy.
             return self._urban.search_point(state, agent, objective, self._route)
         # Retired shortcut: a reported enemy behind a wall used to replace the
         # navigable objective route even when this unit could not see it.
@@ -290,10 +291,6 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if agent.entity_type == self._UAV:
             return action  # UAVControl owns flight recovery and strike persistence.
         result = self._motion_recovery.apply(state, agent, action)
-        if result is action:
-            # A recovery intervention may be a coordinate side-step as well
-            # as a direction move. Never replace either with a reserve wait.
-            result = self._formation.follow_reserve(state, agent, result, self._route, self._column)
         if self.enable_entry_waves:
             result = self._entry_waves.apply(state, agent, result, self._route, self._column)
         # Keep the opening car/foot rendezvous, then let the assembled body
@@ -309,8 +306,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
                                         self._entry_waves.released if self._entry_waves.waves else ())
             if self._column.held and self._opening_column_start is None:
                 self._opening_column_start = state.step
-        if (agent.uid in self._column.held or agent.uid in self._entry_waves.held
-                or agent.uid in self._formation.reserve_held):
+        if agent.uid in self._column.held or agent.uid in self._entry_waves.held:
             # A deliberate formation wait is not a failed movement attempt.
             # Otherwise recovery would manufacture escape moves and skip road
             # corners while the unit was explicitly ordered to stay here.
@@ -321,8 +317,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         garrison = self._route.garrison_for(state, agent)
         if (garrison is not None and result.command == "Moving"
                 and self._route.inside_garrison(garrison, agent.position)):
-            point = result.points if result.points is not None else self._route.guard_slot(agent, garrison)
-            result = Action.move_at(self._route.clamp_guard_point(garrison, point))
+            result = self._urban.constrain(agent, result, garrison, self._route)
         self._urban.record(state, agent, result)
         self._formation.record(state, agent, result, self._route)
         # Apply existing navigation/recovery before serializing the supported

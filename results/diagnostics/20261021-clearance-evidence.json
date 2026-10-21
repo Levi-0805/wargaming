@@ -1,0 +1,16 @@
+{
+  "source_sha256": "36d7f05e15f14b974bab743521d69696c65c959b03eb666d7136692e24f150c3",
+  "episode": 9,
+  "start_step": 200,
+  "end_step": 499,
+  "surviving_foot": 18,
+  "command_counts": {
+    "ActionSet2::Moving": 4393,
+    "ActionSet2::Guard": 989
+  },
+  "remaining_ammunition_range": [
+    222.0,
+    250.0
+  ],
+  "limitation": "Surviving soldiers and dogs only. These command observations do not establish the counterfactual score of a new search."
+}

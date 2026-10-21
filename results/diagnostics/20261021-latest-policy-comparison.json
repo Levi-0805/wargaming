@@ -1,0 +1,668 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261020_203236\\protocol.jsonl",
+  "source_bytes": 1065014018,
+  "source_sha256": "36d7f05e15f14b974bab743521d69696c65c959b03eb666d7136692e24f150c3",
+  "baseline_commit": "21825d220aad026f174a7d4967d1f9ba08112dc1",
+  "baseline_files": {
+    "AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+    "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "AssaultFormation.py": "a971b0a87fed38b1f7cc1ee060b52f9c88920a2cab472410cf0bfb9999071108",
+    "AssaultRoute.py": "49d7f1c89573c7001320aa5c4488ba04138a95f464175e55af24f51aea2b7a9a",
+    "ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+    "FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+    "HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+    "MotionRecovery.py": "522637052ff6b840c108e71ffc181c733c9360f1e70fbc3fb0f77a08c8af6c10",
+    "RLAgentAlgorithm.py": "d9f4aff74eddeb3764445c823ca421ad52454fbbeed293ff4f6244dd2a4a681f",
+    "RuleAgentAlgorithm.py": "0b5026a14d627e036f5bd32211a5801099e51304144ec9a8efcf6208944d9a22",
+    "UAVControl.py": "c37b26091efa89331867355c0f78e919da47ff959f0e37636ea2f5f85618f51f",
+    "UrbanContact.py": "55b776903e2b001d302b9d0d3d080d63fce0f8d910666330dde218518e6772a3",
+    "VehicleFireControl.py": "fb34e960dff5e1ad10716f56d481dd3f17f2fcf9615a3fda837e34282e063c1a",
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  },
+  "candidate_files": {
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+    "AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+    "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "AssaultFormation.py": "1f1e2a387989f220ccad68cea9453f491a29f626343be25672905cf6dea10f84",
+    "AssaultRoute.py": "49d7f1c89573c7001320aa5c4488ba04138a95f464175e55af24f51aea2b7a9a",
+    "ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+    "FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+    "HQEntry.py": "7448e789ae37aa0837437f0d5ea319daff642242ce5fb44550426b7cae9652f0",
+    "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "RLAgentAlgorithm.py": "d9f4aff74eddeb3764445c823ca421ad52454fbbeed293ff4f6244dd2a4a681f",
+    "RuleAgentAlgorithm.py": "360b582df966ed57bb3c12043323fc41b592909d0bd88771e2e972b5f2f96262",
+    "UAVControl.py": "c37b26091efa89331867355c0f78e919da47ff959f0e37636ea2f5f85618f51f",
+    "UrbanContact.py": "57aeecb4fd7f5ac9ad06c31f25d33d945cf990f8718025dfb2694fb7f3a6b508",
+    "VehicleFireControl.py": "fb34e960dff5e1ad10716f56d481dd3f17f2fcf9615a3fda837e34282e063c1a"
+  },
+  "episodes": [
+    {
+      "episode": 1,
+      "frames": 501,
+      "baseline_recorded_matches": 20050,
+      "baseline_recorded_mismatches": 0,
+      "changed_commands": 1563,
+      "changes_by_kind": {
+        "BP_MNWS_Vehicle_Armored_C": 257,
+        "BP_MNWS_Vehicle_6x6UGV_C": 5,
+        "BP_RoboDog_C": 496,
+        "BP_BaseSoldier_C": 805
+      },
+      "changes_by_command": {
+        "Guard -> Guard": 236,
+        "Guard -> Moving": 296,
+        "Moving -> Moving": 1016,
+        "Moving -> Guard": 15
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 223,
+              "uid": 32768,
+              "name": "军事基地B"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {
+            "486:32769": {
+              "first": 66,
+              "last": 93,
+              "count": 28
+            },
+            "496:32769": {
+              "first": 67,
+              "last": 92,
+              "count": 26
+            },
+            "491:32769": {
+              "first": 69,
+              "last": 96,
+              "count": 25
+            }
+          },
+          "column_holds": 265,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:EN": 613,
+            "32769:ES": 521,
+            "32769:WS": 3
+          },
+          "invalid_clearance_goals": 3
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 223,
+              "uid": 32768,
+              "name": "军事基地B"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 265,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:EN": 634,
+            "32769:ES": 555,
+            "32769:WN": 69,
+            "32769:WS": 13,
+            "32768:WN": 76
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    },
+    {
+      "episode": 3,
+      "frames": 501,
+      "baseline_recorded_matches": 20000,
+      "baseline_recorded_mismatches": 0,
+      "changed_commands": 1991,
+      "changes_by_kind": {
+        "BP_MNWS_Vehicle_Armored_C": 340,
+        "BP_RoboDog_C": 560,
+        "BP_BaseSoldier_C": 1076,
+        "BP_MNWS_Vehicle_6x6UGV_C": 15
+      },
+      "changes_by_command": {
+        "Guard -> Guard": 314,
+        "Guard -> Moving": 314,
+        "Moving -> Moving": 1306,
+        "Moving -> Guard": 57
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 145,
+              "uid": 32768,
+              "name": "军事基地B"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {
+            "1286:32769": {
+              "first": 63,
+              "last": 90,
+              "count": 28
+            },
+            "1291:32769": {
+              "first": 68,
+              "last": 95,
+              "count": 28
+            },
+            "1296:32769": {
+              "first": 69,
+              "last": 95,
+              "count": 27
+            },
+            "1291:32768": {
+              "first": 172,
+              "last": 195,
+              "count": 17
+            },
+            "1281:32768": {
+              "first": 194,
+              "last": 209,
+              "count": 7
+            }
+          },
+          "column_holds": 271,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 484,
+            "32769:EN": 133,
+            "32768:WN": 400,
+            "32768:WS": 7
+          },
+          "invalid_clearance_goals": 24
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 145,
+              "uid": 32768,
+              "name": "军事基地B"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 271,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 465,
+            "32769:EN": 215,
+            "32769:WS": 3,
+            "32768:WN": 737,
+            "32768:WS": 49,
+            "32768:EN": 73,
+            "32768:ES": 53
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    },
+    {
+      "episode": 7,
+      "frames": 501,
+      "baseline_recorded_matches": 19600,
+      "baseline_recorded_mismatches": 0,
+      "changed_commands": 869,
+      "changes_by_kind": {
+        "BP_MNWS_Vehicle_Armored_C": 150,
+        "BP_MNWS_Vehicle_6x6UGV_C": 39,
+        "BP_BaseSoldier_C": 417,
+        "BP_RoboDog_C": 263
+      },
+      "changes_by_command": {
+        "Guard -> Guard": 169,
+        "Guard -> Moving": 173,
+        "Moving -> Moving": 517,
+        "Moving -> Guard": 10
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 170,
+              "uid": 32768,
+              "name": "军事基地B"
+            },
+            {
+              "step": 250,
+              "uid": 32770,
+              "name": "军事基地A"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {
+            "3201:32769": {
+              "first": 74,
+              "last": 99,
+              "count": 26
+            },
+            "3211:32769": {
+              "first": 74,
+              "last": 101,
+              "count": 28
+            },
+            "3196:32769": {
+              "first": 75,
+              "last": 102,
+              "count": 28
+            }
+          },
+          "column_holds": 270,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 380,
+            "32769:EN": 241
+          },
+          "invalid_clearance_goals": 3
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 170,
+              "uid": 32768,
+              "name": "军事基地B"
+            },
+            {
+              "step": 250,
+              "uid": 32770,
+              "name": "军事基地A"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 270,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 304,
+            "32769:EN": 405,
+            "32770:WS": 13,
+            "32770:ES": 1
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    },
+    {
+      "episode": 9,
+      "frames": 501,
+      "baseline_recorded_matches": 20250,
+      "baseline_recorded_mismatches": 0,
+      "changed_commands": 7329,
+      "changes_by_kind": {
+        "BP_MNWS_Vehicle_Armored_C": 805,
+        "BP_MNWS_Vehicle_6x6UGV_C": 25,
+        "BP_RoboDog_C": 1837,
+        "BP_BaseSoldier_C": 4662
+      },
+      "changes_by_command": {
+        "Guard -> Guard": 742,
+        "Guard -> Moving": 1294,
+        "Moving -> Moving": 5279,
+        "Moving -> Guard": 14
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {
+            "4086:32769": {
+              "first": 63,
+              "last": 90,
+              "count": 28
+            },
+            "4101:32769": {
+              "first": 68,
+              "last": 94,
+              "count": 27
+            },
+            "4091:32769": {
+              "first": 70,
+              "last": 95,
+              "count": 26
+            }
+          },
+          "column_holds": 271,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 696,
+            "32769:EN": 4908,
+            "32769:WN": 152,
+            "32769:WS": 124
+          },
+          "invalid_clearance_goals": 9
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 271,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 1533,
+            "32769:EN": 2386,
+            "32769:WS": 808,
+            "32769:WN": 1628
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    },
+    {
+      "episode": 14,
+      "frames": 501,
+      "baseline_recorded_matches": 19950,
+      "baseline_recorded_mismatches": 0,
+      "changed_commands": 1967,
+      "changes_by_kind": {
+        "BP_MNWS_Vehicle_Armored_C": 273,
+        "BP_MNWS_Vehicle_6x6UGV_C": 13,
+        "BP_RoboDog_C": 786,
+        "BP_BaseSoldier_C": 895
+      },
+      "changes_by_command": {
+        "Guard -> Guard": 256,
+        "Guard -> Moving": 407,
+        "Moving -> Moving": 1295,
+        "Moving -> Guard": 9
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {
+            "6726:32769": {
+              "first": 65,
+              "last": 92,
+              "count": 28
+            },
+            "6746:32769": {
+              "first": 68,
+              "last": 95,
+              "count": 28
+            },
+            "6736:32769": {
+              "first": 70,
+              "last": 97,
+              "count": 28
+            }
+          },
+          "column_holds": 269,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 662,
+            "32769:EN": 759,
+            "32769:WS": 22,
+            "32769:WN": 29
+          },
+          "invalid_clearance_goals": 12
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 269,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:EN": 620,
+            "32769:ES": 618,
+            "32769:WS": 148,
+            "32769:WN": 303
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    },
+    {
+      "episode": 15,
+      "frames": 501,
+      "baseline_recorded_matches": 20500,
+      "baseline_recorded_mismatches": 0,
+      "changed_commands": 483,
+      "changes_by_kind": {
+        "BP_RoboDog_C": 124,
+        "BP_BaseSoldier_C": 359
+      },
+      "changes_by_command": {
+        "Moving -> Moving": 379,
+        "Guard -> Moving": 102,
+        "Moving -> Guard": 2
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 274,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 309,
+            "32769:EN": 89
+          },
+          "invalid_clearance_goals": 3
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 274,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 244,
+            "32769:EN": 216
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    },
+    {
+      "episode": 16,
+      "frames": 501,
+      "baseline_recorded_matches": 20050,
+      "baseline_recorded_mismatches": 0,
+      "changed_commands": 3487,
+      "changes_by_kind": {
+        "BP_MNWS_Vehicle_Armored_C": 774,
+        "BP_RoboDog_C": 903,
+        "BP_BaseSoldier_C": 1800,
+        "BP_MNWS_Vehicle_6x6UGV_C": 10
+      },
+      "changes_by_command": {
+        "Guard -> Guard": 708,
+        "Guard -> Moving": 720,
+        "Moving -> Moving": 2050,
+        "Moving -> Guard": 9
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 489,
+              "uid": 32768,
+              "name": "军事基地B"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {
+            "7636:32769": {
+              "first": 68,
+              "last": 95,
+              "count": 28
+            },
+            "7616:32769": {
+              "first": 73,
+              "last": 97,
+              "count": 25
+            },
+            "7626:32769": {
+              "first": 73,
+              "last": 100,
+              "count": 25
+            }
+          },
+          "column_holds": 265,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 649,
+            "32769:EN": 1763,
+            "32769:WN": 183,
+            "32769:WS": 18
+          },
+          "invalid_clearance_goals": 9
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 489,
+              "uid": 32768,
+              "name": "军事基地B"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 265,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:ES": 1042,
+            "32769:EN": 1086,
+            "32769:WN": 582,
+            "32769:WS": 276
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    }
+  ],
+  "limitation": "Historical observations only; changed actions do not predict new movement, survival or scores."
+}
