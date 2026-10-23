@@ -1,0 +1,381 @@
+{
+  "runs": [
+    {
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261023_203130\\protocol.jsonl",
+      "source_bytes": 75819213,
+      "source_sha256": "44167c9597a14d95bb8c9d263138849be08afdab0b7098c7c27b88f6a5eb34c4",
+      "limitations": [
+        "Full HQ bar plus positive red and zero blue is an observed clear snapshot, not a new-policy score.",
+        "UAV disappearance includes destroyed and self-destructing aircraft; cause is not inferred."
+      ],
+      "rounds": [
+        {
+          "episode": 1,
+          "frames": 501,
+          "first_hq_entry": 98,
+          "first_hq_clear_full": 137,
+          "max_hq_red": 34,
+          "max_hq_red_when_contested": 34,
+          "first_red_entry": {
+            "指挥所": 98,
+            "军事基地B": 195
+          },
+          "samples": [
+            {
+              "step": 0,
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "uav": 5,
+                "dog": 13,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 22,
+                "uav": 13,
+                "dog": 10,
+                "wheeled": 2
+              },
+              "hq": {
+                "percent": 0,
+                "redTeamNum": 0,
+                "blueteamNum": 14
+              }
+            },
+            {
+              "step": 50,
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "uav": 1,
+                "dog": 13,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 22,
+                "uav": 8,
+                "dog": 10,
+                "wheeled": 2
+              },
+              "hq": {
+                "percent": 0,
+                "redTeamNum": 0,
+                "blueteamNum": 16
+              }
+            },
+            {
+              "step": 75,
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "dog": 13,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 21,
+                "uav": 7,
+                "dog": 10,
+                "wheeled": 2
+              },
+              "hq": {
+                "percent": 0,
+                "redTeamNum": 0,
+                "blueteamNum": 15
+              }
+            },
+            {
+              "step": 100,
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "dog": 13,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 7,
+                "dog": 7,
+                "wheeled": 2
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 20,
+                "blueteamNum": 4
+              }
+            },
+            {
+              "step": 125,
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 18,
+                "dog": 9,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 12,
+                "uav": 7,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 27,
+                "blueteamNum": 1
+              }
+            },
+            {
+              "step": 150,
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 17,
+                "dog": 8,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 7,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 24,
+                "blueteamNum": 0
+              }
+            },
+            {
+              "step": 175,
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 17,
+                "dog": 8,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 7,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 3,
+                "blueteamNum": 0
+              }
+            },
+            {
+              "step": 200,
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 17,
+                "dog": 8,
+                "wheeled": 1
+              },
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 10,
+                "uav": 7,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 3,
+                "blueteamNum": 0
+              }
+            },
+            {
+              "step": 250,
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 5,
+                "dog": 3,
+                "wheeled": 1
+              },
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 8,
+                "uav": 4,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 0,
+                "blueteamNum": 0
+              }
+            },
+            {
+              "step": 300,
+              "red_alive": {
+                "lynx": 1,
+                "dog": 1,
+                "wheeled": 1
+              },
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 8,
+                "uav": 4,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 0,
+                "blueteamNum": 0
+              }
+            },
+            {
+              "step": 400,
+              "red_alive": {
+                "lynx": 1,
+                "dog": 1,
+                "wheeled": 1
+              },
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 8,
+                "uav": 4,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 0,
+                "blueteamNum": 0
+              }
+            },
+            {
+              "step": 499,
+              "red_alive": {
+                "lynx": 1,
+                "wheeled": 1
+              },
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 8,
+                "uav": 4,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 0,
+                "blueteamNum": 0
+              }
+            }
+          ],
+          "hq_arrival_samples": [
+            {
+              "step": 98,
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "dog": 13,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 7,
+                "dog": 7,
+                "wheeled": 2
+              },
+              "hq": {
+                "percent": 0,
+                "redTeamNum": 2,
+                "blueteamNum": 5
+              }
+            },
+            {
+              "step": 137,
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 17,
+                "dog": 8,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 7,
+                "dog": 5,
+                "wheeled": 1
+              },
+              "hq": {
+                "percent": 1,
+                "redTeamNum": 25,
+                "blueteamNum": 0
+              }
+            }
+          ],
+          "uav_zero_step": 62
+        },
+        {
+          "episode": 2,
+          "frames": 53,
+          "first_hq_entry": null,
+          "first_hq_clear_full": null,
+          "max_hq_red": 0,
+          "max_hq_red_when_contested": 0,
+          "first_red_entry": {},
+          "samples": [
+            {
+              "step": 0,
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "uav": 5,
+                "dog": 13,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 22,
+                "uav": 13,
+                "dog": 10,
+                "wheeled": 2
+              },
+              "hq": {
+                "percent": 0,
+                "redTeamNum": 0,
+                "blueteamNum": 16
+              }
+            },
+            {
+              "step": 50,
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "uav": 3,
+                "dog": 13,
+                "wheeled": 4
+              },
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 22,
+                "uav": 13,
+                "dog": 10,
+                "wheeled": 2
+              },
+              "hq": {
+                "percent": 0,
+                "redTeamNum": 0,
+                "blueteamNum": 32
+              }
+            }
+          ],
+          "hq_arrival_samples": [],
+          "uav_zero_step": null
+        }
+      ]
+    }
+  ]
+}

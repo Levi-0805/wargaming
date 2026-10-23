@@ -1,0 +1,625 @@
+{
+  "latest_source": {
+    "path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\rear-contact-evidence\\latest-extracted.jsonl",
+    "bytes": 48901230,
+    "sha256": "eac267015e924b24250a8fc390fe6e34d93c5110e12bcb3e4e0c4243dd78f07f",
+    "runtime_manifest": [
+      {
+        "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261023_200614\\runtime.log.2",
+        "bytes": 20917213,
+        "sha256": "a2682dd6b91789a7caa8383256c05fcc85c40e644a4eb2bb19568426a1e5b307"
+      },
+      {
+        "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261023_200614\\runtime.log.1",
+        "bytes": 20931547,
+        "sha256": "6a082e35ec1ee5bf35a0e85fa5814cab86e6ba16d8f878e1d9c1ad4c71ab2337"
+      },
+      {
+        "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261023_200614\\runtime.log",
+        "bytes": 2140338,
+        "sha256": "4abd7d664b9b9af81a354b46ee28c5391d181e0217e5d29ddce972cd7037efc0"
+      }
+    ],
+    "source_commit": null
+  },
+  "latest_segment": {
+    "start_step": 151,
+    "end_step": 499,
+    "initial_hq_full": true,
+    "initial_hq_enemy_free": true,
+    "initial_red_foot": 11,
+    "true_first_hq_full_unknown": true,
+    "true_first_hq_secure_unknown": true,
+    "terminal_score": null
+  },
+  "latest_deaths": [
+    {
+      "death_step": 161,
+      "uid": 171,
+      "trace": [
+        {
+          "step": 157,
+          "uid": 171,
+          "name": "士兵_16;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -40976.81,
+            "y": 26362.99,
+            "z": 6425.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-40938.2109375, 26353.849609375, 6425.494140625];171",
+          "ammo": [
+            "240.0"
+          ]
+        },
+        {
+          "step": 158,
+          "uid": 171,
+          "name": "士兵_16;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -40976.81,
+            "y": 26362.99,
+            "z": 6425.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-40938.2109375, 26353.849609375, 6425.494140625];171",
+          "ammo": [
+            "240.0"
+          ]
+        },
+        {
+          "step": 159,
+          "uid": 171,
+          "name": "士兵_16;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -40976.81,
+            "y": 26362.99,
+            "z": 6425.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-40938.2109375, 26353.849609375, 6425.494140625];171",
+          "ammo": [
+            "240.0"
+          ]
+        },
+        {
+          "step": 160,
+          "uid": 171,
+          "name": "士兵_16;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -40976.81,
+            "y": 26362.99,
+            "z": 6425.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-40938.2109375, 26353.849609375, 6425.494140625];171",
+          "ammo": [
+            "240.0"
+          ]
+        },
+        {
+          "step": 161,
+          "uid": 171,
+          "name": "士兵_16;1",
+          "hp": 100,
+          "alive": false,
+          "position": {
+            "x": -40976.81,
+            "y": 26362.99,
+            "z": 6425.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Idle;N/A;171",
+          "ammo": [
+            "240.0"
+          ]
+        }
+      ]
+    },
+    {
+      "death_step": 161,
+      "uid": 366,
+      "trace": [
+        {
+          "step": 157,
+          "uid": 366,
+          "name": "机器狗_4;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -41659,
+            "y": 26432.38,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-41620.1484375, 26424.369140625, 6387.494140625];366",
+          "ammo": [
+            "246.0"
+          ]
+        },
+        {
+          "step": 158,
+          "uid": 366,
+          "name": "机器狗_4;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -41659,
+            "y": 26432.38,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-41620.1484375, 26424.369140625, 6387.494140625];366",
+          "ammo": [
+            "246.0"
+          ]
+        },
+        {
+          "step": 159,
+          "uid": 366,
+          "name": "机器狗_4;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -41659,
+            "y": 26432.38,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-41620.1484375, 26424.369140625, 6387.494140625];366",
+          "ammo": [
+            "246.0"
+          ]
+        },
+        {
+          "step": 160,
+          "uid": 366,
+          "name": "机器狗_4;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -41659,
+            "y": 26432.38,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-41620.1484375, 26424.369140625, 6387.494140625];366",
+          "ammo": [
+            "246.0"
+          ]
+        },
+        {
+          "step": 161,
+          "uid": 366,
+          "name": "机器狗_4;1",
+          "hp": 100,
+          "alive": false,
+          "position": {
+            "x": -41659,
+            "y": 26432.38,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Idle;N/A;366",
+          "ammo": [
+            "246.0"
+          ]
+        }
+      ]
+    },
+    {
+      "death_step": 161,
+      "uid": 386,
+      "trace": [
+        {
+          "step": 157,
+          "uid": 386,
+          "name": "机器狗_8;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -40685.03,
+            "y": 26356.35,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-40646.25, 26348.01953125, 6387.494140625];386",
+          "ammo": [
+            "246.0"
+          ]
+        },
+        {
+          "step": 158,
+          "uid": 386,
+          "name": "机器狗_8;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -40685.03,
+            "y": 26356.35,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-40646.25, 26348.01953125, 6387.494140625];386",
+          "ammo": [
+            "246.0"
+          ]
+        },
+        {
+          "step": 159,
+          "uid": 386,
+          "name": "机器狗_8;1",
+          "hp": 100,
+          "alive": true,
+          "position": {
+            "x": -40685.03,
+            "y": 26356.35,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-40646.25, 26348.01953125, 6387.494140625];386",
+          "ammo": [
+            "246.0"
+          ]
+        },
+        {
+          "step": 160,
+          "uid": 386,
+          "name": "机器狗_8;1",
+          "hp": 45.58143,
+          "alive": true,
+          "position": {
+            "x": -40685.03,
+            "y": 26356.35,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Guard;;Points=[-40646.25, 26348.01953125, 6387.494140625];386",
+          "ammo": [
+            "246.0"
+          ]
+        },
+        {
+          "step": 161,
+          "uid": 386,
+          "name": "机器狗_8;1",
+          "hp": 45.58143,
+          "alive": false,
+          "position": {
+            "x": -40685.03,
+            "y": 26356.35,
+            "z": 6387.494
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "local": [],
+          "local_cars": [],
+          "command": "ActionSet2::Idle;N/A;386",
+          "ammo": [
+            "246.0"
+          ]
+        }
+      ]
+    }
+  ],
+  "latest_context": {
+    "enemy_lynx_uid": 471,
+    "enemy_lynx_ammo": {
+      "step151": 104,
+      "step158": 91,
+      "step160": 38,
+      "step161": 14
+    },
+    "red_observers_of_471_steps_151_to_160": [],
+    "step160_nearest_red_car": {
+      "uid": 496,
+      "ammo": 0,
+      "distance_to_soldier171_m": 188.1
+    },
+    "step160_only_armed_red_car": {
+      "uid": 486,
+      "ammo": 53,
+      "distance_to_soldier171_m": 525.2
+    },
+    "step158_only_live_red_uav": {
+      "uid": 26,
+      "distance_to_soldier171_m": 524.4,
+      "local": []
+    }
+  },
+  "prior_source": {
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261022_123707\\protocol.jsonl",
+    "bytes": 1306121442,
+    "sha256": "144ab51d03bfa287d2f123174bf763fe18516a78e6a08606490a3fd34616e065",
+    "source_commit": null,
+    "complete_rounds": [
+      {
+        "episode": 1,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 2,
+        "first": -1,
+        "last": 174,
+        "frames": 176
+      },
+      {
+        "episode": 3,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 4,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 5,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 6,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 7,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 8,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 9,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 10,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 11,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 12,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 13,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 14,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 15,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 16,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 17,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 18,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 19,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      },
+      {
+        "episode": 20,
+        "first": -1,
+        "last": 499,
+        "frames": 501
+      }
+    ]
+  },
+  "prior_samples": [
+    {
+      "episode": 18,
+      "first": {
+        "full": {
+          "step": 127,
+          "foot": 27
+        },
+        "secure": {
+          "step": 131,
+          "foot": 27
+        }
+      },
+      "score": {
+        "kill_score": 2530,
+        "capture_score": 3200,
+        "total": 5730
+      },
+      "source_commit": null,
+      "post_full_foot_deaths": 0,
+      "post_secure_foot_deaths": 0,
+      "departing_local_car_examples": 0
+    },
+    {
+      "episode": 19,
+      "first": {
+        "full": {
+          "step": 116,
+          "foot": 37
+        },
+        "secure": {
+          "step": 184,
+          "foot": 11
+        }
+      },
+      "score": {
+        "kill_score": 1550,
+        "capture_score": 1600,
+        "total": 3150
+      },
+      "source_commit": null,
+      "post_full_foot_deaths": 36,
+      "post_secure_foot_deaths": 10,
+      "departing_local_car_examples": 0
+    },
+    {
+      "episode": 20,
+      "first": {
+        "full": {
+          "step": 124,
+          "foot": 36
+        }
+      },
+      "score": {
+        "kill_score": 2020,
+        "capture_score": 0,
+        "total": 2020
+      },
+      "source_commit": null,
+      "post_full_foot_deaths": 36,
+      "post_secure_foot_deaths": 0,
+      "departing_local_car_examples": 0
+    }
+  ],
+  "limitations": [
+    "Latest rolling segment begins after HQ was already full and enemy-free; first timestamps are censored.",
+    "No latest terminal destruction events; no conclusive direct killer attribution. Enemy car ammo depletion and approach are contemporaneous only.",
+    "Blue physical positions are retrospective observations, not permitted policy input when red has no observer.",
+    "No historical commit is inferred from timestamp/current checkout.",
+    "Prior rounds 18-20 are selected samples, not the entire session."
+  ],
+  "policy_parent_commit": "deeca0ea27fe0aead87d173489e95446f7eaa3b4"
+}

@@ -1,0 +1,1511 @@
+{
+  "output_file": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261023_203130\\protocol.jsonl",
+  "source_sha256": "44167c9597a14d95bb8c9d263138849be08afdab0b7098c7c27b88f6a5eb34c4",
+  "source_bytes": 75819213,
+  "source_commit": null,
+  "source_commit_evidence": "unbound historical source",
+  "score_definition": "Score[*].SumWorth + Reward; missing or ambiguous sides remain null",
+  "complete": false,
+  "malformed_json_lines": [],
+  "rounds": [
+    {
+      "episode": 1,
+      "frames": 501,
+      "last_step": 499,
+      "score_packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "line": 1268,
+          "kill_score": 1730,
+          "capture_score": 1600,
+          "total": 3330,
+          "breakdown": {
+            "无人机": 90,
+            "士兵": 1400,
+            "机器狗": 100,
+            "轮式无人车": 90,
+            "山猫无人车": 50
+          },
+          "kills": [
+            {
+              "time": "20:32:21/10",
+              "killer": "无人机_7",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_7",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_6",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_17",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_11",
+              "points": 10
+            },
+            {
+              "time": "20:32:31/10",
+              "killer": "无人机_12",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_12",
+              "points": 10
+            },
+            {
+              "time": "20:32:46/10",
+              "killer": "无人机_8",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_8",
+              "points": 10
+            },
+            {
+              "time": "20:32:58/100",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_29",
+              "points": 100
+            },
+            {
+              "time": "20:33:01/100",
+              "killer": "轮式无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_26",
+              "points": 100
+            },
+            {
+              "time": "20:33:09/20",
+              "killer": "轮式无人车_1",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_13",
+              "points": 20
+            },
+            {
+              "time": "20:33:11/100",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_43",
+              "points": 100
+            },
+            {
+              "time": "20:33:12/100",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_39",
+              "points": 100
+            },
+            {
+              "time": "20:33:12/20",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_17",
+              "points": 20
+            },
+            {
+              "time": "20:33:14/100",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_35",
+              "points": 100
+            },
+            {
+              "time": "20:33:16/100",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_47",
+              "points": 100
+            },
+            {
+              "time": "20:33:16/20",
+              "killer": "轮式无人车_3",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_16",
+              "points": 20
+            },
+            {
+              "time": "20:33:19/100",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_38",
+              "points": 100
+            },
+            {
+              "time": "20:33:20/100",
+              "killer": "士兵_21",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_46",
+              "points": 100
+            },
+            {
+              "time": "20:33:25/100",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_30",
+              "points": 100
+            },
+            {
+              "time": "20:33:28/100",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_34",
+              "points": 100
+            },
+            {
+              "time": "20:33:30/20",
+              "killer": "士兵_8",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_20",
+              "points": 20
+            },
+            {
+              "time": "20:33:31/20",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_21",
+              "points": 20
+            },
+            {
+              "time": "20:33:52/90",
+              "killer": "士兵_10",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "轮式无人车_4",
+              "points": 50
+            },
+            {
+              "time": "20:33:54/50",
+              "killer": "士兵_16",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "“山猫”无人车_3",
+              "points": 50
+            },
+            {
+              "time": "20:34:03/100",
+              "killer": "士兵_14",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_42",
+              "points": 100
+            },
+            {
+              "time": "20:34:56/100",
+              "killer": "轮式无人车_3",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_28",
+              "points": 100
+            },
+            {
+              "time": "20:35:20/10",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_10",
+              "points": 10
+            },
+            {
+              "time": "20:35:24/100",
+              "killer": "士兵_21",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_45",
+              "points": 100
+            },
+            {
+              "time": "20:35:27/10",
+              "killer": "士兵_13",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "无人机_13",
+              "points": 10
+            },
+            {
+              "time": "20:35:32/10",
+              "killer": "士兵_18",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "无人机_16",
+              "points": 10
+            },
+            {
+              "time": "20:35:53/100",
+              "killer": "士兵_9",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_33",
+              "points": 100
+            }
+          ],
+          "event_history_prefix_removed": 0,
+          "recorded_event_count": 30
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "line": 1269,
+          "kill_score": 3030,
+          "capture_score": 1600,
+          "total": 4630,
+          "breakdown": {
+            "无人机": 50,
+            "机器狗": 260,
+            "山猫无人车": 50,
+            "士兵": 2400,
+            "轮式无人车": 270
+          },
+          "kills": [
+            {
+              "time": "20:32:21/10",
+              "killer": "无人机_7",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_7",
+              "points": 10
+            },
+            {
+              "time": "20:32:21/10",
+              "killer": "无人机_7",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_3",
+              "points": 10
+            },
+            {
+              "time": "20:32:22/10",
+              "killer": "机器狗_16",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_0",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_6",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_4",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_17",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_11",
+              "points": 10
+            },
+            {
+              "time": "20:32:31/10",
+              "killer": "无人机_12",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_12",
+              "points": 10
+            },
+            {
+              "time": "20:32:31/10",
+              "killer": "无人机_12",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_1",
+              "points": 10
+            },
+            {
+              "time": "20:32:46/10",
+              "killer": "无人机_8",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_8",
+              "points": 10
+            },
+            {
+              "time": "20:32:46/10",
+              "killer": "无人机_8",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_2",
+              "points": 10
+            },
+            {
+              "time": "20:33:29/20",
+              "killer": "机器狗_21",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_5",
+              "points": 20
+            },
+            {
+              "time": "20:33:30/50",
+              "killer": "机器狗_21",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "“山猫”无人车_0",
+              "points": 50
+            },
+            {
+              "time": "20:33:31/20",
+              "killer": "机器狗_21",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_7",
+              "points": 20
+            },
+            {
+              "time": "20:33:31/20",
+              "killer": "机器狗_21",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_10",
+              "points": 20
+            },
+            {
+              "time": "20:33:46/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_19",
+              "points": 100
+            },
+            {
+              "time": "20:33:48/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_1",
+              "points": 100
+            },
+            {
+              "time": "20:33:49/20",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_11",
+              "points": 20
+            },
+            {
+              "time": "20:33:49/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_20",
+              "points": 100
+            },
+            {
+              "time": "20:33:50/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_24",
+              "points": 100
+            },
+            {
+              "time": "20:33:50/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_6",
+              "points": 100
+            },
+            {
+              "time": "20:33:51/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_8",
+              "points": 100
+            },
+            {
+              "time": "20:34:03/20",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_8",
+              "points": 20
+            },
+            {
+              "time": "20:34:03/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_15",
+              "points": 100
+            },
+            {
+              "time": "20:34:50/90",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "轮式无人车_0",
+              "points": 50
+            },
+            {
+              "time": "20:34:53/90",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "轮式无人车_2",
+              "points": 50
+            },
+            {
+              "time": "20:34:57/90",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "轮式无人车_3",
+              "points": 50
+            },
+            {
+              "time": "20:35:20/10",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_10",
+              "points": 10
+            },
+            {
+              "time": "20:35:20/100",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_11",
+              "points": 100
+            },
+            {
+              "time": "20:35:20/20",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_9",
+              "points": 20
+            },
+            {
+              "time": "20:35:20/20",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_4",
+              "points": 20
+            },
+            {
+              "time": "20:35:28/100",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_13",
+              "points": 100
+            },
+            {
+              "time": "20:35:28/100",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_21",
+              "points": 100
+            },
+            {
+              "time": "20:35:29/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_2",
+              "points": 100
+            },
+            {
+              "time": "20:35:31/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_22",
+              "points": 100
+            },
+            {
+              "time": "20:35:33/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_18",
+              "points": 100
+            },
+            {
+              "time": "20:35:33/20",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_1",
+              "points": 20
+            },
+            {
+              "time": "20:35:34/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_23",
+              "points": 100
+            },
+            {
+              "time": "20:35:34/20",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_0",
+              "points": 20
+            },
+            {
+              "time": "20:35:43/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_4",
+              "points": 100
+            },
+            {
+              "time": "20:35:44/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_25",
+              "points": 100
+            },
+            {
+              "time": "20:35:46/100",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_7",
+              "points": 100
+            },
+            {
+              "time": "20:35:47/20",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_3",
+              "points": 20
+            },
+            {
+              "time": "20:35:47/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_12",
+              "points": 100
+            },
+            {
+              "time": "20:35:55/100",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_16",
+              "points": 100
+            },
+            {
+              "time": "20:35:56/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_9",
+              "points": 100
+            },
+            {
+              "time": "20:35:56/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_5",
+              "points": 100
+            },
+            {
+              "time": "20:35:57/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_3",
+              "points": 100
+            },
+            {
+              "time": "20:36:00/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_10",
+              "points": 100
+            },
+            {
+              "time": "20:36:10/20",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_12",
+              "points": 20
+            },
+            {
+              "time": "20:36:14/20",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_2",
+              "points": 20
+            },
+            {
+              "time": "20:36:23/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_14",
+              "points": 100
+            },
+            {
+              "time": "20:39:54/20",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_6",
+              "points": 20
+            }
+          ],
+          "event_history_prefix_removed": 0,
+          "recorded_event_count": 53
+        }
+      ],
+      "capture": [
+        {
+          "name": "军事基地B",
+          "red": 0,
+          "blue": 4,
+          "percent": 0
+        },
+        {
+          "name": "指挥所",
+          "red": 0,
+          "blue": 0,
+          "percent": 1
+        },
+        {
+          "name": "军事基地A",
+          "red": 0,
+          "blue": 9,
+          "percent": 0
+        }
+      ],
+      "scores": {
+        "red": {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "line": 1268,
+          "kill_score": 1730,
+          "capture_score": 1600,
+          "total": 3330,
+          "breakdown": {
+            "无人机": 90,
+            "士兵": 1400,
+            "机器狗": 100,
+            "轮式无人车": 90,
+            "山猫无人车": 50
+          },
+          "kills": [
+            {
+              "time": "20:32:21/10",
+              "killer": "无人机_7",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_7",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_6",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_17",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_11",
+              "points": 10
+            },
+            {
+              "time": "20:32:31/10",
+              "killer": "无人机_12",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_12",
+              "points": 10
+            },
+            {
+              "time": "20:32:46/10",
+              "killer": "无人机_8",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_8",
+              "points": 10
+            },
+            {
+              "time": "20:32:58/100",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_29",
+              "points": 100
+            },
+            {
+              "time": "20:33:01/100",
+              "killer": "轮式无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_26",
+              "points": 100
+            },
+            {
+              "time": "20:33:09/20",
+              "killer": "轮式无人车_1",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_13",
+              "points": 20
+            },
+            {
+              "time": "20:33:11/100",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_43",
+              "points": 100
+            },
+            {
+              "time": "20:33:12/100",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_39",
+              "points": 100
+            },
+            {
+              "time": "20:33:12/20",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_17",
+              "points": 20
+            },
+            {
+              "time": "20:33:14/100",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_35",
+              "points": 100
+            },
+            {
+              "time": "20:33:16/100",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_47",
+              "points": 100
+            },
+            {
+              "time": "20:33:16/20",
+              "killer": "轮式无人车_3",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_16",
+              "points": 20
+            },
+            {
+              "time": "20:33:19/100",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_38",
+              "points": 100
+            },
+            {
+              "time": "20:33:20/100",
+              "killer": "士兵_21",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_46",
+              "points": 100
+            },
+            {
+              "time": "20:33:25/100",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_30",
+              "points": 100
+            },
+            {
+              "time": "20:33:28/100",
+              "killer": "“山猫”无人车_0",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_34",
+              "points": 100
+            },
+            {
+              "time": "20:33:30/20",
+              "killer": "士兵_8",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_20",
+              "points": 20
+            },
+            {
+              "time": "20:33:31/20",
+              "killer": "轮式无人车_2",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "机器狗_21",
+              "points": 20
+            },
+            {
+              "time": "20:33:52/90",
+              "killer": "士兵_10",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "轮式无人车_4",
+              "points": 50
+            },
+            {
+              "time": "20:33:54/50",
+              "killer": "士兵_16",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "“山猫”无人车_3",
+              "points": 50
+            },
+            {
+              "time": "20:34:03/100",
+              "killer": "士兵_14",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_42",
+              "points": 100
+            },
+            {
+              "time": "20:34:56/100",
+              "killer": "轮式无人车_3",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_28",
+              "points": 100
+            },
+            {
+              "time": "20:35:20/10",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_10",
+              "points": 10
+            },
+            {
+              "time": "20:35:24/100",
+              "killer": "士兵_21",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_45",
+              "points": 100
+            },
+            {
+              "time": "20:35:27/10",
+              "killer": "士兵_13",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "无人机_13",
+              "points": 10
+            },
+            {
+              "time": "20:35:32/10",
+              "killer": "士兵_18",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "无人机_16",
+              "points": 10
+            },
+            {
+              "time": "20:35:53/100",
+              "killer": "士兵_9",
+              "killer_side": "red",
+              "victim_side": "Blue",
+              "victim": "士兵_33",
+              "points": 100
+            }
+          ],
+          "event_history_prefix_removed": 0,
+          "recorded_event_count": 30
+        },
+        "blue": {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "line": 1269,
+          "kill_score": 3030,
+          "capture_score": 1600,
+          "total": 4630,
+          "breakdown": {
+            "无人机": 50,
+            "机器狗": 260,
+            "山猫无人车": 50,
+            "士兵": 2400,
+            "轮式无人车": 270
+          },
+          "kills": [
+            {
+              "time": "20:32:21/10",
+              "killer": "无人机_7",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_7",
+              "points": 10
+            },
+            {
+              "time": "20:32:21/10",
+              "killer": "无人机_7",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_3",
+              "points": 10
+            },
+            {
+              "time": "20:32:22/10",
+              "killer": "机器狗_16",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_0",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_6",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_4",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_17",
+              "points": 10
+            },
+            {
+              "time": "20:32:26/10",
+              "killer": "无人机_6",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_11",
+              "points": 10
+            },
+            {
+              "time": "20:32:31/10",
+              "killer": "无人机_12",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_12",
+              "points": 10
+            },
+            {
+              "time": "20:32:31/10",
+              "killer": "无人机_12",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_1",
+              "points": 10
+            },
+            {
+              "time": "20:32:46/10",
+              "killer": "无人机_8",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_8",
+              "points": 10
+            },
+            {
+              "time": "20:32:46/10",
+              "killer": "无人机_8",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "无人机_2",
+              "points": 10
+            },
+            {
+              "time": "20:33:29/20",
+              "killer": "机器狗_21",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_5",
+              "points": 20
+            },
+            {
+              "time": "20:33:30/50",
+              "killer": "机器狗_21",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "“山猫”无人车_0",
+              "points": 50
+            },
+            {
+              "time": "20:33:31/20",
+              "killer": "机器狗_21",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_7",
+              "points": 20
+            },
+            {
+              "time": "20:33:31/20",
+              "killer": "机器狗_21",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_10",
+              "points": 20
+            },
+            {
+              "time": "20:33:46/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_19",
+              "points": 100
+            },
+            {
+              "time": "20:33:48/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_1",
+              "points": 100
+            },
+            {
+              "time": "20:33:49/20",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_11",
+              "points": 20
+            },
+            {
+              "time": "20:33:49/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_20",
+              "points": 100
+            },
+            {
+              "time": "20:33:50/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_24",
+              "points": 100
+            },
+            {
+              "time": "20:33:50/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_6",
+              "points": 100
+            },
+            {
+              "time": "20:33:51/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_8",
+              "points": 100
+            },
+            {
+              "time": "20:34:03/20",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_8",
+              "points": 20
+            },
+            {
+              "time": "20:34:03/100",
+              "killer": "士兵_42",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_15",
+              "points": 100
+            },
+            {
+              "time": "20:34:50/90",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "轮式无人车_0",
+              "points": 50
+            },
+            {
+              "time": "20:34:53/90",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "轮式无人车_2",
+              "points": 50
+            },
+            {
+              "time": "20:34:57/90",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "轮式无人车_3",
+              "points": 50
+            },
+            {
+              "time": "20:35:20/10",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "Blue",
+              "victim": "无人机_10",
+              "points": 10
+            },
+            {
+              "time": "20:35:20/100",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_11",
+              "points": 100
+            },
+            {
+              "time": "20:35:20/20",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_9",
+              "points": 20
+            },
+            {
+              "time": "20:35:20/20",
+              "killer": "无人机_10",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_4",
+              "points": 20
+            },
+            {
+              "time": "20:35:28/100",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_13",
+              "points": 100
+            },
+            {
+              "time": "20:35:28/100",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_21",
+              "points": 100
+            },
+            {
+              "time": "20:35:29/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_2",
+              "points": 100
+            },
+            {
+              "time": "20:35:31/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_22",
+              "points": 100
+            },
+            {
+              "time": "20:35:33/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_18",
+              "points": 100
+            },
+            {
+              "time": "20:35:33/20",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_1",
+              "points": 20
+            },
+            {
+              "time": "20:35:34/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_23",
+              "points": 100
+            },
+            {
+              "time": "20:35:34/20",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_0",
+              "points": 20
+            },
+            {
+              "time": "20:35:43/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_4",
+              "points": 100
+            },
+            {
+              "time": "20:35:44/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_25",
+              "points": 100
+            },
+            {
+              "time": "20:35:46/100",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_7",
+              "points": 100
+            },
+            {
+              "time": "20:35:47/20",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_3",
+              "points": 20
+            },
+            {
+              "time": "20:35:47/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_12",
+              "points": 100
+            },
+            {
+              "time": "20:35:55/100",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_16",
+              "points": 100
+            },
+            {
+              "time": "20:35:56/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_9",
+              "points": 100
+            },
+            {
+              "time": "20:35:56/100",
+              "killer": "士兵_37",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_5",
+              "points": 100
+            },
+            {
+              "time": "20:35:57/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_3",
+              "points": 100
+            },
+            {
+              "time": "20:36:00/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_10",
+              "points": 100
+            },
+            {
+              "time": "20:36:10/20",
+              "killer": "机器狗_19",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_12",
+              "points": 20
+            },
+            {
+              "time": "20:36:14/20",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_2",
+              "points": 20
+            },
+            {
+              "time": "20:36:23/100",
+              "killer": "士兵_41",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "士兵_14",
+              "points": 100
+            },
+            {
+              "time": "20:39:54/20",
+              "killer": "机器狗_15",
+              "killer_side": "Blue",
+              "victim_side": "red",
+              "victim": "机器狗_6",
+              "points": 20
+            }
+          ],
+          "event_history_prefix_removed": 0,
+          "recorded_event_count": 53
+        }
+      },
+      "unknown_scores": [],
+      "score_packets_complete": true,
+      "complete": true
+    },
+    {
+      "episode": 2,
+      "frames": 53,
+      "last_step": 51,
+      "score_packets": [],
+      "capture": [
+        {
+          "name": "军事基地B",
+          "red": 0,
+          "blue": 0,
+          "percent": 0
+        },
+        {
+          "name": "指挥所",
+          "red": 0,
+          "blue": 32,
+          "percent": 0
+        },
+        {
+          "name": "军事基地A",
+          "red": 0,
+          "blue": 0,
+          "percent": 0
+        }
+      ],
+      "scores": {
+        "red": null,
+        "blue": null
+      },
+      "unknown_scores": [],
+      "score_packets_complete": false,
+      "complete": false
+    }
+  ],
+  "capture": [
+    {
+      "name": "军事基地B",
+      "red": 0,
+      "blue": 0,
+      "percent": 0
+    },
+    {
+      "name": "指挥所",
+      "red": 0,
+      "blue": 32,
+      "percent": 0
+    },
+    {
+      "name": "军事基地A",
+      "red": 0,
+      "blue": 0,
+      "percent": 0
+    }
+  ],
+  "red_score": null,
+  "red_kill_score": null,
+  "red_capture_score": null,
+  "red_breakdown": {},
+  "red_kills": [],
+  "blue_score": null,
+  "blue_kill_score": null,
+  "blue_capture_score": null,
+  "blue_breakdown": {},
+  "blue_kills": []
+}

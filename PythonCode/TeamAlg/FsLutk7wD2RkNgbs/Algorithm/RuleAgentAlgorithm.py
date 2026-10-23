@@ -18,6 +18,7 @@ from .AssaultFormation import AssaultFormation
 from .VehicleFireControl import VehicleFireControl
 from .ColumnAdvance import ColumnAdvance
 from .EntryWaves import EntryWaves
+from .RearCover import RearCover
 
 logger = logging.getLogger(__name__)
 
@@ -71,6 +72,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._vehicle_fire = VehicleFireControl()
         self._column = ColumnAdvance()
         self._entry_waves = EntryWaves()
+        self._rear_cover = RearCover()
         self._opening_column_start = None
         self._frame = None
         self._support = {}
@@ -94,6 +96,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._frame = frame
         self._urban.begin(state)
         self._route.update(state)
+        self._rear_cover.begin(state, self._route)
         self._hq_entry.begin(state, self._route)
         self._uav.prepare_recon(state, self._route)
         objective = self._route.objective(state)
@@ -130,12 +133,23 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         except (TypeError, ValueError):
             return True  # Missing/unknown metadata is not proof of an empty weapon.
 
-    def _engage(self, state, agent, contacts, local):
+    def _local_vehicle_threat(self, state, agent, target):
+        # A local vehicle can threaten a withdrawing unit well beyond the old
+        # 25 m departure filter. A shared report alone cannot enable this rule.
+        return (target.alive and target.hp > 0 and target.team != agent.team
+                and target.entity_type in self.VEHICLES
+                and target.uid in agent.perceived_uids()
+                and self._horizontal(agent.position, target.position) <= VehicleFireControl.ENGAGEMENT_POLICY_CM)
+
+    def _engage(self, state, agent, contacts, local, *, priority_targets=()):
         local_contacts = [enemy for enemy in contacts if enemy.uid in local]
         candidates = local_contacts or contacts
         available = [enemy for enemy in candidates if
                      self._hit_watch.get((agent.uid, enemy.uid), {}).get("retry", -1) <= state.step]
-        target = self._attack_target(agent, available or candidates, local)
+        pool = available or candidates
+        priority = {enemy.uid for enemy in priority_targets}
+        preferred = [enemy for enemy in pool if enemy.uid in priority]
+        target = self._attack_target(agent, preferred or pool, local)
         if target.uid not in local and agent.entity_type in self._urban.GROUND:
             target = self._urban.planned_target(state, agent, contacts) or target
             if not self._urban.shared_fire_allowed(state, agent, target):
@@ -176,16 +190,27 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
 
     def _defend(self, state, agent, obj, contacts, local):
         point = self._route.guard_slot(agent, obj)
+        armor = [enemy for enemy in contacts if self._local_vehicle_threat(state, agent, enemy)]
+        if armor and self._has_ammo(agent):
+            # Judge self-defence from the defender, not the HQ centre. Even a
+            # guard just outside the box must be able to respond before moving.
+            action = self._engage(state, agent, contacts, local, priority_targets=armor)
+            return self._urban.constrain(agent, action, obj, self._route)
         if not self._route.inside_garrison(obj, agent.position):
             return Action.move_at(point)
         threats = [enemy for enemy in contacts if self._horizontal(enemy.position, obj.position) <= 12000]
         if threats and self._has_ammo(agent):
             action = self._engage(state, agent, threats, local)
             return self._urban.constrain(agent, action, obj, self._route)
+        reaction = self._rear_cover.guard_reaction(state, agent, obj, self._route)
+        if reaction is not None:
+            return reaction
         if self._route.enemy_count(state, obj) > 0:
             action = self._urban.search_point(state, agent, obj, self._route)
             return self._urban.constrain(agent, action, obj, self._route)
-        return Action.move_at(point) if self._horizontal(agent.position, point) > 450 else Action.guard_position(point)
+        # The blind-hit response may have moved this unit's reached hold slot.
+        point = self._route.guard_slot(agent, obj)
+        return Action.move_at(point) if self._horizontal(agent.position, point) > 450 else self._rear_cover.scan(state, agent, obj)
 
     def _combat_action(self, state, agent):
         if not agent.alive:
@@ -196,6 +221,9 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             fire = self._vehicle_fire.choose(state, agent)
             if fire is not None:
                 return fire
+            cover = self._rear_cover.choose_vehicle(state, agent, self._route)
+            if cover is not None:
+                return cover
         formation = self._formation.choose(state, agent, self._route)
         if formation is not None:
             return formation
@@ -230,18 +258,19 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         garrison = self._route.garrison_for(state, agent)
         if garrison is not None:
             return self._defend(state, agent, garrison, contacts, local)
+        priority = ()
         if self._route.departing(state, agent):
-            # Do not let distant survivors at the captured HQ pin the entire
-            # column. Armed vehicles can still engage locally seen vehicles
-            # covering the exit, rather than ignoring them beyond 25 metres.
+            # Keep ignoring unrelated distant stragglers, but never discard a
+            # locally detected vehicle solely because it is behind the column.
             objective = self._route.objective(state)
+            priority = [enemy for enemy in contacts if self._local_vehicle_threat(state, agent, enemy)]
+            priority_ids = {enemy.uid for enemy in priority}
             contacts = [enemy for enemy in contacts if
                         self._horizontal(agent.position, enemy.position) <= 2500
-                        or (agent.entity_type in self.VEHICLES and enemy.entity_type in self.VEHICLES
-                            and enemy.uid in local and self._horizontal(agent.position, enemy.position) <= 12000)
+                        or enemy.uid in priority_ids
                         or (objective is not None and self._horizontal(enemy.position, objective.position) <= 18000)]
         if contacts and self._has_ammo(agent):
-            return self._engage(state, agent, contacts, local)
+            return self._engage(state, agent, contacts, local, priority_targets=priority)
         self._fire_watch.pop(agent.uid, None)
         point = self._route.point(state, agent)
         objective = self._route.objective(state)
