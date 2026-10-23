@@ -25,6 +25,26 @@ class AssaultRoute:
         (2534, 28097, 6408), (-6470, 30114, 6425),
         (-17959, 27728, 6425), (-29782, 25170, 6426),
     )
+    # Approach the right edge, pass along the front, then turn back into the
+    # courtyard from the other end. Friendly soldier 136, 20261014_010705
+    # round 1, steps 95-263 supplies these ground positions. The old northern
+    # corner (-40107, 36086) is not part of either ingress corridor.
+    HQ_FRONT = ((-34879, 30436, 6425), (-36235, 30632, 6425),
+                (-36090, 28203, 6425), (-36852, 26177, 6425),
+                (-40082, 26221, 6425), (-43531, 26968, 6425),
+                (-44927, 26068, 6429), (-45008, 27567, 6429),
+                (-44228, 28395, 6429), (-43891, 29266, 6429),
+                (-43066, 30654, 6429), (-41156, 30883, 6429))
+    # Same-side alternative from friendly dog 361 in the same round, steps
+    # 95-303. These are navigation requests: vehicle traversal of the new
+    # corridor still needs live validation, not a claim about mesh clearance.
+    HQ_FRONT_ALTERNATE = ((-34497, 29404, 6387), (-35084, 28248, 6387),
+                          (-36004, 26175, 6387), (-39469, 26175, 6387),
+                          (-42213, 25438, 6387), (-44132, 25509, 6387),
+                          (-45100, 26121, 6391), (-44993, 26737, 6391),
+                          (-44747, 27883, 6391), (-43938, 29102, 6391),
+                          (-43860, 30336, 6391), (-42834, 30934, 6391),
+                          (-41052, 30988, 6391))
     HQ_B = (
         (-37782, 24389, 6408), (-46037, 15885, 6425),
         (-50063, 5399, 6425), (-49816, -6016, 5943),
@@ -124,7 +144,8 @@ class AssaultRoute:
         self._map_order = self.order
         self._routes = tuple(
             tuple(prefix) + (tuple(float(v) for v in obj.position),)
-            for obj, prefix in zip(ordered, (self.LOWER, self.HQ_B, self.B_A) if self.known_map else [()] * len(ordered))
+            for obj, prefix in zip(ordered, (self.LOWER + self.HQ_FRONT, self.HQ_B, self.B_A)
+                                   if self.known_map else [()] * len(ordered))
         )
         logger.info("统一推进目标顺序: %s 下路坐标匹配=%s", self.order, self.known_map)
 
@@ -153,8 +174,10 @@ class AssaultRoute:
         self._cursor.clear()
         self._adaptive_paths.clear()
         self._waypoint_watch.clear()
-        self._routes = tuple((tuple(float(v) for v in state.key_object_by_uid(uid).position),)
-                             for uid in self.order)
+        self._routes = tuple(
+            (self.LOWER + self.HQ_FRONT if self.known_map and uid == self.hq_uid else ())
+            + (tuple(float(v) for v in state.key_object_by_uid(uid).position),)
+            for uid in self.order)
 
     def _select(self, state, *, next_objective=False):
         if self._strategy is None:
@@ -184,13 +207,18 @@ class AssaultRoute:
         end = (len(self.LOWER) - 1, len(self.LOWER) + len(self.HQ_B) - 1,
                len(corridor) - 1)[destination]
         target = self._routes[leg][-1]
-        if self.distance(agent.position, target) <= (15000 if destination == 0 else self.GARRISON_CORE):
+        if destination == 0 and self.distance(agent.position, self.HQ_FRONT[-1]) <= 1800:
+            path = (target,)
+        elif destination == 0 and self.distance(agent.position, target) <= 18000:
+            path = self.HQ_FRONT + (target,)
+        elif destination != 0 and self.distance(agent.position, target) <= self.GARRISON_CORE:
             path = (target,)
         else:
             start = 1 if agent.position[1] < 26000 and agent.position[0] > 50000 else min(
                 range(len(corridor)), key=lambda i: self.distance(agent.position, corridor[i]))
             indices = range(start, end + 1) if start <= end else range(start, end - 1, -1)
-            path = tuple(corridor[i] for i in indices) + (target,)
+            path = (tuple(corridor[i] for i in indices)
+                    + (self.HQ_FRONT if destination == 0 else ()) + (target,))
         self._adaptive_paths[key] = path
         return path
 
@@ -465,12 +493,22 @@ class AssaultRoute:
     def objective(self, state):
         return state.key_object_by_uid(self.order[self.stage]) if self.order else None
 
-    def point(self, state, agent):
+    def join_hq_front(self, agent, *, completed=False):
+        """Hand off the entrance cursor without returning to the lower road."""
+        leg = self.order.index(self.hq_uid)
+        route = self._route_for(agent, leg)
+        front = [i for i, point in enumerate(route) if point in self.HQ_FRONT]
+        index = (len(route) - 1 if completed or not front else
+                 min(front, key=lambda i: self.distance(agent.position, route[i])))
+        self._cursor[agent.uid] = (leg, index)
+        self._waypoint_watch.pop(agent.uid, None)
+
+    def point(self, state, agent, *, ignore_garrison=False):
         """Rear units finish the approach even after the front captures HQ."""
         if not self.order:
             return None
         garrison = self.garrison_for(state, agent)
-        if garrison is not None:
+        if garrison is not None and not ignore_garrison:
             return tuple(float(v) for v in garrison.position)
         position = agent.position
         if agent.uid not in self._cursor:
@@ -500,7 +538,10 @@ class AssaultRoute:
         route = self._route_for(agent, leg)
         # Combat may carry a unit past a waypoint. Rejoin at an actually
         # reached later point instead of ordering it back down the road.
+        ingress = self.known_map and self.order[leg] == self.hq_uid
+        front = {i for i, point in enumerate(route) if point in self.HQ_FRONT}
         later = [i for i in range(index + 1, len(route))
+                 if (not ingress or i not in front and i != len(route) - 1)
                  if self.distance(position, route[i]) <= self.ARRIVAL]
         if later:
             index = max(later)
@@ -508,14 +549,18 @@ class AssaultRoute:
             leg += 1
             route = self._route_for(agent, leg)
             index = min(range(len(route)), key=lambda i: self.distance(position, route[i]))
-        while self.distance(position, route[index]) <= self.ARRIVAL:
+            front = {i for i, point in enumerate(route) if point in self.HQ_FRONT}
+        arrival = (1200 if 'Vehicle' in agent.entity_type else 650) if index in front else self.ARRIVAL
+        while self.distance(position, route[index]) <= arrival:
             if index + 1 < len(route):
                 index += 1
             elif leg < self.stage:
                 leg, index = leg + 1, 0
                 route = self._route_for(agent, leg)
+                front = {i for i, point in enumerate(route) if point in self.HQ_FRONT}
             else:
                 break
+            arrival = (1200 if 'Vehicle' in agent.entity_type else 650) if index in front else self.ARRIVAL
         # Intermediate road samples are not objectives. A unit stuck 18-20m
         # from a 16m arrival gate must not retry that sample all match. Only
         # relax a nearby transit waypoint after repeated failed approaches;
@@ -531,7 +576,10 @@ class AssaultRoute:
                 watch = (key, watch[1], watch[2] + 1, state.step)
             self._waypoint_watch[agent.uid] = watch
             if watch[2] >= self.WAYPOINT_STALL_CALLS:
-                nearby = [i for i in range(index, len(route) - 1)
+                # Once on the entrance, advance only one corner on timeout.
+                # Never jump across the entire return leg toward the centre.
+                nearby = [i for i in (range(index, index + 1) if index in front
+                                      else range(index, len(route) - 1))
                           if self.distance(position, route[i]) <= self.BYPASS_RADIUS]
                 if nearby:
                     old_index, index = index, max(nearby) + 1

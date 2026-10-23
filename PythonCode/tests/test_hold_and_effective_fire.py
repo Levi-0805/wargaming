@@ -21,7 +21,10 @@ def test_guards_outside_capture_core_return_before_main_force_departs():
     for guard, action in zip(guards, actions):
         if guard.uid in rule._route._garrison:
             assert action.command == "Moving"
-            assert AssaultRoute.distance(action.points, objects[0].position) < 2500
+            # Contested HQ guards outside the courtyard must use the same
+            # entrance as the main force, not a direct cut to a central slot.
+            assert action.points in AssaultRoute.HQ_FRONT
+            assert rule._hq_entry.pending(state(guards, objectives=objects, step=5), guard, rule._route)
     for guard in guards:
         guard.position[1] -= 7000
     rule.act(state(guards, objectives=objects, step=6))

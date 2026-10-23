@@ -1,0 +1,353 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261014_010705\\protocol.jsonl",
+  "source_bytes": 170971087,
+  "source_sha256": "0d1f465e99fbfaf6b7e04f0ab5cf0194cd715659a62ea6856dcdffb39ab5861f",
+  "parent_commit": "5c7f88a8fe1d1a3d529f0482a87ac77e43c4ccd9",
+  "paths": [
+    {
+      "episode": 1,
+      "uid": 136,
+      "type": "BP_BaseSoldier_C",
+      "samples": [
+        {
+          "requested": [
+            -34879,
+            30436,
+            6425
+          ],
+          "observed_step": 95,
+          "observed_xyz": [
+            -34878.53,
+            30436.29,
+            6425.494
+          ]
+        },
+        {
+          "requested": [
+            -36235,
+            30632,
+            6425
+          ],
+          "observed_step": 97,
+          "observed_xyz": [
+            -36235,
+            30631.55,
+            6425.494
+          ]
+        },
+        {
+          "requested": [
+            -36090,
+            28203,
+            6425
+          ],
+          "observed_step": 108,
+          "observed_xyz": [
+            -36090.17,
+            28202.61,
+            6425.494
+          ]
+        },
+        {
+          "requested": [
+            -36852,
+            26177,
+            6425
+          ],
+          "observed_step": 128,
+          "observed_xyz": [
+            -36852.1,
+            26176.52,
+            6425.494
+          ]
+        },
+        {
+          "requested": [
+            -40082,
+            26221,
+            6425
+          ],
+          "observed_step": 150,
+          "observed_xyz": [
+            -40082.5,
+            26220.58,
+            6425.494
+          ]
+        },
+        {
+          "requested": [
+            -43531,
+            26968,
+            6425
+          ],
+          "observed_step": 183,
+          "observed_xyz": [
+            -43530.96,
+            26968.4,
+            6425.494
+          ]
+        },
+        {
+          "requested": [
+            -44927,
+            26068,
+            6429
+          ],
+          "observed_step": 188,
+          "observed_xyz": [
+            -44927.4,
+            26068.18,
+            6429.227
+          ]
+        },
+        {
+          "requested": [
+            -45008,
+            27567,
+            6429
+          ],
+          "observed_step": 221,
+          "observed_xyz": [
+            -45008.11,
+            27566.62,
+            6429.229
+          ]
+        },
+        {
+          "requested": [
+            -44228,
+            28395,
+            6429
+          ],
+          "observed_step": 237,
+          "observed_xyz": [
+            -44228.36,
+            28394.59,
+            6429.228
+          ]
+        },
+        {
+          "requested": [
+            -43891,
+            29266,
+            6429
+          ],
+          "observed_step": 242,
+          "observed_xyz": [
+            -43890.65,
+            29265.94,
+            6429.428
+          ]
+        },
+        {
+          "requested": [
+            -43066,
+            30654,
+            6429
+          ],
+          "observed_step": 249,
+          "observed_xyz": [
+            -43066.45,
+            30654.3,
+            6429.426
+          ]
+        },
+        {
+          "requested": [
+            -41156,
+            30883,
+            6429
+          ],
+          "observed_step": 263,
+          "observed_xyz": [
+            -41155.74,
+            30882.85,
+            6429.428
+          ]
+        }
+      ]
+    },
+    {
+      "episode": 1,
+      "uid": 361,
+      "type": "BP_RoboDog_C",
+      "samples": [
+        {
+          "requested": [
+            -34497,
+            29404,
+            6387
+          ],
+          "observed_step": 95,
+          "observed_xyz": [
+            -34497.33,
+            29403.91,
+            6387.494
+          ]
+        },
+        {
+          "requested": [
+            -35084,
+            28248,
+            6387
+          ],
+          "observed_step": 107,
+          "observed_xyz": [
+            -35083.79,
+            28247.86,
+            6387.494
+          ]
+        },
+        {
+          "requested": [
+            -36004,
+            26175,
+            6387
+          ],
+          "observed_step": 128,
+          "observed_xyz": [
+            -36003.86,
+            26175.18,
+            6387.494
+          ]
+        },
+        {
+          "requested": [
+            -39469,
+            26175,
+            6387
+          ],
+          "observed_step": 154,
+          "observed_xyz": [
+            -39468.62,
+            26175.18,
+            6387.494
+          ]
+        },
+        {
+          "requested": [
+            -42213,
+            25438,
+            6387
+          ],
+          "observed_step": 187,
+          "observed_xyz": [
+            -42213.15,
+            25437.5,
+            6387.494
+          ]
+        },
+        {
+          "requested": [
+            -44132,
+            25509,
+            6387
+          ],
+          "observed_step": 198,
+          "observed_xyz": [
+            -44131.52,
+            25509.3,
+            6387.494
+          ]
+        },
+        {
+          "requested": [
+            -45100,
+            26121,
+            6391
+          ],
+          "observed_step": 203,
+          "observed_xyz": [
+            -45100.36,
+            26121.01,
+            6391.228
+          ]
+        },
+        {
+          "requested": [
+            -44993,
+            26737,
+            6391
+          ],
+          "observed_step": 214,
+          "observed_xyz": [
+            -44992.85,
+            26736.76,
+            6391.228
+          ]
+        },
+        {
+          "requested": [
+            -44747,
+            27883,
+            6391
+          ],
+          "observed_step": 215,
+          "observed_xyz": [
+            -44747.36,
+            27883.37,
+            6391.228
+          ]
+        },
+        {
+          "requested": [
+            -43938,
+            29102,
+            6391
+          ],
+          "observed_step": 220,
+          "observed_xyz": [
+            -43938.11,
+            29101.93,
+            6391.428
+          ]
+        },
+        {
+          "requested": [
+            -43860,
+            30336,
+            6391
+          ],
+          "observed_step": 221,
+          "observed_xyz": [
+            -43860.02,
+            30336.19,
+            6391.422
+          ]
+        },
+        {
+          "requested": [
+            -42834,
+            30934,
+            6391
+          ],
+          "observed_step": 283,
+          "observed_xyz": [
+            -42834.01,
+            30934.29,
+            6391.229
+          ]
+        },
+        {
+          "requested": [
+            -41052,
+            30988,
+            6391
+          ],
+          "observed_step": 303,
+          "observed_xyz": [
+            -41051.8,
+            30988.2,
+            6391.229
+          ]
+        }
+      ]
+    }
+  ],
+  "vehicle_z_cm": 6335,
+  "limitations": [
+    "Friendly historical positions establish waypoint provenance, not navigability of every simplified segment.",
+    "No confirmed vehicle traversal of the new return entrance; validate in UE matches.",
+    "World coordinates avoid the old northern bend; screen directions follow user clarification, not a calibrated camera transform."
+  ]
+}

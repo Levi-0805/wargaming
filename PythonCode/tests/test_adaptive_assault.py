@@ -128,7 +128,9 @@ def test_replanning_near_hq_does_not_order_return_to_lower_road():
     route._reorder(state(units, objectives=objects), (objects[1].uid, objects[0].uid, objects[2].uid))
     units[0].position[:] = (objects[0].position[0] + 3000, objects[0].position[1], 0)
     route._reorder(state(units, objectives=objects), (objects[0].uid, objects[1].uid, objects[2].uid))
-    assert route.point(state(units, objectives=objects), units[0]) == tuple(objects[0].position)
+    # A nearby unit still outside the return entrance joins the front-side
+    # corridor; it must neither go back down LOWER nor cut to the HQ centre.
+    assert route.point(state(units, objectives=objects), units[0]) == AssaultRoute.HQ_FRONT[0]
 
 
 def test_confirmed_hq_releases_surplus_after_clear_observations():

@@ -21,7 +21,7 @@ def courtyard_case():
     return soldier, objectives, route, UrbanContact(), HQEntry()
 
 
-def test_facade_oscillation_escalates_despite_shared_target_changes():
+def test_front_entry_starts_immediately_and_recovers_despite_shared_target_changes():
     unit, objects, route, urban, entry = courtyard_case()
     goals = []
     for step in range(30):
@@ -30,13 +30,16 @@ def test_facade_oscillation_escalates_despite_shared_target_changes():
         action = entry.choose(state([unit], [target], objects, step), unit, route, urban, [target])
         if action is not None:
             goals.append(action.points)
-    assert goals and set(goals) == {HQEntry.PATH[0]}
+    assert goals[:HQEntry.WAYPOINT_TRIALS] == [HQEntry.PATH[0]] * HQEntry.WAYPOINT_TRIALS
+    assert unit.uid in entry._alternate
+    assert goals[-1] in HQEntry.ALTERNATE
+    assert all(AssaultRoute.distance(goal, (-40107, 36086)) > 2000 for goal in goals)
 
 
 def test_entrance_cursor_passes_corners_without_returning_to_facade():
     unit, objects, route, urban, entry = courtyard_case()
-    for step in range(19):
-        action = entry.choose(state([unit], objectives=objects, step=step), unit, route, urban, [])
+    step = 0
+    action = entry.choose(state([unit], objectives=objects, step=step), unit, route, urban, [])
     visited = []
     while action is not None:
         assert action.points not in visited
@@ -49,37 +52,40 @@ def test_entrance_cursor_passes_corners_without_returning_to_facade():
     assert entry.choose(state([unit], objectives=objects, step=step+30), unit, route, urban, []) is None
 
 
-def test_entry_waypoints_keep_existing_hq_guards_in_hold_area():
+def test_front_entry_returns_existing_hq_guard_to_an_inside_hold_slot():
     unit, objects, route, urban, entry = courtyard_case()
     objects[0].raw.update(percent=1, redTeamNum=10)
     route.update(state([unit], objectives=objects, step=1))
     assert route.garrison_for(state([unit], objectives=objects), unit) is not None
-    assert all(route.inside_garrison(objects[0], p) for p in HQEntry.PATH)
-    for step in range(1, 21):
-        action = entry.choose(state([unit], objectives=objects, step=step), unit, route, urban, [])
+    # Entering the courtyard requires a temporary trip along the front edge;
+    # the completed route must still leave a valid holding position.
+    assert any(not route.inside_garrison(objects[0], p) for p in HQEntry.PATH)
+    step = 1
+    action = entry.choose(state([unit], objectives=objects, step=step), unit, route, urban, [])
     while action is not None:
         unit.position[:] = action.points
         step += 1
         action = entry.choose(state([unit], objectives=objects, step=step), unit, route, urban, [])
     assert route.guard_slot(unit, objects[0]) == tuple(unit.position)
+    assert route.inside_garrison(objects[0], route.guard_slot(unit, objects[0]))
+    assert unit.uid in entry._completed
 
 
 def test_effective_ground_fire_pauses_entry_without_restarting_cursor():
     unit, objects, route, urban, entry = courtyard_case()
     enemy = entity(20, 1, 0, -38000, 33000)
-    for step in range(19):
-        action = entry.choose(state([unit], [enemy], objects, step), unit, route, urban, [enemy])
+    action = entry.choose(state([unit], [enemy], objects, 0), unit, route, urban, [enemy])
     unit.position[:] = action.points
-    s = state([unit], [enemy], objects, 19)
+    s = state([unit], [enemy], objects, 1)
     entry.choose(s, unit, route, urban, [enemy])
     urban.begin(s)
     urban.record(s, unit, Action.attack(enemy))
     unit.raw['interaction'] = ['249']
     enemy.hp = 90
-    s = state([unit], [enemy], objects, 20)
+    s = state([unit], [enemy], objects, 2)
     urban.begin(s)
     assert entry.choose(s, unit, route, urban, [enemy]) is None
-    later = entry.choose(state([unit], [enemy], objects, 24), unit, route, urban, [enemy])
+    later = entry.choose(state([unit], [enemy], objects, 6), unit, route, urban, [enemy])
     assert later.points == HQEntry.PATH[1]
 
 

@@ -94,6 +94,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._frame = frame
         self._urban.begin(state)
         self._route.update(state)
+        self._hq_entry.begin(state, self._route)
         self._uav.prepare_recon(state, self._route)
         objective = self._route.objective(state)
         surveyed = self._uav.recon_status(state, objective)['ready'] if objective is not None else False
@@ -219,6 +220,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
                                      allow_contact_override=self.enable_forced_entry_under_contact)
         if entry is not None:
             return entry
+        if self._hq_entry.pending(state, agent, self._route):
+            # A provisional garrison label must not cut across the facade,
+            # including after the bounded entrance retry budget is exhausted.
+            if contacts and self._has_ammo(agent):
+                return self._engage(state, agent, contacts, local)
+            if agent.uid in self._hq_entry._exhausted:
+                return Action.move_at(self._route.point(state, agent, ignore_garrison=True))
         garrison = self._route.garrison_for(state, agent)
         if garrison is not None:
             return self._defend(state, agent, garrison, contacts, local)
@@ -316,7 +324,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             self._hq_entry._watch.pop(agent.uid, None)
         garrison = self._route.garrison_for(state, agent)
         if (garrison is not None and result.command == "Moving"
-                and self._route.inside_garrison(garrison, agent.position)):
+                and self._route.inside_garrison(garrison, agent.position)
+                and not self._hq_entry.pending(state, agent, self._route)):
             result = self._urban.constrain(agent, result, garrison, self._route)
         self._urban.record(state, agent, result)
         self._formation.record(state, agent, result, self._route)
