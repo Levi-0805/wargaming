@@ -26,12 +26,16 @@ class VehicleFireControl:
     RETRY_STEPS = 8
     LEGACY_GENERIC_RANGE_CM = 1000.0
     ENGAGEMENT_POLICY_CM = 15000.0
+    ADVANCE_SHOTS = 4
+    ADVANCE_STEPS = 16
+    ADVANCE_DISTANCE_CM = 2000.0
 
     def __init__(self):
         self._frame = None
         self._results = {}
         self._aimed = {}
         self._shots = {}
+        self._progress = {}
 
     @classmethod
     def fire_range(cls, agent):
@@ -100,12 +104,48 @@ class VehicleFireControl:
         if self._frame is None or frame[0] != self._frame[0] or frame[1] < self._frame[1]:
             self._aimed.clear()
             self._shots.clear()
+            self._progress.clear()
         self._frame = frame
         self._results.clear()
         self._shots = {key: value for key, value in self._shots.items()
                        if state.step - value["step"] <= 64}
 
-    def choose(self, state, agent):
+    def advancing(self, state, agent):
+        watch = self._progress.get(agent.uid)
+        return watch is not None and watch.get("until", -1) > state.step
+
+    def _advance_after_failed_fire(self, state, agent):
+        """Bound failures across targets, not just each individual target.
+
+        Enabled by the caller only inside contested B. Navigation owns the
+        actual waypoint; stop suppressing fire after 20 m or sixteen steps.
+        This does not assert line of sight or authorize fire at shared targets.
+        """
+        position = tuple(float(v) for v in agent.position[:2])
+        watch = self._progress.setdefault(agent.uid, {"failed": 0, "until": -1, "origin": position})
+        if watch["until"] < 0 and math.dist(position, watch["origin"]) >= self.ADVANCE_DISTANCE_CM:
+            watch.update(failed=0, origin=position)
+        previous = watch.pop("shot", None)
+        if previous is not None:
+            step, uid, old_ammo, old_hp = previous
+            target, ammo = state.entity_by_uid(uid), self.ammo(agent)
+            effective = (state.step == step + 1 and target is not None
+                         and uid in agent.perceived_uids() and old_ammo is not None
+                         and ammo is not None and ammo < old_ammo and float(target.hp) < old_hp)
+            watch["failed"] = 0 if effective else watch["failed"] + 1
+        if watch["until"] >= 0:
+            moved = math.dist(position, watch["origin"])
+            if state.step < watch["until"] and moved < self.ADVANCE_DISTANCE_CM:
+                return True
+            watch.update(failed=0, until=-1, origin=position)
+        if watch["failed"] >= self.ADVANCE_SHOTS:
+            watch.update(until=state.step + self.ADVANCE_STEPS,
+                         origin=position)
+            self._aimed.pop(agent.uid, None)
+            return True
+        return False
+
+    def choose(self, state, agent, *, advance_on_stall=False):
         """Return aim/fire/stop-fire action, or None to continue the route.
 
         A failed burst is followed by one Guard request, then route movement can
@@ -114,7 +154,16 @@ class VehicleFireControl:
         self._begin(state)
         if agent.uid in self._results:
             return self._results[agent.uid]
-        action = self._choose(state, agent)
+        advance_on_stall = (advance_on_stall and agent.alive and agent.hp > 0
+                            and agent.communication_ok() is not False and self.ammo(agent) != 0)
+        if not advance_on_stall:
+            self._progress.pop(agent.uid, None)
+        moving = advance_on_stall and self._advance_after_failed_fire(state, agent)
+        action = None if moving else self._choose(state, agent)
+        if advance_on_stall and action is not None and action.command == "NormalAttacking":
+            target = state.entity_by_uid(action.target_uid)
+            self._progress[agent.uid]["shot"] = (
+                state.step, target.uid, self.ammo(agent), float(target.hp))
         self._results[agent.uid] = action
         return action
 

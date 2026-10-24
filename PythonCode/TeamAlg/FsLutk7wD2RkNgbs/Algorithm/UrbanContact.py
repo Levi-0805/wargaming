@@ -192,8 +192,10 @@ class UrbanContact:
             return existing
         sweep = self._sweeps.get(agent.uid)
         first_probe = sweep is None or sweep[0] != objective.uid
+        inward = route.is_base_b(objective)
         candidates = [(k, p) for k, (p, _) in self._positions.items()
                       if first_probe
+                      and not inward
                       and route.inside_garrison(objective, p)
                       and abs(p[2] - agent.position[2]) < 600
                       and 1200 < AssaultRoute.distance(agent.position, p) < 8000
@@ -212,8 +214,24 @@ class UrbanContact:
         points = self._clearance_points(agent, objective, route)
         cursor = self._sweeps[agent.uid][1]
         if cursor is None:
-            cursor = min(range(len(points)), key=lambda i: (
-                route.distance(agent.position, points[i]), (i - agent.team_index) % len(points)))
+            if inward:
+                # In B the nearest friendly positions and the old 80% ring
+                # kept cars at the same outer corner. Start at distinct inner
+                # sectors, then alternate inner/outer views instead of circling.
+                inner = sorted(range(0, len(points), 2), key=lambda i: (
+                    route.distance(agent.position, points[i]), i))
+                start = agent.team_index % min(3, len(inner))
+                choices = inner[start:] + inner[:start]
+                # Team indices can share the same remainder. Allocate against
+                # the already issued plans as well, so those cars do not all
+                # receive one identical inner destination.
+                cursor = min(choices, key=lambda i: sum(
+                    uid != agent.uid and state.step < plan[2]
+                    and route.distance(points[i], plan[1]) < 600
+                    for uid, plan in self._plans.items()))
+            else:
+                cursor = min(range(len(points)), key=lambda i: (
+                    route.distance(agent.position, points[i]), (i - agent.team_index) % len(points)))
         else:
             cursor = (cursor + (1 if agent.team_index % 2 else -1)) % len(points)
         self._sweeps[agent.uid] = (objective.uid, cursor)
@@ -229,9 +247,10 @@ class UrbanContact:
                    (-1, 0), (-1, -1), (0, -1), (1, -1))
         points = []
         for x, y in offsets:
-            x, y = x * extent[0] * .8, y * extent[1] * .8
-            point = (objective.position[0] + x * math.cos(yaw) - y * math.sin(yaw),
-                     objective.position[1] + x * math.sin(yaw) + y * math.cos(yaw),
-                     float(agent.position[2]))
-            points.append(route.clamp_guard_point(objective, point))
+            for radius in ((.3, .8) if route.is_base_b(objective) else (.8,)):
+                dx, dy = x * extent[0] * radius, y * extent[1] * radius
+                point = (objective.position[0] + dx * math.cos(yaw) - dy * math.sin(yaw),
+                         objective.position[1] + dx * math.sin(yaw) + dy * math.cos(yaw),
+                         float(agent.position[2]))
+                points.append(route.clamp_guard_point(objective, point))
         return points

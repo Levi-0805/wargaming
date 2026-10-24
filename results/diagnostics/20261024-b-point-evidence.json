@@ -1,0 +1,1309 @@
+{
+  "parent_commit": "65fa9d3bc5cf8b2e969bd214e7272d07cc706ef5",
+  "scope": "B, explicitly confirmed by the user after the screenshot label was checked",
+  "limitations": [
+    "Screenshot is not bound to a particular recording.",
+    "Source commits are not inferred from timestamps; command equivalence is reported separately.",
+    "Historical observations do not predict new navigation, casualties or scores."
+  ],
+  "runs": [
+    {
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261024_143219\\protocol.jsonl",
+      "source_bytes": 73389134,
+      "source_sha256": "544013a08edda3fd28109dbff370fe39a05db129fe3b85c416a12a8701489015",
+      "source_commit": null,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "score": {
+            "kill_score": 1320,
+            "capture_score": 1600,
+            "total": 2920
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 100,
+              "red_foot": 35,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 103,
+              "red_foot": 35,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 28,
+                  "blue": 7,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 163,
+              "red_foot": 17,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 17,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 163,
+              "red_foot": 17,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 17,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 224,
+              "red_foot": 17,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "episode": 2,
+          "complete": false,
+          "score": null,
+          "frames": 30,
+          "first": {}
+        }
+      ]
+    },
+    {
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261024_115953\\protocol.jsonl",
+      "source_bytes": 215514937,
+      "source_sha256": "cd355ab875ce7723e9d85ce9613b5d26e8820d72204c34d45819c4fc193d0f6a",
+      "source_commit": null,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "score": {
+            "kill_score": 2790,
+            "capture_score": 3200,
+            "total": 5990
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 105,
+              "red_foot": 37,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 17,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 109,
+              "red_foot": 36,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 29,
+                  "blue": 15,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 196,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 16,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 196,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 16,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 275,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 0.1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_enemy_free": {
+              "step": 275,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 0.1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 277,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 13,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_secure": {
+              "step": 277,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 13,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "A_entry": {
+              "step": 352,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 6,
+                  "blue": 0,
+                  "percent": 0.4
+                }
+              }
+            },
+            "A_enemy_free": {
+              "step": 352,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 6,
+                  "blue": 0,
+                  "percent": 0.4
+                }
+              }
+            },
+            "A_full_bar": {
+              "step": 353,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                }
+              }
+            },
+            "A_secure": {
+              "step": 353,
+              "red_foot": 16,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                }
+              }
+            }
+          }
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "score": {
+            "kill_score": 1460,
+            "capture_score": 2400,
+            "total": 3860
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 104,
+              "red_foot": 36,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 3,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 108,
+              "red_foot": 33,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 16,
+                  "blue": 1,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 114,
+              "red_foot": 33,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 30,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 114,
+              "red_foot": 33,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 30,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 165,
+              "red_foot": 26,
+              "objectives": {
+                "B": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 0.25
+                },
+                "HQ": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "B_enemy_free": {
+              "step": 165,
+              "red_foot": 26,
+              "objectives": {
+                "B": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 0.25
+                },
+                "HQ": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 167,
+              "red_foot": 26,
+              "objectives": {
+                "B": {
+                  "red": 16,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "B_secure": {
+              "step": 167,
+              "red_foot": 26,
+              "objectives": {
+                "B": {
+                  "red": 16,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "A_entry": {
+              "step": 214,
+              "red_foot": 26,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 3,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "A_full_bar": {
+              "step": 221,
+              "red_foot": 20,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 18,
+                  "blue": 15,
+                  "percent": 1
+                }
+              }
+            }
+          }
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "score": {
+            "kill_score": 1850,
+            "capture_score": 1600,
+            "total": 3450
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 105,
+              "red_foot": 37,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 105,
+              "red_foot": 37,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 107,
+              "red_foot": 37,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 15,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 107,
+              "red_foot": 37,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 15,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 174,
+              "red_foot": 37,
+              "objectives": {
+                "B": {
+                  "red": 3,
+                  "blue": 8,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 179,
+              "red_foot": 36,
+              "objectives": {
+                "B": {
+                  "red": 11,
+                  "blue": 8,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "episode": 4,
+          "complete": false,
+          "score": null,
+          "frames": 66,
+          "first": {}
+        }
+      ]
+    }
+  ],
+  "recorded_b_samples": [
+    {
+      "step": 210,
+      "B": {
+        "pos": [
+          -45450.42,
+          -30944.82,
+          5531.02
+        ],
+        "red": 0,
+        "blue": 10,
+        "percent": 0
+      },
+      "red_foot": 17,
+      "vehicles": [
+        {
+          "uid": 461,
+          "alive": true,
+          "hp": 96.681,
+          "pos": [
+            -52356.08,
+            -23337.91,
+            5520.11
+          ],
+          "ammo": 84.0,
+          "perception": [
+            334,
+            416,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5519.15380859375];461"
+        },
+        {
+          "uid": 466,
+          "alive": true,
+          "hp": 84.937,
+          "pos": [
+            -53059.95,
+            -23065.9,
+            5520.11
+          ],
+          "ammo": 126.0,
+          "perception": [
+            334,
+            441,
+            416,
+            46,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-52361.2890625, -23145.80078125, 5520.10986328125];466"
+        },
+        {
+          "uid": 491,
+          "alive": true,
+          "hp": 10.4,
+          "pos": [
+            -53264.87,
+            -22833.39,
+            5520.11
+          ],
+          "ammo": 44.0,
+          "perception": [
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5520.10986328125];491"
+        }
+      ]
+    },
+    {
+      "step": 214,
+      "B": {
+        "pos": [
+          -45450.42,
+          -30944.82,
+          5531.02
+        ],
+        "red": 0,
+        "blue": 10,
+        "percent": 0
+      },
+      "red_foot": 17,
+      "vehicles": [
+        {
+          "uid": 461,
+          "alive": true,
+          "hp": 96.681,
+          "pos": [
+            -52356.08,
+            -23337.91,
+            5520.11
+          ],
+          "ammo": 84.0,
+          "perception": [
+            334,
+            416,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5519.15380859375];461"
+        },
+        {
+          "uid": 466,
+          "alive": true,
+          "hp": 84.937,
+          "pos": [
+            -53028.74,
+            -23050.14,
+            5520.11
+          ],
+          "ammo": 126.0,
+          "perception": [
+            334,
+            441,
+            416,
+            46,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-52361.2890625, -23145.80078125, 5520.10986328125];466"
+        },
+        {
+          "uid": 491,
+          "alive": true,
+          "hp": 10.4,
+          "pos": [
+            -52525.74,
+            -22997.83,
+            5520.11
+          ],
+          "ammo": 44.0,
+          "perception": [],
+          "action": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5520.10986328125];491"
+        }
+      ]
+    },
+    {
+      "step": 220,
+      "B": {
+        "pos": [
+          -45450.42,
+          -30944.82,
+          5531.02
+        ],
+        "red": 0,
+        "blue": 10,
+        "percent": 0
+      },
+      "red_foot": 17,
+      "vehicles": [
+        {
+          "uid": 461,
+          "alive": true,
+          "hp": 96.681,
+          "pos": [
+            -52356.08,
+            -23337.91,
+            5520.11
+          ],
+          "ammo": 84.0,
+          "perception": [
+            334,
+            416,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5519.15380859375];461"
+        },
+        {
+          "uid": 466,
+          "alive": true,
+          "hp": 84.937,
+          "pos": [
+            -53082.65,
+            -23041.22,
+            5520.11
+          ],
+          "ammo": 126.0,
+          "perception": [
+            334,
+            441,
+            416,
+            46,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-52361.2890625, -23145.80078125, 5520.10986328125];466"
+        },
+        {
+          "uid": 491,
+          "alive": true,
+          "hp": 10.4,
+          "pos": [
+            -52517.78,
+            -22996.05,
+            5632.89
+          ],
+          "ammo": 44.0,
+          "perception": [],
+          "action": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5520.10986328125];491"
+        }
+      ]
+    },
+    {
+      "step": 224,
+      "B": {
+        "pos": [
+          -45450.42,
+          -30944.82,
+          5531.02
+        ],
+        "red": 1,
+        "blue": 10,
+        "percent": 0
+      },
+      "red_foot": 17,
+      "vehicles": [
+        {
+          "uid": 461,
+          "alive": true,
+          "hp": 96.681,
+          "pos": [
+            -52356.08,
+            -23337.91,
+            5520.11
+          ],
+          "ammo": 84.0,
+          "perception": [
+            334,
+            416,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5519.15380859375];461"
+        },
+        {
+          "uid": 466,
+          "alive": true,
+          "hp": 84.937,
+          "pos": [
+            -52987.22,
+            -23051.6,
+            5520.11
+          ],
+          "ammo": 126.0,
+          "perception": [
+            334,
+            441,
+            416,
+            46,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-52361.2890625, -23145.80078125, 5520.10986328125];466"
+        },
+        {
+          "uid": 491,
+          "alive": true,
+          "hp": 10.4,
+          "pos": [
+            -52626.71,
+            -22985.09,
+            5634.02
+          ],
+          "ammo": 44.0,
+          "perception": [
+            66,
+            451
+          ],
+          "action": "ActionSet2::NormalAttacking;451;491"
+        }
+      ]
+    },
+    {
+      "step": 230,
+      "B": {
+        "pos": [
+          -45450.42,
+          -30944.82,
+          5531.02
+        ],
+        "red": 9,
+        "blue": 10,
+        "percent": 0
+      },
+      "red_foot": 17,
+      "vehicles": [
+        {
+          "uid": 461,
+          "alive": true,
+          "hp": 96.681,
+          "pos": [
+            -50194.93,
+            -25626.6,
+            5523.54
+          ],
+          "ammo": 84.0,
+          "perception": [
+            334,
+            416,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-43836.00007013535, -23846.085056415464, 5520.10986328125];461"
+        },
+        {
+          "uid": 466,
+          "alive": true,
+          "hp": 84.937,
+          "pos": [
+            -52987.22,
+            -23051.6,
+            5520.11
+          ],
+          "ammo": 126.0,
+          "perception": [
+            334,
+            441,
+            416,
+            46,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-52361.2890625, -23145.80078125, 5520.10986328125];466"
+        },
+        {
+          "uid": 491,
+          "alive": true,
+          "hp": 10.4,
+          "pos": [
+            -47411.1,
+            -26396.59,
+            5526.97
+          ],
+          "ammo": 44.0,
+          "perception": [
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-43836.00007013535, -23846.085056415464, 5523.5400390625];491"
+        }
+      ]
+    },
+    {
+      "step": 250,
+      "B": {
+        "pos": [
+          -45450.42,
+          -30944.82,
+          5531.02
+        ],
+        "red": 5,
+        "blue": 9,
+        "percent": 0
+      },
+      "red_foot": 9,
+      "vehicles": [
+        {
+          "uid": 461,
+          "alive": false,
+          "hp": 0,
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "ammo": null,
+          "perception": [],
+          "action": "ActionSet2::Idle;N/A;461"
+        },
+        {
+          "uid": 466,
+          "alive": true,
+          "hp": 84.937,
+          "pos": [
+            -51788.16,
+            -23704.74,
+            5520.11
+          ],
+          "ammo": 126.0,
+          "perception": [
+            334,
+            441,
+            416,
+            46,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5523.5400390625];466"
+        },
+        {
+          "uid": 491,
+          "alive": false,
+          "hp": 0,
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "ammo": null,
+          "perception": [],
+          "action": "ActionSet2::Idle;N/A;491"
+        }
+      ]
+    },
+    {
+      "step": 280,
+      "B": {
+        "pos": [
+          -45450.42,
+          -30944.82,
+          5531.02
+        ],
+        "red": 3,
+        "blue": 8,
+        "percent": 0
+      },
+      "red_foot": 6,
+      "vehicles": [
+        {
+          "uid": 461,
+          "alive": false,
+          "hp": 0,
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "ammo": null,
+          "perception": [],
+          "action": "ActionSet2::Idle;N/A;461"
+        },
+        {
+          "uid": 466,
+          "alive": true,
+          "hp": 80.971,
+          "pos": [
+            -51071.73,
+            -29621.57,
+            5525.87
+          ],
+          "ammo": 126.0,
+          "perception": [
+            334,
+            441,
+            416,
+            46,
+            66
+          ],
+          "action": "ActionSet2::Guard;;Points=[-54943.65973332111, -36251.72477417431, 5525.869140625];466"
+        },
+        {
+          "uid": 491,
+          "alive": false,
+          "hp": 0,
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "ammo": null,
+          "perception": [],
+          "action": "ActionSet2::Idle;N/A;491"
+        }
+      ]
+    }
+  ],
+  "decision_changes_at_210": [
+    {
+      "uid": 461,
+      "position": [
+        -52356.078125,
+        -23337.91015625,
+        5520.10986328125
+      ],
+      "local_eligible": [],
+      "old_goal": [
+        -51714.816123591816,
+        -22054.25426200524,
+        5519.15380859375
+      ],
+      "new_goal": [
+        -47799.56971822192,
+        -27610.85804356447,
+        5519.15380859375
+      ],
+      "old_goal_distance_to_center_m": 108.76,
+      "new_goal_distance_to_center_m": 40.79,
+      "old_command": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5519.15380859375];461",
+      "new_command": "ActionSet2::Guard;;Points=[-47799.56971822192, -27610.85804356447, 5519.15380859375];461"
+    },
+    {
+      "uid": 466,
+      "position": [
+        -53059.94921875,
+        -23065.900390625,
+        5520.10986328125
+      ],
+      "local_eligible": [],
+      "old_goal": [
+        -52361.2890625,
+        -23145.80078125,
+        5520.10986328125
+      ],
+      "new_goal": [
+        -44845.01369817575,
+        -28282.7945914683,
+        5519.283203125
+      ],
+      "old_goal_distance_to_center_m": 104.21,
+      "new_goal_distance_to_center_m": 27.3,
+      "old_command": "ActionSet2::Guard;;Points=[-52361.2890625, -23145.80078125, 5520.10986328125];466",
+      "new_command": "ActionSet2::Guard;;Points=[-44845.01369817575, -28282.7945914683, 5519.283203125];466"
+    },
+    {
+      "uid": 491,
+      "position": [
+        -53264.87109375,
+        -22833.390625,
+        5520.10986328125
+      ],
+      "local_eligible": [],
+      "old_goal": [
+        -51714.816123591816,
+        -22054.25426200524,
+        5520.10986328125
+      ],
+      "new_goal": [
+        -49010.386071870416,
+        -32934.90948562787,
+        5520.10986328125
+      ],
+      "old_goal_distance_to_center_m": 108.76,
+      "new_goal_distance_to_center_m": 40.79,
+      "old_command": "ActionSet2::Guard;;Points=[-51714.816123591816, -22054.25426200524, 5520.10986328125];491",
+      "new_command": "ActionSet2::Guard;;Points=[-49010.386071870416, -32934.90948562787, 5520.10986328125];491"
+    }
+  ]
+}

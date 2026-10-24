@@ -152,6 +152,14 @@ class AssaultRoute:
     def is_hq(self, obj):
         return obj is not None and obj.uid == self.hq_uid
 
+    def is_base_b(self, obj):
+        if obj is None:
+            return False
+        if self.known_map and len(self._map_order) > 1:
+            return obj.uid == self._map_order[1]
+        name = str(obj.raw.get("rSVD1", "")).upper().replace(" ", "")
+        return name in {"B", "BASEB", "军事基地B"}
+
     def owned(self, state, obj):
         friendly, enemy = (("redTeamNum", "blueteamNum") if state.team == 0
                            else ("blueteamNum", "redTeamNum"))

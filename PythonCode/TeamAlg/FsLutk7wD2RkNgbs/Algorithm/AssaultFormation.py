@@ -151,6 +151,7 @@ class AssaultFormation:
             assigned = self.reserve.get(agent.uid)
             holding = state.key_object_by_uid(assigned) if assigned is not None else None
             if (holding is not None and route.owned(state, holding)
+                    and not (route.is_base_b(holding) and route.enemy_count(state, holding) > 0)
                     and AssaultRoute.distance(agent.position, holding.position) <= 22000):
                 return self._guard(agent, holding)
             if (assigned is not None and assigned != obj.uid and distance <= self.RESERVE_LINE

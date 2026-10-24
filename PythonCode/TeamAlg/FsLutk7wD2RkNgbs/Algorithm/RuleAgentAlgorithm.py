@@ -218,9 +218,17 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         if agent.entity_type == self._UAV:
             return self._uav.choose(state, agent, self._route.objective(state), self._route)
         if agent.entity_type in self.VEHICLES:
-            fire = self._vehicle_fire.choose(state, agent)
+            objective = self._route.objective(state)
+            advancing_b = (self._route.hq_secured and self._route.is_base_b(objective)
+                           and self._route.enemy_count(state, objective) > 0
+                           and self._route.inside_garrison(objective, agent.position))
+            fire = self._vehicle_fire.choose(state, agent, advance_on_stall=advancing_b)
             if fire is not None:
                 return fire
+            if advancing_b and self._vehicle_fire.advancing(state, agent):
+                # A dense group must not keep a car cycling failed bursts.
+                # Let the fixed search goal reach navigation and its watchdog.
+                return self._urban.search_point(state, agent, objective, self._route)
             cover = self._rear_cover.choose_vehicle(state, agent, self._route)
             if cover is not None:
                 return cover
