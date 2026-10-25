@@ -1,0 +1,3809 @@
+{
+  "score_definition": "terminal Score[*].SumWorth + Reward",
+  "baseline_commit": "e67160baa8f86a72d8313cbcf91d1dcd3c5f5d7b",
+  "limitation": "Historical results before this repair; no candidate match outcome or counterfactual score.",
+  "batches": [
+    {
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261024_164627\\protocol.jsonl",
+      "source_bytes": 609478369,
+      "source_sha256": "b345396daca92c26a4ae5ab163904a46030f7b4ba6b94201d0799f52b520175f",
+      "source_commit": null,
+      "source_commit_evidence": "No recorded runtime Git binding; replay command equality is reported separately.",
+      "completed": 9,
+      "mean": 3842.222222222222,
+      "median": 3150,
+      "at_least_4000": 4,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "score": {
+            "kill_score": 2610,
+            "capture_score": 0,
+            "total": 2610
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 101,
+              "red_foot": 37,
+              "red_vehicles": [
+                461,
+                481,
+                486,
+                491,
+                496
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 105,
+              "red_foot": 33,
+              "red_vehicles": [
+                461,
+                481,
+                486,
+                491,
+                496
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 28,
+                  "blue": 13,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 0,
+                "blue": 1,
+                "percent": 0
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "uav": 2,
+              "heli": 2
+            },
+            "red_foot": 0,
+            "red_vehicles": [],
+            "blue_alive": {
+              "soldier": 1,
+              "uav": 10,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "score": {
+            "kill_score": 2800,
+            "capture_score": 3200,
+            "total": 6000
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 116,
+              "red_foot": 37,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 5,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 118,
+              "red_foot": 37,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 19,
+                  "blue": 8,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 234,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 28,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 234,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 28,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 286,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 0.2
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_enemy_free": {
+              "step": 286,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 0.2
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 288,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 13,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_secure": {
+              "step": 288,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 13,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "A_entry": {
+              "step": 362,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 17,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 0.2
+                }
+              }
+            },
+            "A_enemy_free": {
+              "step": 362,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 17,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 0.2
+                }
+              }
+            },
+            "A_full_bar": {
+              "step": 364,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 16,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                }
+              }
+            },
+            "A_secure": {
+              "step": 364,
+              "red_foot": 28,
+              "red_vehicles": [
+                981,
+                971,
+                956
+              ],
+              "objectives": {
+                "B": {
+                  "red": 16,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 2,
+                "blue": 0,
+                "percent": 1
+              },
+              "HQ": {
+                "red": 3,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 23,
+                "blue": 0,
+                "percent": 1
+              }
+            },
+            "red_alive": {
+              "soldier": 18,
+              "uav": 2,
+              "dog": 10,
+              "wheel": 3,
+              "heli": 2
+            },
+            "red_foot": 28,
+            "red_vehicles": [
+              981,
+              971,
+              956
+            ],
+            "blue_alive": {
+              "uav": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "score": {
+            "kill_score": 1550,
+            "capture_score": 1600,
+            "total": 3150
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 103,
+              "red_foot": 37,
+              "red_vehicles": [
+                1316,
+                1311,
+                1296,
+                1286,
+                1281
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 8,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 107,
+              "red_foot": 34,
+              "red_vehicles": [
+                1316,
+                1311,
+                1296,
+                1286,
+                1281
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 23,
+                  "blue": 7,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 170,
+              "red_foot": 14,
+              "red_vehicles": [
+                1316,
+                1311,
+                1296,
+                1281
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 14,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 170,
+              "red_foot": 14,
+              "red_vehicles": [
+                1316,
+                1311,
+                1296,
+                1281
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 14,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 224,
+              "red_foot": 14,
+              "red_vehicles": [
+                1316,
+                1311
+              ],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 233,
+              "red_foot": 14,
+              "red_vehicles": [
+                1316,
+                1311
+              ],
+              "objectives": {
+                "B": {
+                  "red": 11,
+                  "blue": 7,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 5,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 9,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 10,
+              "uav": 4,
+              "dog": 4,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 4,
+          "complete": true,
+          "score": {
+            "kill_score": 2780,
+            "capture_score": 1600,
+            "total": 4380
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 114,
+              "red_foot": 34,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 120,
+              "red_foot": 29,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 21,
+                  "blue": 8,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 16,
+                "blue": 1,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 12,
+              "uav": 2,
+              "dog": 4,
+              "heli": 2
+            },
+            "red_foot": 16,
+            "red_vehicles": [],
+            "blue_alive": {
+              "uav": 1,
+              "dog": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 5,
+          "complete": true,
+          "score": {
+            "kill_score": 2140,
+            "capture_score": 0,
+            "total": 2140
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 116,
+              "red_foot": 31,
+              "red_vehicles": [
+                2246
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 21,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 124,
+              "red_foot": 31,
+              "red_vehicles": [
+                2246
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 26,
+                  "blue": 21,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 0,
+                "blue": 8,
+                "percent": 0
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 1,
+              "uav": 2,
+              "heli": 2
+            },
+            "red_foot": 0,
+            "red_vehicles": [
+              2246
+            ],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 4,
+              "dog": 4,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 6,
+          "complete": true,
+          "score": {
+            "kill_score": 1320,
+            "capture_score": 1600,
+            "total": 2920
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 111,
+              "red_foot": 37,
+              "red_vehicles": [
+                2756,
+                2716,
+                2706,
+                2696
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 5,
+                  "blue": 1,
+                  "percent": 0.25
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 113,
+              "red_foot": 37,
+              "red_vehicles": [
+                2756,
+                2716,
+                2706,
+                2696
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 113,
+              "red_foot": 37,
+              "red_vehicles": [
+                2756,
+                2716,
+                2706,
+                2696
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 113,
+              "red_foot": 37,
+              "red_vehicles": [
+                2756,
+                2716,
+                2706,
+                2696
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 174,
+              "red_foot": 33,
+              "red_vehicles": [
+                2716,
+                2706
+              ],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 179,
+              "red_foot": 33,
+              "red_vehicles": [
+                2716,
+                2706
+              ],
+              "objectives": {
+                "B": {
+                  "red": 20,
+                  "blue": 10,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 7,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 10,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "dog": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 12,
+              "uav": 5,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 7,
+          "complete": true,
+          "score": {
+            "kill_score": 2740,
+            "capture_score": 3200,
+            "total": 5940
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 119,
+              "red_foot": 30,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 14,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 123,
+              "red_foot": 30,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 25,
+                  "blue": 14,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 232,
+              "red_foot": 7,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 7,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 232,
+              "red_foot": 7,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 7,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 289,
+              "red_foot": 6,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_enemy_free": {
+              "step": 289,
+              "red_foot": 6,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 298,
+              "red_foot": 6,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_secure": {
+              "step": 298,
+              "red_foot": 6,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "A_entry": {
+              "step": 362,
+              "red_foot": 6,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                }
+              }
+            },
+            "A_enemy_free": {
+              "step": 362,
+              "red_foot": 6,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                }
+              }
+            },
+            "A_full_bar": {
+              "step": 371,
+              "red_foot": 6,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 1
+                }
+              }
+            },
+            "A_secure": {
+              "step": 371,
+              "red_foot": 6,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 1
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "HQ": {
+                "red": 4,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              }
+            },
+            "red_alive": {
+              "soldier": 5,
+              "uav": 2,
+              "dog": 1,
+              "heli": 2
+            },
+            "red_foot": 6,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "uav": 2,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 8,
+          "complete": true,
+          "score": {
+            "kill_score": 2700,
+            "capture_score": 1600,
+            "total": 4300
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 116,
+              "red_foot": 33,
+              "red_vehicles": [
+                3741,
+                3716,
+                3706
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 2,
+                  "blue": 14,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 121,
+              "red_foot": 33,
+              "red_vehicles": [
+                3741,
+                3716,
+                3706
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 19,
+                  "blue": 12,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 1,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 1,
+              "uav": 2,
+              "dog": 1,
+              "wheel": 2,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [
+              3741,
+              3716,
+              3706
+            ],
+            "blue_alive": {
+              "soldier": 1,
+              "uav": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 9,
+          "complete": true,
+          "score": {
+            "kill_score": 1540,
+            "capture_score": 1600,
+            "total": 3140
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 113,
+              "red_foot": 37,
+              "red_vehicles": [
+                4481
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 5,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 117,
+              "red_foot": 37,
+              "red_vehicles": [
+                4481
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 15,
+                  "blue": 4,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 162,
+              "red_foot": 32,
+              "red_vehicles": [
+                4481
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 32,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 162,
+              "red_foot": 32,
+              "red_vehicles": [
+                4481
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 32,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 246,
+              "red_foot": 17,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 14,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 8,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 7,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 7,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 10,
+              "dog": 4,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 10,
+          "complete": false,
+          "score": null,
+          "first": {},
+          "final": {
+            "step": 57,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 0,
+                "blue": 17,
+                "percent": 0
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 2,
+              "soldier": 24,
+              "uav": 1,
+              "dog": 13,
+              "wheel": 4,
+              "heli": 2
+            },
+            "red_foot": 37,
+            "red_vehicles": [
+              4856,
+              4851,
+              4836,
+              4831,
+              4826,
+              4821
+            ],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 22,
+              "uav": 11,
+              "dog": 10,
+              "wheel": 2,
+              "heli": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261024_214306\\protocol.jsonl",
+      "source_bytes": 671399793,
+      "source_sha256": "e24d72ed5208cef27ae4644a9c4813173328caae021bd99485de50e9f20f4486",
+      "source_commit": null,
+      "source_commit_evidence": "No recorded runtime Git binding; replay command equality is reported separately.",
+      "completed": 10,
+      "mean": 3676,
+      "median": 3275.0,
+      "at_least_4000": 2,
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "score": {
+            "kill_score": 1300,
+            "capture_score": 1600,
+            "total": 2900
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 106,
+              "red_foot": 37,
+              "red_vehicles": [
+                461,
+                466,
+                486,
+                491
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 2,
+                  "blue": 1,
+                  "percent": 0.05
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 108,
+              "red_foot": 35,
+              "red_vehicles": [
+                461,
+                466,
+                486,
+                491
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 7,
+                  "blue": 1,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 109,
+              "red_foot": 35,
+              "red_vehicles": [
+                461,
+                466,
+                486,
+                491
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 109,
+              "red_foot": 35,
+              "red_vehicles": [
+                461,
+                466,
+                486,
+                491
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 168,
+              "red_foot": 24,
+              "red_vehicles": [
+                491
+              ],
+              "objectives": {
+                "B": {
+                  "red": 4,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 170,
+              "red_foot": 24,
+              "red_vehicles": [
+                491
+              ],
+              "objectives": {
+                "B": {
+                  "red": 20,
+                  "blue": 9,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 1,
+                "blue": 8,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 0,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 9,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "dog": 1,
+              "heli": 2
+            },
+            "red_foot": 2,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 12,
+              "uav": 2,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "score": {
+            "kill_score": 1330,
+            "capture_score": 1600,
+            "total": 2930
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 109,
+              "red_foot": 37,
+              "red_vehicles": [
+                586,
+                576,
+                551,
+                546,
+                531
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 116,
+              "red_foot": 37,
+              "red_vehicles": [
+                586,
+                576,
+                551,
+                546,
+                531
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 16,
+                  "blue": 7,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 16,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 32,
+                "blue": 1,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 2,
+              "soldier": 21,
+              "uav": 1,
+              "dog": 11,
+              "wheel": 3,
+              "heli": 2
+            },
+            "red_foot": 32,
+            "red_vehicles": [
+              586,
+              576,
+              551,
+              546,
+              531
+            ],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 12,
+              "uav": 4,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "score": {
+            "kill_score": 1420,
+            "capture_score": 1600,
+            "total": 3020
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 110,
+              "red_foot": 36,
+              "red_vehicles": [
+                1236,
+                1231,
+                1201,
+                1186
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 5,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 8,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 114,
+              "red_foot": 36,
+              "red_vehicles": [
+                1236,
+                1231,
+                1201,
+                1186
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 4,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 8,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 467,
+              "red_foot": 3,
+              "red_vehicles": [
+                1231
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 467,
+              "red_foot": 3,
+              "red_vehicles": [
+                1231
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 7,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 9,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 1,
+              "soldier": 3,
+              "heli": 2
+            },
+            "red_foot": 3,
+            "red_vehicles": [
+              1231
+            ],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 11,
+              "uav": 5,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 4,
+          "complete": true,
+          "score": {
+            "kill_score": 2080,
+            "capture_score": 1600,
+            "total": 3680
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 111,
+              "red_foot": 37,
+              "red_vehicles": [
+                1746,
+                1681,
+                1676
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 117,
+              "red_foot": 37,
+              "red_vehicles": [
+                1746,
+                1681,
+                1676
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 23,
+                  "blue": 9,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 171,
+              "red_foot": 27,
+              "red_vehicles": [
+                1746,
+                1681,
+                1676
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 27,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 171,
+              "red_foot": 27,
+              "red_vehicles": [
+                1746,
+                1681,
+                1676
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 27,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 231,
+              "red_foot": 20,
+              "red_vehicles": [
+                1746
+              ],
+              "objectives": {
+                "B": {
+                  "red": 9,
+                  "blue": 7,
+                  "percent": 0.1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 233,
+              "red_foot": 20,
+              "red_vehicles": [
+                1746
+              ],
+              "objectives": {
+                "B": {
+                  "red": 13,
+                  "blue": 7,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 7,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 5,
+              "uav": 3,
+              "dog": 3,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 5,
+          "complete": true,
+          "score": {
+            "kill_score": 1650,
+            "capture_score": 1600,
+            "total": 3250
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 112,
+              "red_foot": 36,
+              "red_vehicles": [
+                2111
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 116,
+              "red_foot": 36,
+              "red_vehicles": [
+                2111
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 13,
+                  "blue": 6,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 174,
+              "red_foot": 33,
+              "red_vehicles": [
+                2111
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 33,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 174,
+              "red_foot": 33,
+              "red_vehicles": [
+                2111
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 33,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 257,
+              "red_foot": 20,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 262,
+              "red_foot": 20,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 15,
+                  "blue": 9,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 399,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 7,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 5,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "heli": 2
+            },
+            "red_foot": 0,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 9,
+              "uav": 1,
+              "dog": 3,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 6,
+          "complete": true,
+          "score": {
+            "kill_score": 1700,
+            "capture_score": 1600,
+            "total": 3300
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 112,
+              "red_foot": 36,
+              "red_vehicles": [
+                2581,
+                2571,
+                2561
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 7,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 2,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 116,
+              "red_foot": 34,
+              "red_vehicles": [
+                2581,
+                2571,
+                2561
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 19,
+                  "blue": 6,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 2,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 131,
+              "red_foot": 13,
+              "red_vehicles": [
+                2581,
+                2571,
+                2561
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 13,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 3,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 131,
+              "red_foot": 13,
+              "red_vehicles": [
+                2581,
+                2571,
+                2561
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 13,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 3,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 193,
+              "red_foot": 9,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 5,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 3,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 9,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 3,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 7,
+              "uav": 3,
+              "dog": 5,
+              "wheel": 2,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 7,
+          "complete": true,
+          "score": {
+            "kill_score": 2540,
+            "capture_score": 2400,
+            "total": 4940
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 114,
+              "red_foot": 33,
+              "red_vehicles": [
+                3251,
+                3236,
+                3191,
+                3181
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 3,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 114,
+              "red_foot": 33,
+              "red_vehicles": [
+                3251,
+                3236,
+                3191,
+                3181
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 3,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 122,
+              "red_foot": 31,
+              "red_vehicles": [
+                3251,
+                3236,
+                3191
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 3,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 122,
+              "red_foot": 31,
+              "red_vehicles": [
+                3251,
+                3236,
+                3191
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 3,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 183,
+              "red_foot": 31,
+              "red_vehicles": [
+                3251
+              ],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 188,
+              "red_foot": 31,
+              "red_vehicles": [
+                3251
+              ],
+              "objectives": {
+                "B": {
+                  "red": 21,
+                  "blue": 10,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "B_enemy_free": {
+              "step": 206,
+              "red_foot": 21,
+              "red_vehicles": [
+                3251
+              ],
+              "objectives": {
+                "B": {
+                  "red": 18,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "B_secure": {
+              "step": 206,
+              "red_foot": 21,
+              "red_vehicles": [
+                3251
+              ],
+              "objectives": {
+                "B": {
+                  "red": 18,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "A_entry": {
+              "step": 256,
+              "red_foot": 21,
+              "red_vehicles": [
+                3251
+              ],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 3,
+                  "blue": 5,
+                  "percent": 0
+                }
+              }
+            },
+            "A_full_bar": {
+              "step": 260,
+              "red_foot": 21,
+              "red_vehicles": [
+                3251
+              ],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 14,
+                  "blue": 5,
+                  "percent": 1
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 1,
+                "blue": 2,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 2,
+              "dog": 2,
+              "heli": 2
+            },
+            "red_foot": 4,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 2,
+              "uav": 2,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 8,
+          "complete": true,
+          "score": {
+            "kill_score": 1330,
+            "capture_score": 1600,
+            "total": 2930
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 111,
+              "red_foot": 37,
+              "red_vehicles": [
+                3756,
+                3716,
+                3701
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 3,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 8,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 114,
+              "red_foot": 37,
+              "red_vehicles": [
+                3756,
+                3716,
+                3701
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 9,
+                  "blue": 1,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 8,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 129,
+              "red_foot": 30,
+              "red_vehicles": [
+                3756,
+                3716,
+                3701
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 27,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 129,
+              "red_foot": 30,
+              "red_vehicles": [
+                3756,
+                3716,
+                3701
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 27,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 199,
+              "red_foot": 15,
+              "red_vehicles": [
+                3716
+              ],
+              "objectives": {
+                "B": {
+                  "red": 8,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 204,
+              "red_foot": 15,
+              "red_vehicles": [],
+              "objectives": {
+                "B": {
+                  "red": 12,
+                  "blue": 10,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 8,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 10,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 12,
+              "uav": 2,
+              "dog": 6,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 9,
+          "complete": true,
+          "score": {
+            "kill_score": 1420,
+            "capture_score": 2400,
+            "total": 3820
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 111,
+              "red_foot": 37,
+              "red_vehicles": [
+                4136,
+                4091,
+                4086
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 6,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 114,
+              "red_foot": 37,
+              "red_vehicles": [
+                4136,
+                4091,
+                4086
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 16,
+                  "blue": 6,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 416,
+              "red_foot": 9,
+              "red_vehicles": [
+                4136,
+                4091
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 416,
+              "red_foot": 9,
+              "red_vehicles": [
+                4136,
+                4091
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 474,
+              "red_foot": 9,
+              "red_vehicles": [
+                4136,
+                4091
+              ],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "B_enemy_free": {
+              "step": 474,
+              "red_foot": 9,
+              "red_vehicles": [
+                4136,
+                4091
+              ],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 476,
+              "red_foot": 9,
+              "red_vehicles": [
+                4136,
+                4091
+              ],
+              "objectives": {
+                "B": {
+                  "red": 6,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            },
+            "B_secure": {
+              "step": 476,
+              "red_foot": 9,
+              "red_vehicles": [
+                4136,
+                4091
+              ],
+              "objectives": {
+                "B": {
+                  "red": 6,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 4,
+                "blue": 0,
+                "percent": 1
+              },
+              "HQ": {
+                "red": 3,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 16,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 1,
+              "soldier": 4,
+              "uav": 1,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 2
+            },
+            "red_foot": 9,
+            "red_vehicles": [
+              4136,
+              4091
+            ],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 11,
+              "uav": 5,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 10,
+          "complete": true,
+          "score": {
+            "kill_score": 2790,
+            "capture_score": 3200,
+            "total": 5990
+          },
+          "first": {
+            "HQ_entry": {
+              "step": 118,
+              "red_foot": 37,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 5,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_full_bar": {
+              "step": 120,
+              "red_foot": 37,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 29,
+                  "blue": 15,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 288,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 30,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "HQ_secure": {
+              "step": 288,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 30,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_entry": {
+              "step": 343,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_enemy_free": {
+              "step": 343,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_full_bar": {
+              "step": 346,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "B_secure": {
+              "step": 346,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              }
+            },
+            "A_entry": {
+              "step": 402,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                }
+              }
+            },
+            "A_enemy_free": {
+              "step": 402,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                }
+              }
+            },
+            "A_full_bar": {
+              "step": 404,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 15,
+                  "blue": 0,
+                  "percent": 1
+                }
+              }
+            },
+            "A_secure": {
+              "step": 404,
+              "red_foot": 30,
+              "red_vehicles": [
+                4601,
+                4581
+              ],
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 15,
+                  "blue": 0,
+                  "percent": 1
+                }
+              }
+            }
+          },
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 2,
+                "blue": 0,
+                "percent": 1
+              },
+              "HQ": {
+                "red": 3,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 23,
+                "blue": 0,
+                "percent": 1
+              }
+            },
+            "red_alive": {
+              "soldier": 20,
+              "uav": 2,
+              "dog": 10,
+              "wheel": 2,
+              "heli": 2
+            },
+            "red_foot": 30,
+            "red_vehicles": [
+              4601,
+              4581
+            ],
+            "blue_alive": {
+              "uav": 2,
+              "heli": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

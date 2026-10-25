@@ -150,6 +150,9 @@ class VehicleFireControl:
 
         A failed burst is followed by one Guard request, then route movement can
         resume. Cooling targets do not pin the vehicle in place indefinitely.
+        ``advance_on_stall`` enables contested-B engagement handling: in that
+        same context a new target can reuse the previous frame's aim direction.
+        Its eligibility and individual failed-burst budget are still checked.
         """
         self._begin(state)
         if agent.uid in self._results:
@@ -159,7 +162,8 @@ class VehicleFireControl:
         if not advance_on_stall:
             self._progress.pop(agent.uid, None)
         moving = advance_on_stall and self._advance_after_failed_fire(state, agent)
-        action = None if moving else self._choose(state, agent)
+        action = None if moving else self._choose(
+            state, agent, reuse_directional_aim=advance_on_stall)
         if advance_on_stall and action is not None and action.command == "NormalAttacking":
             target = state.entity_by_uid(action.target_uid)
             self._progress[agent.uid]["shot"] = (
@@ -167,7 +171,7 @@ class VehicleFireControl:
         self._results[agent.uid] = action
         return action
 
-    def _choose(self, state, agent):
+    def _choose(self, state, agent, *, reuse_directional_aim=False):
         candidates = self.eligible(state, agent)
         if not candidates:
             self._aimed.pop(agent.uid, None)
@@ -201,7 +205,13 @@ class VehicleFireControl:
         signature = (target.uid, aim.direction)
         previous = self._aimed.get(agent.uid)
         self._aimed[agent.uid] = (signature, state.step)
-        if previous is None or previous[0] != signature or state.step - previous[1] > 1:
+        # A local priority change does not undo last frame's directional Guard.
+        # Reuse only an actual direction, never a position-only Guard, and only
+        # across consecutive frames; all current-target checks happened above.
+        same_aim = (previous is not None and (
+            previous[0] == signature or (reuse_directional_aim
+                and aim.points is None and previous[0][1] == aim.direction)))
+        if not same_aim or state.step - previous[1] > 1:
             return aim
         key = (agent.uid, target.uid)
         watch = self._shots.setdefault(key, {"count": 0, "retry": -1})

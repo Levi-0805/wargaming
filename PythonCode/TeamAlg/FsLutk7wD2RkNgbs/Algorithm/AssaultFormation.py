@@ -21,6 +21,7 @@ class AssaultFormation:
     SCREEN_GAP = 3000.0
     RECON_WAIT = 18
     HANDOFF_WAIT = 28
+    FIRE_CONFIRM_TTL = 6
 
     def __init__(self):
         self._frame = None
@@ -99,23 +100,40 @@ class AssaultFormation:
         if obj is None:
             return
         gate = self._gates.setdefault(obj.uid, {'start': None, 'recon': False, 'shots': set(),
-                                               'clear_frames': 0, 'released': False})
+                                               'clear_frames': 0, 'released': False, 'effective': {}})
         gate['recon'] = bool(recon_ready)
+        contested_b = route.hq_secured and route.is_base_b(obj) and route.enemy_count(state, obj) > 0
         for unit in self._active:
             previous = self._pending_fire.get(unit.uid)
             ammo = self._ammo(unit)
             if (previous is not None and previous[0] == obj.uid and 0 < state.step - previous[1] <= 2
                     and ammo is not None and previous[2] is not None and ammo < previous[2]):
                 gate['shots'].add(unit.uid)
+                target = state.entity_by_uid(previous[3])
+                if (target is not None and target.uid in unit.perceived_uids()
+                        and float(target.hp) < previous[4]):
+                    gate['effective'][unit.uid] = state.step
+        supporting_now = [u for u in self._active if u.hp > 0 and (self._ammo(u) or 0) > 0]
+        gate['effective'] = {u.uid: gate['effective'][u.uid] for u in supporting_now
+                             if u.uid in gate['effective']
+                             and state.step - gate['effective'][u.uid] <= self.FIRE_CONFIRM_TTL
+                             and route.inside_garrison(obj, u.position)}
         self._pending_fire = {uid: data for uid, data in self._pending_fire.items() if state.step - data[1] <= 2}
         mobile = [u for u in state.agents if u.alive and u.entity_type in self.FOOT | self.VEHICLES
                   and u.communication_ok() is not False and u.uid not in route._garrison]
-        if gate['start'] is None and any(AssaultRoute.distance(u.position, obj.position) <= self.APPROACH for u in mobile):
+        # At occupied B, a fast scout vehicle used to expire the entire
+        # infantry wait before the capture wave even approached the base.
+        # Start its single bounded wait when that wave actually approaches.
+        starters = [u for u in mobile if not contested_b or u.entity_type in self.FOOT]
+        if gate['start'] is None and any(AssaultRoute.distance(u.position, obj.position) <= self.APPROACH for u in starters):
             gate['start'] = state.step
         near_vehicles = [u for u in self._active if AssaultRoute.distance(u.position, obj.position) <= 16000]
         clear = gate['recon'] and route._strategy.occupants(state, obj) == 0 and bool(near_vehicles)
         gate['clear_frames'] = gate['clear_frames'] + 1 if clear else 0
-        if (not self._active or gate['clear_frames'] >= 3 or len(gate['shots']) >= min(2, len(self._active))
+        volley_ready = (bool(supporting_now) and len(gate['effective']) >= min(2, len(supporting_now))) if contested_b else (
+            len(gate['shots']) >= min(2, len(self._active)))
+        no_support = not supporting_now if contested_b else not self._active
+        if (no_support or gate['clear_frames'] >= 3 or volley_ready
                 or gate['start'] is not None and state.step - gate['start'] >= self.HANDOFF_WAIT):
             gate['released'] = True
 
@@ -125,7 +143,7 @@ class AssaultFormation:
                 and agent.uid in {u.uid for u in self._active}):
             target = next((e for e in state.perceived_opponents(agent) if e.uid == action.target_uid), None)
             if target is not None and AssaultRoute.distance(target.position, obj.position) <= 20000:
-                self._pending_fire[agent.uid] = (obj.uid, state.step, self._ammo(agent))
+                self._pending_fire[agent.uid] = (obj.uid, state.step, self._ammo(agent), target.uid, float(target.hp))
 
     @staticmethod
     def _guard(agent, obj):

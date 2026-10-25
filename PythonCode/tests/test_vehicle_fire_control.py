@@ -137,6 +137,74 @@ def test_different_target_requires_fresh_aim_and_same_frame_calls_do_not_consume
     assert control.choose(state([car], [enemy], step=3), car).command == "Guard"
 
 
+@pytest.mark.parametrize("kind", sorted(VehicleFireControl.VEHICLES))
+@pytest.mark.parametrize("contested_b", [False, True])
+def test_same_direction_priority_change_reuses_aim_only_in_contested_b(kind, contested_b):
+    car, soldier, control = case(kind)
+    soldier.position[:2] = (0, -5000)
+    lynx = entity(30, 1, 1, 100, -6000, kind="BP_MNWS_Vehicle_6x6UGV_C")
+    enemies = [soldier, lynx]
+    first = control.choose(state([car], enemies), car, advance_on_stall=contested_b)
+    assert first.command == "Guard" and first.direction == "-Y"
+    car.raw["agentPerception"].append(lynx.uid)
+    second = control.choose(state([car], enemies, step=1), car, advance_on_stall=contested_b)
+    assert second.command == ("NormalAttacking" if contested_b else "Guard")
+    if contested_b:
+        assert second.target_uid == lynx.uid
+        # Repeated decisions cannot spend additional shots in the same frame.
+        assert control.choose(state([car], enemies, step=1), car,
+                              advance_on_stall=True) is second
+        assert control._shots[(car.uid, lynx.uid)]["count"] == 1
+
+
+@pytest.mark.parametrize("break_aim", ["direction", "gap", "contact_lost", "position_guard"])
+def test_contested_b_target_change_requires_new_aim_when_direction_not_preserved(break_aim):
+    car, soldier, control = case()
+    lynx = entity(30, 1, 1, 900, kind="BP_MNWS_Vehicle_6x6UGV_C")
+    if break_aim == "position_guard":
+        soldier.position[:] = car.position
+        lynx.position[:] = car.position
+    control.choose(state([car], [soldier, lynx]), car, advance_on_stall=True)
+    step = 1
+    if break_aim == "direction":
+        lynx.position[:2] = (0, 900)
+    elif break_aim == "gap":
+        step = 2
+    elif break_aim == "contact_lost":
+        car.raw["agentPerception"] = []
+        assert control.choose(state([car], [soldier, lynx], step=1), car,
+                              advance_on_stall=True) is None
+        step = 2
+    car.raw["agentPerception"] = [lynx.uid]
+    action = control.choose(state([car], [soldier, lynx], step=step), car,
+                            advance_on_stall=True)
+    assert action.command == "Guard"
+
+
+@pytest.mark.parametrize("invalid", ["shared", "out_of_range", "dead", "friendly", "air", "empty", "disconnected"])
+def test_reusing_b_aim_never_bypasses_current_target_eligibility(invalid):
+    car, soldier, control = case()
+    target = entity(30, 1, 1, 900, kind="BP_MNWS_Vehicle_6x6UGV_C")
+    control.choose(state([car], [soldier, target]), car, advance_on_stall=True)
+    car.raw["agentPerception"] = [target.uid]
+    if invalid == "shared":
+        car.raw["agentPerception"] = []
+    elif invalid == "out_of_range":
+        target.position[0] = 15001
+    elif invalid == "dead":
+        target.alive = False
+    elif invalid == "friendly":
+        target.team = car.team
+    elif invalid == "air":
+        target.entity_type = "BP_Base_UAV_C"
+    elif invalid == "empty":
+        car.raw["interaction"] = ["0"]
+    else:
+        car.raw["rSVD1"] = "vehicle;0"
+    assert control.choose(state([car], [soldier, target], step=1), car,
+                          advance_on_stall=True) is None
+
+
 def test_loss_of_local_contact_or_range_cancels_fire_and_new_episode_clears_burst():
     car, enemy, control = case()
     for step in range(3):

@@ -82,18 +82,23 @@ def test_same_lane_remainder_does_not_stack_vehicles_on_one_destination():
     assert all(rule._route.distance(a, b) > 600 for i, a in enumerate(goals) for b in goals[i+1:])
 
 
-def test_b_search_alternates_inner_and_outer_views_and_never_leaves_rotated_box():
+def test_b_search_alternates_reached_inner_and_outer_views_and_never_leaves_rotated_box():
     agents, cars, objects, rule = b_case()
     contact, car, base = UrbanContact(), cars[0], objects[1]
     extent = rule._route._footprint(base)
     radii = []
-    for step in range(0, contact.CLEAR_PLAN_STEPS*4, contact.CLEAR_PLAN_STEPS):
+    for step in range(0, 12, 3):
         s = state(agents, objectives=objects, step=step)
         contact.begin(s)
         action = contact.search_point(s, car, base, rule._route)
         x, y, _ = rule._route._local_point(base, action.points)
         radii.append(max(abs(x)/extent[0], abs(y)/extent[1]))
         assert rule._route.inside_garrison(base, action.points)
+        car.position[:] = action.points
+        for scan_step in (step + 1, step + 2):
+            s = state(agents, objectives=objects, step=scan_step)
+            contact.begin(s)
+            assert contact.search_point(s, car, base, rule._route).command == 'Guard'
     assert radii == pytest.approx([.3, .8, .3, .8])
 
 

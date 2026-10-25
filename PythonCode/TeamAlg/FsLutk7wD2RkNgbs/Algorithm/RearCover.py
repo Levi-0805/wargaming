@@ -24,6 +24,8 @@ class RearCover:
     REACTION_STEPS = 6
     REACTION_DISTANCE = 1400.0
     ARRIVAL = 400.0
+    THREAT_MEMORY = 4
+    SUPPORT_HP = 25.0
     DIRECTIONS = ("+X", "+X+Y", "+Y", "-X+Y", "-X", "-X-Y", "-Y", "+X-Y")
 
     def __init__(self):
@@ -39,6 +41,7 @@ class RearCover:
         self._attempts = {}
         self._finished = {}
         self._scan_started = {}
+        self._rear_threat_step = None
 
     @staticmethod
     def _position(unit):
@@ -66,6 +69,7 @@ class RearCover:
             self._deadline = state.step + self.WINDOW
         elif not secured and self._secured:
             self._deadline = None
+            self._rear_threat_step = None
             self._plans.clear()
             self._scan_started.clear()
         self._secured = secured
@@ -76,12 +80,32 @@ class RearCover:
                   and u.communication_ok() is not False
                   and route._garrison.get(u.uid) == hq.uid
                   and route.inside_garrison(hq, u.position)]
+        contested_b = route.is_base_b(objective) and route.enemy_count(state, objective) > 0
+        if contested_b:
+            # B needs its remaining gun vehicles together. A blind fixed HQ
+            # scan must not consume a scarce assault vehicle for 32 frames.
+            # Local fire still runs before this selector, even with no spare.
+            threatened = any(g.uid in self._damaged or any(
+                e.alive and e.uid in g.perceived_uids() and e.entity_type not in VehicleFireControl.AIR
+                and AssaultRoute.distance(g.position, e.position) <= 15000
+                for e in state.perceived_opponents(g)) for g in guards)
+            if threatened:
+                self._rear_threat_step = state.step
+            if (self._rear_threat_step is None
+                    or state.step - self._rear_threat_step > self.THREAT_MEMORY):
+                self._cover_uid = self._cover_point = None
+                return
+        support = [u for u in state.agents if u.alive and u.hp >= self.SUPPORT_HP
+                   and u.entity_type in VehicleFireControl.VEHICLES
+                   and u.communication_ok() is not False
+                   and (VehicleFireControl.ammo(u) or 0) > 0]
         candidates = []
         for unit in state.agents:
             ammo = VehicleFireControl.ammo(unit)
             if (unit.alive and unit.hp > 0 and unit.entity_type in VehicleFireControl.VEHICLES
                     and unit.communication_ok() is not False and ammo is not None and ammo > 0
                     and AssaultRoute.distance(unit.position, hq.position) <= self.HQ_RANGE
+                    and (not contested_b or sum(u.uid != unit.uid for u in support) >= 2)
                     and any(AssaultRoute.distance(unit.position, guard.position) <= self.GUARD_RANGE
                             for guard in guards)):
                 candidates.append(unit)
@@ -90,6 +114,7 @@ class RearCover:
             self._cover_uid = self._cover_point = None
             if candidates:
                 current = min(candidates, key=lambda u: (
+                    contested_b and u.entity_type == 'BP_MNWS_Vehicle_6x6UGV_C',
                     min(AssaultRoute.distance(u.position, g.position) for g in guards), u.uid))
                 self._cover_uid, self._cover_point = current.uid, self._position(current)
 

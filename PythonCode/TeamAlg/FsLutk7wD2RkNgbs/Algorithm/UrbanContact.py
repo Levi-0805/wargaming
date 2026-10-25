@@ -18,6 +18,10 @@ class UrbanContact:
     # A six-step clear plan repeatedly reset the eight-step motion watchdog.
     # Allow two short recovery trials before exploring a different sector.
     CLEAR_PLAN_STEPS = 24
+    # Let the eight-step watchdog and five-step wheeled escape run before
+    # replacing a goal. Deliberate firing/turning is not a failed move.
+    B_STALLED_MOVES = 14
+    B_FAILED_RETRY_STEPS = 48
 
     def __init__(self):
         self._frame = None
@@ -30,6 +34,8 @@ class UrbanContact:
         self._positions = {}
         self._used = {}
         self._sweeps = {}
+        self._b_search = {}
+        self._b_failed = {}
 
     @staticmethod
     def ammo(agent):
@@ -45,7 +51,8 @@ class UrbanContact:
             return
         if self._frame is None or frame[0] != self._frame[0] or frame[1] < self._frame[1]:
             for mapping in (self._shots, self._effective, self._probes, self._plans,
-                            self._arrived, self._attempts, self._positions, self._used, self._sweeps):
+                            self._arrived, self._attempts, self._positions, self._used, self._sweeps,
+                            self._b_search, self._b_failed):
                 mapping.clear()
         self._frame = frame
         for uid, (step, target_uid, ammo, hp) in list(self._shots.items()):
@@ -63,22 +70,40 @@ class UrbanContact:
                 self._positions[key] = (p, state.step)
         self._positions = {key: value for key, value in self._positions.items() if state.step - value[1] <= 40}
         self._used = {key: step for key, step in self._used.items() if state.step - step <= 40}
+        self._b_failed = {key: until for key, until in self._b_failed.items() if state.step < until}
+        for uid, search in self._b_search.items():
+            unit = state.entity_by_uid(uid)
+            if unit is None or not unit.alive or unit.communication_ok() is False:
+                continue
+            distance = AssaultRoute.distance(unit.position, search['point'])
+            if distance < search['best'] - 200:
+                search['best'], search['stalled'] = distance, 0
+            elif search['moving_step'] == state.step - 1:
+                search['stalled'] += 1
         for uid, (objective_uid, _) in list(self._sweeps.items()):
             point = state.key_object_by_uid(objective_uid)
             field = "blueteamNum" if state.team == 0 else "redTeamNum"
             if point is None or AssaultRoute.count(point, field) <= 0:
                 del self._sweeps[uid]
+                self._b_search.pop(uid, None)
                 plan = self._plans.get(uid)
                 if plan and plan[0] == ("clear", objective_uid):
                     self._plans.pop(uid, None)
                     self._arrived.pop(uid, None)
 
     def record(self, state, agent, action):
+        search = self._b_search.get(agent.uid)
+        plan = self._plans.get(agent.uid)
+        clearing_b = search is not None and plan is not None and plan[0] == ('clear', search['objective'])
+        if clearing_b and action.command == 'Moving':
+            # Includes the actual directional escape emitted by MotionRecovery.
+            search['moving_step'] = state.step
         if action.command == "NormalAttacking":
             enemy = state.entity_by_uid(action.target_uid)
             if enemy is not None:
                 self._shots[agent.uid] = (state.step, enemy.uid, self.ammo(agent), float(enemy.hp))
-            self.cancel(agent)
+            if not clearing_b:
+                self.cancel(agent)
 
     def effective(self, state, agent, target):
         entry = self._effective.get(agent.uid)
@@ -186,16 +211,16 @@ class UrbanContact:
         return self._set(state, agent, key, point, duration)
 
     def search_point(self, state, agent, objective, route):
+        if route.is_base_b(objective):
+            return self._search_b(state, agent, objective, route)
         key = ("clear", objective.uid)
         existing = self._existing(state, agent, key, objective.position)
         if existing is not None:
             return existing
         sweep = self._sweeps.get(agent.uid)
         first_probe = sweep is None or sweep[0] != objective.uid
-        inward = route.is_base_b(objective)
         candidates = [(k, p) for k, (p, _) in self._positions.items()
                       if first_probe
-                      and not inward
                       and route.inside_garrison(objective, p)
                       and abs(p[2] - agent.position[2]) < 600
                       and 1200 < AssaultRoute.distance(agent.position, p) < 8000
@@ -214,28 +239,75 @@ class UrbanContact:
         points = self._clearance_points(agent, objective, route)
         cursor = self._sweeps[agent.uid][1]
         if cursor is None:
-            if inward:
-                # In B the nearest friendly positions and the old 80% ring
-                # kept cars at the same outer corner. Start at distinct inner
-                # sectors, then alternate inner/outer views instead of circling.
-                inner = sorted(range(0, len(points), 2), key=lambda i: (
-                    route.distance(agent.position, points[i]), i))
-                start = agent.team_index % min(3, len(inner))
-                choices = inner[start:] + inner[:start]
-                # Team indices can share the same remainder. Allocate against
-                # the already issued plans as well, so those cars do not all
-                # receive one identical inner destination.
-                cursor = min(choices, key=lambda i: sum(
-                    uid != agent.uid and state.step < plan[2]
-                    and route.distance(points[i], plan[1]) < 600
-                    for uid, plan in self._plans.items()))
-            else:
-                cursor = min(range(len(points)), key=lambda i: (
-                    route.distance(agent.position, points[i]), (i - agent.team_index) % len(points)))
+            cursor = min(range(len(points)), key=lambda i: (
+                route.distance(agent.position, points[i]), (i - agent.team_index) % len(points)))
         else:
             cursor = (cursor + (1 if agent.team_index % 2 else -1)) % len(points)
         self._sweeps[agent.uid] = (objective.uid, cursor)
         return self._set(state, agent, key, points[cursor], self.CLEAR_PLAN_STEPS)
+
+    def _search_b(self, state, agent, objective, route):
+        """Keep an unfinished inner probe across combat, then retry elsewhere.
+
+        No mesh or enemy coordinates are used. Failed destinations are only
+        temporarily avoided; a timeout never means that a sector was cleared.
+        """
+        key = ('clear', objective.uid)
+        search = self._b_search.get(agent.uid)
+        if search is not None and search['objective'] != objective.uid:
+            search = None
+        completed = False
+        if search is not None:
+            distance = route.distance(agent.position, search['point'])
+            if distance <= 400:
+                arrived = search.setdefault('arrived', state.step)
+                if state.step - arrived < 2:
+                    vector = tuple(objective.position[i] - agent.position[i] for i in range(3))
+                    return Action.guard(MotionRecovery._direction(vector, 0, airborne=False))
+                completed = True
+            elif state.step < search['until'] and search['stalled'] < self.B_STALLED_MOVES:
+                # A short contact reposition may have replaced _plans. Restore
+                # this exact goal, without extending its original deadline.
+                self._plans[agent.uid] = (key, search['point'], search['until'])
+                return Action.move_at(search['point'])
+            elif search['stalled'] >= self.B_STALLED_MOVES:
+                self._b_failed[(agent.uid, objective.uid, search['cursor'])] = state.step + self.B_FAILED_RETRY_STEPS
+
+        points = self._clearance_points(agent, objective, route)
+        available = [i for i in range(len(points))
+                     if state.step >= self._b_failed.get((agent.uid, objective.uid, i), -1)]
+        if search is not None and not completed and len(available) > 1:
+            # Expiring during combat is not proof that navigation failed.
+            # Try a different inner view without blacklisting an untested path.
+            available = [i for i in available if i != search['cursor']]
+        if not available:
+            # All requests failed recently. Retry the oldest rather than hold
+            # indefinitely or erase the failure history for every destination.
+            available = [min(range(len(points)), key=lambda i: self._b_failed[(agent.uid, objective.uid, i)])]
+        next_cursor = ((search['cursor'] + (1 if agent.team_index % 2 else -1)) % len(points)
+                       if completed else None)
+        if next_cursor in available:
+            cursor = next_cursor
+        else:
+            # On a blocked inner goal, explore a different inner view instead
+            # of retreating to the outer ring merely because time elapsed.
+            choices = [i for i in available if i % 2 == 0] or available
+            choices.sort(key=lambda i: (route.distance(agent.position, points[i]), i))
+            if search is None:
+                start = agent.team_index % min(3, len(choices))
+                choices = choices[start:] + choices[:start]
+            cursor = min(choices, key=lambda i: sum(
+                uid != agent.uid and state.step < plan[2]
+                and route.distance(points[i], plan[1]) < 600
+                for uid, plan in self._plans.items()))
+        point = points[cursor]
+        self._b_search[agent.uid] = {
+            'objective': objective.uid, 'cursor': cursor, 'point': point,
+            'until': state.step + self.CLEAR_PLAN_STEPS,
+            'best': route.distance(agent.position, point), 'stalled': 0, 'moving_step': None,
+        }
+        self._sweeps[agent.uid] = (objective.uid, cursor)
+        return self._set(state, agent, key, point, self.CLEAR_PLAN_STEPS)
 
     @staticmethod
     def _clearance_points(agent, objective, route):
