@@ -54,7 +54,7 @@ def test_half_force_lost_and_outnumbered_without_cars_triggers_before_last_two()
     assert rule._route._remnant.active
     assert rule._route._remnant.reason == 'unsupported_collapse'
     assert rule._route.objective(s).uid == objects[2].uid
-    assert list(rule._route._garrison.values()) == [objects[0].uid]
+    assert list(rule._route._garrison.values()) == [objects[0].uid] * 3
 
 
 def test_intact_capture_force_is_not_redirected():
@@ -241,7 +241,7 @@ def test_last_pair_is_released_after_later_losses_in_existing_stop_loss_mode():
     units, objects, rule = battle()
     reduce(units, 10)
     step(rule, units, objects)
-    assert len(rule._route._garrison) == 1
+    assert len(rule._route._garrison) == 3
     reduce(units, 2)
     _, actions = step(rule, units, objects, 9)
     assert not rule._route._garrison

@@ -41,10 +41,18 @@ class RemnantCapture:
         return [u for u in state.agents if u.alive and u.hp > 0 and u.entity_type in cls.FOOT]
 
     @classmethod
-    def armed_support(cls, state):
+    def armed_support(cls, state, route=None):
+        base_b = state.key_object_by_uid(route._map_order[1]) if route is not None else None
+        foot = cls.capturers(state)
         for unit in state.agents:
             if (not unit.alive or unit.hp <= 0 or unit.entity_type not in cls.CARS
                     or unit.communication_ok() is False):
+                continue
+            if (route is not None and base_b is not None
+                    and route.distance(unit.position, base_b.position) > 35000
+                    and not any(route.distance(unit.position, u.position) <= 15000 for u in foot)):
+                # A fully armed car stranded a kilometre behind the assault is
+                # not available support for the remaining capture units.
                 continue
             try:
                 ammo = [float(v) for v in unit.raw.get('interaction', ())]
@@ -86,7 +94,7 @@ class RemnantCapture:
         self._approached |= any(route.distance(u.position, base_b.position) <= 35000 for u in mobile)
         collapsed = (self._approached and len(foot) * 2 <= self._peak
                      and count is not None and count >= max(4, len(mobile)))
-        if (not foot or (len(foot) > 4 and not collapsed) or self.armed_support(state)
+        if (not foot or (len(foot) > 4 and not collapsed) or self.armed_support(state, route)
                 or count is None or count <= 0 or self._clear < self.CLEAR_FRAMES
                 or route.owned(state, base_a)):
             return False
@@ -174,7 +182,9 @@ class RemnantCapture:
         base_b = state.key_object_by_uid(self.source_uid)
         if target is None or base_b is None:
             return tuple(agent.position)
-        if self.ready and route.inside_garrison(target, agent.position):
+        if self.ready and route.owned(state, target) and route.inside_garrison(target, agent.position):
+            # Being inside the public box alone did not produce occupation in
+            # the recorded A approach. Stop only after actual capture evidence.
             return tuple(agent.position)
         if agent.uid not in self._paths:
             origin = tuple(agent.position)
@@ -197,6 +207,11 @@ class RemnantCapture:
         path, index = self._paths[agent.uid], self._cursor[agent.uid]
         if not self.ready:
             return self._safe[agent.uid]
+        if route.inside_garrison(target, agent.position):
+            # Reaching A by a different engine path must not recall a unit to
+            # an old HQ/B waypoint. Continue to the capture goal until owned.
+            self._cursor[agent.uid] = len(path) - 1
+            return tuple(target.position)
         while index < len(path) - 1 and route.distance(agent.position, path[index]) <= 650:
             index += 1
         # A one-way bounded retry only relaxes a nearly reached waypoint; it
@@ -207,8 +222,12 @@ class RemnantCapture:
             old = (index, distance, 0, state.step)
         elif state.step != old[3]:
             old = (index, old[1], old[2] + 1, state.step)
+        bounds = self.bounds(route, base_b)
+        leaving_box = (index == 0 and self.inside(agent.position, bounds)
+                       and not self.inside(path[index], bounds)
+                       and index + 1 < len(path) and not self.inside(path[index + 1], bounds))
         if (old[2] >= 20 and distance <= 1600 and index < len(path) - 1
-                and not self.crosses(agent.position, path[index + 1], self.bounds(route, base_b))):
+                and (leaving_box or not self.crosses(agent.position, path[index + 1], bounds))):
             index += 1
             old = (index, route.distance(agent.position, path[index]), 0, state.step)
         self._watch[agent.uid], self._cursor[agent.uid] = old, index

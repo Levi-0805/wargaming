@@ -391,7 +391,10 @@ class AssaultRoute:
         if self._remnant.active and obj.uid == self._remnant.target_uid:
             return max(1, min(2, len(self._remnant.capturers(state))))
         if self._remnant.active and self.is_hq(obj):
-            return 1 if len(self._remnant.capturers(state)) > 4 else 0
+            # A stop-loss with a usable group must not reduce a secured HQ to
+            # one defender. Only the explicitly requested last pair leaves all.
+            count = len(self._remnant.capturers(state))
+            return min(3, count - 2) if count > 4 else (1 if count > 2 else 0)
         if self._clear.get(obj.uid, 0) >= self.CLEAR_STEPS:
             if self.adaptive:
                 capturers = sum(u.alive and u.entity_type in {'BP_BaseSoldier_C', 'BP_RoboDog_C'}
@@ -412,7 +415,7 @@ class AssaultRoute:
         previous, self._garrison = self._garrison, {}
         for uid in self.order[:self.stage + int(include_current)]:
             if (self._remnant.active and uid != self._remnant.target_uid
-                    and not (uid == self.hq_uid and len(self._remnant.capturers(state)) > 4)):
+                    and not (uid == self.hq_uid and len(self._remnant.capturers(state)) > 2)):
                 continue
             obj = state.key_object_by_uid(uid)
             if obj is None or not obj.valid or self.adaptive and not self.owned(state, obj):

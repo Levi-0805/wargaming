@@ -62,6 +62,8 @@ class UAVControl:
         self._split_objectives = {}
         self._split_slots = {}
         self._surveys = {}
+        self._health = {}
+        self._evasion = {}
 
     def _begin(self, state):
         if self._frame is None or self._frame[0] != state.episode or state.step < self._frame[1]:
@@ -92,6 +94,8 @@ class UAVControl:
             self._split_objectives.clear()
             self._split_slots.clear()
             self._surveys.clear()
+            self._health.clear()
+            self._evasion.clear()
         self._frame = (state.episode, state.step)
         alive = {agent.uid for agent in state.agents if agent.alive}
         for uid, claim in self._strike_claims.items():
@@ -195,7 +199,62 @@ class UAVControl:
         peers = [unit.uid for unit in state.agents if unit.alive
                  and unit.communication_ok() is not False and unit.uid not in self._missions
                  and self._split_objectives.get(unit.uid) == objective.uid]
-        return not self.recon_status(state, objective)['ready'] or bool(peers) and agent.uid == min(peers)
+        return (agent.hp < 60 or len([u for u in state.agents if u.alive
+                and u.entity_type == 'BP_Base_UAV_C']) <= 3
+                or not self.recon_status(state, objective)['ready']
+                or bool(peers) and agent.uid == min(peers))
+
+    def _evade_damage(self, state, agent, objective, contacts):
+        """A bounded new observation station on actual damage, not sightings.
+
+        Keep a stable goal for twelve frames. No unseen attacker's position or
+        unverified safe altitude is inferred; the nearest local ground contact
+        only chooses which side to try. This cannot guarantee survival.
+        """
+        previous = self._health.get(agent.uid)
+        damaged = (previous is not None and previous[0] == state.step - 1
+                   and agent.hp < previous[1] - .01)
+        self._health[agent.uid] = (state.step, float(agent.hp))
+        old = self._evasion.get(agent.uid)
+        nearby_air = [e for e in contacts if e.entity_type == 'BP_Base_UAV_C'
+                      and e.uid in agent.perceived_uids()
+                      and math.dist(tuple(agent.position),tuple(e.position)) <= 6000]
+        if (damaged or nearby_air) and (old is None or state.step >= old[0]):
+            ground = [e for e in contacts if e.entity_type not in {'BP_Base_UAV_C','BP_Helicopter_C'}]
+            threat = min(nearby_air or ground,key=lambda e: AssaultRoute.distance(agent.position,e.position),default=None)
+            anchor = threat.position if threat is not None else objective.position
+            dx,dy = agent.position[0]-anchor[0],agent.position[1]-anchor[1]
+            length = math.hypot(dx,dy)
+            if length < 1:
+                dx,dy,length = (1.0,1.0,math.sqrt(2))
+            point = (float(agent.position[0]+dx/length*4000),
+                     float(agent.position[1]+dy/length*4000),float(agent.position[2]))
+            radius = self._perception_radius(agent)
+            dz = point[2] - float(objective.position[2])
+            reach = math.sqrt(max(0.0,radius*radius-dz*dz)) * .9
+            near = reach > 0 and AssaultRoute.distance(agent.position,objective.position) <= reach + 4000
+            if near:
+                ox,oy = point[0]-objective.position[0],point[1]-objective.position[1]
+                distance = max(math.hypot(ox,oy),1.0)
+                ratio = min(1.0,reach/distance)
+                point = (float(objective.position[0]+ox*ratio),float(objective.position[1]+oy*ratio),point[2])
+                if AssaultRoute.distance(point,agent.position)<800:
+                    # At the sensor boundary an outward move clamps to the
+                    # same point. Change the observation angle instead.
+                    angle = math.atan2(oy,ox) + (math.pi/6 if agent.uid%2 else -math.pi/6)
+                    point = (float(objective.position[0]+reach*math.cos(angle)),
+                             float(objective.position[1]+reach*math.sin(angle)),point[2])
+            self._evasion[agent.uid] = (state.step+12,point)
+            self._missions.pop(agent.uid,None)
+            if near:
+                self._stations[agent.uid] = (AssaultRoute.distance(point,objective.position),point,state.step)
+            else:
+                self._stations.pop(agent.uid,None)  # Transit evasion is not the final survey goal.
+            self._navigation.cancel(agent)
+            old = self._evasion[agent.uid]
+        if old is not None and state.step < old[0]:
+            return self._navigation.apply(state,agent,old[1],(objective.uid,'evade',old[0]),arrival=600)
+        return None
 
     def _split_point(self, agent, objective, altitude):
         old = self._stations.get(agent.uid)
@@ -442,6 +501,10 @@ class UAVControl:
         # authorize UAV fire when UE omitted this aircraft's current sight list.
         contacts = ([enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
                     if 'agentPerception' in agent.raw else [])
+        if split and agent.communication_ok() is not False:
+            evade = self._evade_damage(state,agent,objective,contacts)
+            if evade is not None:
+                return evade
         self._observe(state, agent, contacts)
         if state.step >= 0 and state.step % 40 == 0 and self._telemetry.get(agent.uid) != state.step:
             self._telemetry[agent.uid] = state.step

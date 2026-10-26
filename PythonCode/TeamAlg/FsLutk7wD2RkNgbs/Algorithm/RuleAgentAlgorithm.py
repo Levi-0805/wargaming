@@ -19,6 +19,7 @@ from .VehicleFireControl import VehicleFireControl
 from .ColumnAdvance import ColumnAdvance
 from .EntryWaves import EntryWaves
 from .RearCover import RearCover
+from .HQExit import HQExit
 
 logger = logging.getLogger(__name__)
 
@@ -73,6 +74,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._column = ColumnAdvance()
         self._entry_waves = EntryWaves()
         self._rear_cover = RearCover()
+        self._hq_exit = HQExit()
         self._opening_column_start = None
         self._frame = None
         self._support = {}
@@ -96,6 +98,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._frame = frame
         self._urban.begin(state)
         self._route.update(state)
+        self._hq_exit.begin(state, self._route)
         self._rear_cover.begin(state, self._route)
         self._hq_entry.begin(state, self._route)
         self._uav.prepare_recon(state, self._route)
@@ -146,6 +149,18 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         candidates = local_contacts or contacts
         available = [enemy for enemy in candidates if
                      self._hit_watch.get((agent.uid, enemy.uid), {}).get("retry", -1) <= state.step]
+        objective = self._route.objective(state)
+        if (not available and candidates and objective is not None
+                and not self._route.is_hq(objective) and agent.uid not in self._route._garrison):
+            # All failed targets cooling down used to fall back to the same
+            # candidates, defeating the cooldown and pinning units to a wall.
+            # Preserve HQ/guard self-defence; mobile secondary assaults resume
+            # navigation/clearance without assuming elevation proves occlusion.
+            if self._route.inside_garrison(objective, agent.position):
+                return self._urban.search_point(state, agent, objective, self._route)
+            point = self._route.point(state, agent)
+            if point is not None:
+                return Action.move_at(point)
         pool = available or candidates
         priority = {enemy.uid for enemy in priority_targets}
         preferred = [enemy for enemy in pool if enemy.uid in priority]
@@ -288,6 +303,10 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return self._engage(state, agent, contacts, local, priority_targets=priority)
         self._fire_watch.pop(agent.uid, None)
         point = self._route.point(state, agent)
+        exit_action = self._hq_exit.choose(state, agent, self._route, point)
+        if exit_action is not None:
+            self._urban.cancel(agent)
+            return exit_action
         objective = self._route.objective(state)
         visible = [enemy for enemy in state.visible_opponents if enemy.alive]
         if (objective is not None
