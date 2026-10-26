@@ -81,71 +81,124 @@ def formation_case():
     return foot + [mobile], cars, objects, route, form, mobile
 
 
-def test_b_wait_begins_with_capture_wave_and_expires_once_without_recalling_inside_units():
-    foot, cars, objects, route, form, mobile = formation_case()
-    for step in (4, 20, 40):
-        form.begin(state(foot + cars, objectives=objects, step=step), route)
-    gate = form._gates[objects[1].uid]
-    assert gate['start'] is None and not gate['released']
-    mobile.position[0] = objects[1].position[0] + 17500
-    s = state(foot + cars, objectives=objects, step=41)
-    form.begin(s, route)
-    assert gate['start'] == 41 and form.choose(s, mobile, route).command == 'Guard'
-    # A unit already in B and one taking damage are never recalled to wait.
-    mobile.position[:] = objects[1].position
-    assert form.choose(s, mobile, route) is None
-    mobile.position[0] += 17500
-    mobile.hp -= 10
-    s = state(foot + cars, objectives=objects, step=42)
-    form.begin(s, route)
-    assert form.choose(s, mobile, route) is None
-    s = state(foot + cars, objectives=objects, step=69)
-    form.begin(s, route)
-    assert gate['released'] and gate['start'] == 41
-    assert form.choose(s, mobile, route) is None
-
-
-@pytest.mark.parametrize('invalid', ['dead', 'spent_only', 'moved_away', 'expired'])
-def test_b_handoff_does_not_reuse_dead_or_ineffective_or_distant_volley(invalid):
+def join_case():
     foot, cars, objects, route, form, mobile = formation_case()
     base = objects[1]
-    mobile.position[0] = base.position[0] + 17500
+    mobile.position[:2] = base.position[:2] + [45000, 0]
+    group = [mobile] + [entity(501+i, 0, 11+i, base.position[0]+45000, base.position[1]+i*100)
+                        for i in range(3)]
+    foot += group[1:]
+    for i, car in enumerate(cars):
+        car.position[:2] = base.position[:2] + [25000+i*600, 0]
+    return foot, cars, objects, route, form, group
+
+
+def test_recorded_b_edge_failure_no_longer_parks_infantry_at_180_metres():
+    from test_fslutk_rule import algorithm
+    foot, cars, objects, route, form, mobile = formation_case()
+    mobile.position[0] = objects[1].position[0] + 17500
+    rule = algorithm(foot + cars)
+    rule._route, rule._formation = route, form
+    rule._cohesion.released = True
+    for step in range(4, 32):
+        s = state(foot + cars, objectives=objects, step=step)
+        form.begin(s, route)
+        assert form.choose(s, mobile, route) is None
+        assert rule._combat_action(s, mobile).command == 'Moving'
+
+
+def test_join_holds_lead_only_and_releases_for_group_not_single_straggler():
+    foot, cars, objects, route, form, group = join_case()
     s = state(foot + cars, objectives=objects, step=4)
     form.begin(s, route)
-    active = form._active[:2]
-    enemies = [entity(900+i, 1, i, base.position[0]+1000, base.position[1]) for i in range(2)]
-    for unit, enemy in zip(active, enemies):
-        unit.raw['agentPerception'] = [enemy.uid]
-        form.record(state(foot + cars, enemies, objects, step=4), unit, Action.attack(enemy), route)
-        unit.raw['interaction'] = ['99']
-        if invalid != 'spent_only':
-            enemy.hp -= 10
-    if invalid == 'dead':
-        active[0].alive = False
-    elif invalid == 'moved_away':
-        active[0].position[0] += 40000
-    step = 12 if invalid == 'expired' else 5
-    form.begin(state(foot + cars, enemies, objects, step=step), route)
-    assert not form._gates[base.uid]['released']
-
-
-def test_two_present_cars_with_recent_observed_damage_release_before_timeout():
-    foot, cars, objects, route, form, mobile = formation_case()
-    base = objects[1]
-    mobile.position[0] = base.position[0] + 17500
-    form.begin(state(foot + cars, objectives=objects, step=4), route)
-    enemy = entity(999, 1, 0, *base.position[:2])
-    for unit in form._active[:2]:
-        unit.raw['agentPerception'] = [999]
-        form.record(state(foot + cars, [enemy], objects, step=4), unit, Action.attack(enemy), route)
-        unit.raw['interaction'] = ['99']
-    enemy.hp -= 20
-    s = state(foot + cars, [enemy], objects, step=5)
+    lead = form._active[0]
+    assert form.choose(s, lead, route).points == tuple(lead.position)
+    assert all(form.choose(s, f, route) is None for f in group)
+    group[0].position[:2] = lead.position[:2] + [6000, 0]
+    s = state(foot + cars, objectives=objects, step=5)
     form.begin(s, route)
-    assert form._gates[base.uid]['released'] and form.choose(s, mobile, route) is None
+    assert form.choose(s, lead, route).command == 'Guard'
+    for f in group[1:]:
+        f.position[:2] = lead.position[:2] + [6000, 0]
+    s = state(foot + cars, objectives=objects, step=6)
+    form.begin(s, route)
+    assert all(form.choose(s, car, route) is None for car in cars)
+    for f in group:
+        f.position[0] += 20000
+    s = state(foot + cars, objectives=objects, step=7)
+    form.begin(s, route)
+    assert form.choose(s, lead, route) is None
 
 
-def test_no_armed_support_does_not_create_an_endless_b_formation_wait():
+def test_join_deadline_does_not_restart_for_casualty_or_late_car():
+    foot, cars, objects, route, form, group = join_case()
+    form.begin(state(foot + cars, objectives=objects, step=4), route)
+    gate = form._gates[objects[1].uid]
+    assert gate['start'] == 4
+    form._active[0].alive = False
+    for step in (10, 21, 22, 45):
+        s = state(foot + cars, objectives=objects, step=step)
+        form.begin(s, route)
+        assert gate['start'] == 4
+        assert all(form.choose(s, f, route) is None for f in group)
+        if step >= 22:
+            assert all(form.choose(s, car, route) is None for car in cars)
+
+
+def test_initial_cohesion_does_not_disable_later_join_or_let_rear_car_release_lead():
+    foot, cars, objects, route, form, group = join_case()
+    for f in group:
+        f.position[:2] = cars[0].position[:2] + [7000, 0]
+    form.begin(state(foot + cars, objectives=objects, step=4), route)
+    gate = form._gates[objects[1].uid]
+    assert gate['start'] is None and not gate['released']
+    lead = min(form._active, key=lambda u: route.distance(u.position, objects[1].position))
+    lead.position[0] -= 4000  # Faster car opens a gap; rear car stays with foot.
+    s = state(foot + cars, objectives=objects, step=5)
+    form.begin(s, route)
+    assert gate['start'] == 5 and not gate['released']
+    assert form.choose(s, lead, route).command == 'Guard'
+    s = state(foot + cars, objectives=objects, step=6)
+    form.begin(s, route)
+    assert not gate['released']
+
+
+@pytest.mark.parametrize('release', ['damage', 'ground_contact', 'air_contact', 'foot_inside', 'car_inside'])
+def test_contact_or_entry_releases_join_and_all_reinforcements(release):
+    foot, cars, objects, route, form, group = join_case()
+    form.begin(state(foot + cars, objectives=objects, step=4), route)
+    lead = form._active[0]
+    enemies = []
+    if release == 'damage':
+        lead.hp -= 10
+    elif release.endswith('contact'):
+        enemy = entity(999, 1, 0, lead.position[0]+3000, lead.position[1],
+                       kind='BP_Base_UAV_C' if release == 'air_contact' else 'BP_BaseSoldier_C')
+        lead.raw['agentPerception'] = [enemy.uid]
+        enemies = [enemy]
+    elif release == 'foot_inside':
+        group[0].position[:] = objects[1].position
+    else:
+        lead.position[:] = objects[1].position
+    s = state(foot + cars, enemies, objects, step=5)
+    form.begin(s, route)
+    assert all(form.choose(s, u, route) is None for u in group + cars)
+
+
+def test_hq_guards_and_disconnected_units_do_not_replace_following_wave():
+    foot, cars, objects, route, form, group = join_case()
+    for f in foot:
+        if f.uid in route._garrison:
+            f.position[:2] = cars[0].position[:2]
+    for f in group:
+        f.position[:2] = cars[0].position[:2]
+        f.raw['rSVD1'] = 'soldier;0'
+    s = state(foot + cars, objectives=objects, step=4)
+    form.begin(s, route)
+    assert form.choose(s, form._active[0], route).command == 'Guard'
+
+
+def test_no_armed_support_never_holds_infantry():
     foot, cars, objects, route, form, mobile = formation_case()
     for car in cars:
         car.raw['interaction'] = ['0']
@@ -153,3 +206,16 @@ def test_no_armed_support_does_not_create_an_endless_b_formation_wait():
     s = state(foot + cars, objectives=objects, step=4)
     form.begin(s, route)
     assert form.choose(s, mobile, route) is None
+
+
+def test_empty_b_keeps_existing_advance_and_episode_clears_join():
+    foot, cars, objects, route, form, group = join_case()
+    objects[1].raw['blueteamNum'] = 0
+    s = state(foot + cars, objectives=objects, step=4)
+    form.begin(s, route)
+    assert all(form.choose(s, car, route) is None for car in cars)
+    objects[1].raw['blueteamNum'] = 7
+    s = state(foot + cars, objectives=objects, step=0, episode=2)
+    form.begin(s, route)
+    gate = form._gates[objects[1].uid]
+    assert gate['start'] == 0 and not gate['released']

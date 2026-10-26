@@ -21,7 +21,9 @@ class AssaultFormation:
     SCREEN_GAP = 3000.0
     RECON_WAIT = 18
     HANDOFF_WAIT = 28
-    FIRE_CONFIRM_TTL = 6
+    B_JOIN_GAP = 8000.0
+    B_JOIN_WAIT = 18
+    B_JOIN_FOOT = 4
 
     def __init__(self):
         self._frame = None
@@ -100,41 +102,60 @@ class AssaultFormation:
         if obj is None:
             return
         gate = self._gates.setdefault(obj.uid, {'start': None, 'recon': False, 'shots': set(),
-                                               'clear_frames': 0, 'released': False, 'effective': {}})
+                                               'clear_frames': 0, 'released': False})
         gate['recon'] = bool(recon_ready)
         contested_b = route.hq_secured and route.is_base_b(obj) and route.enemy_count(state, obj) > 0
+        self._pending_fire = {uid: data for uid, data in self._pending_fire.items() if state.step - data[1] <= 2}
+        if contested_b:
+            self._join_b_support(state, route, obj, gate)
+            return
         for unit in self._active:
             previous = self._pending_fire.get(unit.uid)
             ammo = self._ammo(unit)
             if (previous is not None and previous[0] == obj.uid and 0 < state.step - previous[1] <= 2
                     and ammo is not None and previous[2] is not None and ammo < previous[2]):
                 gate['shots'].add(unit.uid)
-                target = state.entity_by_uid(previous[3])
-                if (target is not None and target.uid in unit.perceived_uids()
-                        and float(target.hp) < previous[4]):
-                    gate['effective'][unit.uid] = state.step
-        supporting_now = [u for u in self._active if u.hp > 0 and (self._ammo(u) or 0) > 0]
-        gate['effective'] = {u.uid: gate['effective'][u.uid] for u in supporting_now
-                             if u.uid in gate['effective']
-                             and state.step - gate['effective'][u.uid] <= self.FIRE_CONFIRM_TTL
-                             and route.inside_garrison(obj, u.position)}
-        self._pending_fire = {uid: data for uid, data in self._pending_fire.items() if state.step - data[1] <= 2}
         mobile = [u for u in state.agents if u.alive and u.entity_type in self.FOOT | self.VEHICLES
                   and u.communication_ok() is not False and u.uid not in route._garrison]
-        # At occupied B, a fast scout vehicle used to expire the entire
-        # infantry wait before the capture wave even approached the base.
-        # Start its single bounded wait when that wave actually approaches.
-        starters = [u for u in mobile if not contested_b or u.entity_type in self.FOOT]
-        if gate['start'] is None and any(AssaultRoute.distance(u.position, obj.position) <= self.APPROACH for u in starters):
+        if gate['start'] is None and any(AssaultRoute.distance(u.position, obj.position) <= self.APPROACH for u in mobile):
             gate['start'] = state.step
         near_vehicles = [u for u in self._active if AssaultRoute.distance(u.position, obj.position) <= 16000]
         clear = gate['recon'] and route._strategy.occupants(state, obj) == 0 and bool(near_vehicles)
         gate['clear_frames'] = gate['clear_frames'] + 1 if clear else 0
-        volley_ready = (bool(supporting_now) and len(gate['effective']) >= min(2, len(supporting_now))) if contested_b else (
-            len(gate['shots']) >= min(2, len(self._active)))
-        no_support = not supporting_now if contested_b else not self._active
+        volley_ready = len(gate['shots']) >= min(2, len(self._active))
+        no_support = not self._active
         if (no_support or gate['clear_frames'] >= 3 or volley_ready
                 or gate['start'] is not None and state.step - gate['start'] >= self.HANDOFF_WAIT):
+            gate['released'] = True
+
+    def _join_b_support(self, state, route, obj, gate):
+        """A single pre-contact car wait; infantry never wait for its volley.
+
+        The recorded 180 m foot hold left cars 135--234 m ahead, taking fire
+        alone. Let the capture wave follow the road while an unengaged lead
+        waits for a small nearby group. The shared deadline cannot restart
+        when another car arrives or dies, and contact ends assembly entirely.
+        These distances are coordination bounds, not a safe firing perimeter.
+        """
+        foot = [u for u in state.agents if u.alive and u.entity_type in self.FOOT
+                and u.communication_ok() is not False and u.uid not in route._garrison]
+        support = [u for u in self._active if self._ammo(u) != 0]
+        near = [u for u in support if route.distance(u.position, obj.position) <= self.APPROACH]
+        required = min(self.B_JOIN_FOOT, len(foot))
+        lead = min(near, key=lambda u: (route.distance(u.position, obj.position), u.uid), default=None)
+        joined = lead is not None and sum(route.distance(lead.position, f.position) <= self.B_JOIN_GAP
+                                          for f in foot) >= required
+        engaged = any(u.uid in self._under_fire or any(e.alive for e in state.perceived_opponents(u))
+                      for u in near)
+        entered = any(route.inside_garrison(obj, u.position) for u in near + foot)
+        if not support or not foot or engaged or entered or gate['start'] is not None and joined:
+            gate['released'] = True
+        # Being together before the faster car pulls away is not a completed
+        # join. Start only on the first observed gap, and use the leading car
+        # so a distant rear car beside infantry cannot release that lead.
+        if not gate['released'] and near and not joined and gate['start'] is None:
+            gate['start'] = state.step
+        if gate['start'] is not None and state.step - gate['start'] >= self.B_JOIN_WAIT:
             gate['released'] = True
 
     def record(self, state, agent, action, route):
@@ -165,6 +186,14 @@ class AssaultFormation:
         if route.inside_garrison(obj, agent.position):
             return None
         gate = self._gates[obj.uid]
+        if route.hq_secured and route.is_base_b(obj) and route.enemy_count(state, obj) > 0:
+            # A stopped lead must never also stop the units catching up to it.
+            if agent.entity_type in self.FOOT:
+                return None
+            if (agent.uid in {u.uid for u in self._active} and self._ammo(agent) != 0
+                    and not gate['released'] and gate['start'] is not None and distance <= self.APPROACH):
+                return self._guard(agent, obj)
+            return None  # Do not stack the old recon/reserve waits on this join.
         if agent.entity_type in self.VEHICLES:
             assigned = self.reserve.get(agent.uid)
             holding = state.key_object_by_uid(assigned) if assigned is not None else None

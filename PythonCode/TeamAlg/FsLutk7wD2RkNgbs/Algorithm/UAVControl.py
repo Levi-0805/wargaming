@@ -31,6 +31,13 @@ class UAVControl:
     RECON_LINK_RADIUS = 80000.0
     SURVEY_FRAMES = 3
     SURVEY_TTL = 12
+    # Public-contact warning distances, not asserted weapon ranges. The Oct27
+    # scouts died at full HP after seeing aircraft close from 120m or soldiers
+    # reach 94m; waiting for a damage sample cannot protect against that event.
+    AIR_WARNING = 12000.0
+    GROUND_WARNING = 11000.0
+    EVADE_DISTANCE = 6000.0
+    EVADE_STEPS = 12
     VALUES = {"BP_BaseSoldier_C": 100, "BP_RoboDog_C": 20,
               "BP_MNWS_Vehicle_Armored_C": 90, "BP_MNWS_Vehicle_6x6UGV_C": 50,
               "BP_Base_UAV_C": 10, "BP_Helicopter_C": 50}
@@ -204,24 +211,30 @@ class UAVControl:
                 or not self.recon_status(state, objective)['ready']
                 or bool(peers) and agent.uid == min(peers))
 
-    def _evade_damage(self, state, agent, objective, contacts):
-        """A bounded new observation station on actual damage, not sightings.
+    def _evade_damage(self, state, agent, objective, contacts, *, recon=True):
+        """Leave locally observed danger before damage, then resume the survey.
 
-        Keep a stable goal for twelve frames. No unseen attacker's position or
-        unverified safe altitude is inferred; the nearest local ground contact
-        only chooses which side to try. This cannot guarantee survival.
+        Keep each goal stable until reached or its finite lease expires. A
+        chased scout must not hover at that goal for the remainder of a timer,
+        nor be forced back toward its pursuer by a sensor-radius constraint.
+        No unseen attacker or unverified safe altitude is inferred.
         """
         previous = self._health.get(agent.uid)
         damaged = (previous is not None and previous[0] == state.step - 1
                    and agent.hp < previous[1] - .01)
         self._health[agent.uid] = (state.step, float(agent.hp))
         old = self._evasion.get(agent.uid)
-        nearby_air = [e for e in contacts if e.entity_type == 'BP_Base_UAV_C'
-                      and e.uid in agent.perceived_uids()
-                      and math.dist(tuple(agent.position),tuple(e.position)) <= 6000]
-        if (damaged or nearby_air) and (old is None or state.step >= old[0]):
-            ground = [e for e in contacts if e.entity_type not in {'BP_Base_UAV_C','BP_Helicopter_C'}]
-            threat = min(nearby_air or ground,key=lambda e: AssaultRoute.distance(agent.position,e.position),default=None)
+        local = [e for e in contacts if e.alive and e.uid in agent.perceived_uids()]
+        ranged_ground = {'BP_BaseSoldier_C', 'BP_MNWS_Vehicle_Armored_C', 'BP_MNWS_Vehicle_6x6UGV_C'}
+        threats = [e for e in local if (
+            e.entity_type in {'BP_Base_UAV_C', 'BP_Helicopter_C'}
+            and math.dist(tuple(agent.position), tuple(e.position)) <= self.AIR_WARNING
+            or recon and e.entity_type in ranged_ground
+            and math.dist(tuple(agent.position), tuple(e.position)) <= self.GROUND_WARNING)]
+        reached = old is not None and AssaultRoute.distance(agent.position, old[1]) <= 800
+        if (damaged or threats) and (old is None or state.step >= old[0] or threats and reached):
+            ground = [e for e in local if e.entity_type not in {'BP_Base_UAV_C','BP_Helicopter_C'}]
+            threat = min(threats or ground,key=lambda e: AssaultRoute.distance(agent.position,e.position),default=None)
             anchor = threat.position if threat is not None else objective.position
             dx,dy = agent.position[0]-anchor[0],agent.position[1]-anchor[1]
             length = math.hypot(dx,dy)
@@ -229,11 +242,20 @@ class UAVControl:
                 dx,dy,length = (1.0,1.0,math.sqrt(2))
             point = (float(agent.position[0]+dx/length*4000),
                      float(agent.position[1]+dy/length*4000),float(agent.position[2]))
+            if threats:
+                # Evaluate only the current local contacts. Choosing an escape
+                # angle also avoids moving straight away from one pursuer into
+                # another. The survey destination is retained for the return.
+                angle = math.atan2(dy, dx)
+                options = [(float(agent.position[0] + self.EVADE_DISTANCE * math.cos(angle + i * math.pi / 4)),
+                            float(agent.position[1] + self.EVADE_DISTANCE * math.sin(angle + i * math.pi / 4)),
+                            float(agent.position[2])) for i in range(8)]
+                point = max(options, key=lambda p: min(math.dist(p, tuple(e.position)) for e in threats))
             radius = self._perception_radius(agent)
             dz = point[2] - float(objective.position[2])
             reach = math.sqrt(max(0.0,radius*radius-dz*dz)) * .9
             near = reach > 0 and AssaultRoute.distance(agent.position,objective.position) <= reach + 4000
-            if near:
+            if near and not threats:
                 ox,oy = point[0]-objective.position[0],point[1]-objective.position[1]
                 distance = max(math.hypot(ox,oy),1.0)
                 ratio = min(1.0,reach/distance)
@@ -244,16 +266,19 @@ class UAVControl:
                     angle = math.atan2(oy,ox) + (math.pi/6 if agent.uid%2 else -math.pi/6)
                     point = (float(objective.position[0]+reach*math.cos(angle)),
                              float(objective.position[1]+reach*math.sin(angle)),point[2])
-            self._evasion[agent.uid] = (state.step+12,point)
+            self._evasion[agent.uid] = (state.step+self.EVADE_STEPS,point)
             self._missions.pop(agent.uid,None)
-            if near:
+            if near and not threats:
                 self._stations[agent.uid] = (AssaultRoute.distance(point,objective.position),point,state.step)
-            else:
+            elif not threats:
                 self._stations.pop(agent.uid,None)  # Transit evasion is not the final survey goal.
             self._navigation.cancel(agent)
             old = self._evasion[agent.uid]
         if old is not None and state.step < old[0]:
             return self._navigation.apply(state,agent,old[1],(objective.uid,'evade',old[0]),arrival=600)
+        if old is not None:
+            self._evasion.pop(agent.uid, None)
+            self._navigation.cancel(agent)
         return None
 
     def _split_point(self, agent, objective, altitude):
@@ -502,7 +527,7 @@ class UAVControl:
         contacts = ([enemy for enemy in state.perceived_opponents(agent) if enemy.alive]
                     if 'agentPerception' in agent.raw else [])
         if split and agent.communication_ok() is not False:
-            evade = self._evade_damage(state,agent,objective,contacts)
+            evade = self._evade_damage(state,agent,objective,contacts,recon=recon)
             if evade is not None:
                 return evade
         self._observe(state, agent, contacts)

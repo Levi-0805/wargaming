@@ -1,0 +1,215 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261025_150756\\protocol.jsonl",
+  "source_bytes": 659972493,
+  "source_sha256": "34264c111a7422a215f471adb429ecb2c7f8090d96f9aea7c634cb2298353afe",
+  "baseline_commit": "46eb09dcbef1d3f35bfc1736d3eafd95f4503a73",
+  "baseline_files": {
+    "AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+    "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "AssaultFormation.py": "ea84e4c21b14bdd9e38b5e361a4af81a647b0195c879c69baf63ea542cd530ad",
+    "AssaultRoute.py": "6cad101de8e8bd960adf7706b1ee975249db9ce2e88258468fd2816229a53a4f",
+    "ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+    "FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+    "HQEntry.py": "218cdefafc9311a66dd77ebb9ffcbb24a65c043ec548b8183671a5d38e8aebef",
+    "HQExit.py": "a1c98e2a36a7efb9357c442818f9abe67de106f11b62c107d6b6dd32288687e6",
+    "MotionRecovery.py": "522637052ff6b840c108e71ffc181c733c9360f1e70fbc3fb0f77a08c8af6c10",
+    "RLAgentAlgorithm.py": "d9f4aff74eddeb3764445c823ca421ad52454fbbeed293ff4f6244dd2a4a681f",
+    "RearCover.py": "08386ed3c51d091fb9de7913be5a5b258788d6da193a75369d7114e2eb375136",
+    "RemnantCapture.py": "b90a0a87e34f9a9367af6aafd2b308fd905b518e82a1414693ca0424d07ff8c6",
+    "RuleAgentAlgorithm.py": "85103c8b72cd965564004a3f6e370191bb86375cb1447569842afc4b0f99eb7a",
+    "UAVControl.py": "da8b566bb7ec774ef451759713e863975ab04db9089ba7444f490fc46df7c94c",
+    "UrbanContact.py": "ff944a13a93a31f0f4d9bb71dde54b67be97b70a00cb94aebd7c7d929817bc14",
+    "VehicleFireControl.py": "11a3cb491fc2044b5cf99812dc20ce3a817afac1440ba1f90f5bf427852d52ec",
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  },
+  "candidate_files": {
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+    "AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+    "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "AssaultFormation.py": "be73f0d2ca07b18915f8445b1f4d3925a6a849ab2bba7e02f9d336e88a928e27",
+    "AssaultRoute.py": "6cad101de8e8bd960adf7706b1ee975249db9ce2e88258468fd2816229a53a4f",
+    "ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+    "FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+    "HQEntry.py": "218cdefafc9311a66dd77ebb9ffcbb24a65c043ec548b8183671a5d38e8aebef",
+    "HQExit.py": "a1c98e2a36a7efb9357c442818f9abe67de106f11b62c107d6b6dd32288687e6",
+    "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+    "RearCover.py": "08386ed3c51d091fb9de7913be5a5b258788d6da193a75369d7114e2eb375136",
+    "RemnantCapture.py": "b90a0a87e34f9a9367af6aafd2b308fd905b518e82a1414693ca0424d07ff8c6",
+    "RLAgentAlgorithm.py": "d9f4aff74eddeb3764445c823ca421ad52454fbbeed293ff4f6244dd2a4a681f",
+    "RuleAgentAlgorithm.py": "d41382d446be11d8d95f7dae66d15d2c5d275ec158d88664b11fb1355f8c5d04",
+    "UAVControl.py": "b180e3cc1cca0cf03de95c0cd99c8179a25e8c0662a58a204eb00f2baa6c1343",
+    "UrbanContact.py": "ff944a13a93a31f0f4d9bb71dde54b67be97b70a00cb94aebd7c7d929817bc14",
+    "VehicleFireControl.py": "11a3cb491fc2044b5cf99812dc20ce3a817afac1440ba1f90f5bf427852d52ec"
+  },
+  "episodes": [
+    {
+      "episode": 6,
+      "frames": 501,
+      "baseline_recorded_matches": 17620,
+      "baseline_recorded_mismatches": 280,
+      "changed_commands": 13,
+      "changes_by_kind": {
+        "BP_Base_UAV_C": 13
+      },
+      "changes_by_command": {
+        "Moving -> Moving": 9,
+        "Guard -> Moving": 2,
+        "Moving -> Guard": 2
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 272,
+              "uid": 32768,
+              "name": "军事基地B"
+            },
+            {
+              "step": 329,
+              "uid": 32770,
+              "name": "军事基地A"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 274,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:WS": 512,
+            "32769:ES": 850,
+            "32769:EN": 596,
+            "32769:WN": 333
+          },
+          "invalid_clearance_goals": 0
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 272,
+              "uid": 32768,
+              "name": "军事基地B"
+            },
+            {
+              "step": 329,
+              "uid": 32770,
+              "name": "军事基地A"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 274,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:WS": 512,
+            "32769:ES": 850,
+            "32769:EN": 596,
+            "32769:WN": 333
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    },
+    {
+      "episode": 7,
+      "frames": 501,
+      "baseline_recorded_matches": 15690,
+      "baseline_recorded_mismatches": 1410,
+      "changed_commands": 9,
+      "changes_by_kind": {
+        "BP_Base_UAV_C": 9
+      },
+      "changes_by_command": {
+        "Moving -> Moving": 9
+      },
+      "modes": {
+        "baseline": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 155,
+              "uid": 32768,
+              "name": "军事基地B"
+            },
+            {
+              "step": 230,
+              "uid": 32770,
+              "name": "军事基地A"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 274,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:WS": 15,
+            "32769:ES": 8
+          },
+          "invalid_clearance_goals": 0
+        },
+        "candidate": {
+          "objectives": [
+            {
+              "step": -1,
+              "uid": 32769,
+              "name": "指挥所"
+            },
+            {
+              "step": 155,
+              "uid": 32768,
+              "name": "军事基地B"
+            },
+            {
+              "step": 230,
+              "uid": 32770,
+              "name": "军事基地A"
+            }
+          ],
+          "unsafe_departures": [],
+          "pre_hq_diversions": 0,
+          "invalid_vehicle_fire": 0,
+          "invalid_uav_fire": 0,
+          "reserve_waits": {},
+          "column_holds": 274,
+          "entry_holds": 0,
+          "clearance_sectors": {
+            "32769:WS": 15,
+            "32769:ES": 8
+          },
+          "invalid_clearance_goals": 0
+        }
+      }
+    }
+  ],
+  "limitation": "Historical observations only; changed actions do not predict new movement, survival or scores."
+}

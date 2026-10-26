@@ -1,0 +1,2210 @@
+{
+  "baseline_commit": "46eb09dcbef1d3f35bfc1736d3eafd95f4503a73",
+  "score_definition": "terminal destruction Score[*].SumWorth + Reward",
+  "source_commit_note": "Historical runtime versions remain unbound; comparison baseline is an exported Git revision, not a timestamp inference.",
+  "match_comparison": {
+    "limitations": [
+      "Full-state retrospective audit only; enemy positions in this file are not algorithm inputs.",
+      "Historical runtime Git versions are unbound; no timestamp-based attribution.",
+      "Enemy deployment branches differ, preventing causal attribution of score change to one code rule.",
+      "Kill event credit can differ from physical total contribution; UAV survival does not prove its reconnaissance improved ground outcomes."
+    ],
+    "runs": [
+      {
+        "label": "high",
+        "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261025_150756\\protocol.jsonl",
+        "source_bytes": 659972493,
+        "source_sha256": "34264c111a7422a215f471adb429ecb2c7f8090d96f9aea7c634cb2298353afe",
+        "source_commit": null,
+        "rounds": [
+          {
+            "episode": 6,
+            "score": {
+              "kill_score": 2800,
+              "capture_score": 3200,
+              "total": 6000
+            },
+            "objective_blue_max": {
+              "B": 0,
+              "HQ": 32,
+              "A": 0
+            },
+            "objective_blue_first_present": {
+              "HQ": -1
+            },
+            "kill_credit": {
+              "red": {
+                "cross_team_events": 41,
+                "killer_counts": {
+                  "轮式无人车": 8,
+                  "“山猫”无人车": 11,
+                  "机器狗": 3,
+                  "士兵": 19
+                },
+                "killer_points": {
+                  "轮式无人车": 640,
+                  "“山猫”无人车": 860,
+                  "机器狗": 30,
+                  "士兵": 1120
+                },
+                "victim_counts": {
+                  "机器狗": 10,
+                  "士兵": 22,
+                  "无人机": 5,
+                  "“山猫”无人车": 2,
+                  "轮式无人车": 2
+                }
+              },
+              "blue": {
+                "cross_team_events": 24,
+                "killer_counts": {
+                  "士兵": 8,
+                  "无人机": 3,
+                  "机器狗": 13
+                },
+                "killer_points": {
+                  "士兵": 410,
+                  "无人机": 80,
+                  "机器狗": 830
+                },
+                "victim_counts": {
+                  "无人机": 3,
+                  "轮式无人车": 3,
+                  "“山猫”无人车": 2,
+                  "机器狗": 7,
+                  "士兵": 9
+                }
+              }
+            },
+            "phase_red_losses": {
+              "before_HQ_entry": {
+                "uav": 3,
+                "wheel": 3,
+                "lynx": 2,
+                "dog": 1
+              },
+              "HQ_entry_to_secure": {
+                "soldier": 9,
+                "dog": 6
+              }
+            },
+            "events": {
+              "HQ_entry": {
+                "step": 115,
+                "red_alive": {
+                  "soldier": 24,
+                  "uav": 2,
+                  "dog": 12,
+                  "wheel": 1,
+                  "heli": 2
+                },
+                "red_foot": 36,
+                "blue_alive": {
+                  "lynx": 2,
+                  "soldier": 8,
+                  "uav": 1,
+                  "dog": 5,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 2,
+                    "blue": 13,
+                    "percent": 0
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  }
+                }
+              },
+              "HQ_secure": {
+                "step": 269,
+                "red_alive": {
+                  "soldier": 15,
+                  "uav": 2,
+                  "dog": 6,
+                  "wheel": 1,
+                  "heli": 2
+                },
+                "red_foot": 21,
+                "blue_alive": {
+                  "uav": 1,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 21,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  }
+                }
+              },
+              "B_entry": {
+                "step": 323,
+                "red_alive": {
+                  "soldier": 15,
+                  "uav": 2,
+                  "dog": 6,
+                  "wheel": 1,
+                  "heli": 2
+                },
+                "red_foot": 21,
+                "blue_alive": {
+                  "uav": 1,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 1,
+                    "blue": 0,
+                    "percent": 0.05
+                  },
+                  "HQ": {
+                    "red": 3,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  }
+                }
+              },
+              "B_secure": {
+                "step": 326,
+                "red_alive": {
+                  "soldier": 15,
+                  "uav": 2,
+                  "dog": 6,
+                  "wheel": 1,
+                  "heli": 2
+                },
+                "red_foot": 21,
+                "blue_alive": {
+                  "uav": 1,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 5,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "HQ": {
+                    "red": 3,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  }
+                }
+              },
+              "A_entry": {
+                "step": 379,
+                "red_alive": {
+                  "soldier": 15,
+                  "uav": 2,
+                  "dog": 6,
+                  "wheel": 1,
+                  "heli": 2
+                },
+                "red_foot": 21,
+                "blue_alive": {
+                  "uav": 1,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 2,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "HQ": {
+                    "red": 3,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 1,
+                    "blue": 0,
+                    "percent": 0.15
+                  }
+                }
+              },
+              "A_secure": {
+                "step": 382,
+                "red_alive": {
+                  "soldier": 15,
+                  "uav": 2,
+                  "dog": 6,
+                  "wheel": 1,
+                  "heli": 2
+                },
+                "red_foot": 21,
+                "blue_alive": {
+                  "uav": 1,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 2,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "HQ": {
+                    "red": 3,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 9,
+                    "blue": 0,
+                    "percent": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "episode": 7,
+            "score": {
+              "kill_score": 2760,
+              "capture_score": 3200,
+              "total": 5960
+            },
+            "objective_blue_max": {
+              "B": 0,
+              "HQ": 32,
+              "A": 0
+            },
+            "objective_blue_first_present": {
+              "HQ": -1
+            },
+            "kill_credit": {
+              "red": {
+                "cross_team_events": 43,
+                "killer_counts": {
+                  "轮式无人车": 21,
+                  "“山猫”无人车": 4,
+                  "士兵": 17,
+                  "机器狗": 1
+                },
+                "killer_points": {
+                  "轮式无人车": 1190,
+                  "“山猫”无人车": 400,
+                  "士兵": 1070,
+                  "机器狗": 10
+                },
+                "victim_counts": {
+                  "士兵": 22,
+                  "机器狗": 10,
+                  "无人机": 7,
+                  "轮式无人车": 2,
+                  "“山猫”无人车": 2
+                }
+              },
+              "blue": {
+                "cross_team_events": 28,
+                "killer_counts": {
+                  "士兵": 22,
+                  "机器狗": 4,
+                  "无人机": 2
+                },
+                "killer_points": {
+                  "士兵": 950,
+                  "机器狗": 200,
+                  "无人机": 120
+                },
+                "victim_counts": {
+                  "无人机": 3,
+                  "轮式无人车": 4,
+                  "“山猫”无人车": 2,
+                  "机器狗": 12,
+                  "士兵": 7
+                }
+              }
+            },
+            "phase_red_losses": {
+              "before_HQ_entry": {
+                "uav": 3,
+                "wheel": 4,
+                "lynx": 2,
+                "dog": 7,
+                "soldier": 1
+              },
+              "HQ_entry_to_secure": {
+                "soldier": 6,
+                "dog": 5
+              }
+            },
+            "events": {
+              "HQ_entry": {
+                "step": 119,
+                "red_alive": {
+                  "soldier": 23,
+                  "uav": 2,
+                  "dog": 6,
+                  "heli": 2
+                },
+                "red_foot": 29,
+                "blue_alive": {
+                  "lynx": 2,
+                  "soldier": 5,
+                  "uav": 7,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 2,
+                    "blue": 5,
+                    "percent": 0
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  }
+                }
+              },
+              "HQ_secure": {
+                "step": 152,
+                "red_alive": {
+                  "soldier": 17,
+                  "uav": 2,
+                  "dog": 1,
+                  "heli": 2
+                },
+                "red_foot": 18,
+                "blue_alive": {
+                  "lynx": 2,
+                  "uav": 6,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 18,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  }
+                }
+              },
+              "B_entry": {
+                "step": 217,
+                "red_alive": {
+                  "soldier": 17,
+                  "uav": 2,
+                  "dog": 1,
+                  "heli": 2
+                },
+                "red_foot": 18,
+                "blue_alive": {
+                  "uav": 6,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 1,
+                    "blue": 0,
+                    "percent": 0.1
+                  },
+                  "HQ": {
+                    "red": 15,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  }
+                }
+              },
+              "B_secure": {
+                "step": 220,
+                "red_alive": {
+                  "soldier": 17,
+                  "uav": 2,
+                  "dog": 1,
+                  "heli": 2
+                },
+                "red_foot": 18,
+                "blue_alive": {
+                  "uav": 6,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 3,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "HQ": {
+                    "red": 12,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 0,
+                    "percent": 0
+                  }
+                }
+              },
+              "A_entry": {
+                "step": 282,
+                "red_alive": {
+                  "soldier": 17,
+                  "uav": 2,
+                  "dog": 1,
+                  "heli": 2
+                },
+                "red_foot": 18,
+                "blue_alive": {
+                  "uav": 5,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 5,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "HQ": {
+                    "red": 8,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 1,
+                    "blue": 0,
+                    "percent": 0.1
+                  }
+                }
+              },
+              "A_secure": {
+                "step": 291,
+                "red_alive": {
+                  "soldier": 17,
+                  "uav": 2,
+                  "dog": 1,
+                  "heli": 2
+                },
+                "red_foot": 18,
+                "blue_alive": {
+                  "uav": 5,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 7,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "HQ": {
+                    "red": 8,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 1,
+                    "blue": 0,
+                    "percent": 1
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "label": "latest",
+        "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261027_002825\\protocol.jsonl",
+        "source_bytes": 202716731,
+        "source_sha256": "5f331aa44a5d1fba51eab26079d4474d859dc62f5eed61a0710d9fe230660f37",
+        "source_commit": null,
+        "rounds": [
+          {
+            "episode": 1,
+            "score": {
+              "kill_score": 1370,
+              "capture_score": 1600,
+              "total": 2970
+            },
+            "objective_blue_max": {
+              "B": 10,
+              "HQ": 20,
+              "A": 9
+            },
+            "objective_blue_first_present": {
+              "HQ": -1,
+              "B": 50,
+              "A": 78
+            },
+            "kill_credit": {
+              "red": {
+                "cross_team_events": 19,
+                "killer_counts": {
+                  "“山猫”无人车": 7,
+                  "轮式无人车": 3,
+                  "士兵": 7,
+                  "机器狗": 2
+                },
+                "killer_points": {
+                  "“山猫”无人车": 460,
+                  "轮式无人车": 140,
+                  "士兵": 510,
+                  "机器狗": 120
+                },
+                "victim_counts": {
+                  "士兵": 10,
+                  "机器狗": 6,
+                  "无人机": 1,
+                  "轮式无人车": 1,
+                  "“山猫”无人车": 1
+                }
+              },
+              "blue": {
+                "cross_team_events": 44,
+                "killer_counts": {
+                  "士兵": 28,
+                  "无人机": 3,
+                  "机器狗": 13
+                },
+                "killer_points": {
+                  "士兵": 1910,
+                  "无人机": 30,
+                  "机器狗": 800
+                },
+                "victim_counts": {
+                  "无人机": 5,
+                  "机器狗": 12,
+                  "士兵": 22,
+                  "轮式无人车": 3,
+                  "“山猫”无人车": 2
+                }
+              }
+            },
+            "phase_red_losses": {
+              "before_HQ_entry": {
+                "uav": 5
+              },
+              "HQ_entry_to_secure": {
+                "dog": 4,
+                "soldier": 6
+              },
+              "after_HQ_secure": {
+                "wheel": 3,
+                "lynx": 2,
+                "soldier": 16,
+                "dog": 8
+              }
+            },
+            "events": {
+              "HQ_entry": {
+                "step": 116,
+                "red_alive": {
+                  "lynx": 2,
+                  "soldier": 24,
+                  "dog": 13,
+                  "wheel": 4,
+                  "heli": 2
+                },
+                "red_foot": 37,
+                "blue_alive": {
+                  "lynx": 2,
+                  "soldier": 17,
+                  "uav": 3,
+                  "dog": 5,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 10,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 1,
+                    "blue": 3,
+                    "percent": 0
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 9,
+                    "percent": 0
+                  }
+                }
+              },
+              "HQ_secure": {
+                "step": 248,
+                "red_alive": {
+                  "lynx": 2,
+                  "soldier": 18,
+                  "dog": 9,
+                  "wheel": 4,
+                  "heli": 2
+                },
+                "red_foot": 27,
+                "blue_alive": {
+                  "lynx": 1,
+                  "soldier": 14,
+                  "uav": 2,
+                  "dog": 5,
+                  "wheel": 1,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 10,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 27,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 9,
+                    "percent": 0
+                  }
+                }
+              },
+              "B_entry": {
+                "step": 316,
+                "red_alive": {
+                  "soldier": 18,
+                  "dog": 9,
+                  "wheel": 2,
+                  "heli": 2
+                },
+                "red_foot": 27,
+                "blue_alive": {
+                  "lynx": 1,
+                  "soldier": 14,
+                  "uav": 2,
+                  "dog": 5,
+                  "wheel": 1,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 9,
+                    "blue": 10,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 3,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 9,
+                    "percent": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "episode": 2,
+            "score": {
+              "kill_score": 1520,
+              "capture_score": 1600,
+              "total": 3120
+            },
+            "objective_blue_max": {
+              "B": 9,
+              "HQ": 22,
+              "A": 5
+            },
+            "objective_blue_first_present": {
+              "HQ": -1,
+              "B": 53,
+              "A": 81
+            },
+            "kill_credit": {
+              "red": {
+                "cross_team_events": 21,
+                "killer_counts": {
+                  "“山猫”无人车": 4,
+                  "轮式无人车": 9,
+                  "士兵": 8
+                },
+                "killer_points": {
+                  "“山猫”无人车": 240,
+                  "轮式无人车": 580,
+                  "士兵": 590
+                },
+                "victim_counts": {
+                  "机器狗": 8,
+                  "士兵": 12,
+                  "“山猫”无人车": 1
+                }
+              },
+              "blue": {
+                "cross_team_events": 46,
+                "killer_counts": {
+                  "士兵": 24,
+                  "无人机": 6,
+                  "机器狗": 8,
+                  "轮式无人车": 8
+                },
+                "killer_points": {
+                  "士兵": 1420,
+                  "无人机": 320,
+                  "机器狗": 350,
+                  "轮式无人车": 720
+                },
+                "victim_counts": {
+                  "无人机": 5,
+                  "轮式无人车": 4,
+                  "“山猫”无人车": 2,
+                  "士兵": 22,
+                  "机器狗": 13
+                }
+              }
+            },
+            "phase_red_losses": {
+              "before_HQ_entry": {
+                "uav": 5,
+                "wheel": 4,
+                "lynx": 1,
+                "soldier": 2
+              },
+              "HQ_entry_to_secure": {
+                "dog": 2,
+                "soldier": 1
+              },
+              "after_HQ_secure": {
+                "soldier": 19,
+                "dog": 11,
+                "lynx": 1
+              }
+            },
+            "events": {
+              "HQ_entry": {
+                "step": 111,
+                "red_alive": {
+                  "lynx": 1,
+                  "soldier": 22,
+                  "dog": 13,
+                  "heli": 2
+                },
+                "red_foot": 35,
+                "blue_alive": {
+                  "lynx": 2,
+                  "soldier": 14,
+                  "uav": 2,
+                  "dog": 4,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 9,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 3,
+                    "blue": 4,
+                    "percent": 0
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 5,
+                    "percent": 0
+                  }
+                }
+              },
+              "HQ_secure": {
+                "step": 148,
+                "red_alive": {
+                  "lynx": 1,
+                  "soldier": 21,
+                  "dog": 11,
+                  "heli": 2
+                },
+                "red_foot": 32,
+                "blue_alive": {
+                  "lynx": 2,
+                  "soldier": 11,
+                  "uav": 2,
+                  "dog": 3,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 9,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 32,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 5,
+                    "percent": 0
+                  }
+                }
+              },
+              "B_entry": {
+                "step": 217,
+                "red_alive": {
+                  "soldier": 14,
+                  "dog": 10,
+                  "heli": 2
+                },
+                "red_foot": 24,
+                "blue_alive": {
+                  "lynx": 1,
+                  "soldier": 11,
+                  "uav": 2,
+                  "dog": 3,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 1,
+                    "blue": 9,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 3,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 5,
+                    "percent": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "episode": 3,
+            "score": {
+              "kill_score": 1570,
+              "capture_score": 1600,
+              "total": 3170
+            },
+            "objective_blue_max": {
+              "B": 7,
+              "HQ": 21,
+              "A": 8
+            },
+            "objective_blue_first_present": {
+              "HQ": -1,
+              "B": 55,
+              "A": 80
+            },
+            "kill_credit": {
+              "red": {
+                "cross_team_events": 22,
+                "killer_counts": {
+                  "轮式无人车": 8,
+                  "“山猫”无人车": 3,
+                  "机器狗": 6,
+                  "士兵": 5
+                },
+                "killer_points": {
+                  "轮式无人车": 560,
+                  "“山猫”无人车": 300,
+                  "机器狗": 460,
+                  "士兵": 160
+                },
+                "victim_counts": {
+                  "机器狗": 5,
+                  "士兵": 13,
+                  "无人机": 3,
+                  "“山猫”无人车": 1
+                }
+              },
+              "blue": {
+                "cross_team_events": 47,
+                "killer_counts": {
+                  "机器狗": 6,
+                  "无人机": 12,
+                  "士兵": 18,
+                  "轮式无人车": 1,
+                  "“山猫”无人车": 10
+                },
+                "killer_points": {
+                  "机器狗": 430,
+                  "无人机": 630,
+                  "士兵": 1010,
+                  "轮式无人车": 50,
+                  "“山猫”无人车": 790
+                },
+                "victim_counts": {
+                  "无人机": 5,
+                  "“山猫”无人车": 2,
+                  "士兵": 23,
+                  "机器狗": 13,
+                  "轮式无人车": 4
+                }
+              }
+            },
+            "phase_red_losses": {
+              "before_HQ_entry": {
+                "uav": 5,
+                "lynx": 1,
+                "soldier": 5,
+                "dog": 4,
+                "wheel": 1
+              },
+              "HQ_entry_to_secure": {
+                "wheel": 1,
+                "dog": 3,
+                "soldier": 7
+              },
+              "after_HQ_secure": {
+                "wheel": 2,
+                "soldier": 11,
+                "dog": 6,
+                "lynx": 1
+              }
+            },
+            "events": {
+              "HQ_entry": {
+                "step": 117,
+                "red_alive": {
+                  "lynx": 1,
+                  "soldier": 19,
+                  "dog": 9,
+                  "wheel": 2,
+                  "heli": 2
+                },
+                "red_foot": 28,
+                "blue_alive": {
+                  "lynx": 2,
+                  "soldier": 12,
+                  "uav": 5,
+                  "dog": 5,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 7,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 10,
+                    "blue": 2,
+                    "percent": 0.4
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 8,
+                    "percent": 0
+                  }
+                }
+              },
+              "HQ_secure": {
+                "step": 119,
+                "red_alive": {
+                  "lynx": 1,
+                  "soldier": 12,
+                  "dog": 6,
+                  "wheel": 2,
+                  "heli": 2
+                },
+                "red_foot": 18,
+                "blue_alive": {
+                  "lynx": 2,
+                  "soldier": 10,
+                  "uav": 4,
+                  "dog": 5,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 0,
+                    "blue": 7,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 5,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 8,
+                    "percent": 0
+                  }
+                }
+              },
+              "B_entry": {
+                "step": 198,
+                "red_alive": {
+                  "soldier": 6,
+                  "dog": 4,
+                  "heli": 2
+                },
+                "red_foot": 10,
+                "blue_alive": {
+                  "lynx": 1,
+                  "soldier": 9,
+                  "uav": 3,
+                  "dog": 5,
+                  "wheel": 2,
+                  "heli": 1
+                },
+                "objectives": {
+                  "B": {
+                    "red": 3,
+                    "blue": 6,
+                    "percent": 0
+                  },
+                  "HQ": {
+                    "red": 3,
+                    "blue": 0,
+                    "percent": 1
+                  },
+                  "A": {
+                    "red": 0,
+                    "blue": 8,
+                    "percent": 0
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "support_failure_evidence": {
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261027_002825\\protocol.jsonl",
+    "summary": [
+      {
+        "episode": 1,
+        "lead_foot_guard_170_185m_steps": [
+          297,
+          298,
+          299,
+          300,
+          301,
+          302,
+          303,
+          304,
+          305,
+          306,
+          307,
+          308
+        ],
+        "vehicles": [
+          {
+            "uid": 466,
+            "death_step": 300,
+            "last_alive_step": 299,
+            "last_hp": 60.49572,
+            "last_ammo": [
+              "254.0"
+            ],
+            "last_B_distance_m": 40.2,
+            "last_nearest_foot_m": 166.7,
+            "first_local_ground_in_window": {
+              "step": 298,
+              "B_distance_m": 43.1,
+              "nearest_foot_m": 164.9
+            }
+          },
+          {
+            "uid": 461,
+            "death_step": 302,
+            "last_alive_step": 301,
+            "last_hp": 13.51267,
+            "last_ammo": [
+              "94.0"
+            ],
+            "last_B_distance_m": 32.6,
+            "last_nearest_foot_m": 149.3,
+            "first_local_ground_in_window": {
+              "step": 300,
+              "B_distance_m": 34.8,
+              "nearest_foot_m": 144.5
+            }
+          }
+        ]
+      },
+      {
+        "episode": 2,
+        "lead_foot_guard_170_185m_steps": [
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209
+        ],
+        "vehicles": [
+          {
+            "uid": 516,
+            "death_step": 213,
+            "last_alive_step": 212,
+            "last_hp": 21.15171,
+            "last_ammo": [
+              "277.0"
+            ],
+            "last_B_distance_m": 31.4,
+            "last_nearest_foot_m": 136.0,
+            "first_local_ground_in_window": {
+              "step": 209,
+              "B_distance_m": 40.1,
+              "nearest_foot_m": 137.6
+            }
+          }
+        ]
+      },
+      {
+        "episode": 3,
+        "lead_foot_guard_170_185m_steps": [
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190
+        ],
+        "vehicles": [
+          {
+            "uid": 1151,
+            "death_step": 196,
+            "last_alive_step": 195,
+            "last_hp": 21.79319,
+            "last_ammo": [
+              "35.0"
+            ],
+            "last_B_distance_m": 32.1,
+            "last_nearest_foot_m": 128.7,
+            "first_local_ground_in_window": {
+              "step": 188,
+              "B_distance_m": 41.7,
+              "nearest_foot_m": 162.8
+            }
+          }
+        ]
+      }
+    ],
+    "source_sha256": "5f331aa44a5d1fba51eab26079d4474d859dc62f5eed61a0710d9fe230660f37",
+    "limitations": "Retrospective full-state audit, actions are recorded. No historical loaded Git commit inferred; current source mechanism matches observed fixed-180m hold, not proof of build identity. Local contacts below are explicit agentPerception UIDs. Nearest foot includes alive red soldier/dog; policy should exclude assigned garrison."
+  },
+  "uav_decision_comparison": {
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261027_002825\\protocol.jsonl",
+    "source_sha256": "5f331aa44a5d1fba51eab26079d4474d859dc62f5eed61a0710d9fe230660f37",
+    "baseline_commit": "46eb09dcbef1d3f35bfc1736d3eafd95f4503a73",
+    "summary": [
+      {
+        "episode": 1,
+        "uid": 31,
+        "recorded_death_step": 42,
+        "baseline_first_evade": null,
+        "candidate_first_evade": 40,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -30927.220703125,
+            34191.28125,
+            14326.02197265625
+          ],
+          "evading": false
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -23874.045716315744,
+            33604.48133516333,
+            13885.2900390625
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 1,
+        "uid": 16,
+        "recorded_death_step": 43,
+        "baseline_first_evade": null,
+        "candidate_first_evade": 40,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -31454.9609375,
+            32744.0,
+            14326.02197265625
+          ],
+          "evading": false
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -23672.7241999847,
+            31124.589652988518,
+            13863.8701171875
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 1,
+        "uid": 21,
+        "recorded_death_step": 48,
+        "baseline_first_evade": 38,
+        "candidate_first_evade": 36,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            5851.05810546875,
+            -20384.05078125,
+            13384.4501953125
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            10212.98918028794,
+            -18170.132066315367,
+            13228.3896484375
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 1,
+        "uid": 36,
+        "recorded_death_step": 64,
+        "baseline_first_evade": 41,
+        "candidate_first_evade": 35,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -5064.60791015625,
+            -16828.609375,
+            10398.5595703125
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -10862.114403974236,
+            -14789.688509363616,
+            11136.9697265625
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 1,
+        "uid": 26,
+        "recorded_death_step": 64,
+        "baseline_first_evade": 55,
+        "candidate_first_evade": 29,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -35796.828125,
+            -24953.30078125,
+            13453.009765625
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -30348.5344637607,
+            -22440.116311120586,
+            13452.9296875
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 2,
+        "uid": 511,
+        "recorded_death_step": 42,
+        "baseline_first_evade": null,
+        "candidate_first_evade": 40,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -30918.650390625,
+            32770.8203125,
+            14326.02197265625
+          ],
+          "evading": false
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -24138.413063269014,
+            30997.090471650787,
+            13890.3896484375
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 2,
+        "uid": 996,
+        "recorded_death_step": 42,
+        "baseline_first_evade": null,
+        "candidate_first_evade": 40,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -30766.859375,
+            34239.53125,
+            14326.02197265625
+          ],
+          "evading": false
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -23637.990611876416,
+            33725.10282530498,
+            13870.7001953125
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 2,
+        "uid": 976,
+        "recorded_death_step": 49,
+        "baseline_first_evade": 39,
+        "candidate_first_evade": 35,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            5606.2060546875,
+            -20150.98046875,
+            13439.58984375
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            11561.238959936232,
+            -20889.439047664557,
+            13458.0
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 2,
+        "uid": 1006,
+        "recorded_death_step": 56,
+        "baseline_first_evade": 55,
+        "candidate_first_evade": 35,
+        "last_baseline": {
+          "hp": 7.790033,
+          "command": "Moving",
+          "points": [
+            -14501.71945963809,
+            -6736.432176998729,
+            10472.76953125
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 7.790033,
+          "command": "Moving",
+          "points": [
+            -6895.8041666151385,
+            -13547.412612365613,
+            6965.01513671875
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 2,
+        "uid": 986,
+        "recorded_death_step": 62,
+        "baseline_first_evade": 54,
+        "candidate_first_evade": 30,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -35958.91015625,
+            -24641.83984375,
+            13392.66015625
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -31015.65868510595,
+            -21615.464868415995,
+            13177.990234375
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 3,
+        "uid": 1486,
+        "recorded_death_step": 44,
+        "baseline_first_evade": 43,
+        "candidate_first_evade": 40,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -29490.85311719428,
+            34708.270815470794,
+            11832.2802734375
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -23864.036975251813,
+            34954.38797029401,
+            13883.669921875
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 3,
+        "uid": 1456,
+        "recorded_death_step": 51,
+        "baseline_first_evade": 40,
+        "candidate_first_evade": 34,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            5500.97802734375,
+            -20174.900390625,
+            13507.2099609375
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            11284.025496331587,
+            -18694.197355359778,
+            13521.0703125
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 3,
+        "uid": 1441,
+        "recorded_death_step": 57,
+        "baseline_first_evade": 43,
+        "candidate_first_evade": 41,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -30302.979286695416,
+            32905.57735512342,
+            14137.9599609375
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -20351.95364714446,
+            32376.44915613043,
+            14138.5400390625
+          ],
+          "evading": true
+        }
+      },
+      {
+        "episode": 3,
+        "uid": 1471,
+        "recorded_death_step": 60,
+        "baseline_first_evade": 54,
+        "candidate_first_evade": 31,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -35959.12109375,
+            -25223.91015625,
+            13395.33984375
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": null,
+          "evading": true
+        }
+      },
+      {
+        "episode": 3,
+        "uid": 1501,
+        "recorded_death_step": 66,
+        "baseline_first_evade": 46,
+        "candidate_first_evade": 34,
+        "last_baseline": {
+          "hp": 100.0,
+          "command": "Guard",
+          "points": [
+            -2323.381103515625,
+            -15039.8603515625,
+            11002.4599609375
+          ],
+          "evading": true
+        },
+        "last_candidate": {
+          "hp": 100.0,
+          "command": "Moving",
+          "points": [
+            -3337.874467566289,
+            -9912.38785794111,
+            11002.4599609375
+          ],
+          "evading": true
+        }
+      }
+    ],
+    "limitation": "Standalone UAV controller on recorded public observations; no new outcomes, positions, or survival claims; recorded code version is unbound."
+  },
+  "config_import": {
+    "source": "C:/CSSIM/Client/Data/AlgData/PythonCode/TaskConfig/cssim/cssim_25vs25.jsonc",
+    "field": "max_episode",
+    "repository_before": 10,
+    "existing_client_value_preserved": 3
+  },
+  "candidate_policy": {
+    "occupied_B": "Remove 180m infantry hold; unengaged active cars join up to four mobile foot within80m after an actual gap, at most18steps once per objective; release on local contact, damage or actual entry.",
+    "UAV": "Proactive local air/ground threat avoidance; keep moving when escape goal reached under pursuit; allow temporary sensor-circle departure; return to original station afterward."
+  },
+  "tests": {
+    "compileall": "passed",
+    "pytest_passed": 577
+  },
+  "limitations": [
+    "Historical public-state replay fixes old positions, damage and deaths; changed commands are not new simulation outcomes.",
+    "New engine movement, sight retention, survival and scores require fresh matches after reloading the published algorithm.",
+    "The 80m/18step join and 110m/120m threat warnings are policy parameters, not verified safety or weapon envelopes."
+  ],
+  "formation_decision_comparison": {
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261027_002825\\protocol.jsonl",
+    "source_sha256": "5f331aa44a5d1fba51eab26079d4474d859dc62f5eed61a0710d9fe230660f37",
+    "baseline_commit": "46eb09dcbef1d3f35bfc1736d3eafd95f4503a73",
+    "candidate_files": {
+      "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+      "AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+      "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+      "AssaultFormation.py": "be73f0d2ca07b18915f8445b1f4d3925a6a849ab2bba7e02f9d336e88a928e27",
+      "AssaultRoute.py": "6cad101de8e8bd960adf7706b1ee975249db9ce2e88258468fd2816229a53a4f",
+      "ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+      "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+      "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+      "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+      "EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+      "FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+      "HQEntry.py": "218cdefafc9311a66dd77ebb9ffcbb24a65c043ec548b8183671a5d38e8aebef",
+      "HQExit.py": "a1c98e2a36a7efb9357c442818f9abe67de106f11b62c107d6b6dd32288687e6",
+      "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+      "RearCover.py": "08386ed3c51d091fb9de7913be5a5b258788d6da193a75369d7114e2eb375136",
+      "RemnantCapture.py": "b90a0a87e34f9a9367af6aafd2b308fd905b518e82a1414693ca0424d07ff8c6",
+      "RLAgentAlgorithm.py": "d9f4aff74eddeb3764445c823ca421ad52454fbbeed293ff4f6244dd2a4a681f",
+      "RuleAgentAlgorithm.py": "d41382d446be11d8d95f7dae66d15d2c5d275ec158d88664b11fb1355f8c5d04",
+      "UAVControl.py": "b180e3cc1cca0cf03de95c0cd99c8179a25e8c0662a58a204eb00f2baa6c1343",
+      "UrbanContact.py": "ff944a13a93a31f0f4d9bb71dde54b67be97b70a00cb94aebd7c7d929817bc14",
+      "VehicleFireControl.py": "11a3cb491fc2044b5cf99812dc20ce3a817afac1440ba1f90f5bf427852d52ec"
+    },
+    "rounds": [
+      {
+        "episode": 1,
+        "hold_window": [
+          297,
+          308
+        ],
+        "hold_commands": {
+          "Guard -> Moving": 122
+        },
+        "join_events": [
+          {
+            "step": 251,
+            "start": null,
+            "released": false,
+            "near": []
+          },
+          {
+            "step": 280,
+            "start": 280,
+            "released": false,
+            "near": [
+              {
+                "uid": 466,
+                "db_m": 337.8,
+                "foot80": 13,
+                "local": [],
+                "damaged": false,
+                "inside": false
+              },
+              {
+                "uid": 486,
+                "db_m": 314.4,
+                "foot80": 12,
+                "local": [],
+                "damaged": false,
+                "inside": false
+              },
+              {
+                "uid": 496,
+                "db_m": 288.9,
+                "foot80": 2,
+                "local": [],
+                "damaged": false,
+                "inside": false
+              }
+            ]
+          },
+          {
+            "step": 289,
+            "start": 280,
+            "released": true,
+            "near": [
+              {
+                "uid": 461,
+                "db_m": 197.8,
+                "foot80": 2,
+                "local": [],
+                "damaged": false,
+                "inside": false
+              },
+              {
+                "uid": 486,
+                "db_m": 128.2,
+                "foot80": 0,
+                "local": [],
+                "damaged": false,
+                "inside": false
+              },
+              {
+                "uid": 496,
+                "db_m": 115.5,
+                "foot80": 0,
+                "local": [],
+                "damaged": false,
+                "inside": true
+              }
+            ]
+          }
+        ],
+        "candidate_vehicle_hold_command_count": 27
+      },
+      {
+        "episode": 2,
+        "hold_window": [
+          199,
+          209
+        ],
+        "hold_commands": {
+          "Guard -> Moving": 84
+        },
+        "join_events": [
+          {
+            "step": 151,
+            "start": null,
+            "released": false,
+            "near": []
+          },
+          {
+            "step": 173,
+            "start": 173,
+            "released": false,
+            "near": [
+              {
+                "uid": 516,
+                "db_m": 337.8,
+                "foot80": 0,
+                "local": [
+                  1011
+                ],
+                "damaged": false,
+                "inside": false
+              }
+            ]
+          },
+          {
+            "step": 181,
+            "start": 173,
+            "released": true,
+            "near": [
+              {
+                "uid": 516,
+                "db_m": 160.3,
+                "foot80": 0,
+                "local": [
+                  926,
+                  1011
+                ],
+                "damaged": false,
+                "inside": false
+              }
+            ]
+          }
+        ],
+        "candidate_vehicle_hold_command_count": 8
+      },
+      {
+        "episode": 3,
+        "hold_window": [
+          181,
+          190
+        ],
+        "hold_commands": {
+          "Guard -> Moving": 62
+        },
+        "join_events": [
+          {
+            "step": 122,
+            "start": null,
+            "released": false,
+            "near": []
+          },
+          {
+            "step": 166,
+            "start": null,
+            "released": true,
+            "near": [
+              {
+                "uid": 1151,
+                "db_m": 252.8,
+                "foot80": 6,
+                "local": [
+                  1116
+                ],
+                "damaged": false,
+                "inside": false
+              },
+              {
+                "uid": 1131,
+                "db_m": 266.3,
+                "foot80": 6,
+                "local": [],
+                "damaged": false,
+                "inside": false
+              }
+            ]
+          }
+        ],
+        "candidate_vehicle_hold_command_count": 0
+      }
+    ],
+    "limitation": "Recorded observation replay only. Changed actions are not new match outcomes or simulated positions, survival or scores."
+  },
+  "validation": {
+    "recorded_baseline_comparisons": [
+      {
+        "file": "20261027-support-current-comparison.json",
+        "baseline_commit": "46eb09dcbef1d3f35bfc1736d3eafd95f4503a73",
+        "episodes": [
+          {
+            "episode": 1,
+            "frames": 501,
+            "baseline_recorded_matches": 20100,
+            "baseline_recorded_mismatches": 0,
+            "changed_commands": 258,
+            "changes_by_kind": {
+              "BP_Base_UAV_C": 71,
+              "BP_MNWS_Vehicle_6x6UGV_C": 11,
+              "BP_MNWS_Vehicle_Armored_C": 19,
+              "BP_BaseSoldier_C": 130,
+              "BP_RoboDog_C": 27
+            },
+            "checks": {
+              "objectives": [
+                {
+                  "step": -1,
+                  "uid": 32769,
+                  "name": "指挥所"
+                },
+                {
+                  "step": 251,
+                  "uid": 32768,
+                  "name": "军事基地B"
+                }
+              ],
+              "unsafe_departures": [],
+              "pre_hq_diversions": 0,
+              "invalid_vehicle_fire": 0,
+              "invalid_uav_fire": 0,
+              "reserve_waits": {},
+              "column_holds": 266,
+              "entry_holds": 0,
+              "clearance_sectors": {
+                "32769:WS": 535,
+                "32769:ES": 980,
+                "32769:EN": 455,
+                "32769:WN": 262,
+                "32768:EN": 327,
+                "32768:WS": 110,
+                "32768:WN": 144,
+                "32768:ES": 46
+              },
+              "invalid_clearance_goals": 0
+            }
+          },
+          {
+            "episode": 2,
+            "frames": 501,
+            "baseline_recorded_matches": 20600,
+            "baseline_recorded_mismatches": 0,
+            "changed_commands": 157,
+            "changes_by_kind": {
+              "BP_Base_UAV_C": 62,
+              "BP_MNWS_Vehicle_6x6UGV_C": 8,
+              "BP_RoboDog_C": 69,
+              "BP_BaseSoldier_C": 18
+            },
+            "checks": {
+              "objectives": [
+                {
+                  "step": -1,
+                  "uid": 32769,
+                  "name": "指挥所"
+                },
+                {
+                  "step": 151,
+                  "uid": 32768,
+                  "name": "军事基地B"
+                }
+              ],
+              "unsafe_departures": [],
+              "pre_hq_diversions": 0,
+              "invalid_vehicle_fire": 0,
+              "invalid_uav_fire": 0,
+              "reserve_waits": {},
+              "column_holds": 266,
+              "entry_holds": 0,
+              "clearance_sectors": {
+                "32769:WS": 71,
+                "32769:ES": 11,
+                "32768:WN": 119,
+                "32768:EN": 252,
+                "32768:WS": 59,
+                "32768:ES": 55
+              },
+              "invalid_clearance_goals": 0
+            }
+          },
+          {
+            "episode": 3,
+            "frames": 501,
+            "baseline_recorded_matches": 20550,
+            "baseline_recorded_mismatches": 0,
+            "changed_commands": 155,
+            "changes_by_kind": {
+              "BP_Base_UAV_C": 88,
+              "BP_BaseSoldier_C": 34,
+              "BP_RoboDog_C": 33
+            },
+            "checks": {
+              "objectives": [
+                {
+                  "step": -1,
+                  "uid": 32769,
+                  "name": "指挥所"
+                },
+                {
+                  "step": 122,
+                  "uid": 32768,
+                  "name": "军事基地B"
+                }
+              ],
+              "unsafe_departures": [],
+              "pre_hq_diversions": 0,
+              "invalid_vehicle_fire": 0,
+              "invalid_uav_fire": 0,
+              "reserve_waits": {},
+              "column_holds": 271,
+              "entry_holds": 0,
+              "clearance_sectors": {
+                "32768:WN": 40,
+                "32768:EN": 46,
+                "32768:WS": 22,
+                "32768:ES": 12
+              },
+              "invalid_clearance_goals": 0
+            }
+          }
+        ]
+      },
+      {
+        "file": "20261027-support-high-recorded-validation.json",
+        "baseline_commit": "5d0f65a1b4a2feeabc537ff2d263c9b080c5176e",
+        "episodes": [
+          {
+            "episode": 6,
+            "frames": 501,
+            "baseline_recorded_matches": 17900,
+            "baseline_recorded_mismatches": 0,
+            "changed_commands": 445,
+            "changes_by_kind": {
+              "BP_Base_UAV_C": 13,
+              "BP_BaseSoldier_C": 432
+            },
+            "checks": {
+              "objectives": [
+                {
+                  "step": -1,
+                  "uid": 32769,
+                  "name": "指挥所"
+                },
+                {
+                  "step": 272,
+                  "uid": 32768,
+                  "name": "军事基地B"
+                },
+                {
+                  "step": 329,
+                  "uid": 32770,
+                  "name": "军事基地A"
+                }
+              ],
+              "unsafe_departures": [],
+              "pre_hq_diversions": 0,
+              "invalid_vehicle_fire": 0,
+              "invalid_uav_fire": 0,
+              "reserve_waits": {},
+              "column_holds": 274,
+              "entry_holds": 0,
+              "clearance_sectors": {
+                "32769:WS": 512,
+                "32769:ES": 850,
+                "32769:EN": 596,
+                "32769:WN": 333
+              },
+              "invalid_clearance_goals": 0
+            }
+          },
+          {
+            "episode": 7,
+            "frames": 501,
+            "baseline_recorded_matches": 17100,
+            "baseline_recorded_mismatches": 0,
+            "changed_commands": 1829,
+            "changes_by_kind": {
+              "BP_Base_UAV_C": 9,
+              "BP_BaseSoldier_C": 1679,
+              "BP_RoboDog_C": 141
+            },
+            "checks": {
+              "objectives": [
+                {
+                  "step": -1,
+                  "uid": 32769,
+                  "name": "指挥所"
+                },
+                {
+                  "step": 155,
+                  "uid": 32768,
+                  "name": "军事基地B"
+                },
+                {
+                  "step": 230,
+                  "uid": 32770,
+                  "name": "军事基地A"
+                }
+              ],
+              "unsafe_departures": [],
+              "pre_hq_diversions": 0,
+              "invalid_vehicle_fire": 0,
+              "invalid_uav_fire": 0,
+              "reserve_waits": {},
+              "column_holds": 274,
+              "entry_holds": 0,
+              "clearance_sectors": {
+                "32769:WS": 15,
+                "32769:ES": 8
+              },
+              "invalid_clearance_goals": 0
+            }
+          }
+        ]
+      },
+      {
+        "file": "20261027-support-occupied-recorded-validation.json",
+        "baseline_commit": "e67160baa8f86a72d8313cbcf91d1dcd3c5f5d7b",
+        "episodes": [
+          {
+            "episode": 7,
+            "frames": 501,
+            "baseline_recorded_matches": 17450,
+            "baseline_recorded_mismatches": 0,
+            "changed_commands": 505,
+            "changes_by_kind": {
+              "BP_Base_UAV_C": 44,
+              "BP_MNWS_Vehicle_6x6UGV_C": 57,
+              "BP_MNWS_Vehicle_Armored_C": 9,
+              "BP_BaseSoldier_C": 254,
+              "BP_RoboDog_C": 141
+            },
+            "checks": {
+              "objectives": [
+                {
+                  "step": -1,
+                  "uid": 32769,
+                  "name": "指挥所"
+                },
+                {
+                  "step": 125,
+                  "uid": 32768,
+                  "name": "军事基地B"
+                },
+                {
+                  "step": 209,
+                  "uid": 32770,
+                  "name": "军事基地A"
+                }
+              ],
+              "unsafe_departures": [],
+              "pre_hq_diversions": 0,
+              "invalid_vehicle_fire": 0,
+              "invalid_uav_fire": 0,
+              "reserve_waits": {},
+              "column_holds": 265,
+              "entry_holds": 0,
+              "clearance_sectors": {
+                "32768:WN": 113,
+                "32768:EN": 153,
+                "32768:WS": 84,
+                "32768:ES": 44,
+                "32770:WS": 219,
+                "32770:WN": 344,
+                "32770:ES": 245,
+                "32770:EN": 333
+              },
+              "invalid_clearance_goals": 0
+            }
+          }
+        ]
+      }
+    ],
+    "frames": 3006,
+    "baseline_recorded_matches": 113700,
+    "baseline_recorded_mismatches": 0,
+    "candidate_files": {
+      "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+      "AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+      "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+      "AssaultFormation.py": "be73f0d2ca07b18915f8445b1f4d3925a6a849ab2bba7e02f9d336e88a928e27",
+      "AssaultRoute.py": "6cad101de8e8bd960adf7706b1ee975249db9ce2e88258468fd2816229a53a4f",
+      "ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+      "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+      "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+      "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+      "EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+      "FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+      "HQEntry.py": "218cdefafc9311a66dd77ebb9ffcbb24a65c043ec548b8183671a5d38e8aebef",
+      "HQExit.py": "a1c98e2a36a7efb9357c442818f9abe67de106f11b62c107d6b6dd32288687e6",
+      "MotionRecovery.py": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+      "RearCover.py": "08386ed3c51d091fb9de7913be5a5b258788d6da193a75369d7114e2eb375136",
+      "RemnantCapture.py": "b90a0a87e34f9a9367af6aafd2b308fd905b518e82a1414693ca0424d07ff8c6",
+      "RLAgentAlgorithm.py": "d9f4aff74eddeb3764445c823ca421ad52454fbbeed293ff4f6244dd2a4a681f",
+      "RuleAgentAlgorithm.py": "d41382d446be11d8d95f7dae66d15d2c5d275ec158d88664b11fb1355f8c5d04",
+      "UAVControl.py": "b180e3cc1cca0cf03de95c0cd99c8179a25e8c0662a58a204eb00f2baa6c1343",
+      "UrbanContact.py": "ff944a13a93a31f0f4d9bb71dde54b67be97b70a00cb94aebd7c7d929817bc14",
+      "VehicleFireControl.py": "11a3cb491fc2044b5cf99812dc20ce3a817afac1440ba1f90f5bf427852d52ec"
+    },
+    "historical_build_identity": "Recorded-action matches verify replay behavior; runtime source commit remains unbound."
+  }
+}
