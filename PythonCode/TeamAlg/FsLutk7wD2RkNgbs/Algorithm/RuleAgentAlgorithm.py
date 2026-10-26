@@ -217,6 +217,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
             return Action.idle()
         if agent.entity_type == self._UAV:
             return self._uav.choose(state, agent, self._route.objective(state), self._route)
+        remnant = self._route._remnant.point(state, agent, self._route)
+        if remnant is not None:
+            # A withdrawal must override the old B firing/search/assembly
+            # priorities. Otherwise a visible defender keeps the survivor at
+            # B even though the objective selector has already chosen A.
+            return (Action.guard_position(remnant) if self._horizontal(agent.position, remnant) <= 450
+                    else Action.move_at(remnant))
         if agent.entity_type in self.VEHICLES:
             objective = self._route.objective(state)
             advancing_b = (self._route.hq_secured and self._route.is_base_b(objective)
@@ -346,7 +353,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         opening_column = (not self._cohesion.released and (
             self._opening_column_start is None
             or state.step - self._opening_column_start < self._cohesion.MAX_WAIT))
-        if self.enable_continuous_column or opening_column:
+        if (self.enable_continuous_column or opening_column) and not self._route._remnant.active:
             result = self._column.apply(state, agent, result, self._route, self._formation,
                                         self._entry_waves.released if self._entry_waves.waves else ())
             if self._column.held and self._opening_column_start is None:

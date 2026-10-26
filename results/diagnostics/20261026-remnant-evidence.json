@@ -1,0 +1,5012 @@
+{
+  "runs": [
+    {
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261025_150756\\protocol.jsonl",
+      "source_bytes": 659972493,
+      "source_sha256": "34264c111a7422a215f471adb429ecb2c7f8090d96f9aea7c634cb2298353afe",
+      "source_commit": null,
+      "completed": 10,
+      "mean": 3424.0,
+      "totals": [
+        3110,
+        3960,
+        2900,
+        1990,
+        3480,
+        6000,
+        5960,
+        2520,
+        3050,
+        1270
+      ],
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "score": {
+            "kill_score": 1510,
+            "capture_score": 1600,
+            "total": 3110
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 101,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                461,
+                466,
+                486,
+                491,
+                496
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 17,
+                "uav": 11,
+                "dog": 8,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 104,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 19,
+                  "blue": 9,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                461,
+                466,
+                486,
+                491,
+                496
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 17,
+                "uav": 11,
+                "dog": 8,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 190,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 15,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 8,
+                "uav": 1,
+                "dog": 7,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 15,
+              "red_vehicles": [
+                461,
+                466,
+                486,
+                491,
+                496
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 8,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 190,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 15,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 8,
+                "uav": 1,
+                "dog": 7,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 15,
+              "red_vehicles": [
+                461,
+                466,
+                486,
+                491,
+                496
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 8,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 253,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 8,
+                "uav": 1,
+                "dog": 7,
+                "heli": 2
+              },
+              "red_foot": 15,
+              "red_vehicles": [
+                461
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 10,
+                "uav": 8,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 82,
+              "uid": 481,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 146,
+              "uid": 471,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 151,
+              "uid": 501,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 243,
+              "uid": 491,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 243,
+              "uid": 496,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 245,
+              "uid": 486,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 250,
+              "uid": 466,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 257,
+              "uid": 461,
+              "team": 0,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 15,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "uav": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 10,
+              "uav": 6,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "score": {
+            "kill_score": 1560,
+            "capture_score": 2400,
+            "total": 3960
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 113,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 1,
+                  "percent": 0.15
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 23,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                556,
+                531
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 12,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 115,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 9,
+                  "blue": 1,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 23,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                556,
+                531
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 12,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 217,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 31,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 18,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 31,
+              "red_vehicles": [
+                556,
+                531
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 217,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 31,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 18,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 31,
+              "red_vehicles": [
+                556,
+                531
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 265,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.15
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 18,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 31,
+              "red_vehicles": [
+                556,
+                531
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_enemy_free": {
+              "step": 265,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.15
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 18,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 31,
+              "red_vehicles": [
+                556,
+                531
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_full_bar": {
+              "step": 268,
+              "objectives": {
+                "B": {
+                  "red": 7,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 18,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 31,
+              "red_vehicles": [
+                556,
+                531
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_secure": {
+              "step": 268,
+              "objectives": {
+                "B": {
+                  "red": 7,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 18,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 31,
+              "red_vehicles": [
+                556,
+                531
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "A_entry": {
+              "step": 336,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 14,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 18,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 31,
+              "red_vehicles": [
+                556
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 3,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 102,
+              "uid": 591,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 108,
+              "uid": 581,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 108,
+              "uid": 546,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 109,
+              "uid": 521,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 138,
+              "uid": 511,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 171,
+              "uid": 576,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 335,
+              "uid": 531,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 362,
+              "uid": 556,
+              "team": 0,
+              "kind": "wheel"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 2,
+                "blue": 0,
+                "percent": 1
+              },
+              "HQ": {
+                "red": 3,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 13,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 4,
+              "uav": 1,
+              "dog": 3,
+              "heli": 2
+            },
+            "red_foot": 7,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 10,
+              "uav": 5,
+              "dog": 3,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "score": {
+            "kill_score": 1300,
+            "capture_score": 1600,
+            "total": 2900
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 111,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 4,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 8,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 21,
+                "dog": 13,
+                "heli": 2
+              },
+              "red_foot": 34,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 16,
+                "uav": 5,
+                "dog": 7,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 115,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 13,
+                  "blue": 4,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 8,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 21,
+                "dog": 13,
+                "heli": 2
+              },
+              "red_foot": 34,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 16,
+                "uav": 5,
+                "dog": 7,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 175,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 29,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 16,
+                "dog": 13,
+                "heli": 2
+              },
+              "red_foot": 29,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 175,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 29,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 16,
+                "dog": 13,
+                "heli": 2
+              },
+              "red_foot": 29,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 247,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 4,
+                "dog": 3,
+                "heli": 2
+              },
+              "red_foot": 7,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 85,
+              "uid": 1111,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 90,
+              "uid": 1116,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 92,
+              "uid": 1061,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 93,
+              "uid": 1051,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 98,
+              "uid": 1076,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 100,
+              "uid": 1066,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 162,
+              "uid": 1041,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 228,
+              "uid": 1086,
+              "team": 1,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 9,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 9,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 12,
+              "uav": 5,
+              "dog": 6,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 4,
+          "complete": true,
+          "score": {
+            "kill_score": 1990,
+            "capture_score": 0,
+            "total": 1990
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 125,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 2,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 12,
+                "uav": 2,
+                "dog": 7,
+                "heli": 2
+              },
+              "red_foot": 19,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 6,
+                "uav": 6,
+                "dog": 4,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 128,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 18,
+                  "blue": 8,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 11,
+                "uav": 2,
+                "dog": 7,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 4,
+                "uav": 6,
+                "dog": 4,
+                "wheel": 2,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 86,
+              "uid": 1671,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 92,
+              "uid": 1741,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 94,
+              "uid": 1736,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 99,
+              "uid": 1696,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 100,
+              "uid": 1676,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 103,
+              "uid": 1691,
+              "team": 0,
+              "kind": "wheel"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 0,
+                "blue": 8,
+                "percent": 0
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "uav": 2,
+              "heli": 2
+            },
+            "red_foot": 0,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 4,
+              "uav": 6,
+              "dog": 4,
+              "wheel": 2,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 5,
+          "complete": true,
+          "score": {
+            "kill_score": 1880,
+            "capture_score": 1600,
+            "total": 3480
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 112,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 6,
+                  "blue": 2,
+                  "percent": 0.3
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 24,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                2231,
+                2191
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 114,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 9,
+                  "blue": 2,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 24,
+                "uav": 1,
+                "dog": 13,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                2231,
+                2191
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 165,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 35,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 24,
+                "uav": 1,
+                "dog": 11,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 35,
+              "red_vehicles": [
+                2231,
+                2191
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 165,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 35,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 24,
+                "uav": 1,
+                "dog": 11,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 35,
+              "red_vehicles": [
+                2231,
+                2191
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 224,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 16,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "uav": 1,
+                "dog": 11,
+                "heli": 2
+              },
+              "red_foot": 35,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 3,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_full_bar": {
+              "step": 231,
+              "objectives": {
+                "B": {
+                  "red": 26,
+                  "blue": 16,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "uav": 1,
+                "dog": 10,
+                "heli": 2
+              },
+              "red_foot": 34,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 3,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 97,
+              "uid": 2236,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 99,
+              "uid": 2171,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 100,
+              "uid": 2186,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 104,
+              "uid": 2206,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 141,
+              "uid": 2166,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 146,
+              "uid": 2226,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 215,
+              "uid": 2231,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 215,
+              "uid": 2191,
+              "team": 0,
+              "kind": "wheel"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 11,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "uav": 1,
+              "dog": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 7,
+              "uav": 1,
+              "dog": 4,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 6,
+          "complete": true,
+          "score": {
+            "kill_score": 2800,
+            "capture_score": 3200,
+            "total": 6000
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 115,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 2,
+                  "blue": 13,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "uav": 2,
+                "dog": 12,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 8,
+                "uav": 1,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 121,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 19,
+                  "blue": 12,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 22,
+                "uav": 2,
+                "dog": 11,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 33,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 7,
+                "uav": 1,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 269,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 21,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 269,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 21,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 323,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "B_enemy_free": {
+              "step": 323,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "B_full_bar": {
+              "step": 326,
+              "objectives": {
+                "B": {
+                  "red": 5,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "B_secure": {
+              "step": 326,
+              "objectives": {
+                "B": {
+                  "red": 5,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "A_entry": {
+              "step": 379,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.15
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "A_enemy_free": {
+              "step": 379,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.15
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "A_full_bar": {
+              "step": 382,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            },
+            "A_secure": {
+              "step": 382,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 9,
+                  "blue": 0,
+                  "percent": 1
+                }
+              },
+              "red_alive": {
+                "soldier": 15,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 21,
+              "red_vehicles": [
+                2686
+              ],
+              "blue_alive": {
+                "uav": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 91,
+              "uid": 2676,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 94,
+              "uid": 2696,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 98,
+              "uid": 2746,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 99,
+              "uid": 2736,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 102,
+              "uid": 2706,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 150,
+              "uid": 2716,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 151,
+              "uid": 2726,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 154,
+              "uid": 3031,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 155,
+              "uid": 2666,
+              "team": 1,
+              "kind": "wheel"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 2,
+                "blue": 0,
+                "percent": 1
+              },
+              "HQ": {
+                "red": 3,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 16,
+                "blue": 0,
+                "percent": 1
+              }
+            },
+            "red_alive": {
+              "soldier": 15,
+              "uav": 2,
+              "dog": 6,
+              "wheel": 1,
+              "heli": 2
+            },
+            "red_foot": 21,
+            "red_vehicles": [
+              2686
+            ],
+            "blue_alive": {
+              "uav": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 7,
+          "complete": true,
+          "score": {
+            "kill_score": 2760,
+            "capture_score": 3200,
+            "total": 5960
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 119,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 2,
+                  "blue": 5,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 23,
+                "uav": 2,
+                "dog": 6,
+                "heli": 2
+              },
+              "red_foot": 29,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 5,
+                "uav": 7,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 121,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 15,
+                  "blue": 5,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 23,
+                "uav": 2,
+                "dog": 6,
+                "heli": 2
+              },
+              "red_foot": 29,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 5,
+                "uav": 7,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 152,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 18,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "uav": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 152,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 18,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "uav": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 217,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                },
+                "HQ": {
+                  "red": 15,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "uav": 6,
+                "heli": 1
+              }
+            },
+            "B_enemy_free": {
+              "step": 217,
+              "objectives": {
+                "B": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                },
+                "HQ": {
+                  "red": 15,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "uav": 6,
+                "heli": 1
+              }
+            },
+            "B_full_bar": {
+              "step": 220,
+              "objectives": {
+                "B": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 12,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "uav": 6,
+                "heli": 1
+              }
+            },
+            "B_secure": {
+              "step": 220,
+              "objectives": {
+                "B": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 12,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "uav": 6,
+                "heli": 1
+              }
+            },
+            "A_entry": {
+              "step": 282,
+              "objectives": {
+                "B": {
+                  "red": 5,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "uav": 5,
+                "heli": 1
+              }
+            },
+            "A_enemy_free": {
+              "step": 282,
+              "objectives": {
+                "B": {
+                  "red": 5,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.1
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "uav": 5,
+                "heli": 1
+              }
+            },
+            "A_full_bar": {
+              "step": 291,
+              "objectives": {
+                "B": {
+                  "red": 7,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 1
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "uav": 5,
+                "heli": 1
+              }
+            },
+            "A_secure": {
+              "step": 291,
+              "objectives": {
+                "B": {
+                  "red": 7,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 1
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "uav": 2,
+                "dog": 1,
+                "heli": 2
+              },
+              "red_foot": 18,
+              "red_vehicles": [],
+              "blue_alive": {
+                "uav": 5,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 86,
+              "uid": 3061,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 90,
+              "uid": 3121,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 96,
+              "uid": 3131,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 98,
+              "uid": 3081,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 100,
+              "uid": 3091,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 104,
+              "uid": 3071,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 154,
+              "uid": 3051,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 156,
+              "uid": 3111,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 158,
+              "uid": 3416,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 179,
+              "uid": 3101,
+              "team": 1,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 2,
+                "blue": 0,
+                "percent": 1
+              },
+              "HQ": {
+                "red": 3,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 13,
+                "blue": 0,
+                "percent": 1
+              }
+            },
+            "red_alive": {
+              "soldier": 17,
+              "uav": 2,
+              "dog": 1,
+              "heli": 2
+            },
+            "red_foot": 18,
+            "red_vehicles": [],
+            "blue_alive": {
+              "uav": 5,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 8,
+          "complete": true,
+          "score": {
+            "kill_score": 2520,
+            "capture_score": 0,
+            "total": 2520
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 110,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 13,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "uav": 2,
+                "dog": 12,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                3701,
+                3691
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 8,
+                "uav": 5,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 124,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 8,
+                  "blue": 5,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 11,
+                "uav": 2,
+                "dog": 6,
+                "heli": 2
+              },
+              "red_foot": 17,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 3,
+                "uav": 4,
+                "dog": 2,
+                "wheel": 2,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 82,
+              "uid": 3681,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 88,
+              "uid": 3746,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 99,
+              "uid": 3756,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 99,
+              "uid": 3711,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 111,
+              "uid": 3701,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 116,
+              "uid": 3691,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 163,
+              "uid": 3651,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 165,
+              "uid": 3671,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 171,
+              "uid": 3731,
+              "team": 1,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 2,
+                "percent": 0
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "uav": 2,
+              "dog": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 2,
+              "uav": 4,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 9,
+          "complete": true,
+          "score": {
+            "kill_score": 1450,
+            "capture_score": 1600,
+            "total": 3050
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 115,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 7,
+                  "blue": 2,
+                  "percent": 0.35
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 21,
+                "uav": 1,
+                "dog": 12,
+                "wheel": 4,
+                "heli": 2
+              },
+              "red_foot": 33,
+              "red_vehicles": [
+                4131,
+                4101,
+                4091,
+                4081,
+                4071
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 2,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 117,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 11,
+                  "blue": 2,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 21,
+                "uav": 1,
+                "dog": 12,
+                "wheel": 4,
+                "heli": 2
+              },
+              "red_foot": 33,
+              "red_vehicles": [
+                4131,
+                4101,
+                4091,
+                4081,
+                4071
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 2,
+                "dog": 5,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 471,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 27,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 18,
+                "uav": 1,
+                "dog": 9,
+                "wheel": 4,
+                "heli": 2
+              },
+              "red_foot": 27,
+              "red_vehicles": [
+                4131,
+                4101,
+                4091,
+                4081,
+                4071
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 2,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 471,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 27,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 16,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 18,
+                "uav": 1,
+                "dog": 9,
+                "wheel": 4,
+                "heli": 2
+              },
+              "red_foot": 27,
+              "red_vehicles": [
+                4131,
+                4101,
+                4091,
+                4081,
+                4071
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 2,
+                "dog": 5,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 88,
+              "uid": 4136,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 147,
+              "uid": 4061,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 177,
+              "uid": 4121,
+              "team": 1,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 3,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 16,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 1,
+              "soldier": 18,
+              "uav": 1,
+              "dog": 9,
+              "wheel": 4,
+              "heli": 2
+            },
+            "red_foot": 27,
+            "red_vehicles": [
+              4131,
+              4101,
+              4091,
+              4081,
+              4071
+            ],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 11,
+              "uav": 2,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 10,
+          "complete": true,
+          "score": {
+            "kill_score": 1270,
+            "capture_score": 0,
+            "total": 1270
+          },
+          "frames": 349,
+          "first": {
+            "HQ_entry": {
+              "step": 111,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 2,
+                  "blue": 4,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "dog": 13,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                4586,
+                4576,
+                4566
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 7,
+                "dog": 7,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 121,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 4,
+                  "blue": 2,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 7,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 14,
+                "dog": 8,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 22,
+              "red_vehicles": [
+                4586,
+                4576
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 12,
+                "uav": 3,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 88,
+              "uid": 4636,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 92,
+              "uid": 4596,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 94,
+              "uid": 4621,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 120,
+              "uid": 4566,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 128,
+              "uid": 4576,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 135,
+              "uid": 4586,
+              "team": 0,
+              "kind": "wheel"
+            }
+          ],
+          "final": {
+            "step": 347,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 9,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 2,
+                "percent": 0
+              },
+              "A": {
+                "red": 0,
+                "blue": 7,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 12,
+              "uav": 3,
+              "dog": 6,
+              "wheel": 2,
+              "heli": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261026_013225\\protocol.jsonl",
+      "source_bytes": 413921988,
+      "source_sha256": "4fee5488ee68938c693f5d48375dd47f91f7a66235bf7093da9b34ec1469c362",
+      "source_commit": null,
+      "completed": 6,
+      "mean": 3183.3333333333335,
+      "totals": [
+        2820,
+        2800,
+        2940,
+        3190,
+        4300,
+        3050
+      ],
+      "rounds": [
+        {
+          "episode": 1,
+          "complete": true,
+          "score": {
+            "kill_score": 1220,
+            "capture_score": 1600,
+            "total": 2820
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 111,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 2,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                486,
+                491
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 15,
+                "uav": 5,
+                "dog": 3,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 115,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 11,
+                  "blue": 2,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                486,
+                491
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 15,
+                "uav": 5,
+                "dog": 3,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 176,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 36,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 23,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                486,
+                491
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 3,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 176,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 36,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 23,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                486,
+                491
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 3,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 242,
+              "objectives": {
+                "B": {
+                  "red": 9,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 20,
+                "dog": 12,
+                "heli": 2
+              },
+              "red_foot": 32,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 3,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_full_bar": {
+              "step": 243,
+              "objectives": {
+                "B": {
+                  "red": 19,
+                  "blue": 10,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 6,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 20,
+                "dog": 12,
+                "heli": 2
+              },
+              "red_foot": 32,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 13,
+                "uav": 5,
+                "dog": 3,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 58,
+              "uid": 496,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 93,
+              "uid": 461,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 93,
+              "uid": 481,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 101,
+              "uid": 466,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 197,
+              "uid": 501,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 227,
+              "uid": 486,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 235,
+              "uid": 491,
+              "team": 0,
+              "kind": "wheel"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 2,
+                "blue": 10,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 6,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 2,
+              "dog": 1,
+              "heli": 2
+            },
+            "red_foot": 3,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 13,
+              "uav": 4,
+              "dog": 3,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 2,
+          "complete": true,
+          "score": {
+            "kill_score": 1200,
+            "capture_score": 1600,
+            "total": 2800
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 111,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 0.15
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 23,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                516,
+                971,
+                956
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 7,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 111,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 0.15
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 23,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                516,
+                971,
+                956
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 7,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 112,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 12,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 23,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                516,
+                971,
+                956
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 7,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 112,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 12,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 23,
+                "dog": 13,
+                "wheel": 2,
+                "heli": 2
+              },
+              "red_foot": 36,
+              "red_vehicles": [
+                516,
+                971,
+                956
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 7,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 185,
+              "objectives": {
+                "B": {
+                  "red": 10,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "dog": 8,
+                "heli": 2
+              },
+              "red_foot": 25,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 14,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_full_bar": {
+              "step": 187,
+              "objectives": {
+                "B": {
+                  "red": 21,
+                  "blue": 10,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 17,
+                "dog": 8,
+                "heli": 2
+              },
+              "red_foot": 25,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 14,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 96,
+              "uid": 946,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 97,
+              "uid": 1011,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 100,
+              "uid": 981,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 118,
+              "uid": 991,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 119,
+              "uid": 936,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 171,
+              "uid": 971,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 175,
+              "uid": 956,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 178,
+              "uid": 516,
+              "team": 0,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 1,
+                "blue": 9,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 10,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 2,
+              "heli": 2
+            },
+            "red_foot": 2,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 13,
+              "uav": 5,
+              "dog": 6,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 3,
+          "complete": true,
+          "score": {
+            "kill_score": 1340,
+            "capture_score": 1600,
+            "total": 2940
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 113,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 1,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 22,
+                "dog": 11,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 33,
+              "red_vehicles": [
+                1141
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 15,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 115,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 10,
+                  "blue": 1,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 22,
+                "dog": 11,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 33,
+              "red_vehicles": [
+                1141
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 15,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 183,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 27,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 19,
+                "dog": 8,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 27,
+              "red_vehicles": [
+                1141
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 14,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 183,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 27,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 19,
+                "dog": 8,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 27,
+              "red_vehicles": [
+                1141
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 14,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 271,
+              "objectives": {
+                "B": {
+                  "red": 10,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 19,
+                "dog": 8,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 27,
+              "red_vehicles": [
+                1141
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 14,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            },
+            "B_full_bar": {
+              "step": 273,
+              "objectives": {
+                "B": {
+                  "red": 24,
+                  "blue": 10,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 19,
+                "dog": 8,
+                "wheel": 1,
+                "heli": 2
+              },
+              "red_foot": 27,
+              "red_vehicles": [
+                1141
+              ],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 14,
+                "uav": 5,
+                "dog": 6,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 85,
+              "uid": 1171,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 94,
+              "uid": 1176,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 97,
+              "uid": 1146,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 99,
+              "uid": 1151,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 102,
+              "uid": 1156,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 159,
+              "uid": 1161,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 165,
+              "uid": 1136,
+              "team": 1,
+              "kind": "wheel"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 7,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 10,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "wheel": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [
+              1141
+            ],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 12,
+              "uav": 3,
+              "dog": 5,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 4,
+          "complete": true,
+          "score": {
+            "kill_score": 1590,
+            "capture_score": 1600,
+            "total": 3190
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 113,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 1,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 20,
+                "uav": 1,
+                "dog": 12,
+                "heli": 2
+              },
+              "red_foot": 32,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 12,
+                "uav": 6,
+                "dog": 4,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 116,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 11,
+                  "blue": 1,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 20,
+                "uav": 1,
+                "dog": 12,
+                "heli": 2
+              },
+              "red_foot": 32,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 12,
+                "uav": 6,
+                "dog": 4,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 118,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 14,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 19,
+                "uav": 1,
+                "dog": 11,
+                "heli": 2
+              },
+              "red_foot": 30,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 11,
+                "uav": 6,
+                "dog": 4,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 118,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 14,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 19,
+                "uav": 1,
+                "dog": 11,
+                "heli": 2
+              },
+              "red_foot": 30,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 11,
+                "uav": 6,
+                "dog": 4,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 181,
+              "objectives": {
+                "B": {
+                  "red": 4,
+                  "blue": 15,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 10,
+                "uav": 1,
+                "dog": 5,
+                "heli": 2
+              },
+              "red_foot": 15,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 11,
+                "uav": 6,
+                "dog": 4,
+                "wheel": 1,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 88,
+              "uid": 1731,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 90,
+              "uid": 1676,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 91,
+              "uid": 1681,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 97,
+              "uid": 1686,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 103,
+              "uid": 1726,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 103,
+              "uid": 1691,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 130,
+              "uid": 1666,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 160,
+              "uid": 1711,
+              "team": 1,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 13,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 1,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 1,
+              "uav": 1,
+              "heli": 2
+            },
+            "red_foot": 1,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 10,
+              "uav": 2,
+              "dog": 3,
+              "wheel": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 5,
+          "complete": true,
+          "score": {
+            "kill_score": 2700,
+            "capture_score": 1600,
+            "total": 4300
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 117,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 2,
+                  "blue": 11,
+                  "percent": 0
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 24,
+                "uav": 2,
+                "dog": 13,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                2236
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 8,
+                "uav": 6,
+                "dog": 3,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 120,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 24,
+                  "blue": 11,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 0,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 1,
+                "soldier": 24,
+                "uav": 2,
+                "dog": 13,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                2236
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 8,
+                "uav": 6,
+                "dog": 3,
+                "wheel": 2,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 91,
+              "uid": 2241,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 92,
+              "uid": 2171,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 95,
+              "uid": 2186,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 100,
+              "uid": 2201,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 103,
+              "uid": 2196,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 154,
+              "uid": 2526,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 163,
+              "uid": 2166,
+              "team": 1,
+              "kind": "wheel"
+            },
+            {
+              "step": 221,
+              "uid": 2221,
+              "team": 1,
+              "kind": "lynx"
+            },
+            {
+              "step": 248,
+              "uid": 2216,
+              "team": 1,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 6,
+                "blue": 1,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 1,
+              "soldier": 2,
+              "uav": 2,
+              "dog": 4,
+              "heli": 2
+            },
+            "red_foot": 6,
+            "red_vehicles": [
+              2236
+            ],
+            "blue_alive": {
+              "soldier": 1,
+              "uav": 1,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 6,
+          "complete": true,
+          "score": {
+            "kill_score": 1450,
+            "capture_score": 1600,
+            "total": 3050
+          },
+          "frames": 501,
+          "first": {
+            "HQ_entry": {
+              "step": 112,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "dog": 13,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                2621,
+                2611,
+                2571,
+                2566,
+                2556
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 3,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_enemy_free": {
+              "step": 112,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 1,
+                  "blue": 0,
+                  "percent": 0.05
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "dog": 13,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                2621,
+                2611,
+                2571,
+                2566,
+                2556
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 3,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_full_bar": {
+              "step": 115,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 7,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "dog": 13,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                2621,
+                2611,
+                2571,
+                2566,
+                2556
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 3,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "HQ_secure": {
+              "step": 115,
+              "objectives": {
+                "B": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 7,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 9,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "lynx": 2,
+                "soldier": 24,
+                "dog": 13,
+                "wheel": 3,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [
+                2621,
+                2611,
+                2571,
+                2566,
+                2556
+              ],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 3,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "B_entry": {
+              "step": 187,
+              "objectives": {
+                "B": {
+                  "red": 2,
+                  "blue": 10,
+                  "percent": 0
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "dog": 13,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 2,
+                "soldier": 14,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            },
+            "B_full_bar": {
+              "step": 194,
+              "objectives": {
+                "B": {
+                  "red": 21,
+                  "blue": 10,
+                  "percent": 1
+                },
+                "HQ": {
+                  "red": 3,
+                  "blue": 0,
+                  "percent": 1
+                },
+                "A": {
+                  "red": 0,
+                  "blue": 10,
+                  "percent": 0
+                }
+              },
+              "red_alive": {
+                "soldier": 24,
+                "dog": 13,
+                "heli": 2
+              },
+              "red_foot": 37,
+              "red_vehicles": [],
+              "blue_alive": {
+                "lynx": 1,
+                "soldier": 14,
+                "uav": 2,
+                "dog": 6,
+                "wheel": 2,
+                "heli": 1
+              }
+            }
+          },
+          "vehicle_deaths": [
+            {
+              "step": 101,
+              "uid": 2581,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 164,
+              "uid": 2566,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 167,
+              "uid": 2621,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 175,
+              "uid": 2556,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 176,
+              "uid": 2571,
+              "team": 0,
+              "kind": "wheel"
+            },
+            {
+              "step": 179,
+              "uid": 2611,
+              "team": 0,
+              "kind": "lynx"
+            },
+            {
+              "step": 190,
+              "uid": 2586,
+              "team": 1,
+              "kind": "lynx"
+            }
+          ],
+          "final": {
+            "step": 499,
+            "objectives": {
+              "B": {
+                "red": 5,
+                "blue": 6,
+                "percent": 0.35
+              },
+              "HQ": {
+                "red": 3,
+                "blue": 0,
+                "percent": 1
+              },
+              "A": {
+                "red": 0,
+                "blue": 10,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "soldier": 4,
+              "dog": 5,
+              "heli": 2
+            },
+            "red_foot": 9,
+            "red_vehicles": [],
+            "blue_alive": {
+              "lynx": 1,
+              "soldier": 10,
+              "uav": 1,
+              "dog": 6,
+              "wheel": 2,
+              "heli": 1
+            }
+          }
+        },
+        {
+          "episode": 7,
+          "complete": false,
+          "score": null,
+          "frames": 46,
+          "first": {},
+          "vehicle_deaths": [],
+          "final": {
+            "step": 44,
+            "objectives": {
+              "B": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              },
+              "HQ": {
+                "red": 0,
+                "blue": 17,
+                "percent": 0
+              },
+              "A": {
+                "red": 0,
+                "blue": 0,
+                "percent": 0
+              }
+            },
+            "red_alive": {
+              "lynx": 2,
+              "soldier": 24,
+              "uav": 5,
+              "dog": 13,
+              "wheel": 4,
+              "heli": 2
+            },
+            "red_foot": 37,
+            "red_vehicles": [
+              3126,
+              3116,
+              3091,
+              3081,
+              3066,
+              3056
+            ],
+            "blue_alive": {
+              "lynx": 2,
+              "soldier": 22,
+              "uav": 13,
+              "dog": 10,
+              "wheel": 2,
+              "heli": 1
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "score_definition": "terminal Score.SumWorth total plus Reward; partial episodes excluded",
+  "runtime_version": "not recorded; current deployment matches d0a0920 source semantically, which alone is not historical version evidence",
+  "limitation": "retrospective actual results, not outcomes of the new strategy"
+}

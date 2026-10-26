@@ -4,6 +4,7 @@ import logging
 import math
 
 from .AdaptiveAssault import AdaptiveAssault
+from .RemnantCapture import RemnantCapture
 
 logger = logging.getLogger(__name__)
 
@@ -89,6 +90,7 @@ class AssaultRoute:
         self._lost = 0
         self._clear = {}
         self._incidental = {}
+        self._remnant = RemnantCapture()
 
     @staticmethod
     def distance(left, right):
@@ -112,6 +114,7 @@ class AssaultRoute:
         self._lost = 0
         self._clear.clear()
         self._incidental.clear()
+        self._remnant = RemnantCapture()
         self._adaptive_paths.clear()
         self._replanned = False
         self._strategy = AdaptiveAssault() if self.adaptive else None
@@ -195,6 +198,8 @@ class AssaultRoute:
             # user's mandatory first objective. A full bar alone is not enough.
             self._strategy.observe(state)
             return
+        if self._remnant.update(state, self):
+            return
         chosen = self._strategy.select(state, self, next_objective=next_objective)
         if chosen is not None:
             suffix = list(self.order[self.stage:])
@@ -261,7 +266,7 @@ class AssaultRoute:
         return tuple(crossed)
 
     def _secure_incidental(self, state):
-        if not self.adaptive or self.hq_first and not self.hq_secured:
+        if self._remnant.active or not self.adaptive or self.hq_first and not self.hq_secured:
             return
         # A column can capture a base it crosses before reaching its intended
         # destination. Promote that real holding, keep the intended objective,
@@ -323,6 +328,7 @@ class AssaultRoute:
                         and (holding := state.key_object_by_uid(uid)) is not None and self.owned(state, holding)]
                 pending = [uid for uid in self.order if uid not in held and uid != self.hq_uid]
                 self.hq_secured = False
+                self._remnant = RemnantCapture()
                 self._reorder(state, (*held, self.hq_uid, *pending), len(held))
                 self._lost = 0
                 logger.warning('指挥所失守，暂停次要目标并重新夺回: step=%d', state.step)
@@ -373,7 +379,7 @@ class AssaultRoute:
             logger.info("指挥所仍需清场，暂不转场: step=%d enemy_inside=%d guards=%d",
                         state.step, self.enemy_count(state, obj), len(guards))
         if (self._confirmed >= self.CAPTURE_CONFIRMATIONS and ready
-                and self.stage + 1 < len(self.order)):
+                and self.stage + 1 < len(self.order) and not self._remnant.active):
             if self.is_hq(obj):
                 self.hq_secured = True
             self.stage += 1
@@ -382,6 +388,10 @@ class AssaultRoute:
             logger.info("据点占领已确认，主力转向下一目标: step=%d uid=%d", state.step, self.order[self.stage])
 
     def garrison_needed(self, state, obj):
+        if self._remnant.active and obj.uid == self._remnant.target_uid:
+            return max(1, min(2, len(self._remnant.capturers(state))))
+        if self._remnant.active and self.is_hq(obj):
+            return 1 if len(self._remnant.capturers(state)) > 4 else 0
         if self._clear.get(obj.uid, 0) >= self.CLEAR_STEPS:
             if self.adaptive:
                 capturers = sum(u.alive and u.entity_type in {'BP_BaseSoldier_C', 'BP_RoboDog_C'}
@@ -401,6 +411,9 @@ class AssaultRoute:
     def _assign_garrison(self, state, include_current=False):
         previous, self._garrison = self._garrison, {}
         for uid in self.order[:self.stage + int(include_current)]:
+            if (self._remnant.active and uid != self._remnant.target_uid
+                    and not (uid == self.hq_uid and len(self._remnant.capturers(state)) > 4)):
+                continue
             obj = state.key_object_by_uid(uid)
             if obj is None or not obj.valid or self.adaptive and not self.owned(state, obj):
                 continue
@@ -515,6 +528,9 @@ class AssaultRoute:
         """Rear units finish the approach even after the front captures HQ."""
         if not self.order:
             return None
+        remnant = self._remnant.point(state, agent, self)
+        if remnant is not None:
+            return remnant
         garrison = self.garrison_for(state, agent)
         if garrison is not None and not ignore_garrison:
             return tuple(float(v) for v in garrison.position)
