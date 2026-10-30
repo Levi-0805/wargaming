@@ -1,0 +1,1444 @@
+{
+  "size": [
+    1600,
+    900
+  ],
+  "calibration": "Native CSSIM screenshots, 2026-10-31. Templates exclude account/password fields.",
+  "steps": [
+    {
+      "name": "login",
+      "phase": "pre_python",
+      "before": {
+        "template": "ui_templates/login_button.png",
+        "region": [
+          765,
+          568,
+          73,
+          31
+        ],
+        "threshold": 0.93
+      },
+      "actions": [
+        {
+          "click": [
+            800,
+            585
+          ]
+        }
+      ],
+      "after": {
+        "template": "ui_templates/single_seat.png",
+        "region": [
+          410,
+          644,
+          76,
+          32
+        ],
+        "threshold": 0.93
+      },
+      "timeout": 60
+    },
+    {
+      "name": "single_seat",
+      "phase": "pre_python",
+      "before": {
+        "template": "ui_templates/single_seat.png",
+        "region": [
+          410,
+          644,
+          76,
+          32
+        ],
+        "threshold": 0.93
+      },
+      "actions": [
+        {
+          "click": [
+            446,
+            431
+          ]
+        }
+      ],
+      "after": {
+        "template": "ui_templates/scenario_tenth.png",
+        "region": [
+          689,
+          495,
+          159,
+          33
+        ],
+        "threshold": 0.93
+      },
+      "timeout": 30
+    },
+    {
+      "name": "select_tenth_scenario",
+      "phase": "pre_python",
+      "before": {
+        "template": "ui_templates/scenario_tenth.png",
+        "region": [
+          689,
+          495,
+          159,
+          33
+        ],
+        "threshold": 0.93
+      },
+      "actions": [
+        {
+          "click": [
+            850,
+            360
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/scenario_selected.png",
+            "region": [
+              638,
+              105,
+              182,
+              32
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/match_tile.png",
+            "region": [
+              291,
+              500,
+              98,
+              31
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "select_competition_situation",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/scenario_selected.png",
+            "region": [
+              638,
+              105,
+              182,
+              32
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/match_tile.png",
+            "region": [
+              291,
+              500,
+              98,
+              31
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            455,
+            350
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/room_header.png",
+            "region": [
+              744,
+              196,
+              116,
+              34
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_scenario.png",
+            "region": [
+              787,
+              318,
+              144,
+              29
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_match.png",
+            "region": [
+              789,
+              364,
+              94,
+              30
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_speed_one.png",
+            "region": [
+              788,
+              452,
+              33,
+              28
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "set_ten_rounds",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/room_header.png",
+            "region": [
+              744,
+              196,
+              116,
+              34
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_scenario.png",
+            "region": [
+              787,
+              318,
+              144,
+              29
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_match.png",
+            "region": [
+              789,
+              364,
+              94,
+              30
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_speed_one.png",
+            "region": [
+              788,
+              452,
+              33,
+              28
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            850,
+            423
+          ]
+        },
+        {
+          "key": "Ctrl+A"
+        },
+        {
+          "text": "10"
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/room_header.png",
+            "region": [
+              744,
+              196,
+              116,
+              34
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_rounds_ten.png",
+            "region": [
+              791,
+              411,
+              25,
+              23
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_speed_one.png",
+            "region": [
+              788,
+              452,
+              33,
+              28
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "confirm_room",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/room_header.png",
+            "region": [
+              744,
+              196,
+              116,
+              34
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_rounds_ten.png",
+            "region": [
+              791,
+              411,
+              25,
+              23
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/room_speed_one.png",
+            "region": [
+              788,
+              452,
+              33,
+              28
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            708,
+            644
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/seat_red_empty_model.png",
+            "region": [
+              250,
+              132,
+              110,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_blue_empty_model.png",
+            "region": [
+              1232,
+              133,
+              109,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/red_bot_unchecked.png",
+            "region": [
+              171,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_bot_unchecked.png",
+            "region": [
+              1218,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/seat_rounds_ten.png",
+            "region": [
+              598,
+              737,
+              204,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_speed_one.png",
+            "region": [
+              760,
+              763,
+              28,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_scenario.png",
+            "region": [
+              312,
+              659,
+              135,
+              29
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 60
+    },
+    {
+      "name": "open_red_model",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/seat_red_empty_model.png",
+            "region": [
+              250,
+              132,
+              110,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/red_bot_unchecked.png",
+            "region": [
+              171,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            310,
+            147
+          ]
+        }
+      ],
+      "after": {
+        "template": "ui_templates/red_option_prefix.png",
+        "region": [
+          244,
+          185,
+          73,
+          24
+        ],
+        "threshold": 0.93
+      },
+      "timeout": 30
+    },
+    {
+      "name": "select_red_model",
+      "phase": "pre_python",
+      "before": {
+        "template": "ui_templates/red_option_prefix.png",
+        "region": [
+          244,
+          185,
+          73,
+          24
+        ],
+        "threshold": 0.93
+      },
+      "actions": [
+        {
+          "click": [
+            319,
+            197
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/red_selected_prefix.png",
+            "region": [
+              254,
+              133,
+              71,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/red_bot_unchecked.png",
+            "region": [
+              171,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_bot_unchecked.png",
+            "region": [
+              1218,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          }
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "enable_blue_matchbot",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/red_selected_prefix.png",
+            "region": [
+              254,
+              133,
+              71,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/red_bot_unchecked.png",
+            "region": [
+              171,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_bot_unchecked.png",
+            "region": [
+              1218,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            1228,
+            843
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/red_selected_prefix.png",
+            "region": [
+              254,
+              133,
+              71,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/red_bot_unchecked.png",
+            "region": [
+              171,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_bot_checked.png",
+            "region": [
+              1218,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_model_disabled.png",
+            "region": [
+              1231,
+              133,
+              110,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/blue_matchbot.png",
+            "region": [
+              1329,
+              830,
+              115,
+              26
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_rounds_ten.png",
+            "region": [
+              598,
+              737,
+              204,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_speed_one.png",
+            "region": [
+              760,
+              763,
+              28,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_scenario.png",
+            "region": [
+              312,
+              659,
+              135,
+              29
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "open_algorithm_settings",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/red_selected_prefix.png",
+            "region": [
+              254,
+              133,
+              71,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/red_bot_unchecked.png",
+            "region": [
+              171,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_bot_checked.png",
+            "region": [
+              1218,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_model_disabled.png",
+            "region": [
+              1231,
+              133,
+              110,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/blue_matchbot.png",
+            "region": [
+              1329,
+              830,
+              115,
+              26
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_rounds_ten.png",
+            "region": [
+              598,
+              737,
+              204,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_speed_one.png",
+            "region": [
+              760,
+              763,
+              28,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_scenario.png",
+            "region": [
+              312,
+              659,
+              135,
+              29
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            513,
+            842
+          ]
+        }
+      ],
+      "after": {
+        "template": "ui_templates/algorithm_header.png",
+        "region": [
+          723,
+          155,
+          164,
+          34
+        ],
+        "threshold": 0.93
+      },
+      "timeout": 30
+    },
+    {
+      "name": "set_max_steps_500",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/algorithm_header.png",
+            "region": [
+              723,
+              155,
+              164,
+              34
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_max_steps_label.png",
+            "region": [
+              625,
+              346,
+              82,
+              28
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            850,
+            359
+          ]
+        },
+        {
+          "key": "Ctrl+A"
+        },
+        {
+          "text": "500"
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/algorithm_header.png",
+            "region": [
+              723,
+              155,
+              164,
+              34
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_threads_one.png",
+            "region": [
+              815,
+              255,
+              34,
+              27
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_cpu.png",
+            "region": [
+              815,
+              301,
+              60,
+              27
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_max_steps.png",
+            "region": [
+              823,
+              349,
+              34,
+              22
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_step_time.png",
+            "region": [
+              815,
+              392,
+              57,
+              27
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_seed.png",
+            "region": [
+              815,
+              437,
+              88,
+              27
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_pycharm_checked.png",
+            "region": [
+              626,
+              495,
+              31,
+              31
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/algorithm_pycharm_label.png",
+            "region": [
+              657,
+              498,
+              118,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_reward_unchecked.png",
+            "region": [
+              809,
+              495,
+              31,
+              31
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/algorithm_render_checked.png",
+            "region": [
+              626,
+              536,
+              31,
+              31
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/algorithm_save_checked.png",
+            "region": [
+              809,
+              536,
+              31,
+              31
+            ],
+            "threshold": 0.99
+          }
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "verify_and_confirm_algorithm_settings",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/algorithm_header.png",
+            "region": [
+              723,
+              155,
+              164,
+              34
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_threads_one.png",
+            "region": [
+              815,
+              255,
+              34,
+              27
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_cpu.png",
+            "region": [
+              815,
+              301,
+              60,
+              27
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_max_steps.png",
+            "region": [
+              823,
+              349,
+              34,
+              22
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_step_time.png",
+            "region": [
+              815,
+              392,
+              57,
+              27
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_seed.png",
+            "region": [
+              815,
+              437,
+              88,
+              27
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_pycharm_checked.png",
+            "region": [
+              626,
+              495,
+              31,
+              31
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/algorithm_pycharm_label.png",
+            "region": [
+              657,
+              498,
+              118,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/algorithm_reward_unchecked.png",
+            "region": [
+              809,
+              495,
+              31,
+              31
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/algorithm_render_checked.png",
+            "region": [
+              626,
+              536,
+              31,
+              31
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/algorithm_save_checked.png",
+            "region": [
+              809,
+              536,
+              31,
+              31
+            ],
+            "threshold": 0.99
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            706,
+            686
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/red_selected_prefix.png",
+            "region": [
+              254,
+              133,
+              71,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/red_bot_unchecked.png",
+            "region": [
+              171,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_bot_checked.png",
+            "region": [
+              1218,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_model_disabled.png",
+            "region": [
+              1231,
+              133,
+              110,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/blue_matchbot.png",
+            "region": [
+              1329,
+              830,
+              115,
+              26
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_rounds_ten.png",
+            "region": [
+              598,
+              737,
+              204,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_speed_one.png",
+            "region": [
+              760,
+              763,
+              28,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_scenario.png",
+            "region": [
+              312,
+              659,
+              135,
+              29
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "enter_training_mode",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/red_selected_prefix.png",
+            "region": [
+              254,
+              133,
+              71,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/red_bot_unchecked.png",
+            "region": [
+              171,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_bot_checked.png",
+            "region": [
+              1218,
+              832,
+              22,
+              22
+            ],
+            "threshold": 0.99
+          },
+          {
+            "template": "ui_templates/blue_model_disabled.png",
+            "region": [
+              1231,
+              133,
+              110,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/blue_matchbot.png",
+            "region": [
+              1329,
+              830,
+              115,
+              26
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_rounds_ten.png",
+            "region": [
+              598,
+              737,
+              204,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_speed_one.png",
+            "region": [
+              760,
+              763,
+              28,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/seat_scenario.png",
+            "region": [
+              312,
+              659,
+              135,
+              29
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/training_button.png",
+            "region": [
+              705,
+              828,
+              101,
+              30
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            756,
+            843
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/training_confirm_header.png",
+            "region": [
+              665,
+              198,
+              272,
+              32
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/training_red_prefix.png",
+            "region": [
+              664,
+              276,
+              172,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/training_blue_matchbot.png",
+            "region": [
+              703,
+              304,
+              197,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/training_confirm_button.png",
+            "region": [
+              681,
+              449,
+              57,
+              32
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "confirm_training_mode",
+      "phase": "pre_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/training_confirm_header.png",
+            "region": [
+              665,
+              198,
+              272,
+              32
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/training_red_prefix.png",
+            "region": [
+              664,
+              276,
+              172,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/training_blue_matchbot.png",
+            "region": [
+              703,
+              304,
+              197,
+              28
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/training_confirm_button.png",
+            "region": [
+              681,
+              449,
+              57,
+              32
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            709,
+            465
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/game_waiting_python.png",
+            "region": [
+              14,
+              875,
+              167,
+              24
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/game_time_zero.png",
+            "region": [
+              660,
+              805,
+              27,
+              23
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/game_play.png",
+            "region": [
+              731,
+              804,
+              22,
+              25
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/game_round_one_of_ten.png",
+            "region": [
+              759,
+              80,
+              95,
+              20
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 180
+    },
+    {
+      "name": "start_training_after_python",
+      "phase": "post_python",
+      "before": {
+        "all_of": [
+          {
+            "template": "ui_templates/game_play.png",
+            "region": [
+              731,
+              804,
+              22,
+              25
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/game_round_one_of_ten.png",
+            "region": [
+              759,
+              80,
+              95,
+              20
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "actions": [
+        {
+          "click": [
+            742,
+            816
+          ]
+        }
+      ],
+      "after": {
+        "all_of": [
+          {
+            "template": "ui_templates/game_pause.png",
+            "region": [
+              731,
+              804,
+              22,
+              25
+            ],
+            "threshold": 0.93
+          },
+          {
+            "template": "ui_templates/game_round_one_of_ten.png",
+            "region": [
+              759,
+              80,
+              95,
+              20
+            ],
+            "threshold": 0.93
+          }
+        ]
+      },
+      "timeout": 30
+    }
+  ]
+}

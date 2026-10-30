@@ -2,8 +2,11 @@ from __future__ import annotations
 
 import json
 import logging
+from itertools import count
 from logging.handlers import RotatingFileHandler
+import os
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 from time import strftime
 from typing import Any
 
@@ -18,14 +21,45 @@ class SimulationLog:
 
     def __init__(self, root: str | Path = "logs", detailed: bool = False):
         self.detailed = detailed
-        self.directory = Path(root) / strftime("%Y%m%d_%H%M%S")
-        self.directory.mkdir(parents=True, exist_ok=True)
+        root = Path(root)
+        root.mkdir(parents=True, exist_ok=True)
+        stamp = strftime("%Y%m%d_%H%M%S")
+        # Exclusive directory creation also separates simultaneous processes.
+        # Reusing an existing second-resolution name would append two runs.
+        for suffix in count():
+            directory = root / (stamp if suffix == 0 else f"{stamp}-{suffix:03d}")
+            try:
+                directory.mkdir()
+            except FileExistsError:
+                continue
+            self.directory = directory
+            break
         self.stats_path = self.directory / "simulation.jsonl"
-        self._stats = self.stats_path.open("a", encoding="utf-8")
+        self._stats = self.stats_path.open("x", encoding="utf-8")
         self.protocol_path = self.directory / "protocol.jsonl"
         self._protocol = (
-            self.protocol_path.open("a", encoding="utf-8") if detailed else None
+            self.protocol_path.open("x", encoding="utf-8") if detailed else None
         )
+
+    def write_run_metadata(self, record: dict[str, Any]) -> None:
+        """Publish a complete provenance file atomically and never replace it."""
+
+        temporary = None
+        try:
+            with NamedTemporaryFile(mode="w", encoding="utf-8", dir=self.directory,
+                                    prefix=".run-", suffix=".tmp", delete=False) as handle:
+                temporary = Path(handle.name)
+                json.dump(record, handle, ensure_ascii=False, indent=2)
+                handle.write("\n")
+                handle.flush()
+                os.fsync(handle.fileno())
+            # A hard link publishes the fully written same-volume file in one
+            # operation. Unlike replace(), it rejects an existing run.json on
+            # Windows and POSIX, preserving the original launch identity.
+            os.link(temporary, self.directory / "run.json")
+        finally:
+            if temporary is not None:
+                temporary.unlink(missing_ok=True)
 
     @classmethod
     def configure(

@@ -1,0 +1,442 @@
+{
+  "login_button": {
+    "source": "login-native.png",
+    "source_sha256": "49fc4add4536e865855fa5ab780512726bf5a3657b9b5792260d2caeb8e957a5",
+    "crop": [
+      767,
+      570,
+      69,
+      27
+    ]
+  },
+  "single_seat": {
+    "source": "main-menu.png",
+    "source_sha256": "cfb22b1ce1b4465e2834d83f5c35127f3d2abea60e75e9818234539b422494e7",
+    "crop": [
+      412,
+      646,
+      72,
+      28
+    ]
+  },
+  "scenario_tenth": {
+    "source": "scenarios.png",
+    "source_sha256": "4700b4f12d5b33ae60b0c131458a0df4411acf61332962669ef006820dabf488",
+    "crop": [
+      691,
+      497,
+      155,
+      29
+    ]
+  },
+  "scenario_selected": {
+    "source": "scenario-selected.png",
+    "source_sha256": "1887e9a3dc6c5e3300d52c4955f2b088288997e178a3223caebf04b828bd3433",
+    "crop": [
+      640,
+      107,
+      178,
+      28
+    ]
+  },
+  "match_tile": {
+    "source": "scenario-selected.png",
+    "source_sha256": "1887e9a3dc6c5e3300d52c4955f2b088288997e178a3223caebf04b828bd3433",
+    "crop": [
+      293,
+      502,
+      94,
+      27
+    ]
+  },
+  "room_header": {
+    "source": "match-settings.png",
+    "source_sha256": "6fdba373c5de90f2abaf0af2acd8285158d0960e1b4eb8f8ff0b0e5093ab2e3f",
+    "crop": [
+      746,
+      198,
+      112,
+      30
+    ]
+  },
+  "room_scenario": {
+    "source": "match-settings.png",
+    "source_sha256": "6fdba373c5de90f2abaf0af2acd8285158d0960e1b4eb8f8ff0b0e5093ab2e3f",
+    "crop": [
+      789,
+      320,
+      140,
+      25
+    ]
+  },
+  "room_match": {
+    "source": "match-settings.png",
+    "source_sha256": "6fdba373c5de90f2abaf0af2acd8285158d0960e1b4eb8f8ff0b0e5093ab2e3f",
+    "crop": [
+      791,
+      366,
+      90,
+      26
+    ]
+  },
+  "room_speed_one": {
+    "source": "match-settings.png",
+    "source_sha256": "6fdba373c5de90f2abaf0af2acd8285158d0960e1b4eb8f8ff0b0e5093ab2e3f",
+    "crop": [
+      790,
+      454,
+      29,
+      24
+    ]
+  },
+  "room_rounds_ten": {
+    "source": "match-ten.png",
+    "source_sha256": "6a78c25d067b74da36713c3a598f3ebbca13e3f3e7441650515a729e81a79163",
+    "crop": [
+      793,
+      413,
+      21,
+      19
+    ]
+  },
+  "seat_red_empty_model": {
+    "source": "seats.png",
+    "source_sha256": "4812a623fd8c190ffa8b298d6004cdcc3019ec4d13594b429c398465d7d9ad00",
+    "crop": [
+      252,
+      134,
+      106,
+      24
+    ]
+  },
+  "seat_blue_empty_model": {
+    "source": "seats.png",
+    "source_sha256": "4812a623fd8c190ffa8b298d6004cdcc3019ec4d13594b429c398465d7d9ad00",
+    "crop": [
+      1234,
+      135,
+      105,
+      24
+    ]
+  },
+  "red_option_prefix": {
+    "source": "red-model-options.png",
+    "source_sha256": "d0af61cbdde473c70124646f7f38ef4415139f9148e88f41df13aa155e5f8fa8",
+    "crop": [
+      246,
+      187,
+      69,
+      20
+    ]
+  },
+  "red_selected_prefix": {
+    "source": "red-selected.png",
+    "source_sha256": "9484dcf22a4f804c8bc98a663ece260df19a1de182238729bee4740e68ddbd60",
+    "crop": [
+      256,
+      135,
+      67,
+      24
+    ]
+  },
+  "red_bot_unchecked": {
+    "source": "configured-seats.png",
+    "source_sha256": "7a466e2d57f99ef7b9839a1153179fd91e0133c671eceb20ddcfecc7e94f6869",
+    "crop": [
+      173,
+      834,
+      18,
+      18
+    ]
+  },
+  "blue_bot_unchecked": {
+    "source": "red-selected.png",
+    "source_sha256": "9484dcf22a4f804c8bc98a663ece260df19a1de182238729bee4740e68ddbd60",
+    "crop": [
+      1220,
+      834,
+      18,
+      18
+    ]
+  },
+  "blue_bot_checked": {
+    "source": "configured-seats.png",
+    "source_sha256": "7a466e2d57f99ef7b9839a1153179fd91e0133c671eceb20ddcfecc7e94f6869",
+    "crop": [
+      1220,
+      834,
+      18,
+      18
+    ]
+  },
+  "blue_model_disabled": {
+    "source": "configured-seats.png",
+    "source_sha256": "7a466e2d57f99ef7b9839a1153179fd91e0133c671eceb20ddcfecc7e94f6869",
+    "crop": [
+      1233,
+      135,
+      106,
+      24
+    ]
+  },
+  "blue_matchbot": {
+    "source": "configured-seats.png",
+    "source_sha256": "7a466e2d57f99ef7b9839a1153179fd91e0133c671eceb20ddcfecc7e94f6869",
+    "crop": [
+      1331,
+      832,
+      111,
+      22
+    ]
+  },
+  "seat_rounds_ten": {
+    "source": "configured-seats.png",
+    "source_sha256": "7a466e2d57f99ef7b9839a1153179fd91e0133c671eceb20ddcfecc7e94f6869",
+    "crop": [
+      600,
+      739,
+      200,
+      24
+    ]
+  },
+  "seat_speed_one": {
+    "source": "configured-seats.png",
+    "source_sha256": "7a466e2d57f99ef7b9839a1153179fd91e0133c671eceb20ddcfecc7e94f6869",
+    "crop": [
+      762,
+      765,
+      24,
+      24
+    ]
+  },
+  "seat_scenario": {
+    "source": "configured-seats.png",
+    "source_sha256": "7a466e2d57f99ef7b9839a1153179fd91e0133c671eceb20ddcfecc7e94f6869",
+    "crop": [
+      314,
+      661,
+      131,
+      25
+    ]
+  },
+  "algorithm_header": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      725,
+      157,
+      160,
+      30
+    ]
+  },
+  "algorithm_threads_one": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      817,
+      257,
+      30,
+      23
+    ]
+  },
+  "algorithm_cpu": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      817,
+      303,
+      56,
+      23
+    ]
+  },
+  "algorithm_max_steps": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      825,
+      351,
+      30,
+      18
+    ]
+  },
+  "algorithm_step_time": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      817,
+      394,
+      53,
+      23
+    ]
+  },
+  "algorithm_seed": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      817,
+      439,
+      84,
+      23
+    ]
+  },
+  "algorithm_pycharm_checked": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      628,
+      497,
+      27,
+      27
+    ]
+  },
+  "algorithm_pycharm_label": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      659,
+      500,
+      114,
+      24
+    ]
+  },
+  "algorithm_reward_unchecked": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      811,
+      497,
+      27,
+      27
+    ]
+  },
+  "algorithm_render_checked": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      628,
+      538,
+      27,
+      27
+    ]
+  },
+  "algorithm_save_checked": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      811,
+      538,
+      27,
+      27
+    ]
+  },
+  "algorithm_max_steps_label": {
+    "source": "algorithm-settings.png",
+    "source_sha256": "86975b93c99d098806706f5a822846069b61c2f35258f44031b7d185a1179e94",
+    "crop": [
+      627,
+      348,
+      78,
+      24
+    ]
+  },
+  "training_button": {
+    "source": "configured-seats.png",
+    "source_sha256": "7a466e2d57f99ef7b9839a1153179fd91e0133c671eceb20ddcfecc7e94f6869",
+    "crop": [
+      707,
+      830,
+      97,
+      26
+    ]
+  },
+  "training_confirm_header": {
+    "source": "training-entry-native.png",
+    "source_sha256": "f8dcde427bbf3284f0352b154116bdd6b0bc5a3c8b49ce7f0abe3a7fbb44dc91",
+    "crop": [
+      667,
+      200,
+      268,
+      28
+    ]
+  },
+  "training_red_prefix": {
+    "source": "training-entry-native.png",
+    "source_sha256": "f8dcde427bbf3284f0352b154116bdd6b0bc5a3c8b49ce7f0abe3a7fbb44dc91",
+    "crop": [
+      666,
+      278,
+      168,
+      24
+    ]
+  },
+  "training_blue_matchbot": {
+    "source": "training-entry-native.png",
+    "source_sha256": "f8dcde427bbf3284f0352b154116bdd6b0bc5a3c8b49ce7f0abe3a7fbb44dc91",
+    "crop": [
+      705,
+      306,
+      193,
+      24
+    ]
+  },
+  "training_confirm_button": {
+    "source": "training-entry-native.png",
+    "source_sha256": "f8dcde427bbf3284f0352b154116bdd6b0bc5a3c8b49ce7f0abe3a7fbb44dc91",
+    "crop": [
+      683,
+      451,
+      53,
+      28
+    ]
+  },
+  "game_waiting_python": {
+    "source": "game-t0-loaded.png",
+    "source_sha256": "41524e172626d27d0c41ab1f2d2a070513ce0607c8bd09db37b37b547d3bb162",
+    "crop": [
+      16,
+      877,
+      163,
+      20
+    ]
+  },
+  "game_time_zero": {
+    "source": "game-t0-loaded.png",
+    "source_sha256": "41524e172626d27d0c41ab1f2d2a070513ce0607c8bd09db37b37b547d3bb162",
+    "crop": [
+      662,
+      807,
+      23,
+      19
+    ]
+  },
+  "game_play": {
+    "source": "game-t0-loaded.png",
+    "source_sha256": "41524e172626d27d0c41ab1f2d2a070513ce0607c8bd09db37b37b547d3bb162",
+    "crop": [
+      733,
+      806,
+      18,
+      21
+    ]
+  },
+  "game_round_one_of_ten": {
+    "source": "game-t0-loaded.png",
+    "source_sha256": "41524e172626d27d0c41ab1f2d2a070513ce0607c8bd09db37b37b547d3bb162",
+    "crop": [
+      761,
+      82,
+      91,
+      16
+    ]
+  },
+  "game_pause": {
+    "source": "game-running-default.png",
+    "source_sha256": "d3e4f91bc3dc894d03797a7b84ceb8542e78b0b52f47b50723f3a2d5dff083ac",
+    "crop": [
+      733,
+      806,
+      18,
+      21
+    ]
+  }
+}

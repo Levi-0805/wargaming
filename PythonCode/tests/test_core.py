@@ -479,7 +479,8 @@ def test_runner_cleanup_continues_after_algorithm_hook_failure():
         async def connect(self):
             raise RuntimeError("simulation failed")
 
-        async def close(self):
+        async def close(self, *, completed=False):
+            assert not completed
             calls.append("environment_close")
 
     runner = object.__new__(Runner)

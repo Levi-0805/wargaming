@@ -75,6 +75,10 @@ class CssimEnvironment:
             self._build_prepare_request("reset_property"),
             required_keys=("propertyArr",),
         )
+        if self.episode:
+            # The reset request triggers the previous episode's score pair.
+            # Require it before accepting a new roster/episode boundary.
+            await self.client.wait_for_finishes(self.episode * 2, timeout=10.0)
         self._build_roster(properties)
         response = await self._wait_for_prepare(
             "reset_obs",
@@ -321,7 +325,7 @@ class CssimEnvironment:
             return -1, reason
         return (0 if scores[0] > scores[1] else 1), reason
 
-    async def close(self) -> None:
+    async def close(self, *, completed: bool = False) -> None:
         """尽力通知 UE 结束当前会话，并始终释放 gRPC 资源。"""
 
         try:
@@ -332,5 +336,9 @@ class CssimEnvironment:
                 )
             except Exception as exc:
                 logger.warning("gRPC 会话已经结束，跳过结束通知: %s", exc)
+            if completed:
+                # The last pair is produced by end_unreal_engine. Cancelling
+                # the reader immediately after sending it loses delayed scores.
+                await self.client.wait_for_finishes(self.episode * 2, timeout=10.0)
         finally:
             await self.client.close()

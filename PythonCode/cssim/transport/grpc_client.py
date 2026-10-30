@@ -47,6 +47,10 @@ class GrpcClient:
         self._reader_task: asyncio.Task | None = None
         self._waiters: dict[str, deque[asyncio.Future]] = defaultdict(deque)
         self._protocol_writer = protocol_writer
+        self._finish_count = 0
+        self._finish_error: ValueError | None = None
+        self._finish_changed = asyncio.Event()
+        self._reader_error: BaseException | None = None
 
     def _record_protocol(
         self, direction: str, channel: str, type_name: str, payload: str
@@ -80,6 +84,7 @@ class GrpcClient:
                     self._channel
                 )
                 self._call = stub.DataChannel()
+                self._reader_error = None
                 self._reader_task = asyncio.create_task(
                     self._reader_loop(), name=f"{self.client_name}-grpc-reader"
                 )
@@ -152,6 +157,24 @@ class GrpcClient:
                 if body is None:
                     logger.warning("收到没有消息体的 gRPC 消息")
                     continue
+                if body == "finish":
+                    # UE emits two independent score packets after the next
+                    # reset request, or after end_unreal_engine for the last
+                    # episode. Persist them before acknowledging the drain.
+                    raw = bytes(message.finish.data).decode("utf-8", errors="replace")
+                    self._record_protocol("ue_to_python", body, "unsolicited", raw)
+                    try:
+                        packet = json.loads(raw)
+                        if (not isinstance(packet, dict) or not isinstance(packet.get("Score"), dict)
+                                or "Reward" not in packet):
+                            raise ValueError("finish 缺少终局 Score/Reward")
+                    except (ValueError, TypeError) as exc:
+                        self._finish_error = ValueError(f"无效终局成绩报文: {exc}")
+                    else:
+                        self._finish_count += 1
+                        logger.info("已记录终局成绩报文: count=%d", self._finish_count)
+                    self._finish_changed.set()
+                    continue
                 waiters = self._waiters[body]
                 while waiters and waiters[0].done():
                     waiters.popleft()
@@ -168,12 +191,43 @@ class GrpcClient:
         except asyncio.CancelledError:
             raise
         except BaseException as exc:
+            self._reader_error = exc
+            self._finish_changed.set()
             for waiters in self._waiters.values():
                 while waiters:
                     waiter = waiters.popleft()
                     if not waiter.done():
                         waiter.set_exception(exc)
             logger.error("gRPC 接收循环结束: %s", exc)
+
+    async def wait_for_finishes(self, expected: int, timeout: float = 10.0) -> None:
+        """Drain exactly two score packets per completed episode, with a bound.
+
+        Counts are cumulative and checked at each reset boundary, so the prior
+        episode's pair cannot satisfy the next episode's requirement. This is
+        transport completion only; side attribution and scoring are audited by
+        the batch parser from the persisted protocol.
+        """
+        if type(expected) is not int or expected < 0 or timeout <= 0:
+            raise ValueError("无效终局报文等待参数")
+        deadline = asyncio.get_running_loop().time() + timeout
+        while True:
+            if self._finish_error is not None:
+                raise self._finish_error
+            if self._finish_count > expected:
+                raise ValueError(f"终局成绩报文数量异常: {self._finish_count}, expected={expected}")
+            if self._finish_count == expected:
+                return
+            if self._reader_error is not None:
+                raise ConnectionError("UE 在完整终局成绩到达前断开") from self._reader_error
+            remaining = deadline - asyncio.get_running_loop().time()
+            if remaining <= 0:
+                raise TimeoutError(f"等待终局成绩超时: {self._finish_count}/{expected}")
+            self._finish_changed.clear()
+            try:
+                await asyncio.wait_for(self._finish_changed.wait(), timeout=remaining)
+            except asyncio.TimeoutError as exc:
+                raise TimeoutError(f"等待终局成绩超时: {self._finish_count}/{expected}") from exc
 
     async def prepare(
         self, type_name: str, payload: str, timeout: float | None = None

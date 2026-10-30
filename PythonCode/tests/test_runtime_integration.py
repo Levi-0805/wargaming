@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 import grpc
+import pytest
 
 
 generated = Path(__file__).resolve().parents[1] / "cssim" / "transport" / "_generated_grpc"
@@ -28,6 +29,17 @@ class _TwoEpisodeUeService(pb2_grpc.CustomNetworkServiceServicer):
         self.prepare_types: list[str] = []
         self.frame_requests: list[dict] = []
         self.custom_types: list[str] = []
+        self.final_finish_count = 2
+
+    async def _finishes(self, info, count=2):
+        for side in ('red', 'blue')[:count]:
+            # A real delayed response, after the triggering request returns to
+            # the event loop, catches the former immediate reader cancellation.
+            await asyncio.sleep(.03)
+            packet = {'Score': {'unit': {'Name': 'unit', 'SumWorth': 100}},
+                      'Reward': 800, 'Events': [{'摧毁方': side, '被摧毁方': 'blue' if side == 'red' else 'red',
+                                                '得分': '红方100' if side == 'red' else '蓝方100'}]}
+            yield pb2.StreamMessage(info=info, finish=pb2.Finish(data=json.dumps(packet).encode()))
 
     def _properties(self) -> dict:
         self.episode += 1
@@ -108,6 +120,9 @@ class _TwoEpisodeUeService(pb2_grpc.CustomNetworkServiceServicer):
             elif body == "prepare":
                 type_name = message.prepare.type
                 self.prepare_types.append(type_name)
+                if type_name == "reset_property" and self.episode:
+                    async for finish in self._finishes(message.info):
+                        yield finish
                 payload = (
                     self._properties()
                     if type_name == "reset_property"
@@ -131,6 +146,9 @@ class _TwoEpisodeUeService(pb2_grpc.CustomNetworkServiceServicer):
                 )
             elif body == "custom":
                 self.custom_types.append(message.custom.type)
+                if message.custom.type == 'end_unreal_engine':
+                    async for finish in self._finishes(message.info, self.final_finish_count):
+                        yield finish
 
 
 def test_runner_completes_two_episode_grpc_lifecycle(tmp_path):
@@ -188,3 +206,40 @@ def test_runner_completes_two_episode_grpc_lifecycle(tmp_path):
     ]
     assert [item["episode"] for item in records if item.get("kind") == "reset"] == [1, 2]
     assert [item["episode"] for item in records if item.get("done")] == [1, 2]
+    protocol = [json.loads(line) for line in stats_path.with_name('protocol.jsonl').read_text(encoding='utf-8').splitlines()]
+    finishes = [row for row in protocol if row.get('channel') == 'finish']
+    assert len(finishes) == 4
+    end = next(i for i, row in enumerate(protocol) if row.get('type') == 'end_unreal_engine')
+    assert sum(row.get('channel') == 'finish' for row in protocol[end+1:]) == 2
+
+
+def test_missing_last_score_fails_even_with_prior_round_pair(tmp_path, monkeypatch):
+    from cssim.transport import GrpcClient
+    from cssim.environment.env import CssimEnvironment
+
+    original = GrpcClient.wait_for_finishes
+    async def bounded(self, expected, timeout=10):
+        return await original(self, expected, timeout=.2)
+    monkeypatch.setattr(GrpcClient, 'wait_for_finishes', bounded)
+
+    async def scenario():
+        service = _TwoEpisodeUeService()
+        service.final_finish_count = 1
+        server = grpc.aio.server()
+        pb2_grpc.add_CustomNetworkServiceServicer_to_server(service, server)
+        port = server.add_insecure_port('127.0.0.1:0')
+        await server.start()
+        config = RuntimeConfig(tmp_path / 'task', {}, '127.0.0.1', port, (),
+                               5, 2, 1., 60., .5, 1, 'cpu', 'DEBUG')
+        environment = CssimEnvironment(config)
+        try:
+            await environment.connect()
+            await environment.reset()
+            await environment.reset()  # Drains the first episode's pair.
+            with pytest.raises(TimeoutError, match='3/4'):
+                await environment.close(completed=True)
+            assert environment.client._call is None
+        finally:
+            await environment.client.close()
+            await server.stop(0)
+    asyncio.run(scenario())

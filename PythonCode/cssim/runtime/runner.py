@@ -57,6 +57,7 @@ class Runner:
     async def run(self) -> None:
         """串行执行连接、reset、双方决策、step、训练和多回合生命周期。"""
 
+        completed = False
         try:
             await self.environment.connect()
             state = await self.environment.reset()
@@ -213,6 +214,7 @@ class Runner:
                 state = await self.environment.reset()
                 self._synchronize_algorithm_contexts_for_new_episode(state)
                 self._write_reset_log(state)
+            completed = True
         finally:
             for algorithm in self.algorithms:
                 try:
@@ -224,7 +226,7 @@ class Runner:
                         getattr(getattr(algorithm, "context", None), "team", "unknown"),
                         getattr(algorithm, "mode", "unknown"),
                     )
-            await self.environment.close()
+            await self.environment.close(completed=completed)
 
     def _synchronize_algorithm_contexts_for_new_episode(
         self, state: SimulationState
