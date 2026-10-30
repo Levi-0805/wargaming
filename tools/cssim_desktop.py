@@ -318,7 +318,7 @@ class NativeWindows:
             raise self.c.WinError(self.c.get_last_error())
         # Unreal updates hover/hit testing on its render tick. Let it observe
         # the new pointer location before button-down and before parking away.
-        time.sleep(.15)
+        time.sleep(.3)
         self.ensure_foreground(hwnd)
         down, up = self.INPUT(type=0), self.INPUT(type=0)
         down.mi.dwFlags, up.mi.dwFlags = 0x0002, 0x0004
@@ -327,7 +327,9 @@ class NativeWindows:
             time.sleep(.12)
         finally:
             self._send([up])
-        time.sleep(.15)
+        # Keep the pointer on the control until Unreal consumes button-up.
+        # Parking immediately after an OS-delivered click can cancel login.
+        time.sleep(.75)
 
     def move_screen(self, hwnd, x, y):
         self.ensure_foreground(hwnd)
