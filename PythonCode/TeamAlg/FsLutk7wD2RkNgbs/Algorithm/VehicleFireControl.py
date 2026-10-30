@@ -36,6 +36,7 @@ class VehicleFireControl:
         self._aimed = {}
         self._shots = {}
         self._progress = {}
+        self.target_selector = None
 
     @classmethod
     def fire_range(cls, agent):
@@ -201,6 +202,10 @@ class VehicleFireControl:
         target = min(available, key=lambda item: (
             item.entity_type != 'BP_MNWS_Vehicle_6x6UGV_C',
             item.entity_type not in self.VEHICLES, float(item.hp), self.distance(agent, item), item.uid))
+        if self.target_selector is not None:
+            selected = self.target_selector(state, agent, available, target)
+            if any(selected is item for item in available):
+                target = selected
         aim = self.guard_toward(agent, target.position)
         signature = (target.uid, aim.direction)
         previous = self._aimed.get(agent.uid)

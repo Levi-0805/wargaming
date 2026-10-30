@@ -7,7 +7,7 @@ from cssim.algorithms import AlgorithmContext
 
 @dataclass(frozen=True)
 class AlgorithmConfig:
-    """UE固定读取的红方配置；模板只保留规则和DQN两种模式。"""
+    """UE固定读取的红方配置；规则、DQN及离线 IQL 目标选择。"""
 
     mode: str = "rule"
     hidden_size: int = 256
@@ -21,6 +21,8 @@ class AlgorithmConfig:
     target_update: int = 500
     load_model: bool = False
     enable_parent_assignment: bool = True
+    iql_model: str = 'Models/target_iql_v1.json'
+    iql_shadow: bool = True
     # Retired ground interventions. Enable one at a time only for comparisons.
     enable_preservation_pause: bool = False
     enable_shared_contact_maneuver: bool = False
@@ -29,7 +31,7 @@ class AlgorithmConfig:
     enable_entry_waves: bool = False
 
     def __post_init__(self):
-        for name in ('enable_preservation_pause', 'enable_shared_contact_maneuver',
+        for name in ('iql_shadow', 'enable_preservation_pause', 'enable_shared_contact_maneuver',
                      'enable_forced_entry_under_contact', 'enable_continuous_column',
                      'enable_entry_waves'):
             if type(getattr(self, name)) is not bool:
@@ -45,10 +47,13 @@ class AlgorithmConfig:
 
 
 class ReinforceAgentAlgorithm:
-    """UE固定入口；根据mode选择规则算法或DQN示例。"""
+    """UE固定入口；选择规则、DQN 示例或训练过的 IQL 目标子策略。"""
 
     def __new__(cls, context: AlgorithmContext):
         config = AlgorithmConfig.from_context(context)
+        if config.mode == 'hybrid_iql':
+            from .LearnedTargeting import HybridIQLAgent
+            return HybridIQLAgent(context, config)
         if config.mode == "rule":
             from .RuleAgentAlgorithm import ReinforceAgentAlgorithm as RuleAgent
             return RuleAgent(context, config.enable_parent_assignment,

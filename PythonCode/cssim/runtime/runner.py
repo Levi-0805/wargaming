@@ -310,6 +310,7 @@ class Runner:
                 "kind": "reset",
                 "episode": state.episode,
                 "training": state.training,
+                "policies": [algorithm.policy_metadata() for algorithm in self.algorithms],
                 "team_state_counts": {
                     team: {
                         "agents": len(view.agents),

@@ -1,0 +1,60 @@
+{
+  "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261027_015357\\protocol.jsonl",
+  "source_sha256": "7cf57a409b6f4685c22202591958e829ac46f636c9123543b387fdecb4b4ec43",
+  "source_bytes": 222044874,
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "episodes": [
+    {
+      "episode": 1,
+      "frames": 501,
+      "changed_commands": 2,
+      "shadow_mismatches": 0,
+      "changed_air_commands": 0,
+      "invalid_vehicle_fire": 0,
+      "pre_hq_diversions": 0,
+      "objective_changes": 0,
+      "metrics": {
+        "iql_decisions": 40,
+        "iql_proposed_changes": 3,
+        "iql_applied_changes": 3,
+        "iql_shadow": 0,
+        "iql_online_training": 0
+      }
+    },
+    {
+      "episode": 2,
+      "frames": 501,
+      "changed_commands": 6,
+      "shadow_mismatches": 0,
+      "changed_air_commands": 0,
+      "invalid_vehicle_fire": 0,
+      "pre_hq_diversions": 0,
+      "objective_changes": 0,
+      "metrics": {
+        "iql_decisions": 25,
+        "iql_proposed_changes": 4,
+        "iql_applied_changes": 4,
+        "iql_shadow": 0,
+        "iql_online_training": 0
+      }
+    },
+    {
+      "episode": 3,
+      "frames": 501,
+      "changed_commands": 6,
+      "shadow_mismatches": 0,
+      "changed_air_commands": 0,
+      "invalid_vehicle_fire": 0,
+      "pre_hq_diversions": 0,
+      "objective_changes": 0,
+      "metrics": {
+        "iql_decisions": 56,
+        "iql_proposed_changes": 6,
+        "iql_applied_changes": 6,
+        "iql_shadow": 0,
+        "iql_online_training": 0
+      }
+    }
+  ],
+  "limitation": "Fixed public-state replay; changes and offline metrics are not new match scores."
+}

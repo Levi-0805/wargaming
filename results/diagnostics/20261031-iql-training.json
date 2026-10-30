@@ -1,0 +1,881 @@
+{
+  "algorithm": "target_iql_v1",
+  "reference": "https://arxiv.org/abs/2110.06169",
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "updates": 2500,
+  "max_updates": 3000,
+  "selected_update": 1500,
+  "checkpoint_selection": "validation behavior NLL only; patience4, interval250",
+  "validation_history": [
+    {
+      "update": 250,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.8704814204463253,
+      "recorded_choice_agreement": 0.691358024691358
+    },
+    {
+      "update": 500,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.6039718816309799,
+      "recorded_choice_agreement": 0.8765432098765432
+    },
+    {
+      "update": 750,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.511138821825569,
+      "recorded_choice_agreement": 0.9012345679012346
+    },
+    {
+      "update": 1000,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.46880171034071183,
+      "recorded_choice_agreement": 0.9382716049382716
+    },
+    {
+      "update": 1250,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.4642388143657166,
+      "recorded_choice_agreement": 0.9012345679012346
+    },
+    {
+      "update": 1500,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.4605963907124084,
+      "recorded_choice_agreement": 0.9259259259259259
+    },
+    {
+      "update": 1750,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.46792899237738717,
+      "recorded_choice_agreement": 0.9135802469135802
+    },
+    {
+      "update": 2000,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.49196799007462866,
+      "recorded_choice_agreement": 0.8765432098765432
+    },
+    {
+      "update": 2250,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.4834817956995081,
+      "recorded_choice_agreement": 0.9259259259259259
+    },
+    {
+      "update": 2500,
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.5182176754798418,
+      "recorded_choice_agreement": 0.8888888888888888
+    }
+  ],
+  "trainer_sha256": "1743f7b23c225f8be9c51ab1d83cbbb8d5cffd93bb4a951d5d5f900c40d927f6",
+  "seed": 10098,
+  "training_trace": [
+    {
+      "update": 1,
+      "value_loss": 0.00017345600645057857,
+      "q_loss": 0.02623817604035139,
+      "actor_loss": 0.32980984449386597
+    },
+    {
+      "update": 500,
+      "value_loss": 4.075680044479668e-05,
+      "q_loss": 0.004806713433936238,
+      "actor_loss": 0.16276425123214722
+    },
+    {
+      "update": 1000,
+      "value_loss": 4.055978206451982e-05,
+      "q_loss": 0.0012193811708129942,
+      "actor_loss": 0.14582473039627075
+    },
+    {
+      "update": 1500,
+      "value_loss": 4.812553743249737e-05,
+      "q_loss": 0.0009434890234842896,
+      "actor_loss": 0.09052950888872147
+    },
+    {
+      "update": 2000,
+      "value_loss": 3.725694114109501e-05,
+      "q_loss": 0.0005360419163480401,
+      "actor_loss": 0.10177671164274216
+    },
+    {
+      "update": 2500,
+      "value_loss": 2.6947287551593035e-05,
+      "q_loss": 0.0005323558289092034,
+      "actor_loss": 0.1078377515077591
+    }
+  ],
+  "offline_metrics": {
+    "train": {
+      "multiple_target_samples": 1872,
+      "behavior_nll": 0.3567157973591079,
+      "recorded_choice_agreement": 0.9049145299145299
+    },
+    "validation": {
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.4605963907124084,
+      "recorded_choice_agreement": 0.9259259259259259
+    },
+    "test": {
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.7273455019350406,
+      "recorded_choice_agreement": 0.8148148148148148
+    }
+  },
+  "manifest": {
+    "feature_version": 1,
+    "gamma": 0.997,
+    "stride": 4,
+    "sources": [
+      {
+        "path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261024_164627\\protocol.jsonl",
+        "sha256": "b345396daca92c26a4ae5ab163904a46030f7b4ba6b94201d0799f52b520175f",
+        "bytes": 609478369,
+        "source_commit": null,
+        "counts": {
+          "attacks": 2002,
+          "accepted": 1311,
+          "not_local_or_ineligible": 292,
+          "sampled_out": 399
+        },
+        "rounds": [
+          {
+            "episode": 1,
+            "complete": true,
+            "score": 2610
+          },
+          {
+            "episode": 2,
+            "complete": true,
+            "score": 6000
+          },
+          {
+            "episode": 3,
+            "complete": true,
+            "score": 3150
+          },
+          {
+            "episode": 4,
+            "complete": true,
+            "score": 4380
+          },
+          {
+            "episode": 5,
+            "complete": true,
+            "score": 2140
+          },
+          {
+            "episode": 6,
+            "complete": true,
+            "score": 2920
+          },
+          {
+            "episode": 7,
+            "complete": true,
+            "score": 5940
+          },
+          {
+            "episode": 8,
+            "complete": true,
+            "score": 4300
+          },
+          {
+            "episode": 9,
+            "complete": true,
+            "score": 3140
+          },
+          {
+            "episode": 10,
+            "complete": false,
+            "score": null
+          }
+        ]
+      },
+      {
+        "path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261024_214306\\protocol.jsonl",
+        "sha256": "e24d72ed5208cef27ae4644a9c4813173328caae021bd99485de50e9f20f4486",
+        "bytes": 671399793,
+        "source_commit": null,
+        "counts": {
+          "attacks": 1790,
+          "accepted": 1188,
+          "not_local_or_ineligible": 269,
+          "sampled_out": 333
+        },
+        "rounds": [
+          {
+            "episode": 1,
+            "complete": true,
+            "score": 2900
+          },
+          {
+            "episode": 2,
+            "complete": true,
+            "score": 2930
+          },
+          {
+            "episode": 3,
+            "complete": true,
+            "score": 3020
+          },
+          {
+            "episode": 4,
+            "complete": true,
+            "score": 3680
+          },
+          {
+            "episode": 5,
+            "complete": true,
+            "score": 3250
+          },
+          {
+            "episode": 6,
+            "complete": true,
+            "score": 3300
+          },
+          {
+            "episode": 7,
+            "complete": true,
+            "score": 4940
+          },
+          {
+            "episode": 8,
+            "complete": true,
+            "score": 2930
+          },
+          {
+            "episode": 9,
+            "complete": true,
+            "score": 3820
+          },
+          {
+            "episode": 10,
+            "complete": true,
+            "score": 5990
+          }
+        ]
+      },
+      {
+        "path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261025_150756\\protocol.jsonl",
+        "sha256": "34264c111a7422a215f471adb429ecb2c7f8090d96f9aea7c634cb2298353afe",
+        "bytes": 659972493,
+        "source_commit": null,
+        "counts": {
+          "attacks": 1703,
+          "accepted": 1242,
+          "not_local_or_ineligible": 173,
+          "sampled_out": 288
+        },
+        "rounds": [
+          {
+            "episode": 1,
+            "complete": true,
+            "score": 3110
+          },
+          {
+            "episode": 2,
+            "complete": true,
+            "score": 3960
+          },
+          {
+            "episode": 3,
+            "complete": true,
+            "score": 2900
+          },
+          {
+            "episode": 4,
+            "complete": true,
+            "score": 1990
+          },
+          {
+            "episode": 5,
+            "complete": true,
+            "score": 3480
+          },
+          {
+            "episode": 6,
+            "complete": true,
+            "score": 6000
+          },
+          {
+            "episode": 7,
+            "complete": true,
+            "score": 5960
+          },
+          {
+            "episode": 8,
+            "complete": true,
+            "score": 2520
+          },
+          {
+            "episode": 9,
+            "complete": true,
+            "score": 3050
+          },
+          {
+            "episode": 10,
+            "complete": true,
+            "score": 1270
+          }
+        ]
+      },
+      {
+        "path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261026_013225\\protocol.jsonl",
+        "sha256": "4fee5488ee68938c693f5d48375dd47f91f7a66235bf7093da9b34ec1469c362",
+        "bytes": 413921988,
+        "source_commit": null,
+        "counts": {
+          "attacks": 1303,
+          "accepted": 838,
+          "not_local_or_ineligible": 150,
+          "sampled_out": 315
+        },
+        "rounds": [
+          {
+            "episode": 1,
+            "complete": true,
+            "score": 2820
+          },
+          {
+            "episode": 2,
+            "complete": true,
+            "score": 2800
+          },
+          {
+            "episode": 3,
+            "complete": true,
+            "score": 2940
+          },
+          {
+            "episode": 4,
+            "complete": true,
+            "score": 3190
+          },
+          {
+            "episode": 5,
+            "complete": true,
+            "score": 4300
+          },
+          {
+            "episode": 6,
+            "complete": true,
+            "score": 3050
+          },
+          {
+            "episode": 7,
+            "complete": false,
+            "score": null
+          }
+        ]
+      },
+      {
+        "path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261026_165749\\protocol.jsonl",
+        "sha256": "215d3a523864fc6753c382dcfec06e6b892a18f22bc65cce7ffb7d7786e98239",
+        "bytes": 352717323,
+        "source_commit": null,
+        "counts": {
+          "attacks": 831,
+          "accepted": 610,
+          "not_local_or_ineligible": 57,
+          "sampled_out": 164
+        },
+        "rounds": [
+          {
+            "episode": 1,
+            "complete": true,
+            "score": 3130
+          },
+          {
+            "episode": 2,
+            "complete": true,
+            "score": 2930
+          },
+          {
+            "episode": 3,
+            "complete": true,
+            "score": 3290
+          },
+          {
+            "episode": 4,
+            "complete": true,
+            "score": 4460
+          },
+          {
+            "episode": 5,
+            "complete": true,
+            "score": 4170
+          },
+          {
+            "episode": 6,
+            "complete": false,
+            "score": null
+          }
+        ]
+      },
+      {
+        "path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261026_225520\\protocol.jsonl",
+        "sha256": "b1096e697844d7bfbe4f1cc0930038805e24fc737291a7c177797b1c798dcd51",
+        "bytes": 207827748,
+        "source_commit": null,
+        "counts": {
+          "attacks": 418,
+          "accepted": 278,
+          "not_local_or_ineligible": 43,
+          "sampled_out": 97
+        },
+        "rounds": [
+          {
+            "episode": 1,
+            "complete": true,
+            "score": 3060
+          },
+          {
+            "episode": 2,
+            "complete": true,
+            "score": 2840
+          },
+          {
+            "episode": 3,
+            "complete": true,
+            "score": 1280
+          }
+        ]
+      },
+      {
+        "path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261027_002825\\protocol.jsonl",
+        "sha256": "5f331aa44a5d1fba51eab26079d4474d859dc62f5eed61a0710d9fe230660f37",
+        "bytes": 202716731,
+        "source_commit": null,
+        "counts": {
+          "attacks": 475,
+          "accepted": 353,
+          "not_local_or_ineligible": 36,
+          "sampled_out": 86
+        },
+        "rounds": [
+          {
+            "episode": 1,
+            "complete": true,
+            "score": 2970
+          },
+          {
+            "episode": 2,
+            "complete": true,
+            "score": 3120
+          },
+          {
+            "episode": 3,
+            "complete": true,
+            "score": 3170
+          }
+        ]
+      },
+      {
+        "path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261027_015357\\protocol.jsonl",
+        "sha256": "7cf57a409b6f4685c22202591958e829ac46f636c9123543b387fdecb4b4ec43",
+        "bytes": 222044874,
+        "source_commit": null,
+        "counts": {
+          "attacks": 407,
+          "accepted": 283,
+          "not_local_or_ineligible": 50,
+          "sampled_out": 74
+        },
+        "rounds": [
+          {
+            "episode": 1,
+            "complete": true,
+            "score": 2980
+          },
+          {
+            "episode": 2,
+            "complete": true,
+            "score": 2570
+          },
+          {
+            "episode": 3,
+            "complete": true,
+            "score": 4380
+          }
+        ]
+      }
+    ],
+    "groups": [
+      {
+        "session": 0,
+        "episode": 1,
+        "score": 2610,
+        "decisions": 106,
+        "fingerprint": "bad20b00194ab3d048149df63bb0f99267698caa5c989d82f2507ee2eead8ead"
+      },
+      {
+        "session": 0,
+        "episode": 2,
+        "score": 6000,
+        "decisions": 143,
+        "fingerprint": "80ddbab3943028991a71ab062a9492c17e1b7dcdf1b9afab2c6886b6d2dd3c6d"
+      },
+      {
+        "session": 0,
+        "episode": 3,
+        "score": 3150,
+        "decisions": 75,
+        "fingerprint": "38c107ffbf8f1e980d1044697f2b96b0d68794733a941456000c241380fce3aa"
+      },
+      {
+        "session": 0,
+        "episode": 4,
+        "score": 4380,
+        "decisions": 178,
+        "fingerprint": "e002e1c4d3ad55d9773102c6277f364b6613480bb5b3013fc8666755cd61285d"
+      },
+      {
+        "session": 0,
+        "episode": 5,
+        "score": 2140,
+        "decisions": 175,
+        "fingerprint": "186e53edc4242866d2b623fc160610d86ca7b354338b72e8cd4a362d5880f8c2"
+      },
+      {
+        "session": 0,
+        "episode": 6,
+        "score": 2920,
+        "decisions": 115,
+        "fingerprint": "c313e8893c254ef5f4fa0f0c6d44d00a0839f6895d1935f10db5513cb2e24d08"
+      },
+      {
+        "session": 0,
+        "episode": 7,
+        "score": 5940,
+        "decisions": 202,
+        "fingerprint": "6f9c78e408492d01caedec00919a612e0d7ea745e8e8099769de1a4faf472e3c"
+      },
+      {
+        "session": 0,
+        "episode": 8,
+        "score": 4300,
+        "decisions": 238,
+        "fingerprint": "edfb4b5c6372009130947ce8bde8f5bbde650f77ab8837fdb1b947739110d986"
+      },
+      {
+        "session": 0,
+        "episode": 9,
+        "score": 3140,
+        "decisions": 79,
+        "fingerprint": "c7433ec4e321713aa3e344d3fb7a6e81f9a49f8a31a7ad455ddff0c05876e3ad"
+      },
+      {
+        "session": 1,
+        "episode": 1,
+        "score": 2900,
+        "decisions": 56,
+        "fingerprint": "2030706dd2fc3f86260e0fdaeacbd529b11b74a955cb4b9e701fa1bfbd59791d"
+      },
+      {
+        "session": 1,
+        "episode": 2,
+        "score": 2930,
+        "decisions": 105,
+        "fingerprint": "6c8d51e992dea7db9eb8f27224cef1d25f9a903d1b2f6a15d00ee8c6e5c4f6c1"
+      },
+      {
+        "session": 1,
+        "episode": 3,
+        "score": 3020,
+        "decisions": 91,
+        "fingerprint": "8a885c8dc29ea969422aad8e2831ca27d53be2e8e23a86731dfdddceba5be85c"
+      },
+      {
+        "session": 1,
+        "episode": 4,
+        "score": 3680,
+        "decisions": 119,
+        "fingerprint": "a1d7bb174ce4feb36168fd7ebe90ad28708abe507a0317606812db1cc12bfd30"
+      },
+      {
+        "session": 1,
+        "episode": 5,
+        "score": 3250,
+        "decisions": 98,
+        "fingerprint": "c83dfa235017aefc2889f255d39ed4ef8ef942c6e3429c88f3bb81a6f83b1e72"
+      },
+      {
+        "session": 1,
+        "episode": 6,
+        "score": 3300,
+        "decisions": 73,
+        "fingerprint": "bbc3167c5b39483816771eea74cdc8a490eb92ee741e7d1096cde1110ed8ebe7"
+      },
+      {
+        "session": 1,
+        "episode": 7,
+        "score": 4940,
+        "decisions": 135,
+        "fingerprint": "df5cd653f262f1ec85582d881c48630903985f722641c682cd3bc48cd8c262da"
+      },
+      {
+        "session": 1,
+        "episode": 8,
+        "score": 2930,
+        "decisions": 105,
+        "fingerprint": "88e02820a7ce322e933380e6a430f57fca14dad5b50c3e8c7969f5f0c21e84b4"
+      },
+      {
+        "session": 1,
+        "episode": 9,
+        "score": 3820,
+        "decisions": 82,
+        "fingerprint": "723c4ca3c6da4451c85c40a911724bdd9dfe2c16ec2d1b093bd043aa643be616"
+      },
+      {
+        "session": 1,
+        "episode": 10,
+        "score": 5990,
+        "decisions": 324,
+        "fingerprint": "62422f2f1a87963b692771713c1995728b931e5b8cb12aae05a081c948f3483e"
+      },
+      {
+        "session": 2,
+        "episode": 1,
+        "score": 3110,
+        "decisions": 87,
+        "fingerprint": "373a686f6e72fe1bd5a23606193d9a9ad2120812f4dfe6fb9b127ac5373224d6"
+      },
+      {
+        "session": 2,
+        "episode": 2,
+        "score": 3960,
+        "decisions": 80,
+        "fingerprint": "8927a2814542141202f49fa088f99903c3d1101bdfd58770b9cabf1502789a05"
+      },
+      {
+        "session": 2,
+        "episode": 3,
+        "score": 2900,
+        "decisions": 116,
+        "fingerprint": "61418b4a551d054a8f2694402440c1c1be3201d4fb8e02c4c5dc87e805d0024a"
+      },
+      {
+        "session": 2,
+        "episode": 4,
+        "score": 1990,
+        "decisions": 135,
+        "fingerprint": "18fccd0439eb0e9ad24d90f59651d2b712e0c65405cb7fdcf8e3a1127c88f8c7"
+      },
+      {
+        "session": 2,
+        "episode": 5,
+        "score": 3480,
+        "decisions": 126,
+        "fingerprint": "c81ac913da8e624f954a857cb82d7c099afc1695beaa957d6df1eed793691fb5"
+      },
+      {
+        "session": 2,
+        "episode": 6,
+        "score": 6000,
+        "decisions": 215,
+        "fingerprint": "7e21110be981072c562eea4708be505fd40e6e9c17a62516b37f51935c6458af"
+      },
+      {
+        "session": 2,
+        "episode": 7,
+        "score": 5960,
+        "decisions": 184,
+        "fingerprint": "0c205b124449be7d26e7214254c193ffa4d356ee10e784424caea1228c157757"
+      },
+      {
+        "session": 2,
+        "episode": 8,
+        "score": 2520,
+        "decisions": 122,
+        "fingerprint": "05e74f1aeebb2dfb337830faa06efef915b3da6999b5a3368c3687a8459fd520"
+      },
+      {
+        "session": 2,
+        "episode": 9,
+        "score": 3050,
+        "decisions": 93,
+        "fingerprint": "0abb8d96d8f480c54a4c8b28b3427c050812d870aaa1ede38a3f0cadfb2f48a1"
+      },
+      {
+        "session": 2,
+        "episode": 10,
+        "score": 1270,
+        "decisions": 84,
+        "fingerprint": "2d049c7591256906e96e6420120a1c992e636f524a4015819e6ea2ecdd2e8ae6"
+      },
+      {
+        "session": 3,
+        "episode": 1,
+        "score": 2820,
+        "decisions": 165,
+        "fingerprint": "0a10b7593d49462ffd2d7415e8ec2b63266180245bb9de1bbdaaf6f8b58b7d25"
+      },
+      {
+        "session": 3,
+        "episode": 2,
+        "score": 2800,
+        "decisions": 103,
+        "fingerprint": "3f952c03fb6b53f2c2c91783687294c62148665adc1af75ee90be0d5b47916fc"
+      },
+      {
+        "session": 3,
+        "episode": 3,
+        "score": 2940,
+        "decisions": 116,
+        "fingerprint": "d704ee76fcd24115dfdd3436d1b3f5b21a0fb5f08f09067d1bbad7b0d4d0b392"
+      },
+      {
+        "session": 3,
+        "episode": 4,
+        "score": 3190,
+        "decisions": 95,
+        "fingerprint": "a831ce140911b989ae1a78d0fc9869914f4d93da5965d6114decd7a54097aead"
+      },
+      {
+        "session": 3,
+        "episode": 5,
+        "score": 4300,
+        "decisions": 168,
+        "fingerprint": "9d5b145041dc9a5cc115ac25f269dc7c47d7ada7e8c4bc4e6ff374df238e31d5"
+      },
+      {
+        "session": 3,
+        "episode": 6,
+        "score": 3050,
+        "decisions": 191,
+        "fingerprint": "be50903ddda88657a0ef0c62170b8fab71d28ab9de86056be6e057a27453d912"
+      },
+      {
+        "session": 4,
+        "episode": 1,
+        "score": 3130,
+        "decisions": 137,
+        "fingerprint": "5ac0ae12cdbc8b989227fd4c8e592c98a2f09985210ba8f0105ed6ade525dff7"
+      },
+      {
+        "session": 4,
+        "episode": 2,
+        "score": 2930,
+        "decisions": 85,
+        "fingerprint": "aee658ab15ecf6f99c427c5cf178872319e19469e7779100fcad1fb090faab26"
+      },
+      {
+        "session": 4,
+        "episode": 3,
+        "score": 3290,
+        "decisions": 146,
+        "fingerprint": "de81c6e11057152fa7d64c8f05fa166dc89b43b1ccd1e6c9651bd00ce30f5374"
+      },
+      {
+        "session": 4,
+        "episode": 4,
+        "score": 4460,
+        "decisions": 133,
+        "fingerprint": "17b89715fecc643c7b408e3570029fafd294cfc015ba9603147a7683c4ee3e7b"
+      },
+      {
+        "session": 4,
+        "episode": 5,
+        "score": 4170,
+        "decisions": 109,
+        "fingerprint": "f9e8ca96bd543f0cd46ff5f8e30d7150d747b542fd67548944017df534fbe4af"
+      },
+      {
+        "session": 5,
+        "episode": 1,
+        "score": 3060,
+        "decisions": 114,
+        "fingerprint": "ff986ffca0a1ca96e5393329b12ea49cdb2872f3334cc2bc831ef64ab8f6ef9c"
+      },
+      {
+        "session": 5,
+        "episode": 2,
+        "score": 2840,
+        "decisions": 89,
+        "fingerprint": "34170a5258d9590c6d06e5416ec5b0314034542d02c65420fa6edda83d39e5b6"
+      },
+      {
+        "session": 5,
+        "episode": 3,
+        "score": 1280,
+        "decisions": 75,
+        "fingerprint": "033293fca0b42b268954283f631718bd11ba57403aef9da3b762ba4f884469a6"
+      },
+      {
+        "session": 6,
+        "episode": 1,
+        "score": 2970,
+        "decisions": 113,
+        "fingerprint": "5ea1990914794fe206f5e02aa87e1183f4245a1c3d12017b7027f97de3db842d"
+      },
+      {
+        "session": 6,
+        "episode": 2,
+        "score": 3120,
+        "decisions": 126,
+        "fingerprint": "eba5b0b676d7e279f4af63abce8b36ed2aef8712b99f6890e0948df3c7a9675d"
+      },
+      {
+        "session": 6,
+        "episode": 3,
+        "score": 3170,
+        "decisions": 114,
+        "fingerprint": "2be85711cebc0f40718d5cbde89c1f9669dac43cbc54407bb97a4c9a9f996096"
+      },
+      {
+        "session": 7,
+        "episode": 1,
+        "score": 2980,
+        "decisions": 84,
+        "fingerprint": "e88cf0b39c2603100e681a3b8c3fa8e1e503793fbec23d43abc919975a123040"
+      },
+      {
+        "session": 7,
+        "episode": 2,
+        "score": 2570,
+        "decisions": 58,
+        "fingerprint": "bfba05a83cb77e4e0d2b873f80dfcfcb45272682900889bb62b12e981971263f"
+      },
+      {
+        "session": 7,
+        "episode": 3,
+        "score": 4380,
+        "decisions": 141,
+        "fingerprint": "28046ce8876f134bbf6ef6ff9de93f7437817e64bae1329702916135a4f775cd"
+      }
+    ],
+    "rejected": [],
+    "split_sessions": {
+      "train": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "validation": 6,
+      "test": 7
+    },
+    "split_counts": {
+      "0": 5467,
+      "1": 353,
+      "2": 283
+    },
+    "dataset_sha256": "5918d596aafdcd4321524e17b38188cbef9987918cb70f5e8c543c4ca665ee96",
+    "extraction_commit": "3eadd5b77e239632057a02ed7248069c8539cb0e",
+    "extractor_sha256": "b1bc783cb78d2fdbcf17ca448806c6248cbf8c09a35cc444143e71527f63094b",
+    "features_sha256": "1c243fcfa65fc2e7a4026f390543e21a3b16ec09aff5e51d2947db3cf97e23ff",
+    "reward": "One terminal team score / 6000 per unit decision trajectory, discounted by elapsed steps; no synthetic rewards",
+    "limitation": "Target-selection SMDP under recorded navigation and teammates; historical source commits unbound."
+  },
+  "limitations": [
+    "Offline metrics are behavior agreement, not match return or win probability.",
+    "This trains target ranking only; navigation, fire eligibility and teammates follow recorded controllers.",
+    "Only a new controlled match comparison can establish score improvement."
+  ]
+}

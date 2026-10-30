@@ -127,6 +127,10 @@ class Algorithm(ABC):
 
         return {}
 
+    def policy_metadata(self) -> dict[str, Any]:
+        """Describe the actually instantiated policy at each episode reset."""
+        return {'mode': self.mode, 'class': f'{type(self).__module__}.{type(self).__name__}'}
+
 
 class RuleAlgorithm(Algorithm):
     """规则模式选手只需要实现 ``decide``。"""

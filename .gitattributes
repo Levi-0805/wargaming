@@ -1,1 +1,4 @@
 * text=auto eol=lf
+
+# Numeric policy artifacts are identified by SHA-256; preserve exported bytes.
+PythonCode/TeamAlg/*/Models/*.json -text
