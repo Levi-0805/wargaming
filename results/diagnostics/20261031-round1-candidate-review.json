@@ -1,0 +1,87 @@
+{
+  "iteration": 1,
+  "collection_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\20261031-three03-0001-collected.json",
+  "candidate": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain-candidates\\recovered-round1\\candidate.json",
+  "candidate_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+  "baseline_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "offline_metrics": {
+    "train": {
+      "multiple_target_samples": 1953,
+      "behavior_nll": 0.38768710103696635,
+      "recorded_choice_agreement": 0.8965693804403482
+    },
+    "validation": {
+      "multiple_target_samples": 81,
+      "behavior_nll": 0.6620668952847705,
+      "recorded_choice_agreement": 0.8024691358024691
+    },
+    "test": {
+      "multiple_target_samples": 472,
+      "behavior_nll": 0.5640183141676046,
+      "recorded_choice_agreement": 0.940677966101695
+    }
+  },
+  "split_sessions": {
+    "train": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "validation": 7,
+    "test": 8
+  },
+  "limitation": "Recovered ten completed games are held out for test; process shutdown failed. Offline metrics are not new match outcomes.",
+  "decision": "controlled_trial_iteration_2",
+  "baseline_backup": "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Models\\target_iql_baseline_20261031.json",
+  "integration": {
+    "source": "logs\\autotrain\\20261031-three03-0001\\logs\\20261031_023047\\protocol.jsonl",
+    "source_sha256": "a0daa98f6d988a7295a90eba3128e95d09ee4e225dc26a2e8eda7fc7b7f3ea52",
+    "source_bytes": 694822307,
+    "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+    "episodes": [
+      {
+        "episode": 1,
+        "frames": 501,
+        "changed_commands": 1,
+        "shadow_mismatches": 0,
+        "changed_air_commands": 0,
+        "invalid_vehicle_fire": 0,
+        "pre_hq_diversions": 0,
+        "objective_changes": 0,
+        "metrics": {
+          "iql_decisions": 37,
+          "iql_proposed_changes": 1,
+          "iql_applied_changes": 1,
+          "iql_shadow": 0,
+          "iql_online_training": 0
+        }
+      },
+      {
+        "episode": 6,
+        "frames": 501,
+        "changed_commands": 1,
+        "shadow_mismatches": 0,
+        "changed_air_commands": 0,
+        "invalid_vehicle_fire": 0,
+        "pre_hq_diversions": 0,
+        "objective_changes": 0,
+        "metrics": {
+          "iql_decisions": 155,
+          "iql_proposed_changes": 1,
+          "iql_applied_changes": 1,
+          "iql_shadow": 0,
+          "iql_online_training": 0
+        }
+      }
+    ],
+    "limitation": "Fixed public-state replay; changes and offline metrics are not new match scores."
+  },
+  "limitations": [
+    "New ten-game collection is the test split; it did not update gradients.",
+    "Integration replay checks legality and consistency only; score improvement requires new games."
+  ]
+}
