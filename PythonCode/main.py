@@ -31,6 +31,8 @@ class CssimApplication:
                             help="启动器已核验的代码提交；不从目录或时间推断")
         parser.add_argument("--batch-id", default=os.environ.get("CSSIM_BATCH_ID"),
                             help="启动器提供的采集批次标识")
+        parser.add_argument("--exit-after-run", action="store_true",
+                            help="托管批次正常结束并刷新日志后退出，避免 gRPC 后台线程阻止进程关闭")
         parser.add_argument(
             "--log-level", choices=("DEBUG", "INFO", "WARNING", "ERROR"),
             help="日志级别；DEBUG 会记录完整的 gRPC JSON 收发报文",
@@ -102,6 +104,11 @@ class CssimApplication:
                 })
             finally:
                 run_log.close()
+        if args.exit_after_run:
+            # Reached only after a successful Runner return and closed audit
+            # files. gRPC's native polling thread can otherwise hang shutdown.
+            logging.shutdown()
+            os._exit(0)
 
 
 if __name__ == "__main__":

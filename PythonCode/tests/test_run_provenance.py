@@ -174,6 +174,27 @@ def test_configuration_change_during_load_is_rejected(tmp_path, monkeypatch):
     assert not root.exists()
 
 
+@pytest.mark.parametrize('fail', [False, True])
+def test_managed_exit_follows_closed_success_audit_only(tmp_path, monkeypatch, fail):
+    _, root = _application(tmp_path, monkeypatch, fail=fail)
+    monkeypatch.setattr(sys, 'argv', [*sys.argv, '--exit-after-run'])
+    monkeypatch.setattr('main.logging.shutdown', lambda: None)
+    exited = []
+    def exit_process(code):
+        session = next(root.iterdir())
+        end = json.loads((session/'simulation.jsonl').read_text().splitlines()[-1])
+        assert end['status'] == 'returned'
+        exited.append(code)
+    monkeypatch.setattr('main.os._exit', exit_process)
+    if fail:
+        with pytest.raises(ConnectionError):
+            CssimApplication.run()
+        assert exited == []
+    else:
+        CssimApplication.run()
+        assert exited == [0]
+
+
 def test_launch_cli_keeps_defaults_and_overrides_environment(monkeypatch):
     monkeypatch.setenv("CSSIM_SOURCE_COMMIT", "environment-commit")
     monkeypatch.setenv("CSSIM_BATCH_ID", "environment-batch")

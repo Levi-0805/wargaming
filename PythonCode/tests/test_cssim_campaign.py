@@ -307,14 +307,15 @@ def test_unrelated_python_conflict_prevents_stopping_even_an_earlier_valid_child
     assert stopped == []
 
 
-def test_cleanup_accepts_an_already_exited_owned_child_with_retained_handle():
+@pytest.mark.parametrize('reused', [False, True])
+def test_cleanup_accepts_an_already_exited_owned_child_with_retained_handle(reused):
     processes = WindowsProcesses.__new__(WindowsProcesses)
     identity = dict(pid=123, created_ticks=100, exe_path=r'C:\CSSIM\python.exe')
     closed, killed = [], []
     processes.k = SimpleNamespace(OpenProcess=lambda *args: 42, WaitForSingleObject=lambda *args: 0,
                                    CloseHandle=lambda handle: closed.append(handle),
                                    TerminateProcess=lambda *args: killed.append(args))
-    processes.identity = lambda pid, handle=None: identity
+    processes.identity = lambda pid, handle=None: {**identity, 'created_ticks': 101} if reused else identity
     processes.stop(identity)
     assert closed == [42] and killed == []
 

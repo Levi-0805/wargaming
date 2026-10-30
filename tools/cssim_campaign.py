@@ -287,7 +287,7 @@ class WindowsProcesses:
             raise CampaignBlocked(f'Cannot stop owned PID {expected["pid"]}; Windows denied access')
         try:
             if not same_process(expected, self.identity(expected['pid'], handle=handle)):
-                raise CampaignBlocked('PID was reused; refusing to terminate it')
+                return  # Original process exited; a reused PID belongs to someone else.
             if self.k.WaitForSingleObject(handle, 0) == 0:
                 return  # A parent may still retain a handle to an exited child.
             if not self.k.TerminateProcess(handle, 2):
