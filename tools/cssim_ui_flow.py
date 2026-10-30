@@ -213,16 +213,18 @@ def load_recipe(recipe):
                     raise FlowError('Field text must be bounded literal text without control characters')
                 actions[1]['key'] = 'Ctrl+A'
         step['actions'] = actions
+        retries = step.get('retry_unchanged_clicks', 0)
+        if (type(retries) is not int or not 0 <= retries <= 2
+                or (retries and (name != 'login' or len(actions) != 1))):
+            raise FlowError('Only the single login click may retry an unchanged observed screen, at most twice')
         for label in ('before', 'after'):
             compile_pattern(step.get(label))
     return value, digest.hexdigest()
 
 
 def save_progress(path, value):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix('.tmp')
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-    temporary.replace(path)
+    from batch_training import write_json
+    write_json(path, value)  # Includes bounded Windows sharing-lock retries.
 
 
 def run_steps(recipe, adapter, logdir, stopfile, *, phase='pre_python', clock=time.monotonic,
@@ -257,7 +259,8 @@ def run_steps(recipe, adapter, logdir, stopfile, *, phase='pre_python', clock=ti
         fresh(snapshot, progress['window_identity'], wall_clock)
         return snapshot
 
-    def observe(pattern, deadline):
+    def observe(pattern, deadline, retry_step=None):
+        retries, next_retry = 0, clock()+5
         while True:
             snapshot = capture()
             match = visual_match(snapshot, pattern)
@@ -266,6 +269,18 @@ def run_steps(recipe, adapter, logdir, stopfile, *, phase='pre_python', clock=ti
                 return snapshot, match
             if clock() >= deadline:
                 raise FlowError(f'Timed out waiting for visual state: {pattern_label(pattern)}')
+            if (retry_step and retries < retry_step.get('retry_unchanged_clicks', 0)
+                    and clock() >= next_retry and visual_match(snapshot, retry_step['before'])['matched']):
+                # Startup can consume the first login click. Retry only when a
+                # fresh image still proves the original login screen; never
+                # repeat inputs on unknown or already transitioned screens.
+                fresh(snapshot, progress['window_identity'], wall_clock)
+                progress['pending'] = dict(name=retry_step['name'], action_index=0, retry=retries+1)
+                save_progress(progress_path, progress)
+                adapter.click(*retry_step['actions'][0]['click'], snapshot)
+                retries += 1
+                next_retry = clock()+5
+                park(capture())
             sleep(min(poll_interval, max(0, deadline-clock())))
 
     def park(snapshot=None):
@@ -325,7 +340,7 @@ def run_steps(recipe, adapter, logdir, stopfile, *, phase='pre_python', clock=ti
                     save_progress(progress_path, progress)
                 if step['actions']:
                     park(refreshed)
-                snapshot, match = observe(step['after'], deadline)
+                snapshot, match = observe(step['after'], deadline, retry_step=step)
                 progress['last_observation'] = snapshot.metadata
                 progress['last_match'] = match
             completed.append(step['name'])

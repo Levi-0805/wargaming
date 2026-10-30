@@ -123,6 +123,30 @@ def test_click_uses_new_capture_and_verifies_result(setup):
     assert result['pending'] is None
 
 
+def test_login_retries_only_a_proven_unchanged_screen(setup):
+    _, recipe, adapter, _ = setup
+    recipe['steps'][0].update(timeout=15, retry_unchanged_clicks=2)
+    original = adapter.click
+    def click(x, y, snapshot):
+        adapter.change_on_click = bool(adapter.calls)
+        original(x, y, snapshot)
+    adapter.click = click
+    result = run(setup)
+    assert result['state'] == 'complete'
+    assert len(adapter.calls) == 2
+
+
+def test_login_never_retries_on_an_unknown_screen(setup):
+    _, recipe, adapter, _ = setup
+    recipe['steps'][0].update(timeout=8, retry_unchanged_clicks=2)
+    def click(x, y, snapshot):
+        adapter.calls.append(('click', x, y))
+        adapter.image = np.zeros_like(adapter.image)
+    adapter.click = click
+    assert run(setup)['state'] == 'needs_attention'
+    assert len(adapter.calls) == 1
+
+
 def test_multi_action_field_fill_refreshes_after_each_input(setup):
     _, recipe, adapter, _ = setup
     recipe['steps'][0]['actions'] += [dict(key='CTRL+A'), dict(text='10')]
