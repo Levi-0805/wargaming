@@ -1,0 +1,20 @@
+{
+  "train_steps": 3000,
+  "seed_reports": [
+    "results/batches/20261031-third-cumulative01-cumulative.json"
+  ],
+  "historical_sources": [
+    "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261024_164627/protocol.jsonl",
+    "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261024_214306/protocol.jsonl",
+    "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261025_150756/protocol.jsonl",
+    "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261026_013225/protocol.jsonl",
+    "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261026_165749/protocol.jsonl",
+    "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261026_225520/protocol.jsonl",
+    "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261027_002825/protocol.jsonl",
+    "C:/CSSIM/Client/Data/AlgData/PythonCode/logs/20261027_015357/protocol.jsonl",
+    "logs/autotrain/20261031-three03-0001/logs/20261031_023047/protocol.jsonl",
+    "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0001\\logs\\20261031_074144\\protocol.jsonl",
+    "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0002\\logs\\20261031_095317\\protocol.jsonl",
+    "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0003\\logs\\20261031_110221\\protocol.jsonl"
+  ]
+}

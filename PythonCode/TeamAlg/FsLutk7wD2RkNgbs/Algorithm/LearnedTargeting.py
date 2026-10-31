@@ -114,7 +114,7 @@ class HybridIQLAgent(RuleAgent):
         return self._learned.choose(self._rl_state, agent, enemies, default)
 
     def training_metrics(self):
-        return {'iql_decisions': self._learned.decisions,
+        return {**super().training_metrics(), 'iql_decisions': self._learned.decisions,
                 'iql_proposed_changes': self._learned.proposed_changes,
                 'iql_applied_changes': self._learned.applied_changes,
                 'iql_shadow': int(self._learned.shadow), 'iql_online_training': 0}

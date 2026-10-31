@@ -34,6 +34,7 @@ class AdaptiveAssault:
         self._visited = {}
         self._arrival = 0
         self._utilities = {}
+        self.secondary_bias = (1.0, 1.0)
 
     @staticmethod
     def occupants(state, obj):
@@ -84,6 +85,8 @@ class AdaptiveAssault:
         # A twofold value advantage cannot outweigh a heavily defended box.
         # A distance penalty prevents marginal preferences causing long detours.
         result = value / ((2.0 + self.pressure(state, route, obj) + transit) * (1.0 + distance / 100000.0))
+        if route.known_map and obj.uid in route._map_order[1:]:
+            result *= self.secondary_bias[route._map_order[1:].index(obj.uid)]
         self._utilities[key] = result
         return result
 

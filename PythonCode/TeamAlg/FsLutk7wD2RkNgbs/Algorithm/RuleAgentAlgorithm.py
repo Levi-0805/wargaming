@@ -20,6 +20,7 @@ from .ColumnAdvance import ColumnAdvance
 from .EntryWaves import EntryWaves
 from .RearCover import RearCover
 from .HQExit import HQExit
+from .DefenseDoctrine import DefenseDoctrine, KINDS as DEFENSE_KINDS
 
 logger = logging.getLogger(__name__)
 
@@ -75,6 +76,7 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._entry_waves = EntryWaves()
         self._rear_cover = RearCover()
         self._hq_exit = HQExit()
+        self._doctrine = DefenseDoctrine()
         self._opening_column_start = None
         self._frame = None
         self._support = {}
@@ -98,6 +100,8 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
         self._frame = frame
         self._urban.begin(state)
         self._route.update(state)
+        self._doctrine.observe(state, self._route)
+        self._doctrine.apply(self._route, self._formation)
         self._hq_exit.begin(state, self._route)
         self._rear_cover.begin(state, self._route)
         self._hq_entry.begin(state, self._route)
@@ -401,6 +405,13 @@ class ReinforceAgentAlgorithm(RuleAlgorithm):
     def decide(self, state):
         self._prepare(state)
         return [self.choose_action(state, agent) for agent in state.agents]
+
+    def policy_metadata(self):
+        return {**super().policy_metadata(), **self._doctrine.metadata()}
+
+    def training_metrics(self):
+        return {**super().training_metrics(),
+                'defense_kind_code': DEFENSE_KINDS.index(self._doctrine.kind)}
 
 
 RuleAgentAlgorithm = ReinforceAgentAlgorithm

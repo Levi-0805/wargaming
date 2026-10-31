@@ -1,0 +1,27 @@
+{
+  "requested_workflow": "Continuing ten cumulative completed games per published version; report then review/publish/deploy before next version",
+  "base_commit": "3180f77d7bb76f8e8973ff802af24dcb97df8104",
+  "previous_iteration_scores": [3210, 5920, 5940, 5850, 5890, 3190, 5950, 2190, 5950, 870],
+  "previous_iteration_mean": 4496,
+  "report_folder": "Desktop/迭代报告",
+  "report_format": "txt",
+  "major_report_every_rounds": 4,
+  "search_timezone": "Asia/Shanghai",
+  "search_period": "Three calendar days; 800/300/100 temperatures; live ten-game score energy and lower-tail guard",
+  "initial_modifications": [
+    "Recognize public HQ-only, HQ+A, HQ+B, HQ+A+B with three consecutive observations and unknown fallback",
+    "Apply bounded formation handoff, B support wait, screen distance and post-HQ secondary preference profiles",
+    "Keep mandatory HQ-first, user-approved front U-turn, local vehicle fire eligibility, finite movement gates and retained HQ guards",
+    "Record actual profile SHA and observed defence category in runtime metadata/metrics",
+    "Train offline IQL from verified cumulative complete games, retaining true failed process exits and explicit source provenance",
+    "Keep each model/profile experiment frozen for ten cumulative games and retain checkpoint/champion before staging changes"
+  ],
+  "limitations": [
+    "Initial profile changes have not yet produced new live match results",
+    "IQL trains ground target ranking; high-level routes/formations are bounded rule profiles searched separately",
+    "Newest two protocol sessions are validation/test, not gradient training",
+    "No supported automatic chat attachment upload or immediate Codex app-start trigger is implemented",
+    "With Codex closed, independent worker collects/trains/reports the current round then waits for review",
+    "Stable score above 5000 remains an objective, not a validated performance claim"
+  ]
+}

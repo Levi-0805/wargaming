@@ -55,6 +55,56 @@ def test_valid_batch_is_bound_to_commit_history_remains_unknown(sources):
     assert len(selected['sources'][-1]['rounds']) == 10
 
 
+def cumulative(path, chunks):
+    games, attempts = [], []
+    for index, source in enumerate(chunks):
+        batch=f'attempt-{index}'
+        parsed=parse_output(source,COMMIT)
+        manifest=path.parent/f'{batch}.json'
+        write_json(manifest,dict(batch_id=batch,source_commit=COMMIT,model_sha256='b'*64))
+        attempts.append(dict(batch_id=batch,manifest_path=str(manifest),
+            status=dict(protocol=str(source),done_episodes=[r['episode'] for r in parsed['rounds']]),
+            runtime_receipt=dict(exit_code=1)))
+        for row in parsed['rounds']:
+            games.append(dict(ordinal=len(games)+1,episode=row['episode'],batch_id=batch,
+                protocol=str(source),protocol_sha256=parsed['source_sha256'],source_commit=COMMIT,model_sha256='b'*64,
+                **{side:{k:row['scores'][side][k] for k in ('kill_score','capture_score','total')} for side in ('red','blue')}))
+    write_json(path,dict(classification='ten_cumulative_games_complete',completed_games=10,
+        source_commit=COMMIT,model_sha256='b'*64,games=games,attempts=attempts))
+    return path
+
+
+def test_cumulative_7_plus_3_with_failed_process_exits_retains_verified_complete_games(tmp_path):
+    chunks=[protocol(tmp_path/'seven.jsonl',7),protocol(tmp_path/'three.jsonl',3)]
+    report=cumulative(tmp_path/'cumulative.json',chunks)
+    records=candidate.completed_report_sources(report)
+    assert [len(r['rounds']) for r in records]==[7,3]
+    assert all(r['source_commit']==COMMIT for r in records)
+
+
+def test_recorded_runtime_commit_is_retained_without_guessing_from_filename(tmp_path):
+    source=protocol(tmp_path/'old.jsonl',1)
+    write_json(tmp_path/'run.json',dict(source_commit=COMMIT))
+    record=candidate.historical_source(source)
+    assert record['source_commit']==COMMIT
+    assert record['source_commit_evidence']=='runtime_run_json'
+    assert record['runtime_identity_sha256']==sha(tmp_path/'run.json')
+
+
+@pytest.mark.parametrize('corruption', ['duplicate','score','source','sha','done'])
+def test_cumulative_inconsistent_evidence_cannot_enter_training(tmp_path,corruption):
+    source=protocol(tmp_path/'ten.jsonl',10)
+    path=cumulative(tmp_path/'cumulative.json',[source])
+    report=candidate.read_json(path)
+    if corruption=='duplicate': report['games'][1]=dict(report['games'][0])
+    if corruption=='score': report['games'][0]['red']['total']+=1
+    if corruption=='source': report['games'][0]['source_commit']='f'*40
+    if corruption=='sha': report['games'][0]['protocol_sha256']='0'*64
+    if corruption=='done': report['attempts'][0]['status']['done_episodes'].remove(1)
+    write_json(path,report)
+    with pytest.raises(ValueError): candidate.completed_report_sources(path)
+
+
 def test_duplicate_source_is_not_an_independent_split_and_retains_binding(sources):
     _, old, live, batch = sources
     selected = candidate.select_sources([batch, batch], [*old, live, old[0]])

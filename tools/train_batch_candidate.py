@@ -77,35 +77,96 @@ def historical_source(path):
     actual = parse_output(path)
     if actual['malformed_json_lines'] or not any(r['complete'] for r in actual['rounds']):
         raise ValueError('Historical source lacks unambiguous complete rounds or has malformed JSON')
+    identity_path = path.with_name('run.json')
+    identity = read_json(identity_path) if identity_path.exists() else {}
+    commit = identity.get('source_commit')
+    if commit is not None and (not isinstance(commit, str) or not re.fullmatch('[0-9a-f]{40}', commit)):
+        raise ValueError('Invalid recorded runtime source commit')
     return dict(path=str(path), sha256=actual['source_sha256'], bytes=actual['source_bytes'],
-                source_commit=None, batch_reports=[], batch_report_sha256={},
+                source_commit=commit, batch_reports=[], batch_report_sha256={},
+                source_commit_evidence='runtime_run_json' if commit else 'unbound historical source',
+                runtime_identity_path=str(identity_path) if identity else None,
+                runtime_identity_sha256=sha(identity_path) if identity else None,
                 rounds=[dict(episode=r['episode'], complete=r['complete'],
                              score=r['scores']['red']['total'] if r['complete'] else None)
                         for r in actual['rounds']])
 
 
+def completed_report_sources(path):
+    """Cumulative ten games may include failed processes, never failed games."""
+    path = Path(path).resolve()
+    raw = path.read_bytes()
+    report = json.loads(raw.decode('utf-8-sig'))
+    if report.get('classification') != 'ten_cumulative_games_complete':
+        return [finished_batch(path)]
+    games, commit = report['games'], report['source_commit']
+    if (report.get('completed_games') != 10 or len(games) != 10
+            or not re.fullmatch('[0-9a-f]{40}', commit)
+            or not re.fullmatch('[0-9a-f]{64}', report['model_sha256'])):
+        raise ValueError('Invalid cumulative ten-game version binding')
+    groups, known = {}, set()
+    attempts = {a['batch_id']: a for a in report['attempts']}
+    for ordinal, game in enumerate(games, 1):
+        key = (game['protocol'], game['episode'])
+        if (key in known or game['ordinal'] != ordinal or game['source_commit'] != commit
+                or game['model_sha256'] != report['model_sha256']):
+            raise ValueError('Mixed or duplicate cumulative games')
+        known.add(key)
+        attempt = attempts[game['batch_id']]
+        manifest = read_json(attempt['manifest_path'])
+        if (manifest['source_commit'] != commit or manifest['model_sha256'] != report['model_sha256']
+                or manifest['batch_id'] != game['batch_id']
+                or game['episode'] not in attempt['status']['done_episodes']
+                or Path(attempt['status']['protocol']).resolve() != Path(game['protocol']).resolve()):
+            raise ValueError('Cumulative game lacks matching manifest/done evidence')
+        groups.setdefault(game['protocol'], []).append(game)
+    result = []
+    for protocol, rows in groups.items():
+        source = Path(protocol).resolve()
+        actual = parse_output(source, commit)
+        complete = {r['episode']: r for r in actual['rounds'] if r['complete']}
+        if actual['malformed_json_lines'] or set(complete) != {g['episode'] for g in rows}:
+            raise ValueError('Protocol complete games differ from cumulative selection')
+        for game in rows:
+            if game['protocol_sha256'] != actual['source_sha256']:
+                raise ValueError('Cumulative protocol SHA changed')
+            for side in ('red', 'blue'):
+                recorded = complete[game['episode']]['scores'][side]
+                if any(game[side][k] != recorded[k] for k in ('kill_score', 'capture_score', 'total')):
+                    raise ValueError('Cumulative terminal score changed')
+        result.append(dict(path=str(source), sha256=actual['source_sha256'], bytes=actual['source_bytes'],
+            source_commit=commit, batch_reports=[str(path)],
+            batch_report_sha256={str(path): hashlib.sha256(raw).hexdigest()},
+            rounds=[dict(episode=r['episode'], complete=True, score=r['red']['total']) for r in rows]))
+    if path.read_bytes() != raw:
+        raise ValueError('Cumulative report changed during verification')
+    return result
+
+
 def select_sources(batch_reports, sources=()):
     accepted, rejected, by_hash = [], [], {}
     finished_count = 0
-    for kind, items, loader in (('historical', sources, historical_source), ('batch', batch_reports, finished_batch)):
+    for kind, items, loader in (('historical', sources, lambda p: [historical_source(p)]),
+                                ('batch', batch_reports, completed_report_sources)):
         for item in items:
             try:
-                record = loader(item)
+                records = loader(item)
             except (OSError, ValueError, KeyError, TypeError) as exc:
                 rejected.append(dict(kind=kind, path=str(Path(item).resolve()), reason=str(exc)))
                 continue
-            existing = by_hash.get(record['sha256'])
-            if existing:
-                if existing['source_commit'] and record['source_commit'] and existing['source_commit'] != record['source_commit']:
-                    raise ValueError('Identical protocol bytes have conflicting bound source commits')
-                if record['source_commit']:
-                    existing['source_commit'] = record['source_commit']
-                    existing['batch_reports'] = sorted(set(existing['batch_reports'] + record['batch_reports']))
-                    existing['batch_report_sha256'].update(record['batch_report_sha256'])
-                rejected.append(dict(kind=kind, path=str(Path(item).resolve()), reason='duplicate protocol SHA256'))
-            else:
-                by_hash[record['sha256']] = record
-                accepted.append(record)
+            for record in records:
+                existing = by_hash.get(record['sha256'])
+                if existing:
+                    if existing['source_commit'] and record['source_commit'] and existing['source_commit'] != record['source_commit']:
+                        raise ValueError('Identical protocol bytes have conflicting bound source commits')
+                    if record['source_commit']:
+                        existing['source_commit'] = record['source_commit']
+                        existing['batch_reports'] = sorted(set(existing['batch_reports'] + record['batch_reports']))
+                        existing['batch_report_sha256'].update(record['batch_report_sha256'])
+                    rejected.append(dict(kind=kind, path=str(Path(item).resolve()), reason='duplicate protocol SHA256'))
+                else:
+                    by_hash[record['sha256']] = record
+                    accepted.append(record)
             finished_count += kind == 'batch'
     if not finished_count:
         raise ValueError('At least one verified finished ten-game batch is required; rejected=' + json.dumps(rejected))
@@ -125,7 +186,11 @@ def bind_manifest(dataset, selection):
                 or source['bytes'] != evidence['bytes']):
             raise ValueError('Extractor source snapshot differs from verified selection')
         source['source_commit'] = evidence['source_commit']
-        source['source_commit_evidence'] = 'verified_finished_batch' if evidence['source_commit'] else 'unbound historical source'
+        source['source_commit_evidence'] = evidence.get('source_commit_evidence',
+            'verified_finished_batch' if evidence['source_commit'] else 'unbound historical source')
+        if evidence.get('runtime_identity_path'):
+            source['runtime_identity_path'] = evidence['runtime_identity_path']
+            source['runtime_identity_sha256'] = evidence['runtime_identity_sha256']
         source['batch_reports'] = evidence['batch_reports']
         source['batch_report_sha256'] = evidence['batch_report_sha256']
     if len(manifest['sources']) != len(bindings):
