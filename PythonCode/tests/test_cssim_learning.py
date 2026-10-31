@@ -81,6 +81,14 @@ def test_release_cannot_start_without_review_or_with_stop(tmp_path,monkeypatch):
         learning.release(dict(phase='awaiting_review',next_expected={}), 'x'*40)
 
 
+def test_stop_also_protects_the_window_before_collector_directory_exists(tmp_path,monkeypatch):
+    monkeypatch.setattr(learning,'ROOT',tmp_path)
+    monkeypatch.setattr(learning,'STOP',tmp_path/'logs/learning/STOP')
+    learning.request_stop(dict(active_campaign='new-round'))
+    assert learning.STOP.exists()
+    assert (tmp_path/'logs/campaigns/new-round/STOP').exists()
+
+
 def test_failed_integration_does_not_modify_published_artifacts(tmp_path,monkeypatch):
     model,profile=tmp_path/'model.json',tmp_path/'profile.json'
     model.write_bytes(b'original model');profile.write_bytes(b'original profile')

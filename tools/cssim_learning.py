@@ -198,7 +198,7 @@ def collect_and_train(state):
          checkpoint=checkpoint(state, number), pending=None)
     collector = CumulativeCollection(settings(state, campaign))
     if collector.run():
-        save(state, phase='needs_attention', error=collector.state.get('error'))
+        save(state, phase='stopped' if STOP.exists() else 'needs_attention', error=collector.state.get('error'))
         return False
     report_path = collector.state['successful_reports'][0]
     report = read(report_path)
@@ -358,6 +358,16 @@ def start(args):
     return dict(started_pid=process.pid, reports_dir=state['reports_dir'])
 
 
+def request_stop(state):
+    STOP.parent.mkdir(parents=True, exist_ok=True)
+    STOP.touch()
+    campaign = state.get('active_campaign')
+    if campaign:
+        directory = ROOT/'logs/campaigns'/campaign
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory/'STOP').touch()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('start', 'run', 'status', 'stop', 'prepare-next', 'release'))
@@ -374,10 +384,7 @@ def main():
     if args.action == 'status':
         print(json.dumps({k:state.get(k) for k in ('phase','round_number','active_campaign','updated_at','error')}, ensure_ascii=False))
     elif args.action == 'stop':
-        STOP.touch()
-        campaign = state.get('active_campaign')
-        if campaign:
-            (ROOT/'logs/campaigns'/campaign/'STOP').touch()
+        request_stop(state)
     elif args.action == 'prepare-next':
         print(json.dumps(prepare_next(state, use_candidate=args.use_candidate), ensure_ascii=False))
     elif args.action == 'release':
