@@ -1,10 +1,45 @@
 {
   "schema": 1,
   "profiles": {
-    "unknown": {"handoff_wait": 28, "b_join_wait": 18, "screen_gap": 3000, "hq_hold": 16, "a_bias": 1.0, "b_bias": 1.0},
-    "hq_only": {"handoff_wait": 20, "b_join_wait": 18, "screen_gap": 2500, "hq_hold": 16, "a_bias": 1.0, "b_bias": 1.0},
-    "hq_a": {"handoff_wait": 24, "b_join_wait": 16, "screen_gap": 2500, "hq_hold": 16, "a_bias": 0.95, "b_bias": 1.05},
-    "hq_b": {"handoff_wait": 24, "b_join_wait": 12, "screen_gap": 2500, "hq_hold": 16, "a_bias": 1.05, "b_bias": 0.95},
-    "hq_a_b": {"handoff_wait": 24, "b_join_wait": 12, "screen_gap": 2500, "hq_hold": 20, "a_bias": 1.0, "b_bias": 1.0}
+    "unknown": {
+      "handoff_wait": 28,
+      "b_join_wait": 18,
+      "screen_gap": 3000,
+      "hq_hold": 16,
+      "a_bias": 1.0,
+      "b_bias": 1.0
+    },
+    "hq_only": {
+      "handoff_wait": 28,
+      "b_join_wait": 18,
+      "screen_gap": 3000,
+      "hq_hold": 16,
+      "a_bias": 1.0,
+      "b_bias": 1.0
+    },
+    "hq_a": {
+      "handoff_wait": 28,
+      "b_join_wait": 18,
+      "screen_gap": 3000,
+      "hq_hold": 16,
+      "a_bias": 1.0,
+      "b_bias": 1.0
+    },
+    "hq_b": {
+      "handoff_wait": 28,
+      "b_join_wait": 18,
+      "screen_gap": 3000,
+      "hq_hold": 16,
+      "a_bias": 1.0,
+      "b_bias": 1.0
+    },
+    "hq_a_b": {
+      "handoff_wait": 28,
+      "b_join_wait": 18,
+      "screen_gap": 3000,
+      "hq_hold": 16,
+      "a_bias": 1.0,
+      "b_bias": 1.0
+    }
   }
 }

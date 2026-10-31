@@ -1,0 +1,22 @@
+{
+  "round_number": 1,
+  "created_at": "2026-10-31T12:44:29.100388+00:00",
+  "live_score_improvement_unproven": true,
+  "rollback_checkpoint": {
+    "model": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0001\\model.json",
+    "profiles": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0001\\profiles.json",
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "profile_sha256": "e8b77a508cf904d4f717814d96866e684038156a54e497ce65d562ae771ac07a",
+    "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+    "experiment": null
+  },
+  "chosen": "restore_historical_parameters",
+  "proposal": {
+    "scope": "all_defense_profiles",
+    "profile_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\rollback-profiles-6cb5a79.json",
+    "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+    "limitation": "Historical parameter restoration; candidate live returns remain unvalidated."
+  },
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73"
+}
