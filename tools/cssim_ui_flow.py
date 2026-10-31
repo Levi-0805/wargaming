@@ -215,8 +215,9 @@ def load_recipe(recipe):
         step['actions'] = actions
         retries = step.get('retry_unchanged_clicks', 0)
         if (type(retries) is not int or not 0 <= retries <= 2
-                or (retries and (name != 'login' or len(actions) != 1))):
-            raise FlowError('Only the single login click may retry an unchanged observed screen, at most twice')
+                or (retries and (name not in {'login', 'single_seat', 'select_tenth_scenario',
+                                             'select_competition_situation'} or len(actions) != 1))):
+            raise FlowError('Only allowlisted single-click navigation may retry an unchanged observed screen, at most twice')
         for label in ('before', 'after'):
             compile_pattern(step.get(label))
     return value, digest.hexdigest()
@@ -271,8 +272,8 @@ def run_steps(recipe, adapter, logdir, stopfile, *, phase='pre_python', clock=ti
                 raise FlowError(f'Timed out waiting for visual state: {pattern_label(pattern)}')
             if (retry_step and retries < retry_step.get('retry_unchanged_clicks', 0)
                     and clock() >= next_retry and visual_match(snapshot, retry_step['before'])['matched']):
-                # Startup can consume the first login click. Retry only when a
-                # fresh image still proves the original login screen; never
+                # Loading can consume a navigation click. Retry only when a
+                # fresh image still proves the original allowlisted screen; never
                 # repeat inputs on unknown or already transitioned screens.
                 fresh(snapshot, progress['window_identity'], wall_clock)
                 progress['pending'] = dict(name=retry_step['name'], action_index=0, retry=retries+1)

@@ -70,7 +70,8 @@
         ],
         "threshold": 0.93
       },
-      "timeout": 30
+      "timeout": 30,
+      "retry_unchanged_clicks": 2
     },
     {
       "name": "select_tenth_scenario",
@@ -117,7 +118,8 @@
           }
         ]
       },
-      "timeout": 30
+      "timeout": 30,
+      "retry_unchanged_clicks": 2
     },
     {
       "name": "select_competition_situation",
@@ -198,7 +200,8 @@
           }
         ]
       },
-      "timeout": 30
+      "timeout": 30,
+      "retry_unchanged_clicks": 2
     },
     {
       "name": "set_ten_rounds",

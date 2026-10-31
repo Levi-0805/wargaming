@@ -1,0 +1,21 @@
+{
+  "failed_campaign": "learning-20261031-162920-r0003",
+  "source_commit": "f51f0cbb76660ef630412f6b213cabe384e6fde6",
+  "complete_games": 0,
+  "attempts": [
+    {
+      "batch_id": "learning-20261031-162920-r0003-0001",
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png"
+    },
+    {
+      "batch_id": "learning-20261031-162920-r0003-0002",
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: all_of(ui_templates/scenario_selected.png, ui_templates/match_tile.png)"
+    },
+    {
+      "batch_id": "learning-20261031-162920-r0003-0003",
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: all_of(ui_templates/scenario_selected.png, ui_templates/match_tile.png)"
+    }
+  ],
+  "screen_evidence": "attempt0002 frame000060 shows unchanged tenth-scenario card after an unregistered click",
+  "recovery": "Allow bounded retries only for exact allowlisted one-click navigation, with a fresh original-screen predicate. Keep training budget and B strategy unchanged; use a new campaign ID for the still-unplayed third round."
+}

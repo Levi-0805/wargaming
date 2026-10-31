@@ -147,6 +147,27 @@ def test_login_never_retries_on_an_unknown_screen(setup):
     assert len(adapter.calls) == 1
 
 
+@pytest.mark.parametrize('name', ['single_seat', 'select_tenth_scenario', 'select_competition_situation'])
+def test_allowlisted_navigation_retries_only_while_original_screen_is_proven(setup, name):
+    _, recipe, adapter, _ = setup
+    recipe['steps'][0].update(name=name, timeout=15, retry_unchanged_clicks=2)
+    original = adapter.click
+    def click(x, y, snapshot):
+        adapter.change_on_click = bool(adapter.calls)
+        original(x, y, snapshot)
+    adapter.click = click
+    assert run(setup)['state'] == 'complete'
+    assert len(adapter.calls) == 2
+
+
+@pytest.mark.parametrize('name', ['start_match', 'toggle_bot', 'set_ten_rounds'])
+def test_navigation_retry_allowlist_excludes_start_toggle_and_field_actions(setup, name):
+    _, recipe, _, _ = setup
+    recipe['steps'][0].update(name=name, retry_unchanged_clicks=2)
+    with pytest.raises(FlowError, match='allowlisted'):
+        load_recipe(recipe)
+
+
 def test_multi_action_field_fill_refreshes_after_each_input(setup):
     _, recipe, adapter, _ = setup
     recipe['steps'][0]['actions'] += [dict(key='CTRL+A'), dict(text='10')]
