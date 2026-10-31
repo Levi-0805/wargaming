@@ -96,6 +96,7 @@ def run(manifest_path, *, timeout_minutes=360, idle_minutes=10, minimum_free_gb=
     command = [str(python), str(code / 'main.py'), '-c', manifest['config_path'],
                '--log-root', manifest['log_root'], '--log-level', 'DEBUG',
                '--exit-after-run',
+               '--episode-limit', str(manifest['expected_episodes']),
                '--batch-id', manifest['batch_id'], '--source-commit', manifest['source_commit']]
     child = None
     directory = None

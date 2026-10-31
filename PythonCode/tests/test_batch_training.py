@@ -86,6 +86,19 @@ def test_prepare_records_config_and_preexisting_logs(prepared):
     assert batch.status(path)['state'] == 'awaiting_runtime'
 
 
+def test_retry_budget_three_finishes_without_requiring_ten_consecutive_games(prepared):
+    _, previous = prepared
+    result = batch.prepare(previous['repo'], previous['cssim_root'], previous['config_path'],
+                           'remaining-three', episode_budget=3)
+    path = Path(result['manifest'])
+    assert result['expected_episodes'] == 3 and result['platform_episodes'] == 10
+    assert result['runtime_config']['config.py->GlobalConfig']['max_episode'] == 10
+    directory = add_run(result, 3)
+    receipt(result, directory)
+    assert batch.status(path)['ready_to_finish']
+    assert batch.finish(path)['complete_episodes'] == 3
+
+
 @pytest.mark.parametrize('change', ['episodes', 'mode', 'shadow', 'cpu', 'algorithm'])
 def test_invalid_effective_configuration_rejected(tmp_path, change):
     value = config()

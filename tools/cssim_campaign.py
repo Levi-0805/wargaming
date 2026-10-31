@@ -531,7 +531,8 @@ class RealBackend:
         effective = context['directory'] / 'effective.jsonc'
         prepare_config(self.platform_config, effective, cssim_root=self.s.cssim_root,
                        template=self.s.repo / 'PythonCode/TaskConfig/cssim/iql_eval_red.jsonc')
-        context['manifest'] = batches.prepare(self.s.repo, self.s.cssim_root, effective, context['batch_id'])
+        context['manifest'] = batches.prepare(self.s.repo, self.s.cssim_root, effective, context['batch_id'],
+                                              episode_budget=context.get('episode_budget'))
         return context['manifest']['manifest']
 
     def start_runtime(self, context):

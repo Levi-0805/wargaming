@@ -12,4 +12,5 @@ The user requires all CSSIM algorithm and Python framework changes to be version
 - Deploy by copying repository files to both CSSIM copies; preserve unrelated platform-generated files. File deletions/renames require explicit review of the affected deployed paths and a backup, because the copy workflow does not delete destination-only files.
 - The tracked `tools\CSSIM-AGENTS.md` is the corresponding workspace guide for `<CssimRoot>\AGENTS.md`; keep it consistent when the workflow changes.
 - Record total score as terminal destruction score plus `Reward`, with every round and the source commit. Never infer a historical running version from timestamps alone or present replayed decisions as new match outcomes.
+- Count ten completed games cumulatively for each code/model version across client interruptions. Preserve valid terminal games, run only the remaining budget after restart, and summarize results and the modification plan before publishing the next version. Do not require ten consecutive games or mix code/model versions.
 

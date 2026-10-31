@@ -64,6 +64,8 @@ class Runner:
             self._create_algorithms(state)
             self._write_reset_log(state)
             target_episodes = self.environment.max_episodes
+            if getattr(self, 'episode_limit', None) is not None:
+                target_episodes = min(target_episodes, self.episode_limit)
             while True:
                 previous_views = self._prepare_team_views(state)
                 step = state.step

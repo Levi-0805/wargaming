@@ -11,5 +11,6 @@ The user requires CSSIM Python changes to be made in the desktop Git repository 
 - Do not force push or delete unrelated platform files. Renamed/deleted source files need a reviewed deployment cleanup and backup.
 
 - Match records must include terminal destruction score plus `Reward`, every round, and the source commit. Historical timestamps alone do not establish which code ran; offline decisions are not new simulated outcomes.
+- For each code/model version, accumulate ten completed games across client interruptions. Preserve terminal games and retry only the remaining budget. Summarize results and the modification plan before publishing the next version; do not require ten consecutive games or mix versions.
 
 This guide is versioned at `C:\Users\aaa\Desktop\wargaming\tools\CSSIM-AGENTS.md`.

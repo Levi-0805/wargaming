@@ -183,12 +183,15 @@ def verify_remote(repo, commit):
     return dict(remote='origin', ref='refs/heads/main', commit=commit, verified_at=now())
 
 
-def prepare(repo, cssim, config, batch_id, episodes=10):
+def prepare(repo, cssim, config, batch_id, episodes=10, *, episode_budget=None):
     repo, cssim, config = Path(repo).resolve(), Path(cssim).resolve(), Path(config).resolve()
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,79}', batch_id):
         raise ValueError('Batch ID must be 1..80 letters, digits, underscore or hyphen')
     if episodes != 10:
         raise ValueError('This collection workflow requires exactly 10 episodes')
+    budget = episodes if episode_budget is None else episode_budget
+    if type(budget) is not int or not 1 <= budget <= episodes:
+        raise ValueError('Remaining episode budget must be between 1 and 10')
     batch = repo / 'logs/autotrain' / batch_id
     if batch.exists():
         raise ValueError('Batch ID already exists; resume it or use a new ID')
@@ -200,7 +203,7 @@ def prepare(repo, cssim, config, batch_id, episodes=10):
     log_root = batch / 'logs'
     manifest = dict(version=1, batch_id=batch_id, created_at=now(), repo=str(repo), cssim_root=str(cssim),
                     source_commit=commit, remote_verification=remote_verification,
-                    expected_episodes=episodes, config_path=str(config),
+                    expected_episodes=budget, platform_episodes=episodes, config_path=str(config),
                     config_sha256=sha(config), runtime_config=raw, model_sha256=sha(repo / 'PythonCode' / MODEL),
                     log_root=str(log_root), known_protocols=protocols(log_root),
                     known_log_directories=sorted(str(p.resolve()) for p in log_root.glob('*') if p.is_dir()),

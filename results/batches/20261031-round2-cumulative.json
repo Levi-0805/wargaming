@@ -1,0 +1,190 @@
+{
+  "classification": "code_version_cumulative_target_met",
+  "iteration": 2,
+  "target_games": 10,
+  "completed_games": 13,
+  "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+  "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+  "games": [
+    {
+      "ordinal": 1,
+      "batch_id": "20261031-finaltwo01-0001",
+      "episode": 1,
+      "red": 2210,
+      "blue": 6330,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 2,
+      "batch_id": "20261031-finaltwo01-0001",
+      "episode": 2,
+      "red": 6000,
+      "blue": 2090,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 3,
+      "batch_id": "20261031-finaltwo01-0001",
+      "episode": 3,
+      "red": 3570,
+      "blue": 4720,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 4,
+      "batch_id": "20261031-finaltwo01-0001",
+      "episode": 4,
+      "red": 3110,
+      "blue": 2570,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 5,
+      "batch_id": "20261031-finaltwo01-0001",
+      "episode": 5,
+      "red": 6000,
+      "blue": 2930,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 6,
+      "batch_id": "20261031-finaltwo01-0001",
+      "episode": 6,
+      "red": 3010,
+      "blue": 4640,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 7,
+      "batch_id": "20261031-finaltwo01-0001",
+      "episode": 7,
+      "red": 2670,
+      "blue": 4550,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 8,
+      "batch_id": "20261031-finaltwo01-0002",
+      "episode": 1,
+      "red": 3440,
+      "blue": 4560,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 9,
+      "batch_id": "20261031-finaltwo01-0002",
+      "episode": 2,
+      "red": 4410,
+      "blue": 2940,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 10,
+      "batch_id": "20261031-finaltwo01-0002",
+      "episode": 3,
+      "red": 3320,
+      "blue": 4650,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 11,
+      "batch_id": "20261031-finaltwo01-0002",
+      "episode": 4,
+      "red": 3030,
+      "blue": 4660,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 12,
+      "batch_id": "20261031-finaltwo01-0003",
+      "episode": 1,
+      "red": 2510,
+      "blue": 6350,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    },
+    {
+      "ordinal": 13,
+      "batch_id": "20261031-finaltwo01-0003",
+      "episode": 2,
+      "red": 2980,
+      "blue": 4660,
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a"
+    }
+  ],
+  "sources": [
+    {
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0001\\logs\\20261031_074144\\protocol.jsonl",
+      "sha256": "a1d36ca4c1dec8aedf4538f5efd7be25b75bc7d2644bd856dba493cab3e015d5",
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+      "runtime_receipt": {
+        "batch_id": "20261031-finaltwo01-0001",
+        "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+        "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+        "pid": 2500,
+        "started_at": "2026-10-30T23:41:39.424389+00:00",
+        "ended_at": "2026-10-31T01:51:21.138472+00:00",
+        "exit_code": 1,
+        "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0001\\logs\\20261031_074144",
+        "stop_reason": null,
+        "error": null
+      }
+    },
+    {
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0002\\logs\\20261031_095317\\protocol.jsonl",
+      "sha256": "36951998018bb88f1142b249211a872e30213dfa051cee2143c9df95506f4d1b",
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+      "runtime_receipt": {
+        "batch_id": "20261031-finaltwo01-0002",
+        "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+        "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+        "pid": 24548,
+        "started_at": "2026-10-31T01:53:12.689380+00:00",
+        "ended_at": "2026-10-31T03:00:24.732650+00:00",
+        "exit_code": 1,
+        "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0002\\logs\\20261031_095317",
+        "stop_reason": null,
+        "error": null
+      }
+    },
+    {
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0003\\logs\\20261031_110221\\protocol.jsonl",
+      "sha256": "81a1d39896627a4a857976f0c05e69dcef14ddfd012bed09d62cc7b89d530ad6",
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+      "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+      "runtime_receipt": {
+        "batch_id": "20261031-finaltwo01-0003",
+        "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+        "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+        "pid": 9240,
+        "started_at": "2026-10-31T03:02:17.584213+00:00",
+        "ended_at": "2026-10-31T03:39:59.040969+00:00",
+        "exit_code": 1,
+        "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0003\\logs\\20261031_110221",
+        "stop_reason": null,
+        "error": null
+      }
+    }
+  ],
+  "summary": {
+    "mean": 3558.4615384615386,
+    "maximum": 6000,
+    "minimum": 2210,
+    "under_4000": 10
+  },
+  "limitation": "Thirteen valid terminal games accumulated before the accounting rule changed; three actual client failures remain recorded and are not normal exits."
+}

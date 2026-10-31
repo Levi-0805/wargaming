@@ -1,0 +1,409 @@
+{
+  "rounds": [
+    {
+      "batch": "20261031-finaltwo01-0001",
+      "episode": 1,
+      "score": {
+        "kill_score": 2210,
+        "capture_score": 0,
+        "total": 2210
+      },
+      "final_red_alive": {
+        "BP_Base_UAV_C": 2,
+        "BP_RoboDog_C": 1,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 2,
+        "BP_MNWS_Vehicle_Armored_C": 2,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_BaseSoldier_C": 22,
+        "BP_RoboDog_C": 10
+      },
+      "red_alive_at_steps": {
+        "100": 43,
+        "200": 19,
+        "300": 6
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0001",
+      "episode": 2,
+      "score": {
+        "kill_score": 2800,
+        "capture_score": 3200,
+        "total": 6000
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 8,
+        "BP_Base_UAV_C": 2,
+        "BP_RoboDog_C": 4,
+        "BP_MNWS_Vehicle_Armored_C": 2,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 2,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_MNWS_Vehicle_Armored_C": 2,
+        "BP_BaseSoldier_C": 14,
+        "BP_RoboDog_C": 7
+      },
+      "red_alive_at_steps": {
+        "100": 46,
+        "200": 28,
+        "300": 18
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0001",
+      "episode": 3,
+      "score": {
+        "kill_score": 1970,
+        "capture_score": 1600,
+        "total": 3570
+      },
+      "final_red_alive": {
+        "BP_Base_UAV_C": 1,
+        "BP_RoboDog_C": 2,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 1,
+        "BP_MNWS_Vehicle_Armored_C": 3,
+        "BP_MNWS_Vehicle_6x6UGV_C": 1,
+        "BP_BaseSoldier_C": 3
+      },
+      "red_alive_at_steps": {
+        "100": 44,
+        "200": 40,
+        "300": 6
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0001",
+      "episode": 4,
+      "score": {
+        "kill_score": 1510,
+        "capture_score": 1600,
+        "total": 3110
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 20,
+        "BP_Base_UAV_C": 2,
+        "BP_RoboDog_C": 9,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 1,
+        "BP_MNWS_Vehicle_Armored_C": 4,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_BaseSoldier_C": 3,
+        "BP_RoboDog_C": 2
+      },
+      "red_alive_at_steps": {
+        "100": 48,
+        "200": 35,
+        "300": 35
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0001",
+      "episode": 5,
+      "score": {
+        "kill_score": 2800,
+        "capture_score": 3200,
+        "total": 6000
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 2,
+        "BP_Base_UAV_C": 2,
+        "BP_RoboDog_C": 1,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 3,
+        "BP_MNWS_Vehicle_Armored_C": 4,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_RoboDog_C": 12,
+        "BP_BaseSoldier_C": 22
+      },
+      "red_alive_at_steps": {
+        "100": 44,
+        "200": 25,
+        "300": 15
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0001",
+      "episode": 6,
+      "score": {
+        "kill_score": 1410,
+        "capture_score": 1600,
+        "total": 3010
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 1,
+        "BP_Base_UAV_C": 3,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 2,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_MNWS_Vehicle_Armored_C": 1
+      },
+      "red_alive_at_steps": {
+        "100": 48,
+        "200": 8,
+        "300": 6
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0001",
+      "episode": 7,
+      "score": {
+        "kill_score": 1070,
+        "capture_score": 1600,
+        "total": 2670
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 1,
+        "BP_Base_UAV_C": 3,
+        "BP_MNWS_Vehicle_Armored_C": 1,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 2,
+        "BP_MNWS_Vehicle_6x6UGV_C": 1,
+        "BP_BaseSoldier_C": 4,
+        "BP_RoboDog_C": 1
+      },
+      "red_alive_at_steps": {
+        "100": 47,
+        "200": 46,
+        "300": 44
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0002",
+      "episode": 1,
+      "score": {
+        "kill_score": 1840,
+        "capture_score": 1600,
+        "total": 3440
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 1,
+        "BP_Base_UAV_C": 2,
+        "BP_MNWS_Vehicle_Armored_C": 1,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_BaseSoldier_C": 11,
+        "BP_RoboDog_C": 4,
+        "BP_MNWS_Vehicle_Armored_C": 1
+      },
+      "red_alive_at_steps": {
+        "100": 49,
+        "200": 32,
+        "300": 8
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0002",
+      "episode": 2,
+      "score": {
+        "kill_score": 2810,
+        "capture_score": 1600,
+        "total": 4410
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 15,
+        "BP_Base_UAV_C": 4,
+        "BP_RoboDog_C": 10,
+        "BP_MNWS_Vehicle_Armored_C": 1,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_MNWS_Vehicle_Armored_C": 3,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_BaseSoldier_C": 9,
+        "BP_RoboDog_C": 3
+      },
+      "red_alive_at_steps": {
+        "100": 45,
+        "200": 34
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0002",
+      "episode": 3,
+      "score": {
+        "kill_score": 1720,
+        "capture_score": 1600,
+        "total": 3320
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 1,
+        "BP_Base_UAV_C": 2,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 1,
+        "BP_MNWS_Vehicle_Armored_C": 4,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_BaseSoldier_C": 5,
+        "BP_RoboDog_C": 4
+      },
+      "red_alive_at_steps": {
+        "100": 43,
+        "200": 21,
+        "300": 7
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0002",
+      "episode": 4,
+      "score": {
+        "kill_score": 1430,
+        "capture_score": 1600,
+        "total": 3030
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 1,
+        "BP_Base_UAV_C": 1,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 1,
+        "BP_MNWS_Vehicle_Armored_C": 3,
+        "BP_BaseSoldier_C": 12,
+        "BP_RoboDog_C": 4
+      },
+      "red_alive_at_steps": {
+        "100": 46,
+        "200": 40,
+        "300": 28
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0003",
+      "episode": 1,
+      "score": {
+        "kill_score": 2510,
+        "capture_score": 0,
+        "total": 2510
+      },
+      "final_red_alive": {
+        "BP_Base_UAV_C": 2,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 3,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_MNWS_Vehicle_Armored_C": 4,
+        "BP_RoboDog_C": 13,
+        "BP_BaseSoldier_C": 24
+      },
+      "red_alive_at_steps": {
+        "100": 41,
+        "200": 24,
+        "300": 4
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    },
+    {
+      "batch": "20261031-finaltwo01-0003",
+      "episode": 2,
+      "score": {
+        "kill_score": 1380,
+        "capture_score": 1600,
+        "total": 2980
+      },
+      "final_red_alive": {
+        "BP_BaseSoldier_C": 1,
+        "BP_Base_UAV_C": 1,
+        "BP_Helicopter_C": 2
+      },
+      "hq_vicinity_deaths": {
+        "BP_Base_UAV_C": 2,
+        "BP_MNWS_Vehicle_6x6UGV_C": 2,
+        "BP_MNWS_Vehicle_Armored_C": 1,
+        "BP_RoboDog_C": 1,
+        "BP_BaseSoldier_C": 2
+      },
+      "red_alive_at_steps": {
+        "100": 44,
+        "200": 28,
+        "300": 7
+      },
+      "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7"
+    }
+  ],
+  "sources": [
+    {
+      "simulation": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0001\\logs\\20261031_074144\\simulation.jsonl",
+      "sha256": "3381244f46af6e0b7cda7782367ac971c320ea36bb58f3fea8c4d2bfc83c4202",
+      "report": "results\\batches\\20261031-finaltwo01-0001-partial.json"
+    },
+    {
+      "simulation": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0002\\logs\\20261031_095317\\simulation.jsonl",
+      "sha256": "e5259866dfbe6424fb06abba57bb4714b2773b63a62279433450d7db8d0ee684",
+      "report": "results\\batches\\20261031-finaltwo01-0002-partial.json"
+    },
+    {
+      "simulation": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0003\\logs\\20261031_110221\\simulation.jsonl",
+      "sha256": "a660218db3093ea0e30ace00f60791172306b0c2e02680ca12552cd56d9bb2be",
+      "report": "results\\batches\\20261031-finaltwo01-0003-partial.json"
+    }
+  ],
+  "limitations": [
+    "HQ vicinity uses a retrospective 120m horizontal radius, not the simulator capture box.",
+    "Incomplete interrupted episodes are excluded.",
+    "These are observed outcomes, not counterfactual scores for modified tactics."
+  ],
+  "summary": {
+    "mean": 3558.4615384615386,
+    "maximum": 6000,
+    "minimum": 2210,
+    "under_4000": 10
+  },
+  "findings": {
+    "capture_reward_1600_games": 9,
+    "capture_reward_3200_games": 2,
+    "capture_reward_zero_games": 2,
+    "specific_stall": {
+      "batch": "20261031-finaltwo01-0002",
+      "episode": 2,
+      "step_200": {
+        "HQ_red": 27,
+        "HQ_blue": 3,
+        "percent": 1
+      },
+      "steps_225_250_275": {
+        "HQ_red": 26,
+        "HQ_blue": 1,
+        "percent": 1
+      },
+      "previous_objective": "HQ throughout",
+      "replayed_new_departure_step": 202
+    }
+  },
+  "modification_plan": [
+    "Require stable full owned HQ and actual superior garrison before releasing the main force despite at most three remaining occupants.",
+    "Keep the original clear-enemy requirement at B.",
+    "Rollback trial target-ranking weights and evaluate this focused routing change.",
+    "Accumulate ten completed games per code/model version; restart with only the remaining episode budget."
+  ],
+  "replay_limitation": "The new departure at step 202 is a decision replay on old positions, not a new match outcome or score."
+}

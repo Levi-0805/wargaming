@@ -59,6 +59,7 @@ class AssaultRoute:
     ANCHORS = ((-41810, 32275), (-45450, -30945), (-3000, -27530))
     ARRIVAL = 1600.0
     CAPTURE_CONFIRMATIONS = 4
+    HQ_STABLE_FOOTHOLD_STEPS = 16
     GARRISON_CORE = 2500.0
     GARRISON_MIN = 4
     GARRISON_MARGIN = 3
@@ -81,6 +82,7 @@ class AssaultRoute:
         self.order = ()
         self.stage = 0
         self._confirmed = 0
+        self._hq_foothold_steps = 0
         self._cursor = {}
         self._routes = ()
         self.known_map = False
@@ -107,6 +109,7 @@ class AssaultRoute:
     def _initialize(self, state):
         self.order, self.stage, self._confirmed = (), 0, 0
         self.hq_secured = False
+        self._hq_foothold_steps = 0
         self._cursor.clear()
         self._garrison.clear()
         self._guard_slots.clear()
@@ -374,6 +377,20 @@ class AssaultRoute:
             self.inside_garrison(obj, unit.position) for unit in guards)
         if self.is_hq(obj):
             ready = ready and self.count(obj, friendly_field) >= self.garrison_needed(state, obj)
+        # A remaining rooftop occupant must not pin a numerically dominant
+        # column forever after HQ is fully captured. Keep the existing actual
+        # garrison (enemy count + margin), require a sustained held full bar,
+        # and allow this exception only for at most three HQ occupants.
+        held = (self.adaptive and self.is_hq(obj) and ours and ready
+                and self.count(obj, 'percent') >= 1.0
+                and 0 < self.enemy_count(state, obj) <= 3
+                and self.count(obj, friendly_field) >= 2*self.enemy_count(state, obj)+4
+                and sum(u.alive and u.entity_type in {'BP_BaseSoldier_C', 'BP_RoboDog_C'}
+                        and u.communication_ok() is not False and u.uid not in self._garrison
+                        for u in state.agents) >= 6)
+        self._hq_foothold_steps = self._hq_foothold_steps + 1 if held else 0
+        if self._hq_foothold_steps >= self.HQ_STABLE_FOOTHOLD_STEPS:
+            secure = True
         self._confirmed = self._confirmed + 1 if secure and ready else 0
         if self.is_hq(obj) and ours and not secure and state.step % 20 == 0:
             logger.info("指挥所仍需清场，暂不转场: step=%d enemy_inside=%d guards=%d",

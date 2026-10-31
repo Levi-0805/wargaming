@@ -38,6 +38,7 @@ def test_watchdog_limits(overrides, expected):
 def test_owned_process_is_reaped_and_failure_receipt_written(tmp_path, monkeypatch, failure):
     config = tmp_path / 'config.json'; config.write_text('{}')
     manifest = dict(batch_id='batch', source_commit='abc', config_sha256=runtime.sha(config),
+                    expected_episodes=10,
                     config_path=str(config), cssim_root=str(tmp_path / 'cssim'),
                     repo=str(tmp_path), log_root=str(tmp_path / 'logs'),
                     runtime_exit_path=str(tmp_path / 'runtime-exit.json'))

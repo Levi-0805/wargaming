@@ -59,6 +59,34 @@ def test_lost_hq_rearms_priority_and_episode_reset_clears_confirmation():
     assert not route.hq_secured
 
 
+def test_stably_owned_hq_with_actual_superior_garrison_can_release_main_body():
+    objects = map_objectives()
+    units = guards_at(objects[0], count=26)
+    objects[0].raw.update(percent=1, redTeamNum=26, blueteamNum=1)
+    route = AssaultRoute(adaptive=True)
+    for step in range(18):
+        route.update(state(units, objectives=objects, step=step))
+        assert route.stage == 0
+    route.update(state(units, objectives=objects, step=18))
+    assert route.hq_secured and route.stage == 1
+    assert sum(uid == objects[0].uid for uid in route._garrison.values()) >= 4
+
+
+def test_declining_hq_bar_resets_sustained_departure_permission():
+    objects = map_objectives()
+    units = guards_at(objects[0], count=26)
+    objects[0].raw.update(percent=1, redTeamNum=26, blueteamNum=1)
+    route = AssaultRoute(adaptive=True)
+    for step in range(15):
+        route.update(state(units, objectives=objects, step=step))
+    objects[0].raw['percent'] = .9
+    route.update(state(units, objectives=objects, step=15))
+    objects[0].raw['percent'] = 1
+    for step in range(16, 31):
+        route.update(state(units, objectives=objects, step=step))
+        assert route.stage == 0 and not route.hq_secured
+
+
 def straight_column(units):
     objects = [objective(901, 100000, name='HQ')]
     route = AssaultRoute(adaptive=True)

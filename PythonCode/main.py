@@ -33,6 +33,8 @@ class CssimApplication:
                             help="启动器提供的采集批次标识")
         parser.add_argument("--exit-after-run", action="store_true",
                             help="托管批次正常结束并刷新日志后退出，避免 gRPC 后台线程阻止进程关闭")
+        parser.add_argument("--episode-limit", type=int, choices=range(1, 11),
+                            help="本次仅完成累计十局中尚缺的局数；不更改平台十局设置")
         parser.add_argument(
             "--log-level", choices=("DEBUG", "INFO", "WARNING", "ERROR"),
             help="日志级别；DEBUG 会记录完整的 gRPC JSON 收发报文",
@@ -86,9 +88,12 @@ class CssimApplication:
                 "algorithm_names": list(config.algorithm_names),
                 "configured_max_episodes": config.max_episodes,
                 "configured_max_steps": config.max_steps,
+                "episode_limit": args.episode_limit,
                 "detailed_protocol": run_log.detailed,
             })
-            asyncio.run(Runner(config, run_log).run())
+            runner = Runner(config, run_log)
+            runner.episode_limit = args.episode_limit
+            asyncio.run(runner.run())
             status = "returned"
         except BaseException as exc:
             error_type = type(exc).__name__

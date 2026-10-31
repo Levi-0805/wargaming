@@ -151,7 +151,8 @@ class _TwoEpisodeUeService(pb2_grpc.CustomNetworkServiceServicer):
                         yield finish
 
 
-def test_runner_completes_two_episode_grpc_lifecycle(tmp_path):
+@pytest.mark.parametrize('episode_limit', [None, 1])
+def test_runner_completes_two_episode_grpc_lifecycle(tmp_path, episode_limit):
     async def scenario():
         service = _TwoEpisodeUeService()
         server = grpc.aio.server()
@@ -180,7 +181,9 @@ def test_runner_completes_two_episode_grpc_lifecycle(tmp_path):
             reply_timeout=2.0,
         )
         try:
-            await Runner(config, run_log).run()
+            runner = Runner(config, run_log)
+            runner.episode_limit = episode_limit
+            await runner.run()
         finally:
             run_log.close()
             await server.stop(0)
@@ -188,27 +191,27 @@ def test_runner_completes_two_episode_grpc_lifecycle(tmp_path):
 
     service, stats_path = asyncio.run(scenario())
 
-    assert service.prepare_types == [
-        "reset_property", "reset_obs", "reset_property", "reset_obs",
-    ]
-    assert len(service.frame_requests) == 2
+    expected = episode_limit or 2
+    assert service.prepare_types == ["reset_property", "reset_obs"]*expected
+    assert len(service.frame_requests) == expected
     assert service.frame_requests[0]["StringActions"] == [
         "ActionSet2::Idle;N/A;110", "ActionSet2::Idle;N/A;120",
     ]
-    assert service.frame_requests[1]["StringActions"] == [
-        "ActionSet2::Idle;N/A;210", "ActionSet2::Idle;N/A;220",
-    ]
+    if expected == 2:
+        assert service.frame_requests[1]["StringActions"] == [
+            "ActionSet2::Idle;N/A;210", "ActionSet2::Idle;N/A;220",
+        ]
     assert service.custom_types == ["end_unreal_engine"]
 
     records = [
         json.loads(line)
         for line in stats_path.read_text(encoding="utf-8").splitlines()
     ]
-    assert [item["episode"] for item in records if item.get("kind") == "reset"] == [1, 2]
-    assert [item["episode"] for item in records if item.get("done")] == [1, 2]
+    assert [item["episode"] for item in records if item.get("kind") == "reset"] == list(range(1,expected+1))
+    assert [item["episode"] for item in records if item.get("done")] == list(range(1,expected+1))
     protocol = [json.loads(line) for line in stats_path.with_name('protocol.jsonl').read_text(encoding='utf-8').splitlines()]
     finishes = [row for row in protocol if row.get('channel') == 'finish']
-    assert len(finishes) == 4
+    assert len(finishes) == 2*expected
     end = next(i for i, row in enumerate(protocol) if row.get('type') == 'end_unreal_engine')
     assert sum(row.get('channel') == 'finish' for row in protocol[end+1:]) == 2
 
