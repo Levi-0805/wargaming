@@ -25,7 +25,7 @@ function Get-ManagedFiles {
             if ($entry.Name -notin $excludedDirectories) {
                 Get-ManagedFiles -Root $entry.FullName
             }
-        } elseif ($entry.Extension -notin @('.pyc', '.log')) {
+        } elseif ($entry.Extension -notin @('.pyc', '.log') -and $entry.Name -notlike 'tmp.zip.*') {
             $entry
         }
     }
@@ -59,7 +59,9 @@ function Invoke-RobocopyChecked {
         [Parameter(Mandatory = $true)] [string]$Description
     )
 
-    robocopy $From $To /E /R:2 /W:1 /XD __pycache__ .idea logs .pytest_cache /XF '*.pyc' '*.log' /NFL /NDL /NJH /NJS /NP
+    # Platform download fragments are unrelated to deployment and can exceed
+    # 5 GB each. Preserve them in place instead of multiplying every backup.
+    robocopy $From $To /E /R:2 /W:1 /XD __pycache__ .idea logs .pytest_cache /XF '*.pyc' '*.log' 'tmp.zip.*' /NFL /NDL /NJH /NJS /NP
     $code = $LASTEXITCODE
     if ($code -ge 8) { throw "robocopy $Description failed with exit code $code" }
     $global:LASTEXITCODE = 0

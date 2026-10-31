@@ -1,0 +1,19 @@
+{
+  "reason": "Low disk space prevented an unplayed third round from starting.",
+  "completed_round3_games": 0,
+  "free_before_bytes": 10177437696,
+  "compression": {
+    "method": "NTFS transparent compression of inactive workspace JSONL and stdout logs; no logical content change",
+    "jsonl_files": 16,
+    "jsonl_reclaimed_bytes": 1845469184
+  },
+  "verified_protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+  "backup_cause": {
+    "sample": "C:/CSSIM/Backups/20261101-005351-292/Client/Data/AlgData/PythonCode/TeamAlg/tmp.zip.554848b2",
+    "bytes": 5452920001,
+    "all_backups_logical_bytes": 121149748649
+  },
+  "workflow_fix": "Exclude tmp.zip.* from managed copying/backups, preserve fragments in place. No backup/log/fragment deletion.",
+  "filter_check": "Retained agent.py; skipped logs and fragment; original fragment remains.",
+  "free_after_jsonl_compression": 13101666304
+}
