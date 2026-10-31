@@ -162,11 +162,26 @@ def write_reports(state, summary):
         f'战术 SHA：{summary["profile_sha256"]}', '',
         f'均分 {m["mean"]:.1f}；最低 {m["minimum"]}；最高 {m["maximum"]}；低于5000：{m["under_5000"]}/10。',
         f'最低两局均分 {m["bottom_20_mean"]:.1f}；标准差 {m["stddev"]:.1f}。',
-        '逐局总分：'+', '.join(str(g['red']['total']) for g in summary['games']),
+        '逐局成绩（终局摧毁分+Reward=总分）：',
+        *[f'{index}：{g["red"].get("kill_score", "未知")} + {g["red"].get("capture_score", "未知")} = {g["red"]["total"]}'
+          for index, g in enumerate(summary['games'], 1)],
         '实际进程退出码：'+str(summary['actual_exit_codes']), '', '主要问题：', *summary['problems'], '',
         '下一版修改方案（发布前审查）：', *summary['plan'], '', '公开敌情分组：']
     for kind, values in summary['defense_groups'].items():
         lines.append(f'{LABELS[kind]}：{values["count"]}局，均分{values["mean"]:.1f}，低于5000共{values["under_5000"]}局。')
+    if summary.get('proposed_change'):
+        change = summary['proposed_change']
+        lines += ['', f'待审战术候选：{LABELS[change["kind"]]}，{change["field"]}由{change["before"]}改为{change["after"]}。',
+                  f'自然日窗口：{change["starts_on"]}至{change["ends_on"]}；温度：{change["temperature"]}。',
+                  f'本轮退火接受结果：{summary["annealing"]["accepted"]}；最佳版本仍保留。']
+    if summary.get('candidate_review'):
+        candidate = read(summary['candidate_review'])
+        lines += ['', '离线IQL候选已生成，尚无该候选的新实战成绩。',
+                  f'候选SHA：{candidate["candidate_model_sha256"]}',
+                  '训练/验证/测试源角色：'+json.dumps(candidate['split_sessions'],ensure_ascii=False),
+                  '最后两源分别留给验证和测试，不参加本次梯度训练。']
+    elif summary.get('candidate_error'):
+        lines += ['', '本轮候选训练异常：'+summary['candidate_error']]
     lines += ['', '分数=终局摧毁分+Reward。异常退出不抹去完整终局；离线回放/一致率不是新对局分数。',
               '本文件可手动上传；Codex巡检通过本地待审队列读取，不伪称自动上传附件。']
     (folder/(stem+'.txt')).write_text('\n'.join(lines)+'\n', encoding='utf-8-sig')
