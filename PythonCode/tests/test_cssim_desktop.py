@@ -137,6 +137,19 @@ def test_already_foreground_window_is_not_reactivated():
     native.focus(123)
 
 
+def test_raise_exposes_only_allowed_window_without_topmost_or_clicks():
+    calls=[]
+    class User:
+        def SetWindowPos(self,*args):calls.append(args);return True
+    native=object.__new__(NativeWindows);native.user=User()
+    native.describe=lambda hwnd:dict(exe_path=r'C:\CSSIM\CSSIMClient-Win64-Shipping.exe')
+    native._raise_for_activation(123)
+    assert calls==[(123,0,0,0,0,0,0x0053)]
+    native.describe=lambda hwnd:dict(exe_path=r'C:\Windows\System32\cmd.exe')
+    with pytest.raises(ValueError):native._raise_for_activation(123)
+    assert len(calls)==1
+
+
 @pytest.mark.parametrize('executable', ['Server.exe', 'pycharm64.exe', 'cmd.exe'])
 def test_nonclient_terminal_or_ide_entry_refused(observed, executable):
     desktop, native, metadata, _ = observed

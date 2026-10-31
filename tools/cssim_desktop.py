@@ -189,6 +189,7 @@ class NativeWindows:
             (u.BringWindowToTop, [w.HWND], w.BOOL),
             (u.AttachThreadInput, [w.DWORD, w.DWORD, w.BOOL], w.BOOL),
             (u.GetForegroundWindow, [], w.HWND),
+            (u.SetWindowPos, [w.HWND, w.HWND, c.c_int, c.c_int, c.c_int, c.c_int, w.UINT], w.BOOL),
             (u.SetCursorPos, [c.c_int, c.c_int], w.BOOL),
             (u.SendInput, [w.UINT, c.POINTER(INPUT), c.c_int], w.UINT),
             (k.OpenProcess, [w.DWORD, w.BOOL, w.DWORD], w.HANDLE),
@@ -266,8 +267,14 @@ class NativeWindows:
                     self.user.AttachThreadInput(current_thread, foreground_thread, False)
         time.sleep(.15)
         if self.user.GetForegroundWindow() != hwnd:
+            self._raise_for_activation(hwnd)
             self._activate_visible_caption(hwnd)
         self.ensure_foreground(hwnd)
+
+    def _raise_for_activation(self, hwnd):
+        """Expose an allowed app's caption without clicks or permanent topmost mode."""
+        require_allowed(self.describe(hwnd))
+        self.user.SetWindowPos(hwnd, 0, 0, 0, 0, 0, 0x0053)
 
     def _activate_visible_caption(self, hwnd):
         """Windows may deny foreground stealing; activate only a verified title bar."""

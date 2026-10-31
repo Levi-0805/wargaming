@@ -104,3 +104,61 @@ def test_failed_integration_does_not_modify_published_artifacts(tmp_path,monkeyp
         pending=dict(proposed_change={},candidate_review=str(review),games=[dict(red=dict(total=1),protocol='p',episode=1)]))
     with pytest.raises(RuntimeError,match='integration failed'): learning.prepare_next(state,use_candidate=True)
     assert model.read_bytes()==b'original model' and profile.read_bytes()==b'original profile'
+
+
+def test_score_inbox_exists_before_any_candidate_is_ready(tmp_path,monkeypatch):
+    monkeypatch.setattr(learning,'STATE',tmp_path/'state.json')
+    games=[dict(red=dict(kill_score=1200,capture_score=1600,total=2800)) for _ in range(10)]
+    summary=dict(campaign_id='cohort',source_commit='a'*40,games=games,metrics=dict(count=10))
+    signal=learning.announce_scores(dict(round_number=1),summary,'collection.json')
+    assert not signal['delivered_to_chat'] and signal['candidate_status']=='not_yet_trained'
+    assert learning.read(tmp_path/'report-ready.json')==signal
+    assert learning.read(signal['summary_path'])==summary
+    summary['games']=games[:9]
+    with pytest.raises(ValueError,match='ten'):learning.announce_scores(dict(round_number=1),summary,'x')
+    summary['games']=games;games[0]['red']['total']=9999
+    with pytest.raises(ValueError,match='destruction'):learning.announce_scores(dict(round_number=1),summary,'x')
+
+
+def rollback_fixture(tmp_path,monkeypatch):
+    model=tmp_path/'live-model.json';model.write_bytes(b'unchanged model')
+    checkpoint=tmp_path/'saved-model.json';checkpoint.write_bytes(model.read_bytes())
+    profile=tmp_path/'live-profile.json';profile.write_text('{}')
+    monkeypatch.setattr(learning,'MODEL',model);monkeypatch.setattr(learning,'PROFILE',profile)
+    monkeypatch.setattr(learning,'ROOT',tmp_path);monkeypatch.setattr(learning,'STATE',tmp_path/'state.json')
+    monkeypatch.setattr(learning,'STOP',tmp_path/'STOP');monkeypatch.setattr(learning,'checked_git',lambda *a:'')
+    state=dict(phase='awaiting_review',round_number=1,active_campaign='cohort',
+        search=dict(current=dict(checkpoint=dict(model=str(checkpoint),profiles=str(profile)))),pending={})
+    restored=tmp_path/'restored.json'
+    restored.write_text(json.dumps(DefenseDoctrine().config))
+    return state,restored,model,profile
+
+
+def test_valid_profile_rollback_is_separate_from_weight_trial(tmp_path,monkeypatch):
+    state,restored,model,profile=rollback_fixture(tmp_path,monkeypatch)
+    with pytest.raises(ValueError,match='separate'):
+        learning.prepare_next(state,use_candidate=True,restore_profiles=restored)
+    review=learning.prepare_next(state,restore_profiles=restored)
+    assert review['chosen']=='restore_historical_parameters'
+    assert review['proposal']['scope']=='all_defense_profiles'
+    assert model.read_bytes()==b'unchanged model' and profile.read_bytes()==restored.read_bytes()
+    assert state['next_expected']['profile_sha256']==learning.batches.sha(restored)
+
+
+def test_invalid_restore_does_not_change_either_live_artifact(tmp_path,monkeypatch):
+    state,restored,model,profile=rollback_fixture(tmp_path,monkeypatch)
+    restored.write_text('{"schema":99}')
+    with pytest.raises(ValueError):learning.prepare_next(state,restore_profiles=restored)
+    assert model.read_bytes()==b'unchanged model' and profile.read_text()=='{}'
+
+
+def test_observer_stop_and_existing_identity_prevent_duplicate_launch(tmp_path,monkeypatch):
+    monkeypatch.setattr(learning,'ROOT',tmp_path);monkeypatch.setattr(learning,'STOP',tmp_path/'STOP')
+    learning.STOP.touch()
+    assert learning.ensure_observer(dict(rounds=[])) is None
+    learning.STOP.unlink()
+    identity=dict(pid=123,created_ticks=456,exe_path='pythonw.exe')
+    learning.batches.write_json(tmp_path/'logs/adaptive-observer/launch.json',dict(identity=identity))
+    monkeypatch.setattr(learning,'live',lambda value:value==identity)
+    assert learning.ensure_observer(dict(rounds=[]))==identity
+    assert learning.ensure_observer(dict(rounds=[{}]*10)) is None

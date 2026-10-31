@@ -22,12 +22,25 @@ selection, not learned navigation or end-to-end strategic reinforcement learning
 The newest data can become training data in later rounds as the source split moves;
 each manifest records the exact roles. No offline metric is presented as match gain.
 
+Before candidate training, `logs/learning/report-ready.json` points to an early
+ten-game summary. The scheduled review checks undelivered score signals even while
+the worker is training, reports the scores once, then marks delivery. This is a
+local inbox consumed by the existing chat; it does not upload an attachment or
+instantly wake a closed app. Publishing remains blocked until training ends.
+
+The learner starts at most one versioned local observer for the first ten rounds.
+It writes evidence only, uses local Windows OCR for viewer focus, respects both
+STOP files, and makes no AI/API calls. `VIEW_PAUSE` disables camera interaction
+without stopping unit/event recording. Its images still require HUD/scale review;
+a unit-focus request never proves that the image is a useful close-up.
+
 At `awaiting_review`, Codex reads the local report queue. A reviewer checks the
 candidate, chooses one experiment, then runs:
 
 ```
 python tools/cssim_learning.py prepare-next
 # Or --use-candidate for an isolated IQL trial with low/high integration replays.
+# Or --restore-profiles reviewed.json for a bounded profile rollback with unchanged weights.
 # Review the diff and generated results/learning/*-next-version.json.
 tools/publish.ps1 -Message "Describe reviewed next iteration" -CssimRoot C:\CSSIM
 python tools/cssim_learning.py release --commit FULL_VERIFIED_GITHUB_COMMIT

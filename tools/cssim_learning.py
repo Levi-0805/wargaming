@@ -206,6 +206,23 @@ def write_reports(state, summary):
         '原始大日志在wargaming/logs，精简成绩和发布审查推送GitHub。\n', encoding='utf-8-sig')
 
 
+def announce_scores(state, summary, report_path):
+    """Publish a local review signal immediately; training must not hide scores."""
+    if len(summary['games']) != 10 or summary['metrics']['count'] != 10:
+        raise ValueError('Only ten completed games can announce final round scores')
+    for game in summary['games']:
+        red = game['red']
+        if red['total'] != red['kill_score'] + red['capture_score']:
+            raise ValueError('Terminal total must equal destruction score plus Reward')
+    early = STATE.parent/f'round-{state["round_number"]:04d}'/'early-summary.json'
+    batches.write_json(early, summary)
+    signal = dict(id=summary['campaign_id'], ready_at=batches.now(), completed_games=10,
+        source_commit=summary['source_commit'], summary_path=str(early),
+        collection_report=str(report_path), candidate_status='not_yet_trained', delivered_to_chat=False)
+    batches.write_json(STATE.with_name('report-ready.json'), signal)
+    return signal
+
+
 def collect_and_train(state):
     number = len(state['rounds'])+1
     campaign = state['session_id']+f'-r{number:04d}'
@@ -222,7 +239,8 @@ def collect_and_train(state):
     summary = summarize(state, report)
     summary['collection_report'] = report_path
     write_reports(state, summary)  # Feedback exists before any candidate/model change.
-    save(state, phase='training', pending=summary)
+    signal = announce_scores(state, summary, report_path)
+    save(state, phase='training', pending=summary, pending_summary=signal['summary_path'], report_ready=signal)
     candidate_id = campaign+'-iql'
     args = [ROOT/'tools/train_batch_candidate.py', '--candidate-id', candidate_id,
         '--batches', *state['seed_reports'], *[r['collection_report'] for r in state['rounds']], report_path,
@@ -257,18 +275,28 @@ def collect_and_train(state):
     return True
 
 
-def prepare_next(state, *, use_candidate=False):
+def prepare_next(state, *, use_candidate=False, restore_profiles=None):
     if state['phase'] != 'awaiting_review' or STOP.exists():
         raise ValueError('Next version may only be staged at a completed ten-game review gate')
     if checked_git(ROOT, 'status', '--porcelain'):
         raise ValueError('Preserve and review existing uncommitted work before staging a candidate')
+    if use_candidate and restore_profiles is not None:
+        raise ValueError('Model trial and profile rollback must be separate experiments')
     number = state['round_number']
     current = state['search']['current']['checkpoint']
     chosen_model = Path(current['model'])
     proposal = STATE.parent/f'round-{number:04d}'/'proposed-profiles.json'
     review = dict(round_number=number, created_at=batches.now(), live_score_improvement_unproven=True,
                   rollback_checkpoint=current, chosen='bounded_tactical_parameter',
-                  proposal=state['pending']['proposed_change'])
+                  proposal=state['pending'].get('proposed_change'))
+    if restore_profiles is not None:
+        sys.path.insert(0, str(ROOT/'PythonCode'))
+        from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.DefenseDoctrine import validate
+        proposal = Path(restore_profiles).resolve()
+        validate(read(proposal))
+        review.update(chosen='restore_historical_parameters', proposal=dict(scope='all_defense_profiles',
+            profile_path=str(proposal), profile_sha256=batches.sha(proposal),
+            limitation='Historical parameter restoration; candidate live returns remain unvalidated.'))
     if use_candidate:
         candidate = read(state['pending']['candidate_review'])
         chosen_model = Path(candidate['candidate_model'])
@@ -319,6 +347,7 @@ def run(state):
         try:
             if state['phase'] not in ('created', 'awaiting_review', 'released'):
                 raise ValueError('Interrupted coordinator requires recovery; do not discard cumulative games')
+            ensure_observer(state)
             while not STOP.exists():
                 if state['phase'] in ('created', 'released'):
                     if not collect_and_train(state):
@@ -340,6 +369,26 @@ def run(state):
         except Exception as exc:
             save(state, phase='stopped' if STOP.exists() else 'needs_attention', error=f'{type(exc).__name__}: {exc}')
             return 2
+
+
+def ensure_observer(state):
+    """One local evidence recorder; it never makes model/API calls."""
+    directory = ROOT/'logs/adaptive-observer'
+    if STOP.exists() or (directory/'STOP').exists() or len(state.get('rounds', [])) >= 10:
+        return None
+    launch = directory/'launch.json'
+    if launch.exists() and live(read(launch).get('identity')):
+        return read(launch)['identity']
+    directory.mkdir(parents=True, exist_ok=True)
+    script = ROOT/'tools/cssim_observer.py'
+    with (directory/'managed-observer.log').open('ab') as output:
+        process = subprocess.Popen([pythonw(state), str(script)], cwd=ROOT,
+            stdout=output, stderr=subprocess.STDOUT, creationflags=subprocess.CREATE_NO_WINDOW)
+    identity = WindowsProcesses().identity(process.pid)
+    batches.write_json(directory/'managed-launch.json', dict(identity=identity,
+        script=str(script), script_sha256=batches.sha(script), started_at=batches.now()))
+    save(state, observer=identity)
+    return identity
 
 
 def start(args):
@@ -390,6 +439,7 @@ def main():
     parser.add_argument('--server-pid', type=int)
     parser.add_argument('--commit')
     parser.add_argument('--use-candidate', action='store_true')
+    parser.add_argument('--restore-profiles', type=Path)
     args = parser.parse_args()
     if args.action == 'start':
         print(json.dumps(start(args), ensure_ascii=False)); return 0
@@ -401,7 +451,7 @@ def main():
     elif args.action == 'stop':
         request_stop(state)
     elif args.action == 'prepare-next':
-        print(json.dumps(prepare_next(state, use_candidate=args.use_candidate), ensure_ascii=False))
+        print(json.dumps(prepare_next(state, use_candidate=args.use_candidate, restore_profiles=args.restore_profiles), ensure_ascii=False))
     elif args.action == 'release':
         release(state, args.commit)
     return 0

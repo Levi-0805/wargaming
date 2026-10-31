@@ -1,0 +1,86 @@
+{
+  "observation_external_launch": {
+    "started_at": "2026-10-31T11:51:40.151745+00:00",
+    "identity": {
+      "pid": 17596,
+      "created_ticks": 134379210996771397,
+      "exe_path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonEnv\\pythonw.exe"
+    },
+    "script": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\adaptive-observer\\observer.py",
+    "script_sha256": "47b463eb835c64afa799041c7d6f19cb6da2b19fa3ff9f46ec041f831d31229c",
+    "first_rounds": 10,
+    "normal_poll_seconds": 20,
+    "alert_poll_seconds": 5,
+    "alert_duration_seconds": 120,
+    "normal_view_seconds": 600,
+    "alert_view_seconds": 60,
+    "max_sets_per_game": 6,
+    "git_head": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+    "camera_helper_sha256": "c322513e57a934f9ee89fd602d58fd98f797164f4a9fd038ab61f866f525d31a",
+    "ocr_helper_sha256": "f3a55592907b20711592a21934d321c54257a69247ec02a60246db1bb70a4aee",
+    "no_ai_api_calls": true,
+    "no_source_or_config_writes": true
+  },
+  "adaptations": [
+    "Archive diagnostic code, helper and five tiny UI assets; exclude logs/screenshots/vendor dependencies",
+    "Rename imports and bind assets/OCR to versioned tools",
+    "Wait for viewer focus transition; close-up still requires visual validation"
+  ],
+  "archived_sources": {
+    "tools\\cssim_observer.py": "39318a0720446ea94dd3161a0b2ca767548d7e95cff91090886989cd0ebb6681",
+    "tools\\cssim_observer_camera.py": "b0b5c7bb2c1afed4c6e70b087643849cd633cad8234c5532d2cdbe5c7948e11e",
+    "tools\\cssim_observer_ocr.ps1": "f3a55592907b20711592a21934d321c54257a69247ec02a60246db1bb70a4aee"
+  },
+  "candidate_review": {
+    "model_sha256": "00334d03aba5e3f999c2d2f4ea08c4aa3ece4da9c66f71db9d76a4bd9bbf782b",
+    "split_sessions": {
+      "train": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "validation": 12,
+      "test": 13
+    },
+    "offline_metrics": {
+      "train": {
+        "multiple_target_samples": 3168,
+        "behavior_nll": 0.321940789319048,
+        "recorded_choice_agreement": 0.9191919191919192
+      },
+      "validation": {
+        "multiple_target_samples": 75,
+        "behavior_nll": 0.38627937316894534,
+        "recorded_choice_agreement": 0.84
+      },
+      "test": {
+        "multiple_target_samples": 514,
+        "behavior_nll": 0.24891381284085207,
+        "recorded_choice_agreement": 0.9455252918287937
+      }
+    },
+    "promoted": false,
+    "decision": "Retain baseline weights for isolated profile rollback; offline metrics are not live return gains."
+  },
+  "reference": {
+    "report": "results/batches/20261031-third-cumulative01-cumulative.json",
+    "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+    "mean": 4496
+  },
+  "current": {
+    "report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\recover-20261031-round1-last1-cumulative.json",
+    "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+    "mean": 2675,
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f"
+  },
+  "limitation": "External original observer hashes describe past evidence; archived adapted code is a new tool version, not the past running observer."
+}
