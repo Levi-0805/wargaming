@@ -134,7 +134,8 @@ class AssaultFormation:
         The recorded 180 m foot hold left cars 135--234 m ahead, taking fire
         alone. Let the capture wave follow the road while an unengaged lead
         waits for a small nearby group. The shared deadline cannot restart
-        when another car arrives or dies, and contact ends assembly entirely.
+        when another car arrives or dies. Local combat releases that vehicle,
+        rather than using one car's contact to release every separated car.
         These distances are coordination bounds, not a safe firing perimeter.
         """
         foot = [u for u in state.agents if u.alive and u.entity_type in self.FOOT
@@ -145,10 +146,16 @@ class AssaultFormation:
         lead = min(near, key=lambda u: (route.distance(u.position, obj.position), u.uid), default=None)
         joined = lead is not None and sum(route.distance(lead.position, f.position) <= self.B_JOIN_GAP
                                           for f in foot) >= required
-        engaged = any(u.uid in self._under_fire or any(e.alive for e in state.perceived_opponents(u))
-                      for u in near)
-        entered = any(route.inside_garrison(obj, u.position) for u in near + foot)
-        if not support or not foot or engaged or entered or gate['start'] is not None and joined:
+        entered = any(route.inside_garrison(obj, u.position) for u in foot)
+        if gate.get('join_provisional'):
+            # A brief join does not guarantee that faster cars stay joined.
+            # Recheck it without extending the original assembly deadline.
+            gate['released'] = False
+            gate['join_provisional'] = False
+        if not support or not foot or entered or gate['start'] is not None and joined:
+            gate['join_provisional'] = bool(support and foot and not entered
+                                            and gate['start'] is not None and joined
+                                            and not gate['released'])
             gate['released'] = True
         # Being together before the faster car pulls away is not a completed
         # join. Start only on the first observed gap, and use the leading car
@@ -157,6 +164,7 @@ class AssaultFormation:
             gate['start'] = state.step
         if gate['start'] is not None and state.step - gate['start'] >= self.B_JOIN_WAIT:
             gate['released'] = True
+            gate['join_provisional'] = False
 
     def record(self, state, agent, action, route):
         obj = route.objective(state)
@@ -190,6 +198,8 @@ class AssaultFormation:
             # A stopped lead must never also stop the units catching up to it.
             if agent.entity_type in self.FOOT:
                 return None
+            if any(e.alive for e in state.perceived_opponents(agent)):
+                return None  # This car fights/maneuvers; other cars still coordinate.
             if (agent.uid in {u.uid for u in self._active} and self._ammo(agent) != 0
                     and not gate['released'] and gate['start'] is not None and distance <= self.APPROACH):
                 return self._guard(agent, obj)

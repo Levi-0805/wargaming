@@ -9,10 +9,11 @@ version collects exactly ten completed games across native client interruptions.
 Failed exits remain recorded. Three attempts with no new completed games stop for
 attention. No source changes or Git commits while games are running.
 
-The desktop folder **迭代报告** receives a readable `.txt` brief
+Each round uses its own desktop folder **迭代报告/第NNNN轮/** for its `.txt` brief,
+observation notes, modification plans and current status. It receives a readable brief
 with all ten destruction scores + Rewards, exact source/model/profile hashes,
 actual exit codes, observed defence groups, low-score fraction and tail statistics.
-Every fourth round also produces a four-round report. Reports are written before
+Every fourth round also produces a four-round report in that ending round's folder. Reports are written before
 the next version is staged. Compact reviews/results are pushed to GitHub; large
 protocols and local checkpoints stay out of Git.
 

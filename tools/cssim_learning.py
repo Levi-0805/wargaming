@@ -36,11 +36,16 @@ def read(path):
     return json.loads(Path(path).read_text(encoding='utf-8-sig'))
 
 
+def round_reports(state, number=None):
+    number = state.get('round_number', 0) if number is None else number
+    return Path(state['reports_dir']) / f'第{int(number):04d}轮'
+
+
 def save(state, **updates):
     state.update(updates, updated_at=batches.now())
     batches.write_json(STATE, state)
     if state.get('reports_dir'):
-        folder = Path(state['reports_dir'])
+        folder = round_reports(state)
         folder.mkdir(parents=True, exist_ok=True)
         (folder/'训练状态.txt').write_text(
             f'状态：{state.get("phase")}\n轮次：{state.get("round_number",0)}\n'
@@ -152,9 +157,9 @@ def summarize(state, report):
 
 
 def write_reports(state, summary):
-    folder = Path(state['reports_dir'])
-    folder.mkdir(parents=True, exist_ok=True)
     number = summary['round_number']
+    folder = round_reports(state, number)
+    folder.mkdir(parents=True, exist_ok=True)
     stem = f'第{number:04d}轮'
     m = summary['metrics']
     lines = [f'CSSIM 第{number}轮：累计十局', '',

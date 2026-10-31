@@ -107,7 +107,7 @@ def test_recorded_b_edge_failure_no_longer_parks_infantry_at_180_metres():
         assert rule._combat_action(s, mobile).command == 'Moving'
 
 
-def test_join_holds_lead_only_and_releases_for_group_not_single_straggler():
+def test_join_holds_lead_only_and_rechecks_gap_without_extending_deadline():
     foot, cars, objects, route, form, group = join_case()
     s = state(foot + cars, objectives=objects, step=4)
     form.begin(s, route)
@@ -127,7 +127,13 @@ def test_join_holds_lead_only_and_releases_for_group_not_single_straggler():
         f.position[0] += 20000
     s = state(foot + cars, objectives=objects, step=7)
     form.begin(s, route)
-    assert form.choose(s, lead, route) is None
+    assert form.choose(s, lead, route).command == 'Guard'
+    assert form._gates[objects[1].uid]['start'] == 4
+    assert all(form.choose(s, f, route) is None for f in group)
+    for step in (22, 23, 45):
+        s = state(foot + cars, objectives=objects, step=step)
+        form.begin(s, route)
+        assert form.choose(s, lead, route) is None
 
 
 def test_join_deadline_does_not_restart_for_casualty_or_late_car():
@@ -163,9 +169,11 @@ def test_initial_cohesion_does_not_disable_later_join_or_let_rear_car_release_le
     assert not gate['released']
 
 
-@pytest.mark.parametrize('release', ['damage', 'ground_contact', 'air_contact', 'foot_inside', 'car_inside'])
-def test_contact_or_entry_releases_join_and_all_reinforcements(release):
+@pytest.mark.parametrize('release', ['damage', 'ground_contact', 'air_contact', 'car_inside'])
+def test_one_cars_contact_or_entry_does_not_release_other_isolated_cars(release):
     foot, cars, objects, route, form, group = join_case()
+    for car in cars:
+        car.raw['agentPerception'] = []
     form.begin(state(foot + cars, objectives=objects, step=4), route)
     lead = form._active[0]
     enemies = []
@@ -176,11 +184,29 @@ def test_contact_or_entry_releases_join_and_all_reinforcements(release):
                        kind='BP_Base_UAV_C' if release == 'air_contact' else 'BP_BaseSoldier_C')
         lead.raw['agentPerception'] = [enemy.uid]
         enemies = [enemy]
-    elif release == 'foot_inside':
-        group[0].position[:] = objects[1].position
     else:
         lead.position[:] = objects[1].position
     s = state(foot + cars, enemies, objects, step=5)
+    form.begin(s, route)
+    assert form.choose(s, lead, route) is None
+    assert all(form.choose(s, u, route) is None for u in group)
+    other = next(car for car in form._active if car.uid != lead.uid)
+    assert form.choose(s, other, route).command == 'Guard'
+    for car in cars:
+        car.raw['agentPerception'] = []
+        car.position[:2] = objects[1].position[:2] + [25000, 0]
+    for f in group:
+        f.position[:2] = objects[1].position[:2] + [45000, 0]
+    s = state(foot + cars, objectives=objects, step=22)
+    form.begin(s, route)
+    assert all(form.choose(s, u, route) is None for u in group + cars)
+
+
+def test_actual_following_foot_inside_b_releases_all_support():
+    foot, cars, objects, route, form, group = join_case()
+    form.begin(state(foot + cars, objectives=objects, step=4), route)
+    group[0].position[:] = objects[1].position
+    s = state(foot + cars, objectives=objects, step=5)
     form.begin(s, route)
     assert all(form.choose(s, u, route) is None for u in group + cars)
 

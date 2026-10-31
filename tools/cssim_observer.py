@@ -308,7 +308,7 @@ def write_digest(engine,learning,view=None):
         '停滞/攻击无效：区分巡逻目的地、警戒方向、弹药与冷却、目标高度及动作回显；不把攻击请求当成命中。',
         '只有对应证据经复核后才修改；源码和模型保持到同版本累计满十局。',
         '截图使用导演视角及单位标签密集区近景；未提供所有者字段时据点丢失仅为待核查信号。']
-    folder=Path(learning['reports_dir']);folder.mkdir(exist_ok=True,parents=True)
+    folder=Path(learning['reports_dir'])/f'第{int(learning["round_number"]):04d}轮';folder.mkdir(exist_ok=True,parents=True)
     (folder/'重点观察-实时摘要.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8-sig')
     if summary['urgent']:
         files.write_json(OUT/'attention.json',dict(updated_at=files.now(),frame=engine.frame,

@@ -1,0 +1,200 @@
+{
+  "recorded_source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+  "round_number": 2,
+  "collection_report": "results/batches/learning-20261031-162920-r0002-cumulative.json",
+  "scores": [
+    1350,
+    4210,
+    4190,
+    3810,
+    4190,
+    1580,
+    2810,
+    1370,
+    4440,
+    2870
+  ],
+  "mean": 3082,
+  "under_5000": 10,
+  "under_4000": 6,
+  "actual_exit_codes": [
+    0
+  ],
+  "baseline_replay": {
+    "episodes": [
+      1,
+      3,
+      6,
+      8
+    ],
+    "compared_commands": 95100,
+    "mismatches": 0,
+    "alignment": "protocol N -> simulation N+1",
+    "limitation": "Frozen public-state decisions, not new returns."
+  },
+  "hq_geometry_best": [
+    {
+      "variant": "factor1.0:inset0:zFalse:rotateFalse",
+      "n": 2643,
+      "mae": 0.2758,
+      "exact": 0.9039,
+      "bias": -0.0821
+    },
+    {
+      "variant": "factor1.0:inset0:zFalse:rotateTrue",
+      "n": 2643,
+      "mae": 0.2758,
+      "exact": 0.9039,
+      "bias": -0.0821
+    }
+  ],
+  "findings": [
+    "Episodes1/6 lose main force on B approach before HQ progress reverses.",
+    "Episode8 loses foot/dogs at HQ despite multiple armed vehicles; many lack local contacts.",
+    "Episode3 only departs HQ at step446; a global departure delay is not a general solution."
+  ],
+  "candidate_review": {
+    "sha256": "50216b4e6ede7247727fc498e369d480427ad142f25df8ab60b4a66c9c9ca57d",
+    "hashes_checked": true,
+    "feature_compatible": true,
+    "split_sessions": {
+      "train": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "validation": 13,
+      "test": 14
+    },
+    "offline_metrics": {
+      "train": {
+        "multiple_target_samples": 3243,
+        "behavior_nll": 0.3191292004345598,
+        "recorded_choice_agreement": 0.9226025285229725
+      },
+      "validation": {
+        "multiple_target_samples": 514,
+        "behavior_nll": 0.2532563630843912,
+        "recorded_choice_agreement": 0.9455252918287937
+      },
+      "test": {
+        "multiple_target_samples": 370,
+        "behavior_nll": 0.6913179964632601,
+        "recorded_choice_agreement": 0.8567567567567568
+      }
+    },
+    "new_round_role": "source14=test, excluded from gradient training",
+    "validation_role": "source13=the older 6cb5a79 eight-game session",
+    "rejected_batch": [
+      {
+        "kind": "batch",
+        "path": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\recover-20261031-round1-last1-cumulative.json",
+        "reason": "Protocol complete games differ from cumulative selection"
+      }
+    ],
+    "decision": "Retain baseline3e36fb; tactical experiment only.",
+    "limitation": "The previous recovered round1 batch was rejected by the trainer selection check; do not claim those games participated in this gradient update."
+  },
+  "rollback": {
+    "model": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0002\\model.json",
+    "profiles": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0002\\profiles.json",
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+    "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+    "experiment": {
+      "round_number": 1,
+      "created_at": "2026-10-31T12:44:29.100388+00:00",
+      "live_score_improvement_unproven": true,
+      "rollback_checkpoint": {
+        "model": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0001\\model.json",
+        "profiles": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0001\\profiles.json",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "profile_sha256": "e8b77a508cf904d4f717814d96866e684038156a54e497ce65d562ae771ac07a",
+        "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+        "experiment": null
+      },
+      "chosen": "restore_historical_parameters",
+      "proposal": {
+        "scope": "all_defense_profiles",
+        "profile_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\rollback-profiles-6cb5a79.json",
+        "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+        "limitation": "Historical parameter restoration; candidate live returns remain unvalidated."
+      },
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73"
+    }
+  },
+  "next_experiment": {
+    "scope": "contested_B_precontact_join_window",
+    "change": "Re-evaluate provisional joining until the original deadline; release combat per vehicle, not the whole formation.",
+    "unchanged": [
+      "IQL weights",
+      "defence profiles",
+      "HQ entry route and first-objective rule",
+      "18-step join deadline",
+      "infantry continues forward",
+      "local vehicle perception and range checks"
+    ],
+    "reason": "Round2 episodes1 and6 show B vehicle/foot gaps before losses; isolated provisional-only and contact-only patches produced zero changed commands and were discarded."
+  },
+  "camera": {
+    "state": "VIEW_PAUSE",
+    "reason": "director images were sky-only; no active match exists at this gate to calibrate; data recording remains available",
+    "follow_up": "Validate framing during the next live round before unpausing automated screenshots",
+    "change": "Remove blind pitch and 18-step zoom after native unit focus; retain VIEW_PAUSE until a live framing validation."
+  },
+  "report_layout": "desktop 迭代报告/第NNNN轮/",
+  "replay_source_policy_sha256": "eacd84823f616e932fc6a675bff99a477b2b9b8b35fc5dcd3e3ae0df4c21176e",
+  "next_version_frozen_replay": {
+    "episodes": {
+      "1": {
+        "compared": 25000,
+        "changed": 19,
+        "objective_transitions": [
+          {
+            "step": -1,
+            "stage": 0
+          },
+          {
+            "step": 130,
+            "stage": 1
+          },
+          {
+            "step": 220,
+            "stage": 0
+          }
+        ]
+      },
+      "6": {
+        "compared": 20100,
+        "changed": 0,
+        "objective_transitions": [
+          {
+            "step": -1,
+            "stage": 0
+          },
+          {
+            "step": 154,
+            "stage": 1
+          },
+          {
+            "step": 253,
+            "stage": 0
+          }
+        ]
+      }
+    },
+    "changed_commands": "19 vehicle commands in episode1, steps160..169; no foot or air changes; episode6 unchanged",
+    "limitation": "Frozen observations do not propagate the modified actions into game physics; no score gain or survival benefit is established."
+  }
+}

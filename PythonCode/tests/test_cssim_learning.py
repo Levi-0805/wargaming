@@ -65,10 +65,10 @@ def test_four_round_reports_use_terminal_totals_and_keep_source_versions(tmp_pat
             problems=['test problem'],plan=['test proposal'],defense_groups={})
     state=dict(reports_dir=str(tmp_path),rounds=[summary(i) for i in (1,2,3)])
     learning.write_reports(state,summary(4))
-    report=(tmp_path/'四轮大报-0004.txt').read_text(encoding='utf-8-sig')
+    report=(tmp_path/'第0004轮'/'四轮大报-0004.txt').read_text(encoding='utf-8-sig')
     assert '40局' in report and '5002.5' in report
     assert all(str(i)*40 in report for i in (1,2,3,4))
-    assert (tmp_path/'第0004轮.txt').exists()
+    assert (tmp_path/'第0004轮'/'第0004轮.txt').exists()
     assert not list(tmp_path.glob('*.json'))
 
 

@@ -115,7 +115,9 @@ class Viewer:
         current=self.photograph(hwnd,'scratch/current.png')
         if self.score(read_image(current['image_path']),'panel',(65,115,220,155))>.93:
             self.desktop.click(current,34,323)
-        self.pitch(hwnd);self.wheel(hwnd,-18)
+        # Keep the native unit-focus framing. The former blind relative pitch
+        # plus eighteen zoom steps produced sky-only images; neither the
+        # starting camera angle nor a useful close-up was actually verified.
         return dict(uid=unit['uid'],label=unit['label'],reference_position=unit['position'],
                     selection_evidence='Exact normalized local OCR match in unit-name column; name double-click only')
 

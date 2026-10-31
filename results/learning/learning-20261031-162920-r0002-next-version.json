@@ -1,0 +1,59 @@
+{
+  "round_number": 2,
+  "created_at": "2026-10-31T16:33:50.006774+00:00",
+  "live_score_improvement_unproven": true,
+  "rollback_checkpoint": {
+    "model": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0002\\model.json",
+    "profiles": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0002\\profiles.json",
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+    "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+    "experiment": {
+      "round_number": 1,
+      "created_at": "2026-10-31T12:44:29.100388+00:00",
+      "live_score_improvement_unproven": true,
+      "rollback_checkpoint": {
+        "model": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0001\\model.json",
+        "profiles": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0001\\profiles.json",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "profile_sha256": "e8b77a508cf904d4f717814d96866e684038156a54e497ce65d562ae771ac07a",
+        "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+        "experiment": null
+      },
+      "chosen": "restore_historical_parameters",
+      "proposal": {
+        "scope": "all_defense_profiles",
+        "profile_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\rollback-profiles-6cb5a79.json",
+        "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+        "limitation": "Historical parameter restoration; candidate live returns remain unvalidated."
+      },
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73"
+    }
+  },
+  "chosen": "isolated_b_join_release_trial",
+  "proposal": {
+    "scope": "contested_B_precontact_join_window",
+    "change": "Re-evaluate provisional joining until the original deadline; release combat per vehicle, not the whole formation.",
+    "unchanged": [
+      "IQL weights",
+      "defence profiles",
+      "HQ entry route and first-objective rule",
+      "18-step join deadline",
+      "infantry continues forward",
+      "local vehicle perception and range checks"
+    ],
+    "reason": "Round2 episodes1 and6 show B vehicle/foot gaps before losses; isolated provisional-only and contact-only patches produced zero changed commands and were discarded."
+  },
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+  "rejected_annealing_proposal": {
+    "scope": "all_defense_profiles",
+    "profile_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0002\\unchanged-profiles.json",
+    "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+    "limitation": "Historical parameter restoration; candidate live returns remain unvalidated."
+  },
+  "rollback_source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+  "candidate_model_reviewed_not_deployed": "50216b4e6ede7247727fc498e369d480427ad142f25df8ab60b4a66c9c9ca57d",
+  "algorithm_sha256": "eacd84823f616e932fc6a675bff99a477b2b9b8b35fc5dcd3e3ae0df4c21176e"
+}
