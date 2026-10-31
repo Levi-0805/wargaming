@@ -1,0 +1,362 @@
+{
+  "round_number": 1,
+  "campaign_id": "recover-20261031-round1-last1",
+  "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "profile_sha256": "e8b77a508cf904d4f717814d96866e684038156a54e497ce65d562ae771ac07a",
+  "games": [
+    {
+      "ordinal": 1,
+      "episode": 1,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1190,
+        "capture_score": 0,
+        "total": 1190
+      },
+      "blue": {
+        "kill_score": 3110,
+        "capture_score": 3200,
+        "total": 6310
+      },
+      "observed_defense": "hq_a_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 36,
+        "hq_a": 15,
+        "hq_a_b": 447
+      }
+    },
+    {
+      "ordinal": 2,
+      "episode": 2,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1830,
+        "capture_score": 0,
+        "total": 1830
+      },
+      "blue": {
+        "kill_score": 3160,
+        "capture_score": 3200,
+        "total": 6360
+      },
+      "observed_defense": "hq_a_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 38,
+        "hq_a": 13,
+        "hq_a_b": 441,
+        "hq_b": 6
+      }
+    },
+    {
+      "ordinal": 3,
+      "episode": 3,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1410,
+        "capture_score": 1600,
+        "total": 3010
+      },
+      "blue": {
+        "kill_score": 3020,
+        "capture_score": 1600,
+        "total": 4620
+      },
+      "observed_defense": "hq_a_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 40,
+        "hq_a": 12,
+        "hq_a_b": 442,
+        "hq_b": 4
+      }
+    },
+    {
+      "ordinal": 4,
+      "episode": 4,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1370,
+        "capture_score": 0,
+        "total": 1370
+      },
+      "blue": {
+        "kill_score": 3110,
+        "capture_score": 3200,
+        "total": 6310
+      },
+      "observed_defense": "hq_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 53,
+        "hq_b": 445
+      }
+    },
+    {
+      "ordinal": 5,
+      "episode": 5,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1280,
+        "capture_score": 1600,
+        "total": 2880
+      },
+      "blue": {
+        "kill_score": 2990,
+        "capture_score": 1600,
+        "total": 4590
+      },
+      "observed_defense": "hq_a_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 40,
+        "hq_a": 11,
+        "hq_a_b": 443,
+        "hq_b": 4
+      }
+    },
+    {
+      "ordinal": 6,
+      "episode": 6,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1120,
+        "capture_score": 1600,
+        "total": 2720
+      },
+      "blue": {
+        "kill_score": 3130,
+        "capture_score": 1600,
+        "total": 4730
+      },
+      "observed_defense": "hq_a_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 37,
+        "hq_a": 14,
+        "hq_a_b": 442,
+        "hq_b": 5
+      }
+    },
+    {
+      "ordinal": 7,
+      "episode": 7,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1320,
+        "capture_score": 1600,
+        "total": 2920
+      },
+      "blue": {
+        "kill_score": 2970,
+        "capture_score": 1600,
+        "total": 4570
+      },
+      "observed_defense": "hq_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 53,
+        "hq_b": 445
+      }
+    },
+    {
+      "ordinal": 8,
+      "episode": 8,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2070,
+        "capture_score": 0,
+        "total": 2070
+      },
+      "blue": {
+        "kill_score": 3070,
+        "capture_score": 3200,
+        "total": 6270
+      },
+      "observed_defense": "hq_a_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 38,
+        "hq_a": 45,
+        "hq_a_b": 407,
+        "hq_b": 8
+      }
+    },
+    {
+      "ordinal": 9,
+      "episode": 9,
+      "batch_id": "learning-20261031-162920-r0001-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0001-0001\\logs\\20261031_163112\\protocol.jsonl",
+      "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2350,
+        "capture_score": 2400,
+        "total": 4750
+      },
+      "blue": {
+        "kill_score": 2960,
+        "capture_score": 800,
+        "total": 3760
+      },
+      "observed_defense": "hq_a_b",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 38,
+        "hq_a": 14,
+        "hq_a_b": 441,
+        "hq_b": 5
+      }
+    },
+    {
+      "ordinal": 10,
+      "episode": 1,
+      "batch_id": "recover-20261031-round1-last1-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\recover-20261031-round1-last1-0001\\logs\\20261031_194646\\protocol.jsonl",
+      "protocol_sha256": "18901d5d74776858446b2556b6745f52882af8250f33911e8be7036e63beee88",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1610,
+        "capture_score": 2400,
+        "total": 4010
+      },
+      "blue": {
+        "kill_score": 2500,
+        "capture_score": 800,
+        "total": 3300
+      },
+      "observed_defense": "hq_a",
+      "defense_frames": {
+        "unknown": 2,
+        "hq_only": 35,
+        "hq_a": 463
+      }
+    }
+  ],
+  "metrics": {
+    "count": 10,
+    "mean": 2675,
+    "median": 2800.0,
+    "minimum": 1190,
+    "maximum": 4750,
+    "stddev": 1062.6593998078595,
+    "bottom_20_mean": 1280,
+    "under_5000": 10,
+    "under_4000": 8,
+    "energy": 5450.664849951965,
+    "stability_target_met_in_sample": false
+  },
+  "defense_groups": {
+    "hq_a_b": {
+      "count": 7,
+      "mean": 2635.714285714286,
+      "median": 2720,
+      "minimum": 1190,
+      "maximum": 4750,
+      "stddev": 1051.2829868153233,
+      "bottom_20_mean": 1510,
+      "under_5000": 7,
+      "under_4000": 6,
+      "energy": 5372.106460989546,
+      "stability_target_met_in_sample": false
+    },
+    "hq_b": {
+      "count": 2,
+      "mean": 2145,
+      "median": 2145.0,
+      "minimum": 1370,
+      "maximum": 2920,
+      "stddev": 775.0,
+      "bottom_20_mean": 1370,
+      "under_5000": 2,
+      "under_4000": 2,
+      "energy": 5863.75,
+      "stability_target_met_in_sample": false
+    },
+    "hq_a": {
+      "count": 1,
+      "mean": 4010,
+      "median": 4010,
+      "minimum": 4010,
+      "maximum": 4010,
+      "stddev": 0.0,
+      "bottom_20_mean": 4010,
+      "under_5000": 1,
+      "under_4000": 0,
+      "energy": 2485.0,
+      "stability_target_met_in_sample": false
+    }
+  },
+  "capture_scores": {
+    "0": 4,
+    "1600": 4,
+    "2400": 2
+  },
+  "actual_exit_codes": [
+    1,
+    1,
+    0
+  ],
+  "problems": [
+    "10/10局低于5000；不能用平均分代表稳定性。",
+    "10/10局终局占领分不足3200；需核查未占领和失守的时间线。",
+    "防守分型仅来自红方公开观察，不代表敌方隐藏初始部署；分组少样本不能证明措施因果。"
+  ],
+  "plan": [
+    "撤回新加分型参数，恢复6cb5a79版本的交接等待、屏护间距与中性目标偏好，模型保持不变。",
+    "下一轮先做回退对照；留守修复另行验证，避免再次同时改变多个因素。",
+    "修复成绩就绪先报告、候选训练随后完成的接续逻辑；不是本地脚本直接上传聊天附件。"
+  ],
+  "collection_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\recover-20261031-round1-last1-cumulative.json",
+  "candidate_review": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain-candidates\\recover-20261031-round1-last1-iql\\review.json",
+  "annealing": {
+    "window": 0,
+    "day": 0,
+    "temperature": 800.0,
+    "starts_on": "2026-10-31",
+    "ends_on": "2026-11-02",
+    "accepted": true,
+    "delta": 0.0,
+    "probability": 1.0,
+    "draw": 0.30942536978684954,
+    "tail_guard_passed": true,
+    "limitation": "Unpaired ten-game estimates; neither causality nor out-of-sample stability is established."
+  },
+  "rollback_review_required": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\rollback-plan.json"
+}
