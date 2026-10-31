@@ -289,6 +289,34 @@ class NativeWindows:
         self.user.SetForegroundWindow(hwnd)
         time.sleep(.3)
 
+    def position_client(self, hwnd):
+        """Keep the calibrated client visible away from bottom-right toasts."""
+        window = self.describe(hwnd)
+        require_allowed(window)
+        if exe_name(window['exe_path']) != 'cssimclient-win64-shipping.exe':
+            raise ValueError('Only the CSSIM client may be positioned')
+        left, top, right, bottom = window['client_rect']
+        if (right-left, bottom-top) != (1600, 900):
+            raise ValueError('Client placement requires the calibrated 1600x900 size')
+        height = self.user.GetSystemMetrics(1)
+        if self.user.GetSystemMetrics(0) < 1600 or height < 900:
+            raise ValueError('Desktop cannot contain the full calibrated client')
+        desired_y = min(40, height-900)
+        if (left, top) == (0, desired_y):
+            return window
+        rect = self.w.RECT()
+        if not self.user.GetWindowRect(hwnd, self.c.byref(rect)):
+            raise self.c.WinError(self.c.get_last_error())
+        # Move only this app; do not resize, make it topmost, or act on toasts.
+        if not self.user.SetWindowPos(hwnd, 0, rect.left-left, rect.top+desired_y-top,
+                                      0, 0, 0x0015):
+            raise self.c.WinError(self.c.get_last_error())
+        after = self.describe(hwnd)
+        if (any(after[k] != window[k] for k in ('hwnd','pid','exe_path'))
+                or after['client_rect'] != [0, desired_y, 1600, desired_y+900]):
+            raise ValueError('Client geometry changed unexpectedly during placement')
+        return after
+
     def _raise_for_activation(self, hwnd):
         """Expose an allowed app's caption without clicks or permanent topmost mode."""
         require_allowed(self.describe(hwnd))
@@ -343,18 +371,18 @@ class NativeWindows:
             raise self.c.WinError(self.c.get_last_error())
         # Unreal updates hover/hit testing on its render tick. Let it observe
         # the new pointer location before button-down and before parking away.
-        time.sleep(.3)
+        time.sleep(.6)
         self.ensure_foreground(hwnd)
         down, up = self.INPUT(type=0), self.INPUT(type=0)
         down.mi.dwFlags, up.mi.dwFlags = 0x0002, 0x0004
         try:
             self._send([down])
-            time.sleep(.12)
+            time.sleep(.35)
         finally:
             self._send([up])
         # Keep the pointer on the control until Unreal consumes button-up.
         # Parking immediately after an OS-delivered click can cancel login.
-        time.sleep(.75)
+        time.sleep(.9)
 
     def move_screen(self, hwnd, x, y):
         self.ensure_foreground(hwnd)

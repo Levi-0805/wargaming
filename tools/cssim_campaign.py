@@ -454,6 +454,9 @@ class RealBackend:
                 raise CampaignBlocked('Several 1600x900 client windows match this attempt')
             return candidates[0] if candidates else None
         context['window'] = self._wait(context, guard, found, self.s.startup_seconds, '1600x900 client window')
+        # Screen captures include topmost desktop notifications. Keep the
+        # right-side Bot verification controls clear without changing UI scale.
+        context['window'] = self.desktop.backend.position_client(context['window']['hwnd'])
 
     def flow(self, context, phase, guard):
         from cssim_ui_flow import DesktopAdapter, run_steps

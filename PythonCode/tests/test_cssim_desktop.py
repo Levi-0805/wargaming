@@ -167,6 +167,35 @@ def test_borderless_restore_targets_only_client_without_input_or_topmost():
     with pytest.raises(ValueError):native._restore_client_for_activation(123)
 
 
+def test_client_placement_preserves_size_and_checks_identity():
+    import ctypes
+    from ctypes import wintypes
+    window=dict(hwnd=123,pid=456,exe_path=r'C:\CSSIM\CSSIMClient-Win64-Shipping.exe',
+                client_rect=[160,70,1760,970])
+    calls=[]
+    class User:
+        def GetSystemMetrics(self,index):return 1920 if index==0 else 1080
+        def GetWindowRect(self,hwnd,rect):
+            rect._obj.left,rect._obj.top=152,40
+            return True
+        def SetWindowPos(self,hwnd,order,x,y,width,height,flags):
+            calls.append((hwnd,order,x,y,width,height,flags))
+            window['client_rect']=[x+8,y+30,x+1608,y+930]
+            return True
+    native=object.__new__(NativeWindows)
+    native.c,native.w,native.user=ctypes,wintypes,User()
+    native.describe=lambda hwnd:dict(window)
+    assert native.position_client(123)['client_rect']==[0,40,1600,940]
+    assert calls==[(123,0,-8,10,0,0,0x0015)]
+    native.position_client(123)
+    assert len(calls)==1  # Do not keep moving an already positioned window.
+    window['exe_path']=r'C:\CSSIM\Server.exe'
+    with pytest.raises(ValueError,match='Only the CSSIM client'):native.position_client(123)
+    window['exe_path']=r'C:\CSSIM\CSSIMClient-Win64-Shipping.exe'
+    window['client_rect']=[0,0,1200,800]
+    with pytest.raises(ValueError,match='calibrated'):native.position_client(123)
+
+
 @pytest.mark.parametrize('executable', ['Server.exe', 'pycharm64.exe', 'cmd.exe'])
 def test_nonclient_terminal_or_ide_entry_refused(observed, executable):
     desktop, native, metadata, _ = observed

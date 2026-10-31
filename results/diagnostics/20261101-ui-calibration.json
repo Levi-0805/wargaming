@@ -1,0 +1,136 @@
+{
+  "recorded_source_commit": "c5369a941fa1864e3b5ceef0876411068b229877",
+  "setup_only": true,
+  "completed_steps": [
+    "login",
+    "single_seat",
+    "select_tenth_scenario",
+    "select_competition_situation",
+    "set_ten_rounds",
+    "confirm_room",
+    "open_red_model",
+    "select_red_model",
+    "enable_blue_matchbot",
+    "open_algorithm_settings",
+    "set_max_steps_500",
+    "verify_and_confirm_algorithm_settings",
+    "enter_training_mode",
+    "confirm_training_mode"
+  ],
+  "all_pre_python_steps_complete": true,
+  "before_position_bot_proof": [
+    {
+      "template": "blue_bot_checked",
+      "matched": true
+    },
+    {
+      "template": "blue_matchbot_label",
+      "matched": false,
+      "score": 0.4075607359409332
+    }
+  ],
+  "after_position_proof": {
+    "matched": true,
+    "score": 0.997060239315033,
+    "evidence": [
+      {
+        "template": "ui_templates/red_selected_prefix.png",
+        "matched": true,
+        "score": 0.9999998807907104,
+        "position": [
+          256,
+          135
+        ]
+      },
+      {
+        "template": "ui_templates/red_bot_unchecked.png",
+        "matched": true,
+        "score": 1.0,
+        "position": [
+          173,
+          834
+        ]
+      },
+      {
+        "template": "ui_templates/blue_bot_checked.png",
+        "matched": true,
+        "score": 1.0,
+        "position": [
+          1220,
+          834
+        ]
+      },
+      {
+        "template": "ui_templates/blue_model_disabled.png",
+        "matched": true,
+        "score": 1.0,
+        "position": [
+          1233,
+          135
+        ]
+      },
+      {
+        "template": "ui_templates/blue_matchbot.png",
+        "matched": true,
+        "score": 1.0,
+        "position": [
+          1331,
+          832
+        ]
+      },
+      {
+        "template": "ui_templates/seat_rounds_ten.png",
+        "matched": true,
+        "score": 0.997060239315033,
+        "position": [
+          600,
+          739
+        ]
+      },
+      {
+        "template": "ui_templates/seat_speed_one.png",
+        "matched": true,
+        "score": 1.0,
+        "position": [
+          762,
+          765
+        ]
+      },
+      {
+        "template": "ui_templates/seat_scenario.png",
+        "matched": true,
+        "score": 1.0,
+        "position": [
+          314,
+          661
+        ]
+      }
+    ]
+  },
+  "client_rect_before": [
+    160,
+    70,
+    1760,
+    970
+  ],
+  "client_rect_after": [
+    0,
+    40,
+    1600,
+    940
+  ],
+  "input_timing_trial": {
+    "hover_seconds": 0.6,
+    "down_seconds": 0.35,
+    "after_up_seconds": 0.9
+  },
+  "cause": "Topmost notification covered the MatchBot label in a desktop capture; moving only the client made all eight unchanged settings verifiable.",
+  "limitations": [
+    "No matches played and no new scores.",
+    "Slow input was validated through setup, not a causal battle-score experiment.",
+    "The user confirmed remote/manual operation during calibration; do not attribute every setup transition exclusively to the script. Fresh unattended validation is required after handoff."
+  ],
+  "concurrent_manual_input_reported": true,
+  "calibration_is_not_fully_unattended_validation": true,
+  "user_handoff": "The user subsequently said continue; resume unattended collection after publishing."
+}
