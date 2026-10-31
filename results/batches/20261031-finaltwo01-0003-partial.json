@@ -1,0 +1,53 @@
+{
+  "batch_id": "20261031-finaltwo01-0003",
+  "classification": "partial_two_games_transport_interrupted",
+  "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+  "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+  "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+  "runtime_receipt": {
+    "batch_id": "20261031-finaltwo01-0003",
+    "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+    "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+    "pid": 9240,
+    "started_at": "2026-10-31T03:02:17.584213+00:00",
+    "ended_at": "2026-10-31T03:39:59.040969+00:00",
+    "exit_code": 1,
+    "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0003\\logs\\20261031_110221",
+    "stop_reason": null,
+    "error": null
+  },
+  "runtime_identity": {
+    "schema_version": 1,
+    "started_at_utc": "2026-10-31T03:02:21.220899+00:00",
+    "process_id": 9240,
+    "batch_id": "20261031-finaltwo01-0003",
+    "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+    "source_commit_evidence": "provided_by_launcher",
+    "config_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\campaigns\\20261031-finaltwo01\\attempt-0003\\effective.jsonc",
+    "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+    "algorithm_names": [
+      "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm",
+      "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm"
+    ],
+    "configured_max_episodes": 10,
+    "configured_max_steps": 500,
+    "detailed_protocol": true
+  },
+  "scores": [
+    {
+      "episode": 1,
+      "red": 2510,
+      "blue": 6350
+    },
+    {
+      "episode": 2,
+      "red": 2980,
+      "blue": 4660
+    }
+  ],
+  "completed_games": 2,
+  "interrupted_episode": 3,
+  "interrupted_step": 34,
+  "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0003\\logs\\20261031_110221\\protocol.jsonl",
+  "not_an_additional_iteration": true
+}

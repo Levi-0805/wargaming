@@ -1,0 +1,68 @@
+{
+  "batch_id": "20261031-finaltwo01-0002",
+  "classification": "partial_four_games_client_crash",
+  "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+  "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+  "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+  "runtime_receipt": {
+    "batch_id": "20261031-finaltwo01-0002",
+    "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+    "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+    "pid": 24548,
+    "started_at": "2026-10-31T01:53:12.689380+00:00",
+    "ended_at": "2026-10-31T03:00:24.732650+00:00",
+    "exit_code": 1,
+    "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0002\\logs\\20261031_095317",
+    "stop_reason": null,
+    "error": null
+  },
+  "runtime_identity": {
+    "schema_version": 1,
+    "started_at_utc": "2026-10-31T01:53:17.998842+00:00",
+    "process_id": 24548,
+    "batch_id": "20261031-finaltwo01-0002",
+    "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+    "source_commit_evidence": "provided_by_launcher",
+    "config_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\campaigns\\20261031-finaltwo01\\attempt-0002\\effective.jsonc",
+    "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+    "algorithm_names": [
+      "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm",
+      "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm"
+    ],
+    "configured_max_episodes": 10,
+    "configured_max_steps": 500,
+    "detailed_protocol": true
+  },
+  "scores": [
+    {
+      "episode": 1,
+      "red": 3440,
+      "blue": 4560
+    },
+    {
+      "episode": 2,
+      "red": 4410,
+      "blue": 2940
+    },
+    {
+      "episode": 3,
+      "red": 3320,
+      "blue": 4650
+    },
+    {
+      "episode": 4,
+      "red": 3030,
+      "blue": 4660
+    }
+  ],
+  "completed_games": 4,
+  "interrupted_episode": 5,
+  "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0002\\logs\\20261031_095317\\protocol.jsonl",
+  "preceding_client_crash": {
+    "path": "C:\\Users\\aaa\\AppData\\Local\\CSSIM\\Saved\\Crashes\\UECC-Windows-BC3B5C414AFA8DF39DE86D9B2FCCA914_0000\\CrashContext.runtime-xml",
+    "executable": "CSSIMClient-Win64-Shipping",
+    "error": "Unhandled Exception: EXCEPTION_ACCESS_VIOLATION reading address 0x0000000000000040",
+    "seconds_since_start": "2279"
+  },
+  "not_an_additional_iteration": true
+}

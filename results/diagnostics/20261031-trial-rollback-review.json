@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-10-31T04:00:11.699780+00:00",
+  "completed_full_iterations": 1,
+  "first_iteration": {
+    "games": 10,
+    "mean": 3807,
+    "maximum": 5900,
+    "under_4000": 7,
+    "dominant_low_score_capture_reward": 1600
+  },
+  "trial_partial_batches": {
+    "games_per_attempt": [
+      7,
+      4,
+      2
+    ],
+    "total_games": 13,
+    "mean": 3558.4615384615386,
+    "under_4000": 10,
+    "limitations": "Incomplete crash-affected batches; do not equate this pooled mean with a complete ten-game controlled comparison."
+  },
+  "modification_plan": [
+    "Rollback trial target-ranking weights to baseline used for the completed first ten games.",
+    "Preserve all 13 complete partial-batch outcomes and exclude each interrupted episode.",
+    "Report ten-game scores, common failures, modification plan and source commit before publishing the next iteration.",
+    "Continue only the remaining two full iterations; stop after three total."
+  ],
+  "causality": "Native client access violations were observed during trial attempts; the trial model is not proven to cause those crashes.",
+  "rollback_model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f"
+}

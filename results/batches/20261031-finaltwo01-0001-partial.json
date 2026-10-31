@@ -1,0 +1,84 @@
+{
+  "batch_id": "20261031-finaltwo01-0001",
+  "classification": "partial_seven_games_transport_interrupted",
+  "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+  "model_sha256": "2e5d70682cf0f71ae0c23bcbc828e3aadcae891589ffc2dc6acfd11d8502421a",
+  "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+  "runtime_receipt": {
+    "batch_id": "20261031-finaltwo01-0001",
+    "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+    "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+    "pid": 2500,
+    "started_at": "2026-10-30T23:41:39.424389+00:00",
+    "ended_at": "2026-10-31T01:51:21.138472+00:00",
+    "exit_code": 1,
+    "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0001\\logs\\20261031_074144",
+    "stop_reason": null,
+    "error": null
+  },
+  "runtime_identity": {
+    "schema_version": 1,
+    "started_at_utc": "2026-10-30T23:41:44.123007+00:00",
+    "process_id": 2500,
+    "batch_id": "20261031-finaltwo01-0001",
+    "source_commit": "4a9ce3c9b190ede0300a861f3e3f8bb730e29ae7",
+    "source_commit_evidence": "provided_by_launcher",
+    "config_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\campaigns\\20261031-finaltwo01\\attempt-0001\\effective.jsonc",
+    "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+    "algorithm_names": [
+      "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm",
+      "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm"
+    ],
+    "configured_max_episodes": 10,
+    "configured_max_steps": 500,
+    "detailed_protocol": true
+  },
+  "scores": [
+    {
+      "episode": 1,
+      "red": 2210,
+      "blue": 6330
+    },
+    {
+      "episode": 2,
+      "red": 6000,
+      "blue": 2090
+    },
+    {
+      "episode": 3,
+      "red": 3570,
+      "blue": 4720
+    },
+    {
+      "episode": 4,
+      "red": 3110,
+      "blue": 2570
+    },
+    {
+      "episode": 5,
+      "red": 6000,
+      "blue": 2930
+    },
+    {
+      "episode": 6,
+      "red": 3010,
+      "blue": 4640
+    },
+    {
+      "episode": 7,
+      "red": 2670,
+      "blue": 4550
+    }
+  ],
+  "completed_games": 7,
+  "interrupted_episode": 8,
+  "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-finaltwo01-0001\\logs\\20261031_074144\\protocol.jsonl",
+  "cause": "Peer cancelled all gRPC calls during episode 8, step 49; exact server shutdown reason unconfirmed.",
+  "not_an_additional_iteration": true,
+  "preceding_client_crash": {
+    "path": "C:\\Users\\aaa\\AppData\\Local\\CSSIM\\Saved\\Crashes\\UECC-Windows-DA03388C46285E2C83D1448EAB159D49_0000\\CrashContext.runtime-xml",
+    "executable": "CSSIMClient-Win64-Shipping",
+    "error": "Unhandled Exception: EXCEPTION_ACCESS_VIOLATION reading address 0x0000000000000000",
+    "seconds_since_start": "4019"
+  }
+}
