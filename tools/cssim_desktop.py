@@ -269,7 +269,25 @@ class NativeWindows:
         if self.user.GetForegroundWindow() != hwnd:
             self._raise_for_activation(hwnd)
             self._activate_visible_caption(hwnd)
+        if self.user.GetForegroundWindow() != hwnd:
+            self._restore_client_for_activation(hwnd)
         self.ensure_foreground(hwnd)
+
+    def _restore_client_for_activation(self, hwnd):
+        """Restore a borderless CSSIM client without blind clicks or global keys."""
+        window = self.describe(hwnd)
+        require_allowed(window)
+        if exe_name(window['exe_path']) != 'cssimclient-win64-shipping.exe':
+            return
+        # Borderless UE windows expose no HTCAPTION activation target. A
+        # bounded minimize/restore is an app-window operation, not a click
+        # into an unverified client widget. Recheck foreground afterwards.
+        self.user.ShowWindow(hwnd, 6)
+        time.sleep(.15)
+        self.user.ShowWindow(hwnd, 9)
+        self.user.BringWindowToTop(hwnd)
+        self.user.SetForegroundWindow(hwnd)
+        time.sleep(.3)
 
     def _raise_for_activation(self, hwnd):
         """Expose an allowed app's caption without clicks or permanent topmost mode."""

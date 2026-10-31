@@ -1,0 +1,21 @@
+{
+  "deleted": 51,
+  "logical_bytes_removed": 121044208758,
+  "remaining_backup_temp_files": 0,
+  "free_after": 134490308608,
+  "runtime_originals_preserved": [
+    {
+      "FullName": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\TeamAlg\\tmp.zip",
+      "Length": 266188
+    },
+    {
+      "FullName": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\TeamAlg\\tmp.zip.00177242",
+      "Length": 1667061385
+    },
+    {
+      "FullName": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\TeamAlg\\tmp.zip.554848b2",
+      "Length": 5452920001
+    }
+  ],
+  "completed_at": "2026-11-01T01:11:24.6670237+08:00"
+}

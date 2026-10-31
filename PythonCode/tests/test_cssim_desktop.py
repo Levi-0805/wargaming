@@ -150,6 +150,23 @@ def test_raise_exposes_only_allowed_window_without_topmost_or_clicks():
     assert len(calls)==1
 
 
+def test_borderless_restore_targets_only_client_without_input_or_topmost():
+    calls=[]
+    class User:
+        def ShowWindow(self,*args):calls.append(('show',*args))
+        def BringWindowToTop(self,*args):calls.append(('raise',*args))
+        def SetForegroundWindow(self,*args):calls.append(('foreground',*args))
+    native=object.__new__(NativeWindows);native.user=User()
+    native.describe=lambda hwnd:dict(exe_path=r'C:\CSSIM\CSSIMClient-Win64-Shipping.exe')
+    native._restore_client_for_activation(123)
+    assert calls==[('show',123,6),('show',123,9),('raise',123),('foreground',123)]
+    native.describe=lambda hwnd:dict(exe_path=r'C:\CSSIM\Server.exe')
+    native._restore_client_for_activation(123)
+    assert len(calls)==4
+    native.describe=lambda hwnd:dict(exe_path=r'C:\Windows\System32\cmd.exe')
+    with pytest.raises(ValueError):native._restore_client_for_activation(123)
+
+
 @pytest.mark.parametrize('executable', ['Server.exe', 'pycharm64.exe', 'cmd.exe'])
 def test_nonclient_terminal_or_ide_entry_refused(observed, executable):
     desktop, native, metadata, _ = observed

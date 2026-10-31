@@ -17,5 +17,25 @@
     }
   ],
   "screen_evidence": "attempt0002 frame000060 shows unchanged tenth-scenario card after an unregistered click",
-  "recovery": "Allow bounded retries only for exact allowlisted one-click navigation, with a fresh original-screen predicate. Keep training budget and B strategy unchanged; use a new campaign ID for the still-unplayed third round."
+  "recovery": "Allow bounded retries only for exact allowlisted one-click navigation, with a fresh original-screen predicate. Keep training budget and B strategy unchanged; use a new campaign ID for the still-unplayed third round.",
+  "foreground_failure_campaign": {
+    "campaign": "learning-1101-010225-r0003",
+    "source_commit": "748b7179fea710693e0d04c1b4df14e303860905",
+    "completed_games": 0,
+    "attempts": [
+      {
+        "batch_id": "learning-1101-010225-r0003-0001",
+        "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: all_of(ui_templates/scenario_selected.png, ui_templates/match_tile.png)"
+      },
+      {
+        "batch_id": "learning-1101-010225-r0003-0002",
+        "error": "RuntimeError: UI pre_python: RuntimeError: Target did not become foreground; no input sent"
+      },
+      {
+        "batch_id": "learning-1101-010225-r0003-0003",
+        "error": "RuntimeError: UI pre_python: RuntimeError: Target did not become foreground; no input sent"
+      }
+    ],
+    "fix": "Bounded minimize/restore of CSSIM client only after foreground and verified-caption activation fail; no blind client clicks/global key events."
+  }
 }
