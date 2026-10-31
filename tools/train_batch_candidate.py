@@ -125,7 +125,8 @@ def completed_report_sources(path):
         source = Path(protocol).resolve()
         actual = parse_output(source, commit)
         complete = {r['episode']: r for r in actual['rounds'] if r['complete']}
-        if actual['malformed_json_lines'] or set(complete) != {g['episode'] for g in rows}:
+        allowed = {g['episode'] for g in rows}
+        if actual['malformed_json_lines'] or not allowed.issubset(complete):
             raise ValueError('Protocol complete games differ from cumulative selection')
         for game in rows:
             if game['protocol_sha256'] != actual['source_sha256']:
@@ -137,6 +138,7 @@ def completed_report_sources(path):
         result.append(dict(path=str(source), sha256=actual['source_sha256'], bytes=actual['source_bytes'],
             source_commit=commit, batch_reports=[str(path)],
             batch_report_sha256={str(path): hashlib.sha256(raw).hexdigest()},
+            allowed_episodes=sorted(allowed),
             rounds=[dict(episode=r['episode'], complete=True, score=r['red']['total']) for r in rows]))
     if path.read_bytes() != raw:
         raise ValueError('Cumulative report changed during verification')
@@ -161,8 +163,16 @@ def select_sources(batch_reports, sources=()):
                         raise ValueError('Identical protocol bytes have conflicting bound source commits')
                     if record['source_commit']:
                         existing['source_commit'] = record['source_commit']
+                        existing['source_commit_evidence'] = record.get('source_commit_evidence', 'verified_finished_batch')
                         existing['batch_reports'] = sorted(set(existing['batch_reports'] + record['batch_reports']))
                         existing['batch_report_sha256'].update(record['batch_report_sha256'])
+                    if 'allowed_episodes' in record:
+                        if ('allowed_episodes' in existing
+                                and existing['allowed_episodes'] != record['allowed_episodes']):
+                            raise ValueError('Identical protocol has conflicting verified episode selections')
+                        existing['allowed_episodes'] = record['allowed_episodes']
+                        existing['rounds'] = [r for r in existing['rounds']
+                                              if r['episode'] in record['allowed_episodes']]
                     rejected.append(dict(kind=kind, path=str(Path(item).resolve()), reason='duplicate protocol SHA256'))
                 else:
                     by_hash[record['sha256']] = record
@@ -193,6 +203,11 @@ def bind_manifest(dataset, selection):
             source['runtime_identity_sha256'] = evidence['runtime_identity_sha256']
         source['batch_reports'] = evidence['batch_reports']
         source['batch_report_sha256'] = evidence['batch_report_sha256']
+        if 'allowed_episodes' in evidence:
+            actual = {r['episode'] for r in source.get('rounds', []) if r['complete']}
+            if actual != set(evidence['allowed_episodes']):
+                raise ValueError('Extractor included games outside the verified episode selection')
+            source['allowed_episodes'] = evidence['allowed_episodes']
     if len(manifest['sources']) != len(bindings):
         raise ValueError('Extractor did not retain all verified source sessions')
     if sha(dataset / 'decisions.npz') != manifest['dataset_sha256']:
@@ -215,7 +230,9 @@ def train_candidate(batch_reports, sources, candidate_id, *, repo=ROOT, steps=30
     output.mkdir(parents=True)
     write_json(output / 'selection.json', selection)
     dataset = output / 'dataset'
-    build_dataset([Path(r['path']) for r in selection['sources']], dataset)
+    build_dataset([Path(r['path']) for r in selection['sources']], dataset,
+                  episode_selections={r['path']: r['allowed_episodes']
+                                      for r in selection['sources'] if 'allowed_episodes' in r})
     manifest = bind_manifest(dataset, selection)
     candidate = output / 'candidate.json'
     report = train(dataset, candidate, steps=steps, seed=seed)

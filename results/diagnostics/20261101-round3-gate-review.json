@@ -1,0 +1,211 @@
+{
+  "round_number": 3,
+  "recorded_source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+  "scores": [
+    {
+      "kill_score": 1430,
+      "capture_score": 0,
+      "total": 1430
+    },
+    {
+      "kill_score": 1780,
+      "capture_score": 2400,
+      "total": 4180
+    },
+    {
+      "kill_score": 2580,
+      "capture_score": 800,
+      "total": 3380
+    },
+    {
+      "kill_score": 1300,
+      "capture_score": 0,
+      "total": 1300
+    },
+    {
+      "kill_score": 1830,
+      "capture_score": 1600,
+      "total": 3430
+    },
+    {
+      "kill_score": 2700,
+      "capture_score": 3200,
+      "total": 5900
+    },
+    {
+      "kill_score": 2470,
+      "capture_score": 3200,
+      "total": 5670
+    },
+    {
+      "kill_score": 1950,
+      "capture_score": 0,
+      "total": 1950
+    },
+    {
+      "kill_score": 2060,
+      "capture_score": 2400,
+      "total": 4460
+    },
+    {
+      "kill_score": 2150,
+      "capture_score": 2400,
+      "total": 4550
+    }
+  ],
+  "metrics": {
+    "count": 10,
+    "mean": 3625,
+    "median": 3805.0,
+    "minimum": 1300,
+    "maximum": 5900,
+    "stddev": 1560.3156731892427,
+    "bottom_20_mean": 1365,
+    "under_5000": 8,
+    "under_4000": 5,
+    "energy": 4382.578918297311,
+    "stability_target_met_in_sample": false
+  },
+  "actual_exit_codes": [
+    1,
+    0
+  ],
+  "collection_pattern": "9 complete games, interrupted episode10 at step43; then one complete game from a new attempt",
+  "comparison": {
+    "prior_mean": 3082,
+    "current_mean": 3625,
+    "relative_change": 0.17618429591174567,
+    "limitation": "Unpaired defenders; not a proven causal improvement."
+  },
+  "commonality": {
+    "capture_counts": {
+      "0": 3,
+      "2400": 3,
+      "800": 1,
+      "1600": 1,
+      "3200": 2
+    },
+    "high_scores": "5900=2700+3200 and 5670=2470+3200",
+    "tail": "1430,1300,1950 each have zero capture reward; third3380 has only800, so terminal HQ control is absent in four games",
+    "limitation": "Terminal scores alone cannot determine exactly when or why HQ control was lost."
+  },
+  "candidate": {
+    "sha": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+    "split_sessions": {
+      "train": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "validation": 15,
+      "test": 16
+    },
+    "offline_metrics": {
+      "train": {
+        "multiple_target_samples": 4127,
+        "behavior_nll": 0.3264265774467363,
+        "recorded_choice_agreement": 0.917131087957354
+      },
+      "validation": {
+        "multiple_target_samples": 401,
+        "behavior_nll": 0.4665439063474127,
+        "recorded_choice_agreement": 0.9276807980049875
+      },
+      "test": {
+        "multiple_target_samples": 53,
+        "behavior_nll": 0.36890879217183814,
+        "recorded_choice_agreement": 0.9433962264150944
+      }
+    },
+    "latest_round_role": "source15 nine-game validation and source16 one-game test, not gradient training",
+    "previous_round_role": "source14, the second-round ten games, is now included in gradient training",
+    "decision": "Isolated candidate weight trial; keep B tactics and profiles unchanged",
+    "replay_checks": {
+      "low": {
+        "source": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-1101-014143-r0003-0001\\logs\\20261101_014439\\protocol.jsonl",
+        "source_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+        "source_bytes": 631022321,
+        "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+        "episodes": [
+          {
+            "episode": 4,
+            "frames": 501,
+            "changed_commands": 4,
+            "shadow_mismatches": 0,
+            "changed_air_commands": 0,
+            "invalid_vehicle_fire": 0,
+            "pre_hq_diversions": 0,
+            "objective_changes": 0,
+            "metrics": {
+              "defense_kind_code": 2,
+              "iql_decisions": 26,
+              "iql_proposed_changes": 4,
+              "iql_applied_changes": 4,
+              "iql_shadow": 0,
+              "iql_online_training": 0
+            }
+          }
+        ],
+        "limitation": "Fixed public-state replay; changes and offline metrics are not new match scores."
+      },
+      "high": {
+        "source": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-1101-014143-r0003-0001\\logs\\20261101_014439\\protocol.jsonl",
+        "source_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+        "source_bytes": 631022321,
+        "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+        "episodes": [
+          {
+            "episode": 6,
+            "frames": 501,
+            "changed_commands": 15,
+            "shadow_mismatches": 0,
+            "changed_air_commands": 0,
+            "invalid_vehicle_fire": 0,
+            "pre_hq_diversions": 0,
+            "objective_changes": 0,
+            "metrics": {
+              "defense_kind_code": 1,
+              "iql_decisions": 164,
+              "iql_proposed_changes": 16,
+              "iql_applied_changes": 16,
+              "iql_shadow": 0,
+              "iql_online_training": 0
+            }
+          }
+        ],
+        "limitation": "Fixed public-state replay; changes and offline metrics are not new match scores."
+      }
+    },
+    "limitation": "Recorded choice agreement and fixed-state replays are not new match returns."
+  },
+  "rollback": {
+    "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "model_path": "logs/learning/round-0003/model.json",
+    "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73"
+  },
+  "training_recovery_fix": {
+    "confirmed_selected": "old round1 9+1 games are accepted only through verified per-source episode masks",
+    "excluded": "original source episode10 has terminal score packets but lacks Done and is not in the cumulative report",
+    "unchanged": "original source bytes/hash, selected scores, source/model binding and Done checks",
+    "retroactive_training": false,
+    "scope": "Only future candidate builds use the repaired import; current403 candidate was trained earlier."
+  },
+  "camera": {
+    "cause": "UE cursor still covers the director tab immediately after an OS pointer move, lowering match0.896 below0.93",
+    "change": "Wait0.4s before capturing after parking and0.3s before the name double-click; do not lower the verification threshold",
+    "status": "VIEW_PAUSE retained until a fresh live close-up is validated"
+  }
+}

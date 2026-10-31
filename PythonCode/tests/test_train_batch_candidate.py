@@ -82,6 +82,49 @@ def test_cumulative_7_plus_3_with_failed_process_exits_retains_verified_complete
     assert all(r['source_commit']==COMMIT for r in records)
 
 
+def test_recovered_nine_plus_one_retains_nine_and_excludes_extra_unconfirmed_score(tmp_path):
+    first=protocol(tmp_path/'first.jsonl',9)
+    last=protocol(tmp_path/'last.jsonl',1)
+    report=cumulative(tmp_path/'cumulative.json',[first,last])
+    # The engine printed another terminal score, but the runtime never saw Done.
+    protocol(first,10)
+    raw=candidate.read_json(report)
+    for game in raw['games']:
+        if game['protocol']==str(first):game['protocol_sha256']=sha(first)
+    write_json(report,raw)
+    records=candidate.completed_report_sources(report)
+    assert records[0]['allowed_episodes']==list(range(1,10))
+    assert records[1]['allowed_episodes']==[1]
+    from train_target_iql import select_verified_rounds
+    selected,excluded=select_verified_rounds(parse_output(first)['rounds'],set(records[0]['allowed_episodes']))
+    assert set(selected)==set(range(1,10)) and excluded==[10]
+    historical=protocol(tmp_path/'historical.jsonl',1,worth=200)
+    merged=candidate.select_sources([report],[first,historical])
+    assert merged['sources'][0]['allowed_episodes']==list(range(1,10))
+    assert len(merged['sources'][0]['rounds'])==9
+
+
+def test_verified_selection_cannot_promote_an_incomplete_episode():
+    from train_target_iql import select_verified_rounds
+    with pytest.raises(ValueError,match='incomplete'):
+        select_verified_rounds([dict(episode=1,complete=True),dict(episode=2,complete=False)],{1,2})
+
+
+def test_manifest_binding_rejects_out_of_selection_games(tmp_path):
+    source=protocol(tmp_path/'source.jsonl',10)
+    report=cumulative(tmp_path/'cumulative.json',[source])
+    records=candidate.completed_report_sources(report)
+    dataset=tmp_path/'dataset';dataset.mkdir()
+    (dataset/'decisions.npz').write_bytes(b'fixed dataset checksum')
+    original=records[0]
+    manifest=dict(sources=[dict(path=original['path'],sha256=original['sha256'],bytes=original['bytes'],
+                               rounds=original['rounds']+[dict(episode=11,complete=True)])],
+                  dataset_sha256=sha(dataset/'decisions.npz'))
+    write_json(dataset/'manifest.json',manifest)
+    with pytest.raises(ValueError,match='outside the verified'):
+        candidate.bind_manifest(dataset,dict(sources=records))
+
+
 def test_recorded_runtime_commit_is_retained_without_guessing_from_filename(tmp_path):
     source=protocol(tmp_path/'old.jsonl',1)
     write_json(tmp_path/'run.json',dict(source_commit=COMMIT))
@@ -159,7 +202,7 @@ def test_candidate_trains_separate_artifact_and_records_actual_report(sources, m
     monkeypatch.setattr(candidate.subprocess, 'check_output', lambda *a, **kw: COMMIT)
     calls = []
 
-    def build(paths, output):
+    def build(paths, output, *, episode_selections=None):
         calls.append(paths)
         output.mkdir()
         (output / 'decisions.npz').write_bytes(b'unchanged dataset')

@@ -107,6 +107,7 @@ class Viewer:
         if not 214<y<640:return None
         _,window=self.desktop._action_window(current);n=self.desktop.backend
         n.move_screen(hwnd,window['client_rect'][0]+180,window['client_rect'][1]+y)
+        time.sleep(.3)  # Let UE update row hover before the native double-click.
         for _ in range(2):
             e=n.INPUT(type=0);e.mi.dwFlags=2;n._send([e]);time.sleep(.05)
             e=n.INPUT(type=0);e.mi.dwFlags=4;n._send([e]);time.sleep(.12)
@@ -136,10 +137,12 @@ class Viewer:
                  w['client_rect'][2]-w['client_rect'][0]==1600 and w['client_rect'][3]-w['client_rect'][1]==900]
         if len(windows)!=1:return None
         hwnd=windows[0]['hwnd'];photo=self.photograph(hwnd,'scratch/current.png');self.desktop.move(photo,1500,700)
+        time.sleep(.4)  # A desktop capture can otherwise retain UE's old cursor over the tab label.
         photo=self.photograph(hwnd,'scratch/current.png');image=read_image(photo['image_path'])
         if max(self.score(image,'red',(760,100,842,135)),self.score(image,'director',(760,100,842,135)))<.93:return None
         if self.score(image,'director',(760,100,842,135))<.93:
             self.desktop.click(photo,800,117);photo=self.photograph(hwnd,'scratch/current.png');self.desktop.move(photo,1500,700)
+            time.sleep(.4)
             photo=self.photograph(hwnd,'scratch/current.png')
         if self.score(read_image(photo['image_path']),'director',(760,100,842,135))<.93:return None
         self.sequence+=1;stamp=f'{int(time.time())}-{self.sequence:03d}'

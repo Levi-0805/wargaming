@@ -65,9 +65,28 @@ def episode_transitions(trajectories, terminal_step, score, gamma):
                        discount=0. if final else discount, terminal=final)
 
 
-def build_dataset(sources, output, gamma=.997, stride=4):
+def select_verified_rounds(rounds, selected=None):
+    complete = {r['episode']: r for r in rounds if r['complete']}
+    if selected is None:
+        return complete, []
+    if not selected.issubset(complete):
+        raise ValueError('Verified episode selection contains an incomplete game')
+    return ({ep: row for ep, row in complete.items() if ep in selected},
+            sorted(set(complete) - selected))
+
+
+def build_dataset(sources, output, gamma=.997, stride=4, *, episode_selections=None):
+    sources = list(sources)
     if not 0 < gamma <= 1 or stride < 1:
         raise ValueError('Invalid discount or sampling stride')
+    selections = {}
+    for path, episodes in (episode_selections or {}).items():
+        if (not episodes or any(type(ep) is not int or ep < 1 for ep in episodes)
+                or len(set(episodes)) != len(episodes)):
+            raise ValueError('Invalid verified episode selection')
+        selections[str(Path(path).resolve())] = set(episodes)
+    if set(selections) - {str(Path(p).resolve()) for p in sources}:
+        raise ValueError('Episode selection refers to an unknown source')
     all_rows, groups, provenance, rejected, seen_sources, seen_episodes = [], [], [], [], set(), set()
     for source in sources:
         audit = parse_output(source)
@@ -78,7 +97,8 @@ def build_dataset(sources, output, gamma=.997, stride=4):
         if audit['malformed_json_lines']:
             rejected.append({'source': str(source), 'reason': 'malformed JSON'})
             continue
-        complete = {r['episode']: r for r in audit['rounds'] if r['complete']}
+        selected = selections.get(str(Path(source).resolve()))
+        complete, excluded = select_verified_rounds(audit['rounds'], selected)
         env, episode, seen_frame, previous_step, current, view = CssimEnvironment(config()), 0, False, None, {}, None
         decisions, sent_frames, ambiguous = {}, set(), set()
         counts = {'attacks': 0, 'accepted': 0, 'not_local_or_ineligible': 0, 'sampled_out': 0}
@@ -159,7 +179,8 @@ def build_dataset(sources, output, gamma=.997, stride=4):
         session = len(provenance)
         provenance.append({'path': str(source), 'sha256': audit['source_sha256'],
                            'bytes': consumed, 'source_commit': None, 'counts': counts,
-                           'rounds': [{'episode': r['episode'], 'complete': r['complete'],
+                           'excluded_by_verified_selection': excluded,
+                           'rounds': [{'episode': r['episode'], 'complete': r['episode'] in complete,
                                        'score': r['scores']['red']['total'] if r['scores']['red'] else None}
                                       for r in audit['rounds']]})
         for ep, trajectories in decisions.items():

@@ -23,6 +23,12 @@ selection, not learned navigation or end-to-end strategic reinforcement learning
 The newest data can become training data in later rounds as the source split moves;
 each manifest records the exact roles. No offline metric is presented as match gain.
 
+A cumulative session can contain an extra score packet without a confirmed Done.
+The verified report's episode selection must pass through dataset extraction and
+manifest binding: retain its valid completed games, exclude unconfirmed episodes,
+and preserve the full original protocol hash. A score-only extra episode must not
+enter training merely because the same file also contains verified games.
+
 Before candidate training, `logs/learning/report-ready.json` points to an early
 ten-game summary. The scheduled review checks undelivered score signals even while
 the worker is training, reports the scores once, then marks delivery. This is a
