@@ -1,0 +1,352 @@
+{
+  "classification": "ten_cumulative_games_complete",
+  "campaign_id": "20261031-third-cumulative01",
+  "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "completed_games": 10,
+  "games": [
+    {
+      "ordinal": 1,
+      "episode": 1,
+      "batch_id": "20261031-third-cumulative01-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0001\\logs\\20261031_121932\\protocol.jsonl",
+      "protocol_sha256": "cfad512851635faeff0da538e7d836dbb3ed7e4d78b1badf06175942b5816740",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1610,
+        "capture_score": 1600,
+        "total": 3210
+      },
+      "blue": {
+        "kill_score": 2230,
+        "capture_score": 1600,
+        "total": 3830
+      }
+    },
+    {
+      "ordinal": 2,
+      "episode": 2,
+      "batch_id": "20261031-third-cumulative01-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0001\\logs\\20261031_121932\\protocol.jsonl",
+      "protocol_sha256": "cfad512851635faeff0da538e7d836dbb3ed7e4d78b1badf06175942b5816740",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2720,
+        "capture_score": 3200,
+        "total": 5920
+      },
+      "blue": {
+        "kill_score": 2380,
+        "capture_score": 0,
+        "total": 2380
+      }
+    },
+    {
+      "ordinal": 3,
+      "episode": 1,
+      "batch_id": "20261031-third-cumulative01-0002",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+      "protocol_sha256": "cc0d2bfe1bec8e4caaa0daa33b2ebc73fb5445c106c1a77452cd5315888623d8",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2740,
+        "capture_score": 3200,
+        "total": 5940
+      },
+      "blue": {
+        "kill_score": 2560,
+        "capture_score": 0,
+        "total": 2560
+      }
+    },
+    {
+      "ordinal": 4,
+      "episode": 2,
+      "batch_id": "20261031-third-cumulative01-0002",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+      "protocol_sha256": "cc0d2bfe1bec8e4caaa0daa33b2ebc73fb5445c106c1a77452cd5315888623d8",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2650,
+        "capture_score": 3200,
+        "total": 5850
+      },
+      "blue": {
+        "kill_score": 1890,
+        "capture_score": 0,
+        "total": 1890
+      }
+    },
+    {
+      "ordinal": 5,
+      "episode": 3,
+      "batch_id": "20261031-third-cumulative01-0002",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+      "protocol_sha256": "cc0d2bfe1bec8e4caaa0daa33b2ebc73fb5445c106c1a77452cd5315888623d8",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2690,
+        "capture_score": 3200,
+        "total": 5890
+      },
+      "blue": {
+        "kill_score": 2270,
+        "capture_score": 0,
+        "total": 2270
+      }
+    },
+    {
+      "ordinal": 6,
+      "episode": 4,
+      "batch_id": "20261031-third-cumulative01-0002",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+      "protocol_sha256": "cc0d2bfe1bec8e4caaa0daa33b2ebc73fb5445c106c1a77452cd5315888623d8",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1590,
+        "capture_score": 1600,
+        "total": 3190
+      },
+      "blue": {
+        "kill_score": 2750,
+        "capture_score": 1600,
+        "total": 4350
+      }
+    },
+    {
+      "ordinal": 7,
+      "episode": 5,
+      "batch_id": "20261031-third-cumulative01-0002",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+      "protocol_sha256": "cc0d2bfe1bec8e4caaa0daa33b2ebc73fb5445c106c1a77452cd5315888623d8",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2750,
+        "capture_score": 3200,
+        "total": 5950
+      },
+      "blue": {
+        "kill_score": 1320,
+        "capture_score": 0,
+        "total": 1320
+      }
+    },
+    {
+      "ordinal": 8,
+      "episode": 6,
+      "batch_id": "20261031-third-cumulative01-0002",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+      "protocol_sha256": "cc0d2bfe1bec8e4caaa0daa33b2ebc73fb5445c106c1a77452cd5315888623d8",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2190,
+        "capture_score": 0,
+        "total": 2190
+      },
+      "blue": {
+        "kill_score": 3150,
+        "capture_score": 3200,
+        "total": 6350
+      }
+    },
+    {
+      "ordinal": 9,
+      "episode": 7,
+      "batch_id": "20261031-third-cumulative01-0002",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+      "protocol_sha256": "cc0d2bfe1bec8e4caaa0daa33b2ebc73fb5445c106c1a77452cd5315888623d8",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2750,
+        "capture_score": 3200,
+        "total": 5950
+      },
+      "blue": {
+        "kill_score": 1160,
+        "capture_score": 0,
+        "total": 1160
+      }
+    },
+    {
+      "ordinal": 10,
+      "episode": 8,
+      "batch_id": "20261031-third-cumulative01-0002",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+      "protocol_sha256": "cc0d2bfe1bec8e4caaa0daa33b2ebc73fb5445c106c1a77452cd5315888623d8",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 870,
+        "capture_score": 0,
+        "total": 870
+      },
+      "blue": {
+        "kill_score": 3150,
+        "capture_score": 3200,
+        "total": 6350
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "batch_id": "20261031-third-cumulative01-0001",
+      "started_at": "2026-10-31T04:17:53.056471+00:00",
+      "episode_budget": 10,
+      "supervisor_exit_code": 2,
+      "manifest_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0001\\manifest.json",
+      "status": {
+        "batch_id": "20261031-third-cumulative01-0001",
+        "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+        "expected_episodes": 10,
+        "state": "partial",
+        "complete_episodes": 2,
+        "done_episodes": [
+          1,
+          2
+        ],
+        "ready_to_finish": false,
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0001\\logs\\20261031_121932\\protocol.jsonl",
+        "ue_game_config": "10;1",
+        "last_episode": 3,
+        "last_step": 53,
+        "runtime_exit_code": 1,
+        "runtime_stop_reason": null,
+        "runtime_error": null,
+        "normal_run_end": false,
+        "scores": [
+          {
+            "episode": 1,
+            "red": 3210,
+            "blue": 3830
+          },
+          {
+            "episode": 2,
+            "red": 5920,
+            "blue": 2380
+          }
+        ]
+      },
+      "runtime_receipt": {
+        "batch_id": "20261031-third-cumulative01-0001",
+        "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+        "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+        "pid": 23516,
+        "started_at": "2026-10-31T04:19:29.349625+00:00",
+        "ended_at": "2026-10-31T04:58:49.277068+00:00",
+        "exit_code": 1,
+        "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0001\\logs\\20261031_121932",
+        "stop_reason": null,
+        "error": null
+      },
+      "completed_games_added": 2,
+      "ended_at": "2026-10-31T04:58:54.490523+00:00"
+    },
+    {
+      "batch_id": "20261031-third-cumulative01-0002",
+      "started_at": "2026-10-31T04:59:09.593284+00:00",
+      "episode_budget": 8,
+      "supervisor_exit_code": 0,
+      "manifest_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\manifest.json",
+      "status": {
+        "batch_id": "20261031-third-cumulative01-0002",
+        "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+        "expected_episodes": 8,
+        "state": "complete",
+        "complete_episodes": 8,
+        "done_episodes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "ready_to_finish": true,
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047\\protocol.jsonl",
+        "ue_game_config": "10;1",
+        "last_episode": 8,
+        "last_step": 499,
+        "runtime_exit_code": 0,
+        "runtime_stop_reason": null,
+        "runtime_error": null,
+        "normal_run_end": true,
+        "scores": [
+          {
+            "episode": 1,
+            "red": 5940,
+            "blue": 2560
+          },
+          {
+            "episode": 2,
+            "red": 5850,
+            "blue": 1890
+          },
+          {
+            "episode": 3,
+            "red": 5890,
+            "blue": 2270
+          },
+          {
+            "episode": 4,
+            "red": 3190,
+            "blue": 4350
+          },
+          {
+            "episode": 5,
+            "red": 5950,
+            "blue": 1320
+          },
+          {
+            "episode": 6,
+            "red": 2190,
+            "blue": 6350
+          },
+          {
+            "episode": 7,
+            "red": 5950,
+            "blue": 1160
+          },
+          {
+            "episode": 8,
+            "red": 870,
+            "blue": 6350
+          }
+        ]
+      },
+      "runtime_receipt": {
+        "batch_id": "20261031-third-cumulative01-0002",
+        "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+        "config_sha256": "7e813b53d263440eb9cb062a927222d6f9342d329c1c3ee23a61f011cb46c88b",
+        "pid": 27080,
+        "started_at": "2026-10-31T05:00:44.068693+00:00",
+        "ended_at": "2026-10-31T07:27:12.206885+00:00",
+        "exit_code": 0,
+        "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\20261031-third-cumulative01-0002\\logs\\20261031_130047",
+        "stop_reason": null,
+        "error": null
+      },
+      "completed_games_added": 8,
+      "ended_at": "2026-10-31T07:27:46.658384+00:00"
+    }
+  ],
+  "finished_at": "2026-10-31T07:27:46.663339+00:00",
+  "summary": {
+    "mean": 4496,
+    "minimum": 870,
+    "maximum": 5950,
+    "under_4000": 4
+  },
+  "limitation": "Completed games may span failed processes; actual receipts remain unchanged.",
+  "next_step": "Summarize and review modifications before any next code version."
+}
