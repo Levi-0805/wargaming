@@ -111,7 +111,7 @@ def test_ambiguous_platform_sections_rejected(inputs):
         run(inputs)
 
 
-@pytest.mark.parametrize('changes', [dict(iql_shadow=True), dict(mode='rule'),
+@pytest.mark.parametrize('changes', [dict(iql_shadow='true'), dict(mode='rule'),
                                     dict(enable_entry_waves='false'), dict(unexpected=True),
                                     dict(iql_model='../../escape.json')])
 def test_invalid_template_is_rejected(inputs, changes):
@@ -120,6 +120,13 @@ def test_invalid_template_is_rejected(inputs, changes):
     with pytest.raises(ValueError):
         run(inputs)
     assert not output.exists()
+
+
+def test_shadow_control_is_preserved_in_effective_config(inputs):
+    _, template, _, _, policy, output = inputs
+    template.write_text(json.dumps({POLICY_KEY: {**policy, 'iql_shadow': True}}), encoding='utf-8')
+    run(inputs)
+    assert json.loads(output.read_text(encoding='utf-8'))[POLICY_KEY]['iql_shadow'] is True
 
 
 def test_no_overwriting_inputs_or_previous_batch(inputs):

@@ -1,0 +1,44 @@
+{
+  "source": "logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+  "source_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+  "source_bytes": 696208259,
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "policy_baseline": "6cb5a79",
+  "episodes": [
+    {
+      "episode": 6,
+      "frames": 501,
+      "changed_commands": 6,
+      "shadow_mismatches": 0,
+      "changed_air_commands": 0,
+      "invalid_vehicle_fire": 0,
+      "pre_hq_diversions": 0,
+      "objective_changes": 0,
+      "metrics": {
+        "iql_decisions": 35,
+        "iql_proposed_changes": 6,
+        "iql_applied_changes": 6,
+        "iql_shadow": 0,
+        "iql_online_training": 0
+      }
+    },
+    {
+      "episode": 7,
+      "frames": 501,
+      "changed_commands": 5,
+      "shadow_mismatches": 0,
+      "changed_air_commands": 0,
+      "invalid_vehicle_fire": 0,
+      "pre_hq_diversions": 0,
+      "objective_changes": 0,
+      "metrics": {
+        "iql_decisions": 98,
+        "iql_proposed_changes": 12,
+        "iql_applied_changes": 12,
+        "iql_shadow": 0,
+        "iql_online_training": 0
+      }
+    }
+  ],
+  "limitation": "Fixed public-state replay; changes and offline metrics are not new match scores."
+}

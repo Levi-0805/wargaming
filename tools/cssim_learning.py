@@ -305,6 +305,9 @@ def prepare_next(state, *, use_candidate=False, restore_profiles=None):
             limitation='Historical parameter restoration; candidate live returns remain unvalidated.'))
     if use_candidate:
         candidate = read(state['pending']['candidate_review'])
+        template = batches.commentjson.loads((ROOT/'PythonCode/TaskConfig/cssim/iql_eval_red.jsonc').read_text(encoding='utf-8-sig'))
+        policy = batches.section(template, 'AlgorithmConfig')
+        baseline = policy.get('policy_baseline', 'current')
         chosen_model = Path(candidate['candidate_model'])
         if batches.sha(chosen_model) != candidate['candidate_model_sha256']:
             raise ValueError('Candidate model checksum changed')
@@ -314,10 +317,12 @@ def prepare_next(state, *, use_candidate=False, restore_profiles=None):
         for label, game in (('low', ordered[0]), ('high', ordered[-1])):
             out = STATE.parent/f'round-{number:04d}'/f'integration-{label}.json'
             child(state, 'integration-'+label, [ROOT/'tools/evaluate_target_iql.py', game['protocol'],
-                '--model', chosen_model, '--episodes', str(game['episode']), '--out', out])
+                '--model', chosen_model, '--episodes', str(game['episode']), '--baseline', baseline, '--out', out])
             check = read(out)
             if check['model_sha256'] != candidate['candidate_model_sha256']:
                 raise ValueError('Integration replay checked a different model')
+            if check['policy_baseline'] != baseline:
+                raise ValueError('Integration replay checked a different tactical baseline')
             checks.append(str(out))
         review.update(chosen='offline_iql_trial', integration_checks=checks,
                       candidate_review=state['pending']['candidate_review'],

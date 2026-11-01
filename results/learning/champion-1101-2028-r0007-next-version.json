@@ -1,0 +1,43 @@
+{
+  "round_number": 7,
+  "created_at": "2026-11-01T16:34:57.825056+00:00",
+  "live_score_improvement_unproven": true,
+  "rollback_checkpoint": {
+    "model": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0007\\model.json",
+    "profiles": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0007\\profiles.json",
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+    "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+    "experiment": {
+      "chosen": "historical_champion_reproduction",
+      "historical_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "policy_baseline": "6cb5a79",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+      "limitation": "Composite policy restoration with original hybrid3e36, not a guaranteed4496 or one-factor causal test. Manual6 remains unbound and excluded from verified batch training."
+    }
+  },
+  "chosen": "historical_baseline_rule_action_control",
+  "proposal": {
+    "scope": "iql_shadow_only",
+    "before": false,
+    "after": true,
+    "baseline": "6cb5a79",
+    "unchanged": [
+      "tactic_snapshot",
+      "model_weights",
+      "routes",
+      "formation",
+      "guard_rules"
+    ],
+    "meaning": "IQL logs proposals but returns the rule target; live decisions must match the same baseline rule policy.",
+    "limitation": "Sequential unpaired defenders; score differences are not a strict paired causal estimate."
+  },
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+  "rollback": {
+    "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+    "iql_shadow": false
+  },
+  "replay_evidence": "results/diagnostics/20261102-champion-shadow-control-replay.json"
+}

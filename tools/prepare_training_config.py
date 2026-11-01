@@ -105,8 +105,8 @@ def prepare(source, output, *, template=DEFAULT_TEMPLATE, cssim_root=Path('C:/CS
     template_bytes, published = read_config(template)
     validate_platform(original)
     _, policy = policy_section(published, required=True)
-    if policy.get('mode') != 'hybrid_iql' or policy.get('iql_shadow') is not False:
-        raise ValueError('Published template must enable hybrid_iql with iql_shadow=false')
+    if policy.get('mode') != 'hybrid_iql' or type(policy.get('iql_shadow')) is not bool:
+        raise ValueError('Published template must enable hybrid_iql with an explicit boolean iql_shadow')
     unknown = set(policy) - set(POLICY_FIELDS)
     if unknown:
         raise ValueError(f'Unexpected policy fields in template: {sorted(unknown)}')

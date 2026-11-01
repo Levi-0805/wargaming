@@ -105,3 +105,15 @@ Defence profiles are not applied inside the historical tactic. Any score is a
 fresh reproduction attempt, not a guaranteed repeat of the historical 4496 mean.
 
 Separate already-running platform services can be explicitly recorded in learning state additional_server_pids. Their creation identities are rechecked throughout setup and they are borrowed, never cleanup-owned. Do not broadly allow processes merely by executable name.
+
+For a reviewed rule-action control, keep `hybrid_iql` and the same model artifact,
+but explicitly publish `iql_shadow: true`. This computes and logs IQL proposals
+while returning the rule target. The collector binds the boolean into its batch
+manifest and requires the actual reset to match; old manifests default to false.
+It is a control experiment, not an applied RL improvement. Prove shadow/rule wire
+and special-command equivalence with `evaluate_target_iql.py --baseline 6cb5a79`
+on representative completed games before release. That evaluator dispatches all
+three policies through the selected baseline factory. Candidate integration must
+use the same selector. Do not count shadow proposals as applied actions or infer
+RL value from unpaired ten-game means alone. Route/formation/guard changes and
+model updates stay frozen during this control.

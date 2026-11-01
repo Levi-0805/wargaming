@@ -13,13 +13,13 @@ sys.path.insert(0, str(ROOT / 'PythonCode'))
 from cssim.algorithms import AlgorithmContext
 from cssim.environment.env import CssimEnvironment
 from cssim.protocol import ActionSetFactory
-from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RuleAgentAlgorithm import ReinforceAgentAlgorithm
-from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.LearnedTargeting import HybridIQLAgent
-from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RLAgentAlgorithm import AlgorithmConfig
+from TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RLAgentAlgorithm import ReinforceAgentAlgorithm
 from train_target_iql import config
 
 
-def evaluate(source, model, episodes):
+def evaluate(source, model, episodes, baseline='current'):
+    if baseline not in ('current', '6cb5a79'):
+        raise ValueError('Unknown tactical baseline')
     envs = {name: CssimEnvironment(config()) for name in ('rule', 'shadow', 'iql')}
     previous, episode, rules, rows, current = None, 0, {}, [], None
     limit, consumed, digest = source.stat().st_size, 0, hashlib.sha256()
@@ -54,11 +54,11 @@ def evaluate(source, model, episodes):
             for name, env in envs.items():
                 snap = env._parse_state(p); state = env.build_team_state(snap, 0)
                 if name not in rules:
+                    options = dict(mode='rule' if name == 'rule' else 'hybrid_iql',
+                                   policy_baseline=baseline, iql_model=str(model), iql_shadow=name == 'shadow')
                     context = AlgorithmContext(0, state.agents, state.visible_opponents,
-                                               ActionSetFactory.standard(), 'cpu', {}, state.commanders)
-                    rules[name] = (ReinforceAgentAlgorithm(context) if name == 'rule' else
-                                   HybridIQLAgent(context, AlgorithmConfig(mode='hybrid_iql', iql_model=str(model),
-                                                                          iql_shadow=name == 'shadow')))
+                                               ActionSetFactory.standard(), 'cpu', options, state.commanders)
+                    rules[name] = ReinforceAgentAlgorithm(context)
                 rule = rules[name]; actions = rule.act(state)
                 wires[name] = [a.to_ue_string(u.uid, snap.entities) for u, a in zip(state.agents, actions)]
                 specials[name] = [c.parameters() for c in rule.take_selected_special_commands()]
@@ -78,7 +78,7 @@ def evaluate(source, model, episodes):
             current['objective_changes'] += objectives['rule'] != objectives['iql']
             current['metrics'] = metrics['iql']
     return dict(source=str(source), source_sha256=digest.hexdigest(), source_bytes=consumed,
-                model_sha256=hashlib.sha256(model.read_bytes()).hexdigest(), episodes=rows,
+                model_sha256=hashlib.sha256(model.read_bytes()).hexdigest(), policy_baseline=baseline, episodes=rows,
                 limitation='Fixed public-state replay; changes and offline metrics are not new match scores.')
 
 
@@ -86,8 +86,9 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('source', type=Path); p.add_argument('--model', type=Path, required=True)
     p.add_argument('--episodes', nargs='+', type=int, default=[1]); p.add_argument('--out', type=Path, required=True)
+    p.add_argument('--baseline', choices=('current', '6cb5a79'), default='current')
     args = p.parse_args(); logging.disable(logging.CRITICAL)
-    result = evaluate(args.source, args.model.resolve(), set(args.episodes))
+    result = evaluate(args.source, args.model.resolve(), set(args.episodes), args.baseline)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     failures = sum(r[k] for r in result['episodes'] for k in

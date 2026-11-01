@@ -106,12 +106,41 @@ def test_invalid_effective_configuration_rejected(tmp_path, change):
     red = value[batch.RED + '.py->AlgorithmConfig']
     if change == 'episodes': g['max_episode'] = 1
     elif change == 'mode': red['mode'] = 'rule'
-    elif change == 'shadow': red['iql_shadow'] = True
+    elif change == 'shadow': red['iql_shadow'] = 'true'
     elif change == 'cpu': g['device'] = 'cuda'
     elif change == 'algorithm': value['wrapper.py->ScenarioConfig']['Algorithm_Names'][0] = 'Other->Agent'
     path = tmp_path / 'config.json'
     batch.write_json(path, value)
     with pytest.raises(ValueError): batch.validate_config(path)
+
+
+def test_explicit_shadow_control_config_and_actual_reset_must_agree(tmp_path):
+    value = config()
+    value[batch.RED + '.py->AlgorithmConfig']['iql_shadow'] = True
+    path = tmp_path / 'shadow.json'
+    batch.write_json(path, value)
+    batch.validate_config(path)
+    reset = dict(training=True, policies=[dict(mode='hybrid_iql', shadow=True,
+        model_sha256='a'*64, policy_baseline='6cb5a79'), {'class': 'TeamAlg.BlueModel.Agent'}])
+    batch.validate_resets([reset], 'a'*64, '6cb5a79', True)
+    with pytest.raises(ValueError, match='model differs'):
+        batch.validate_resets([reset], 'a'*64, '6cb5a79', False)
+    with pytest.raises(ValueError, match='boolean'):
+        batch.validate_resets([reset], 'a'*64, '6cb5a79', 1)
+
+
+def test_shadow_manifest_binds_true_and_rejects_applied_iql_runtime(prepared):
+    _, previous = prepared
+    repo, cssim = Path(previous['repo']), Path(previous['cssim_root'])
+    cfg = Path(previous['config_path'])
+    value = config()
+    value[batch.RED + '.py->AlgorithmConfig']['iql_shadow'] = True
+    batch.write_json(cfg, value)
+    manifest = batch.prepare(repo, cssim, cfg, 'shadow-control')
+    assert manifest['iql_shadow'] is True
+    add_run(manifest, 1)  # This fixture actually loads shadow=False.
+    with pytest.raises(ValueError, match='model differs'):
+        batch.status(Path(manifest['manifest']))
 
 
 def test_one_terminal_game_and_crash_are_partial_not_success(prepared):

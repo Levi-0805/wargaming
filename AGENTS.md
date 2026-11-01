@@ -20,3 +20,4 @@ The user requires all CSSIM algorithm and Python framework changes to be version
 
 - Historical tactic reproductions must explicitly bind the baseline selector and snapshot hashes in configuration/actual reset provenance; preserve current runtime and reporting fixes and distinguish composite restoration from a single-factor causal test.
 - If a platform has separate server processes, borrow additional services only by explicitly recorded PID, creation identity and matching executable; preserve them and never treat them as owned cleanup targets.
+- A rule-action control may explicitly publish IQL shadow mode with the same baseline and model. Bind the shadow boolean in the batch manifest and actual reset; verify shadow actions equal the selected baseline's rule actions before release. Never report shadow proposals as applied RL actions.

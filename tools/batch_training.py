@@ -136,8 +136,8 @@ def validate_config(path, episodes=10, pythoncode_root=None):
         if global_cfg.get('AlgorithmConfig_' + side, '').replace('.py->', '->') != module + '->AlgorithmConfig':
             raise ValueError(f'Unexpected {side} configuration pointer')
     overrides = [v for k, v in raw.items() if k.replace('.py->', '->') == RED + '->AlgorithmConfig']
-    if len(overrides) != 1 or overrides[0].get('mode') != 'hybrid_iql' or overrides[0].get('iql_shadow') is not False:
-        raise ValueError('Red must actually enable hybrid_iql, shadow=false')
+    if len(overrides) != 1 or overrides[0].get('mode') != 'hybrid_iql' or type(overrides[0].get('iql_shadow')) is not bool:
+        raise ValueError('Red must enable hybrid_iql with an explicit boolean shadow setting')
     configured_model = overrides[0].get('iql_model', '').replace('\\', '/')
     if configured_model != 'Models/target_iql_v1.json':
         if (pythoncode_root is None or not Path(configured_model).is_absolute()
@@ -204,6 +204,7 @@ def prepare(repo, cssim, config, batch_id, episodes=10, *, episode_budget=None):
     policy = next(v for k, v in raw.items() if k.replace('.py->', '->') == RED + '->AlgorithmConfig')
     manifest = dict(version=1, batch_id=batch_id, created_at=now(), repo=str(repo), cssim_root=str(cssim),
                     policy_baseline=policy.get('policy_baseline', 'current'),
+                    iql_shadow=policy['iql_shadow'],
                     source_commit=commit, remote_verification=remote_verification,
                     expected_episodes=budget, platform_episodes=episodes, config_path=str(config),
                     config_sha256=sha(config), runtime_config=raw, model_sha256=sha(repo / 'PythonCode' / MODEL),
@@ -266,7 +267,9 @@ def first_game_config(path):
     return None
 
 
-def validate_resets(resets, model_hash, expected_baseline='current'):
+def validate_resets(resets, model_hash, expected_baseline='current', expected_shadow=False):
+    if type(expected_shadow) is not bool:
+        raise ValueError('Manifest shadow setting must be boolean')
     for row in resets:
         policies = row.get('policies')
         if row.get('training') is not True or not isinstance(policies, list) or len(policies) != 2:
@@ -274,7 +277,7 @@ def validate_resets(resets, model_hash, expected_baseline='current'):
         red, blue = policies
         if not isinstance(red, dict) or not isinstance(blue, dict):
             raise ValueError('Malformed reset policy metadata')
-        if red.get('mode') != 'hybrid_iql' or red.get('shadow') is not False or red.get('model_sha256') != model_hash:
+        if red.get('mode') != 'hybrid_iql' or red.get('shadow') is not expected_shadow or red.get('model_sha256') != model_hash:
             raise ValueError('Actually loaded red model differs from batch manifest')
         if red.get('policy_baseline', 'current') != expected_baseline:
             raise ValueError('Actually loaded tactical baseline differs from batch manifest')
@@ -357,7 +360,7 @@ def _status_locked(manifest_path):
         raise ValueError(f'UE overrode batch settings: {progress["ue_game_config"]!r}, require 10;1')
     simulation = protocol.with_name('simulation.jsonl')
     sim = incremental_simulation(simulation, progress.setdefault('simulation', {})) if simulation.exists() else {}
-    validate_resets(sim.get('resets', []), manifest['model_sha256'], manifest.get('policy_baseline', 'current'))
+    validate_resets(sim.get('resets', []), manifest['model_sha256'], manifest.get('policy_baseline', 'current'), manifest.get('iql_shadow', False))
     expected = list(range(1, manifest['expected_episodes'] + 1))
     dones = sim.get('done', [])
     resets = [r['episode'] for r in sim.get('resets', [])]
