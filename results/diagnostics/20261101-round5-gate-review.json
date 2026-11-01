@@ -1,0 +1,234 @@
+{
+  "round": 5,
+  "source": "6533313bbddc021defc018acf16b5e0df85efb87",
+  "model": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "profile": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+  "metrics": {
+    "count": 10,
+    "mean": 3128,
+    "median": 3025.0,
+    "minimum": 1240,
+    "maximum": 4650,
+    "stddev": 1259.6412187603262,
+    "bottom_20_mean": 1265,
+    "under_5000": 10,
+    "under_4000": 6,
+    "energy": 5054.410304690082,
+    "stability_target_met_in_sample": false
+  },
+  "exit_codes": [
+    1,
+    1,
+    0
+  ],
+  "scores": [
+    {
+      "ordinal": 1,
+      "batch_id": "learning-1101-014143-r0005-0001",
+      "episode": 1,
+      "red": {
+        "kill_score": 1780,
+        "capture_score": 2400,
+        "total": 4180
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 2,
+      "batch_id": "learning-1101-014143-r0005-0001",
+      "episode": 2,
+      "red": {
+        "kill_score": 1540,
+        "capture_score": 1600,
+        "total": 3140
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 3,
+      "batch_id": "learning-1101-014143-r0005-0001",
+      "episode": 3,
+      "red": {
+        "kill_score": 1290,
+        "capture_score": 0,
+        "total": 1290
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 4,
+      "batch_id": "learning-1101-014143-r0005-0001",
+      "episode": 4,
+      "red": {
+        "kill_score": 2220,
+        "capture_score": 2400,
+        "total": 4620
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 5,
+      "batch_id": "learning-1101-014143-r0005-0002",
+      "episode": 1,
+      "red": {
+        "kill_score": 1240,
+        "capture_score": 0,
+        "total": 1240
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 6,
+      "batch_id": "learning-1101-014143-r0005-0002",
+      "episode": 2,
+      "red": {
+        "kill_score": 2110,
+        "capture_score": 800,
+        "total": 2910
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 7,
+      "batch_id": "learning-1101-014143-r0005-0003",
+      "episode": 1,
+      "red": {
+        "kill_score": 2110,
+        "capture_score": 2400,
+        "total": 4510
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 8,
+      "batch_id": "learning-1101-014143-r0005-0003",
+      "episode": 2,
+      "red": {
+        "kill_score": 2660,
+        "capture_score": 0,
+        "total": 2660
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 9,
+      "batch_id": "learning-1101-014143-r0005-0003",
+      "episode": 3,
+      "red": {
+        "kill_score": 2080,
+        "capture_score": 0,
+        "total": 2080
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    },
+    {
+      "ordinal": 10,
+      "batch_id": "learning-1101-014143-r0005-0003",
+      "episode": 4,
+      "red": {
+        "kill_score": 2250,
+        "capture_score": 2400,
+        "total": 4650
+      },
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87"
+    }
+  ],
+  "candidate_reviewed_not_deployed": {
+    "sha": "849dd3b2e61654aa6cac6d03920d98defb5885406fc9451d5b6a144a0a27f3f0",
+    "model_sha_verified": true,
+    "report_sha_verified": true,
+    "split": {
+      "train": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "validation": 21,
+      "test": 22
+    },
+    "roles": "Sources0-20 gradient include first4 games of round5; source21 round5 attempt2 two games validation; source22 attempt3 four games test. Do not claim all ten round5 games were held out.",
+    "metrics": {
+      "train": {
+        "multiple_target_samples": 5459,
+        "behavior_nll": 0.40005121128007504,
+        "recorded_choice_agreement": 0.906942663491482
+      },
+      "validation": {
+        "multiple_target_samples": 76,
+        "behavior_nll": 0.4320236005281147,
+        "recorded_choice_agreement": 0.881578947368421
+      },
+      "test": {
+        "multiple_target_samples": 199,
+        "behavior_nll": 0.35610563191936245,
+        "recorded_choice_agreement": 0.914572864321608
+      }
+    }
+  },
+  "rejected_sa": {
+    "kind": "hq_a",
+    "field": "b_join_wait",
+    "before": 18,
+    "after": 16,
+    "window": 0,
+    "day": 1,
+    "temperature": 300.0,
+    "starts_on": "2026-10-31",
+    "ends_on": "2026-11-02",
+    "status": "unvalidated_proposal",
+    "required": "Publish and collect a new ten-game version before evaluating scores."
+  },
+  "experiment": {
+    "scope": "HQ_garrison_qualification_and_tied_progress_retention",
+    "changes": [
+      "Controllable soldier reserve required for residual HQ departure; dogs retain provisional entry/fire roles.",
+      "Tied full progress retains eligible previous guards."
+    ],
+    "unchanged": [
+      "IQL weights3e36",
+      "neutral profilesbccb",
+      "HQ ingress and objective scoring",
+      "B join and vehicle/foot spacing",
+      "clear-HQ release and explicit remnant fallback"
+    ],
+    "baseline_source": "6533313bbddc021defc018acf16b5e0df85efb87",
+    "route_baseline_sha": "c082c37c7ae3266ce1494484f0efe2d73bf37e0b52c50168d8062da406743dad",
+    "candidate_route_sha": "3e02bae896793b1d07744b4f0fc4f415315904c204a67e2b8549f1e8aed0a122",
+    "rollback": "Restore only AssaultRoute.py from6533313; retain reports/framework. Never mix rollback inside a running ten-game version.",
+    "limitations": "One garrison-policy experiment has two related branches; scores cannot identify branch-level causal effects. Unpaired defenders, no guaranteed5000."
+  },
+  "isolated_regressions": "Initial full suite828passed2failed; no deployment. Corrected dog provisional guard compatibility, focused33passed, full830passed.",
+  "frozen_safety": {
+    "invalid_vehicle_fire": 0,
+    "pre_hq_diversions": 0,
+    "changed_air_commands": 0
+  },
+  "frozen_objective_changes": 90,
+  "changed_commands": 2887,
+  "live_evidence": "results/diagnostics/20261101-round5-hq-control-evidence.json",
+  "limits": "Replay and offline agreement are not new scores; four soldiers cannot guarantee winning against unobserved defenders.",
+  "frozen_limitation": "90 objective timing differences with final reserve qualification; frozen observations cannot propagate alternate guard positions or certify live benefit.",
+  "verification_notes": [
+    "Initial828pass2fail: dog provisional entry regression corrected before deployment.",
+    "Then full830pass in26.45s.",
+    "Publisher repeat stalled in fake-UE grpc lifecycle before handshake, CPU19.4375 unchanged; own testPID13552 identified by parent22368/path/basetemp and stopped. Publish failed before commit/push/deploy. Retry unchanged candidate with full required checks; do not bypass."
+  ]
+}

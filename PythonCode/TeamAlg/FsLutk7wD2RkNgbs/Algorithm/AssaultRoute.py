@@ -377,6 +377,12 @@ class AssaultRoute:
             self.inside_garrison(obj, unit.position) for unit in guards)
         if self.is_hq(obj):
             ready = ready and self.count(obj, friendly_field) >= self.garrison_needed(state, obj)
+            if self.enemy_count(state, obj) > 0 and not self._remnant.active:
+                # Dogs may still fight and complete entry as provisional guards,
+                # but cannot satisfy the soldier reserve needed for departure.
+                ready = ready and sum(u.entity_type == 'BP_BaseSoldier_C' and u.hp > 0
+                                      and u.communication_ok() is not False for u in guards
+                                      ) >= self.garrison_needed(state, obj)
         # A remaining rooftop occupant must not pin a numerically dominant
         # column forever after HQ is fully captured. Keep the existing actual
         # garrison (enemy count + margin), require a sustained held full bar,
@@ -435,13 +441,35 @@ class AssaultRoute:
                     and not (uid == self.hq_uid and len(self._remnant.capturers(state)) > 2)):
                 continue
             obj = state.key_object_by_uid(uid)
-            if obj is None or not obj.valid or self.adaptive and not self.owned(state, obj):
+            if obj is None or not obj.valid:
+                continue
+            if self.adaptive and not self.owned(state, obj):
+                # A tied full bar must not turn surviving assigned guards into
+                # the mobile column. Preserve only existing local defenders;
+                # this does not establish ownership or permit a new departure.
+                friendly, enemy = (("redTeamNum", "blueteamNum") if state.team == 0
+                                   else ("blueteamNum", "redTeamNum"))
+                if (obj.team is None and self.count(obj, 'percent') >= 1.0
+                        and self.count(obj, friendly) > 0
+                        and self.count(obj, friendly) == self.count(obj, enemy)):
+                    self._garrison.update({unit.uid: uid for unit in state.agents
+                        if previous.get(unit.uid) == uid and unit.alive
+                        and unit.entity_type in {"BP_BaseSoldier_C", "BP_RoboDog_C"}
+                        and unit.communication_ok() is not False
+                        and self.distance(unit.position, obj.position) <= 22000})
                 continue
             nearby = [unit for unit in state.agents if unit.alive
                       and unit.entity_type in {"BP_BaseSoldier_C", "BP_RoboDog_C"}
                       and unit.communication_ok() is not False
                       and unit.uid not in self._garrison
                       and self.distance(unit.position, obj.position) <= 22000]
+            # A known residual HQ defender requires a controllable soldier
+            # reserve. Dogs remain useful support, but may lose their control
+            # link as commanders depart and must not fill this basic reserve.
+            if self.is_hq(obj) and self.enemy_count(state, obj) > 0 and not self._remnant.active:
+                soldiers = [unit for unit in nearby if unit.entity_type == 'BP_BaseSoldier_C']
+                if len(soldiers) >= self.garrison_needed(state, obj):
+                    nearby = soldiers
             needed = self.garrison_needed(state, obj)
             nearby.sort(key=lambda unit: (
                 not self.inside_garrison(obj, unit.position),

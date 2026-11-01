@@ -75,3 +75,21 @@ With Codex closed the independent worker still collects, trains and writes the
 current round, then waits at review. There is no supported automatic attachment
 upload here, no promise of an immediate app-start trigger, and no offline AI code
 review. Reopen Codex for the next scheduled check, or manually send the report.
+
+The reviewed HQ garrison experiment keeps the current IQL weights and defence
+profiles fixed. With a known residual HQ occupant, controllable soldiers fill the
+existing basic reserve required for departure; dependent dogs can still fight as provisional guards but do not replace that soldier reserve. A tied full
+bar preserves eligible previous guards without asserting ownership or unlocking
+a new departure. Clear-point and explicit remnant fallback rules are unchanged.
+The experiment includes two related guard branches; a ten-game return cannot
+identify their separate causal effects. Log guard control links, HQ reversals,
+terminal capture Rewards and repeated return journeys alongside destruction score.
+
+`tools/diagnostics/audit_completed_failure_types.py` audits the archived first four
+round reports and verifies their complete protocol hashes and selected episodes.
+`tools/diagnostics/audit_hq_guard_contract.py` compares explicitly supplied old and
+new route files against frozen public states. Pass `--baseline-route`, `--source`,
+`--episode`, `--model` and `--out`; the canonical route is the default candidate.
+The old route can be exported from the recorded baseline Git commit. Runtime
+protocols and model checkpoints must exist locally. These diagnostics do not
+control units or generate new match outcomes.

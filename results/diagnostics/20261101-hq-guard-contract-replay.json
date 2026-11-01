@@ -1,0 +1,564 @@
+{
+  "baseline_commit": "6533313bbddc021defc018acf16b5e0df85efb87",
+  "candidate_sha": "3e02bae896793b1d07744b4f0fc4f415315904c204a67e2b8549f1e8aed0a122",
+  "baseline_sha": "c082c37c7ae3266ce1494484f0efe2d73bf37e0b52c50168d8062da406743dad",
+  "model_sha": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "diagnostic_script_sha": "5409c6dfde83b82d15102f9a748aeab4882c3dc2574840af0aaadeaf0a004971",
+  "source": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-20261031-162920-r0002-0001\\logs\\20261031_205034\\protocol.jsonl",
+  "source_protocol_sha": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+  "episode": 1,
+  "cases": [
+    {
+      "case": "tie_preserves_only_existing_guards",
+      "variant": false,
+      "guards": 0
+    },
+    {
+      "case": "tie_preserves_only_existing_guards",
+      "variant": true,
+      "guards": 4
+    },
+    {
+      "case": "below_full",
+      "guards": 0
+    },
+    {
+      "case": "explicit_enemy_owner",
+      "guards": 0
+    },
+    {
+      "case": "no_previous",
+      "guards": 0
+    },
+    {
+      "case": "dead_guard",
+      "guards": 3
+    }
+  ],
+  "safety": {
+    "invalid_vehicle_fire": 0,
+    "pre_hq_diversions": 0,
+    "changed_air_commands": 0
+  },
+  "objective_changes": 90,
+  "changed_frames": 334,
+  "changed_commands": 2887,
+  "timeline": [
+    {
+      "step": 213,
+      "bar": 1,
+      "red": 3,
+      "blue": 2,
+      "guards": [
+        {
+          "361": 32769,
+          "131": 32769,
+          "151": 32769
+        },
+        {
+          "361": 32769,
+          "131": 32769,
+          "151": 32769
+        }
+      ],
+      "changed": [
+        {
+          "uid": 151,
+          "baseline": "ActionSet2::Moving;;Points=[-44137.4296875, 28365.890625, 6429.44482421875];151",
+          "candidate": "ActionSet2::Moving;;Points=[-41810.421875, 37155.1796875, 6425.494140625];151"
+        },
+        {
+          "uid": 131,
+          "baseline": "ActionSet2::Moving;;Points=[-41052.0, 30988.0, 6391.0];131",
+          "candidate": "ActionSet2::Moving;;Points=[-47650.421875, 32275.1796875, 6425.494140625];131"
+        },
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];361",
+          "candidate": "ActionSet2::Moving;;Points=[-41810.421875, 27395.1796875, 6391.22802734375];361"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-43345.53919540525, 25050.366471529807, 6339.078125];496",
+          "candidate": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];496"
+        }
+      ]
+    },
+    {
+      "step": 214,
+      "bar": 1,
+      "red": 3,
+      "blue": 2,
+      "guards": [
+        {
+          "361": 32769,
+          "151": 32769,
+          "131": 32769
+        },
+        {
+          "361": 32769,
+          "151": 32769,
+          "131": 32769
+        }
+      ],
+      "changed": [
+        {
+          "uid": 151,
+          "baseline": "ActionSet2::Moving;;Points=[-44137.4296875, 28365.890625, 6429.44482421875];151",
+          "candidate": "ActionSet2::Moving;;Points=[-41810.421875, 37155.1796875, 6425.494140625];151"
+        },
+        {
+          "uid": 131,
+          "baseline": "ActionSet2::Moving;;Points=[-41052.0, 30988.0, 6391.0];131",
+          "candidate": "ActionSet2::Moving;;Points=[-44265.87890625, 26398.529296875, 6425.494140625];131"
+        },
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-40462.28125, 30952.51953125, 6429.42822265625];361",
+          "candidate": "ActionSet2::Moving;;Points=[-41810.421875, 27395.1796875, 6391.22802734375];361"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Moving;-Y;496"
+        }
+      ]
+    },
+    {
+      "step": 215,
+      "bar": 1,
+      "red": 3,
+      "blue": 2,
+      "guards": [
+        {
+          "361": 32769,
+          "151": 32769,
+          "131": 32769
+        },
+        {
+          "361": 32769,
+          "151": 32769,
+          "131": 32769
+        }
+      ],
+      "changed": [
+        {
+          "uid": 131,
+          "baseline": "ActionSet2::Moving;;Points=[-41052.0, 30988.0, 6391.0];131",
+          "candidate": "ActionSet2::Moving;;Points=[-47650.421875, 32275.1796875, 6425.494140625];131"
+        },
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-40462.28125, 30952.51953125, 6429.42822265625];361",
+          "candidate": "ActionSet2::Moving;;Points=[-41810.421875, 27395.1796875, 6391.22802734375];361"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Moving;-Y;496"
+        }
+      ]
+    },
+    {
+      "step": 216,
+      "bar": 1,
+      "red": 2,
+      "blue": 2,
+      "guards": [
+        {},
+        {
+          "131": 32769
+        }
+      ],
+      "changed": [
+        {
+          "uid": 131,
+          "baseline": "ActionSet2::Moving;;Points=[-41052.0, 30988.0, 6391.0];131",
+          "candidate": "ActionSet2::Moving;;Points=[-47650.421875, 32275.1796875, 6425.494140625];131"
+        }
+      ]
+    },
+    {
+      "step": 217,
+      "bar": 1,
+      "red": 2,
+      "blue": 2,
+      "guards": [
+        {},
+        {
+          "131": 32769
+        }
+      ],
+      "changed": [
+        {
+          "uid": 131,
+          "baseline": "ActionSet2::Moving;;Points=[-41052.0, 30988.0, 6391.0];131",
+          "candidate": "ActionSet2::Moving;;Points=[-44265.87890625, 26398.529296875, 6425.494140625];131"
+        },
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Guard;-X+Y;361",
+          "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];361"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];496"
+        }
+      ]
+    },
+    {
+      "step": 218,
+      "bar": 1,
+      "red": 2,
+      "blue": 2,
+      "guards": [
+        {},
+        {}
+      ],
+      "changed": [
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-40462.28125, 30952.51953125, 6429.42822265625];361",
+          "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];361"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];496"
+        }
+      ]
+    },
+    {
+      "step": 219,
+      "bar": 0.9,
+      "red": 1,
+      "blue": 2,
+      "guards": [
+        {},
+        {}
+      ],
+      "changed": [
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-40462.28125, 30952.51953125, 6429.42822265625];361",
+          "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];361"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];496"
+        }
+      ]
+    },
+    {
+      "step": 220,
+      "bar": 0.8,
+      "red": 1,
+      "blue": 2,
+      "guards": [
+        {},
+        {}
+      ],
+      "changed": [
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-40462.28125, 30952.51953125, 6429.42822265625];361",
+          "candidate": "ActionSet2::Moving;+X-Y;361"
+        },
+        {
+          "uid": 491,
+          "baseline": "ActionSet2::Guard;;Points=[65670.29453253778, 29641.357120156754, 5624.14404296875];491",
+          "candidate": "ActionSet2::Guard;;Points=[65185.0, 36303.0, 6082.0];491"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6335.0];496"
+        }
+      ]
+    },
+    {
+      "step": 221,
+      "bar": 0.7,
+      "red": 1,
+      "blue": 2,
+      "guards": [
+        {},
+        {}
+      ],
+      "changed": [
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-40462.28125, 30952.51953125, 6429.42822265625];361",
+          "candidate": "ActionSet2::Moving;+X-Y;361"
+        },
+        {
+          "uid": 491,
+          "baseline": "ActionSet2::Guard;;Points=[65670.29453253778, 29641.357120156754, 5624.14404296875];491",
+          "candidate": "ActionSet2::Guard;;Points=[65185.0, 36303.0, 6082.0];491"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6335.0];496"
+        }
+      ]
+    },
+    {
+      "step": 222,
+      "bar": 0.6,
+      "red": 1,
+      "blue": 2,
+      "guards": [
+        {},
+        {}
+      ],
+      "changed": [
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-40462.28125, 30952.51953125, 6429.42822265625];361",
+          "candidate": "ActionSet2::Moving;+X-Y;361"
+        },
+        {
+          "uid": 491,
+          "baseline": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+          "candidate": "ActionSet2::Guard;;Points=[65185.0, 36303.0, 6082.0];491"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6335.0];496"
+        }
+      ]
+    },
+    {
+      "step": 223,
+      "bar": 0.45,
+      "red": 1,
+      "blue": 2,
+      "guards": [
+        {},
+        {}
+      ],
+      "changed": [
+        {
+          "uid": 361,
+          "baseline": "ActionSet2::Moving;;Points=[-40462.28125, 30952.51953125, 6429.42822265625];361",
+          "candidate": "ActionSet2::Moving;+X-Y;361"
+        },
+        {
+          "uid": 491,
+          "baseline": "ActionSet2::Guard;;Points=[59734.0, 36261.0, 5646.0];491",
+          "candidate": "ActionSet2::Guard;;Points=[65185.0, 36303.0, 6082.0];491"
+        },
+        {
+          "uid": 496,
+          "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6429.0];496",
+          "candidate": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6335.0];496"
+        }
+      ]
+    }
+  ],
+  "first_changed_frame": {
+    "step": 130,
+    "changes": [
+      {
+        "uid": 461,
+        "baseline": "ActionSet2::Guard;;Points=[-44228.0, 28395.0, 6335.0];461",
+        "candidate": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];461"
+      },
+      {
+        "uid": 96,
+        "baseline": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];96",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];96"
+      },
+      {
+        "uid": 141,
+        "baseline": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];141",
+        "candidate": "ActionSet2::Moving;;Points=[-43276.55078125, 30651.009765625, 6429.42578125];141"
+      },
+      {
+        "uid": 146,
+        "baseline": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];146",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];146"
+      },
+      {
+        "uid": 151,
+        "baseline": "ActionSet2::Moving;;Points=[-41156.0, 30883.0, 6429.0];151",
+        "candidate": "ActionSet2::Moving;;Points=[-44399.28125, 28212.4296875, 6429.2587890625];151"
+      },
+      {
+        "uid": 156,
+        "baseline": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];156",
+        "candidate": "ActionSet2::Moving;;Points=[-44399.28125, 28212.4296875, 6429.2587890625];156"
+      },
+      {
+        "uid": 161,
+        "baseline": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];161",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];161"
+      },
+      {
+        "uid": 171,
+        "baseline": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];171",
+        "candidate": "ActionSet2::Moving;;Points=[-43276.55078125, 30651.009765625, 6429.42578125];171"
+      },
+      {
+        "uid": 176,
+        "baseline": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];176",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];176"
+      },
+      {
+        "uid": 181,
+        "baseline": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];181",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];181"
+      },
+      {
+        "uid": 101,
+        "baseline": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];101",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];101"
+      },
+      {
+        "uid": 186,
+        "baseline": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];186",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];186"
+      },
+      {
+        "uid": 191,
+        "baseline": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];191",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];191"
+      },
+      {
+        "uid": 196,
+        "baseline": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];196",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];196"
+      },
+      {
+        "uid": 201,
+        "baseline": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];201",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];201"
+      },
+      {
+        "uid": 206,
+        "baseline": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];206",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];206"
+      },
+      {
+        "uid": 211,
+        "baseline": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];211",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];211"
+      },
+      {
+        "uid": 106,
+        "baseline": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];106",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];106"
+      },
+      {
+        "uid": 111,
+        "baseline": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];111",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];111"
+      },
+      {
+        "uid": 116,
+        "baseline": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];116",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];116"
+      },
+      {
+        "uid": 121,
+        "baseline": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];121",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];121"
+      },
+      {
+        "uid": 126,
+        "baseline": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];126",
+        "candidate": "ActionSet2::Moving;;Points=[-36231.66015625, 28692.560546875, 6387.494140625];126"
+      },
+      {
+        "uid": 131,
+        "baseline": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];131",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];131"
+      },
+      {
+        "uid": 346,
+        "baseline": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];346",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];346"
+      },
+      {
+        "uid": 351,
+        "baseline": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];351",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];351"
+      },
+      {
+        "uid": 396,
+        "baseline": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];396",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];396"
+      },
+      {
+        "uid": 401,
+        "baseline": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];401",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];401"
+      },
+      {
+        "uid": 406,
+        "baseline": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];406",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];406"
+      },
+      {
+        "uid": 356,
+        "baseline": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];356",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];356"
+      },
+      {
+        "uid": 361,
+        "baseline": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];361",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];361"
+      },
+      {
+        "uid": 366,
+        "baseline": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];366",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];366"
+      },
+      {
+        "uid": 371,
+        "baseline": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];371",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];371"
+      },
+      {
+        "uid": 376,
+        "baseline": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];376",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];376"
+      },
+      {
+        "uid": 381,
+        "baseline": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];381",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];381"
+      },
+      {
+        "uid": 386,
+        "baseline": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];386",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];386"
+      },
+      {
+        "uid": 391,
+        "baseline": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];391",
+        "candidate": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];391"
+      },
+      {
+        "uid": 481,
+        "baseline": "ActionSet2::Moving;-Y;481",
+        "candidate": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];481"
+      },
+      {
+        "uid": 486,
+        "baseline": "ActionSet2::Guard;;Points=[-45008.0, 27567.0, 6335.0];486",
+        "candidate": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];486"
+      },
+      {
+        "uid": 496,
+        "baseline": "ActionSet2::Guard;;Points=[-48196.30192695513, 26262.843655730285, 6339.078125];496",
+        "candidate": "ActionSet2::Guard;;Points=[-37782.0, 24389.0, 6408.0];496"
+      }
+    ]
+  },
+  "limits": "Final candidate preserves dog provisional entry/fire roles and requires soldier reserve before leaving residual HQ.90 objective differences under frozen baseline trajectories are expected departure-timing differences, not live gains or proof of deadlock.830 full tests passed; live trial must measure terminal HQ and return cost."
+}

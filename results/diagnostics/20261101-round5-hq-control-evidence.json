@@ -1,0 +1,2380 @@
+{
+  "source": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\learning-1101-014143-r0005-0003\\logs\\20261101_123912\\protocol.jsonl",
+  "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87",
+  "episode": 4,
+  "snapshot_limit": 250394083,
+  "prefix_sha": "ceab9ff29ab30d31d272f8e850085cd30d5741030ae7a696407ebd948d448456",
+  "events": [
+    {
+      "step": 125,
+      "stage": 0,
+      "bar": 1,
+      "red": 29,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1711,
+        1911,
+        1931,
+        1936
+      ],
+      "local": [
+        {
+          "uid": 2001,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36090.0, 28203.0, 6425.0];2001"
+        },
+        {
+          "uid": 1951,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1951"
+        },
+        {
+          "uid": 1946,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1946"
+        },
+        {
+          "uid": 1936,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1936"
+        },
+        {
+          "uid": 1931,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1931"
+        },
+        {
+          "uid": 1926,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1926"
+        },
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1921"
+        },
+        {
+          "uid": 1916,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1916"
+        },
+        {
+          "uid": 1911,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1911"
+        },
+        {
+          "uid": 1996,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1996"
+        },
+        {
+          "uid": 1906,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1906"
+        },
+        {
+          "uid": 1896,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1896"
+        },
+        {
+          "uid": 1891,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1891"
+        },
+        {
+          "uid": 1881,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1881"
+        },
+        {
+          "uid": 1991,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];1991"
+        },
+        {
+          "uid": 1986,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1986"
+        },
+        {
+          "uid": 1981,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];1981"
+        },
+        {
+          "uid": 1976,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1976"
+        },
+        {
+          "uid": 1966,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1966"
+        },
+        {
+          "uid": 1961,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1961"
+        },
+        {
+          "uid": 1741,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36235.0, 30632.0, 6425.0];1741"
+        },
+        {
+          "uid": 1736,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-34879.0, 30436.0, 6425.0];1736"
+        },
+        {
+          "uid": 1691,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1691"
+        },
+        {
+          "uid": 1686,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1686"
+        },
+        {
+          "uid": 1676,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": false,
+          "guard": false,
+          "request": "ActionSet2::Idle;N/A;1676"
+        },
+        {
+          "uid": 1731,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-34879.0, 30436.0, 6425.0];1731"
+        },
+        {
+          "uid": 1726,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1726"
+        },
+        {
+          "uid": 1721,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1721"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1716"
+        },
+        {
+          "uid": 1711,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1711"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1706"
+        },
+        {
+          "uid": 1701,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1701"
+        }
+      ]
+    },
+    {
+      "step": 126,
+      "stage": 0,
+      "bar": 1,
+      "red": 32,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1911,
+        1916,
+        1926,
+        1936
+      ],
+      "local": [
+        {
+          "uid": 2001,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];2001"
+        },
+        {
+          "uid": 1951,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1951"
+        },
+        {
+          "uid": 1946,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1946"
+        },
+        {
+          "uid": 1936,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1936"
+        },
+        {
+          "uid": 1931,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1931"
+        },
+        {
+          "uid": 1926,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1926"
+        },
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1921"
+        },
+        {
+          "uid": 1916,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1916"
+        },
+        {
+          "uid": 1911,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1911"
+        },
+        {
+          "uid": 1996,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1996"
+        },
+        {
+          "uid": 1906,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1906"
+        },
+        {
+          "uid": 1896,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1896"
+        },
+        {
+          "uid": 1891,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1891"
+        },
+        {
+          "uid": 1881,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1881"
+        },
+        {
+          "uid": 1991,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];1991"
+        },
+        {
+          "uid": 1986,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1986"
+        },
+        {
+          "uid": 1981,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];1981"
+        },
+        {
+          "uid": 1976,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1976"
+        },
+        {
+          "uid": 1966,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1966"
+        },
+        {
+          "uid": 1961,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1961"
+        },
+        {
+          "uid": 1741,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36090.0, 28203.0, 6425.0];1741"
+        },
+        {
+          "uid": 1736,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36235.0, 30632.0, 6425.0];1736"
+        },
+        {
+          "uid": 1691,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1691"
+        },
+        {
+          "uid": 1686,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1686"
+        },
+        {
+          "uid": 1676,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1676"
+        },
+        {
+          "uid": 1731,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36235.0, 30632.0, 6425.0];1731"
+        },
+        {
+          "uid": 1726,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1726"
+        },
+        {
+          "uid": 1721,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1721"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1716"
+        },
+        {
+          "uid": 1711,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1711"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1706"
+        },
+        {
+          "uid": 1701,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1701"
+        }
+      ]
+    },
+    {
+      "step": 127,
+      "stage": 0,
+      "bar": 1,
+      "red": 32,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1716,
+        1726,
+        1916,
+        1926
+      ],
+      "local": [
+        {
+          "uid": 2001,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];2001"
+        },
+        {
+          "uid": 1951,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1951"
+        },
+        {
+          "uid": 1946,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1946"
+        },
+        {
+          "uid": 1936,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1936"
+        },
+        {
+          "uid": 1931,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1931"
+        },
+        {
+          "uid": 1926,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1926"
+        },
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1921"
+        },
+        {
+          "uid": 1916,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1916"
+        },
+        {
+          "uid": 1911,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1911"
+        },
+        {
+          "uid": 1996,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1996"
+        },
+        {
+          "uid": 1906,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1906"
+        },
+        {
+          "uid": 1896,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1896"
+        },
+        {
+          "uid": 1891,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1891"
+        },
+        {
+          "uid": 1881,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1881"
+        },
+        {
+          "uid": 1991,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1991"
+        },
+        {
+          "uid": 1986,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1986"
+        },
+        {
+          "uid": 1981,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1981"
+        },
+        {
+          "uid": 1976,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1976"
+        },
+        {
+          "uid": 1966,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1966"
+        },
+        {
+          "uid": 1961,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1961"
+        },
+        {
+          "uid": 1741,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36090.0, 28203.0, 6425.0];1741"
+        },
+        {
+          "uid": 1736,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36090.0, 28203.0, 6425.0];1736"
+        },
+        {
+          "uid": 1691,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1691"
+        },
+        {
+          "uid": 1686,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1686"
+        },
+        {
+          "uid": 1676,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1676"
+        },
+        {
+          "uid": 1731,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36090.0, 28203.0, 6425.0];1731"
+        },
+        {
+          "uid": 1726,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1726"
+        },
+        {
+          "uid": 1721,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1721"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];1716"
+        },
+        {
+          "uid": 1711,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1711"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1706"
+        },
+        {
+          "uid": 1701,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1701"
+        }
+      ]
+    },
+    {
+      "step": 128,
+      "stage": 0,
+      "bar": 1,
+      "red": 32,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1706,
+        1716,
+        1726,
+        1946
+      ],
+      "local": [
+        {
+          "uid": 2001,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];2001"
+        },
+        {
+          "uid": 1951,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1951"
+        },
+        {
+          "uid": 1946,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];1946"
+        },
+        {
+          "uid": 1936,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1936"
+        },
+        {
+          "uid": 1931,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1931"
+        },
+        {
+          "uid": 1926,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1926"
+        },
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];1921"
+        },
+        {
+          "uid": 1916,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1916"
+        },
+        {
+          "uid": 1911,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1911"
+        },
+        {
+          "uid": 1996,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1996"
+        },
+        {
+          "uid": 1906,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1906"
+        },
+        {
+          "uid": 1896,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1896"
+        },
+        {
+          "uid": 1891,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1891"
+        },
+        {
+          "uid": 1881,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1881"
+        },
+        {
+          "uid": 1991,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1991"
+        },
+        {
+          "uid": 1986,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1986"
+        },
+        {
+          "uid": 1981,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1981"
+        },
+        {
+          "uid": 1976,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1976"
+        },
+        {
+          "uid": 1966,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1966"
+        },
+        {
+          "uid": 1961,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1961"
+        },
+        {
+          "uid": 1741,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];1741"
+        },
+        {
+          "uid": 1736,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36090.0, 28203.0, 6425.0];1736"
+        },
+        {
+          "uid": 1691,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1691"
+        },
+        {
+          "uid": 1686,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1686"
+        },
+        {
+          "uid": 1676,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1676"
+        },
+        {
+          "uid": 1731,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36090.0, 28203.0, 6425.0];1731"
+        },
+        {
+          "uid": 1726,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1726"
+        },
+        {
+          "uid": 1721,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1721"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];1716"
+        },
+        {
+          "uid": 1711,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1711"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];1706"
+        },
+        {
+          "uid": 1701,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1701"
+        }
+      ]
+    },
+    {
+      "step": 129,
+      "stage": 0,
+      "bar": 1,
+      "red": 32,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1706,
+        1716,
+        1921,
+        1946
+      ],
+      "local": [
+        {
+          "uid": 2001,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];2001"
+        },
+        {
+          "uid": 1951,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];1951"
+        },
+        {
+          "uid": 1946,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];1946"
+        },
+        {
+          "uid": 1936,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1936"
+        },
+        {
+          "uid": 1931,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];1931"
+        },
+        {
+          "uid": 1926,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1926"
+        },
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];1921"
+        },
+        {
+          "uid": 1916,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1916"
+        },
+        {
+          "uid": 1911,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1911"
+        },
+        {
+          "uid": 1996,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1996"
+        },
+        {
+          "uid": 1906,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1906"
+        },
+        {
+          "uid": 1896,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1896"
+        },
+        {
+          "uid": 1891,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1891"
+        },
+        {
+          "uid": 1881,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1881"
+        },
+        {
+          "uid": 1991,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1991"
+        },
+        {
+          "uid": 1986,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1986"
+        },
+        {
+          "uid": 1981,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-40082.0, 26221.0, 6425.0];1981"
+        },
+        {
+          "uid": 1976,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1976"
+        },
+        {
+          "uid": 1966,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1966"
+        },
+        {
+          "uid": 1961,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1961"
+        },
+        {
+          "uid": 1741,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];1741"
+        },
+        {
+          "uid": 1736,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];1736"
+        },
+        {
+          "uid": 1691,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1691"
+        },
+        {
+          "uid": 1686,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1686"
+        },
+        {
+          "uid": 1676,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43531.0, 26968.0, 6425.0];1676"
+        },
+        {
+          "uid": 1731,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-36852.0, 26177.0, 6425.0];1731"
+        },
+        {
+          "uid": 1726,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];1726"
+        },
+        {
+          "uid": 1721,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44228.0, 28395.0, 6429.0];1721"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];1716"
+        },
+        {
+          "uid": 1711,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-43891.0, 29266.0, 6429.0];1711"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43066.0, 30654.0, 6429.0];1706"
+        },
+        {
+          "uid": 1701,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-44927.0, 26068.0, 6429.0];1701"
+        }
+      ]
+    },
+    {
+      "step": 131,
+      "stage": 1,
+      "bar": 1,
+      "red": 32,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1706,
+        1716,
+        1921,
+        1946
+      ],
+      "local": [
+        {
+          "uid": 2001,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];2001"
+        },
+        {
+          "uid": 1951,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1951"
+        },
+        {
+          "uid": 1946,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43924.6484375, 28966.880859375, 6391.42822265625];1946"
+        },
+        {
+          "uid": 1936,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1936"
+        },
+        {
+          "uid": 1931,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1931"
+        },
+        {
+          "uid": 1926,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1926"
+        },
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-42371.140625, 30765.560546875, 6391.42822265625];1921"
+        },
+        {
+          "uid": 1916,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1916"
+        },
+        {
+          "uid": 1911,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1911"
+        },
+        {
+          "uid": 1996,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1996"
+        },
+        {
+          "uid": 1906,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1906"
+        },
+        {
+          "uid": 1896,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1896"
+        },
+        {
+          "uid": 1891,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1891"
+        },
+        {
+          "uid": 1881,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1881"
+        },
+        {
+          "uid": 1991,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1991"
+        },
+        {
+          "uid": 1986,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1986"
+        },
+        {
+          "uid": 1981,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1981"
+        },
+        {
+          "uid": 1976,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1976"
+        },
+        {
+          "uid": 1966,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1966"
+        },
+        {
+          "uid": 1961,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1961"
+        },
+        {
+          "uid": 1741,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1741"
+        },
+        {
+          "uid": 1736,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1736"
+        },
+        {
+          "uid": 1691,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1691"
+        },
+        {
+          "uid": 1686,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1686"
+        },
+        {
+          "uid": 1676,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1676"
+        },
+        {
+          "uid": 1731,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1731"
+        },
+        {
+          "uid": 1726,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1726"
+        },
+        {
+          "uid": 1721,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1721"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43872.7890625, 30005.490234375, 6391.42822265625];1716"
+        },
+        {
+          "uid": 1711,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1711"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::NormalAttacking;1566;1706"
+        },
+        {
+          "uid": 1701,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1701"
+        }
+      ]
+    },
+    {
+      "step": 133,
+      "stage": 1,
+      "bar": 1,
+      "red": 30,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1706,
+        1716,
+        1921,
+        1946
+      ],
+      "local": [
+        {
+          "uid": 2001,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];2001"
+        },
+        {
+          "uid": 1951,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1951"
+        },
+        {
+          "uid": 1946,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43924.6484375, 28966.880859375, 6391.42822265625];1946"
+        },
+        {
+          "uid": 1936,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1936"
+        },
+        {
+          "uid": 1931,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1931"
+        },
+        {
+          "uid": 1926,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1926"
+        },
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Guard;+X+Y;1921"
+        },
+        {
+          "uid": 1916,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1916"
+        },
+        {
+          "uid": 1911,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1911"
+        },
+        {
+          "uid": 1996,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1996"
+        },
+        {
+          "uid": 1906,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1906"
+        },
+        {
+          "uid": 1896,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1896"
+        },
+        {
+          "uid": 1891,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1891"
+        },
+        {
+          "uid": 1881,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1881"
+        },
+        {
+          "uid": 1991,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1991"
+        },
+        {
+          "uid": 1986,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1986"
+        },
+        {
+          "uid": 1981,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1981"
+        },
+        {
+          "uid": 1976,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1976"
+        },
+        {
+          "uid": 1966,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1966"
+        },
+        {
+          "uid": 1961,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1961"
+        },
+        {
+          "uid": 1741,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];1741"
+        },
+        {
+          "uid": 1736,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];1736"
+        },
+        {
+          "uid": 1691,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1691"
+        },
+        {
+          "uid": 1686,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1686"
+        },
+        {
+          "uid": 1676,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1676"
+        },
+        {
+          "uid": 1731,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];1731"
+        },
+        {
+          "uid": 1726,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1726"
+        },
+        {
+          "uid": 1721,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1721"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43872.7890625, 30005.490234375, 6391.42822265625];1716"
+        },
+        {
+          "uid": 1711,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1711"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43717.19921875, 28657.779296875, 6429.22509765625];1706"
+        },
+        {
+          "uid": 1701,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1701"
+        }
+      ]
+    },
+    {
+      "step": 134,
+      "stage": 1,
+      "bar": 1,
+      "red": 26,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1706,
+        1716,
+        1921,
+        1946
+      ],
+      "local": [
+        {
+          "uid": 2001,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];2001"
+        },
+        {
+          "uid": 1951,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1951"
+        },
+        {
+          "uid": 1946,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Guard;+X+Y;1946"
+        },
+        {
+          "uid": 1936,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1936"
+        },
+        {
+          "uid": 1931,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1931"
+        },
+        {
+          "uid": 1926,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1926"
+        },
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-42371.140625, 30765.560546875, 6391.42822265625];1921"
+        },
+        {
+          "uid": 1916,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1916"
+        },
+        {
+          "uid": 1911,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1911"
+        },
+        {
+          "uid": 1996,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1996"
+        },
+        {
+          "uid": 1906,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1906"
+        },
+        {
+          "uid": 1896,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1896"
+        },
+        {
+          "uid": 1891,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1891"
+        },
+        {
+          "uid": 1881,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1881"
+        },
+        {
+          "uid": 1991,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];1991"
+        },
+        {
+          "uid": 1986,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1986"
+        },
+        {
+          "uid": 1981,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];1981"
+        },
+        {
+          "uid": 1976,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1976"
+        },
+        {
+          "uid": 1966,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1966"
+        },
+        {
+          "uid": 1961,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1961"
+        },
+        {
+          "uid": 1741,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": false,
+          "guard": false,
+          "request": "ActionSet2::Idle;N/A;1741"
+        },
+        {
+          "uid": 1736,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];1736"
+        },
+        {
+          "uid": 1691,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1691"
+        },
+        {
+          "uid": 1686,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1686"
+        },
+        {
+          "uid": 1676,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1676"
+        },
+        {
+          "uid": 1731,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-46037.0, 15885.0, 6425.0];1731"
+        },
+        {
+          "uid": 1726,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1726"
+        },
+        {
+          "uid": 1721,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1721"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Guard;+X+Y;1716"
+        },
+        {
+          "uid": 1711,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1711"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-43717.19921875, 28657.779296875, 6429.22509765625];1706"
+        },
+        {
+          "uid": 1701,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1701"
+        }
+      ]
+    },
+    {
+      "step": 192,
+      "stage": 1,
+      "bar": 1,
+      "red": 3,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1921
+      ],
+      "local": [
+        {
+          "uid": 1921,
+          "type": "BP_BaseSoldier_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-35970.421875, 37155.1796875, 6429.22802734375];1921"
+        },
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": false,
+          "guard": false,
+          "request": "ActionSet2::Idle;N/A;1716"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": false,
+          "guard": false,
+          "request": "ActionSet2::Idle;N/A;1706"
+        }
+      ]
+    },
+    {
+      "step": 204,
+      "stage": 2,
+      "bar": 1,
+      "red": 2,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1706
+      ],
+      "local": [
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": false,
+          "guard": false,
+          "request": "ActionSet2::Idle;N/A;1716"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-35970.421875, 37155.1796875, 6387.494140625];1706"
+        }
+      ]
+    },
+    {
+      "step": 205,
+      "stage": 2,
+      "bar": 1,
+      "red": 2,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1706,
+        1716
+      ],
+      "local": [
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-35970.421875, 37155.1796875, 6391.22802734375];1716"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-35970.421875, 37155.1796875, 6387.494140625];1706"
+        }
+      ]
+    },
+    {
+      "step": 208,
+      "stage": 2,
+      "bar": 1,
+      "red": 2,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1716
+      ],
+      "local": [
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-35970.421875, 37155.1796875, 6391.22802734375];1716"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": false,
+          "guard": false,
+          "request": "ActionSet2::Idle;N/A;1706"
+        }
+      ]
+    },
+    {
+      "step": 209,
+      "stage": 2,
+      "bar": 1,
+      "red": 2,
+      "blue": 1,
+      "needed": 4,
+      "guards": [
+        1706,
+        1716
+      ],
+      "local": [
+        {
+          "uid": 1716,
+          "type": "BP_RoboDog_C",
+          "hp": 62.9253,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-35970.421875, 37155.1796875, 6391.22802734375];1716"
+        },
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": true,
+          "request": "ActionSet2::Moving;;Points=[-35970.421875, 37155.1796875, 6387.494140625];1706"
+        }
+      ]
+    },
+    {
+      "step": 214,
+      "stage": 2,
+      "bar": 1,
+      "red": 1,
+      "blue": 1,
+      "needed": 4,
+      "guards": [],
+      "local": [
+        {
+          "uid": 1706,
+          "type": "BP_RoboDog_C",
+          "hp": 100.0,
+          "link": true,
+          "guard": false,
+          "request": "ActionSet2::Moving;;Points=[-37782.0, 24389.0, 6408.0];1706"
+        }
+      ]
+    },
+    {
+      "step": 215,
+      "stage": 2,
+      "bar": 0.9,
+      "red": 0,
+      "blue": 1,
+      "needed": 4,
+      "guards": [],
+      "local": []
+    },
+    {
+      "step": 216,
+      "stage": 1,
+      "bar": 0.8,
+      "red": 0,
+      "blue": 1,
+      "needed": 4,
+      "guards": [],
+      "local": []
+    }
+  ],
+  "limits": "Read-only bounded public-state replay with current unchanged source/model; not new outcomes. Runtime may now be later. Screenshot time is not assumed aligned. Actual response should be cross-checked at N+1."
+}

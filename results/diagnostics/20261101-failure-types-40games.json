@@ -1,0 +1,2260 @@
+{
+  "scope": "First four completed rounds40 valid games",
+  "limits": [
+    "Only confirmed selections; no running game is read.",
+    "Bar=1 is observed full red progress, not proof of secure ownership or cleared enemies.",
+    "Reversal is progress reversal, not necessarily final loss.",
+    "Loss-window thresholds and dwell are diagnostic flags, not established algorithm defects.",
+    "No counterfactual returns or paired defender control."
+  ],
+  "script_sha256": "004f491f6dd6135a1b95193838980387cfdecdcb0251f1b52bb28498f9c3e26e",
+  "rounds": [
+    {
+      "round": 1,
+      "report": "results/batches/recover-20261031-round1-last1-cumulative.json",
+      "counts": {
+        "HQ_full_bar_then_progress_reversed": 5,
+        "rapid_capturer_loss_observed": 10,
+        "HQ_bar_retained_secondary_capture_incomplete": 5,
+        "secondary_point_long_occupied_but_incomplete": 1
+      },
+      "games": [
+        {
+          "ordinal": 1,
+          "episode": 1,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1190,
+            "capture_score": 0,
+            "total": 1190
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 257,
+              "first_full": 262,
+              "full_count": 9,
+              "first_reversal": 271,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 8
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 109,
+              "first_full": 115,
+              "full_count": 160,
+              "first_reversal": 275,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 2
+              },
+              "tied_full_positive": 4
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 8
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 2,
+          "episode": 2,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1830,
+            "capture_score": 0,
+            "total": 1830
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 182,
+              "first_full": 190,
+              "full_count": 16,
+              "first_reversal": 206,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 3
+              },
+              "tied_full_positive": 1
+            },
+            "指挥所": {
+              "first_red_entry": 110,
+              "first_full": 112,
+              "full_count": 339,
+              "first_reversal": 451,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 1
+              },
+              "tied_full_positive": 13
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 7
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 3,
+          "episode": 3,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1410,
+            "capture_score": 1600,
+            "total": 3010
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 246,
+              "first_full": 250,
+              "full_count": 10,
+              "first_reversal": 260,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 5
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 110,
+              "first_full": 115,
+              "full_count": 385,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 3,
+                "blue": 2
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 4,
+          "episode": 4,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1370,
+            "capture_score": 0,
+            "total": 1370
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 199,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 14
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 114,
+              "full_count": 117,
+              "first_reversal": 231,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 2
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 5,
+          "episode": 5,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1280,
+            "capture_score": 1600,
+            "total": 2880
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 408,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 6
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 160,
+              "first_full": 173,
+              "full_count": 327,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 4,
+                "blue": 2
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 6,
+          "episode": 6,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1120,
+            "capture_score": 1600,
+            "total": 2720
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed",
+            "secondary_point_long_occupied_but_incomplete"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 174,
+              "first_full": 178,
+              "full_count": 10,
+              "first_reversal": 188,
+              "last": {
+                "bar": 0,
+                "red": 1,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 116,
+              "first_full": 118,
+              "full_count": 382,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 10
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": [
+            {
+              "point": "军事基地B",
+              "consecutive_frames": 312
+            }
+          ]
+        },
+        {
+          "ordinal": 7,
+          "episode": 7,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1320,
+            "capture_score": 1600,
+            "total": 2920
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 238,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 14
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 109,
+              "first_full": 115,
+              "full_count": 385,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 5,
+                "blue": 2
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 8,
+          "episode": 8,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2070,
+            "capture_score": 0,
+            "total": 2070
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 215,
+              "first_full": 227,
+              "full_count": 11,
+              "first_reversal": 238,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 117,
+              "full_count": 175,
+              "first_reversal": 292,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 1
+              },
+              "tied_full_positive": 6
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 6
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 9,
+          "episode": 9,
+          "protocol_sha256": "4d0677d0f73e02fa1c1bfcaa7738bf4cc7a3310d414c25c33f2dffc170143bd8",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2350,
+            "capture_score": 2400,
+            "total": 4750
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 178,
+              "first_full": 181,
+              "full_count": 319,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 120,
+              "first_full": 122,
+              "full_count": 378,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 237,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 5
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 10,
+          "episode": 1,
+          "protocol_sha256": "18901d5d74776858446b2556b6745f52882af8250f33911e8be7036e63beee88",
+          "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1610,
+            "capture_score": 2400,
+            "total": 4010
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 222,
+              "first_full": 227,
+              "full_count": 273,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 2,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 118,
+              "first_full": 121,
+              "full_count": 279,
+              "first_reversal": 284,
+              "last": {
+                "bar": 1,
+                "red": 4,
+                "blue": 0
+              },
+              "tied_full_positive": 4
+            },
+            "军事基地A": {
+              "first_red_entry": 280,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 1,
+                "blue": 14
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "report": "results/batches/learning-20261031-162920-r0002-cumulative.json",
+      "counts": {
+        "HQ_full_bar_then_progress_reversed": 6,
+        "rapid_capturer_loss_observed": 10,
+        "HQ_bar_retained_secondary_capture_incomplete": 4
+      },
+      "games": [
+        {
+          "ordinal": 1,
+          "episode": 1,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1350,
+            "capture_score": 0,
+            "total": 1350
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 178,
+              "first_full": 185,
+              "full_count": 13,
+              "first_reversal": 198,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 12
+              },
+              "tied_full_positive": 1
+            },
+            "指挥所": {
+              "first_red_entry": 109,
+              "first_full": 112,
+              "full_count": 107,
+              "first_reversal": 219,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 2
+              },
+              "tied_full_positive": 3
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 2,
+          "episode": 2,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1810,
+            "capture_score": 2400,
+            "total": 4210
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 181,
+              "first_full": 186,
+              "full_count": 224,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 2
+            },
+            "指挥所": {
+              "first_red_entry": 110,
+              "first_full": 115,
+              "full_count": 205,
+              "first_reversal": 241,
+              "last": {
+                "bar": 0.9,
+                "red": 0,
+                "blue": 1
+              },
+              "tied_full_positive": 17
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 3,
+          "episode": 3,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2590,
+            "capture_score": 1600,
+            "total": 4190
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 136,
+              "full_count": 364,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 5,
+                "blue": 2
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 4,
+          "episode": 4,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1410,
+            "capture_score": 2400,
+            "total": 3810
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 215,
+              "first_full": 223,
+              "full_count": 5,
+              "first_reversal": 228,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 16
+              },
+              "tied_full_positive": 1
+            },
+            "指挥所": {
+              "first_red_entry": 111,
+              "first_full": 137,
+              "full_count": 363,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 3,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 308,
+              "first_full": 316,
+              "full_count": 184,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 5,
+          "episode": 5,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1790,
+            "capture_score": 2400,
+            "total": 4190
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 227,
+              "first_full": 229,
+              "full_count": 271,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 115,
+              "first_full": 119,
+              "full_count": 381,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 284,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 12
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 6,
+          "episode": 6,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1580,
+            "capture_score": 0,
+            "total": 1580
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 206,
+              "first_full": 217,
+              "full_count": 22,
+              "first_reversal": 239,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 7
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 110,
+              "first_full": 114,
+              "full_count": 138,
+              "first_reversal": 252,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 1
+              },
+              "tied_full_positive": 9
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 3
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 7,
+          "episode": 7,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1210,
+            "capture_score": 1600,
+            "total": 2810
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 291,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 8
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 110,
+              "first_full": 114,
+              "full_count": 386,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 8,
+          "episode": 8,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1370,
+            "capture_score": 0,
+            "total": 1370
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 7
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 116,
+              "first_full": 131,
+              "full_count": 12,
+              "first_reversal": 143,
+              "last": {
+                "bar": 0,
+                "red": 3,
+                "blue": 7
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 9,
+          "episode": 9,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2040,
+            "capture_score": 2400,
+            "total": 4440
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 261,
+              "first_full": 264,
+              "full_count": 236,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 129,
+              "first_full": 160,
+              "full_count": 306,
+              "first_reversal": 406,
+              "last": {
+                "bar": 1,
+                "red": 3,
+                "blue": 1
+              },
+              "tied_full_positive": 8
+            },
+            "军事基地A": {
+              "first_red_entry": 320,
+              "first_full": 335,
+              "full_count": 2,
+              "first_reversal": 337,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 7
+              },
+              "tied_full_positive": 1
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 10,
+          "episode": 10,
+          "protocol_sha256": "b55d942e33d01f7e85acbd715c1e1de097a3da8ca51626bed7b2e85bc2de3fec",
+          "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1270,
+            "capture_score": 1600,
+            "total": 2870
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 201,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 8
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 118,
+              "first_full": 121,
+              "full_count": 315,
+              "first_reversal": 203,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 1
+              },
+              "tied_full_positive": 124
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 7
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "report": "results/batches/learning-1101-014143-r0003-cumulative.json",
+      "counts": {
+        "HQ_full_bar_then_progress_reversed": 6,
+        "rapid_capturer_loss_observed": 9,
+        "HQ_bar_retained_secondary_capture_incomplete": 2
+      },
+      "games": [
+        {
+          "ordinal": 1,
+          "episode": 1,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1430,
+            "capture_score": 0,
+            "total": 1430
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 198,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 13
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 115,
+              "first_full": 117,
+              "full_count": 114,
+              "first_reversal": 231,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 2
+              },
+              "tied_full_positive": 2
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 2,
+          "episode": 2,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1780,
+            "capture_score": 2400,
+            "total": 4180
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 170,
+              "first_full": 174,
+              "full_count": 326,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 109,
+              "first_full": 112,
+              "full_count": 388,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 230,
+              "first_full": 240,
+              "full_count": 14,
+              "first_reversal": 254,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 9
+              },
+              "tied_full_positive": 4
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 3,
+          "episode": 3,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2580,
+            "capture_score": 800,
+            "total": 3380
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 180,
+              "first_full": 188,
+              "full_count": 289,
+              "first_reversal": 200,
+              "last": {
+                "bar": 1,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 110,
+              "first_full": 113,
+              "full_count": 142,
+              "first_reversal": 238,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 2
+              },
+              "tied_full_positive": 10
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 4,
+          "episode": 4,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1300,
+            "capture_score": 0,
+            "total": 1300
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 113,
+              "first_full": 116,
+              "full_count": 193,
+              "first_reversal": 309,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 2
+              },
+              "tied_full_positive": 5
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 15
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 5,
+          "episode": 5,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1830,
+            "capture_score": 1600,
+            "total": 3430
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 182,
+              "first_full": 186,
+              "full_count": 13,
+              "first_reversal": 199,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 4
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 115,
+              "full_count": 385,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 7
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 6,
+          "episode": 6,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2700,
+            "capture_score": 3200,
+            "total": 5900
+          },
+          "flags": [],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 210,
+              "first_full": 212,
+              "full_count": 288,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 2,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 113,
+              "full_count": 387,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 3,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 272,
+              "first_full": 274,
+              "full_count": 226,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 22,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 7,
+          "episode": 7,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2470,
+            "capture_score": 3200,
+            "total": 5670
+          },
+          "flags": [
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 205,
+              "first_full": 206,
+              "full_count": 294,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 2,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 118,
+              "first_full": 120,
+              "full_count": 380,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 3,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 261,
+              "first_full": 264,
+              "full_count": 236,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 16,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 8,
+          "episode": 8,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 1950,
+            "capture_score": 0,
+            "total": 1950
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 208,
+              "first_full": 223,
+              "full_count": 12,
+              "first_reversal": 235,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 8
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 111,
+              "first_full": 115,
+              "full_count": 130,
+              "first_reversal": 245,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 2
+              },
+              "tied_full_positive": 9
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 9,
+          "episode": 9,
+          "protocol_sha256": "7744c1be5a470adbf0eedb90209dd673dc17aeb56d8df664a6535042a5ee5769",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2060,
+            "capture_score": 2400,
+            "total": 4460
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 220,
+              "first_full": 228,
+              "full_count": 272,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 2,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 110,
+              "first_full": 120,
+              "full_count": 305,
+              "first_reversal": 266,
+              "last": {
+                "bar": 1,
+                "red": 3,
+                "blue": 0
+              },
+              "tied_full_positive": 7
+            },
+            "军事基地A": {
+              "first_red_entry": 464,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 1,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 10,
+          "episode": 1,
+          "protocol_sha256": "e646aa83b882650a627c17b6a3ec68d898edce00eb82a3bddbf2c8ba97fb1ec9",
+          "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+          "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+          "score": {
+            "kill_score": 2150,
+            "capture_score": 2400,
+            "total": 4550
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 211,
+              "first_full": 315,
+              "full_count": 185,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 3,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 111,
+              "first_full": 117,
+              "full_count": 370,
+              "first_reversal": 215,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 9
+            },
+            "军事基地A": {
+              "first_red_entry": 400,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 7
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "report": "results/batches/learning-1101-014143-r0004-cumulative.json",
+      "counts": {
+        "HQ_full_bar_then_progress_reversed": 6,
+        "rapid_capturer_loss_observed": 10,
+        "HQ_bar_retained_secondary_capture_incomplete": 4
+      },
+      "games": [
+        {
+          "ordinal": 1,
+          "episode": 1,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 1030,
+            "capture_score": 0,
+            "total": 1030
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 190,
+              "first_full": 197,
+              "full_count": 15,
+              "first_reversal": 212,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 7
+              },
+              "tied_full_positive": 2
+            },
+            "指挥所": {
+              "first_red_entry": 120,
+              "first_full": 122,
+              "full_count": 91,
+              "first_reversal": 213,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 3
+              },
+              "tied_full_positive": 1
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 2,
+          "episode": 2,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 1480,
+            "capture_score": 800,
+            "total": 2280
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 185,
+              "first_full": 186,
+              "full_count": 314,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 111,
+              "first_full": 113,
+              "full_count": 247,
+              "first_reversal": 206,
+              "last": {
+                "bar": 0,
+                "red": 1,
+                "blue": 1
+              },
+              "tied_full_positive": 11
+            },
+            "军事基地A": {
+              "first_red_entry": 392,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 11
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 3,
+          "episode": 3,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 2550,
+            "capture_score": 2400,
+            "total": 4950
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 229,
+              "first_full": 237,
+              "full_count": 231,
+              "first_reversal": 245,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 1
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 117,
+              "full_count": 383,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 339,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 2
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 4,
+          "episode": 4,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 1590,
+            "capture_score": 2400,
+            "total": 3990
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 220,
+              "first_full": 224,
+              "full_count": 276,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 116,
+              "first_full": 118,
+              "full_count": 382,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 282,
+              "first_full": 295,
+              "full_count": 11,
+              "first_reversal": 306,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 14
+              },
+              "tied_full_positive": 1
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 5,
+          "episode": 5,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 1460,
+            "capture_score": 0,
+            "total": 1460
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 220,
+              "first_full": 242,
+              "full_count": 5,
+              "first_reversal": 247,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 14
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 120,
+              "full_count": 136,
+              "first_reversal": 256,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 3
+              },
+              "tied_full_positive": 6
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 6,
+          "episode": 6,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 2170,
+            "capture_score": 0,
+            "total": 2170
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 120,
+              "full_count": 5,
+              "first_reversal": 125,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 6
+              },
+              "tied_full_positive": 1
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 7,
+          "episode": 7,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 2060,
+            "capture_score": 0,
+            "total": 2060
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 112,
+              "first_full": 116,
+              "full_count": 78,
+              "first_reversal": 194,
+              "last": {
+                "bar": 0,
+                "red": 1,
+                "blue": 6
+              },
+              "tied_full_positive": 4
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 8,
+          "episode": 8,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 1030,
+            "capture_score": 1600,
+            "total": 2630
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 181,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 115,
+              "first_full": 118,
+              "full_count": 382,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 1,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 9
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 9,
+          "episode": 9,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 1900,
+            "capture_score": 2400,
+            "total": 4300
+          },
+          "flags": [
+            "HQ_bar_retained_secondary_capture_incomplete",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 181,
+              "first_full": 186,
+              "full_count": 314,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 2,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 109,
+              "first_full": 114,
+              "full_count": 386,
+              "first_reversal": null,
+              "last": {
+                "bar": 1,
+                "red": 3,
+                "blue": 0
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": 257,
+              "first_full": 269,
+              "full_count": 26,
+              "first_reversal": 295,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 10
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        },
+        {
+          "ordinal": 10,
+          "episode": 10,
+          "protocol_sha256": "5de97cb6adf68fc23d19c46ca07e525f85186ce01c0fcd0041b06362fe2a9986",
+          "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+          "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+          "score": {
+            "kill_score": 1480,
+            "capture_score": 0,
+            "total": 1480
+          },
+          "flags": [
+            "HQ_full_bar_then_progress_reversed",
+            "rapid_capturer_loss_observed"
+          ],
+          "points": {
+            "军事基地B": {
+              "first_red_entry": 226,
+              "first_full": 235,
+              "full_count": 18,
+              "first_reversal": 253,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 6
+              },
+              "tied_full_positive": 0
+            },
+            "指挥所": {
+              "first_red_entry": 110,
+              "first_full": 114,
+              "full_count": 160,
+              "first_reversal": 274,
+              "last": {
+                "bar": 0,
+                "red": 1,
+                "blue": 2
+              },
+              "tied_full_positive": 0
+            },
+            "军事基地A": {
+              "first_red_entry": null,
+              "first_full": null,
+              "full_count": 0,
+              "first_reversal": null,
+              "last": {
+                "bar": 0,
+                "red": 0,
+                "blue": 6
+              },
+              "tied_full_positive": 0
+            }
+          },
+          "secondary_dwell": []
+        }
+      ]
+    }
+  ]
+}
