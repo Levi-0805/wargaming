@@ -1,0 +1,254 @@
+{
+  "round": 4,
+  "source": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+  "metrics": {
+    "count": 10,
+    "mean": 2635,
+    "median": 2225.0,
+    "minimum": 1030,
+    "maximum": 4950,
+    "stddev": 1262.1826333775948,
+    "bottom_20_mean": 1245,
+    "under_5000": 10,
+    "under_4000": 8,
+    "energy": 5558.045658344399,
+    "stability_target_met_in_sample": false
+  },
+  "actual_exit_codes": [
+    0
+  ],
+  "games": [
+    {
+      "ordinal": 1,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 1030,
+        "capture_score": 0,
+        "total": 1030
+      },
+      "blue": {
+        "kill_score": 3150,
+        "capture_score": 3200,
+        "total": 6350
+      },
+      "observed_defense": "hq_a_b"
+    },
+    {
+      "ordinal": 2,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 1480,
+        "capture_score": 800,
+        "total": 2280
+      },
+      "blue": {
+        "kill_score": 2850,
+        "capture_score": 2400,
+        "total": 5250
+      },
+      "observed_defense": "hq_a"
+    },
+    {
+      "ordinal": 3,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 2550,
+        "capture_score": 2400,
+        "total": 4950
+      },
+      "blue": {
+        "kill_score": 3040,
+        "capture_score": 800,
+        "total": 3840
+      },
+      "observed_defense": "hq_a_b"
+    },
+    {
+      "ordinal": 4,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 1590,
+        "capture_score": 2400,
+        "total": 3990
+      },
+      "blue": {
+        "kill_score": 2850,
+        "capture_score": 800,
+        "total": 3650
+      },
+      "observed_defense": "hq_a"
+    },
+    {
+      "ordinal": 5,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 1460,
+        "capture_score": 0,
+        "total": 1460
+      },
+      "blue": {
+        "kill_score": 3150,
+        "capture_score": 3200,
+        "total": 6350
+      },
+      "observed_defense": "hq_b"
+    },
+    {
+      "ordinal": 6,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 2170,
+        "capture_score": 0,
+        "total": 2170
+      },
+      "blue": {
+        "kill_score": 3150,
+        "capture_score": 3200,
+        "total": 6350
+      },
+      "observed_defense": "hq_only"
+    },
+    {
+      "ordinal": 7,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 2060,
+        "capture_score": 0,
+        "total": 2060
+      },
+      "blue": {
+        "kill_score": 3040,
+        "capture_score": 3200,
+        "total": 6240
+      },
+      "observed_defense": "hq_only"
+    },
+    {
+      "ordinal": 8,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 1030,
+        "capture_score": 1600,
+        "total": 2630
+      },
+      "blue": {
+        "kill_score": 3050,
+        "capture_score": 1600,
+        "total": 4650
+      },
+      "observed_defense": "hq_a_b"
+    },
+    {
+      "ordinal": 9,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 1900,
+        "capture_score": 2400,
+        "total": 4300
+      },
+      "blue": {
+        "kill_score": 2530,
+        "capture_score": 800,
+        "total": 3330
+      },
+      "observed_defense": "hq_a"
+    },
+    {
+      "ordinal": 10,
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "red": {
+        "kill_score": 1480,
+        "capture_score": 0,
+        "total": 1480
+      },
+      "blue": {
+        "kill_score": 3000,
+        "capture_score": 3200,
+        "total": 6200
+      },
+      "observed_defense": "hq_a_b"
+    }
+  ],
+  "candidate_sha": "0a01b2e21baed592aabbc55c7c6c68d284c4b7d54c055332825fee704249c6a0",
+  "candidate_hash_verified": true,
+  "training_report_hash_verified": true,
+  "split": {
+    "train": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "validation": 18,
+    "test": 19
+  },
+  "split_explanation": "Sources0-17 gradient: recovered round1 ten and round3 first9 now included. Source18 round3 recovered1 validation; source19 round4 ten test, never gradient. Historical unbound versions remain explicitly unbound.",
+  "offline_metrics": {
+    "train": {
+      "multiple_target_samples": 4847,
+      "behavior_nll": 0.4061942961330583,
+      "recorded_choice_agreement": 0.9079843201980606
+    },
+    "validation": {
+      "multiple_target_samples": 53,
+      "behavior_nll": 0.2810650591580373,
+      "recorded_choice_agreement": 0.9433962264150944
+    },
+    "test": {
+      "multiple_target_samples": 418,
+      "behavior_nll": 0.5672795053874476,
+      "recorded_choice_agreement": 0.8947368421052632
+    }
+  },
+  "candidate_decision": "Review and retain offline only; do not trial another new model after poor live result.",
+  "next": {
+    "scope": "ground_target_selection_weights",
+    "from": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+    "to": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "profiles_unchanged": true,
+    "reason": "Round4 mean2635 versus round3 3625, 10/10 below5000 and lower-tail1245 versus1365; SA rejected and tail guard failed. Unpaired comparison does not prove model causality."
+  },
+  "rejected_sa_change": {
+    "kind": "hq_a_b",
+    "field": "handoff_wait",
+    "before": 28,
+    "after": 24,
+    "window": 0,
+    "day": 1,
+    "temperature": 300.0,
+    "starts_on": "2026-10-31",
+    "ends_on": "2026-11-02",
+    "status": "unvalidated_proposal",
+    "required": "Publish and collect a new ten-game version before evaluating scores."
+  },
+  "annealing": {
+    "window": 0,
+    "day": 1,
+    "temperature": 300.0,
+    "starts_on": "2026-10-31",
+    "ends_on": "2026-11-02",
+    "accepted": false,
+    "delta": 1175.466740047088,
+    "probability": 0.019876394312316085,
+    "draw": 0.6816633921337762,
+    "tail_guard_passed": false,
+    "limitation": "Unpaired ten-game estimates; neither causality nor out-of-sample stability is established."
+  },
+  "hq_hypothesis": "Not established; defer to a separate future investigation/experiment, no tactical change in round5.",
+  "rollback_evidence": "logs/learning/round-0003/model.json sha3e36, profiles bccb; failed model preserved round-0004/model.json",
+  "limits": "Frozen/offline agreement is not live gain. Model rollback does not guarantee restored returns."
+}
