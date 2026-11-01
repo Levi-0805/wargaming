@@ -30,6 +30,7 @@
   "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RLAgentAlgorithm.py->AlgorithmConfig": {
     "mode": "hybrid_iql",
     "iql_model": "Models/target_iql_v1.json",
-    "iql_shadow": false
+    "iql_shadow": false,
+    "policy_baseline": "6cb5a79"
   }
 }

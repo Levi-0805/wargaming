@@ -201,7 +201,9 @@ def prepare(repo, cssim, config, batch_id, episodes=10, *, episode_budget=None):
     # Pass this path to main.py --log-root. Dedicated output prevents another
     # manually started match from being mistaken for this batch.
     log_root = batch / 'logs'
+    policy = next(v for k, v in raw.items() if k.replace('.py->', '->') == RED + '->AlgorithmConfig')
     manifest = dict(version=1, batch_id=batch_id, created_at=now(), repo=str(repo), cssim_root=str(cssim),
+                    policy_baseline=policy.get('policy_baseline', 'current'),
                     source_commit=commit, remote_verification=remote_verification,
                     expected_episodes=budget, platform_episodes=episodes, config_path=str(config),
                     config_sha256=sha(config), runtime_config=raw, model_sha256=sha(repo / 'PythonCode' / MODEL),
@@ -264,7 +266,7 @@ def first_game_config(path):
     return None
 
 
-def validate_resets(resets, model_hash):
+def validate_resets(resets, model_hash, expected_baseline='current'):
     for row in resets:
         policies = row.get('policies')
         if row.get('training') is not True or not isinstance(policies, list) or len(policies) != 2:
@@ -274,6 +276,8 @@ def validate_resets(resets, model_hash):
             raise ValueError('Malformed reset policy metadata')
         if red.get('mode') != 'hybrid_iql' or red.get('shadow') is not False or red.get('model_sha256') != model_hash:
             raise ValueError('Actually loaded red model differs from batch manifest')
+        if red.get('policy_baseline', 'current') != expected_baseline:
+            raise ValueError('Actually loaded tactical baseline differs from batch manifest')
         if not str(blue.get('class', '')).startswith('TeamAlg.BlueModel.'):
             raise ValueError('Actually loaded blue algorithm differs from batch manifest')
 
@@ -353,7 +357,7 @@ def _status_locked(manifest_path):
         raise ValueError(f'UE overrode batch settings: {progress["ue_game_config"]!r}, require 10;1')
     simulation = protocol.with_name('simulation.jsonl')
     sim = incremental_simulation(simulation, progress.setdefault('simulation', {})) if simulation.exists() else {}
-    validate_resets(sim.get('resets', []), manifest['model_sha256'])
+    validate_resets(sim.get('resets', []), manifest['model_sha256'], manifest.get('policy_baseline', 'current'))
     expected = list(range(1, manifest['expected_episodes'] + 1))
     dones = sim.get('done', [])
     resets = [r['episode'] for r in sim.get('resets', [])]

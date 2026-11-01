@@ -93,3 +93,13 @@ new route files against frozen public states. Pass `--baseline-route`, `--source
 The old route can be exported from the recorded baseline Git commit. Runtime
 protocols and model checkpoints must exist locally. These diagnostics do not
 control units or generate new match outcomes.
+
+Historical baseline reproduction selects `policy_baseline: "6cb5a79"` in the
+published policy template. Its exact Git-exported tactical files remain isolated
+under `Algorithm/Champion6cb5a79`; each file is checked against snapshot.json
+before policy instantiation. The current policy remains available as `current`.
+This restores the old tactic and original IQL settings without reverting the
+runtime, exit handling, result provenance or report pipeline. Effective configs
+and batch manifests bind the baseline selector; actual reset metadata must match.
+Defence profiles are not applied inside the historical tactic. Any score is a
+fresh reproduction attempt, not a guaranteed repeat of the historical 4496 mean.

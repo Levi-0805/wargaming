@@ -321,3 +321,12 @@ with StatusLock(Path(sys.argv[1])):
         if child is not None and child.poll() is None:
             child.kill()
             child.communicate()
+def test_actual_tactical_baseline_must_match_manifest():
+    import pytest
+    import batch_training as batches
+    reset = dict(training=True, policies=[dict(mode='hybrid_iql', shadow=False,
+        model_sha256='a'*64, policy_baseline='6cb5a79'), dict(__unused=0,
+        **{'class':'TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm.ReinforceAgentAlgorithm'})])
+    batches.validate_resets([reset], 'a'*64, '6cb5a79')
+    with pytest.raises(ValueError, match='baseline'):
+        batches.validate_resets([reset], 'a'*64, 'current')

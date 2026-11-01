@@ -40,6 +40,19 @@ def run(inputs):
     return prepare(source, output, template=template, pythoncode_root=root)
 
 
+@pytest.mark.parametrize('baseline', ['6cb5a79', 'unreviewed'])
+def test_tactical_baseline_is_preserved_or_rejected(inputs, baseline):
+    _, template, _, _, policy, output = inputs
+    template.write_text(json.dumps({POLICY_KEY: {**policy, 'policy_baseline': baseline}}), encoding='utf-8')
+    if baseline == 'unreviewed':
+        with pytest.raises(ValueError, match='baseline'):
+            run(inputs)
+        assert not output.exists()
+    else:
+        run(inputs)
+        assert json.loads(output.read_bytes())[POLICY_KEY]['policy_baseline'] == baseline
+
+
 def test_preparation_preserves_source_and_other_fields_and_records_exact_hashes(inputs):
     source, template, root, raw, policy, output = inputs
     old_bytes = source.read_bytes()

@@ -1,0 +1,29 @@
+{
+  "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+  "files": {
+    "AdaptiveAssault.py": "d439c0fd4a3c7bd76989d04acea2111b283fa7efc06f866575af70326afe54c7",
+    "ApproachCohesion.py": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+    "AssaultFormation.py": "be73f0d2ca07b18915f8445b1f4d3925a6a849ab2bba7e02f9d336e88a928e27",
+    "AssaultRoute.py": "c082c37c7ae3266ce1494484f0efe2d73bf37e0b52c50168d8062da406743dad",
+    "ColumnAdvance.py": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+    "CombatReadiness.py": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+    "CommandLinks.py": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+    "DQN.py": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+    "EntryWaves.py": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+    "FlightNavigation.py": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+    "HQEntry.py": "218cdefafc9311a66dd77ebb9ffcbb24a65c043ec548b8183671a5d38e8aebef",
+    "HQExit.py": "a1c98e2a36a7efb9357c442818f9abe67de106f11b62c107d6b6dd32288687e6",
+    "LearnedTargeting.py": "bc2e93c3eefa505abff2fc729e1b4225cd9029c19b706c84d60293f17ae1ff20",
+    "MotionRecovery.py": "522637052ff6b840c108e71ffc181c733c9360f1e70fbc3fb0f77a08c8af6c10",
+    "RLAgentAlgorithm.py": "7ca48c302bab7d93a2af7d38420d587386e85c219a05221cff9bc3d144467592",
+    "RearCover.py": "08386ed3c51d091fb9de7913be5a5b258788d6da193a75369d7114e2eb375136",
+    "RemnantCapture.py": "b90a0a87e34f9a9367af6aafd2b308fd905b518e82a1414693ca0424d07ff8c6",
+    "RuleAgentAlgorithm.py": "85103c8b72cd965564004a3f6e370191bb86375cb1447569842afc4b0f99eb7a",
+    "TargetFeatures.py": "1c243fcfa65fc2e7a4026f390543e21a3b16ec09aff5e51d2947db3cf97e23ff",
+    "UAVControl.py": "b180e3cc1cca0cf03de95c0cd99c8179a25e8c0662a58a204eb00f2baa6c1343",
+    "UrbanContact.py": "ff944a13a93a31f0f4d9bb71dde54b67be97b70a00cb94aebd7c7d929817bc14",
+    "VehicleFireControl.py": "4ae4baf09f7189da0854a2e588c2197960d8c9e75be8644d975575bc238b913c",
+    "__init__.py": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+  },
+  "scope": "Exact historical tactical Python files; current framework is retained."
+}

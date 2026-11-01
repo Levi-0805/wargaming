@@ -18,3 +18,4 @@ The user requires CSSIM Python changes to be made in the desktop Git repository 
 - Review bounded public-observation tactical search and offline IQL separately; retain champion/rollback evidence. Only real match returns evaluate the three-calendar-day search, and offline agreement/replay checks never establish score gains. Publish and deploy before releasing the next round.
 
 This guide is versioned at `C:\Users\aaa\Desktop\wargaming\tools\CSSIM-AGENTS.md`.
+- Historical tactic reproductions must explicitly bind the baseline selector and snapshot hashes in configuration/actual reset provenance; preserve current runtime and reporting fixes and distinguish composite restoration from a single-factor causal test.

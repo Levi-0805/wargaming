@@ -23,7 +23,7 @@ DEFAULT_TEMPLATE = ROOT / 'PythonCode/TaskConfig/cssim/iql_eval_red.jsonc'
 FLAGS = ('enable_parent_assignment', 'enable_preservation_pause',
          'enable_shared_contact_maneuver', 'enable_forced_entry_under_contact',
          'enable_continuous_column', 'enable_entry_waves')
-POLICY_FIELDS = ('mode', 'iql_model', 'iql_shadow', *FLAGS)
+POLICY_FIELDS = ('mode', 'iql_model', 'iql_shadow', 'policy_baseline', *FLAGS)
 
 
 def sha256(data):
@@ -110,6 +110,8 @@ def prepare(source, output, *, template=DEFAULT_TEMPLATE, cssim_root=Path('C:/CS
     unknown = set(policy) - set(POLICY_FIELDS)
     if unknown:
         raise ValueError(f'Unexpected policy fields in template: {sorted(unknown)}')
+    if policy.get('policy_baseline', 'current') not in ('current', '6cb5a79'):
+        raise ValueError('Unexpected tactical baseline')
     for flag in FLAGS:
         if flag in policy and type(policy[flag]) is not bool:
             raise ValueError(f'Template {flag} must be a JSON boolean')
