@@ -1,0 +1,293 @@
+{
+  "round_number": 7,
+  "campaign_id": "champion-1101-2028-r0007",
+  "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+  "games": [
+    {
+      "ordinal": 1,
+      "episode": 1,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2000,
+        "capture_score": 2400,
+        "total": 4400
+      },
+      "blue": {
+        "kill_score": 1940,
+        "capture_score": 800,
+        "total": 2740
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 2,
+      "episode": 2,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1500,
+        "capture_score": 2400,
+        "total": 3900
+      },
+      "blue": {
+        "kill_score": 2370,
+        "capture_score": 800,
+        "total": 3170
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 3,
+      "episode": 3,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1810,
+        "capture_score": 2400,
+        "total": 4210
+      },
+      "blue": {
+        "kill_score": 2870,
+        "capture_score": 800,
+        "total": 3670
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 4,
+      "episode": 4,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2300,
+        "capture_score": 2400,
+        "total": 4700
+      },
+      "blue": {
+        "kill_score": 3110,
+        "capture_score": 800,
+        "total": 3910
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 5,
+      "episode": 5,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2790,
+        "capture_score": 3200,
+        "total": 5990
+      },
+      "blue": {
+        "kill_score": 1650,
+        "capture_score": 0,
+        "total": 1650
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 6,
+      "episode": 6,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 980,
+        "capture_score": 1600,
+        "total": 2580
+      },
+      "blue": {
+        "kill_score": 3140,
+        "capture_score": 1600,
+        "total": 4740
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 7,
+      "episode": 7,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2800,
+        "capture_score": 3200,
+        "total": 6000
+      },
+      "blue": {
+        "kill_score": 2090,
+        "capture_score": 0,
+        "total": 2090
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 8,
+      "episode": 8,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1390,
+        "capture_score": 1600,
+        "total": 2990
+      },
+      "blue": {
+        "kill_score": 2950,
+        "capture_score": 1600,
+        "total": 4550
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 9,
+      "episode": 9,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2740,
+        "capture_score": 3200,
+        "total": 5940
+      },
+      "blue": {
+        "kill_score": 2470,
+        "capture_score": 0,
+        "total": 2470
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    },
+    {
+      "ordinal": 10,
+      "episode": 10,
+      "batch_id": "champion-1101-2028-r0007-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0007-0001\\logs\\20261101_203034\\protocol.jsonl",
+      "protocol_sha256": "e3da98f10440eac0eb00ed52569b8f2a35ec76667e82974a88948211f594d787",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2630,
+        "capture_score": 3200,
+        "total": 5830
+      },
+      "blue": {
+        "kill_score": 2840,
+        "capture_score": 0,
+        "total": 2840
+      },
+      "observed_defense": "unknown",
+      "defense_frames": {}
+    }
+  ],
+  "metrics": {
+    "count": 10,
+    "mean": 4654,
+    "median": 4550.0,
+    "minimum": 2580,
+    "maximum": 6000,
+    "stddev": 1205.6550086985912,
+    "bottom_20_mean": 2785,
+    "under_5000": 6,
+    "under_4000": 3,
+    "energy": 2354.913752174648,
+    "stability_target_met_in_sample": false
+  },
+  "defense_groups": {
+    "unknown": {
+      "count": 10,
+      "mean": 4654,
+      "median": 4550.0,
+      "minimum": 2580,
+      "maximum": 6000,
+      "stddev": 1205.6550086985912,
+      "bottom_20_mean": 2785,
+      "under_5000": 6,
+      "under_4000": 3,
+      "energy": 2354.913752174648,
+      "stability_target_met_in_sample": false
+    }
+  },
+  "capture_scores": {
+    "2400": 4,
+    "3200": 4,
+    "1600": 2
+  },
+  "actual_exit_codes": [
+    0
+  ],
+  "problems": [
+    "6/10局低于5000；不能用平均分代表稳定性。",
+    "6/10局终局占领分不足3200；需核查未占领和失守的时间线。",
+    "防守分型仅来自红方公开观察，不代表敌方隐藏初始部署；分组少样本不能证明措施因果。"
+  ],
+  "plan": [
+    "保留最佳版本；以实际十局均值、低分比例、尾部均值与方差评估退火候选。",
+    "每次只试验一类战术参数或一份IQL权重，冻结到累计十局；新模型先做接入回放。",
+    "IQL只学习地面目标选择；路线和队形仍由有界策略控制，不宣称端到端自训练。"
+  ],
+  "collection_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\champion-1101-2028-r0007-cumulative.json",
+  "candidate_review": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain-candidates\\champion-1101-2028-r0007-iql\\review.json",
+  "annealing": {
+    "window": 0,
+    "day": 2,
+    "temperature": 100.0,
+    "starts_on": "2026-10-31",
+    "ends_on": "2026-11-02",
+    "accepted": true,
+    "delta": -744.6744587035723,
+    "probability": 1.0,
+    "draw": 0.07467283484935627,
+    "tail_guard_passed": true,
+    "limitation": "Unpaired ten-game estimates; neither causality nor out-of-sample stability is established."
+  },
+  "proposed_change": {
+    "kind": "hq_b",
+    "field": "b_bias",
+    "before": 1.0,
+    "after": 0.95,
+    "window": 0,
+    "day": 2,
+    "temperature": 100.0,
+    "starts_on": "2026-10-31",
+    "ends_on": "2026-11-02",
+    "status": "unvalidated_proposal",
+    "required": "Publish and collect a new ten-game version before evaluating scores."
+  }
+}
