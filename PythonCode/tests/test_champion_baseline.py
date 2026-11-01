@@ -24,6 +24,7 @@ def test_historical_hybrid_resolves_model_from_original_team_root():
     assert meta['policy_baseline'] == '6cb5a79'
     assert meta['policy_source_commit'] == '6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694'
     assert meta['defense_profiles_applied'] is False
+    assert meta['defense_profile_sha256'] == 'bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73'
 
 def test_bridge_preserves_original_actions_across_frames():
     ctx = context()

@@ -24,9 +24,14 @@ def create_champion(context):
     original_metadata = policy.policy_metadata
 
     def metadata(self):
+        # This is the collected profile artifact, not an applied tactical input.
+        # Keep its audit hash for the existing collector; the explicit false
+        # flag and historical snapshot identify the policy that actually acts.
+        profile = Path(__file__).with_name('defense_profiles.json')
         return {**original_metadata(), 'policy_baseline': '6cb5a79',
                 'policy_source_commit': manifest['source_commit'],
                 'policy_snapshot_sha256': hashlib.sha256((folder / 'snapshot.json').read_bytes()).hexdigest(),
+                'defense_profile_sha256': hashlib.sha256(profile.read_bytes()).hexdigest(),
                 'defense_profiles_applied': False}
 
     policy.policy_metadata = MethodType(metadata, policy)
