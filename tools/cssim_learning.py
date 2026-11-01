@@ -55,7 +55,8 @@ def save(state, **updates):
 
 def settings(state, campaign):
     return Settings(campaign_id=campaign, repo=ROOT, recipe=ROOT/'tools/cssim_flow.json',
-                    cssim_root=Path(state['cssim_root']), server_pid=state.get('server_pid'), max_batches=1)
+                    cssim_root=Path(state['cssim_root']), server_pid=state.get('server_pid'), max_batches=1,
+                    additional_server_pids=tuple(state.get('additional_server_pids', [])))
 
 
 def pythonw(state):

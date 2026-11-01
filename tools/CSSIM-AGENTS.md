@@ -19,3 +19,4 @@ The user requires CSSIM Python changes to be made in the desktop Git repository 
 
 This guide is versioned at `C:\Users\aaa\Desktop\wargaming\tools\CSSIM-AGENTS.md`.
 - Historical tactic reproductions must explicitly bind the baseline selector and snapshot hashes in configuration/actual reset provenance; preserve current runtime and reporting fixes and distinguish composite restoration from a single-factor causal test.
+- If a platform has separate server processes, borrow additional services only by explicitly recorded PID, creation identity and matching executable; preserve them and never treat them as owned cleanup targets.

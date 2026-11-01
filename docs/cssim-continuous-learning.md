@@ -103,3 +103,5 @@ runtime, exit handling, result provenance or report pipeline. Effective configs
 and batch manifests bind the baseline selector; actual reset metadata must match.
 Defence profiles are not applied inside the historical tactic. Any score is a
 fresh reproduction attempt, not a guaranteed repeat of the historical 4496 mean.
+
+Separate already-running platform services can be explicitly recorded in learning state additional_server_pids. Their creation identities are rechecked throughout setup and they are borrowed, never cleanup-owned. Do not broadly allow processes merely by executable name.

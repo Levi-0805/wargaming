@@ -326,3 +326,24 @@ def test_source_change_during_ui_setup_prevents_manifest_and_runtime(tmp_path):
     with pytest.raises(CampaignBlocked, match='Source commit changed'):
         backend.bind(dict(source_commit='original-commit', directory=tmp_path))
     assert not (tmp_path / 'effective.jsonc').exists()
+
+@pytest.mark.parametrize('bad', [(1,), (-2,), (True,), (2,2)])
+def test_additional_borrowed_managers_reject_ambiguous_ids(tmp_path, bad):
+    with pytest.raises(ValueError, match='Additional borrowed'):
+        Settings(campaign_id='test', repo=tmp_path, recipe=tmp_path/'recipe.json',
+                 cssim_root=tmp_path, server_pid=1, additional_server_pids=bad)
+
+
+def test_two_explicit_service_managers_are_borrowed_without_ownership():
+    rows=[dict(pid=p, name='Server.exe', created_ticks=100+p, exe_path=r'C:\CSSIM\Server\Server\Server.exe')
+          for p in (1,2)]
+    assert module.borrowed_managers(rows, (1,2), r'C:\CSSIM\Server\Server\Server.exe') == rows
+    assert all('owned' not in r for r in rows)
+    rows[1]['exe_path']=r'C:\Other\Server.exe'
+    with pytest.raises(CampaignBlocked, match='different executable'):
+        module.borrowed_managers(rows, (1,2), r'C:\CSSIM\Server\Server\Server.exe')
+
+
+def test_missing_additional_service_is_not_silently_allowed():
+    with pytest.raises(CampaignBlocked, match='stable process identity'):
+        module.borrowed_managers([], (2,), r'C:\CSSIM\Server\Server\Server.exe')

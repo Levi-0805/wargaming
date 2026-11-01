@@ -19,3 +19,4 @@ The user requires all CSSIM algorithm and Python framework changes to be version
 - The three-calendar-day tactical search uses observed match returns and bounded public-observation profiles. Keep champion/rollback evidence, distinguish IQL held-out data from gradient training, and never equate replay checks or offline agreement with live score gains. A completed round requires review/publish/deploy before release of the next version.
 
 - Historical tactic reproductions must explicitly bind the baseline selector and snapshot hashes in configuration/actual reset provenance; preserve current runtime and reporting fixes and distinguish composite restoration from a single-factor causal test.
+- If a platform has separate server processes, borrow additional services only by explicitly recorded PID, creation identity and matching executable; preserve them and never treat them as owned cleanup targets.

@@ -35,6 +35,19 @@ class CampaignBlocked(RuntimeError):
     pass
 
 
+def borrowed_managers(rows, pids, expected_path):
+    """Accept only explicitly named, stable server identities; never own them."""
+    result = []
+    for pid in pids:
+        item = next((r for r in rows if r['pid'] == pid and r['name'].casefold() == 'server.exe'), None)
+        if item is None or item.get('created_ticks') is None:
+            raise CampaignBlocked('Explicit borrowed manager PID lacks a stable process identity')
+        if item.get('exe_path') and normalized(item['exe_path']) != normalized(expected_path):
+            raise CampaignBlocked('Borrowed manager has a different executable path')
+        result.append(item)
+    return result
+
+
 def normalized(path):
     return ntpath.normcase(str(path)).replace('/', '\\')
 
@@ -160,6 +173,7 @@ class Settings:
     repo: Path = ROOT
     cssim_root: Path = Path('C:/CSSIM')
     server_pid: int | None = None
+    additional_server_pids: tuple[int, ...] = ()
     gate_after_success: bool = False
     train_candidate: bool = False
     sources: list[Path] = field(default_factory=list)
@@ -179,6 +193,10 @@ class Settings:
             raise ValueError('Batch limit and retry delay cannot be negative')
         if self.server_pid is not None and self.server_pid <= 0:
             raise ValueError('Borrowed manager PID must be positive')
+        if self.additional_server_pids and (self.server_pid is None
+                or any(type(p) is not int or p <= 0 for p in self.additional_server_pids)
+                or len(set((self.server_pid, *self.additional_server_pids))) != 1 + len(self.additional_server_pids)):
+            raise ValueError('Additional borrowed managers require distinct positive PIDs and a primary manager')
         self.repo, self.cssim_root, self.recipe = (Path(p).resolve() for p in (self.repo, self.cssim_root, self.recipe))
 
 
@@ -356,7 +374,8 @@ class RealBackend:
                            dict(owned=[dict(role=p['role'], **(p['identity'] or {'pid': p['process'].pid}))
                                        for p in context['owned']], borrowed_manager=context.get('borrowed_manager'),
                                 observed_dedicated=context.get('observed_dedicated', []),
-                                observed_project_ides=self.known_ides))
+                                       observed_project_ides=self.known_ides,
+                                       borrowed_additional_managers=context.get('borrowed_additional_managers', [])))
 
     def refresh(self, context):
         rows = self.processes.snapshot()
@@ -368,6 +387,10 @@ class RealBackend:
             if current is None or not same_process(borrowed, current):
                 raise CampaignBlocked('Borrowed manager exited or its identity changed')
             owners.append(borrowed)
+        for borrowed in context.get('borrowed_additional_managers', []):
+            current = next((p for p in rows if p['pid'] == borrowed['pid']), None)
+            if current is None or not same_process(borrowed, current):
+                raise CampaignBlocked('Additional borrowed manager exited or its identity changed')
         allowed = [self.paths[k] for k in ('dedicated', 'python', 'pycharm', 'server_pycharm')]
         for item in descendant_candidates(rows, owners, allowed):
             if item['pid'] in context['baseline_pids']:
@@ -416,13 +439,10 @@ class RealBackend:
         blockers = [p for p in rows if p['name'].casefold() in
                     ('server.exe', 'cssimclient-win64-shipping.exe', 'cssimserver-win64-shipping.exe')]
         if self.s.server_pid:
-            manager = next((p for p in blockers if p['pid'] == self.s.server_pid and p['name'].casefold() == 'server.exe'), None)
-            if manager is None or manager.get('created_ticks') is None:
-                raise CampaignBlocked('Explicit borrowed manager PID lacks a stable process identity')
-            if manager.get('exe_path') and normalized(manager['exe_path']) != normalized(self.paths['manager']):
-                raise CampaignBlocked('Borrowed manager has a different executable path')
-            context['borrowed_manager'] = manager
-            blockers = [p for p in blockers if p['pid'] != self.s.server_pid]
+            managers = borrowed_managers(rows, (self.s.server_pid, *self.s.additional_server_pids), self.paths['manager'])
+            context['borrowed_manager'] = managers[0]
+            context['borrowed_additional_managers'] = managers[1:]
+            blockers = [p for p in blockers if p['pid'] not in {m['pid'] for m in managers}]
         if blockers:
             raise CampaignBlocked('Pre-existing CSSIM instance is not owned by this attempt; close it before starting')
         context['config_before'] = self.platform_config.stat().st_mtime_ns if self.platform_config.exists() else None
