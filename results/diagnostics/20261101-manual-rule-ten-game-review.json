@@ -1,0 +1,620 @@
+{
+  "classification": "independent_manual_pure_rule_ten_games",
+  "source_commit": null,
+  "matching_post_start_code_snapshot_commit": "fbffb156d4013647e2466e52be4bdff1d7b75fd7",
+  "mode": "rule",
+  "protocol": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261101_161854\\protocol.jsonl",
+  "protocol_sha": "bc0fa8d320ec7d23c4c15c58d98affc6c3684da4adddd14c8f11869ace24810e",
+  "bytes": 683957527,
+  "complete_games": 10,
+  "runtime_alive_at_completion": true,
+  "actual_process_exit": "not_observed_at_collection_completion",
+  "games": [
+    {
+      "episode": 1,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 1400,
+          "capture_score": 2400,
+          "total": 3800
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 2730,
+          "capture_score": 800,
+          "total": 3530
+        }
+      ],
+      "hq_first_full": 117,
+      "hq_first_reversal": 219,
+      "hq_terminal": {
+        "percent": 1,
+        "redTeamNum": 3,
+        "blueteamNum": 1
+      }
+    },
+    {
+      "episode": 2,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 2340,
+          "capture_score": 2400,
+          "total": 4740
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 2810,
+          "capture_score": 800,
+          "total": 3610
+        }
+      ],
+      "hq_first_full": 113,
+      "hq_first_reversal": null,
+      "hq_terminal": {
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 0
+      }
+    },
+    {
+      "episode": 3,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 1170,
+          "capture_score": 0,
+          "total": 1170
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 3150,
+          "capture_score": 3200,
+          "total": 6350
+        }
+      ],
+      "hq_first_full": 114,
+      "hq_first_reversal": 246,
+      "hq_terminal": {
+        "percent": 0,
+        "redTeamNum": 0,
+        "blueteamNum": 1
+      }
+    },
+    {
+      "episode": 4,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 1280,
+          "capture_score": 0,
+          "total": 1280
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 3130,
+          "capture_score": 3200,
+          "total": 6330
+        }
+      ],
+      "hq_first_full": 119,
+      "hq_first_reversal": 272,
+      "hq_terminal": {
+        "percent": 0,
+        "redTeamNum": 1,
+        "blueteamNum": 2
+      }
+    },
+    {
+      "episode": 5,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 2440,
+          "capture_score": 0,
+          "total": 2440
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 3150,
+          "capture_score": 2400,
+          "total": 5550
+        }
+      ],
+      "hq_first_full": 120,
+      "hq_first_reversal": 219,
+      "hq_terminal": {
+        "percent": 0,
+        "redTeamNum": 0,
+        "blueteamNum": 2
+      }
+    },
+    {
+      "episode": 6,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 1510,
+          "capture_score": 1600,
+          "total": 3110
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 3060,
+          "capture_score": 1600,
+          "total": 4660
+        }
+      ],
+      "hq_first_full": 117,
+      "hq_first_reversal": null,
+      "hq_terminal": {
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 0
+      }
+    },
+    {
+      "episode": 7,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 2700,
+          "capture_score": 800,
+          "total": 3500
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 3050,
+          "capture_score": 2400,
+          "total": 5450
+        }
+      ],
+      "hq_first_full": 117,
+      "hq_first_reversal": 225,
+      "hq_terminal": {
+        "percent": 0,
+        "redTeamNum": 0,
+        "blueteamNum": 1
+      }
+    },
+    {
+      "episode": 8,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 2250,
+          "capture_score": 0,
+          "total": 2250
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 3150,
+          "capture_score": 3200,
+          "total": 6350
+        }
+      ],
+      "hq_first_full": 121,
+      "hq_first_reversal": 291,
+      "hq_terminal": {
+        "percent": 0,
+        "redTeamNum": 0,
+        "blueteamNum": 5
+      }
+    },
+    {
+      "episode": 9,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 2460,
+          "capture_score": 1600,
+          "total": 4060
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 2500,
+          "capture_score": 1600,
+          "total": 4100
+        }
+      ],
+      "hq_first_full": 168,
+      "hq_first_reversal": null,
+      "hq_terminal": {
+        "percent": 1,
+        "redTeamNum": 5,
+        "blueteamNum": 3
+      }
+    },
+    {
+      "episode": 10,
+      "frames": 501,
+      "last_step": 499,
+      "done": true,
+      "packets": [
+        {
+          "side": "red",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 1450,
+          "capture_score": 1600,
+          "total": 3050
+        },
+        {
+          "side": "blue",
+          "side_evidence": "Events.得分 beneficiary",
+          "kill_score": 3040,
+          "capture_score": 1600,
+          "total": 4640
+        }
+      ],
+      "hq_first_full": 115,
+      "hq_first_reversal": null,
+      "hq_terminal": {
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 0
+      }
+    }
+  ],
+  "mean": 2940.0,
+  "under5000": 10,
+  "provenance": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0006\\manual-rule\\provenance.json",
+  "limits": "Original startup commit/batch unbound; post-start hashes match published snapshot. Pure-rule mode differs from round5 hybrid. Not a strict one-factor comparison or confirmed RL effect.",
+  "runtime_provenance": {
+    "classification": "user_started_manual_rule_observation",
+    "runtime_identity": {
+      "pid": 27848,
+      "created_ticks": 134379947308708269,
+      "exe_path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonEnv\\python.exe"
+    },
+    "client_identity": {
+      "pid": 31252,
+      "created_ticks": 134379946600801890,
+      "exe_path": "C:\\CSSIM\\Client\\CSSIM\\Binaries\\Win64\\CSSIMClient-Win64-Shipping.exe"
+    },
+    "original_run_metadata": {
+      "schema_version": 1,
+      "started_at_utc": "2026-11-01T16:18:54.69465+08:00",
+      "process_id": 27848,
+      "batch_id": null,
+      "source_commit": null,
+      "source_commit_evidence": "unknown",
+      "config_path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\TaskConfig\\cssim\\cssim_25vs25.jsonc",
+      "config_sha256": "e12616e5979df1ca41d84e0361ee3618a0e1a1aac02ffb8b9cac8adfe6349c35",
+      "algorithm_names": [
+        "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm",
+        "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm"
+      ],
+      "configured_max_episodes": 10,
+      "configured_max_steps": 500,
+      "episode_limit": null,
+      "detailed_protocol": true
+    },
+    "actual_policy": {
+      "mode": "rule",
+      "class": "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RuleAgentAlgorithm.ReinforceAgentAlgorithm",
+      "defense_kind": "unknown",
+      "defense_profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+      "defense_observations": {}
+    },
+    "source_commit": null,
+    "observed_matching_commit": "fbffb156d4013647e2466e52be4bdff1d7b75fd7",
+    "post_start_runtime_file_hashes": [
+      {
+        "path": "cssim/__init__.py",
+        "canonical_sha": "d62ca4fcdca7521c7504bb7fc246f8209a4387d55b21ac9d3967e964bf750e64",
+        "runtime_sha": "d62ca4fcdca7521c7504bb7fc246f8209a4387d55b21ac9d3967e964bf750e64"
+      },
+      {
+        "path": "cssim/algorithms/__init__.py",
+        "canonical_sha": "151b1833693ed2bafbc13829f3d305756e6c2a7e401f88729a3f862f2dba8416",
+        "runtime_sha": "151b1833693ed2bafbc13829f3d305756e6c2a7e401f88729a3f862f2dba8416"
+      },
+      {
+        "path": "cssim/algorithms/base.py",
+        "canonical_sha": "cd83e561be5032bb335db54599ce95ca8cd874eec6559f007f4508c5a0b002c3",
+        "runtime_sha": "cd83e561be5032bb335db54599ce95ca8cd874eec6559f007f4508c5a0b002c3"
+      },
+      {
+        "path": "cssim/config.py",
+        "canonical_sha": "89b6616986dfe335dbf196092dcd51d85f6d23c8fa9a25a261f7f5e7ae7fb0ca",
+        "runtime_sha": "89b6616986dfe335dbf196092dcd51d85f6d23c8fa9a25a261f7f5e7ae7fb0ca"
+      },
+      {
+        "path": "cssim/environment/__init__.py",
+        "canonical_sha": "cc96377619be5fad661b35ad823436734ab622f87e3f5190c3a7e07d0a3c5190",
+        "runtime_sha": "cc96377619be5fad661b35ad823436734ab622f87e3f5190c3a7e07d0a3c5190"
+      },
+      {
+        "path": "cssim/environment/env.py",
+        "canonical_sha": "4f43851ab97f5fbddcc44c8ad91a64c9c4efb78d069d12c23d345a3c9830620d",
+        "runtime_sha": "4f43851ab97f5fbddcc44c8ad91a64c9c4efb78d069d12c23d345a3c9830620d"
+      },
+      {
+        "path": "cssim/environment/models.py",
+        "canonical_sha": "70e08938f8e5e7e72d4306f1b3948e5a89b3172330d28a45ad78816eb75c3c00",
+        "runtime_sha": "70e08938f8e5e7e72d4306f1b3948e5a89b3172330d28a45ad78816eb75c3c00"
+      },
+      {
+        "path": "cssim/environment/observation.py",
+        "canonical_sha": "98feaf8d902e48921a2951df68480914b511a01ecc319efb1b91bdfec8939d91",
+        "runtime_sha": "98feaf8d902e48921a2951df68480914b511a01ecc319efb1b91bdfec8939d91"
+      },
+      {
+        "path": "cssim/logging_setup.py",
+        "canonical_sha": "facd93f05295a0a81a02e72620a0150db4d17eb3c56c59fbbddfe8e32a63a4c8",
+        "runtime_sha": "facd93f05295a0a81a02e72620a0150db4d17eb3c56c59fbbddfe8e32a63a4c8"
+      },
+      {
+        "path": "cssim/protocol/__init__.py",
+        "canonical_sha": "e1b25ef9ab1b60fbb1e0cad09a9efbf79fde4ebea21cc5944b5b95a389c16e32",
+        "runtime_sha": "e1b25ef9ab1b60fbb1e0cad09a9efbf79fde4ebea21cc5944b5b95a389c16e32"
+      },
+      {
+        "path": "cssim/protocol/action_sets.py",
+        "canonical_sha": "2ecb5a871554fe33e5da690bf524d2c929d54f5b30ba95a757e4491b8c07f7b5",
+        "runtime_sha": "2ecb5a871554fe33e5da690bf524d2c929d54f5b30ba95a757e4491b8c07f7b5"
+      },
+      {
+        "path": "cssim/protocol/actions.py",
+        "canonical_sha": "1d03eee87078ac865b26e7e625a95a20493d137fe6dcd831e9759f9e5d342077",
+        "runtime_sha": "1d03eee87078ac865b26e7e625a95a20493d137fe6dcd831e9759f9e5d342077"
+      },
+      {
+        "path": "cssim/protocol/events.py",
+        "canonical_sha": "b6c9b2c0f459b72521981811e82afbdfa72bec54d643d93f364a9e61ff03c1cd",
+        "runtime_sha": "b6c9b2c0f459b72521981811e82afbdfa72bec54d643d93f364a9e61ff03c1cd"
+      },
+      {
+        "path": "cssim/protocol/special_commands.py",
+        "canonical_sha": "760a07c99f2387679b59fe4d3de01a9dc5c2fc14c3907e2d70c9a423cc8dcbb7",
+        "runtime_sha": "760a07c99f2387679b59fe4d3de01a9dc5c2fc14c3907e2d70c9a423cc8dcbb7"
+      },
+      {
+        "path": "cssim/runtime/__init__.py",
+        "canonical_sha": "1750b4fe1ea5934e7b0a1d9c63c5224e54fcbd34f6f6dc3ca469f1aecde85a7f",
+        "runtime_sha": "1750b4fe1ea5934e7b0a1d9c63c5224e54fcbd34f6f6dc3ca469f1aecde85a7f"
+      },
+      {
+        "path": "cssim/runtime/loader.py",
+        "canonical_sha": "6eecff966ad71fed08b7997f50c25d2618b7f506978ad8d1d7018c7337bd11ea",
+        "runtime_sha": "6eecff966ad71fed08b7997f50c25d2618b7f506978ad8d1d7018c7337bd11ea"
+      },
+      {
+        "path": "cssim/runtime/runner.py",
+        "canonical_sha": "d43101dc6fff74f24a5eeeb8b380129848c6f2e05f743a8d7ceb262b28dbe108",
+        "runtime_sha": "d43101dc6fff74f24a5eeeb8b380129848c6f2e05f743a8d7ceb262b28dbe108"
+      },
+      {
+        "path": "cssim/runtime/special_commands.py",
+        "canonical_sha": "c1bf675272e05aa2d98ded801b44445d4e00468ff63a40b0413a8cbe8d06aeba",
+        "runtime_sha": "c1bf675272e05aa2d98ded801b44445d4e00468ff63a40b0413a8cbe8d06aeba"
+      },
+      {
+        "path": "cssim/transport/__init__.py",
+        "canonical_sha": "6ff76c97265f4726e2b8395798f256b27c7e9747091d0ea96baed2e3fce5baf2",
+        "runtime_sha": "6ff76c97265f4726e2b8395798f256b27c7e9747091d0ea96baed2e3fce5baf2"
+      },
+      {
+        "path": "cssim/transport/_generated_grpc/__init__.py",
+        "canonical_sha": "0e722e012bcd288143d5859de4485c9cc640bee5fe5573b80a5c0d8ab8da1009",
+        "runtime_sha": "0e722e012bcd288143d5859de4485c9cc640bee5fe5573b80a5c0d8ab8da1009"
+      },
+      {
+        "path": "cssim/transport/_generated_grpc/custom_interface_pb2.py",
+        "canonical_sha": "26ac746338388555a80a2c926266e22d4ed49e367aa874cf4f313e38e413f9df",
+        "runtime_sha": "26ac746338388555a80a2c926266e22d4ed49e367aa874cf4f313e38e413f9df"
+      },
+      {
+        "path": "cssim/transport/_generated_grpc/custom_interface_pb2_grpc.py",
+        "canonical_sha": "cf17e299d5bc939eeb8c20484d47a0fae05294f44704f902956a19d491b2ee33",
+        "runtime_sha": "cf17e299d5bc939eeb8c20484d47a0fae05294f44704f902956a19d491b2ee33"
+      },
+      {
+        "path": "cssim/transport/_generated_grpc/custom_network_pb2.py",
+        "canonical_sha": "229ffa9f49d0dddc18c8a4cbc543414959871568c885cdb4f6798de8e83f167c",
+        "runtime_sha": "229ffa9f49d0dddc18c8a4cbc543414959871568c885cdb4f6798de8e83f167c"
+      },
+      {
+        "path": "cssim/transport/_generated_grpc/custom_network_pb2_grpc.py",
+        "canonical_sha": "3c3d9e78235bc1977f35215934b6b59bc9bab50ecd5752257c4e97bdac837316",
+        "runtime_sha": "3c3d9e78235bc1977f35215934b6b59bc9bab50ecd5752257c4e97bdac837316"
+      },
+      {
+        "path": "cssim/transport/_generated_grpc/util_pb2.py",
+        "canonical_sha": "d8bff4fca8312211de425c754ae74b0e84804b3c7d86c938bb6b0aebd9a637ca",
+        "runtime_sha": "d8bff4fca8312211de425c754ae74b0e84804b3c7d86c938bb6b0aebd9a637ca"
+      },
+      {
+        "path": "cssim/transport/grpc_client.py",
+        "canonical_sha": "34b3761f2a26fd61482f9fc9669d233c7003a0058ce3d08bb15db95e733f964e",
+        "runtime_sha": "34b3761f2a26fd61482f9fc9669d233c7003a0058ce3d08bb15db95e733f964e"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/__init__.py",
+        "canonical_sha": "928849a580c2c1d86e2a0b6899c1d47feaf58a380bad88566cbc5190df1741f4",
+        "runtime_sha": "928849a580c2c1d86e2a0b6899c1d47feaf58a380bad88566cbc5190df1741f4"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/__init__.py",
+        "canonical_sha": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961",
+        "runtime_sha": "353118ef14348073e15bbd4b1e38bffd2c1b4a2e3a3fe9f097f43cda26ca4961"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/AdaptiveAssault.py",
+        "canonical_sha": "cd5990130faf10f0977b3b592a50edf27dda832440165b784142ce1ce82a5be9",
+        "runtime_sha": "cd5990130faf10f0977b3b592a50edf27dda832440165b784142ce1ce82a5be9"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/ApproachCohesion.py",
+        "canonical_sha": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42",
+        "runtime_sha": "16979a65fda0cbef249ac92e5d90e2c5d06671d40ef991f8123fd2ec40bf1e42"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/AssaultFormation.py",
+        "canonical_sha": "eacd84823f616e932fc6a675bff99a477b2b9b8b35fc5dcd3e3ae0df4c21176e",
+        "runtime_sha": "eacd84823f616e932fc6a675bff99a477b2b9b8b35fc5dcd3e3ae0df4c21176e"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/AssaultRoute.py",
+        "canonical_sha": "3e02bae896793b1d07744b4f0fc4f415315904c204a67e2b8549f1e8aed0a122",
+        "runtime_sha": "3e02bae896793b1d07744b4f0fc4f415315904c204a67e2b8549f1e8aed0a122"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/ColumnAdvance.py",
+        "canonical_sha": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af",
+        "runtime_sha": "40bd3819d5f963ee9bd36468f7c424ead8e77b4472b55492f4a362a72993f1af"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/CombatReadiness.py",
+        "canonical_sha": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246",
+        "runtime_sha": "ca48b9dd78e219787dea214b9b6ffa64b2ff5e19c7cfcabe96a4e13426779246"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/CommandLinks.py",
+        "canonical_sha": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009",
+        "runtime_sha": "74aad1a6b5bc24268e554719e0619ceede26ef045a414e85d84ff874d2b27009"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/DefenseDoctrine.py",
+        "canonical_sha": "f1dade7b2b87455117ec1cfa854798a9af81d208495055cf403498141b214e52",
+        "runtime_sha": "f1dade7b2b87455117ec1cfa854798a9af81d208495055cf403498141b214e52"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/DQN.py",
+        "canonical_sha": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6",
+        "runtime_sha": "ac4cf673b342dcc321e708a4b0bb3ebb39191d3dc88857493293973723941bd6"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/EntryWaves.py",
+        "canonical_sha": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061",
+        "runtime_sha": "1b87482f321e230f241178cc5b7c845c3b0e4018cc6109269d1227cf50872061"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/FlightNavigation.py",
+        "canonical_sha": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad",
+        "runtime_sha": "436625206627249470d9dfc5464fe5141c1fdba5c93b2b8d0220afa45cc24fad"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/HQEntry.py",
+        "canonical_sha": "218cdefafc9311a66dd77ebb9ffcbb24a65c043ec548b8183671a5d38e8aebef",
+        "runtime_sha": "218cdefafc9311a66dd77ebb9ffcbb24a65c043ec548b8183671a5d38e8aebef"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/HQExit.py",
+        "canonical_sha": "a1c98e2a36a7efb9357c442818f9abe67de106f11b62c107d6b6dd32288687e6",
+        "runtime_sha": "a1c98e2a36a7efb9357c442818f9abe67de106f11b62c107d6b6dd32288687e6"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/LearnedTargeting.py",
+        "canonical_sha": "6ba50c7f2b4d2b6c3cf2f709d261e3541893abaf2557a9975424caea77d010ba",
+        "runtime_sha": "6ba50c7f2b4d2b6c3cf2f709d261e3541893abaf2557a9975424caea77d010ba"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/MotionRecovery.py",
+        "canonical_sha": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80",
+        "runtime_sha": "dc5c28eb5f5ed631c0d4c5a61f27f34ed2170d61de47c7c1f8af3ee6352bff80"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/RearCover.py",
+        "canonical_sha": "08386ed3c51d091fb9de7913be5a5b258788d6da193a75369d7114e2eb375136",
+        "runtime_sha": "08386ed3c51d091fb9de7913be5a5b258788d6da193a75369d7114e2eb375136"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/RemnantCapture.py",
+        "canonical_sha": "b90a0a87e34f9a9367af6aafd2b308fd905b518e82a1414693ca0424d07ff8c6",
+        "runtime_sha": "b90a0a87e34f9a9367af6aafd2b308fd905b518e82a1414693ca0424d07ff8c6"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/RLAgentAlgorithm.py",
+        "canonical_sha": "7ca48c302bab7d93a2af7d38420d587386e85c219a05221cff9bc3d144467592",
+        "runtime_sha": "7ca48c302bab7d93a2af7d38420d587386e85c219a05221cff9bc3d144467592"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/RuleAgentAlgorithm.py",
+        "canonical_sha": "f134f2d9794c760ac6de46704b4bff78563f08d950ea6f131bec4b31a568177f",
+        "runtime_sha": "f134f2d9794c760ac6de46704b4bff78563f08d950ea6f131bec4b31a568177f"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/TargetFeatures.py",
+        "canonical_sha": "1c243fcfa65fc2e7a4026f390543e21a3b16ec09aff5e51d2947db3cf97e23ff",
+        "runtime_sha": "1c243fcfa65fc2e7a4026f390543e21a3b16ec09aff5e51d2947db3cf97e23ff"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/UAVControl.py",
+        "canonical_sha": "b180e3cc1cca0cf03de95c0cd99c8179a25e8c0662a58a204eb00f2baa6c1343",
+        "runtime_sha": "b180e3cc1cca0cf03de95c0cd99c8179a25e8c0662a58a204eb00f2baa6c1343"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/UrbanContact.py",
+        "canonical_sha": "ff944a13a93a31f0f4d9bb71dde54b67be97b70a00cb94aebd7c7d929817bc14",
+        "runtime_sha": "ff944a13a93a31f0f4d9bb71dde54b67be97b70a00cb94aebd7c7d929817bc14"
+      },
+      {
+        "path": "TeamAlg/FsLutk7wD2RkNgbs/Algorithm/VehicleFireControl.py",
+        "canonical_sha": "4ae4baf09f7189da0854a2e588c2197960d8c9e75be8644d975575bc238b913c",
+        "runtime_sha": "4ae4baf09f7189da0854a2e588c2197960d8c9e75be8644d975575bc238b913c"
+      }
+    ],
+    "limitation": "Startup source_commit and batch_id remain unknown; post-start matching file snapshot is separate evidence. Do not rewrite original run metadata or mix into scheduled hybrid-IQL games.",
+    "source": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\logs\\20261101_161854",
+    "configured_games": 10
+  },
+  "application_end": {
+    "kind": "run_end",
+    "status": "returned",
+    "process_exit_observed": false
+  },
+  "assessment": {
+    "hq_progress_reversal_games": 6,
+    "terminal_hq_not_full": 5,
+    "under_4000": 8,
+    "decision": "Guard change has not demonstrated improvement; do not present as successful RL or strict paired treatment.",
+    "next": "Audit actual guard losses and orders before choosing another policy; no automatic promotion."
+  }
+}
