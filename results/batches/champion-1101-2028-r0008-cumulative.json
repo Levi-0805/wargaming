@@ -1,0 +1,311 @@
+{
+  "classification": "ten_cumulative_games_complete",
+  "campaign_id": "champion-1101-2028-r0008",
+  "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "completed_games": 10,
+  "games": [
+    {
+      "ordinal": 1,
+      "episode": 1,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1330,
+        "capture_score": 0,
+        "total": 1330
+      },
+      "blue": {
+        "kill_score": 3050,
+        "capture_score": 3200,
+        "total": 6250
+      }
+    },
+    {
+      "ordinal": 2,
+      "episode": 2,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2260,
+        "capture_score": 0,
+        "total": 2260
+      },
+      "blue": {
+        "kill_score": 3100,
+        "capture_score": 3200,
+        "total": 6300
+      }
+    },
+    {
+      "ordinal": 3,
+      "episode": 3,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1420,
+        "capture_score": 1600,
+        "total": 3020
+      },
+      "blue": {
+        "kill_score": 1610,
+        "capture_score": 1600,
+        "total": 3210
+      }
+    },
+    {
+      "ordinal": 4,
+      "episode": 4,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1380,
+        "capture_score": 1600,
+        "total": 2980
+      },
+      "blue": {
+        "kill_score": 3140,
+        "capture_score": 1600,
+        "total": 4740
+      }
+    },
+    {
+      "ordinal": 5,
+      "episode": 5,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2210,
+        "capture_score": 0,
+        "total": 2210
+      },
+      "blue": {
+        "kill_score": 3150,
+        "capture_score": 3200,
+        "total": 6350
+      }
+    },
+    {
+      "ordinal": 6,
+      "episode": 6,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1420,
+        "capture_score": 1600,
+        "total": 3020
+      },
+      "blue": {
+        "kill_score": 3100,
+        "capture_score": 1600,
+        "total": 4700
+      }
+    },
+    {
+      "ordinal": 7,
+      "episode": 7,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2740,
+        "capture_score": 3200,
+        "total": 5940
+      },
+      "blue": {
+        "kill_score": 870,
+        "capture_score": 0,
+        "total": 870
+      }
+    },
+    {
+      "ordinal": 8,
+      "episode": 8,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2580,
+        "capture_score": 3200,
+        "total": 5780
+      },
+      "blue": {
+        "kill_score": 2210,
+        "capture_score": 0,
+        "total": 2210
+      }
+    },
+    {
+      "ordinal": 9,
+      "episode": 9,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1250,
+        "capture_score": 0,
+        "total": 1250
+      },
+      "blue": {
+        "kill_score": 3160,
+        "capture_score": 3200,
+        "total": 6360
+      }
+    },
+    {
+      "ordinal": 10,
+      "episode": 10,
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+      "protocol_sha256": "ef15c4bbd4e1c2d6af4c5a3b44c4924d1f0c8f37b517becf24fe3afceb9b9ffc",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2690,
+        "capture_score": 2400,
+        "total": 5090
+      },
+      "blue": {
+        "kill_score": 1430,
+        "capture_score": 800,
+        "total": 2230
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "batch_id": "champion-1101-2028-r0008-0001",
+      "started_at": "2026-11-01T16:41:59.592256+00:00",
+      "episode_budget": 10,
+      "supervisor_exit_code": 0,
+      "manifest_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\manifest.json",
+      "status": {
+        "batch_id": "champion-1101-2028-r0008-0001",
+        "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+        "expected_episodes": 10,
+        "state": "complete",
+        "complete_episodes": 10,
+        "done_episodes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "ready_to_finish": true,
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354\\protocol.jsonl",
+        "ue_game_config": "10;1",
+        "last_episode": 10,
+        "last_step": 499,
+        "runtime_exit_code": 0,
+        "runtime_stop_reason": null,
+        "runtime_error": null,
+        "normal_run_end": true,
+        "scores": [
+          {
+            "episode": 1,
+            "red": 1330,
+            "blue": 6250
+          },
+          {
+            "episode": 2,
+            "red": 2260,
+            "blue": 6300
+          },
+          {
+            "episode": 3,
+            "red": 3020,
+            "blue": 3210
+          },
+          {
+            "episode": 4,
+            "red": 2980,
+            "blue": 4740
+          },
+          {
+            "episode": 5,
+            "red": 2210,
+            "blue": 6350
+          },
+          {
+            "episode": 6,
+            "red": 3020,
+            "blue": 4700
+          },
+          {
+            "episode": 7,
+            "red": 5940,
+            "blue": 870
+          },
+          {
+            "episode": 8,
+            "red": 5780,
+            "blue": 2210
+          },
+          {
+            "episode": 9,
+            "red": 1250,
+            "blue": 6360
+          },
+          {
+            "episode": 10,
+            "red": 5090,
+            "blue": 2230
+          }
+        ]
+      },
+      "runtime_receipt": {
+        "batch_id": "champion-1101-2028-r0008-0001",
+        "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+        "config_sha256": "590bddb653b18421fa8070566394f5e29ec54ce5ff203ca8f757d85c8d9d2614",
+        "pid": 19288,
+        "started_at": "2026-11-01T16:43:51.080597+00:00",
+        "ended_at": "2026-11-01T19:50:19.358389+00:00",
+        "exit_code": 0,
+        "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0008-0001\\logs\\20261102_004354",
+        "stop_reason": null,
+        "error": null
+      },
+      "completed_games_added": 10,
+      "ended_at": "2026-11-01T19:51:11.954622+00:00"
+    }
+  ],
+  "finished_at": "2026-11-01T19:51:11.960608+00:00",
+  "summary": {
+    "mean": 3288,
+    "minimum": 1250,
+    "maximum": 5940,
+    "under_4000": 7
+  },
+  "limitation": "Completed games may span failed processes; actual receipts remain unchanged.",
+  "next_step": "Summarize and review modifications before any next code version."
+}
