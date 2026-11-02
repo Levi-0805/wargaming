@@ -312,3 +312,19 @@ def test_all_of_success_and_invalid_empty_predicate(setup):
     step['before'] = {'all_of': []}
     with pytest.raises(FlowError, match='all_of'):
         load_recipe(recipe)
+
+
+def test_explicit_logged_in_handoff_requires_live_post_login_evidence(setup):
+    _, _, adapter, _ = setup
+    adapter.image = adapter.after
+    result = run(setup, logged_in_handoff=True)
+    assert result['state'] == 'complete' and result['completed'] == ['login']
+    assert result['logged_in_handoff'] and not adapter.calls
+
+
+def test_logged_in_handoff_does_not_click_or_skip_an_unverified_screen(setup):
+    _, _, adapter, _ = setup
+    result = run(setup, logged_in_handoff=True)
+    assert result['state'] == 'needs_attention'
+    assert 'post-login screen' in result['error']
+    assert not result['completed'] and not adapter.calls

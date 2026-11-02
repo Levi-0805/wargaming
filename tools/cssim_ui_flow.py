@@ -229,7 +229,7 @@ def save_progress(path, value):
 
 
 def run_steps(recipe, adapter, logdir, stopfile, *, phase='pre_python', clock=time.monotonic,
-              wall_clock=time.time, sleep=time.sleep, poll_interval=.5):
+              wall_clock=time.time, sleep=time.sleep, poll_interval=.5, logged_in_handoff=False):
     value, recipe_sha = load_recipe(recipe)
     if phase not in ('pre_python', 'post_python') or not 0 < poll_interval <= 5:
         raise FlowError('Invalid phase or poll interval')
@@ -294,6 +294,17 @@ def run_steps(recipe, adapter, logdir, stopfile, *, phase='pre_python', clock=ti
 
     try:
         park()
+        if logged_in_handoff and 'login' not in completed:
+            if phase != 'pre_python' or steps[0]['name'] != 'login' or progress.get('pending'):
+                raise FlowError('Logged-in handoff requires the first login step with no uncertain input')
+            snapshot = capture()
+            match = visual_match(snapshot, steps[0]['after'])
+            if not match['matched']:
+                raise FlowError('Handed-off client is not at the verified post-login screen')
+            completed.append('login')
+            progress['completed'] = completed
+            progress.update(last_observation=snapshot.metadata, last_match=match, logged_in_handoff=True)
+            save_progress(progress_path, progress)
         advanced = False
         for step in steps:
             if step['name'] in completed:

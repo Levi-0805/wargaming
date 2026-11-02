@@ -1,0 +1,45 @@
+{
+  "reason": "User confirmed manual login; resume the interrupted round using that exact client.",
+  "algorithm_source_commit": "a92679b8f1ec7a0863f8b613b82e53335c2bccb8",
+  "round_number": 11,
+  "failed_attempts_retained": [
+    {
+      "batch_id": "champion-1101-2028-r0011-0001",
+      "started_at": "2026-11-02T11:10:09.445208+00:00",
+      "episode_budget": 10,
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T11:11:41.863625+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0002",
+      "started_at": "2026-11-02T11:11:56.987360+00:00",
+      "episode_budget": 10,
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T11:13:28.234466+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0003",
+      "started_at": "2026-11-02T11:13:43.357382+00:00",
+      "episode_budget": 10,
+      "error": "CampaignBlocked: Pre-existing CSSIM instance is not owned by this attempt; close it before starting",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T11:13:45.526764+00:00"
+    }
+  ],
+  "completed_games_before_recovery": 0,
+  "adopted_client_identity": {
+    "pid": 33804,
+    "created_ticks": 134380918049029779,
+    "exe_path": "C:\\CSSIM\\Client\\CSSIM\\Binaries\\Win64\\CSSIMClient-Win64-Shipping.exe",
+    "ppid": 6596,
+    "name": "CSSIMClient-Win64-Shipping.exe"
+  },
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "policy_baseline": "6cb5a79_hq_guard_entry",
+  "iql_shadow": false,
+  "tests_passed": 887,
+  "recovery_scope": "Same round and cumulative budget; preserve receipts; rebind the empty cohort to the framework publication; no tactical or model change.",
+  "new_match_outcomes": false
+}

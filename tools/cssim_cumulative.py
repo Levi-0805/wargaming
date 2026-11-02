@@ -61,6 +61,45 @@ class CumulativeCollection:
         self.state.update(values, updated_at=batches.now())
         batches.write_json(self.path, self.state)
 
+    @classmethod
+    def resume(cls, settings, *, rebind_empty=False):
+        """Explicit recovery preserves terminal games and every prior receipt."""
+        with SessionLock(settings.repo/'logs/autotrain/campaign.lock'):
+            return cls._resume_locked(settings, rebind_empty=rebind_empty)
+
+    @classmethod
+    def _resume_locked(cls, settings, *, rebind_empty=False):
+        collector = cls.__new__(cls)
+        collector.s, collector.backend = settings, RealBackend(settings)
+        collector.directory = settings.repo/'logs/campaigns'/settings.campaign_id
+        collector.path = collector.directory/'state.json'
+        collector.stopfile = collector.directory/'STOP'
+        previous = batches.read_json(collector.path)
+        if collector.stopfile.exists() or previous['state'] not in ('needs_attention', 'stopped'):
+            raise ValueError('Resume requires an interrupted collection with no STOP')
+        if previous.get('campaign_id') != settings.campaign_id or previous.get('target_games') != 10:
+            raise ValueError('Recovery campaign identity or budget differs')
+        games = previous['games']
+        if previous['completed_games'] != len(games) or len(games) >= 10:
+            raise ValueError('Recovery must retain an unfinished terminal-game count')
+        commit = collector.backend.preflight()
+        old_commit = previous.get('source_commit', commit)
+        if old_commit != commit and (games or not rebind_empty):
+            raise ValueError('Cannot combine code versions; only an explicitly empty cohort may rebind')
+        if any(g['source_commit'] != commit for g in games):
+            raise ValueError('Completed game source does not match the published version')
+        if len({g['model_sha256'] for g in games}) > 1:
+            raise ValueError('Cannot resume mixed model versions')
+        recoveries = previous.get('recoveries', [])
+        batches.write_json(collector.directory/f'recovery-{len(recoveries)+1:04d}-before.json', previous)
+        receipt = dict(at=batches.now(), source_commit_before=old_commit, source_commit=commit,
+            completed_games_retained=len(games), attempts_retained=len(previous['attempts']),
+            prior_no_progress_failures=previous['no_progress_failures'], adopted_client=settings.adopt_client)
+        collector.state = previous
+        collector.save(state='created', source_commit=commit, error=None, no_progress_failures=0,
+                       recoveries=[*recoveries, receipt])
+        return collector
+
     def guard(self):
         if self.stopfile.exists():
             raise CampaignStop('STOP requested')
@@ -153,7 +192,7 @@ class CumulativeCollection:
     def run(self):
         try:
             with SessionLock(self.s.repo/'logs/autotrain/campaign.lock'):
-                number = 0
+                number = len(self.state['attempts'])
                 while len(self.state['games']) < 10:
                     self.guard()
                     number += 1

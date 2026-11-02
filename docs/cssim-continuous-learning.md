@@ -140,3 +140,17 @@ snapshot. Roll back through `6cb5a79_hq_hold`. Replay verifies the changed reque
 not navigation success, earlier departure or live score improvement. Restart a
 waiting learning worker after publishing a new selector so it reloads the config
 validator; verify its exact process identity and retain borrowed server services.
+
+After a login/setup interruption, `cssim_learning.py resume --adopt-client-pid
+<PID>` explicitly hands the logged-in client to the managed training lifecycle.
+The controller records and rechecks its creation identity and executable before
+claiming it; unrelated clients still block startup. It skips only the login step,
+after freshly verifying the calibrated post-login screen. The handed-off client
+is closed by normal attempt cleanup; borrowed server services remain preserved.
+Recovery keeps completed games and failed receipts, continues attempt numbering,
+and resets the diagnostic no-progress counter after the user's recovery action.
+It never bypasses STOP. `--rebind-empty` permits a newly published framework
+commit only when there are zero completed games, and archives the prior state and
+commit. A cohort with terminal games must retain its original source commit and
+model. The desktop Training shortcut remains the normal fresh-start entry point;
+an interrupted cohort uses this explicit resume command rather than a new round.

@@ -229,12 +229,23 @@ def announce_scores(state, summary, report_path):
     return signal
 
 
-def collect_and_train(state):
+def collect_and_train(state, *, resume=False):
     number = len(state['rounds'])+1
     campaign = state['session_id']+f'-r{number:04d}'
-    save(state, phase='collecting', round_number=number, active_campaign=campaign,
-         checkpoint=checkpoint(state, number), pending=None)
-    collector = CumulativeCollection(settings(state, campaign))
+    if resume:
+        if state['round_number'] != number or state['active_campaign'] != campaign:
+            raise ValueError('Recovery must continue the same unfinished round')
+        if batches.sha(MODEL) != state['checkpoint']['model_sha256'] or batches.sha(PROFILE) != state['checkpoint']['profile_sha256']:
+            raise ValueError('Recovery model/profile changed since the round checkpoint')
+        resumed_settings = settings(state, campaign)
+        resumed_settings.adopt_client = state.get('resume_client')
+        collector = CumulativeCollection.resume(resumed_settings, rebind_empty=state.get('resume_rebind_empty', False))
+        resumed_checkpoint = {**state['checkpoint'], 'source_commit': collector.state['source_commit']}
+        save(state, phase='collecting', resume_collection=False, error=None, checkpoint=resumed_checkpoint)
+    else:
+        save(state, phase='collecting', round_number=number, active_campaign=campaign,
+             checkpoint=checkpoint(state, number), pending=None)
+        collector = CumulativeCollection(settings(state, campaign))
     if collector.run():
         save(state, phase='stopped' if STOP.exists() else 'needs_attention', error=collector.state.get('error'))
         return False
@@ -356,9 +367,12 @@ def run(state):
     with SessionLock(STATE.with_name('learning.lock')):
         save(state, worker=WindowsProcesses().identity(os.getpid()))
         try:
-            if state['phase'] not in ('created', 'awaiting_review', 'released'):
+            recovering = state['phase'] == 'needs_attention' and state.get('resume_collection')
+            if state['phase'] not in ('created', 'awaiting_review', 'released') and not recovering:
                 raise ValueError('Interrupted coordinator requires recovery; do not discard cumulative games')
             ensure_observer(state)
+            if recovering and not collect_and_train(state, resume=True):
+                return 2
             while not STOP.exists():
                 if state['phase'] in ('created', 'released'):
                     if not collect_and_train(state):
@@ -443,17 +457,36 @@ def request_stop(state):
         (directory/'STOP').touch()
 
 
+def resume_interrupted(args):
+    state = read(STATE)
+    if state['phase'] != 'needs_attention' or STOP.exists() or live(state.get('worker')):
+        raise ValueError('Resume requires a stopped worker at needs_attention with no STOP')
+    identity = None
+    if args.adopt_client_pid is not None:
+        identity = WindowsProcesses().identity(args.adopt_client_pid)
+        expected = Path(state['cssim_root'])/'Client/CSSIM/Binaries/Win64/CSSIMClient-Win64-Shipping.exe'
+        from cssim_campaign import normalized
+        if normalized(identity.get('exe_path') or '') != normalized(expected):
+            raise ValueError('Handoff PID is not the configured CSSIM client')
+    save(state, resume_collection=True, resume_client=identity, resume_rebind_empty=args.rebind_empty)
+    return start(args)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=('start', 'run', 'status', 'stop', 'prepare-next', 'release'))
+    parser.add_argument('action', choices=('start', 'run', 'status', 'stop', 'prepare-next', 'release', 'resume'))
     parser.add_argument('--cssim-root', type=Path, default=Path('C:/CSSIM'))
     parser.add_argument('--server-pid', type=int)
     parser.add_argument('--commit')
     parser.add_argument('--use-candidate', action='store_true')
     parser.add_argument('--restore-profiles', type=Path)
+    parser.add_argument('--adopt-client-pid', type=int)
+    parser.add_argument('--rebind-empty', action='store_true')
     args = parser.parse_args()
     if args.action == 'start':
         print(json.dumps(start(args), ensure_ascii=False)); return 0
+    if args.action == 'resume':
+        print(json.dumps(resume_interrupted(args), ensure_ascii=False)); return 0
     state = read(STATE)
     if args.action == 'run':
         return run(state)

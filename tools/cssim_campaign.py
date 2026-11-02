@@ -35,6 +35,26 @@ class CampaignBlocked(RuntimeError):
     pass
 
 
+class AdoptedClientProcess:
+    """A user-handed-off client, controlled only by its full process identity."""
+    def __init__(self, processes, identity):
+        self.processes, self.identity, self.pid = processes, dict(identity), identity['pid']
+
+    def poll(self):
+        return None if any(same_process(self.identity, row) for row in self.processes.snapshot()) else 0
+
+    def wait(self, timeout=None):
+        deadline = None if timeout is None else time.monotonic() + timeout
+        while self.poll() is None:
+            if deadline is not None and time.monotonic() >= deadline:
+                raise subprocess.TimeoutExpired('adopted CSSIM client', timeout)
+            time.sleep(.2)
+        return 0
+
+    def terminate(self):
+        self.processes.stop(self.identity)
+
+
 def borrowed_managers(rows, pids, expected_path):
     """Accept only explicitly named, stable server identities; never own them."""
     result = []
@@ -174,6 +194,7 @@ class Settings:
     cssim_root: Path = Path('C:/CSSIM')
     server_pid: int | None = None
     additional_server_pids: tuple[int, ...] = ()
+    adopt_client: dict | None = None
     gate_after_success: bool = False
     train_candidate: bool = False
     sources: list[Path] = field(default_factory=list)
@@ -375,7 +396,8 @@ class RealBackend:
                                        for p in context['owned']], borrowed_manager=context.get('borrowed_manager'),
                                 observed_dedicated=context.get('observed_dedicated', []),
                                        observed_project_ides=self.known_ides,
-                                       borrowed_additional_managers=context.get('borrowed_additional_managers', [])))
+                                       borrowed_additional_managers=context.get('borrowed_additional_managers', []),
+                                       adopted_client=context.get('adopted_client')))
 
     def refresh(self, context):
         rows = self.processes.snapshot()
@@ -443,13 +465,27 @@ class RealBackend:
             context['borrowed_manager'] = managers[0]
             context['borrowed_additional_managers'] = managers[1:]
             blockers = [p for p in blockers if p['pid'] not in {m['pid'] for m in managers}]
+        adopted = None
+        if self.s.adopt_client is not None:
+            expected = self.s.adopt_client
+            adopted = next((p for p in rows if same_process(expected, p)), None)
+            if (adopted is None or normalized(adopted.get('exe_path') or '') != normalized(self.paths['client'])):
+                raise CampaignBlocked('Explicit handoff client identity changed or has the wrong executable')
+            blockers = [p for p in blockers if not same_process(adopted, p)]
         if blockers:
             raise CampaignBlocked('Pre-existing CSSIM instance is not owned by this attempt; close it before starting')
         context['config_before'] = self.platform_config.stat().st_mtime_ns if self.platform_config.exists() else None
         if not self.s.server_pid:
             self._start(context, 'manager', [self.paths['manager']], cwd=self.paths['manager'].parent)
             time.sleep(2)
-        client = self._start(context, 'client', [self.paths['client']], hidden=False, cwd=self.paths['client'].parent)
+        if adopted is not None:
+            client = dict(role='client', process=AdoptedClientProcess(self.processes, adopted), identity=adopted)
+            context['owned'].append(client)
+            context['adopted_client'] = dict(adopted, reason='Explicit logged-in client handoff for training')
+            self.s.adopt_client = None  # Later retries launch a new managed client.
+            self._save_processes(context)
+        else:
+            client = self._start(context, 'client', [self.paths['client']], hidden=False, cwd=self.paths['client'].parent)
         context['client_pid'] = client['process'].pid
 
     def _wait(self, context, guard, condition, seconds, description):
@@ -488,7 +524,8 @@ class RealBackend:
             self.refresh(context)
             return capture()
         adapter.capture = guarded_capture
-        result = run_steps(self.s.recipe, adapter, context['directory'] / 'ui', context['stopfile'], phase=phase)
+        result = run_steps(self.s.recipe, adapter, context['directory'] / 'ui', context['stopfile'], phase=phase,
+                           logged_in_handoff=bool(context.get('adopted_client')) and phase == 'pre_python')
         if result['state'] != 'complete':
             raise RuntimeError(f'UI {phase}: {result.get("error", result["state"])}')
 
