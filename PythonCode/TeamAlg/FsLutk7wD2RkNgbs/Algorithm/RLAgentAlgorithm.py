@@ -32,7 +32,7 @@ class AlgorithmConfig:
     enable_entry_waves: bool = False
 
     def __post_init__(self):
-        if self.policy_baseline not in ('current', '6cb5a79', '6cb5a79_hq_hold'):
+        if self.policy_baseline not in ('current', '6cb5a79', '6cb5a79_hq_hold', '6cb5a79_hq_guard_entry'):
             raise ValueError('Unknown tactical baseline')
         for name in ('iql_shadow', 'enable_preservation_pause', 'enable_shared_contact_maneuver',
                      'enable_forced_entry_under_contact', 'enable_continuous_column',
@@ -54,7 +54,7 @@ class ReinforceAgentAlgorithm:
 
     def __new__(cls, context: AlgorithmContext):
         config = AlgorithmConfig.from_context(context)
-        if config.policy_baseline in ('6cb5a79', '6cb5a79_hq_hold'):
+        if config.policy_baseline in ('6cb5a79', '6cb5a79_hq_hold', '6cb5a79_hq_guard_entry'):
             from .ChampionPolicyBridge import create_champion
             return create_champion(context)
         if config.mode == 'hybrid_iql':

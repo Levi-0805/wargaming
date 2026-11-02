@@ -127,3 +127,16 @@ Metadata names this overlay and records its own source hash separately from the
 historical snapshot hash. Return to `6cb5a79` to roll back the experiment. This
 addresses confirmed guard release on a tie; it does not prevent actual guard
 deaths or establish a live score gain before the next ten-game evaluation.
+
+The `6cb5a79_hq_guard_entry` selector adds one return-goal repair to that overlay.
+In round 10, living assigned HQ guards repeatedly requested the inset box edge
+from only centimetres outside it, below the movement watchdog's 300 cm threshold.
+Only an eligible outside HQ guard whose saved boundary slot is within 450 cm gets
+a fixed slot 800 cm inside the inset box (bounded for smaller boxes). Rotation
+and elevation are preserved. The capture region, garrison allocation, entrance
+priority, departure tests, target model and B/A slots remain unchanged. Metadata
+binds this selector and the overlay source hash separately from the immutable
+snapshot. Roll back through `6cb5a79_hq_hold`. Replay verifies the changed request,
+not navigation success, earlier departure or live score improvement. Restart a
+waiting learning worker after publishing a new selector so it reloads the config
+validator; verify its exact process identity and retain borrowed server services.

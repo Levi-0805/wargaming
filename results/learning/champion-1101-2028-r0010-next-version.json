@@ -1,0 +1,87 @@
+{
+  "round_number": 10,
+  "created_at": "2026-11-02T11:00:59.795407+00:00",
+  "live_score_improvement_unproven": true,
+  "rollback_checkpoint": {
+    "model": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0007\\model.json",
+    "profiles": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0007\\profiles.json",
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+    "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+    "experiment": {
+      "chosen": "historical_champion_reproduction",
+      "historical_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "policy_baseline": "6cb5a79",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+      "limitation": "Composite policy restoration with original hybrid3e36, not a guaranteed4496 or one-factor causal test. Manual6 remains unbound and excluded from verified batch training."
+    }
+  },
+  "chosen": "hq_guard_return_dead_zone_only",
+  "proposal": {
+    "chosen": "hq_guard_return_dead_zone_only",
+    "baseline_before": "6cb5a79_hq_hold",
+    "baseline_after": "6cb5a79_hq_guard_entry",
+    "scope": "Only an eligible assigned HQ guard outside the inset box with a boundary slot no more than 450 cm away receives a cached 800 cm inward return goal.",
+    "overlay_sha256": "71313f8ec077d1137b8a3609003d2c8ca3a2fbd018808da165b474323600c1bf",
+    "unchanged": [
+      "IQL model 3e36fb",
+      "IQL shadow=false",
+      "historical snapshot",
+      "routes and formation",
+      "garrison allocation",
+      "inside/ownership/departure tests",
+      "HQ entry priority",
+      "B/A guard slots"
+    ],
+    "rollback": "Publish policy_baseline=6cb5a79_hq_hold in both templates; retain snapshot/runtime fixes and model. No file deletion.",
+    "limitation": "A corrected navigation request is not proof of traversability, earlier departure, survival, or a higher match score."
+  },
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+  "policy_baseline": "6cb5a79_hq_guard_entry",
+  "iql_shadow": false,
+  "evidence": "results/diagnostics/20261102-hq-guard-entry-evidence.json",
+  "candidate_review": {
+    "decision": "not_promoted",
+    "reason": "Freeze target model to isolate guard return repair; no live improvement evidence for the new candidate.",
+    "model_sha256": "dd8fd8fab73f92c222b74fb2f6f3280a20cffc7fe0f3166bb746edf90b783a52",
+    "split_sessions": {
+      "train": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "validation": 27,
+      "test": 28
+    },
+    "round10_gradient_training": false,
+    "feature_and_vehicle_fire_sources_match_historical_baseline": true
+  },
+  "validation_status": "876 tests passed; baseline 232400 commands identical; candidate changed 192 assigned guard commands plus 7 subsequent recovery commands of the same units; high game unchanged.",
+  "replay_evidence": "results/diagnostics/20261102-round10-guard-entry-review.json"
+}

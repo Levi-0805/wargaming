@@ -1,0 +1,1647 @@
+{
+  "round_number": 10,
+  "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+  "completed_games": [
+    {
+      "ordinal": 1,
+      "episode": 1,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 2710,
+        "capture_score": 3200,
+        "total": 5910
+      },
+      "flags": [
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": 193,
+          "first_full": 196,
+          "full_count": 304,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 2,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "指挥所": {
+          "first_red_entry": 111,
+          "first_full": 116,
+          "full_count": 384,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 2,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "军事基地A": {
+          "first_red_entry": 253,
+          "first_full": 255,
+          "full_count": 245,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 8,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 105,
+          "end": 125,
+          "before": 37,
+          "after": 25,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 19,
+              "blue": 3
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 2
+            }
+          }
+        },
+        {
+          "start": 276,
+          "end": 296,
+          "before": 19,
+          "after": 13,
+          "points": {
+            "军事基地B": {
+              "bar": 1,
+              "red": 2,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 2,
+              "blue": 0
+            },
+            "军事基地A": {
+              "bar": 1,
+              "red": 9,
+              "blue": 2
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [],
+      "secondary_dwell": [],
+      "frames": 501
+    },
+    {
+      "ordinal": 2,
+      "episode": 2,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 1340,
+        "capture_score": 0,
+        "total": 1340
+      },
+      "flags": [
+        "HQ_full_bar_then_progress_reversed",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": 187,
+          "first_full": 194,
+          "full_count": 12,
+          "first_reversal": 205,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 6
+          },
+          "tied_full_positive": 0
+        },
+        "指挥所": {
+          "first_red_entry": 109,
+          "first_full": 115,
+          "full_count": 196,
+          "first_reversal": 212,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 2
+          },
+          "tied_full_positive": 5
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 7
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 183,
+          "end": 203,
+          "before": 37,
+          "after": 24,
+          "points": {
+            "军事基地B": {
+              "bar": 1,
+              "red": 12,
+              "blue": 7
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 5,
+              "blue": 2
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 7
+            }
+          }
+        },
+        {
+          "start": 204,
+          "end": 224,
+          "before": 21,
+          "after": 8,
+          "points": {
+            "军事基地B": {
+              "bar": 1,
+              "red": 7,
+              "blue": 6
+            },
+            "指挥所": {
+              "bar": 0,
+              "red": 1,
+              "blue": 2
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 7
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [
+        {
+          "step": 209,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 210,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 211,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 372,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 373,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        }
+      ],
+      "secondary_dwell": [],
+      "frames": 501
+    },
+    {
+      "ordinal": 3,
+      "episode": 3,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 2720,
+        "capture_score": 1600,
+        "total": 4320
+      },
+      "flags": [
+        "HQ_bar_retained_secondary_capture_incomplete",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "指挥所": {
+          "first_red_entry": 110,
+          "first_full": 122,
+          "full_count": 378,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 1,
+            "blue": 0
+          },
+          "tied_full_positive": 5
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 269,
+          "end": 289,
+          "before": 15,
+          "after": 8,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 9,
+              "blue": 4
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            }
+          }
+        },
+        {
+          "start": 302,
+          "end": 322,
+          "before": 8,
+          "after": 3,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 3,
+              "blue": 2
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [
+        {
+          "step": 327,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 328,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 329,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 330,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 331,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        }
+      ],
+      "secondary_dwell": [],
+      "frames": 501
+    },
+    {
+      "ordinal": 4,
+      "episode": 4,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 1290,
+        "capture_score": 1600,
+        "total": 2890
+      },
+      "flags": [
+        "HQ_bar_retained_secondary_capture_incomplete",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": 217,
+          "first_full": 241,
+          "full_count": 7,
+          "first_reversal": 248,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 6
+          },
+          "tied_full_positive": 1
+        },
+        "指挥所": {
+          "first_red_entry": 113,
+          "first_full": 115,
+          "full_count": 385,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 3,
+            "blue": 1
+          },
+          "tied_full_positive": 0
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 10
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 223,
+          "end": 243,
+          "before": 29,
+          "after": 19,
+          "points": {
+            "军事基地B": {
+              "bar": 1,
+              "red": 9,
+              "blue": 7
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 5,
+              "blue": 2
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 10
+            }
+          }
+        },
+        {
+          "start": 244,
+          "end": 264,
+          "before": 19,
+          "after": 8,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 2,
+              "blue": 7
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 5,
+              "blue": 2
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 10
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [
+        {
+          "step": 247,
+          "point": "军事基地B",
+          "red": 7,
+          "blue": 7,
+          "bar": 1
+        }
+      ],
+      "secondary_dwell": [],
+      "frames": 501
+    },
+    {
+      "ordinal": 5,
+      "episode": 5,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 2570,
+        "capture_score": 1600,
+        "total": 4170
+      },
+      "flags": [
+        "HQ_bar_retained_secondary_capture_incomplete",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "指挥所": {
+          "first_red_entry": 110,
+          "first_full": 117,
+          "full_count": 383,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 3,
+            "blue": 2
+          },
+          "tied_full_positive": 106
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 189,
+          "end": 209,
+          "before": 24,
+          "after": 16,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 16,
+              "blue": 4
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            }
+          }
+        },
+        {
+          "start": 210,
+          "end": 230,
+          "before": 16,
+          "after": 11,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 11,
+              "blue": 4
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            }
+          }
+        },
+        {
+          "start": 321,
+          "end": 341,
+          "before": 11,
+          "after": 6,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 7,
+              "blue": 4
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [
+        {
+          "step": 366,
+          "point": "指挥所",
+          "red": 4,
+          "blue": 4,
+          "bar": 1
+        },
+        {
+          "step": 367,
+          "point": "指挥所",
+          "red": 4,
+          "blue": 4,
+          "bar": 1
+        },
+        {
+          "step": 368,
+          "point": "指挥所",
+          "red": 4,
+          "blue": 4,
+          "bar": 1
+        },
+        {
+          "step": 369,
+          "point": "指挥所",
+          "red": 4,
+          "blue": 4,
+          "bar": 1
+        },
+        {
+          "step": 370,
+          "point": "指挥所",
+          "red": 4,
+          "blue": 4,
+          "bar": 1
+        },
+        {
+          "step": 371,
+          "point": "指挥所",
+          "red": 4,
+          "blue": 4,
+          "bar": 1
+        }
+      ],
+      "secondary_dwell": [],
+      "frames": 501
+    },
+    {
+      "ordinal": 6,
+      "episode": 6,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 1440,
+        "capture_score": 1600,
+        "total": 3040
+      },
+      "flags": [
+        "HQ_bar_retained_secondary_capture_incomplete",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": 170,
+          "first_full": 175,
+          "full_count": 8,
+          "first_reversal": 183,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 10
+          },
+          "tied_full_positive": 0
+        },
+        "指挥所": {
+          "first_red_entry": 111,
+          "first_full": 114,
+          "full_count": 268,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 3
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 106,
+          "end": 126,
+          "before": 37,
+          "after": 25,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 10
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 2,
+              "blue": 0
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 2
+            }
+          }
+        },
+        {
+          "start": 162,
+          "end": 182,
+          "before": 17,
+          "after": 10,
+          "points": {
+            "军事基地B": {
+              "bar": 1,
+              "red": 11,
+              "blue": 10
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 0,
+              "blue": 0
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 2
+            }
+          }
+        },
+        {
+          "start": 183,
+          "end": 203,
+          "before": 8,
+          "after": 0,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 10
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 0,
+              "blue": 0
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 3
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [],
+      "secondary_dwell": [],
+      "frames": 383
+    },
+    {
+      "ordinal": 7,
+      "episode": 7,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 2810,
+        "capture_score": 1600,
+        "total": 4410
+      },
+      "flags": [
+        "HQ_bar_retained_secondary_capture_incomplete",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "指挥所": {
+          "first_red_entry": 117,
+          "first_full": 127,
+          "full_count": 139,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 5,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 103,
+          "end": 123,
+          "before": 37,
+          "after": 25,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 0.05,
+              "red": 16,
+              "blue": 16
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            }
+          }
+        },
+        {
+          "start": 239,
+          "end": 259,
+          "before": 11,
+          "after": 6,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 7,
+              "blue": 1
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [],
+      "secondary_dwell": [],
+      "frames": 267
+    },
+    {
+      "ordinal": 8,
+      "episode": 8,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 1400,
+        "capture_score": 1600,
+        "total": 3000
+      },
+      "flags": [
+        "HQ_bar_retained_secondary_capture_incomplete",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": 219,
+          "first_full": 229,
+          "full_count": 11,
+          "first_reversal": 235,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 7
+          },
+          "tied_full_positive": 3
+        },
+        "指挥所": {
+          "first_red_entry": 112,
+          "first_full": 116,
+          "full_count": 384,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 1,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 9
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 215,
+          "end": 235,
+          "before": 22,
+          "after": 15,
+          "points": {
+            "军事基地B": {
+              "bar": 0.95,
+              "red": 6,
+              "blue": 7
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 3,
+              "blue": 0
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 9
+            }
+          }
+        },
+        {
+          "start": 236,
+          "end": 256,
+          "before": 14,
+          "after": 3,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 7
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 3,
+              "blue": 0
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 9
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [
+        {
+          "step": 240,
+          "point": "军事基地B",
+          "red": 7,
+          "blue": 7,
+          "bar": 1
+        },
+        {
+          "step": 241,
+          "point": "军事基地B",
+          "red": 7,
+          "blue": 7,
+          "bar": 1
+        },
+        {
+          "step": 242,
+          "point": "军事基地B",
+          "red": 7,
+          "blue": 7,
+          "bar": 1
+        }
+      ],
+      "secondary_dwell": [],
+      "frames": 501
+    },
+    {
+      "ordinal": 9,
+      "episode": 9,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+      "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 2580,
+        "capture_score": 800,
+        "total": 3380
+      },
+      "flags": [
+        "HQ_full_bar_then_progress_reversed",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": 455,
+          "first_full": 457,
+          "full_count": 43,
+          "first_reversal": null,
+          "last": {
+            "bar": 1,
+            "red": 5,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        },
+        "指挥所": {
+          "first_red_entry": 113,
+          "first_full": 117,
+          "full_count": 372,
+          "first_reversal": 489,
+          "last": {
+            "bar": 0,
+            "red": 1,
+            "blue": 2
+          },
+          "tied_full_positive": 10
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 99,
+          "end": 119,
+          "before": 37,
+          "after": 24,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 11,
+              "blue": 8
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 0
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [
+        {
+          "step": 479,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 480,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 481,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 482,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 483,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 484,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        }
+      ],
+      "secondary_dwell": [],
+      "frames": 501
+    },
+    {
+      "ordinal": 10,
+      "episode": 1,
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0002\\logs\\20261102_154428\\protocol.jsonl",
+      "protocol_sha256": "5b663de3af7f7e08c04d90d47c658aa6672bbc0dea0b380aa3847f38c34bd413",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "score": {
+        "kill_score": 1300,
+        "capture_score": 0,
+        "total": 1300
+      },
+      "flags": [
+        "HQ_full_bar_then_progress_reversed",
+        "rapid_capturer_loss_observed"
+      ],
+      "points": {
+        "军事基地B": {
+          "first_red_entry": 244,
+          "first_full": 250,
+          "full_count": 8,
+          "first_reversal": 258,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 9
+          },
+          "tied_full_positive": 0
+        },
+        "指挥所": {
+          "first_red_entry": 113,
+          "first_full": 132,
+          "full_count": 198,
+          "first_reversal": 330,
+          "last": {
+            "bar": 0.7,
+            "red": 0,
+            "blue": 0
+          },
+          "tied_full_positive": 37
+        },
+        "军事基地A": {
+          "first_red_entry": null,
+          "first_full": null,
+          "full_count": 0,
+          "first_reversal": null,
+          "last": {
+            "bar": 0,
+            "red": 0,
+            "blue": 9
+          },
+          "tied_full_positive": 0
+        }
+      },
+      "rapid_losses": [
+        {
+          "start": 237,
+          "end": 257,
+          "before": 28,
+          "after": 19,
+          "points": {
+            "军事基地B": {
+              "bar": 1,
+              "red": 11,
+              "blue": 10
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 4,
+              "blue": 2
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 9
+            }
+          }
+        },
+        {
+          "start": 258,
+          "end": 278,
+          "before": 18,
+          "after": 7,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 3,
+              "blue": 8
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 4,
+              "blue": 2
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 9
+            }
+          }
+        },
+        {
+          "start": 279,
+          "end": 299,
+          "before": 7,
+          "after": 2,
+          "points": {
+            "军事基地B": {
+              "bar": 0,
+              "red": 0,
+              "blue": 8
+            },
+            "指挥所": {
+              "bar": 1,
+              "red": 2,
+              "blue": 2
+            },
+            "军事基地A": {
+              "bar": 0,
+              "red": 0,
+              "blue": 9
+            }
+          }
+        }
+      ],
+      "tied_full_examples": [
+        {
+          "step": 293,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 294,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 295,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 296,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 297,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        },
+        {
+          "step": 298,
+          "point": "指挥所",
+          "red": 2,
+          "blue": 2,
+          "bar": 1
+        }
+      ],
+      "secondary_dwell": [],
+      "frames": 501
+    }
+  ],
+  "baseline_replay": {
+    "selector": "6cb5a79_hq_hold",
+    "episodes": [
+      {
+        "ordinal": 1,
+        "compared": 25000,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 2,
+        "compared": 25000,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 3,
+        "compared": 25000,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 4,
+        "compared": 25000,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 5,
+        "compared": 25000,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 6,
+        "compared": 19100,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 7,
+        "compared": 13300,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 8,
+        "compared": 25000,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 9,
+        "compared": 25000,
+        "mismatches": 0
+      },
+      {
+        "ordinal": 10,
+        "compared": 25000,
+        "mismatches": 0
+      }
+    ],
+    "total_compared": 232400
+  },
+  "candidate_replay": {
+    "selector": "6cb5a79_hq_guard_entry",
+    "episodes": [
+      {
+        "ordinal": 1,
+        "compared": 25000,
+        "mismatches": 0,
+        "changed_by_type": {}
+      },
+      {
+        "ordinal": 3,
+        "compared": 25000,
+        "mismatches": 140,
+        "changed_by_type": {
+          "BP_RoboDog_C": 29,
+          "BP_BaseSoldier_C": 111
+        }
+      },
+      {
+        "ordinal": 5,
+        "compared": 25000,
+        "mismatches": 22,
+        "changed_by_type": {
+          "BP_BaseSoldier_C": 22
+        }
+      },
+      {
+        "ordinal": 7,
+        "compared": 13300,
+        "mismatches": 37,
+        "changed_by_type": {
+          "BP_BaseSoldier_C": 10,
+          "BP_RoboDog_C": 27
+        }
+      }
+    ],
+    "objective_stage_and_guard_allocation_unchanged": true,
+    "changed_command_count": 199,
+    "assigned_guard_changes": 192,
+    "released_guard_recovery_changes": [
+      {
+        "ordinal": 3,
+        "step": 285,
+        "uid": 1291,
+        "type": "BP_RoboDog_C",
+        "garrison": null,
+        "requested": "ActionSet2::Moving;-X+Y;1291",
+        "actual_next": "ActionSet2::Moving;;Points=[-44651.592143379436, 27385.414098181784, 6429.0];1291"
+      },
+      {
+        "ordinal": 3,
+        "step": 286,
+        "uid": 1291,
+        "type": "BP_RoboDog_C",
+        "garrison": null,
+        "requested": "ActionSet2::Moving;-X+Y;1291",
+        "actual_next": "ActionSet2::Moving;;Points=[-44651.592143379436, 27385.414098181784, 6429.0];1291"
+      },
+      {
+        "ordinal": 7,
+        "step": 233,
+        "uid": 3231,
+        "type": "BP_RoboDog_C",
+        "garrison": null,
+        "requested": "ActionSet2::Moving;+X;3231",
+        "actual_next": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];3231"
+      },
+      {
+        "ordinal": 7,
+        "step": 234,
+        "uid": 3231,
+        "type": "BP_RoboDog_C",
+        "garrison": null,
+        "requested": "ActionSet2::Moving;+X;3231",
+        "actual_next": "ActionSet2::Moving;;Points=[-45008.0, 27567.0, 6429.0];3231"
+      },
+      {
+        "ordinal": 7,
+        "step": 235,
+        "uid": 3236,
+        "type": "BP_RoboDog_C",
+        "garrison": null,
+        "requested": "ActionSet2::Moving;-X+Y;3236",
+        "actual_next": "ActionSet2::Moving;;Points=[-44655.55415713093, 27377.8388838997, 6429.0];3236"
+      },
+      {
+        "ordinal": 7,
+        "step": 243,
+        "uid": 3236,
+        "type": "BP_RoboDog_C",
+        "garrison": null,
+        "requested": "ActionSet2::Moving;;Points=[-44655.550395693994, 27377.845892393158, 6429.0];3236",
+        "actual_next": "ActionSet2::Moving;-X+Y;3236"
+      },
+      {
+        "ordinal": 7,
+        "step": 244,
+        "uid": 3231,
+        "type": "BP_RoboDog_C",
+        "garrison": null,
+        "requested": "ActionSet2::Moving;+Y;3231",
+        "actual_next": "ActionSet2::Moving;+X-Y;3231"
+      }
+    ],
+    "examples": [
+      {
+        "ordinal": 3,
+        "step": 209,
+        "unit": {
+          "uid": 1261,
+          "type": "BP_RoboDog_C",
+          "alive": true,
+          "hp": 100.0,
+          "link": true,
+          "inside": false,
+          "distance": 6797,
+          "requested": "ActionSet2::Moving;;Points=[-44705.1796875, 26975.1796875, 6388.7998046875];1261",
+          "actual_next": "ActionSet2::Moving;;Points=[-44705.1796875, 26175.1796875, 6388.7998046875];1261"
+        }
+      },
+      {
+        "ordinal": 3,
+        "step": 210,
+        "unit": {
+          "uid": 1261,
+          "type": "BP_RoboDog_C",
+          "alive": true,
+          "hp": 100.0,
+          "link": true,
+          "inside": false,
+          "distance": 6779,
+          "requested": "ActionSet2::Moving;;Points=[-44705.1796875, 26975.1796875, 6388.7998046875];1261",
+          "actual_next": "ActionSet2::Moving;;Points=[-44705.1796875, 26175.1796875, 6388.7998046875];1261"
+        }
+      },
+      {
+        "ordinal": 3,
+        "step": 211,
+        "unit": {
+          "uid": 1261,
+          "type": "BP_RoboDog_C",
+          "alive": true,
+          "hp": 100.0,
+          "link": true,
+          "inside": false,
+          "distance": 6779,
+          "requested": "ActionSet2::Moving;;Points=[-44705.1796875, 26975.1796875, 6388.7998046875];1261",
+          "actual_next": "ActionSet2::Moving;;Points=[-44705.1796875, 26175.1796875, 6388.7998046875];1261"
+        }
+      },
+      {
+        "ordinal": 3,
+        "step": 212,
+        "unit": {
+          "uid": 1261,
+          "type": "BP_RoboDog_C",
+          "alive": true,
+          "hp": 100.0,
+          "link": true,
+          "inside": false,
+          "distance": 6779,
+          "requested": "ActionSet2::Moving;;Points=[-44705.1796875, 26975.1796875, 6388.7998046875];1261",
+          "actual_next": "ActionSet2::Moving;;Points=[-44705.1796875, 26175.1796875, 6388.7998046875];1261"
+        }
+      },
+      {
+        "ordinal": 3,
+        "step": 213,
+        "unit": {
+          "uid": 1261,
+          "type": "BP_RoboDog_C",
+          "alive": true,
+          "hp": 100.0,
+          "link": true,
+          "inside": false,
+          "distance": 6779,
+          "requested": "ActionSet2::Moving;;Points=[-44705.1796875, 26975.1796875, 6388.7998046875];1261",
+          "actual_next": "ActionSet2::Moving;;Points=[-44705.1796875, 26175.1796875, 6388.7998046875];1261"
+        }
+      },
+      {
+        "ordinal": 3,
+        "step": 214,
+        "unit": {
+          "uid": 1261,
+          "type": "BP_RoboDog_C",
+          "alive": true,
+          "hp": 100.0,
+          "link": true,
+          "inside": false,
+          "distance": 6779,
+          "requested": "ActionSet2::Moving;;Points=[-44705.1796875, 26975.1796875, 6388.7998046875];1261",
+          "actual_next": "ActionSet2::Moving;;Points=[-44705.1796875, 26175.1796875, 6388.7998046875];1261"
+        }
+      },
+      {
+        "ordinal": 3,
+        "step": 243,
+        "unit": {
+          "uid": 1431,
+          "type": "BP_BaseSoldier_C",
+          "alive": true,
+          "hp": 100.0,
+          "link": true,
+          "inside": false,
+          "distance": 6955,
+          "requested": "ActionSet2::Moving;;Points=[-45098.76171875, 26975.1796875, 6429.22802734375];1431",
+          "actual_next": "ActionSet2::Moving;;Points=[-45098.76171875, 26175.1796875, 6429.22802734375];1431"
+        }
+      },
+      {
+        "ordinal": 3,
+        "step": 244,
+        "unit": {
+          "uid": 1426,
+          "type": "BP_BaseSoldier_C",
+          "alive": true,
+          "hp": 6.914477,
+          "link": true,
+          "inside": false,
+          "distance": 6999,
+          "requested": "ActionSet2::Moving;;Points=[-45073.2109375, 26975.1796875, 6429.22802734375];1426",
+          "actual_next": "ActionSet2::Moving;;Points=[-45073.2109375, 26175.1796875, 6429.22802734375];1426"
+        }
+      }
+    ],
+    "source_sha256": {
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ChampionGuardHold.py": "71313f8ec077d1137b8a3609003d2c8ca3a2fbd018808da165b474323600c1bf",
+      "PythonCode\\TeamAlg\\FsLutk7wD2RkNgbs\\Algorithm\\ChampionPolicyBridge.py": "dfe27a84f4fde7048d11de2fd8a32072a731584343ae0a8bbcfe52ac6045d136"
+    },
+    "audit_sha256": {
+      "hq-policy-audit.json": "75c0c034d4d1e00ef84d61cce1ec49291c7fd5ddbcbed2708fea5488bdc38773",
+      "guard-entry-replay.json": "ca3cc1d8d9d74be6d4a7284bef68744bf441aa2c9613e705ae8d8825cf6dca25",
+      "guard-entry-differences.json": "594332d2546e7ab60be15cf403f52edaebc87b07a7eba9e96e5b63a8fbbbdccf"
+    }
+  },
+  "checks": {
+    "compileall": "passed",
+    "pytest_tests_passed": 876,
+    "independent_code_review": "no blocking findings"
+  },
+  "next_version": "6cb5a79_hq_guard_entry",
+  "new_match_outcomes": false,
+  "limitations": [
+    "Frozen-state replay cannot evaluate returned scores or confirm engine traversal.",
+    "192 changed commands belong to assigned guards; 7 later commands are motion-recovery carryover on those same released dogs.",
+    "HQ residual enemies and B support losses remain separate problems.",
+    "No new weights were applied; target model remains 3e36fb."
+  ]
+}

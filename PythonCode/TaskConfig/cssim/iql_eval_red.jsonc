@@ -31,6 +31,6 @@
     "mode": "hybrid_iql",
     "iql_model": "Models/target_iql_v1.json",
     "iql_shadow": false,
-    "policy_baseline": "6cb5a79_hq_hold"
+    "policy_baseline": "6cb5a79_hq_guard_entry"
   }
 }

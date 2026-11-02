@@ -54,7 +54,7 @@ def audit(report, ordinals, output, *, baseline='6cb5a79'):
                             ActionSetFactory.standard(),'cpu',options,state.commanders))
                         summary=dict(ordinal=chosen[episode]['ordinal'],episode=episode,source=source,
                             source_commit=chosen[episode]['source_commit'],score=chosen[episode]['red'],
-                            frames=0,compared=0,mismatches=0,changed_by_type={},changes=[],transitions=[])
+                            frames=0,compared=0,mismatches=0,changed_by_type={},command_changes=[],changes=[],transitions=[])
                         results.append(summary)
                     actions=policy.act(state);policy.take_selected_special_commands();route=policy._route
                     hq=state.key_object_by_uid(route.hq_uid)
@@ -66,6 +66,9 @@ def audit(report, ordinals, output, *, baseline='6cb5a79'):
                         if unit.uid in actual and wire[unit.uid] != actual[unit.uid]:
                             kind=unit.entity_type
                             summary['changed_by_type'][kind]=summary['changed_by_type'].get(kind,0)+1
+                            summary['command_changes'].append(dict(step=step,uid=unit.uid,type=kind,
+                                garrison=route._garrison.get(unit.uid),requested=wire[unit.uid],
+                                actual_next=actual[unit.uid]))
                     guards={uid for uid,obj in route._garrison.items() if obj==hq.uid}
                     agents={u.uid:u for u in state.agents}
                     def unit(uid):
@@ -97,7 +100,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('report',type=Path);parser.add_argument('--ordinals',nargs='+',type=int,required=True)
     parser.add_argument('--out',type=Path,required=True)
-    parser.add_argument('--baseline',choices=('6cb5a79','6cb5a79_hq_hold'),default='6cb5a79')
+    parser.add_argument('--baseline',choices=('6cb5a79','6cb5a79_hq_hold', '6cb5a79_hq_guard_entry'),default='6cb5a79')
     args=parser.parse_args();logging.disable(logging.CRITICAL)
     result=audit(args.report,set(args.ordinals),args.out,baseline=args.baseline)
     print(json.dumps([dict(ordinal=x['ordinal'],compared=x['compared'],mismatches=x['mismatches']) for x in result['episodes']]))

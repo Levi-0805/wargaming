@@ -110,7 +110,7 @@ def prepare(source, output, *, template=DEFAULT_TEMPLATE, cssim_root=Path('C:/CS
     unknown = set(policy) - set(POLICY_FIELDS)
     if unknown:
         raise ValueError(f'Unexpected policy fields in template: {sorted(unknown)}')
-    if policy.get('policy_baseline', 'current') not in ('current', '6cb5a79', '6cb5a79_hq_hold'):
+    if policy.get('policy_baseline', 'current') not in ('current', '6cb5a79', '6cb5a79_hq_hold', '6cb5a79_hq_guard_entry'):
         raise ValueError('Unexpected tactical baseline')
     for flag in FLAGS:
         if flag in policy and type(policy[flag]) is not bool:

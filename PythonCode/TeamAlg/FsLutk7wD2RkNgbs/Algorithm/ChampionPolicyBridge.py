@@ -23,9 +23,10 @@ def create_champion(context):
     options['iql_model'] = str(model.resolve())
     policy = HistoricalAgent(replace(context, config=options))
     overlay = None
-    if selector == '6cb5a79_hq_hold':
-        from .ChampionGuardHold import TiedHQGuardRoute
-        policy._route = TiedHQGuardRoute(adaptive=policy._route.adaptive, hq_first=policy._route.hq_first)
+    if selector in ('6cb5a79_hq_hold', '6cb5a79_hq_guard_entry'):
+        from .ChampionGuardHold import TiedHQGuardRoute, HQGuardEntryRoute
+        route_class = HQGuardEntryRoute if selector == '6cb5a79_hq_guard_entry' else TiedHQGuardRoute
+        policy._route = route_class(adaptive=policy._route.adaptive, hq_first=policy._route.hq_first)
         overlay = Path(__file__).with_name('ChampionGuardHold.py')
     original_metadata = policy.policy_metadata
 
@@ -39,7 +40,8 @@ def create_champion(context):
                 'policy_snapshot_sha256': hashlib.sha256((folder / 'snapshot.json').read_bytes()).hexdigest(),
                 'defense_profile_sha256': hashlib.sha256(profile.read_bytes()).hexdigest(),
                 'defense_profiles_applied': False,
-                **({'policy_overlay': 'hq_tied_guard_retention',
+                **({'policy_overlay': ('hq_tied_guard_retention_and_entry_margin'
+                                      if selector == '6cb5a79_hq_guard_entry' else 'hq_tied_guard_retention'),
                     'policy_overlay_sha256': hashlib.sha256(overlay.read_bytes()).hexdigest()} if overlay else {})}
 
     policy.policy_metadata = MethodType(metadata, policy)

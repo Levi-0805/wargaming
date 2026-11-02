@@ -1,0 +1,493 @@
+{
+  "schema_version": 1,
+  "kind": "recorded_match_hq_guard_entry_dead_zone",
+  "review_date": "2026-11-02",
+  "source": {
+    "review": "results/learning/champion-1101-2028-r0010-review.json",
+    "ordinal": 3,
+    "episode": 3,
+    "batch_id": "champion-1101-2028-r0010-0001",
+    "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+    "protocol_sha256": "8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102",
+    "protocol_sha256_verified": true,
+    "simulation_sha256": "7310925afdddf6b7d0e76cc3c03ffe96937fd896d94545eba778ab5a758906da",
+    "actual_reset_policy": {
+      "mode": "hybrid_iql",
+      "class": "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.Champion6cb5a79.LearnedTargeting.HybridIQLAgent",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "feature_version": 1,
+      "shadow": false,
+      "scope": "ground_target_selection",
+      "online_training": false,
+      "policy_baseline": "6cb5a79_hq_hold",
+      "policy_source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "policy_snapshot_sha256": "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5",
+      "defense_profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+      "defense_profiles_applied": false,
+      "policy_overlay": "hq_tied_guard_retention",
+      "policy_overlay_sha256": "dc0f4d6c4999f59b8c0f522d9485bc8c16ee7834213d0c72d09e058524218ddf"
+    },
+    "terminal_score": {
+      "kill_score": 2720,
+      "capture_score": 1600,
+      "total": 4320
+    }
+  },
+  "finding": "Established HQ guards outside the controller inset are ordered to boundary points within the movement arrival dead zone; repeated identical requests neither enter the inset nor activate motion recovery.",
+  "mechanism": [
+    {
+      "file": "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/Champion6cb5a79/AssaultRoute.py",
+      "line": 500,
+      "detail": "guard_slot caches the clamp of the actual position; an outside unit can receive a target exactly on the inset boundary."
+    },
+    {
+      "file": "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/Champion6cb5a79/RuleAgentAlgorithm.py",
+      "line": 214,
+      "detail": "An assigned guard outside the inset returns move_at(guard_slot) before clearance or guard reactions."
+    },
+    {
+      "file": "PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/Champion6cb5a79/MotionRecovery.py",
+      "line": 115,
+      "detail": "A Moving action with a point distance of at most 300 cm is not counted as intended movement; its progress/escape state is cleared."
+    }
+  ],
+  "examples": [
+    {
+      "step": 250,
+      "position": [
+        -45161.30859375,
+        26173.390625,
+        6429.22900390625
+      ],
+      "hp": 100.0,
+      "alive": true,
+      "communication_ok": true,
+      "ammunition": [
+        "197.0"
+      ],
+      "perceived_uids": [],
+      "actual_next_action": "ActionSet2::Moving;;Points=[-45161.30859375, 26175.1796875, 6429.22900390625];1511",
+      "uid": 1511,
+      "entity_type": "BP_BaseSoldier_C",
+      "assigned_hq_uid": 32769,
+      "inside_guard_inset": false,
+      "requested_point": [
+        -45161.30859375,
+        26175.1796875,
+        6429.22900390625
+      ],
+      "horizontal_distance_to_request_cm": 1.7890625,
+      "public_hq": {
+        "uid": 32769,
+        "position": [
+          -41810.421875,
+          32275.1796875,
+          6326.02197265625
+        ],
+        "team": null,
+        "scale": {
+          "x": 7700,
+          "y": 6500,
+          "z": 2500
+        },
+        "rotation": {
+          "pitch": 0,
+          "yaw": 0,
+          "roll": 0
+        },
+        "percent": 1,
+        "redTeamNum": 17,
+        "blueteamNum": 7
+      },
+      "replay_action_matches_recorded": true,
+      "observed_interval_200_280": {
+        "first": {
+          "step": 200,
+          "position": [
+            -45161.62109375,
+            26172.7890625,
+            6429.22900390625
+          ],
+          "hp": 100.0,
+          "ammunition": [
+            "197.0"
+          ]
+        },
+        "last": {
+          "step": 280,
+          "position": [
+            -45161.30859375,
+            26173.390625,
+            6429.22900390625
+          ],
+          "hp": 100.0,
+          "ammunition": [
+            "197.0"
+          ]
+        },
+        "frames": 81,
+        "net_displacement_cm": 0.6778891438917207,
+        "action_counts": {
+          "ActionSet2::Moving": 81
+        },
+        "same_boundary_request_count": 37,
+        "all_frames_alive": true,
+        "all_frames_communication_ok": true,
+        "all_frames_no_perceived_opponents": true,
+        "ammunition_unchanged": true
+      }
+    },
+    {
+      "step": 250,
+      "position": [
+        -45098.76171875,
+        26146.669921875,
+        6429.22802734375
+      ],
+      "hp": 100.0,
+      "alive": true,
+      "communication_ok": true,
+      "ammunition": [
+        "237.0"
+      ],
+      "perceived_uids": [],
+      "actual_next_action": "ActionSet2::Moving;;Points=[-45098.76171875, 26175.1796875, 6429.22802734375];1431",
+      "uid": 1431,
+      "entity_type": "BP_BaseSoldier_C",
+      "assigned_hq_uid": 32769,
+      "inside_guard_inset": false,
+      "requested_point": [
+        -45098.76171875,
+        26175.1796875,
+        6429.22802734375
+      ],
+      "horizontal_distance_to_request_cm": 28.509765625,
+      "public_hq": {
+        "uid": 32769,
+        "position": [
+          -41810.421875,
+          32275.1796875,
+          6326.02197265625
+        ],
+        "team": null,
+        "scale": {
+          "x": 7700,
+          "y": 6500,
+          "z": 2500
+        },
+        "rotation": {
+          "pitch": 0,
+          "yaw": 0,
+          "roll": 0
+        },
+        "percent": 1,
+        "redTeamNum": 17,
+        "blueteamNum": 7
+      },
+      "replay_action_matches_recorded": true,
+      "observed_interval_200_280": {
+        "first": {
+          "step": 200,
+          "position": [
+            -45098.8515625,
+            26146.470703125,
+            6429.22802734375
+          ],
+          "hp": 100.0,
+          "ammunition": [
+            "237.0"
+          ]
+        },
+        "last": {
+          "step": 280,
+          "position": [
+            -45098.76171875,
+            26146.669921875,
+            6429.22802734375
+          ],
+          "hp": 100.0,
+          "ammunition": [
+            "237.0"
+          ]
+        },
+        "frames": 81,
+        "net_displacement_cm": 0.21854063641717758,
+        "action_counts": {
+          "ActionSet2::Moving": 81
+        },
+        "same_boundary_request_count": 38,
+        "all_frames_alive": true,
+        "all_frames_communication_ok": true,
+        "all_frames_no_perceived_opponents": true,
+        "ammunition_unchanged": true
+      }
+    },
+    {
+      "step": 260,
+      "position": [
+        -45073.2109375,
+        26083.439453125,
+        6429.22802734375
+      ],
+      "hp": 6.914477,
+      "alive": true,
+      "communication_ok": true,
+      "ammunition": [
+        "227.0"
+      ],
+      "perceived_uids": [],
+      "actual_next_action": "ActionSet2::Moving;;Points=[-45073.2109375, 26175.1796875, 6429.22802734375];1426",
+      "uid": 1426,
+      "entity_type": "BP_BaseSoldier_C",
+      "assigned_hq_uid": 32769,
+      "inside_guard_inset": false,
+      "requested_point": [
+        -45073.2109375,
+        26175.1796875,
+        6429.22802734375
+      ],
+      "horizontal_distance_to_request_cm": 91.740234375,
+      "public_hq": {
+        "uid": 32769,
+        "position": [
+          -41810.421875,
+          32275.1796875,
+          6326.02197265625
+        ],
+        "team": null,
+        "scale": {
+          "x": 7700,
+          "y": 6500,
+          "z": 2500
+        },
+        "rotation": {
+          "pitch": 0,
+          "yaw": 0,
+          "roll": 0
+        },
+        "percent": 1,
+        "redTeamNum": 16,
+        "blueteamNum": 7
+      },
+      "replay_action_matches_recorded": true,
+      "observed_interval_200_280": {
+        "first": {
+          "step": 200,
+          "position": [
+            -45288.171875,
+            26092.25,
+            6429.22900390625
+          ],
+          "hp": 6.914477,
+          "ammunition": [
+            "227.0"
+          ]
+        },
+        "last": {
+          "step": 280,
+          "position": [
+            -45073.19921875,
+            26083.439453125,
+            6429.22802734375
+          ],
+          "hp": 6.914477,
+          "ammunition": [
+            "227.0"
+          ]
+        },
+        "frames": 81,
+        "net_displacement_cm": 215.1531284280359,
+        "action_counts": {
+          "ActionSet2::Moving": 81
+        },
+        "same_boundary_request_count": 31,
+        "all_frames_alive": true,
+        "all_frames_communication_ok": true,
+        "all_frames_no_perceived_opponents": true,
+        "ammunition_unchanged": true
+      }
+    },
+    {
+      "step": 280,
+      "position": [
+        -44935.55078125,
+        26069.01953125,
+        6391.22802734375
+      ],
+      "hp": 100.0,
+      "alive": true,
+      "communication_ok": true,
+      "ammunition": [
+        "246.0"
+      ],
+      "perceived_uids": [],
+      "actual_next_action": "ActionSet2::Moving;;Points=[-44935.55078125, 26175.1796875, 6391.22802734375];1291",
+      "uid": 1291,
+      "entity_type": "BP_RoboDog_C",
+      "assigned_hq_uid": 32769,
+      "inside_guard_inset": false,
+      "requested_point": [
+        -44935.55078125,
+        26175.1796875,
+        6391.22802734375
+      ],
+      "horizontal_distance_to_request_cm": 106.16015625,
+      "public_hq": {
+        "uid": 32769,
+        "position": [
+          -41810.421875,
+          32275.1796875,
+          6326.02197265625
+        ],
+        "team": null,
+        "scale": {
+          "x": 7700,
+          "y": 6500,
+          "z": 2500
+        },
+        "rotation": {
+          "pitch": 0,
+          "yaw": 0,
+          "roll": 0
+        },
+        "percent": 1,
+        "redTeamNum": 14,
+        "blueteamNum": 7
+      },
+      "replay_action_matches_recorded": true,
+      "observed_interval_200_280": {
+        "first": {
+          "step": 200,
+          "position": [
+            -45072.44921875,
+            26082.4296875,
+            6391.22802734375
+          ],
+          "hp": 100.0,
+          "ammunition": [
+            "246.0"
+          ]
+        },
+        "last": {
+          "step": 280,
+          "position": [
+            -44935.55078125,
+            26069.01953125,
+            6391.22802734375
+          ],
+          "hp": 100.0,
+          "ammunition": [
+            "246.0"
+          ]
+        },
+        "frames": 81,
+        "net_displacement_cm": 137.55367854256323,
+        "action_counts": {
+          "ActionSet2::Moving": 80,
+          "ActionSet2::Idle": 1
+        },
+        "same_boundary_request_count": 14,
+        "all_frames_alive": true,
+        "all_frames_communication_ok": false,
+        "all_frames_no_perceived_opponents": true,
+        "ammunition_unchanged": true
+      }
+    },
+    {
+      "step": 280,
+      "position": [
+        -45005.87109375,
+        26067.080078125,
+        6391.22802734375
+      ],
+      "hp": 66.69332,
+      "alive": true,
+      "communication_ok": true,
+      "ammunition": [
+        "249.0"
+      ],
+      "perceived_uids": [],
+      "actual_next_action": "ActionSet2::Moving;;Points=[-45005.87109375, 26175.1796875, 6391.22802734375];1246",
+      "uid": 1246,
+      "entity_type": "BP_RoboDog_C",
+      "assigned_hq_uid": 32769,
+      "inside_guard_inset": false,
+      "requested_point": [
+        -45005.87109375,
+        26175.1796875,
+        6391.22802734375
+      ],
+      "horizontal_distance_to_request_cm": 108.099609375,
+      "public_hq": {
+        "uid": 32769,
+        "position": [
+          -41810.421875,
+          32275.1796875,
+          6326.02197265625
+        ],
+        "team": null,
+        "scale": {
+          "x": 7700,
+          "y": 6500,
+          "z": 2500
+        },
+        "rotation": {
+          "pitch": 0,
+          "yaw": 0,
+          "roll": 0
+        },
+        "percent": 1,
+        "redTeamNum": 14,
+        "blueteamNum": 7
+      },
+      "replay_action_matches_recorded": true,
+      "observed_interval_200_280": {
+        "first": {
+          "step": 200,
+          "position": [
+            -45629.7109375,
+            26108.439453125,
+            6391.22802734375
+          ],
+          "hp": 66.69332,
+          "ammunition": [
+            "249.0"
+          ]
+        },
+        "last": {
+          "step": 280,
+          "position": [
+            -45005.87109375,
+            26067.080078125,
+            6391.22802734375
+          ],
+          "hp": 66.69332,
+          "ammunition": [
+            "249.0"
+          ]
+        },
+        "frames": 81,
+        "net_displacement_cm": 625.2093637737802,
+        "action_counts": {
+          "ActionSet2::Moving": 80,
+          "ActionSet2::Guard": 1
+        },
+        "same_boundary_request_count": 1,
+        "all_frames_alive": true,
+        "all_frames_communication_ok": true,
+        "all_frames_no_perceived_opponents": true,
+        "ammunition_unchanged": true
+      }
+    }
+  ],
+  "proposed_scope": "Keep the historical snapshot and tied-HQ guard retention. Only relocate a short boundary return target inward for an alive, connected, assigned HQ guard currently outside the inset; retain stable target caching, entrance priority, ownership and departure gates.",
+  "limitations": [
+    "Recorded states and N+1 actual commands are observations; a changed request on these fixed states is not a new match, realized displacement, survival benefit or score improvement.",
+    "At step 250 HQ blue=7 still fails the existing <=3 contested-departure gate. This dead zone alone does not explain the failure to depart or the final score.",
+    "Navigation mesh and obstacle clearance are not exposed. An inward request still requires live validation; public geometry is not proof of traversability.",
+    "The 200-280 interval mostly has movement and no local enemy detections for these units, so it does not establish attack interruption of clearance plans as the primary issue.",
+    "The inset is stricter than the public capture box; outside the inset does not imply the engine excluded a unit from redTeamNum."
+  ]
+}

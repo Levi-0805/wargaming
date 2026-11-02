@@ -18,7 +18,7 @@ from train_target_iql import config
 
 
 def evaluate(source, model, episodes, baseline='current'):
-    if baseline not in ('current', '6cb5a79', '6cb5a79_hq_hold'):
+    if baseline not in ('current', '6cb5a79', '6cb5a79_hq_hold', '6cb5a79_hq_guard_entry'):
         raise ValueError('Unknown tactical baseline')
     envs = {name: CssimEnvironment(config()) for name in ('rule', 'shadow', 'iql')}
     previous, episode, rules, rows, current = None, 0, {}, [], None
@@ -86,7 +86,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('source', type=Path); p.add_argument('--model', type=Path, required=True)
     p.add_argument('--episodes', nargs='+', type=int, default=[1]); p.add_argument('--out', type=Path, required=True)
-    p.add_argument('--baseline', choices=('current', '6cb5a79', '6cb5a79_hq_hold'), default='current')
+    p.add_argument('--baseline', choices=('current', '6cb5a79', '6cb5a79_hq_hold', '6cb5a79_hq_guard_entry'), default='current')
     args = p.parse_args(); logging.disable(logging.CRITICAL)
     result = evaluate(args.source, args.model.resolve(), set(args.episodes), args.baseline)
     args.out.parent.mkdir(parents=True, exist_ok=True)
