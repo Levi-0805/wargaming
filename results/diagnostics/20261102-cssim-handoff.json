@@ -1,0 +1,130 @@
+{
+  "created_at": "2026-11-02T18:46:08+08:00",
+  "task": "handoff_requested_by_user",
+  "automation": {
+    "id": "cssim",
+    "status": "PAUSED",
+    "interval_minutes": 120,
+    "paused_by_explicit_user_choice": true
+  },
+  "learning": {
+    "phase": "awaiting_review",
+    "round_number": 10,
+    "active_campaign": "champion-1101-2028-r0010",
+    "report_delivered": true,
+    "next_expected": null,
+    "release_file_exists": false,
+    "STOP_exists": false,
+    "local_worker_left_waiting": true
+  },
+  "game_source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+  "head_before_handoff_document": "c1b1e80403f77989be79c4f2674892abdf18fe88",
+  "processes": [
+    {
+      "role": "worker",
+      "identity_match": true,
+      "pid": 30512,
+      "created_ticks": "134380693784655484",
+      "exe_path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonEnv\\pythonw.exe"
+    },
+    {
+      "role": "observer",
+      "identity_match": true,
+      "pid": 31936,
+      "created_ticks": "134380097223134179",
+      "exe_path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonEnv\\pythonw.exe"
+    },
+    {
+      "role": "borrowed_server",
+      "pid": 15724,
+      "created_ticks": "134378554046965523",
+      "exe_path": "C:\\CSSIM\\Server\\Server\\Server.exe"
+    },
+    {
+      "role": "borrowed_server",
+      "pid": 26844,
+      "created_ticks": "134379946561585096",
+      "exe_path": "C:\\CSSIM\\Server\\Server\\Server.exe"
+    }
+  ],
+  "candidate": {
+    "id": "champion-1101-2028-r0010-iql",
+    "state": "trained_unpublished",
+    "promoted": false,
+    "model_sha256": "dd8fd8fab73f92c222b74fb2f6f3280a20cffc7fe0f3166bb746edf90b783a52",
+    "report_sha256": "dce5405ddfc75bffc98512ee75137424ebd0793e222f22c7c885c2c7721f1783",
+    "hashes_verified": true,
+    "split_sessions": {
+      "train": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "validation": 27,
+      "test": 28
+    },
+    "sources": [
+      {
+        "index": 27,
+        "path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0001\\logs\\20261102_130523\\protocol.jsonl",
+        "allowed_episodes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8"
+      },
+      {
+        "index": 28,
+        "path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0010-0002\\logs\\20261102_154428\\protocol.jsonl",
+        "allowed_episodes": [
+          1
+        ],
+        "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8"
+      }
+    ],
+    "full_review_pending": true
+  },
+  "documents": {
+    "repository": "C:\\Users\\aaa\\Desktop\\wargaming\\docs\\cssim-handoff-20261102.txt",
+    "desktop": "C:\\Users\\aaa\\Desktop\\迭代报告\\第0010轮\\CSSIM训练交接文档-20261102.txt",
+    "sha256": "a6c09acfab58be956c7d06c26c0e6337bc1d14d0636d03b8a39e8f2717e36a74"
+  },
+  "summary_source": "results/diagnostics/20261102-ten-rounds-100-games-summary.json",
+  "unresolved": [
+    "round10 live mechanism audit",
+    "candidate feature compatibility with selected historical baseline",
+    "round11 experiment not prepared or released",
+    "RL benefit not demonstrated"
+  ]
+}

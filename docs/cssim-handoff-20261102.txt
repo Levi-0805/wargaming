@@ -1,0 +1,402 @@
+﻿CSSIM 自动采集、训练与策略迭代交接文档
+生成时间：2026-11-02T18:46:08+08:00（Asia/Shanghai）
+适用仓库：C:\Users\aaa\Desktop\wargaming
+交接对象：同一电脑、同一仓库的新 Codex 会话或人工维护者。
+
+一、先读这一页：当前停在哪里
+
+用户要求交接，认为原会话没有实现有效的分数提升。用户随后明确选择“暂停当前巡检，交给新会话继续”。已用应用工具将自动巡检 cssim 改为 PAUSED，并读回本地配置核验；原间隔120分钟保留。
+本次只编写交接材料、暂停会话巡检，不修改算法、不重训、不发布模型、不启动第11轮。
+本地训练协调器仍活着，但处于 awaiting_review 等待审查；暂停会话巡检不等于杀掉本地后台。没有写 STOP、没有清理任何比赛数据、没有 release.json；下一版尚未准备，next_expected=null。旧 next_review 字段仍指向“第9轮生成第10轮”的旧记录，不能误当第11轮已准备。
+
+当前已完成连续计划第1—10轮，共100个真实有效终局。第10轮比赛与离线候选训练均完成，成绩已报告；第10轮候选完整审查和守备修复的实战机制复核尚未做完，第11轮未启动。
+当前 state.phase=awaiting_review，round_number=10，active_campaign=champion-1101-2028-r0010。
+实际第10轮比赛源码：9ad5db17a2ad512983a470e31b5ca6928353e6e8。
+交接前仓库 HEAD：c1b1e80403f77989be79c4f2674892abdf18fe88，这是100局总结的文档提交，并非比赛运行版本。本交接文档提交也不改变历史比赛来源。
+
+最重要的结果：100局均分3208.2，仅10局达到5000，65局低于4000，24局低于2000。目标未达成。流程能自动跑，不等于策略已优化成功。
+新会话第一步应审查第10轮的失分机制并提出一个有证据的修改方案，不应重跑第10轮、不应再次机械切换IQL开关，也不应因为候选训练完成就直接部署。
+
+二、用户要求与边界
+
+1. 总目标：稳定达到5000分以上，尤其避免HQ占下后丢失、全军反复折返浪费步数、车步脱节和有弹无效射击。不能只展示一两局6000或均分升高。
+2. 每个代码/模型/动作模式版本累计十个有效终局，不要求连续。客户端中断后保留完整局，只补余量；三个连续尝试无新增有效局才保护停止，不得重新开十局凑数。失败回执保留。
+3. 每满十局，先反馈逐局终局摧毁分+Reward、均分、低于5000比例、尾部、主要问题和简短修改方案；完成审查、修改、验证、GitHub备份和双端部署后再放行下一版。训练阶段也不能压住已出成绩。
+4. 每轮所有.txt成绩、观察、状态和方案放桌面“迭代报告/第NNNN轮/”。每四轮生成大报，放结束轮目录；已到第8轮大报，下次第12轮。用户后来取消了早期“三轮后停”的上限，改为持续任务；本次另行明确暂停旧会话巡检以便交接。
+5. 用户希望采用三自然日退火式探索，覆盖HQ集中、HQ+A、HQ+B、三点分守等敌方布置；保留真实高分版本和回退路径，一次只试一个策略范围或一份权重。当前历史基线不应用DefenseDoctrine参数，因此现有自动profile变异可能根本无效，不能冒充一次策略修改。
+6. 用户要求按失败类型整理有效数据、只修已证实问题，并受控验证。逐单位诊断应覆盖每名士兵、机器狗和车辆的控制链、血量、位置、弹药、感知、目标、指令与实际反馈。现在具备日志和回放能力，不代表所有个体已有验证过的最优策略。
+7. 要求节省额度。当前预算是每2小时最低限度检查脚本结果；健康collecting/training且无新待交付成绩，安静结束，不重复读图、大协议、测试，不开额外常驻AI/API。
+8. 早期前10轮允许本地观察器20秒常态/关键事件5秒留证，低频导演视角近景。截图必须验证导演、有效尺度、HUD时间；不能把天空/宽景当近景，不能把日志参考帧当截图帧。用户已允许查看界面，但不要操控单位、AI/手动/任务菜单、远程软件或通知设置。
+9. STOP或用户叫停后不自行恢复。旧会话已暂停；新会话需按用户交接指令接手，不能偷偷恢复旧会话巡检。
+10. 所有算法和Python框架变更必须先在仓库修改、审查和检查，提交推送GitHub核验后再部署。不得在部署目录直接开发，不得强推，不得在采集或训练中改变HEAD。
+
+三、目录、入口与自动化实际能力
+
+仓库：C:\Users\aaa\Desktop\wargaming
+GitHub：https://github.com/Levi-0805/wargaming
+分支：main（现有publish.ps1只允许main发布）。
+规范源码：仓库 PythonCode。
+运行端：C:\CSSIM\Client\Data\AlgData\PythonCode 和 C:\CSSIM\Server\Data\AlgData\PythonCode。
+Python：C:\CSSIM\Client\Data\AlgData\PythonEnv\python.exe；隐藏后台为同目录pythonw.exe。
+报告：C:\Users\aaa\Desktop\迭代报告\第NNNN轮\。
+桌面CSSIM20260915是安装介质，不是运行源码。
+必须阅读：AGENTS.md、tools/CSSIM-AGENTS.md、docs/cssim-continuous-learning.md。
+
+已实读桌面快捷方式（无需重装）：
+  CSSIM Training.lnk：系统PowerShell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\Users\aaa\Desktop\wargaming\tools\start_learning.ps1"。
+  Stop CSSIM Training.lnk：同上，加 -Stop。
+  CSSIM 服务器.lnk：C:\CSSIM\Server\Server\Server.exe。
+  CSSIM 客户端.lnk：C:\CSSIM\Client\CSSIM\Binaries\Win64\CSSIMClient-Win64-Shipping.exe。
+训练快捷方式工作目录为仓库根。它是手动一键启动入口，不是已核验的Windows开机自启任务。
+
+主要程序职责：
+  tools/start_learning.ps1、tools/install_learning_shortcuts.ps1：桌面快捷入口/安装入口。
+  tools/cssim_learning.py：顶层状态机，组织十局累计采集、离线训练、报告、候选门槛和下一轮。
+  tools/cssim_cumulative.py：跨异常退出累计有效局、只补余量、无进展保护。
+  tools/cssim_campaign.py：原生客户端生命周期/UI流程/进程身份检查/批次控制。
+  tools/cssim_flow.json：已校准的客户端导航流程；不要无事重做校准。
+  tools/batch_training.py、相关collector：有效终局与来源记录、候选选择、训练封装。
+  tools/train_target_iql.py：从实际日志动作提取地面目标选择数据，离线IQL训练。
+  tools/evaluate_target_iql.py：所选baseline的规则/影子/IQL接入回放检查。
+  tools/cssim_annealing.py：三自然日温度、接受/拒绝和尾部保护。
+  tools/cssim_observer.py、cssim_observer_camera.py、cssim_observer_ocr.ps1：本地只读记录和截图，不调用AI。
+  tools/publish.ps1 -> verify.ps1 -> Git提交/推送/远端核验 -> sync_to_cssim.ps1：发布路径。
+
+本地后台能独立完成“当前轮采集→训练候选→桌面写报告→等待审查”。关闭Codex后也可继续当前轮，前提是电脑开机、登录、桌面可供CSSIM使用。
+它不会在关闭Codex时自行分析代码、自动上传聊天附件或自动完成下一次代码修改。report-ready.json是本地队列，由会话巡检读取，不是直接向聊天发消息，也没有保证的打开Codex即时上传。
+自动候选和SA参数只是提议，必须审查。过去多轮训练了候选但没有应用新权重，不可说“每轮都是新RL模型”。
+
+当前已暂停的会话巡检：id=cssim；旧thread=01a14096-200c-7683-9b1f-492eb595abe2；FREQ=MINUTELY;INTERVAL=120。
+配置文件：C:\Users\aaa\.codex\automations\cssim\automation.toml。通过应用automation工具修改，不手改配置来假装已生效。
+新会话若恢复巡检，应更新接收会话和当前交接提示，保持只在新整轮/新实质故障/新关键证据时通知；不能让新旧两个会话同时管同一仓库。
+
+四、当前有效策略与已部署修复
+
+当前选择器 policy_baseline=6cb5a79_hq_hold，mode=hybrid_iql，iql_shadow=false。
+历史策略源提交：6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694。
+23份历史Python原文保存在 PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/Champion6cb5a79/，由snapshot.json逐文件校验；不得直接修改这些不可变历史文件。
+snapshot SHA：7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5。
+桥接：同目录上层 ChampionPolicyBridge.py，通过显式selector选择原历史策略或覆盖层。
+覆盖层：PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Algorithm/ChampionGuardHold.py。
+overlay名称 hq_tied_guard_retention，SHA dc0f4d6c4999f59b8c0f522d9485bc8c16ee7834213d0c72d09e058524218ddf。
+生效模型：PythonCode/TeamAlg/FsLutk7wD2RkNgbs/Models/target_iql_v1.json。
+模型SHA：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f。
+profile文件SHA：bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73；仅审计存在，defense_profiles_applied=false，当前历史/覆盖层都不应用它。
+发布配置：PythonCode/TaskConfig/cssim/iql_eval_red.jsonc、cssim_25vs25.jsonc。实际批次预算由控制器有效配置确定，不能单看平台模板的默认局数。
+
+第10轮唯一策略范围：主力已经离开HQ后，HQ满条、显式owner未知、双方正人数相等、非remnant撤退时，保留之前已分配且仍活着、未明确失链、22000以内的本地守军；其他已占点分配优先。不新建守军，不把打平当成获得所有权，不放宽主力出发门槛。
+原路线、编队、权重、其他点守军分配和不可变snapshot未改。回退方式是把selector恢复6cb5a79，保留运行框架和历史文件。
+第9轮已实证的错误：第3局415步HQ满条1比1时清空留守，满血可控且在框内的士兵1496被派向B，429步进度回落；第9局212步也有2比2时释放士兵2581/狗2841，同时存在真正阵亡。不是所有失守都由这一错误导致。
+旧策略回放代表两局各25000条N+1指令零差异；覆盖层分别改42条、15条，车辆/空中指令不变。它证明特定决策被改，不证明生存/得分提升。
+第10轮发布858项检查通过。更早fbff版本的“足够可控士兵才允许离开”是另一套current策略，不等于现在历史覆盖层，不应机械加回。
+
+五、十轮100局实际表现与结论
+
+口径：终局摧毁分 + Reward = 总分；本表仅当前连续计划1—10轮，不混更早独立历史33局。
+总体100局，总分320820，均分3208.2，中位3020，最低1030，最高6000。
+低于5000有90局，达到5000有10局；低于4000有65局；低于2000有24局；最差20局均分1276。
+平均摧毁分1832.2，平均占领分1376。占领0/800/1600/2400/3200分别33/6/26/26/9局。
+达到5000的10局中，9局占领3200、1局占领2400。优先修复占领保持和后续点推进有数据依据，但这不是单一因果证明。
+
+第01轮：分型参数初版；均分2675，低于5000 10/10，最低1190，最高4750，尾部两局均1280。
+第02轮：分型参数回退；均分3082，低于5000 10/10，最低1350，最高4440，尾部两局均1360。
+第03轮：B点车辆集合调整；均分3625，低于5000 8/10，最低1300，最高5900，尾部两局均1365。
+第04轮：试用新IQL权重；均分2635，低于5000 10/10，最低1030，最高4950，尾部两局均1245。
+第05轮：回退原IQL权重；均分3128，低于5000 10/10，最低1240，最高4650，尾部两局均1265。
+第06轮：守备修改后手动纯规则观察；均分2940，低于5000 10/10，最低1170，最高4740，尾部两局均1225。
+第07轮：恢复历史高分战术与原IQL；均分4654，低于5000 6/10，最低2580，最高6000，尾部两局均2785。
+第08轮：同战术规则动作对照（IQL影子）；均分3288，低于5000 7/10，最低1250，最高5940，尾部两局均1290。
+第09轮：恢复原IQL再次复测；均分2679，低于5000 10/10，最低1070，最高4510，尾部两局均1095。
+第10轮：HQ满条打平时保留已有有效守军；均分3376，低于5000 9/10，最低1300，最高5910，尾部两局均1320。
+
+第10轮是9+1有效局，实际退出码[1,0]；第二次仅补1局。均3376，低于5000为9/10，低于4000为6/10，最差两局均1320。占领3200一局、1600六局、800一局、0两局。
+它比第9轮均2679高约26%，仍未达目标，防守未配对，不能认定全部来自修复。六局只有1600占领分的原因需查HQ停滞/转场/B点进攻，不能直接推断成HQ全部守住了。
+第7轮4654为当前计划最高单轮均分，但第9轮相同旧基线、相同原权重仍只2679，表明明显波动，不能把一个高分批次当稳定冠军能力。
+第7/8/9是应用IQL/影子规则/应用IQL，均4654/3288/2679；是顺序非配对对照，尚未证明IQL优于规则。第9权重没有变，不能把该轮下降称为新一轮梯度训练过拟合。
+第6轮是用户手动纯规则十局，原source_commit/batch_id未知，启动后文件SHA与fbffb15相符只能记post-start matching snapshot，不能补造启动证明。它计入实际100局，但training_eligible=false、训练拒收保留。
+更早独立历史6cb5a79十局均4496，最低870，6局超过5800，实际也是hybrid3e36而非纯规则；这是独立参考，不加进本100局。用户关于早期高分的质疑有实际高分批次支撑。
+
+六、RL训练已经做到了什么、尚未做到什么
+
+已实现：实际协议/终局/来源/模型/Done一致性核验；完整协议SHA和有效episode选择；从记录的真实动作构建地面目标选择样本；离线IQL训练；候选模型与训练报告哈希；按session划分梯度训练/验证/测试；低高局接入回放；受审查控制的模型发布和回退。
+训练器把终局团队总分作为目标选择轨迹的折扣终局回报，不是完整的导航、据点守备或编队强化学习。不存在每个单位已独立学会最优战术的结论。
+默认训练上限3000更新，seed10098，验证行为NLL用于选checkpoint。这些离线量不是实战收益，也不是最优策略证明。
+最新两个来源session留作validation/test，不等于永远整轮十局全留出：例如第5轮分三次采集，其第一批4局当时已进入梯度。数据后续轮次可能滚入训练，必须逐轮读manifest，不能套旧说明。
+手动第6轮无来源绑定继续拒收。带未Done额外包的协议只选确认有效episode，完整原协议SHA保持，不降低完整性凑样本。
+
+第10轮新候选：champion-1101-2028-r0010-iql。
+候选状态trained_unpublished，promoted=false；实际比赛仍用3e36旧模型。
+候选模型SHA：dd8fd8fab73f92c222b74fb2f6f3280a20cffc7fe0f3166bb746edf90b783a52。
+训练报告SHA：dce5405ddfc75bffc98512ee75137424ebd0793e222f22c7c885c2c7721f1783。
+本次3000次更新，选中第2750次checkpoint。sources共29份（索引0—28），梯度0—26；validation27为第10轮前9局，test28为补1局。第10轮十局未参加本次梯度，第9轮两来源已进入训练。
+交接时仅核对候选/报告文件哈希与划分，不等于完成候选质量和部署审查。
+训练元数据training_base_commit=cd94d2dbb859246afbeb2598ba4a1c942310c07f，与实际比赛提交属于不同记录字段，接手者需按其生成逻辑解释，不要当作第10轮比赛源码。
+
+关键未完成项：train_target_iql.py仍直接引用current TargetFeatures与VehicleFireControl；evaluate_target_iql.py已走所选baseline的factory。这两者与历史baseline/overlay的特征及动作含义是否完整一致，试任何新权重前必须核实。
+本连续计划里第4轮实际试了新403310权重，随后回退；多数其他轮是旧3e36权重、规则更改或对照，不是持续部署新RL训练成果。不要把守备规则修改收益记作RL收益。
+不能把成绩不佳笼统归结为样本不足、过拟合、某个敌人或退火搜索。已有规则错误、真正战损、控制链问题和非配对防守等多种因素。
+
+七、已确认问题、待验证问题和后续优先级
+
+已确认：
+  A. 满条双方人数打平时错误清空已有守军（第9轮具体单位/步骤如上）。第10轮代码已针对修复；实战机制复核仍欠缺。
+  B. 只看“活着的狗”会高估有效守备；第5轮存在狗存活但失链、仅剩一个可控士兵的局部时序。
+  C. 失守也会发生在留下4名可控士兵后：手动第6轮代表局守军被实际杀死，不能全归为被调走或一名残敌夺点。
+  D. 历史第2轮代表局转场后车步出现间隔、主力损失后HQ回落；另有未转场就大量损失且车辆有弹缺视野的局面。不能把所有低分归为同一问题。
+  E. 早期B点有限集合逻辑有修改；当前历史策略复测与overlay未包含所有current后续修改，不能假定那些修改都在生效。
+
+尚未完成，按顺序建议新会话处理：
+  1. 先读第10轮小报告，再选占领0、占领1600、5910高分代表局，使用同一口径分类HQ满条后回落、终局是否满条、转场/折返、B/A推进与守军死伤失链。
+  2. 以actual baseline=6cb5a79_hq_hold复现真实决策，确认修复的分支是否触发以及是否仍无故释放守军；不能用旧baseline回放冒充当前。
+  3. 若是守军真实损失，研究局部补位、通信/视野/弹药和有效火力支援；若六局1600主要是后续点迟迟未推进，优先修转场/攻击效用，不机械多留人或多留车。
+  4. 逐单位用UID建立“状态→发出的指令→后继实际动作→明确事件/结果”链。没有命中/击杀事件时，不仅凭敌方掉血认定某辆车有效；无法读取的敌方内部策略标未知。
+  5. 车步距离、无效射击、临时火力支援各是独立候选，不与新权重/HQ规则同时堆改。若做有限前车合队，让后队继续接近并保留交战/脱险优先；避免已失败的整路continuous_column和无上限全队等待。
+  6. 下一轮只选一个有证据的范围。先给用户轮报和短方案，再实现/验证/发布/放行。用户关于“轮间是否改代码”的质疑应正面回应，不再把开关来回切换或无效SA参数称为优化。
+
+“3200占领+至少1800摧毁”可作为达到5000的一条评分预算；并非一定能做到或唯一解。真正稳定应看连续多轮达标率和尾部，而不是单次平均。稳定阈值的具体验收窗口尚未与用户定死，不能自行声称达标。
+
+八、恢复操作手册（新会话审查后执行，不是现在自动执行）
+
+先在仓库运行只读检查，避免输出整个大状态：
+  $s=Get-Content logs/learning/state.json -Raw | ConvertFrom-Json
+  $s | Select-Object phase,round_number,active_campaign,pending_summary
+  Get-Content logs/learning/report-ready.json -Raw | ConvertFrom-Json | Select-Object id,delivered_to_chat
+  git status --short
+  git log -1 --format='%H %s'
+
+当前worker仍活着，不要重复启动。只需审查后prepare/publish/release，原worker即可接续。
+如确需启动不存在的worker，使用已核实的start入口/快捷方式；先检查STOP和记录身份。不要把start当成“开始新十局”的通用按钮：它沿用现有状态，已有worker返回already_running；STOP存在且worker已死时拒绝启动，不自动清除STOP。用户叫停后必须有明确恢复授权才能处理STOP。
+主要命令：cssim_learning.py status是只读小状态；start启动隐藏worker；run是内部常驻入口，持有learning.lock；stop写学习与当前campaign STOP，保留已完成成绩并按身份处理自有子进程，不关闭借用服务。没有通用自动清除STOP命令。
+
+候选准备示例（必须先读源码/文档，三个选项互斥选择，不要全执行）：
+  & 'C:\CSSIM\Client\Data\AlgData\PythonEnv\python.exe' tools/cssim_learning.py prepare-next
+  或 prepare-next --use-candidate
+  或 prepare-next --restore-profiles logs/learning/round-0010/profiles.json
+当前历史baseline不应用profile；默认自动SA提议不能直接当作有效策略。因此若保持原模型/参数而改局部规则，使用已审的中性profiles检查点避免混入随机变异，再核对实际model/baseline/overlay。不要把规范profile源文件自身传给复制恢复，避免同文件复制错误。
+prepare-next要求Git干净，生成next-version记录、next_expected模型/profile哈希，并不等于已部署/已放行。它可能选择冠军检查点，必须核对实际diff与预期，不能假定自动继承所有新规则。
+代码改动与必要冻结回放/回归确认后：
+  & .\tools\publish.ps1 -Message '具体改动与原因' -CssimRoot 'C:\CSSIM'
+发布会检查、提交、推送、核验远端，再复制双端。发布脚本会git add .，因此事前必须审查未提交文件，防止将其他工作或大日志混入。
+然后：
+  & 'C:\CSSIM\Client\Data\AlgData\PythonEnv\python.exe' tools/cssim_learning.py release --commit 完整已核验GitHub提交SHA
+release再次检查干净源码、GitHub、双端和暂存artifact，写门槛信号；原worker消费后才进入第11轮。确认实际reset的selector/model/shadow/snapshot/overlay与预期一致，并确认正步数推进，不能只看到configuring_ui就说比赛已跑。
+若修改了常驻worker已导入的框架模块，在安全门槛按路径+PID+created_ticks核验后退出并重启该worker加载；纯配置变化通常不必重启。不要按python/server进程名称批量结束。
+pytest从仓库PythonCode目录运行，以免导入路径假失败；按改动做针对检查，发布全检不能跳过。不能为了通过删测试或把旧回放结果称为新实测。
+
+九、关键文件索引（以下相对路径均以仓库为根）
+
+控制与当前结果：
+  logs/learning/state.json：权威学习状态，当前等待第10轮审查。
+  logs/learning/report-ready.json：第10轮成绩信号已delivered。
+  logs/campaigns/champion-1101-2028-r0010/state.json：累计completed_games=10，state=completed。
+  results/batches/champion-1101-2028-r0010-cumulative.json：逐局来源、完整协议SHA、退出回执。
+  results/learning/champion-1101-2028-r0010-review.json：自动成绩/候选指针/退火提议。proposed b_bias0.95未应用，对当前历史baseline也不能假定生效。
+  logs/autotrain-candidates/champion-1101-2028-r0010-iql/review.json：最新候选清单。
+  logs/autotrain-candidates/champion-1101-2028-r0010-iql/dataset/training-report.json：更新次数/选点/训练manifest。
+  logs/learning/round-0010/model.json、profiles.json：第10轮运行检查点。
+  logs/learning/round-0007/model.json、profiles.json：高分参考检查点；不是稳定5000保证。
+
+精简证据：
+  results/diagnostics/20261102-ten-rounds-100-games-summary.json：100局已核结果。
+  results/diagnostics/20261102-round9-gate-review.json：tie错误与回放、源SHA、候选角色。
+  results/diagnostics/20261102-round7-gate-review.json、20261102-round8-gate-review.json：此前对照成绩/点位时序。
+  results/diagnostics/20261102-champion-shadow-control-replay.json：shadow等于同baseline规则动作的冻结验证。
+  results/diagnostics/20261101-manual-rule-ten-game-review.json：第6轮来源限制。
+  results/diagnostics/20261101-round5-gate-review.json、20261101-hq-guard-contract-replay.json、20261101-failure-types-40games.json：较早规则/失效证据。
+  logs/learning/round-0009/guard-audit.json、guard-candidate-final.json：代表局详细审计指针。
+  logs/learning/round-0006/manual-guard-audit/：手动纯规则守军真实阵亡等记录。
+  logs/learning/gate-recovery-runbook.txt：第1轮旧补赛/补丁方案，当前绝不可机械重做。
+
+注意：report-ready.json中的candidate_status可能仍为写入成绩通知时的not_yet_trained，它不是实时训练状态。当前训练完成由state.awaiting_review和候选review确认，不要据旧队列字段重训。
+
+诊断工具：
+  tools/diagnostics/audit_policy_garrison.py：接受累计报告、--ordinals、--baseline、--out，按选中episode核验全协议SHA并回放守军/指令。第10轮必须传6cb5a79_hq_hold。候选mismatches是变更数量，不自动等同违规。
+  tools/diagnostics/audit_completed_failure_types.py：内部audit函数可按当前报告选择协议和游戏；main原本针对前四轮，不要每次又扫旧40局。
+  tools/diagnostics/audit_hq_guard_contract.py：旧/新route冻结对照，需要显式基线源、协议、episode、模型。
+  tools/evaluate_target_iql.py：--baseline与实际策略一致，不能绕过factory。
+
+原始第10轮协议（本地保留，不入Git）：
+  logs/autotrain/champion-1101-2028-r0010-0001/logs/20261102_130523/protocol.jsonl，选episode1—9；SHA 8855aa00ccd8d6248c024b111a1faf1c0bf72da2d680f17ed4155fb7a3903102。
+  logs/autotrain/champion-1101-2028-r0010-0002/logs/20261102_154428/protocol.jsonl，选episode1；SHA 5b663de3af7f7e08c04d90d47c658aa6672bbc0dea0b380aa3847f38c34bd413。
+禁止把第一次尝试未确认的下一局混入训练或有效局预算。
+
+十、运行维护注意事项
+
+worker: PID=30512，created_ticks=134380693784655484，exe=C:\CSSIM\Client\Data\AlgData\PythonEnv\pythonw.exe
+observer: PID=31936，created_ticks=134380097223134179，exe=C:\CSSIM\Client\Data\AlgData\PythonEnv\pythonw.exe
+borrowed_server: PID=15724，created_ticks=134378554046965523，exe=C:\CSSIM\Server\Server\Server.exe
+borrowed_server: PID=26844，created_ticks=134379946561585096，exe=C:\CSSIM\Server\Server\Server.exe
+以上是本次交接核验时的快照；以后必须重新读取身份，PID可复用。不要用CIM时间四舍五入结果替代WindowsProcesses的原生精确created_ticks。
+worker与observer身份匹配已核验。两项Server.exe为显式借用服务，端口50051与48080，必须保留；不能当本任务自有进程清理。旧用户客户端、旧main、旧worker早已结束，不再操作旧PID。
+本地观察器当前仍在第10轮等待状态；设计在轮号超过10时退出。新会话放行11后应核验退出，必要仅按记录身份处理，不再开启额外常驻AI观察器。
+客户端1600x900置屏幕(0,40)用于避开通知；现有启动流程已验证。曾有登录模板超时/用户手动接续，但不是已证明算法导致。只看精简错误，有进展重试交给累计控制，无新增保护后不得无限重试。
+曾清理备份目录51个重复tmp.zip.*约121GB，运行原件和其他备份保留。发布已排除这些碎片，别重复清理；不要删除原协议/检查点来省空间。
+Git仅备份源码和精简结果，不包括巨大的logs、训练数据和本地模型检查点。新会话在本机同目录可读取；换机器仅clone仓库不足以重放/续训，需要另行保留这些本地证据，不能声称GitHub保存了所有原始数据。
+
+十一、对接手者的短提示（可直接发给新会话）
+
+请阅读 C:\Users\aaa\Desktop\迭代报告\第0010轮\CSSIM训练交接文档-20261102.txt 和仓库AGENTS.md。旧会话cssim巡检已由用户要求暂停；本地协调器在第10轮awaiting_review等待，第11轮没有启动。100局均3208.2、只有10局达5000，目标未达；当前模型仍原3e36，策略为6cb5a79_hq_hold。请先核实小状态和第10轮候选/实际守军与点位时序，区分真正阵亡失链、tie分配错误与B/A推进失败，向我给出一个具体修改方案，再验证、推送部署并接续。不要重跑已有100局，不把回放当新成绩，不机械部署候选或反复开关IQL，不恢复旧会话巡检造成双重控制。我的重点是稳定5000、HQ占后守住、车步协同和逐单位攻击效用。
+
+附录：100局逐局摧毁分+占领分=总分、完整源码提交与原始结果入口
+
+第0001轮 / 分型参数初版
+源码：a101f4f0964d91784084b1e7fc2fe9e95f5265ae
+模型：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\recover-20261031-round1-last1-cumulative.json
+退出码：[1, 1, 0]
+  01: 1190 + 0 = 1190
+  02: 1830 + 0 = 1830
+  03: 1410 + 1600 = 3010
+  04: 1370 + 0 = 1370
+  05: 1280 + 1600 = 2880
+  06: 1120 + 1600 = 2720
+  07: 1320 + 1600 = 2920
+  08: 2070 + 0 = 2070
+  09: 2350 + 2400 = 4750
+  10: 1610 + 2400 = 4010
+
+第0002轮 / 分型参数回退
+源码：8ac55f2131c72a2725c0cef10db06cdb6b9c9f30
+模型：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\learning-20261031-162920-r0002-cumulative.json
+退出码：[0]
+  01: 1350 + 0 = 1350
+  02: 1810 + 2400 = 4210
+  03: 2590 + 1600 = 4190
+  04: 1410 + 2400 = 3810
+  05: 1790 + 2400 = 4190
+  06: 1580 + 0 = 1580
+  07: 1210 + 1600 = 2810
+  08: 1370 + 0 = 1370
+  09: 2040 + 2400 = 4440
+  10: 1270 + 1600 = 2870
+
+第0003轮 / B点车辆集合调整
+源码：3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d
+模型：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\learning-1101-014143-r0003-cumulative.json
+退出码：[1, 0]
+  01: 1430 + 0 = 1430
+  02: 1780 + 2400 = 4180
+  03: 2580 + 800 = 3380
+  04: 1300 + 0 = 1300
+  05: 1830 + 1600 = 3430
+  06: 2700 + 3200 = 5900
+  07: 2470 + 3200 = 5670
+  08: 1950 + 0 = 1950
+  09: 2060 + 2400 = 4460
+  10: 2150 + 2400 = 4550
+
+第0004轮 / 试用新IQL权重
+源码：85cfe695437493f3d1e0105e43a05bedd7c7e4a0
+模型：403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\learning-1101-014143-r0004-cumulative.json
+退出码：[0]
+  01: 1030 + 0 = 1030
+  02: 1480 + 800 = 2280
+  03: 2550 + 2400 = 4950
+  04: 1590 + 2400 = 3990
+  05: 1460 + 0 = 1460
+  06: 2170 + 0 = 2170
+  07: 2060 + 0 = 2060
+  08: 1030 + 1600 = 2630
+  09: 1900 + 2400 = 4300
+  10: 1480 + 0 = 1480
+
+第0005轮 / 回退原IQL权重
+源码：6533313bbddc021defc018acf16b5e0df85efb87
+模型：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\learning-1101-014143-r0005-cumulative.json
+退出码：[1, 1, 0]
+  01: 1780 + 2400 = 4180
+  02: 1540 + 1600 = 3140
+  03: 1290 + 0 = 1290
+  04: 2220 + 2400 = 4620
+  05: 1240 + 0 = 1240
+  06: 2110 + 800 = 2910
+  07: 2110 + 2400 = 4510
+  08: 2660 + 0 = 2660
+  09: 2080 + 0 = 2080
+  10: 2250 + 2400 = 4650
+
+第0006轮 / 守备修改后手动纯规则观察
+源码：UNKNOWN（手动第6轮，禁止补造）
+模型：实际纯规则，不应用IQL
+结果：C:\Users\aaa\Desktop\wargaming\results\diagnostics\20261101-manual-rule-ten-game-review.json
+退出码：手动批次，不伪造collector退出码；详见该报告
+  01: 1400 + 2400 = 3800
+  02: 2340 + 2400 = 4740
+  03: 1170 + 0 = 1170
+  04: 1280 + 0 = 1280
+  05: 2440 + 0 = 2440
+  06: 1510 + 1600 = 3110
+  07: 2700 + 800 = 3500
+  08: 2250 + 0 = 2250
+  09: 2460 + 1600 = 4060
+  10: 1450 + 1600 = 3050
+
+第0007轮 / 恢复历史高分战术与原IQL
+源码：c09702df7feda863d02752ee4850fb4d1e2d4dd2
+模型：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\champion-1101-2028-r0007-cumulative.json
+退出码：[0]
+  01: 2000 + 2400 = 4400
+  02: 1500 + 2400 = 3900
+  03: 1810 + 2400 = 4210
+  04: 2300 + 2400 = 4700
+  05: 2790 + 3200 = 5990
+  06: 980 + 1600 = 2580
+  07: 2800 + 3200 = 6000
+  08: 1390 + 1600 = 2990
+  09: 2740 + 3200 = 5940
+  10: 2630 + 3200 = 5830
+
+第0008轮 / 同战术规则动作对照（IQL影子）
+源码：0d61298fc47a9d84be73a2f0d4e62eaefd57a77b
+模型：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\champion-1101-2028-r0008-cumulative.json
+退出码：[0]
+  01: 1330 + 0 = 1330
+  02: 2260 + 0 = 2260
+  03: 1420 + 1600 = 3020
+  04: 1380 + 1600 = 2980
+  05: 2210 + 0 = 2210
+  06: 1420 + 1600 = 3020
+  07: 2740 + 3200 = 5940
+  08: 2580 + 3200 = 5780
+  09: 1250 + 0 = 1250
+  10: 2690 + 2400 = 5090
+
+第0009轮 / 恢复原IQL再次复测
+源码：64ab74918b917e7ecc51c3bead368dca9dca8cf0
+模型：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\champion-1101-2028-r0009-cumulative.json
+退出码：[1, 0]
+  01: 1980 + 2400 = 4380
+  02: 1660 + 1600 = 3260
+  03: 2220 + 800 = 3020
+  04: 1240 + 2400 = 3640
+  05: 1820 + 0 = 1820
+  06: 1220 + 1600 = 2820
+  07: 2110 + 2400 = 4510
+  08: 1120 + 0 = 1120
+  09: 1070 + 0 = 1070
+  10: 1150 + 0 = 1150
+
+第0010轮 / HQ满条打平时保留已有有效守军
+源码：9ad5db17a2ad512983a470e31b5ca6928353e6e8
+模型：3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f
+结果：C:\Users\aaa\Desktop\wargaming\results\batches\champion-1101-2028-r0010-cumulative.json
+退出码：[1, 0]
+  01: 2710 + 3200 = 5910
+  02: 1340 + 0 = 1340
+  03: 2720 + 1600 = 4320
+  04: 1290 + 1600 = 2890
+  05: 2570 + 1600 = 4170
+  06: 1440 + 1600 = 3040
+  07: 2810 + 1600 = 4410
+  08: 1400 + 1600 = 3000
+  09: 2580 + 800 = 3380
+  10: 1300 + 0 = 1300
+
+本文的“未验证/待审查/建议”不是已完成事项；新会话应基于证据重新判断，不受旧会话策略结论束缚。
