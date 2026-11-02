@@ -1,0 +1,850 @@
+{
+  "scope": "Current continuous-learning rounds1-10 only; excludes earlier independent historical batches.",
+  "count": 100,
+  "total_score": 320820,
+  "mean": 3208.2,
+  "median": 3020.0,
+  "minimum": 1030,
+  "maximum": 6000,
+  "under2000": 24,
+  "under4000": 65,
+  "at_least4000": 35,
+  "under5000": 90,
+  "at_least5000": 10,
+  "bottom20_mean": 1276,
+  "mean_destruction": 1832.2,
+  "mean_capture": 1376,
+  "capture_distribution": {
+    "0": 33,
+    "1600": 26,
+    "2400": 26,
+    "800": 6,
+    "3200": 9
+  },
+  "high_score_capture_distribution": {
+    "3200": 9,
+    "2400": 1
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "experiment": "分型参数初版",
+      "source_commit": "a101f4f0964d91784084b1e7fc2fe9e95f5265ae",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\recover-20261031-round1-last1-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 2675,
+        "median": 2800.0,
+        "minimum": 1190,
+        "maximum": 4750,
+        "stddev": 1062.6593998078595,
+        "bottom_20_mean": 1280,
+        "under_5000": 10,
+        "under_4000": 8,
+        "energy": 5450.664849951965,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        1,
+        1,
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 1190,
+          "capture_score": 0,
+          "total": 1190
+        },
+        {
+          "kill_score": 1830,
+          "capture_score": 0,
+          "total": 1830
+        },
+        {
+          "kill_score": 1410,
+          "capture_score": 1600,
+          "total": 3010
+        },
+        {
+          "kill_score": 1370,
+          "capture_score": 0,
+          "total": 1370
+        },
+        {
+          "kill_score": 1280,
+          "capture_score": 1600,
+          "total": 2880
+        },
+        {
+          "kill_score": 1120,
+          "capture_score": 1600,
+          "total": 2720
+        },
+        {
+          "kill_score": 1320,
+          "capture_score": 1600,
+          "total": 2920
+        },
+        {
+          "kill_score": 2070,
+          "capture_score": 0,
+          "total": 2070
+        },
+        {
+          "kill_score": 2350,
+          "capture_score": 2400,
+          "total": 4750
+        },
+        {
+          "kill_score": 1610,
+          "capture_score": 2400,
+          "total": 4010
+        }
+      ],
+      "captures": {
+        "0": 4,
+        "1600": 4,
+        "2400": 2
+      }
+    },
+    {
+      "round": 2,
+      "experiment": "分型参数回退",
+      "source_commit": "8ac55f2131c72a2725c0cef10db06cdb6b9c9f30",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\learning-20261031-162920-r0002-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 3082,
+        "median": 3340.0,
+        "minimum": 1350,
+        "maximum": 4440,
+        "stddev": 1200.314958667099,
+        "bottom_20_mean": 1360,
+        "under_5000": 10,
+        "under_4000": 6,
+        "energy": 5038.078739666775,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 1350,
+          "capture_score": 0,
+          "total": 1350
+        },
+        {
+          "kill_score": 1810,
+          "capture_score": 2400,
+          "total": 4210
+        },
+        {
+          "kill_score": 2590,
+          "capture_score": 1600,
+          "total": 4190
+        },
+        {
+          "kill_score": 1410,
+          "capture_score": 2400,
+          "total": 3810
+        },
+        {
+          "kill_score": 1790,
+          "capture_score": 2400,
+          "total": 4190
+        },
+        {
+          "kill_score": 1580,
+          "capture_score": 0,
+          "total": 1580
+        },
+        {
+          "kill_score": 1210,
+          "capture_score": 1600,
+          "total": 2810
+        },
+        {
+          "kill_score": 1370,
+          "capture_score": 0,
+          "total": 1370
+        },
+        {
+          "kill_score": 2040,
+          "capture_score": 2400,
+          "total": 4440
+        },
+        {
+          "kill_score": 1270,
+          "capture_score": 1600,
+          "total": 2870
+        }
+      ],
+      "captures": {
+        "0": 3,
+        "2400": 4,
+        "1600": 3
+      }
+    },
+    {
+      "round": 3,
+      "experiment": "B点车辆集合调整",
+      "source_commit": "3ff2bbdc69e965d9f05e4c9e6fd6cac4c462854d",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\learning-1101-014143-r0003-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 3625,
+        "median": 3805.0,
+        "minimum": 1300,
+        "maximum": 5900,
+        "stddev": 1560.3156731892427,
+        "bottom_20_mean": 1365,
+        "under_5000": 8,
+        "under_4000": 5,
+        "energy": 4382.578918297311,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        1,
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 1430,
+          "capture_score": 0,
+          "total": 1430
+        },
+        {
+          "kill_score": 1780,
+          "capture_score": 2400,
+          "total": 4180
+        },
+        {
+          "kill_score": 2580,
+          "capture_score": 800,
+          "total": 3380
+        },
+        {
+          "kill_score": 1300,
+          "capture_score": 0,
+          "total": 1300
+        },
+        {
+          "kill_score": 1830,
+          "capture_score": 1600,
+          "total": 3430
+        },
+        {
+          "kill_score": 2700,
+          "capture_score": 3200,
+          "total": 5900
+        },
+        {
+          "kill_score": 2470,
+          "capture_score": 3200,
+          "total": 5670
+        },
+        {
+          "kill_score": 1950,
+          "capture_score": 0,
+          "total": 1950
+        },
+        {
+          "kill_score": 2060,
+          "capture_score": 2400,
+          "total": 4460
+        },
+        {
+          "kill_score": 2150,
+          "capture_score": 2400,
+          "total": 4550
+        }
+      ],
+      "captures": {
+        "0": 3,
+        "2400": 3,
+        "800": 1,
+        "1600": 1,
+        "3200": 2
+      }
+    },
+    {
+      "round": 4,
+      "experiment": "试用新IQL权重",
+      "source_commit": "85cfe695437493f3d1e0105e43a05bedd7c7e4a0",
+      "model_sha256": "403310bad6b8fce4fb39cf0e25f82b703985a7ca4b60d6648fc79d2f51afccef",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\learning-1101-014143-r0004-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 2635,
+        "median": 2225.0,
+        "minimum": 1030,
+        "maximum": 4950,
+        "stddev": 1262.1826333775948,
+        "bottom_20_mean": 1245,
+        "under_5000": 10,
+        "under_4000": 8,
+        "energy": 5558.045658344399,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 1030,
+          "capture_score": 0,
+          "total": 1030
+        },
+        {
+          "kill_score": 1480,
+          "capture_score": 800,
+          "total": 2280
+        },
+        {
+          "kill_score": 2550,
+          "capture_score": 2400,
+          "total": 4950
+        },
+        {
+          "kill_score": 1590,
+          "capture_score": 2400,
+          "total": 3990
+        },
+        {
+          "kill_score": 1460,
+          "capture_score": 0,
+          "total": 1460
+        },
+        {
+          "kill_score": 2170,
+          "capture_score": 0,
+          "total": 2170
+        },
+        {
+          "kill_score": 2060,
+          "capture_score": 0,
+          "total": 2060
+        },
+        {
+          "kill_score": 1030,
+          "capture_score": 1600,
+          "total": 2630
+        },
+        {
+          "kill_score": 1900,
+          "capture_score": 2400,
+          "total": 4300
+        },
+        {
+          "kill_score": 1480,
+          "capture_score": 0,
+          "total": 1480
+        }
+      ],
+      "captures": {
+        "0": 5,
+        "800": 1,
+        "2400": 3,
+        "1600": 1
+      }
+    },
+    {
+      "round": 5,
+      "experiment": "回退原IQL权重",
+      "source_commit": "6533313bbddc021defc018acf16b5e0df85efb87",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\learning-1101-014143-r0005-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 3128,
+        "median": 3025.0,
+        "minimum": 1240,
+        "maximum": 4650,
+        "stddev": 1259.6412187603262,
+        "bottom_20_mean": 1265,
+        "under_5000": 10,
+        "under_4000": 6,
+        "energy": 5054.410304690082,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        1,
+        1,
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 1780,
+          "capture_score": 2400,
+          "total": 4180
+        },
+        {
+          "kill_score": 1540,
+          "capture_score": 1600,
+          "total": 3140
+        },
+        {
+          "kill_score": 1290,
+          "capture_score": 0,
+          "total": 1290
+        },
+        {
+          "kill_score": 2220,
+          "capture_score": 2400,
+          "total": 4620
+        },
+        {
+          "kill_score": 1240,
+          "capture_score": 0,
+          "total": 1240
+        },
+        {
+          "kill_score": 2110,
+          "capture_score": 800,
+          "total": 2910
+        },
+        {
+          "kill_score": 2110,
+          "capture_score": 2400,
+          "total": 4510
+        },
+        {
+          "kill_score": 2660,
+          "capture_score": 0,
+          "total": 2660
+        },
+        {
+          "kill_score": 2080,
+          "capture_score": 0,
+          "total": 2080
+        },
+        {
+          "kill_score": 2250,
+          "capture_score": 2400,
+          "total": 4650
+        }
+      ],
+      "captures": {
+        "2400": 4,
+        "1600": 1,
+        "0": 4,
+        "800": 1
+      }
+    },
+    {
+      "round": 6,
+      "experiment": "守备修改后手动纯规则观察",
+      "source_commit": null,
+      "model_sha256": null,
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\diagnostics\\20261101-manual-rule-ten-game-review.json",
+      "metrics": {
+        "count": 10,
+        "mean": 2940,
+        "median": 3080.0,
+        "minimum": 1170,
+        "maximum": 4740,
+        "stddev": 1104.6809494148072,
+        "bottom_20_mean": 1225,
+        "under_5000": 10,
+        "under_4000": 8,
+        "energy": 5223.670237353702,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [],
+      "scores": [
+        {
+          "kill_score": 1400,
+          "capture_score": 2400,
+          "total": 3800
+        },
+        {
+          "kill_score": 2340,
+          "capture_score": 2400,
+          "total": 4740
+        },
+        {
+          "kill_score": 1170,
+          "capture_score": 0,
+          "total": 1170
+        },
+        {
+          "kill_score": 1280,
+          "capture_score": 0,
+          "total": 1280
+        },
+        {
+          "kill_score": 2440,
+          "capture_score": 0,
+          "total": 2440
+        },
+        {
+          "kill_score": 1510,
+          "capture_score": 1600,
+          "total": 3110
+        },
+        {
+          "kill_score": 2700,
+          "capture_score": 800,
+          "total": 3500
+        },
+        {
+          "kill_score": 2250,
+          "capture_score": 0,
+          "total": 2250
+        },
+        {
+          "kill_score": 2460,
+          "capture_score": 1600,
+          "total": 4060
+        },
+        {
+          "kill_score": 1450,
+          "capture_score": 1600,
+          "total": 3050
+        }
+      ],
+      "captures": {
+        "2400": 2,
+        "0": 4,
+        "1600": 3,
+        "800": 1
+      }
+    },
+    {
+      "round": 7,
+      "experiment": "恢复历史高分战术与原IQL",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\champion-1101-2028-r0007-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 4654,
+        "median": 4550.0,
+        "minimum": 2580,
+        "maximum": 6000,
+        "stddev": 1205.6550086985912,
+        "bottom_20_mean": 2785,
+        "under_5000": 6,
+        "under_4000": 3,
+        "energy": 2354.913752174648,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 2000,
+          "capture_score": 2400,
+          "total": 4400
+        },
+        {
+          "kill_score": 1500,
+          "capture_score": 2400,
+          "total": 3900
+        },
+        {
+          "kill_score": 1810,
+          "capture_score": 2400,
+          "total": 4210
+        },
+        {
+          "kill_score": 2300,
+          "capture_score": 2400,
+          "total": 4700
+        },
+        {
+          "kill_score": 2790,
+          "capture_score": 3200,
+          "total": 5990
+        },
+        {
+          "kill_score": 980,
+          "capture_score": 1600,
+          "total": 2580
+        },
+        {
+          "kill_score": 2800,
+          "capture_score": 3200,
+          "total": 6000
+        },
+        {
+          "kill_score": 1390,
+          "capture_score": 1600,
+          "total": 2990
+        },
+        {
+          "kill_score": 2740,
+          "capture_score": 3200,
+          "total": 5940
+        },
+        {
+          "kill_score": 2630,
+          "capture_score": 3200,
+          "total": 5830
+        }
+      ],
+      "captures": {
+        "2400": 4,
+        "3200": 4,
+        "1600": 2
+      }
+    },
+    {
+      "round": 8,
+      "experiment": "同战术规则动作对照（IQL影子）",
+      "source_commit": "0d61298fc47a9d84be73a2f0d4e62eaefd57a77b",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\champion-1101-2028-r0008-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 3288,
+        "median": 3000.0,
+        "minimum": 1250,
+        "maximum": 5940,
+        "stddev": 1641.1873750428376,
+        "bottom_20_mean": 1290,
+        "under_5000": 7,
+        "under_4000": 7,
+        "energy": 4677.29684376071,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 1330,
+          "capture_score": 0,
+          "total": 1330
+        },
+        {
+          "kill_score": 2260,
+          "capture_score": 0,
+          "total": 2260
+        },
+        {
+          "kill_score": 1420,
+          "capture_score": 1600,
+          "total": 3020
+        },
+        {
+          "kill_score": 1380,
+          "capture_score": 1600,
+          "total": 2980
+        },
+        {
+          "kill_score": 2210,
+          "capture_score": 0,
+          "total": 2210
+        },
+        {
+          "kill_score": 1420,
+          "capture_score": 1600,
+          "total": 3020
+        },
+        {
+          "kill_score": 2740,
+          "capture_score": 3200,
+          "total": 5940
+        },
+        {
+          "kill_score": 2580,
+          "capture_score": 3200,
+          "total": 5780
+        },
+        {
+          "kill_score": 1250,
+          "capture_score": 0,
+          "total": 1250
+        },
+        {
+          "kill_score": 2690,
+          "capture_score": 2400,
+          "total": 5090
+        }
+      ],
+      "captures": {
+        "0": 4,
+        "1600": 3,
+        "3200": 2,
+        "2400": 1
+      }
+    },
+    {
+      "round": 9,
+      "experiment": "恢复原IQL再次复测",
+      "source_commit": "64ab74918b917e7ecc51c3bead368dca9dca8cf0",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\champion-1101-2028-r0009-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 2679,
+        "median": 2920.0,
+        "minimum": 1070,
+        "maximum": 4510,
+        "stddev": 1254.5234154849402,
+        "bottom_20_mean": 1095,
+        "under_5000": 10,
+        "under_4000": 8,
+        "energy": 5587.130853871235,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        1,
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 1980,
+          "capture_score": 2400,
+          "total": 4380
+        },
+        {
+          "kill_score": 1660,
+          "capture_score": 1600,
+          "total": 3260
+        },
+        {
+          "kill_score": 2220,
+          "capture_score": 800,
+          "total": 3020
+        },
+        {
+          "kill_score": 1240,
+          "capture_score": 2400,
+          "total": 3640
+        },
+        {
+          "kill_score": 1820,
+          "capture_score": 0,
+          "total": 1820
+        },
+        {
+          "kill_score": 1220,
+          "capture_score": 1600,
+          "total": 2820
+        },
+        {
+          "kill_score": 2110,
+          "capture_score": 2400,
+          "total": 4510
+        },
+        {
+          "kill_score": 1120,
+          "capture_score": 0,
+          "total": 1120
+        },
+        {
+          "kill_score": 1070,
+          "capture_score": 0,
+          "total": 1070
+        },
+        {
+          "kill_score": 1150,
+          "capture_score": 0,
+          "total": 1150
+        }
+      ],
+      "captures": {
+        "2400": 3,
+        "1600": 2,
+        "800": 1,
+        "0": 4
+      }
+    },
+    {
+      "round": 10,
+      "experiment": "HQ满条打平时保留已有有效守军",
+      "source_commit": "9ad5db17a2ad512983a470e31b5ca6928353e6e8",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "source_report": "C:\\Users\\aaa\\Desktop\\wargaming\\results\\batches\\champion-1101-2028-r0010-cumulative.json",
+      "metrics": {
+        "count": 10,
+        "mean": 3376,
+        "median": 3210.0,
+        "minimum": 1300,
+        "maximum": 5910,
+        "stddev": 1340.0537302660666,
+        "bottom_20_mean": 1320,
+        "under_5000": 9,
+        "under_4000": 6,
+        "energy": 4699.013432566517,
+        "stability_target_met_in_sample": false
+      },
+      "actual_exit_codes": [
+        1,
+        0
+      ],
+      "scores": [
+        {
+          "kill_score": 2710,
+          "capture_score": 3200,
+          "total": 5910
+        },
+        {
+          "kill_score": 1340,
+          "capture_score": 0,
+          "total": 1340
+        },
+        {
+          "kill_score": 2720,
+          "capture_score": 1600,
+          "total": 4320
+        },
+        {
+          "kill_score": 1290,
+          "capture_score": 1600,
+          "total": 2890
+        },
+        {
+          "kill_score": 2570,
+          "capture_score": 1600,
+          "total": 4170
+        },
+        {
+          "kill_score": 1440,
+          "capture_score": 1600,
+          "total": 3040
+        },
+        {
+          "kill_score": 2810,
+          "capture_score": 1600,
+          "total": 4410
+        },
+        {
+          "kill_score": 1400,
+          "capture_score": 1600,
+          "total": 3000
+        },
+        {
+          "kill_score": 2580,
+          "capture_score": 800,
+          "total": 3380
+        },
+        {
+          "kill_score": 1300,
+          "capture_score": 0,
+          "total": 1300
+        }
+      ],
+      "captures": {
+        "3200": 1,
+        "0": 2,
+        "1600": 6,
+        "800": 1
+      }
+    }
+  ],
+  "limitations": [
+    "Different versions and unpaired defenders; overall mean is descriptive, not a single-policy estimate.",
+    "Manual round6 original source unknown; post-start matching snapshot is not startup provenance. Kept out of bound training.",
+    "Candidate training happened locally but most trained weights were not deployed. Round4 is the new-weight live trial; rounds7-10 use original3e36.",
+    "Current evidence does not establish RL superiority or overfitting as the cause of score changes.",
+    "Round10 rule fix has completed one unpaired ten-game evaluation; mechanism audit still pending."
+  ]
+}
