@@ -1,0 +1,40 @@
+{
+  "round_number": 9,
+  "created_at": "2026-11-02T04:52:29.738010+00:00",
+  "live_score_improvement_unproven": true,
+  "rollback_checkpoint": {
+    "model": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0007\\model.json",
+    "profiles": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\learning\\round-0007\\profiles.json",
+    "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+    "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+    "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+    "experiment": {
+      "chosen": "historical_champion_reproduction",
+      "historical_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "policy_baseline": "6cb5a79",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+      "limitation": "Composite policy restoration with original hybrid3e36, not a guaranteed4496 or one-factor causal test. Manual6 remains unbound and excluded from verified batch training."
+    }
+  },
+  "chosen": "hq_tied_guard_retention_only",
+  "proposal": {
+    "chosen": "hq_tied_guard_retention_only",
+    "baseline_before": "6cb5a79",
+    "baseline_after": "6cb5a79_hq_hold",
+    "overlay_sha256": "dc0f4d6c4999f59b8c0f522d9485bc8c16ee7834213d0c72d09e058524218ddf",
+    "unchanged": [
+      "3e36fb weights",
+      "IQL shadow=false",
+      "routes",
+      "formation",
+      "departure requirements",
+      "original snapshot"
+    ],
+    "rollback": "Set policy_baseline back to 6cb5a79; do not delete historical/runtime files.",
+    "limitation": "Fixes guard release at a tied full HQ only; actual guard deaths and live returns remain unproven."
+  },
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+  "replay_evidence": "results/diagnostics/20261102-round9-gate-review.json"
+}

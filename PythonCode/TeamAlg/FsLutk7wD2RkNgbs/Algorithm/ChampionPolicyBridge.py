@@ -9,6 +9,7 @@ from .Champion6cb5a79.RLAgentAlgorithm import ReinforceAgentAlgorithm as Histori
 
 
 def create_champion(context):
+    selector = context.config.get('policy_baseline', '6cb5a79')
     folder = Path(__file__).with_name('Champion6cb5a79')
     manifest = json.loads((folder / 'snapshot.json').read_text(encoding='utf-8'))
     for name, expected in manifest['files'].items():
@@ -21,6 +22,11 @@ def create_champion(context):
         model = Path(__file__).resolve().parents[1] / model
     options['iql_model'] = str(model.resolve())
     policy = HistoricalAgent(replace(context, config=options))
+    overlay = None
+    if selector == '6cb5a79_hq_hold':
+        from .ChampionGuardHold import TiedHQGuardRoute
+        policy._route = TiedHQGuardRoute(adaptive=policy._route.adaptive, hq_first=policy._route.hq_first)
+        overlay = Path(__file__).with_name('ChampionGuardHold.py')
     original_metadata = policy.policy_metadata
 
     def metadata(self):
@@ -28,11 +34,13 @@ def create_champion(context):
         # Keep its audit hash for the existing collector; the explicit false
         # flag and historical snapshot identify the policy that actually acts.
         profile = Path(__file__).with_name('defense_profiles.json')
-        return {**original_metadata(), 'policy_baseline': '6cb5a79',
+        return {**original_metadata(), 'policy_baseline': selector,
                 'policy_source_commit': manifest['source_commit'],
                 'policy_snapshot_sha256': hashlib.sha256((folder / 'snapshot.json').read_bytes()).hexdigest(),
                 'defense_profile_sha256': hashlib.sha256(profile.read_bytes()).hexdigest(),
-                'defense_profiles_applied': False}
+                'defense_profiles_applied': False,
+                **({'policy_overlay': 'hq_tied_guard_retention',
+                    'policy_overlay_sha256': hashlib.sha256(overlay.read_bytes()).hexdigest()} if overlay else {})}
 
     policy.policy_metadata = MethodType(metadata, policy)
     return policy

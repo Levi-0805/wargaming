@@ -117,3 +117,13 @@ three policies through the selected baseline factory. Candidate integration must
 use the same selector. Do not count shadow proposals as applied actions or infer
 RL value from unpaired ten-game means alone. Route/formation/guard changes and
 model updates stay frozen during this control.
+
+The `6cb5a79_hq_hold` experiment keeps the original snapshot immutable and
+replaces only its route's HQ tied-guard allocation branch. After departure, at
+full progress with unknown explicit owner and equal positive occupant counts,
+retain previously assigned living, communicating local guards. Do not assign new
+guards, assert ownership, relax departure, or override explicit remnant withdrawal.
+Metadata names this overlay and records its own source hash separately from the
+historical snapshot hash. Return to `6cb5a79` to roll back the experiment. This
+addresses confirmed guard release on a tie; it does not prevent actual guard
+deaths or establish a live score gain before the next ten-game evaluation.

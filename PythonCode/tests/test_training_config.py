@@ -40,7 +40,7 @@ def run(inputs):
     return prepare(source, output, template=template, pythoncode_root=root)
 
 
-@pytest.mark.parametrize('baseline', ['6cb5a79', 'unreviewed'])
+@pytest.mark.parametrize('baseline', ['6cb5a79', '6cb5a79_hq_hold', 'unreviewed'])
 def test_tactical_baseline_is_preserved_or_rejected(inputs, baseline):
     _, template, _, _, policy, output = inputs
     template.write_text(json.dumps({POLICY_KEY: {**policy, 'policy_baseline': baseline}}), encoding='utf-8')
