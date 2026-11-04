@@ -1,5 +1,20 @@
 # Ten-game learning workflow
 
+For an explicitly requested one-round baseline retest while another version has
+an unfinished cohort, use `tools/cssim_single_round.py` with a fresh campaign ID
+and `--report-round`. It calls the existing cumulative collector exactly once,
+then exits without candidate training or another release. Preserve the old
+cohort and its version-bound completed games separately; do not rebind a cohort
+that already contains games. The entry point accepts `--server-pid`, repeated
+`--additional-server-pid`, and a confirmed logged-in `--adopt-client-pid`.
+It binds full process identities and holds the learning lock while collecting.
+Both the global learning STOP and the new campaign's STOP halt this collection.
+Its independent `logs/single-round/<ID>/status.json` and `report-ready.json` are
+the progress/result queue; the old learner state does not become the new cohort.
+The desktop per-round text report preserves actual exits and explicitly says
+when the result commit has not been verified on GitHub. Ten retained games are
+never rerun merely because result publication failed.
+
 Run `tools/install_learning_shortcuts.ps1` once. **CSSIM Training** starts a hidden,
 idempotent worker. **Stop CSSIM Training** requests STOP and preserves completed
 games. Keep the computer on, logged in, and its desktop available to CSSIM.

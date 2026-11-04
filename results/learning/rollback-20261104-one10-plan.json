@@ -1,0 +1,65 @@
+{
+  "created_at": "2026-11-04T16:14:55.015459+08:00",
+  "user_request": "Restore the previously high-scoring version and run one fresh ten-game round.",
+  "campaign_id": "rollback-20261104-one10",
+  "report_round": 12,
+  "collection_scope": "one_independent_cumulative_round_only",
+  "target_completed_games": 10,
+  "maximum_new_rounds": 1,
+  "train_candidate": false,
+  "auto_release_next": false,
+  "previous_partial_report": "results/batches/champion-1101-2028-r0011-preserved-partial.json",
+  "references": [
+    {
+      "report": "results/batches/champion-1101-2028-r0007-cumulative.json",
+      "source_commit": "c09702df7feda863d02752ee4850fb4d1e2d4dd2",
+      "mean": 4654,
+      "minimum": 2580,
+      "at_least5000": 4,
+      "over4000": 7
+    },
+    {
+      "report": "results/batches/20261031-third-cumulative01-cumulative.json",
+      "source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+      "mean": 4496,
+      "minimum": 870,
+      "at_least5000": 6
+    }
+  ],
+  "recollection_resolution": "No verified batch has all three recalled statistics. Both closest verified batches use the same historical tactic and original model, which are the explicit restoration target.",
+  "policy_baseline": "6cb5a79",
+  "policy_source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+  "policy_snapshot_sha256": "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5",
+  "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "mode": "hybrid_iql",
+  "iql_shadow": false,
+  "defense_profiles_applied": false,
+  "policy_overlay": null,
+  "snapshot_validation": "All 23 historical files checked byte-for-byte against recorded Git source; model hash unchanged.",
+  "unchanged": "Current runtime/provenance/exit recovery and explicit logged-in-client adoption fixes are retained.",
+  "rollback_change": "Both canonical config selectors changed from 6cb5a79_hq_guard_entry to 6cb5a79. New guard overlays remain in repository but are not selected.",
+  "startup": {
+    "user_confirmed_logged_in_handoff": true,
+    "primary_borrowed_service_pid": 15724,
+    "primary_service_listens": [
+      50051,
+      48080
+    ],
+    "additional_services": [],
+    "client_identity": {
+      "pid": 32248,
+      "created_ticks": 134382534357994739,
+      "exe_path": "C:\\CSSIM\\Client\\CSSIM\\Binaries\\Win64\\CSSIMClient-Win64-Shipping.exe"
+    }
+  },
+  "score_definition": "terminal destruction score + Reward",
+  "limitations": [
+    "Unpaired random defenders; no promise to reproduce the historical mean or achieve stable5000.",
+    "Four previous-version games stay separate; not ten consecutive games, and no version mixing."
+  ],
+  "stop_files": [
+    "logs/learning/STOP",
+    "logs/campaigns/rollback-20261104-one10/STOP"
+  ],
+  "completion": "Write source-bound cumulative report and desktop per-game .txt, report once, then stop without another round or model promotion."
+}

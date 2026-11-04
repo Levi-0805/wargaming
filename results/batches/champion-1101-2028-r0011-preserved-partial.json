@@ -1,0 +1,229 @@
+{
+  "classification": "user_requested_version_rollback_partial_preserved",
+  "campaign_id": "champion-1101-2028-r0011",
+  "source_commit": "4be954171177e5484d28434e5aa098624ac33d39",
+  "completed_games": 4,
+  "target_games": 10,
+  "games": [
+    {
+      "ordinal": 1,
+      "episode": 1,
+      "batch_id": "champion-1101-2028-r0011-0007",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0011-0007\\logs\\20261102_200930\\protocol.jsonl",
+      "protocol_sha256": "c6874f221a706eb677e9bd70ccc215a28a7bb6e0dcdb302860db1ed983ee8033",
+      "source_commit": "4be954171177e5484d28434e5aa098624ac33d39",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1700,
+        "capture_score": 1600,
+        "total": 3300
+      },
+      "blue": {
+        "kill_score": 3010,
+        "capture_score": 1600,
+        "total": 4610
+      }
+    },
+    {
+      "ordinal": 2,
+      "episode": 2,
+      "batch_id": "champion-1101-2028-r0011-0007",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0011-0007\\logs\\20261102_200930\\protocol.jsonl",
+      "protocol_sha256": "c6874f221a706eb677e9bd70ccc215a28a7bb6e0dcdb302860db1ed983ee8033",
+      "source_commit": "4be954171177e5484d28434e5aa098624ac33d39",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2680,
+        "capture_score": 3200,
+        "total": 5880
+      },
+      "blue": {
+        "kill_score": 2220,
+        "capture_score": 0,
+        "total": 2220
+      }
+    },
+    {
+      "ordinal": 3,
+      "episode": 3,
+      "batch_id": "champion-1101-2028-r0011-0007",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0011-0007\\logs\\20261102_200930\\protocol.jsonl",
+      "protocol_sha256": "c6874f221a706eb677e9bd70ccc215a28a7bb6e0dcdb302860db1ed983ee8033",
+      "source_commit": "4be954171177e5484d28434e5aa098624ac33d39",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 2600,
+        "capture_score": 0,
+        "total": 2600
+      },
+      "blue": {
+        "kill_score": 3150,
+        "capture_score": 3200,
+        "total": 6350
+      }
+    },
+    {
+      "ordinal": 4,
+      "episode": 4,
+      "batch_id": "champion-1101-2028-r0011-0007",
+      "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0011-0007\\logs\\20261102_200930\\protocol.jsonl",
+      "protocol_sha256": "c6874f221a706eb677e9bd70ccc215a28a7bb6e0dcdb302860db1ed983ee8033",
+      "source_commit": "4be954171177e5484d28434e5aa098624ac33d39",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "red": {
+        "kill_score": 1670,
+        "capture_score": 2400,
+        "total": 4070
+      },
+      "blue": {
+        "kill_score": 2870,
+        "capture_score": 800,
+        "total": 3670
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "batch_id": "champion-1101-2028-r0011-0001",
+      "started_at": "2026-11-02T11:10:09.445208+00:00",
+      "episode_budget": 10,
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T11:11:41.863625+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0002",
+      "started_at": "2026-11-02T11:11:56.987360+00:00",
+      "episode_budget": 10,
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T11:13:28.234466+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0003",
+      "started_at": "2026-11-02T11:13:43.357382+00:00",
+      "episode_budget": 10,
+      "error": "CampaignBlocked: Pre-existing CSSIM instance is not owned by this attempt; close it before starting",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T11:13:45.526764+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0004",
+      "started_at": "2026-11-02T11:25:27.723316+00:00",
+      "episode_budget": 10,
+      "error": "CampaignBlocked: Pre-existing CSSIM instance is not owned by this attempt; close it before starting",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T11:25:31.236974+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0005",
+      "started_at": "2026-11-02T12:02:16.375064+00:00",
+      "episode_budget": 10,
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T12:03:47.007609+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0006",
+      "started_at": "2026-11-02T12:04:02.143535+00:00",
+      "episode_budget": 10,
+      "error": "CalledProcessError: Command '['git', '-C', 'C:\\\\Users\\\\aaa\\\\Desktop\\\\wargaming', 'ls-remote', 'origin', 'refs/heads/main']' returned non-zero exit status 128.",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T12:07:24.880205+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0007",
+      "started_at": "2026-11-02T12:07:40.058736+00:00",
+      "episode_budget": 10,
+      "supervisor_exit_code": 2,
+      "manifest_path": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0011-0007\\manifest.json",
+      "status": {
+        "batch_id": "champion-1101-2028-r0011-0007",
+        "source_commit": "4be954171177e5484d28434e5aa098624ac33d39",
+        "expected_episodes": 10,
+        "state": "partial",
+        "complete_episodes": 4,
+        "done_episodes": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "ready_to_finish": false,
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0011-0007\\logs\\20261102_200930\\protocol.jsonl",
+        "ue_game_config": "10;1",
+        "last_episode": 5,
+        "last_step": 53,
+        "runtime_exit_code": 1,
+        "runtime_stop_reason": null,
+        "runtime_error": null,
+        "normal_run_end": false,
+        "scores": [
+          {
+            "episode": 1,
+            "red": 3300,
+            "blue": 4610
+          },
+          {
+            "episode": 2,
+            "red": 5880,
+            "blue": 2220
+          },
+          {
+            "episode": 3,
+            "red": 2600,
+            "blue": 6350
+          },
+          {
+            "episode": 4,
+            "red": 4070,
+            "blue": 3670
+          }
+        ]
+      },
+      "runtime_receipt": {
+        "batch_id": "champion-1101-2028-r0011-0007",
+        "source_commit": "4be954171177e5484d28434e5aa098624ac33d39",
+        "config_sha256": "f2d2a5c50dbfaa6334e8682b1ec625f929fd20a74b61fee034aebe5c5eb06f7b",
+        "pid": 32048,
+        "started_at": "2026-11-02T12:09:27.556839+00:00",
+        "ended_at": "2026-11-02T13:26:04.917899+00:00",
+        "exit_code": 1,
+        "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\champion-1101-2028-r0011-0007\\logs\\20261102_200930",
+        "stop_reason": null,
+        "error": null
+      },
+      "completed_games_added": 4,
+      "ended_at": "2026-11-02T13:26:16.314292+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0008",
+      "started_at": "2026-11-02T13:26:31.464726+00:00",
+      "episode_budget": 6,
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T13:28:01.241486+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0009",
+      "started_at": "2026-11-02T13:28:16.368709+00:00",
+      "episode_budget": 6,
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T13:29:46.314098+00:00"
+    },
+    {
+      "batch_id": "champion-1101-2028-r0011-0010",
+      "started_at": "2026-11-02T13:30:01.420793+00:00",
+      "episode_budget": 6,
+      "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png",
+      "completed_games_added": 0,
+      "ended_at": "2026-11-02T13:31:30.901501+00:00"
+    }
+  ],
+  "preserved_at": "2026-11-04T16:14:55.015459+08:00",
+  "mean": 3962.5,
+  "next_action": "Preserved independently. Do not merge these games with the new rollback version or claim this round completed ten games.",
+  "original_state": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\campaigns\\champion-1101-2028-r0011\\state.json",
+  "new_campaign": "rollback-20261104-one10"
+}
