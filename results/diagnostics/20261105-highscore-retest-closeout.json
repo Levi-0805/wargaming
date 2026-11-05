@@ -1,0 +1,486 @@
+{
+  "classification": "single_retest_closed_with_separate_bound_and_manual_observations",
+  "closed_at": "2026-11-05T20:28:42.647122+08:00",
+  "report_round": 12,
+  "bound_seven": {
+    "campaign_id": "rollback-20261104-one10",
+    "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+    "state_preserved": "needs_attention",
+    "games": [
+      {
+        "ordinal": 1,
+        "episode": 1,
+        "batch_id": "rollback-20261104-one10-0002",
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\rollback-20261104-one10-0002\\logs\\20261104_161938\\protocol.jsonl",
+        "protocol_sha256": "cfd378492236458afc7324d07bd226c7c5472d824f27910ae1cd7bd40b7404ef",
+        "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "red": {
+          "kill_score": 2790,
+          "capture_score": 3200,
+          "total": 5990
+        },
+        "blue": {
+          "kill_score": 2670,
+          "capture_score": 0,
+          "total": 2670
+        }
+      },
+      {
+        "ordinal": 2,
+        "episode": 2,
+        "batch_id": "rollback-20261104-one10-0002",
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\rollback-20261104-one10-0002\\logs\\20261104_161938\\protocol.jsonl",
+        "protocol_sha256": "cfd378492236458afc7324d07bd226c7c5472d824f27910ae1cd7bd40b7404ef",
+        "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "red": {
+          "kill_score": 2720,
+          "capture_score": 2400,
+          "total": 5120
+        },
+        "blue": {
+          "kill_score": 2580,
+          "capture_score": 800,
+          "total": 3380
+        }
+      },
+      {
+        "ordinal": 3,
+        "episode": 3,
+        "batch_id": "rollback-20261104-one10-0002",
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\rollback-20261104-one10-0002\\logs\\20261104_161938\\protocol.jsonl",
+        "protocol_sha256": "cfd378492236458afc7324d07bd226c7c5472d824f27910ae1cd7bd40b7404ef",
+        "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "red": {
+          "kill_score": 2720,
+          "capture_score": 3200,
+          "total": 5920
+        },
+        "blue": {
+          "kill_score": 2280,
+          "capture_score": 0,
+          "total": 2280
+        }
+      },
+      {
+        "ordinal": 4,
+        "episode": 4,
+        "batch_id": "rollback-20261104-one10-0002",
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\rollback-20261104-one10-0002\\logs\\20261104_161938\\protocol.jsonl",
+        "protocol_sha256": "cfd378492236458afc7324d07bd226c7c5472d824f27910ae1cd7bd40b7404ef",
+        "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "red": {
+          "kill_score": 2790,
+          "capture_score": 3200,
+          "total": 5990
+        },
+        "blue": {
+          "kill_score": 1160,
+          "capture_score": 0,
+          "total": 1160
+        }
+      },
+      {
+        "ordinal": 5,
+        "episode": 5,
+        "batch_id": "rollback-20261104-one10-0002",
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\rollback-20261104-one10-0002\\logs\\20261104_161938\\protocol.jsonl",
+        "protocol_sha256": "cfd378492236458afc7324d07bd226c7c5472d824f27910ae1cd7bd40b7404ef",
+        "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "red": {
+          "kill_score": 2780,
+          "capture_score": 2400,
+          "total": 5180
+        },
+        "blue": {
+          "kill_score": 2460,
+          "capture_score": 0,
+          "total": 2460
+        }
+      },
+      {
+        "ordinal": 6,
+        "episode": 6,
+        "batch_id": "rollback-20261104-one10-0002",
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\rollback-20261104-one10-0002\\logs\\20261104_161938\\protocol.jsonl",
+        "protocol_sha256": "cfd378492236458afc7324d07bd226c7c5472d824f27910ae1cd7bd40b7404ef",
+        "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "red": {
+          "kill_score": 1830,
+          "capture_score": 2400,
+          "total": 4230
+        },
+        "blue": {
+          "kill_score": 2800,
+          "capture_score": 800,
+          "total": 3600
+        }
+      },
+      {
+        "ordinal": 7,
+        "episode": 7,
+        "batch_id": "rollback-20261104-one10-0002",
+        "protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\rollback-20261104-one10-0002\\logs\\20261104_161938\\protocol.jsonl",
+        "protocol_sha256": "cfd378492236458afc7324d07bd226c7c5472d824f27910ae1cd7bd40b7404ef",
+        "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+        "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+        "red": {
+          "kill_score": 1960,
+          "capture_score": 2400,
+          "total": 4360
+        },
+        "blue": {
+          "kill_score": 2940,
+          "capture_score": 800,
+          "total": 3740
+        }
+      }
+    ],
+    "summary": {
+      "count": 7,
+      "scores": [
+        5990,
+        5120,
+        5920,
+        5990,
+        5180,
+        4230,
+        4360
+      ],
+      "mean": 5255.714285714285,
+      "minimum": 4230,
+      "maximum": 5990,
+      "under_4000": 0,
+      "under_5000": 2,
+      "tail_lowest_two_mean": 4295,
+      "capture_scores": [
+        3200,
+        2400,
+        3200,
+        3200,
+        2400,
+        2400,
+        2400
+      ]
+    },
+    "attempt_receipts_preserved": [
+      {
+        "batch_id": "rollback-20261104-one10-0001",
+        "completed_games_added": 0,
+        "supervisor_exit_code": null,
+        "runtime_receipt": null,
+        "error": "RuntimeError: UI pre_python: FlowError: Handed-off client is not at the verified post-login screen"
+      },
+      {
+        "batch_id": "rollback-20261104-one10-0002",
+        "completed_games_added": 7,
+        "supervisor_exit_code": 2,
+        "runtime_receipt": {
+          "batch_id": "rollback-20261104-one10-0002",
+          "source_commit": "669dedcab8efc29f6637f685001ac7236d9798a5",
+          "config_sha256": "9713adfd3a0e64e4f2036138327c80f340390c7f5abca770b9337b9af71eaa86",
+          "pid": 6128,
+          "started_at": "2026-11-04T08:19:35.774098+00:00",
+          "ended_at": "2026-11-04T10:30:41.477541+00:00",
+          "exit_code": 1,
+          "log_directory": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\rollback-20261104-one10-0002\\logs\\20261104_161938",
+          "stop_reason": null,
+          "error": null
+        },
+        "error": null
+      },
+      {
+        "batch_id": "rollback-20261104-one10-0003",
+        "completed_games_added": 0,
+        "supervisor_exit_code": null,
+        "runtime_receipt": null,
+        "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png"
+      },
+      {
+        "batch_id": "rollback-20261104-one10-0004",
+        "completed_games_added": 0,
+        "supervisor_exit_code": null,
+        "runtime_receipt": null,
+        "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png"
+      },
+      {
+        "batch_id": "rollback-20261104-one10-0005",
+        "completed_games_added": 0,
+        "supervisor_exit_code": null,
+        "runtime_receipt": null,
+        "error": "RuntimeError: UI pre_python: FlowError: Timed out waiting for visual state: ui_templates/single_seat.png"
+      }
+    ]
+  },
+  "manual_three": {
+    "sampled_at": "2026-11-05T12:24:43.596581+00:00",
+    "classification": "three_manual_highscore_games_complete",
+    "run": {
+      "schema_version": 1,
+      "started_at_utc": "2026-11-05T09:45:39.535555+00:00",
+      "process_id": 32348,
+      "batch_id": null,
+      "source_commit": null,
+      "source_commit_evidence": "unknown",
+      "config_path": "C:\\CSSIM\\Client\\Data\\AlgData\\PythonCode\\TaskConfig\\cssim\\iql_eval_red.jsonc",
+      "config_sha256": "1679a6fc82790310526d0877e364b2f1a604b25dcb760badf9e982f2793fdebf",
+      "algorithm_names": [
+        "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm",
+        "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm->ReinforceAgentAlgorithm"
+      ],
+      "configured_max_episodes": 3,
+      "configured_max_steps": 500,
+      "episode_limit": 3,
+      "detailed_protocol": true
+    },
+    "runtime_identity_expected": {
+      "pid": 32348,
+      "created_ticks": 134383455359354502
+    },
+    "runtime_still_live": false,
+    "files": {
+      "run.json": {
+        "bytes": 700,
+        "mtime_ns": 1793871939537043200,
+        "sha256": "dd34f39efa943729af5d406bbd14b67f595732d4fe1deae7f639579c7bbd3c34",
+        "stable": true
+      },
+      "protocol.jsonl": {
+        "bytes": 203008268,
+        "mtime_ns": 1793875189270832100,
+        "sha256": "d96a08f1cbe0a190e3510589eb0bdba584302c6f22d2c46c049a9af298233030",
+        "stable": true
+      },
+      "simulation.jsonl": {
+        "bytes": 44024417,
+        "mtime_ns": 1793875189273808200,
+        "sha256": "1ee1018c1266701cca4539af06aae6b12dfa288df7317e1def651909c8839b43",
+        "stable": true
+      }
+    },
+    "games": [
+      {
+        "episode": 1,
+        "red": {
+          "kill_score": 1550,
+          "capture_score": 1600,
+          "total": 3150
+        },
+        "blue": {
+          "kill_score": 3160,
+          "capture_score": 1600,
+          "total": 4760
+        }
+      },
+      {
+        "episode": 2,
+        "red": {
+          "kill_score": 1560,
+          "capture_score": 0,
+          "total": 1560
+        },
+        "blue": {
+          "kill_score": 3160,
+          "capture_score": 3200,
+          "total": 6360
+        }
+      },
+      {
+        "episode": 3,
+        "red": {
+          "kill_score": 2500,
+          "capture_score": 1600,
+          "total": 4100
+        },
+        "blue": {
+          "kill_score": 2160,
+          "capture_score": 1600,
+          "total": 3760
+        }
+      }
+    ],
+    "summary": {
+      "count": 3,
+      "sum": 8810,
+      "mean": 2936.6666666666665,
+      "median": 3150,
+      "minimum": 1560,
+      "maximum": 4100,
+      "under_4000": 2,
+      "under_5000": 3,
+      "tail_lowest_two_mean": 2355,
+      "capture_values": [
+        1600,
+        0,
+        1600
+      ]
+    },
+    "simulation": {
+      "done": [
+        1,
+        2,
+        3
+      ],
+      "last_episode": 3,
+      "last_step": 499,
+      "run_ends": [
+        {
+          "status": "returned",
+          "error_type": null
+        }
+      ],
+      "last_kind": "run_end",
+      "partial_tail": false
+    },
+    "actual_resets": [
+      {
+        "episode": 1,
+        "training": true,
+        "policies": [
+          {
+            "mode": "hybrid_iql",
+            "class": "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.Champion6cb5a79.LearnedTargeting.HybridIQLAgent",
+            "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+            "feature_version": 1,
+            "shadow": false,
+            "scope": "ground_target_selection",
+            "online_training": false,
+            "policy_baseline": "6cb5a79",
+            "policy_source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+            "policy_snapshot_sha256": "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5",
+            "defense_profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+            "defense_profiles_applied": false
+          },
+          {
+            "mode": "rule",
+            "class": "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm.ReinforceAgentAlgorithm"
+          }
+        ]
+      },
+      {
+        "episode": 2,
+        "training": true,
+        "policies": [
+          {
+            "mode": "hybrid_iql",
+            "class": "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.Champion6cb5a79.LearnedTargeting.HybridIQLAgent",
+            "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+            "feature_version": 1,
+            "shadow": false,
+            "scope": "ground_target_selection",
+            "online_training": false,
+            "policy_baseline": "6cb5a79",
+            "policy_source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+            "policy_snapshot_sha256": "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5",
+            "defense_profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+            "defense_profiles_applied": false
+          },
+          {
+            "mode": "rule",
+            "class": "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm.ReinforceAgentAlgorithm"
+          }
+        ]
+      },
+      {
+        "episode": 3,
+        "training": true,
+        "policies": [
+          {
+            "mode": "hybrid_iql",
+            "class": "TeamAlg.FsLutk7wD2RkNgbs.Algorithm.Champion6cb5a79.LearnedTargeting.HybridIQLAgent",
+            "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+            "feature_version": 1,
+            "shadow": false,
+            "scope": "ground_target_selection",
+            "online_training": false,
+            "policy_baseline": "6cb5a79",
+            "policy_source_commit": "6cb5a79ced2cf5b2e9d282a8349ff3a5416e6694",
+            "policy_snapshot_sha256": "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5",
+            "defense_profile_sha256": "bccb649bcad8155d68e2495045aefbac6bfcdcd563b9b8d1047cf09ada650f73",
+            "defense_profiles_applied": false
+          },
+          {
+            "mode": "rule",
+            "class": "TeamAlg.BlueModel.Algorithm.RLAgentAlgorithm.ReinforceAgentAlgorithm"
+          }
+        ]
+      }
+    ],
+    "expected_policy": {
+      "mode": "hybrid_iql",
+      "shadow": false,
+      "policy_baseline": "6cb5a79",
+      "model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+      "policy_snapshot_sha256": "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5"
+    },
+    "policy_checks": [
+      {
+        "episode": 1,
+        "matches": true
+      },
+      {
+        "episode": 2,
+        "matches": true
+      },
+      {
+        "episode": 3,
+        "matches": true
+      }
+    ],
+    "malformed_protocol_json_lines": [],
+    "source_commit": null,
+    "batch_id": null,
+    "source_commit_evidence": "unknown",
+    "training_eligible": false,
+    "not_combined_with_campaign": "rollback-20261104-one10",
+    "limitation": "Original run source_commit and batch_id are unbound; actual reset proves policy configuration but does not retroactively bind source. These manual games are separate observations and are not appended to the original seven-game campaign ledger."
+  },
+  "descriptive_combined_observations": {
+    "summary": {
+      "count": 10,
+      "scores": [
+        5990,
+        5120,
+        5920,
+        5990,
+        5180,
+        4230,
+        4360,
+        3150,
+        1560,
+        4100
+      ],
+      "mean": 4560,
+      "minimum": 1560,
+      "maximum": 5990,
+      "under_4000": 2,
+      "under_5000": 5,
+      "tail_lowest_two_mean": 2355,
+      "capture_scores": [
+        3200,
+        2400,
+        3200,
+        3200,
+        2400,
+        2400,
+        2400,
+        1600,
+        0,
+        1600
+      ]
+    },
+    "not_a_version_bound_cumulative_report": true,
+    "limitation": "Two provenance groups remain separate; only policy/model/snapshot equality is verified for all observations. Manual whole-runtime source was not bound at startup."
+  },
+  "decision": {
+    "no_further_games": true,
+    "no_new_training_or_release": true,
+    "stable_5000_achieved": false,
+    "evidence": "Manual games have capture Rewards 1600,0,1600 and none reaches 5000. Tactical baseline and model match, but opponent deployments are not paired and full manual source provenance is unknown. No causal claim about IQL benefit or failure."
+  }
+}
