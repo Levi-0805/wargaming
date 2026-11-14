@@ -1,0 +1,28 @@
+{
+  "classification": "empty_cohort_startup_gate",
+  "campaign_id": "highscore-20261110-r0013",
+  "completed_games": 0,
+  "source_before": "710d0dcaa14ea9a561530edcd738662e5e28c951",
+  "failure_step": "confirm_room",
+  "completed_ui_steps": [
+    "login",
+    "single_seat",
+    "select_tenth_scenario",
+    "select_competition_situation",
+    "set_ten_rounds"
+  ],
+  "error": "FlowError: Timed out waiting for visual state: all_of(ui_templates/seat_red_empty_model.png, ui_templates/seat_blue_empty_model.png, ui_templates/red_bot_unchecked.png, ui_templates/blue_bot_unchecked.png, ui_templates/seat_rounds_ten.png, ui_templates/seat_speed_one.png, ui_templates/seat_scenario.png)",
+  "evidence": {
+    "frame": "logs\\campaigns\\highscore-20261110-r0013\\attempt-0006\\ui\\captures\\frame-000101.png",
+    "frame_sha256": "c051c32abc4e8f77d25ad1ebbbe8da28c7e38f825af8d12f1f7a93c472dcd0cc",
+    "observed": "Create-room dialog remains visible; tenth scenario, competition situation, ten rounds and speed one"
+  },
+  "fix": "One additional confirmation click only after fresh original-room visual evidence; never on an unknown or transitioned screen",
+  "targeted_checks": "38 passed",
+  "tactics_and_model_changed": false,
+  "source_rebind": "Required --rebind-empty after verified publication; preserve all seven zero-game attempt receipts",
+  "limits": [
+    "A missed confirmation is observed; the underlying UI timing cause is not established.",
+    "No match has started, and no score improvement is claimed."
+  ]
+}
