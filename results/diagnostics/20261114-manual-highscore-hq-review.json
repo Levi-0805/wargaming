@@ -1,0 +1,282 @@
+{
+  "classification": "manual_highscore_launch_and_evidence_based_hq_overlay",
+  "baseline_source": "2a4970b3efe176489faabc7be127f21e320fc40e",
+  "policy_baseline": "6cb5a79",
+  "chosen_policy": "6cb5a79_hq_guard_entry",
+  "original_model_sha256": "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f",
+  "snapshot_sha256": "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5",
+  "overlay_sha256": "71313f8ec077d1137b8a3609003d2c8ca3a2fbd018808da165b474323600c1bf",
+  "completed_prefix_games": [
+    {
+      "ordinal": 1,
+      "episode": 1,
+      "protocol_sha256": "18dff842547302832308c13fbdf0678e9ae6b6d5636ef6675252d52438386821",
+      "original_protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\highscore-20261110-r0013-0008\\logs\\20261114_205652\\protocol.jsonl",
+      "original_prefix_bytes": 207972556,
+      "red": {
+        "kill_score": 1490,
+        "capture_score": 2400,
+        "total": 3890
+      }
+    },
+    {
+      "ordinal": 2,
+      "episode": 2,
+      "protocol_sha256": "18dff842547302832308c13fbdf0678e9ae6b6d5636ef6675252d52438386821",
+      "original_protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\highscore-20261110-r0013-0008\\logs\\20261114_205652\\protocol.jsonl",
+      "original_prefix_bytes": 207972556,
+      "red": {
+        "kill_score": 1760,
+        "capture_score": 2400,
+        "total": 4160
+      }
+    },
+    {
+      "ordinal": 3,
+      "episode": 3,
+      "protocol_sha256": "18dff842547302832308c13fbdf0678e9ae6b6d5636ef6675252d52438386821",
+      "original_protocol": "C:\\Users\\aaa\\Desktop\\wargaming\\logs\\autotrain\\highscore-20261110-r0013-0008\\logs\\20261114_205652\\protocol.jsonl",
+      "original_prefix_bytes": 207972556,
+      "red": {
+        "kill_score": 2520,
+        "capture_score": 0,
+        "total": 2520
+      }
+    }
+  ],
+  "frozen_baseline_comparisons": [
+    {
+      "ordinal": 1,
+      "compared": 25000,
+      "mismatches": 0
+    },
+    {
+      "ordinal": 2,
+      "compared": 25000,
+      "mismatches": 0
+    },
+    {
+      "ordinal": 3,
+      "compared": 25000,
+      "mismatches": 0
+    },
+    {
+      "ordinal": 5,
+      "compared": 17700,
+      "mismatches": 0
+    }
+  ],
+  "frozen_overlay_changes": [
+    {
+      "ordinal": 1,
+      "changes": 24,
+      "types": {
+        "BP_BaseSoldier_C": 24
+      }
+    },
+    {
+      "ordinal": 2,
+      "changes": 0,
+      "types": {}
+    },
+    {
+      "ordinal": 3,
+      "changes": 55,
+      "types": {
+        "BP_BaseSoldier_C": 55
+      }
+    },
+    {
+      "ordinal": 5,
+      "changes": 54,
+      "types": {
+        "BP_BaseSoldier_C": 54
+      }
+    }
+  ],
+  "representative_live_observation": {
+    "episode": 5,
+    "first_full": {
+      "step": 112,
+      "percent": 1,
+      "redTeamNum": 22,
+      "blueteamNum": 8
+    },
+    "first_reversal": {
+      "step": 289,
+      "percent": 0.95,
+      "redTeamNum": 0,
+      "blueteamNum": 1
+    },
+    "last_observed": {
+      "step": 355,
+      "percent": 0.15,
+      "redTeamNum": 0,
+      "blueteamNum": 0
+    },
+    "timeline_near_first_reversal": [
+      {
+        "step": 281,
+        "percent": 1,
+        "redTeamNum": 2,
+        "blueteamNum": 1
+      },
+      {
+        "step": 282,
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 283,
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 284,
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 285,
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 286,
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 287,
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 288,
+        "percent": 1,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 289,
+        "percent": 0.95,
+        "redTeamNum": 0,
+        "blueteamNum": 1
+      },
+      {
+        "step": 290,
+        "percent": 0.8,
+        "redTeamNum": 0,
+        "blueteamNum": 1
+      },
+      {
+        "step": 291,
+        "percent": 0.7,
+        "redTeamNum": 0,
+        "blueteamNum": 1
+      },
+      {
+        "step": 292,
+        "percent": 0.65,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 293,
+        "percent": 0.65,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 294,
+        "percent": 0.65,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 295,
+        "percent": 0.65,
+        "redTeamNum": 1,
+        "blueteamNum": 1
+      },
+      {
+        "step": 296,
+        "percent": 0.6,
+        "redTeamNum": 0,
+        "blueteamNum": 1
+      },
+      {
+        "step": 297,
+        "percent": 0.5,
+        "redTeamNum": 0,
+        "blueteamNum": 1
+      }
+    ],
+    "is_terminal_score": false
+  },
+  "confirmed_guard_sequences": [
+    {
+      "episode": 3,
+      "step": 230,
+      "progress": 1,
+      "inside_red": 3,
+      "inside_blue": 3,
+      "released_alive": [
+        1026,
+        1071
+      ],
+      "dead_guard": 1056,
+      "reversal_step": 231
+    },
+    {
+      "episode": 5,
+      "step": 282,
+      "progress": 1,
+      "inside_red": 1,
+      "inside_blue": 1,
+      "released_alive": [
+        2456
+      ],
+      "alive_guard_hp": 100,
+      "alive_guard_link": true,
+      "dead_guard": 2231,
+      "reversal_step": 289
+    }
+  ],
+  "chosen_scope": [
+    "Keep previous eligible HQ guards on full-progress positive tie; no new ownership or departure permission.",
+    "Use the existing bounded interior return slot for outside guards stuck within the arrival dead zone.",
+    "Keep original model, routes, vehicle/air decisions and immutable historic files."
+  ],
+  "manual_entry": [
+    "Run main without editing arguments to choose guarded highscore, original highscore or platform config.",
+    "Known old PyCharm evaluation arguments also show the manual menu; use current UE-generated connection and episode upper bound.",
+    "Managed batch/source/-s launches never prompt or replace the bound configuration.",
+    "Per-project OS lock rejects duplicate main processes."
+  ],
+  "snapshot_git_fix": {
+    "old_git_blob_sha256": "9a2e91449617e565bfb1676b58d1853c749115ada7bdf365bb3e800eb223acce",
+    "preserved_deployment_sha256": "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5",
+    "json_content_identical": true,
+    "reason": "Git text normalization removed CRLF from the snapshot identity file; mark only this manifest byte-preserving."
+  },
+  "checks": {
+    "isolated_targeted_before_added_integration": "80 passed",
+    "isolated_full_before_added_integration": "910 passed",
+    "final_menu_tests_including_actual_policy_instantiation": "18 passed",
+    "direct_main_cancel": "Menu rendered and q exited without connecting to CSSIM.",
+    "publication_full_suite": "Required again by tools/publish.ps1 before commit/push/deployment."
+  },
+  "limits": [
+    "Running episode 5 prefix is diagnostic only and not a terminal score.",
+    "All old action replays match actual N+1 actions; overlay differences are frozen-state commands, not simulated new outcomes.",
+    "No claim of zero HQ losses or stable 5000; actual guards can still die or disconnect.",
+    "No new IQL weights or RL gain claim."
+  ]
+}

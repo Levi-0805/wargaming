@@ -2,3 +2,5 @@
 
 # Numeric policy artifacts are identified by SHA-256; preserve exported bytes.
 PythonCode/TeamAlg/*/Models/*.json -text
+# Historical snapshot metadata is itself part of the recorded policy identity.
+PythonCode/TeamAlg/*/Algorithm/Champion6cb5a79/snapshot.json -text whitespace=cr-at-eol
