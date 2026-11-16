@@ -28,6 +28,16 @@ def create_champion(context):
         route_class = HQGuardEntryRoute if selector == '6cb5a79_hq_guard_entry' else TiedHQGuardRoute
         policy._route = route_class(adaptive=policy._route.adaptive, hq_first=policy._route.hq_first)
         overlay = Path(__file__).with_name('ChampionGuardHold.py')
+        if selector == '6cb5a79_hq_guard_entry':
+            original_defend = policy._defend
+
+            def defend(self, state, agent, obj, contacts, local):
+                preservation = self._route.preserve_guard(state, agent, obj, contacts, local)
+                if preservation is not None:
+                    return preservation
+                return original_defend(state, agent, obj, contacts, local)
+
+            policy._defend = MethodType(defend, policy)
     original_metadata = policy.policy_metadata
 
     def metadata(self):

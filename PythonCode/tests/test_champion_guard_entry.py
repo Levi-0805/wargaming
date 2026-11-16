@@ -118,6 +118,104 @@ def test_missing_footprint_preserves_the_original_fallback():
     assert route.guard_slot(guard, obj) == original.guard_slot(guard, obj)
 
 
+@pytest.mark.parametrize(('enemy_count', 'fourth_soldier', 'can_depart'), [
+    (0, 'inside', True),
+    (1, 'inside', True),
+    (2, 'inside', False),
+    (None, 'inside', False),
+    (0, 'dog', False),
+    (0, 'outside', False),
+    (0, 'disconnected', False),
+    (0, 'dead', False),
+])
+def test_hq_departure_requires_at_most_one_enemy_and_four_soldiers_inside(
+        enemy_count, fourth_soldier, can_depart):
+    hq = objective()
+    target = KeyObject.from_raw({
+        'uId': hq.uid + 1, 'location': {'x': 50000, 'y': 50000, 'z': 0},
+        'redTeamNum': 0, 'blueteamNum': 5, 'percent': 0,
+    })
+    hq.raw.update(redTeamNum=12, blueteamNum=enemy_count)
+    agents = [entity(i, 0, i, *world(hq, i * 100, 0)[:2],
+                     kind='BP_BaseSoldier_C' if i >= 8 else 'BP_RoboDog_C')
+              for i in range(12)]
+    if fourth_soldier == 'dog':
+        agents[-1] = entity(11, 0, 11, *world(hq, 1100, 0)[:2], kind='BP_RoboDog_C')
+    elif fourth_soldier == 'outside':
+        agents[-1].position[:] = world(hq, 7800, 0)
+    elif fourth_soldier == 'disconnected':
+        agents[-1].raw['rSVD1'] = 'guard;0'
+    elif fourth_soldier == 'dead':
+        agents[-1].hp = 0
+        agents[-1].alive = False
+
+    route = HQGuardEntryRoute(adaptive=True, hq_first=True)
+    for step in range(route.HQ_STABLE_FOOTHOLD_STEPS + route.CAPTURE_CONFIRMATIONS + 2):
+        route.update(state(agents, objectives=[hq, target], step=step))
+
+    assert route.hq_secured is can_depart
+    assert (route.objective(state(agents, objectives=[hq, target])).uid == target.uid) is can_depart
+    if can_depart:
+        assert all(route._garrison.get(unit.uid) == hq.uid for unit in agents[-4:])
+    if fourth_soldier == 'outside':
+        assert route._garrison.get(agents[-1].uid) == hq.uid
+
+
+def test_already_held_tied_hq_replaces_a_lost_soldier_without_releasing_others():
+    hq = objective()
+    target = KeyObject.from_raw({
+        'uId': hq.uid + 1, 'location': {'x': 50000, 'y': 50000, 'z': 0},
+        'redTeamNum': 0, 'blueteamNum': 5, 'percent': 0,
+    })
+    hq.raw.update(redTeamNum=6, blueteamNum=0)
+    soldiers = [entity(i, 0, i, *world(hq, 100 * i, 0)[:2]) for i in range(6)]
+    route = HQGuardEntryRoute(adaptive=True, hq_first=True)
+    for step in range(route.CAPTURE_CONFIRMATIONS):
+        route.update(state(soldiers, objectives=[hq, target], step=step))
+    assert route.hq_secured
+    assert set(route._garrison) == {unit.uid for unit in soldiers[:4]}
+    for lost in soldiers[:2]:
+        lost.alive = False
+        lost.hp = 0
+    replacements = soldiers[4:]
+    for replacement in replacements:
+        replacement.position[:] = world(hq, 7800, 0)
+    hq.raw.update(redTeamNum=2, blueteamNum=2)
+    current = state(soldiers, objectives=[hq, target], step=route.CAPTURE_CONFIRMATIONS)
+    route.update(current)
+    assert route.hq_secured and route.stage == 1
+    assert not route.owned(current, hq)
+    assert set(route._garrison) == {unit.uid for unit in soldiers[2:]}
+    assert all(route.inside_garrison(hq, route.guard_slot(unit, hq)) for unit in replacements)
+
+
+def test_losing_hq_after_departure_recalls_the_force_and_resets_remnant():
+    hq = objective()
+    hq.raw.update(redTeamNum=5, blueteamNum=0)
+    target = KeyObject.from_raw({
+        'uId': hq.uid + 1, 'location': {'x': 50000, 'y': 50000, 'z': 0},
+        'redTeamNum': 0, 'blueteamNum': 5, 'percent': 0,
+    })
+    soldiers = [entity(i, 0, i, *world(hq, 100 * i, 0)[:2]) for i in range(5)]
+    route = HQGuardEntryRoute(adaptive=True, hq_first=True)
+    step = route.CAPTURE_CONFIRMATIONS
+    for frame in range(step):
+        route.update(state(soldiers, objectives=[hq, target], step=frame))
+    assert route.hq_secured and route.stage == 1
+
+    previous_remnant = route._remnant
+    hq.raw.update(redTeamNum=0, blueteamNum=1, percent=.95)
+    route.update(state(soldiers, objectives=[hq, target], step=step))
+    hq.raw['percent'] = .8
+    current = state(soldiers, objectives=[hq, target], step=step + 1)
+    route.update(current)
+
+    assert route.objective(current).uid == hq.uid
+    assert not route.hq_secured
+    assert route._remnant is not previous_remnant
+    assert not route._remnant.active
+
+
 def test_small_capture_box_keeps_a_positive_interior_region():
     route, obj, guard, _ = setup_guard(scale=(500, 600), local=(102, -202))
     goal = route.guard_slot(guard, obj)
@@ -175,3 +273,28 @@ def test_factory_keeps_new_entry_experiment_separate_from_hold_baseline():
         'policy_baseline': '6cb5a79_hq_hold'}))
     assert isinstance(prior._route, TiedHQGuardRoute)
     assert not isinstance(prior._route, HQGuardEntryRoute)
+
+
+def test_secured_hq_guard_holds_without_contact_and_evades_local_contact():
+    hq = objective()
+    guard = entity(31, 0, 0, *world(hq, 0, 0)[:2])
+    enemy = entity(51, 1, 0, *world(hq, 2000, 0)[:2])
+    ctx = context()
+    policy = ReinforceAgentAlgorithm(replace(ctx, config={**ctx.config,
+        'policy_baseline': '6cb5a79_hq_guard_entry'}))
+    route = policy._route
+    route.hq_uid = hq.uid
+    route.order = (hq.uid, hq.uid + 1)
+    route.stage = 1
+    route._garrison[guard.uid] = hq.uid
+    current = state([guard], [enemy], [hq])
+
+    assert policy._defend(current, guard, hq, [enemy], set()).command == 'Idle'
+    action = policy._defend(current, guard, hq, [enemy], {enemy.uid})
+    assert action.command == 'Moving'
+    assert route.inside_garrison(hq, action.points)
+    assert route.distance(enemy.position, action.points) > route.distance(enemy.position, guard.position)
+    assert route.distance(guard.position, action.points) == pytest.approx(1500)
+
+    route.stage = 0
+    assert route.preserve_guard(current, guard, hq, [enemy], {enemy.uid}) is None
