@@ -45,6 +45,34 @@ def create_champion(context):
                 return original_reward(previous, current, events)
 
             policy.calculate_reward = MethodType(calculate_reward, policy)
+            original_attack_target = policy._attack_target
+
+            def attack_target(self, agent, enemies, local=None):
+                # Keep the historical contact and weapon gates. Shared-only
+                # contacts and air units keep their existing target selection.
+                if agent.entity_type in {self._SOLDIER, self._DOG} and local:
+                    nearby = self._route.infantry_finish_pool(
+                        unit for unit in enemies if unit.uid in local)
+                    if nearby:
+                        return original_attack_target(agent, nearby, local)
+                return original_attack_target(agent, enemies, local)
+
+            policy._attack_target = MethodType(attack_target, policy)
+            if policy._vehicle_fire.target_selector is not None:
+                original_vehicle_selector = policy._vehicle_fire.target_selector
+
+                def vehicle_target(state, agent, available, default):
+                    # An eligible hostile vehicle still takes precedence.
+                    armor = tuple(unit for unit in available if unit.entity_type in policy.VEHICLES)
+                    pool = armor or policy._route.infantry_finish_pool(available)
+                    if not pool:
+                        return original_vehicle_selector(state, agent, available, default)
+                    if not any(unit is default for unit in pool):
+                        default = min(pool, key=lambda unit: (
+                            float(unit.hp), policy._vehicle_fire.distance(agent, unit), unit.uid))
+                    return original_vehicle_selector(state, agent, pool, default)
+
+                policy._vehicle_fire.target_selector = vehicle_target
     original_metadata = policy.policy_metadata
 
     def metadata(self):

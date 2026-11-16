@@ -55,6 +55,16 @@ class HQGuardEntryRoute(TiedHQGuardRoute):
     GUARD_EVASION_DISTANCE = 1500.0
     GUARD_EVASION_RADIUS = 3500.0
 
+    @staticmethod
+    def infantry_finish_pool(candidates):
+        soldiers = [unit for unit in candidates
+                    if unit.entity_type == 'BP_BaseSoldier_C' and math.isfinite(float(unit.hp))
+                    and unit.alive and unit.hp > 0]
+        if not soldiers:
+            return ()
+        weakest = min(float(unit.hp) for unit in soldiers)
+        return tuple(unit for unit in soldiers if float(unit.hp) <= weakest + 15)
+
     def preserve_guard(self, state, agent, obj, contacts, local):
         if obj.uid not in self.order[:self.stage]:
             return None  # Units securing the current objective still follow the assault rules.
