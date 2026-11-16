@@ -118,7 +118,7 @@ def test_missing_footprint_preserves_the_original_fallback():
     assert route.guard_slot(guard, obj) == original.guard_slot(guard, obj)
 
 
-@pytest.mark.parametrize(('enemy_count', 'third_soldier', 'can_depart'), [
+@pytest.mark.parametrize(('enemy_count', 'fourth_soldier', 'can_depart'), [
     (0, 'inside', True),
     (1, 'inside', True),
     (2, 'inside', False),
@@ -128,8 +128,8 @@ def test_missing_footprint_preserves_the_original_fallback():
     (0, 'disconnected', False),
     (0, 'dead', False),
 ])
-def test_hq_departure_requires_at_most_one_enemy_and_three_soldiers_inside(
-        enemy_count, third_soldier, can_depart):
+def test_hq_departure_requires_at_most_one_enemy_and_four_soldiers_inside(
+        enemy_count, fourth_soldier, can_depart):
     hq = objective()
     target = KeyObject.from_raw({
         'uId': hq.uid + 1, 'location': {'x': 50000, 'y': 50000, 'z': 0},
@@ -137,15 +137,15 @@ def test_hq_departure_requires_at_most_one_enemy_and_three_soldiers_inside(
     })
     hq.raw.update(redTeamNum=12, blueteamNum=enemy_count)
     agents = [entity(i, 0, i, *world(hq, i * 100, 0)[:2],
-                     kind='BP_BaseSoldier_C' if i >= 9 else 'BP_RoboDog_C')
+                     kind='BP_BaseSoldier_C' if i >= 8 else 'BP_RoboDog_C')
               for i in range(12)]
-    if third_soldier == 'dog':
+    if fourth_soldier == 'dog':
         agents[-1] = entity(11, 0, 11, *world(hq, 1100, 0)[:2], kind='BP_RoboDog_C')
-    elif third_soldier == 'outside':
+    elif fourth_soldier == 'outside':
         agents[-1].position[:] = world(hq, 7800, 0)
-    elif third_soldier == 'disconnected':
+    elif fourth_soldier == 'disconnected':
         agents[-1].raw['rSVD1'] = 'guard;0'
-    elif third_soldier == 'dead':
+    elif fourth_soldier == 'dead':
         agents[-1].hp = 0
         agents[-1].alive = False
 
@@ -156,8 +156,8 @@ def test_hq_departure_requires_at_most_one_enemy_and_three_soldiers_inside(
     assert route.hq_secured is can_depart
     assert (route.objective(state(agents, objectives=[hq, target])).uid == target.uid) is can_depart
     if can_depart:
-        assert all(route._garrison.get(unit.uid) == hq.uid for unit in agents[-3:])
-    if third_soldier == 'outside':
+        assert all(route._garrison.get(unit.uid) == hq.uid for unit in agents[-4:])
+    if fourth_soldier == 'outside':
         assert route._garrison.get(agents[-1].uid) == hq.uid
 
 
@@ -167,26 +167,26 @@ def test_already_held_tied_hq_replaces_a_lost_soldier_without_releasing_others()
         'uId': hq.uid + 1, 'location': {'x': 50000, 'y': 50000, 'z': 0},
         'redTeamNum': 0, 'blueteamNum': 5, 'percent': 0,
     })
-    hq.raw.update(redTeamNum=5, blueteamNum=0)
-    soldiers = [entity(i, 0, i, *world(hq, 100 * i, 0)[:2]) for i in range(5)]
+    hq.raw.update(redTeamNum=6, blueteamNum=0)
+    soldiers = [entity(i, 0, i, *world(hq, 100 * i, 0)[:2]) for i in range(6)]
     route = HQGuardEntryRoute(adaptive=True, hq_first=True)
     for step in range(route.CAPTURE_CONFIRMATIONS):
         route.update(state(soldiers, objectives=[hq, target], step=step))
     assert route.hq_secured
-    surviving_guards = [soldiers[i] for i in (1, 2, 3)]
-    assert all(route._garrison.get(unit.uid) == hq.uid for unit in surviving_guards)
+    assert set(route._garrison) == {unit.uid for unit in soldiers[:4]}
     for lost in soldiers[:2]:
         lost.alive = False
         lost.hp = 0
-    replacement = soldiers[4]
-    replacement.position[:] = world(hq, 7800, 0)
+    replacements = soldiers[4:]
+    for replacement in replacements:
+        replacement.position[:] = world(hq, 7800, 0)
     hq.raw.update(redTeamNum=2, blueteamNum=2)
     current = state(soldiers, objectives=[hq, target], step=route.CAPTURE_CONFIRMATIONS)
     route.update(current)
     assert route.hq_secured and route.stage == 1
     assert not route.owned(current, hq)
-    assert set(route._garrison) == {soldiers[2].uid, soldiers[3].uid, replacement.uid}
-    assert route.inside_garrison(hq, route.guard_slot(replacement, hq))
+    assert set(route._garrison) == {unit.uid for unit in soldiers[2:]}
+    assert all(route.inside_garrison(hq, route.guard_slot(unit, hq)) for unit in replacements)
 
 
 def test_losing_hq_after_departure_recalls_the_force_and_resets_remnant():

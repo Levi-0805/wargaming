@@ -1,4 +1,4 @@
-"""Direct historical-policy startup; managed batches keep their bound config."""
+"""Direct champion-policy startup; managed batches keep their bound config."""
 from __future__ import annotations
 
 import hashlib
@@ -73,7 +73,7 @@ def prepare_highscore(source, strategy, output, project_root):
 
 
 def resolve_manual_launch(args, *, project_root, output_fn=print):
-    """Use the November 4 policy and room episode count on direct main launches."""
+    """Use the guarded November 4 baseline and room count on direct launches."""
     managed = bool(args.batch_id or args.source_commit or args.s)
     if managed:
         if args.strategy:
@@ -97,7 +97,7 @@ def resolve_manual_launch(args, *, project_root, output_fn=print):
     platform = RuntimeConfig.load(source)
     if platform.max_episodes < 1:
         raise ValueError("平台局数必须大于0。")
-    strategy = args.strategy or "historical"
+    strategy = args.strategy or "hq-guard"
     if default_launch:
         args.episode_limit = platform.max_episodes
         args.exit_after_run = True
