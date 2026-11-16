@@ -24,10 +24,7 @@ class CssimApplication:
         """解析UE固定启动参数以及可选日志级别。"""
 
         parser = argparse.ArgumentParser(description="CSSIM 单线程 Python 客户端")
-        parser.add_argument("-c", "--config", help="UE生成的JSONC；直接运行时默认使用11月4日历史高分战略")
-        parser.add_argument("--strategy", choices=("hq-guard", "historical", "platform"),
-                            help="手动选择HQ修复高分战略、原始高分战略或平台原配置")
-        parser.add_argument("--non-interactive", action="store_true", help="按-c原配置直接启动")
+        parser.add_argument("-c", "--config", required=True, help="UE 生成的 JSONC 配置")
         parser.add_argument("-s", action="store_true", help="兼容 UE 启动参数，不启用守护进程")
         parser.add_argument("--log-root", default="logs", help="日志根目录；每次启动创建独立会话子目录")
         parser.add_argument("--source-commit", default=os.environ.get("CSSIM_SOURCE_COMMIT"),
@@ -65,21 +62,11 @@ class CssimApplication:
     def run(cls) -> None:
         """装载配置和日志，并在唯一事件循环中运行仿真。"""
 
-        from cssim.manual_launch import RuntimeLease
-
-        args = cls.parse_arguments()
-        with RuntimeLease(Path(__file__).resolve().parent / "logs/main-runtime.lock"):
-            cls._run(args)
-
-    @classmethod
-    def _run(cls, args) -> None:
-
         from cssim.config import RuntimeConfig
         from cssim.logging_setup import SimulationLog
         from cssim.runtime import Runner
-        from cssim.manual_launch import resolve_manual_launch
 
-        manual_selection = resolve_manual_launch(args, project_root=Path(__file__).resolve().parent)
+        args = cls.parse_arguments()
         config_path = Path(args.config).resolve()
         config_sha256 = hashlib.sha256(config_path.read_bytes()).hexdigest()
         config = RuntimeConfig.load(args.config)
@@ -103,7 +90,6 @@ class CssimApplication:
                 "configured_max_steps": config.max_steps,
                 "episode_limit": args.episode_limit,
                 "detailed_protocol": run_log.detailed,
-                "manual_selection": manual_selection,
             })
             runner = Runner(config, run_log)
             runner.episode_limit = args.episode_limit

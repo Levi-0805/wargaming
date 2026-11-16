@@ -216,7 +216,7 @@ def load_recipe(recipe):
         retries = step.get('retry_unchanged_clicks', 0)
         if (type(retries) is not int or not 0 <= retries <= 2
                 or (retries and (name not in {'login', 'single_seat', 'select_tenth_scenario',
-                                             'select_competition_situation', 'confirm_room'} or len(actions) != 1))):
+                                             'select_competition_situation'} or len(actions) != 1))):
             raise FlowError('Only allowlisted single-click navigation may retry an unchanged observed screen, at most twice')
         for label in ('before', 'after'):
             compile_pattern(step.get(label))

@@ -302,7 +302,6 @@
     },
     {
       "name": "confirm_room",
-      "retry_unchanged_clicks": 1,
       "phase": "pre_python",
       "before": {
         "all_of": [

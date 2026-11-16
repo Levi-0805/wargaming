@@ -136,10 +136,9 @@ def test_login_retries_only_a_proven_unchanged_screen(setup):
     assert len(adapter.calls) == 2
 
 
-@pytest.mark.parametrize('name', ['login', 'confirm_room'])
-def test_navigation_never_retries_on_an_unknown_screen(setup, name):
+def test_login_never_retries_on_an_unknown_screen(setup):
     _, recipe, adapter, _ = setup
-    recipe['steps'][0].update(name=name, timeout=8, retry_unchanged_clicks=2)
+    recipe['steps'][0].update(timeout=8, retry_unchanged_clicks=2)
     def click(x, y, snapshot):
         adapter.calls.append(('click', x, y))
         adapter.image = np.zeros_like(adapter.image)
@@ -148,7 +147,7 @@ def test_navigation_never_retries_on_an_unknown_screen(setup, name):
     assert len(adapter.calls) == 1
 
 
-@pytest.mark.parametrize('name', ['single_seat', 'select_tenth_scenario', 'select_competition_situation', 'confirm_room'])
+@pytest.mark.parametrize('name', ['single_seat', 'select_tenth_scenario', 'select_competition_situation'])
 def test_allowlisted_navigation_retries_only_while_original_screen_is_proven(setup, name):
     _, recipe, adapter, _ = setup
     recipe['steps'][0].update(name=name, timeout=15, retry_unchanged_clicks=2)
@@ -158,14 +157,6 @@ def test_allowlisted_navigation_retries_only_while_original_screen_is_proven(set
         original(x, y, snapshot)
     adapter.click = click
     assert run(setup)['state'] == 'complete'
-    assert len(adapter.calls) == 2
-
-
-def test_room_confirmation_stops_after_its_single_proven_retry(setup):
-    _, recipe, adapter, _ = setup
-    recipe['steps'][0].update(name='confirm_room', timeout=15, retry_unchanged_clicks=1)
-    adapter.change_on_click = False
-    assert run(setup)['state'] == 'needs_attention'
     assert len(adapter.calls) == 2
 
 
