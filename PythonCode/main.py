@@ -24,10 +24,10 @@ class CssimApplication:
         """解析UE固定启动参数以及可选日志级别。"""
 
         parser = argparse.ArgumentParser(description="CSSIM 单线程 Python 客户端")
-        parser.add_argument("-c", "--config", help="UE生成的JSONC；省略时进入手动战略选择")
+        parser.add_argument("-c", "--config", help="UE生成的JSONC；直接运行时默认使用11月4日历史高分战略")
         parser.add_argument("--strategy", choices=("hq-guard", "historical", "platform"),
                             help="手动选择HQ修复高分战略、原始高分战略或平台原配置")
-        parser.add_argument("--non-interactive", action="store_true", help="保留-c原配置，不显示手动选择")
+        parser.add_argument("--non-interactive", action="store_true", help="按-c原配置直接启动")
         parser.add_argument("-s", action="store_true", help="兼容 UE 启动参数，不启用守护进程")
         parser.add_argument("--log-root", default="logs", help="日志根目录；每次启动创建独立会话子目录")
         parser.add_argument("--source-commit", default=os.environ.get("CSSIM_SOURCE_COMMIT"),
@@ -131,8 +131,4 @@ class CssimApplication:
 
 
 if __name__ == "__main__":
-    from cssim.manual_launch import StartupCancelled
-    try:
-        CssimApplication.run()
-    except StartupCancelled as exc:
-        print(str(exc))
+    CssimApplication.run()

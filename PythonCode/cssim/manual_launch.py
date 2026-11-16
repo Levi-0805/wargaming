@@ -1,4 +1,4 @@
-"""Explicit manual policy selection; managed batches keep their bound config."""
+"""Direct historical-policy startup; managed batches keep their bound config."""
 from __future__ import annotations
 
 import hashlib
@@ -14,10 +14,6 @@ RED = f"TeamAlg.{TEAM}.Algorithm.RLAgentAlgorithm"
 MODEL_SHA = "3e36fb18875258f58065cfa748b57c8947675cded629654ce3b79696a8863f4f"
 SNAPSHOT_SHA = "7d7e619118e5c7c22235deca80d49d0ab1d959d8172f5e8fd62f03f72ecdcac5"
 STRATEGIES = {"hq-guard": "6cb5a79_hq_guard_entry", "historical": "6cb5a79"}
-
-
-class StartupCancelled(RuntimeError):
-    pass
 
 
 class RuntimeLease:
@@ -48,16 +44,6 @@ class RuntimeLease:
         self.stream.close()
 
 
-def _ask(prompt, input_fn):
-    try:
-        value = input_fn(prompt).strip()
-    except EOFError as exc:
-        raise StartupCancelled("控制台无法读取选择；请使用PyCharm运行控制台，或传入--strategy。") from exc
-    if value.lower() in {"q", "quit", "取消"}:
-        raise StartupCancelled("已取消启动。")
-    return value
-
-
 def prepare_highscore(source, strategy, output, project_root):
     """Keep live platform connection/settings; never edit its generated input."""
     config = RuntimeConfig.load(source)
@@ -86,8 +72,8 @@ def prepare_highscore(source, strategy, output, project_root):
     return output
 
 
-def resolve_manual_launch(args, *, project_root, input_fn=None, output_fn=print):
-    """Prompt for normal main/PyCharm launches; never prompt inside a batch."""
+def resolve_manual_launch(args, *, project_root, output_fn=print):
+    """Use the November 4 policy and room episode count on direct main launches."""
     managed = bool(args.batch_id or args.source_commit or args.s)
     if managed:
         if args.strategy:
@@ -96,50 +82,29 @@ def resolve_manual_launch(args, *, project_root, input_fn=None, output_fn=print)
             raise ValueError("托管启动必须提供-c配置路径。")
         return None
     known = args.config is None or Path(args.config).name in {"cssim_25vs25.jsonc", "iql_eval_red.jsonc"}
-    interactive = not args.non_interactive and known and args.strategy is None
-    if not interactive and args.strategy is None:
+    default_launch = not args.non_interactive and known and args.strategy is None
+    if not default_launch and args.strategy is None:
         if not args.config:
-            raise ValueError("请提供-c配置，或直接运行main选择策略。")
+            raise ValueError("请提供-c配置，或直接运行main启动历史高分战略。")
         return None
     root = Path(project_root).resolve()
     # The old PyCharm main points to a static three-game evaluation template.
-    # A manual policy choice must use the current UE-generated port and budget.
+    # Direct main uses the current UE-generated port and episode count.
     source = root / "TaskConfig/cssim/cssim_25vs25.jsonc" if known else Path(args.config).resolve()
     if not source.is_file():
         raise ValueError("未找到平台运行配置。请先在CSSIM选择场景、算法和局数，再运行main。")
     source_bytes = source.read_bytes()
     platform = RuntimeConfig.load(source)
-    upper = min(10, platform.max_episodes)
-    if upper < 1:
+    if platform.max_episodes < 1:
         raise ValueError("平台局数必须大于0。")
-    strategy = args.strategy
-    if interactive:
-        input_fn = input_fn or input
-        output_fn("\n选择本次战略（q取消）：\n"
-                  "  1 高分基线＋HQ守备修复（默认；实战收益待验证）\n"
-                  "  2 原始高分基线（历史对照）\n"
-                  "  3 平台原配置")
-        while True:
-            choice = _ask("请输入1/2/3 [1]：", input_fn) or "1"
-            if choice in {"1", "2", "3"}:
-                strategy = {"1": "hq-guard", "2": "historical", "3": "platform"}[choice]
-                break
-            output_fn("请输入1、2、3，或q取消。")
-        default = min(args.episode_limit or upper, upper)
-        while True:
-            value = _ask(f"本次运行局数1—{upper} [{default}]：", input_fn)
-            if not value:
-                args.episode_limit = default
-                break
-            if value.isdecimal() and 1 <= int(value) <= upper:
-                args.episode_limit = int(value)
-                break
-            output_fn(f"局数不能超过平台配置的{upper}局；请先在CSSIM修改局数。")
+    strategy = args.strategy or "historical"
+    if default_launch:
+        args.episode_limit = platform.max_episodes
         args.exit_after_run = True
-    if args.episode_limit is not None and args.episode_limit > upper:
-        raise ValueError(f"本次局数超过平台配置的{upper}局。")
+    if args.episode_limit is not None and args.episode_limit > platform.max_episodes:
+        raise ValueError(f"本次局数超过平台配置的{platform.max_episodes}局。")
     if source.read_bytes() != source_bytes:
-        raise RuntimeError("平台配置在选择期间发生变化，请重新运行main。")
+        raise RuntimeError("平台配置在读取期间发生变化，请重新运行main。")
     selected = source
     if strategy != "platform":
         selected = prepare_highscore(source, strategy,
@@ -151,6 +116,6 @@ def resolve_manual_launch(args, *, project_root, input_fn=None, output_fn=print)
                   source_config_sha256=hashlib.sha256(source_bytes).hexdigest(),
                   effective_config=str(selected), policy_baseline=STRATEGIES.get(strategy),
                   model_sha256=MODEL_SHA if strategy != "platform" else None)
-    output_fn(f"已选择：{strategy}；平台连接 {platform.host}:{platform.port}；"
-              f"最多运行{args.episode_limit or upper}局。记录将写入独立日志。")
+    output_fn(f"启动策略：{strategy}；平台连接 {platform.host}:{platform.port}；"
+              f"最多运行{args.episode_limit or platform.max_episodes}局。")
     return result
