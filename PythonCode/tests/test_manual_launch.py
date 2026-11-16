@@ -47,14 +47,14 @@ def resolve(project):
     return manual.resolve_manual_launch(args, project_root=root, output_fn=lambda _: None)
 
 
-def test_direct_main_uses_guarded_highscore_without_input(project, monkeypatch):
+def test_direct_main_uses_historical_highscore_without_input(project, monkeypatch):
     monkeypatch.setattr("builtins.input", lambda *_: pytest.fail("unexpected prompt"))
     root, source, args, raw, *_ = project
     original = source.read_bytes()
     result = resolve(project)
     effective = json.loads(Path(args.config).read_bytes())
     policy = effective[manual.RED + ".py->AlgorithmConfig"]
-    assert policy["policy_baseline"] == "6cb5a79_hq_guard_entry"
+    assert policy["policy_baseline"] == "6cb5a79"
     assert policy["mode"] == "hybrid_iql" and policy["iql_shadow"] is False
     assert "enable_continuous_column" not in policy
     assert Path(policy["iql_model"]).is_absolute()
@@ -70,7 +70,7 @@ def test_existing_pycharm_three_game_arguments_use_current_generated_settings(pr
     args.config = str(root / "TaskConfig/cssim/iql_eval_red.jsonc")
     args.episode_limit = 3
     result = resolve(project)
-    assert result["policy_baseline"] == "6cb5a79_hq_guard_entry"
+    assert result["policy_baseline"] == "6cb5a79"
     assert args.episode_limit == 10
     assert json.loads(Path(args.config).read_bytes())["Common.cssim_env_wrapper.py->ScenarioConfig"]["CSSIMPort"] == 29999
 
@@ -164,7 +164,7 @@ def test_main_without_arguments_is_a_supported_manual_entry(monkeypatch):
     assert args.config is None and args.strategy is None
 
 
-@pytest.mark.parametrize("strategy,baseline", [(None, "6cb5a79_hq_guard_entry"), ("historical", "6cb5a79")])
+@pytest.mark.parametrize("strategy,baseline", [(None, "6cb5a79"), ("hq-guard", "6cb5a79_hq_guard_entry")])
 def test_direct_and_explicit_launch_load_real_policy_without_connecting_to_ue(tmp_path, strategy, baseline):
     from dataclasses import replace
     from test_champion_baseline import context
@@ -180,6 +180,6 @@ def test_direct_and_explicit_launch_load_real_policy_without_connecting_to_ue(tm
     metadata = policy.policy_metadata()
     assert metadata["policy_baseline"] == baseline
     assert metadata["model_sha256"] == manual.MODEL_SHA and metadata["shadow"] is False
-    assert isinstance(policy._route, HQGuardEntryRoute) == (strategy is None)
+    assert isinstance(policy._route, HQGuardEntryRoute) == (strategy == "hq-guard")
     assert metadata["policy_snapshot_sha256"] == manual.SNAPSHOT_SHA
-    assert ("policy_overlay" in metadata) == (strategy is None)
+    assert ("policy_overlay" in metadata) == (strategy == "hq-guard")

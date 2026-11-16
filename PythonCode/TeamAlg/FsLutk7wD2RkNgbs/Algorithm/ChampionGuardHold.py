@@ -47,7 +47,7 @@ class HQGuardEntryRoute(TiedHQGuardRoute):
     navigation request, not proof of mesh clearance or a new capture condition.
     """
 
-    HQ_SOLDIER_MIN = 4
+    HQ_SOLDIER_MIN = 3
 
     @staticmethod
     def _hq_soldier(unit):
