@@ -189,6 +189,33 @@ def test_already_held_tied_hq_replaces_a_lost_soldier_without_releasing_others()
     assert route.inside_garrison(hq, route.guard_slot(replacement, hq))
 
 
+def test_losing_hq_after_departure_recalls_the_force_and_resets_remnant():
+    hq = objective()
+    hq.raw.update(redTeamNum=5, blueteamNum=0)
+    target = KeyObject.from_raw({
+        'uId': hq.uid + 1, 'location': {'x': 50000, 'y': 50000, 'z': 0},
+        'redTeamNum': 0, 'blueteamNum': 5, 'percent': 0,
+    })
+    soldiers = [entity(i, 0, i, *world(hq, 100 * i, 0)[:2]) for i in range(5)]
+    route = HQGuardEntryRoute(adaptive=True, hq_first=True)
+    step = route.CAPTURE_CONFIRMATIONS
+    for frame in range(step):
+        route.update(state(soldiers, objectives=[hq, target], step=frame))
+    assert route.hq_secured and route.stage == 1
+
+    previous_remnant = route._remnant
+    hq.raw.update(redTeamNum=0, blueteamNum=1, percent=.95)
+    route.update(state(soldiers, objectives=[hq, target], step=step))
+    hq.raw['percent'] = .8
+    current = state(soldiers, objectives=[hq, target], step=step + 1)
+    route.update(current)
+
+    assert route.objective(current).uid == hq.uid
+    assert not route.hq_secured
+    assert route._remnant is not previous_remnant
+    assert not route._remnant.active
+
+
 def test_small_capture_box_keeps_a_positive_interior_region():
     route, obj, guard, _ = setup_guard(scale=(500, 600), local=(102, -202))
     goal = route.guard_slot(guard, obj)

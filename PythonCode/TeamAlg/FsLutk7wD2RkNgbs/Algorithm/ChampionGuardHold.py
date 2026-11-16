@@ -5,6 +5,7 @@ import math
 from .Champion6cb5a79.AdaptiveAssault import AdaptiveAssault
 
 from .Champion6cb5a79.AssaultRoute import AssaultRoute
+from .Champion6cb5a79.RemnantCapture import RemnantCapture
 
 logger = logging.getLogger(__name__)
 
