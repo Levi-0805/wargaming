@@ -38,6 +38,13 @@ def create_champion(context):
                 return original_defend(state, agent, obj, contacts, local)
 
             policy._defend = MethodType(defend, policy)
+            original_reward = policy.calculate_reward
+
+            def calculate_reward(self, previous, current, events):
+                self._route.observe_guard_casualties(previous, current, events)
+                return original_reward(previous, current, events)
+
+            policy.calculate_reward = MethodType(calculate_reward, policy)
     original_metadata = policy.policy_metadata
 
     def metadata(self):

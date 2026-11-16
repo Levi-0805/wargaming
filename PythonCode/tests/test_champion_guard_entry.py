@@ -120,15 +120,16 @@ def test_missing_footprint_preserves_the_original_fallback():
 
 @pytest.mark.parametrize(('enemy_count', 'fourth_soldier', 'can_depart'), [
     (0, 'inside', True),
+    (0, 'dog', True),
     (1, 'inside', True),
     (2, 'inside', False),
     (None, 'inside', False),
-    (0, 'dog', False),
-    (0, 'outside', False),
-    (0, 'disconnected', False),
-    (0, 'dead', False),
+    (1, 'dog', False),
+    (1, 'outside', False),
+    (1, 'disconnected', False),
+    (1, 'dead', False),
 ])
-def test_hq_departure_requires_at_most_one_enemy_and_four_soldiers_inside(
+def test_hq_departure_uses_two_or_four_arrived_soldiers_based_on_enemy_presence(
         enemy_count, fourth_soldier, can_depart):
     hq = objective()
     target = KeyObject.from_raw({
@@ -156,7 +157,9 @@ def test_hq_departure_requires_at_most_one_enemy_and_four_soldiers_inside(
     assert route.hq_secured is can_depart
     assert (route.objective(state(agents, objectives=[hq, target])).uid == target.uid) is can_depart
     if can_depart:
-        assert all(route._garrison.get(unit.uid) == hq.uid for unit in agents[-4:])
+        guards = [unit for unit in agents if route._garrison.get(unit.uid) == hq.uid]
+        assert len(guards) == (2 if enemy_count == 0 else 4)
+        assert all(unit.entity_type == "BP_BaseSoldier_C" for unit in guards)
     if fourth_soldier == 'outside':
         assert route._garrison.get(agents[-1].uid) == hq.uid
 
@@ -173,10 +176,9 @@ def test_already_held_tied_hq_replaces_a_lost_soldier_without_releasing_others()
     for step in range(route.CAPTURE_CONFIRMATIONS):
         route.update(state(soldiers, objectives=[hq, target], step=step))
     assert route.hq_secured
-    assert set(route._garrison) == {unit.uid for unit in soldiers[:4]}
-    for lost in soldiers[:2]:
-        lost.alive = False
-        lost.hp = 0
+    assert set(route._garrison) == {unit.uid for unit in soldiers[:2]}
+    for far in soldiers[2:4]:
+        far.position[:] = world(hq, 30000, 0)
     replacements = soldiers[4:]
     for replacement in replacements:
         replacement.position[:] = world(hq, 7800, 0)
@@ -185,7 +187,7 @@ def test_already_held_tied_hq_replaces_a_lost_soldier_without_releasing_others()
     route.update(current)
     assert route.hq_secured and route.stage == 1
     assert not route.owned(current, hq)
-    assert set(route._garrison) == {unit.uid for unit in soldiers[2:]}
+    assert set(route._garrison) == {unit.uid for unit in (*soldiers[:2], *replacements)}
     assert all(route.inside_garrison(hq, route.guard_slot(unit, hq)) for unit in replacements)
 
 
@@ -214,6 +216,36 @@ def test_losing_hq_after_departure_recalls_the_force_and_resets_remnant():
     assert not route.hq_secured
     assert route._remnant is not previous_remnant
     assert not route._remnant.active
+
+
+def test_confirmed_soldier_elimination_releases_last_hq_soldier_for_next_point():
+    from test_fslutk_rule import map_objectives
+
+    hq, b, a = map_objectives()
+    hq.raw.update(percent=1, redTeamNum=1, blueteamNum=0)
+    soldier = entity(51, 0, 0, *hq.position[:2])
+    enemies = [entity(100 + i, 1, i, *b.position[:2]) for i in range(22)]
+    route = HQGuardEntryRoute(adaptive=True, hq_first=True)
+    objectives = (hq, b, a)
+    route.update(state([soldier], objectives=objectives))
+    visible = state([soldier], enemies, objectives)
+    unseen = state([soldier], objectives=objectives, step=1)
+    route.observe_guard_casualties(visible, unseen, [])
+    assert not route.capture_sweep(unseen)
+    assert route.garrison_needed(unseen, hq) == 2
+    events = [{'Event': 'Destroyed', 'Target': str(unit.uid)} for unit in enemies]
+    route.observe_guard_casualties(visible, unseen, events[:-1])
+    assert not route.capture_sweep(unseen)
+    route.observe_guard_casualties(visible, unseen, events[-1:])
+    assert route.capture_sweep(unseen)
+
+    for step in range(1, route.CAPTURE_CONFIRMATIONS + 1):
+        current = state([soldier], objectives=objectives, step=step)
+        route.update(current)
+    assert route.objective(current).uid == b.uid
+    assert not route._garrison
+    next_game = state([soldier], objectives=objectives, episode=2)
+    assert not route.capture_sweep(next_game)
 
 
 def test_small_capture_box_keeps_a_positive_interior_region():

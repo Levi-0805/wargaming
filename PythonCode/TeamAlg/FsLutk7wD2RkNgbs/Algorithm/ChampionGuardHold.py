@@ -50,6 +50,8 @@ class HQGuardEntryRoute(TiedHQGuardRoute):
     """
 
     HQ_SOLDIER_MIN = 4
+    # Fixed red/blue roster in the competition's known three-objective map.
+    COMPETITION_SOLDIERS = 22
     GUARD_EVASION_DISTANCE = 1500.0
     GUARD_EVASION_RADIUS = 3500.0
 
@@ -84,13 +86,53 @@ class HQGuardEntryRoute(TiedHQGuardRoute):
         return (unit.alive and unit.hp > 0 and unit.entity_type == 'BP_BaseSoldier_C'
                 and unit.communication_ok() is not False)
 
+    def observe_guard_casualties(self, previous, current, events):
+        if getattr(self, '_casualty_episode', None) != current.episode:
+            self._casualty_episode = current.episode
+            self._seen_soldiers = set()
+            self._destroyed_soldiers = set()
+        living = {u.uid for u in current.visible_opponents
+                  if u.alive and u.entity_type == 'BP_BaseSoldier_C'}
+        self._seen_soldiers.update(living)
+        self._seen_soldiers.update(u.uid for u in previous.visible_opponents
+                                   if u.entity_type == 'BP_BaseSoldier_C')
+        for event in events:
+            target = str(event.get('Target', ''))
+            if event.get('Event') == 'Destroyed' and target.isdecimal():
+                uid = int(target)
+                if uid in self._seen_soldiers and uid not in living:
+                    self._destroyed_soldiers.add(uid)
+        self._destroyed_soldiers.difference_update(living)
+
+    def capture_sweep(self, state):
+        return (self.known_map and getattr(self, '_casualty_episode', None) == state.episode
+                and len(self._seen_soldiers) == self.COMPETITION_SOLDIERS
+                and self._seen_soldiers == self._destroyed_soldiers
+                and any(obj.valid and (self.count(obj, 'percent') < 1
+                                      or obj.team not in (None, state.team))
+                        for obj in state.key_objects))
+
     def garrison_needed(self, state, obj):
-        needed = super().garrison_needed(state, obj)
-        return max(needed, self.HQ_SOLDIER_MIN) if self.is_hq(obj) else needed
+        if self.capture_sweep(state):
+            return 0
+        if self.is_hq(obj):
+            return 2 if AdaptiveAssault.occupants(state, obj) == 0 else self.HQ_SOLDIER_MIN
+        return super().garrison_needed(state, obj)
+
+    def _select(self, state, *, next_objective=False):
+        if self.capture_sweep(state):
+            if self._remnant.active:
+                self._remnant = RemnantCapture()
+            return  # Continue the current capture route with no new stop-loss detour.
+        return super()._select(state, next_objective=next_objective)
 
     def _assign_garrison(self, state, include_current=False):
         previous = dict(self._garrison)
         super()._assign_garrison(state, include_current)
+        if self.capture_sweep(state):
+            self._garrison.clear()
+            self._guard_slots.clear()
+            return
         hq = state.key_object_by_uid(self.hq_uid)
         if hq is None or hq.uid not in self.order[:self.stage + int(include_current)]:
             return
@@ -107,7 +149,8 @@ class HQGuardEntryRoute(TiedHQGuardRoute):
         if not (self.owned(state, hq) or tied_after_departure):
             return
         assigned = [unit for unit in state.agents if self._garrison.get(unit.uid) == hq.uid]
-        soldiers_needed = self.HQ_SOLDIER_MIN - sum(self._hq_soldier(unit) for unit in assigned)
+        capacity = self.garrison_needed(state, hq)
+        soldiers_needed = capacity - sum(self._hq_soldier(unit) for unit in assigned)
         if soldiers_needed <= 0:
             return
         available = [unit for unit in state.agents if unit.uid not in self._garrison
@@ -116,7 +159,6 @@ class HQGuardEntryRoute(TiedHQGuardRoute):
                                          previous.get(unit.uid) != hq.uid,
                                          self.distance(unit.position, hq.position), unit.uid))
         replaceable = [unit for unit in reversed(assigned) if not self._hq_soldier(unit)]
-        capacity = self.garrison_needed(state, hq)
         for soldier in available[:soldiers_needed]:
             if len(assigned) >= capacity and replaceable:
                 released = replaceable.pop(0)
@@ -223,7 +265,7 @@ class HQGuardEntryRoute(TiedHQGuardRoute):
             enemy_occupants = AdaptiveAssault.occupants(state, obj)
             ready = (ready and enemy_occupants in (0, 1)
                      and self.count(obj, friendly_field) >= self.garrison_needed(state, obj)
-                     and sum(self._hq_soldier(unit) for unit in guards) >= self.HQ_SOLDIER_MIN)
+                     and sum(self._hq_soldier(unit) for unit in guards) >= self.garrison_needed(state, obj))
         # Keep the historical stability interval and friendly advantage for
         # departure with one enemy occupant still in the HQ.
         held = (self.adaptive and self.is_hq(obj) and ours and ready
