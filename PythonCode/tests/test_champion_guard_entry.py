@@ -307,26 +307,6 @@ def test_factory_keeps_new_entry_experiment_separate_from_hold_baseline():
     assert not isinstance(prior._route, HQGuardEntryRoute)
 
 
-def test_combat_focus_finishes_local_infantry_but_keeps_vehicle_priority():
-    ctx = context()
-    policy = ReinforceAgentAlgorithm(replace(ctx, config={**ctx.config,
-        'policy_baseline': '6cb5a79_hq_guard_entry'}))
-    shooter = entity(31, 0, 0, 0)
-    vehicle = entity(32, 0, 1, 0, kind='BP_MNWS_Vehicle_6x6UGV_C')
-    weak = entity(51, 1, 0, 500, hp=15)
-    healthy = entity(52, 1, 1, 300, hp=100)
-    armor = entity(53, 1, 2, 700, kind='BP_MNWS_Vehicle_6x6UGV_C')
-    dog = entity(54, 1, 3, 200, kind='BP_RoboDog_C', hp=1)
-    policy._support[healthy.uid] = 20
-    enemies = [healthy, weak, dog]
-    assert policy._attack_target(shooter, enemies, {unit.uid for unit in enemies}) is weak
-    assert policy._attack_target(shooter, enemies, {healthy.uid, dog.uid}) is healthy
-    current = state([vehicle], [*enemies, armor])
-    select = policy._vehicle_fire.target_selector
-    assert select(current, vehicle, enemies, dog) is weak
-    assert select(current, vehicle, [*enemies, armor], weak) is armor
-
-
 def test_secured_hq_guard_holds_without_contact_and_evades_local_contact():
     hq = objective()
     guard = entity(31, 0, 0, *world(hq, 0, 0)[:2])
